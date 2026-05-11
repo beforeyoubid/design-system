@@ -1,8 +1,8 @@
 {
   "name": "@beforeyoubid/design-system",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "BYB design system — Tailwind CSS + Base UI components for the BYB public website",
-  "author": "Before You Bid",
+  "author": "Before You Buy",
   "license": "ISC",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
