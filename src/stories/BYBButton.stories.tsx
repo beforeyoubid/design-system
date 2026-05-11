@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { BYBButton } from '../components/BYBButton'
 
 const meta: Meta<typeof BYBButton> = {
