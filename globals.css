@@ -1,0 +1,44 @@
+/* BYB Design System — CSS custom properties (design tokens)
+   Import this file once in the consuming app's root layout. */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Navy */
+  --color-navy: #090034;
+
+  /* Mint (Primary) */
+  --color-mint-90: #005246;
+  --color-mint-75: #007A69;
+  --color-mint-60: #009E87;
+  --color-mint-45: #00AE95;
+  --color-mint-30: #4FC3AE;
+  --color-mint-15: #6BCCBB;
+  --color-mint-l1: #ABE2D8;
+  --color-mint-l2: #D2EFEA;
+  --color-mint-l3: #E1F5F1;
+  --color-mint-l4: #F4FBFA;
+
+  /* Dark (Neutrals) */
+  --color-dark-100: #16181D;
+  --color-dark-90:  #444A5A;
+  --color-dark-75:  #656E85;
+  --color-dark-60:  #858EA3;
+  --color-dark-45:  #A5ABBB;
+  --color-dark-30:  #C2C6D1;
+  --color-dark-15:  #DFE1E7;
+
+  /* Light (Neutrals) */
+  --color-light-white: #FFFFFF;
+  --color-light-l1:    #F9FAFB;
+  --color-light-l2:    #F2F4F7;
+  --color-light-l3:    #EAECF0;
+
+  /* Lime — pending designer confirmation */
+  --color-lime: #D4F269;
+
+  /* Green (Success) — pending designer confirmation */
+  --color-green: #15803D;
+}
