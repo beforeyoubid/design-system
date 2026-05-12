@@ -38,16 +38,28 @@ Bump the version in `package.json` before publishing. We follow `1.0.0-alpha.N` 
 
 ## Using in byb-website (local)
 
-Add a workspace link in `byb-website/package.json`:
+byb-website uses Yarn 1 classic, so use `yarn link` for local development:
 
-```json
-"@beforeyoubid/design-system": "portal:../design-system"
+**1. Register the link (once, in design-system):**
+```bash
+cd services/design-system
+yarn build        # must build first so dist/ exists
+yarn link
 ```
 
-Then in `byb-website`:
-
+**2. Use the link (in byb-website):**
 ```bash
-yarn install
+cd services/byb-website
+yarn link @beforeyoubid/design-system
+```
+
+From then on, run `yarn dev` in design-system while working — changes rebuild automatically and byb-website picks them up on next page refresh.
+
+**To unlink when done:**
+```bash
+cd services/byb-website
+yarn unlink @beforeyoubid/design-system
+yarn install --force
 ```
 
 ## Adding a token
