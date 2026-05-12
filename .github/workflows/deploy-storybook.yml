@@ -32,8 +32,7 @@ jobs:
       - name: Deploy to S3
         run: |
           aws s3 sync storybook-static/ s3://storybook.beforeyoubid.com.au/design-system/ \
-            --delete \
-            --acl public-read
+            --delete
 
       - name: Invalidate CloudFront cache
         run: |
