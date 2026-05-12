@@ -22,9 +22,6 @@ jobs:
       - name: Token parity
         run: yarn check-tokens
 
-      - name: Token parity
-        run: npm run check-tokens
-
       - name: Type check
         run: yarn type-check
 
