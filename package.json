@@ -29,6 +29,7 @@
     "type-check": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "check-tokens": "node scripts/check-tokens.js",
     "test": "jest"
   },
   "peerDependencies": {
