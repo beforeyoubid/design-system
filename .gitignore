@@ -2,3 +2,5 @@ dist
 node_modules
 storybook-static
 .chromatic
+# override global gitignore — lock file must be committed
+!yarn.lock
