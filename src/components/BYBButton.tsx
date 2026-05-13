@@ -1,3 +1,4 @@
+import React from 'react'
 import { clsx } from 'clsx'
 
 export type BYBButtonVariant = 'lime' | 'navy' | 'ghost-white' | 'outline-navy'
@@ -27,21 +28,30 @@ export function BYBButton({
   variant = 'lime',
   size = 'md',
   loading = false,
+  asChild = false,
   disabled,
   className,
   children,
   ...props
 }: BYBButtonProps) {
+  const buttonClasses = clsx(
+    'inline-flex items-center justify-center font-semibold rounded-lg transition-all',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2',
+    'disabled:opacity-50 disabled:cursor-not-allowed',
+    variantClasses[variant],
+    sizeClasses[size],
+    className,
+  )
+
+  if (asChild && React.isValidElement(children)) {
+    return React.cloneElement(children as React.ReactElement<React.HTMLAttributes<HTMLElement>>, {
+      className: clsx(buttonClasses, (children as React.ReactElement<{ className?: string }>).props.className),
+    })
+  }
+
   return (
     <button
-      className={clsx(
-        'inline-flex items-center justify-center font-semibold rounded-lg transition-all',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2',
-        'disabled:opacity-50 disabled:cursor-not-allowed',
-        variantClasses[variant],
-        sizeClasses[size],
-        className,
-      )}
+      className={buttonClasses}
       disabled={disabled || loading}
       {...props}
     >
