@@ -1,6 +1,6 @@
 # CLAUDE.md — @beforeyoubid/design-system
 
-This package is the BYB design system: Tailwind CSS tokens + Base UI components for the BYB marketing website.
+This package is the BYB design system: Tailwind CSS tokens + shadcn-pattern components for the BYB marketing website.
 Read this before adding or modifying any component or token.
 
 ## What lives here
@@ -74,23 +74,29 @@ Max-width: `max-w-site` = 1280px — always use this for the content container.
 - One component per file in `src/components/`
 - Every component must be exported from `src/index.ts`
 - Every component must have a story in `src/stories/` covering all variants
-- Use `clsx` for conditional classes, `tailwind-merge` (via `clsx` + `twMerge`) when consumers need to override
-- Use Base UI primitives (`@base-ui-components/react`) for interactive components (buttons, inputs, selects, dialogs)
+- Use `cva` (class-variance-authority) for all component variants — not ad-hoc `Record<>` maps
+- Use `cn` (exported from `src/lib/utils.ts`) for all className merging — not raw `clsx`
+- Use `@radix-ui/react-slot` (`Slot`) for the `asChild` pattern on interactive components
+- For complex components needing accessibility primitives (Modal, Combobox, Tooltip), use `@radix-ui/*` packages
 - **No inline styles.** No `style={{}}` props unless absolutely unavoidable (e.g. dynamic values with no token equivalent)
 - **No MUI imports.** This package is MUI-free by design.
 
 ### Component API conventions
 
 ```tsx
-// Variants and sizes are always typed string unions, not enums
-variant?: 'lime' | 'navy' | 'ghost-white' | 'outline-navy'
-size?: 'sm' | 'md' | 'lg'
+// Use cva for variants — export the variants object so consumers can extend
+const buttonVariants = cva('base-classes', {
+  variants: { variant: { lime: '…', navy: '…' }, size: { sm: '…', md: '…' } },
+  defaultVariants: { variant: 'lime', size: 'md' },
+})
 
-// Always extend the native HTML element's props
-export interface BYBButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>
+// Interface extends both native element props AND cva VariantProps
+export interface BYBButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {}
 
-// className is always accepted and applied last (consumer wins)
-className={clsx(baseClasses, variantClasses[variant], className)}
+// Use cn() — not clsx() — for className merging (cn handles Tailwind conflicts)
+className={cn(buttonVariants({ variant, size, className }))}
 ```
 
 ### asChild pattern

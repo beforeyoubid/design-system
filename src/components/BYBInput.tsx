@@ -1,4 +1,20 @@
-import { clsx } from 'clsx'
+import { cva } from 'class-variance-authority'
+import { cn } from '../lib/utils'
+
+const inputVariants = cva(
+  'w-full px-4 py-3 rounded-md border bg-light-l1 text-body-md text-dark-100 placeholder:text-dark-45 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy disabled:opacity-50 disabled:cursor-not-allowed',
+  {
+    variants: {
+      hasError: {
+        true:  'border-red-500 focus-visible:ring-red-500',
+        false: 'border-dark-15 hover:border-dark-30',
+      },
+    },
+    defaultVariants: {
+      hasError: false,
+    },
+  }
+)
 
 export interface BYBInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string
@@ -8,6 +24,7 @@ export interface BYBInputProps extends React.InputHTMLAttributes<HTMLInputElemen
 
 export function BYBInput({ label, hint, error, className, id, ...props }: BYBInputProps) {
   const inputId = id ?? label?.toLowerCase().replace(/\s+/g, '-')
+  const hasError = !!error
 
   return (
     <div className="flex flex-col gap-1 w-full">
@@ -18,18 +35,9 @@ export function BYBInput({ label, hint, error, className, id, ...props }: BYBInp
       )}
       <input
         id={inputId}
-        className={clsx(
-          'w-full px-4 py-3 rounded-md border bg-light-l1 text-body-md text-dark-100',
-          'placeholder:text-dark-45 transition-colors',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy',
-          error
-            ? 'border-red-500 focus-visible:ring-red-500'
-            : 'border-dark-15 hover:border-dark-30',
-          'disabled:opacity-50 disabled:cursor-not-allowed',
-          className,
-        )}
+        className={cn(inputVariants({ hasError, className }))}
         aria-describedby={error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}
-        aria-invalid={!!error}
+        aria-invalid={hasError}
         {...props}
       />
       {hint && !error && (
