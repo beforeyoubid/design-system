@@ -64,29 +64,52 @@ const config: Config = {
         // Overlays
         'overlay-95': '#16181DF2',
         'overlay-50': '#16181D80',
+        // Transparent UI
+        'button-a': '#F2F4F7CC',
+        'button-b': '#C2C6D1CC',
+        // Category colours (inspection service types)
+        'category-01': '#00BCD4',
+        'category-02': '#0097A7',
+        'category-03': '#29B6F6',
+        'category-04': '#0288D1',
+        'category-05': '#4E342E',
+        'category-06': '#6D4C41',
+        'category-07': '#3D0C11',
+        'category-08': '#880E4F',
+        'category-09': '#E91E63',
+        'category-10': '#7B1FA2',
+        'category-11': '#9357FD',
+        'category-12': '#673AB7',
+        'category-13': '#9E9E9E',
+        'category-14': '#BDBDBD',
+        'category-15': '#555555',
+        'category-16': '#262323',
       },
       maxWidth: {
         site: '1280px',
       },
       fontSize: {
         // Heading weights are 600 (semi-bold) per Figma tokens
-        // Letter-spacing: headings use slight negative tracking — add tracking-tight alongside these classes
+        // Negative letter-spacing on headings — add tracking-heading alongside heading classes
         'display-xl': ['72px', { lineHeight: '1.05', fontWeight: '600' }],
         'display':    ['56px', { lineHeight: '1.08', fontWeight: '600' }],
+        'display-sm': ['52px', { lineHeight: '1.2',  fontWeight: '600' }],
         'heading-lg': ['40px', { lineHeight: '1.2',  fontWeight: '600' }],
         'heading-md': ['28px', { lineHeight: '1.2',  fontWeight: '600' }],
+        'heading-base': ['24px', { lineHeight: '1.2', fontWeight: '600' }],
         'heading-sm': ['20px', { lineHeight: '1.3',  fontWeight: '600' }],
         'body-lg':    ['18px', { lineHeight: '1.4' }],
         'body-md':    ['16px', { lineHeight: '1.4' }],
         'body-sm':    ['13px', { lineHeight: '1.4' }],
         'caption':    ['12px', { lineHeight: '1.4' }],
-        // Button text — uppercase + letter-spacing applied via component styles
+        // Button text — uppercase + 4% letter-spacing applied via BYBButton component
         'btn-lg': ['18px', { lineHeight: '1.3', fontWeight: '600' }],
         'btn-md': ['16px', { lineHeight: '1.3', fontWeight: '600' }],
         'btn-sm': ['13px', { lineHeight: '1.3', fontWeight: '600' }],
       },
       letterSpacing: {
         'heading': '-0.005em',
+        'btn':     '0.04em',
       },
       borderRadius: {
         sm:   '4px',

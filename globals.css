@@ -72,4 +72,26 @@
   /* Overlays */
   --color-overlay-95: #16181DF2;
   --color-overlay-50: #16181D80;
+
+  /* Transparent UI */
+  --color-button-a: #F2F4F7CC;
+  --color-button-b: #C2C6D1CC;
+
+  /* Category colours (inspection service types) */
+  --color-category-01: #00BCD4;
+  --color-category-02: #0097A7;
+  --color-category-03: #29B6F6;
+  --color-category-04: #0288D1;
+  --color-category-05: #4E342E;
+  --color-category-06: #6D4C41;
+  --color-category-07: #3D0C11;
+  --color-category-08: #880E4F;
+  --color-category-09: #E91E63;
+  --color-category-10: #7B1FA2;
+  --color-category-11: #9357FD;
+  --color-category-12: #673AB7;
+  --color-category-13: #9E9E9E;
+  --color-category-14: #BDBDBD;
+  --color-category-15: #555555;
+  --color-category-16: #262323;
 }
