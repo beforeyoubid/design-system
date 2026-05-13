@@ -23,27 +23,30 @@ Read this before adding or modifying any component or token.
 ### Colour tokens quick reference
 
 ```
-navy                    — primary dark background, primary text on light
-mint-90 → mint-l4       — primary brand gradient (dark → light)
-lime                    — CTA accent (buttons, highlights)
-dark-100 → dark-15      — neutral text and borders
-light-white / l1–l3     — page backgrounds and surfaces
-green (success)         — ⚠️ full scale pending designer confirmation
+navy / lime / cobalt / teal — brand palette
+mint-90 → mint-l4           — primary brand scale (dark → light)
+dark-100 → dark-15          — neutral text and borders
+light-l1 → light-sandy      — page backgrounds and surfaces
+success-90 → success-l1     — success states (confirmed from Figma)
+error-90 → error-l2         — error states
+warning-75 → warning-l3     — warning states
+overlay-95 / overlay-50     — dark overlays
 ```
 
 ### Typography tokens
 
-Use `text-{scale}` classes — never set raw font sizes:
+Font: **Plus Jakarta Sans** — headings are weight 600 (semi-bold), not bold.
+Add `tracking-heading` (`-0.005em`) alongside heading classes for correct letter-spacing.
 
 ```
-text-display-xl   72px / 700   — hero headline only
-text-display      56px / 700   — section hero
-text-heading-lg   40px / 700   — major section headings
-text-heading-md   28px / 700   — sub-section headings
+text-display-xl   72px / 600   — hero headline only
+text-display      56px / 600   — section hero
+text-heading-lg   40px / 600   — major section headings  + tracking-heading
+text-heading-md   28px / 600   — sub-section headings    + tracking-heading
 text-heading-sm   20px / 600   — card/item headings
 text-body-lg      18px         — lead body copy
 text-body-md      16px         — default body
-text-body-sm      14px         — secondary body, labels
+text-body-sm      13px         — secondary body, labels
 text-caption      12px         — helper text, captions
 ```
 
