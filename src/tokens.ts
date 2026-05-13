@@ -1,4 +1,9 @@
 export const colors = {
+  // Brand
+  navy:   '#090034',
+  lime:   '#D4F269',
+  cobalt: '#015AFF',
+  teal:   '#35BDB2',
   // Mint (Primary)
   mint90: '#005246',
   mint75: '#007A69',
@@ -10,25 +15,69 @@ export const colors = {
   mintL2: '#D2EFEA',
   mintL3: '#E1F5F1',
   mintL4: '#F4FBFA',
-  // Navy
-  navy: '#090034',
   // Dark (Neutrals)
   dark100: '#16181D',
-  dark90: '#444A5A',
-  dark75: '#656E85',
-  dark60: '#858EA3',
-  dark45: '#A5ABBB',
-  dark30: '#C2C6D1',
-  dark15: '#DFE1E7',
+  dark90:  '#444A5A',
+  dark75:  '#656E85',
+  dark60:  '#858EA3',
+  dark45:  '#A5ABBB',
+  dark30:  '#C2C6D1',
+  dark15:  '#DFE1E7',
   // Light (Neutrals)
-  lightWhite: '#FFFFFF',
-  lightL1: '#F9FAFB',
-  lightL2: '#F2F4F7',
-  lightL3: '#EAECF0',
-  // Lime — pending designer confirmation
-  lime: '#D4F269',
-  // Green (Success) — pending designer confirmation
-  green: '#15803D',
+  white:      '#FFFFFF',
+  lightSandy: '#F8F3EE',
+  lightL1:    '#F9FAFB',
+  lightL2:    '#F2F4F7',
+  lightL3:    '#EAECF0',
+  // Success
+  success90: '#0D492E',
+  success75: '#15754A',
+  success60: '#1C9B62',
+  success45: '#22B976',
+  success30: '#34DA90',
+  success15: '#9CEDC9',
+  successL1: '#E9FBF3',
+  // Error
+  error90: '#7C1A12',
+  error75: '#BF271C',
+  error60: '#E5584D',
+  error45: '#ED8A83',
+  error30: '#F3AFAB',
+  error15: '#F8D5D3',
+  errorL1: '#FDF2F2',
+  errorL2: '#FEFBFB',
+  // Warning
+  warning75: '#906809',
+  warning60: '#B68205',
+  warning45: '#D49702',
+  warning30: '#FDB402',
+  warning15: '#FED776',
+  warningL1: '#FEEDC1',
+  warningL2: '#FEF5DC',
+  warningL3: '#FFF9EB',
+  // Overlays
+  overlay95: '#16181DF2',
+  overlay50: '#16181D80',
+  // Transparent UI
+  buttonA: '#F2F4F7CC',
+  buttonB: '#C2C6D1CC',
+  // Category colours
+  category01: '#00BCD4',
+  category02: '#0097A7',
+  category03: '#29B6F6',
+  category04: '#0288D1',
+  category05: '#4E342E',
+  category06: '#6D4C41',
+  category07: '#3D0C11',
+  category08: '#880E4F',
+  category09: '#E91E63',
+  category10: '#7B1FA2',
+  category11: '#9357FD',
+  category12: '#673AB7',
+  category13: '#9E9E9E',
+  category14: '#BDBDBD',
+  category15: '#555555',
+  category16: '#262323',
 } as const
 
 export type ColorToken = keyof typeof colors

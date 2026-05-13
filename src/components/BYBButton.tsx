@@ -1,3 +1,4 @@
+import React from 'react'
 import { clsx } from 'clsx'
 
 export type BYBButtonVariant = 'lime' | 'navy' | 'ghost-white' | 'outline-navy'
@@ -18,30 +19,39 @@ const variantClasses: Record<BYBButtonVariant, string> = {
 }
 
 const sizeClasses: Record<BYBButtonSize, string> = {
-  sm: 'px-4 py-2 text-sm',
-  md: 'px-6 py-3 text-body-md',
-  lg: 'px-8 py-4 text-body-lg',
+  sm: 'px-4 py-2 text-btn-sm',
+  md: 'px-6 py-3 text-btn-md',
+  lg: 'px-8 py-4 text-btn-lg',
 }
 
 export function BYBButton({
   variant = 'lime',
   size = 'md',
   loading = false,
+  asChild = false,
   disabled,
   className,
   children,
   ...props
 }: BYBButtonProps) {
+  const buttonClasses = clsx(
+    'inline-flex items-center justify-center font-semibold rounded-full uppercase tracking-btn transition-all',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2',
+    'disabled:opacity-50 disabled:cursor-not-allowed',
+    variantClasses[variant],
+    sizeClasses[size],
+    className,
+  )
+
+  if (asChild && React.isValidElement(children)) {
+    return React.cloneElement(children as React.ReactElement<React.HTMLAttributes<HTMLElement>>, {
+      className: clsx(buttonClasses, (children as React.ReactElement<{ className?: string }>).props.className),
+    })
+  }
+
   return (
     <button
-      className={clsx(
-        'inline-flex items-center justify-center font-semibold rounded-lg transition-all',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2',
-        'disabled:opacity-50 disabled:cursor-not-allowed',
-        variantClasses[variant],
-        sizeClasses[size],
-        className,
-      )}
+      className={buttonClasses}
       disabled={disabled || loading}
       {...props}
     >
