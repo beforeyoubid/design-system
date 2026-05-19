@@ -18,9 +18,12 @@ const config: Config = {
         'mint-l4': '#F4FBFA',
         // Navy + Brand Accents
         navy:   '#090034',
-        lime:   '#D4F269',
-        cobalt: '#015AFF',
-        teal:   '#35BDB2',
+        lime:    '#D4F269',
+        'lime-l1':'#EAF8B0',
+        cobalt:     '#015AFF',
+        'cobalt-l1':'#C8D0FB',
+        teal:       '#35BDB2',
+        'teal-l1':  '#BFE8E6',
         // Dark Neutrals
         'dark-100': '#16181D',
         'dark-90':  '#444A5A',
@@ -89,20 +92,34 @@ const config: Config = {
         site: '1280px',
       },
       fontSize: {
-        // Heading weights are 600 (semi-bold) per Figma tokens
-        // Negative letter-spacing on headings — add tracking-heading alongside heading classes
+        // Semi-bold headings (600) — pair with tracking-heading for correct letter-spacing
         'display-xl': ['72px', { lineHeight: '1.05', fontWeight: '600' }],
         'display':    ['56px', { lineHeight: '1.08', fontWeight: '600' }],
-        'display-sm': ['52px', { lineHeight: '1.2',  fontWeight: '600' }],
-        'heading-lg': ['40px', { lineHeight: '1.2',  fontWeight: '600' }],
-        'heading-md': ['28px', { lineHeight: '1.2',  fontWeight: '600' }],
-        'heading-base': ['24px', { lineHeight: '1.2', fontWeight: '600' }],
+        'display-sm': ['52px', { lineHeight: '1.2',  fontWeight: '600' }],  //  semi bold / 5xl-52
+        'heading-lg': ['40px', { lineHeight: '1.2',  fontWeight: '600' }],  //  semi bold / 4xl-40
+        'heading-3xl': ['36px', { lineHeight: '1.2', fontWeight: '600' }],  // semi bold / 3xl-36
+        'heading-md': ['28px', { lineHeight: '1.2',  fontWeight: '600' }],  // semi bold / 2xl-28
+        'heading-base': ['24px', { lineHeight: '1.2', fontWeight: '600' }], //  semi bold / xl-24
         'heading-sm': ['20px', { lineHeight: '1.3',  fontWeight: '600' }],
-        'body-lg':    ['18px', { lineHeight: '1.4' }],
-        'body-md':    ['16px', { lineHeight: '1.4' }],
-        'body-sm':    ['13px', { lineHeight: '1.4' }],
+        // Body / regular (400)
+        'body-lg':    ['18px', { lineHeight: '1.4' }],  //  regular / regular-18
+        'body-md':    ['16px', { lineHeight: '1.4' }],  // regular / base-16
+        'body-sm':    ['13px', { lineHeight: '1.4' }],  // regular / sm-13
         'caption':    ['12px', { lineHeight: '1.4' }],
-        // Button text — uppercase + 4% letter-spacing applied via BYBButton component
+        'text-xs':    ['10px', { lineHeight: '1.4' }],  // regular / xs-10
+        'text-2xs':   ['8px',  { lineHeight: '1.4' }],  // regular / 2xs-8
+        // Medium weight (500) — Figma: medium scale, lh 1.2
+        'medium-5xl':  ['52px', { lineHeight: '1.2', fontWeight: '500' }],
+        'medium-4xl':  ['40px', { lineHeight: '1.2', fontWeight: '500' }],
+        'medium-3xl':  ['36px', { lineHeight: '1.2', fontWeight: '500' }],
+        'medium-2xl':  ['28px', { lineHeight: '1.2', fontWeight: '500' }],
+        'medium-xl':   ['24px', { lineHeight: '1.2', fontWeight: '500' }],
+        'medium-lg':   ['18px', { lineHeight: '1.2', fontWeight: '500' }],
+        'medium-base': ['16px', { lineHeight: '1.2', fontWeight: '500' }],
+        'medium-sm':   ['13px', { lineHeight: '1.2', fontWeight: '500' }],
+        'medium-xs':   ['10px', { lineHeight: '1.2', fontWeight: '500' }],
+        'medium-2xs':  ['8px',  { lineHeight: '1.2', fontWeight: '500' }],
+        // Button text — semi-bold (600); uppercase + 0.04em letter-spacing applied globally via @layer utilities
         'btn-lg': ['18px', { lineHeight: '1.3', fontWeight: '600' }],
         'btn-md': ['16px', { lineHeight: '1.3', fontWeight: '600' }],
         'btn-sm': ['13px', { lineHeight: '1.3', fontWeight: '600' }],
@@ -111,11 +128,27 @@ const config: Config = {
         'heading': '-0.005em',
         'btn':     '0.04em',
       },
+      keyframes: {
+        marquee: {
+          '0%':   { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        'fade-in': {
+          '0%':   { opacity: '0', transform: 'translateY(6px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        'marquee':        'marquee 35s linear infinite',
+        'marquee-paused': 'marquee 35s linear infinite paused',
+        'fade-in':        'fade-in 0.25s ease-out both',
+      },
       borderRadius: {
         sm:   '4px',
         md:   '8px',
         lg:   '12px',
         xl:   '20px',
+        btn:  '18px',
         full: '9999px',
       },
       spacing: {

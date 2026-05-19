@@ -13,12 +13,13 @@ const config: StorybookConfig = {
     '@storybook/addon-onboarding',
   ],
   framework: '@storybook/react-vite',
-  managerHead: head => `${head}<base href="/design-system/">`,
-  viteFinal(config) {
-    return {
-      ...config,
-      base: '/design-system/',
-    };
+  managerHead: (head, { configType }) =>
+    configType === 'PRODUCTION' ? `${head}<base href="/design-system/">` : head,
+  viteFinal(config, { configType }) {
+    if (configType === 'PRODUCTION') {
+      return { ...config, base: '/design-system/' };
+    }
+    return config;
   },
 };
 

@@ -1,3 +1,4 @@
+import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta = {
@@ -45,25 +46,73 @@ export const Colors: Story = {
   ),
 }
 
+const headingScale = [
+  { label: 'display-xl',  cls: 'text-display-xl tracking-heading',  size: '72px', weight: '600' },
+  { label: 'display',     cls: 'text-display tracking-heading',      size: '56px', weight: '600' },
+  { label: 'display-sm',  cls: 'text-display-sm tracking-heading',   size: '52px', weight: '600' },
+  { label: 'heading-lg',  cls: 'text-heading-lg tracking-heading',   size: '40px', weight: '600' },
+  { label: 'heading-3xl', cls: 'text-heading-3xl tracking-heading',  size: '36px', weight: '600' },
+  { label: 'heading-md',  cls: 'text-heading-md tracking-heading',   size: '28px', weight: '600' },
+  { label: 'heading-base',cls: 'text-heading-base tracking-heading', size: '24px', weight: '600' },
+  { label: 'heading-sm',  cls: 'text-heading-sm',                    size: '20px', weight: '600' },
+]
+
+const bodyScale = [
+  { label: 'body-lg',   cls: 'text-body-lg',   size: '18px', weight: '400' },
+  { label: 'body-md',   cls: 'text-body-md',   size: '16px', weight: '400' },
+  { label: 'body-sm',   cls: 'text-body-sm',   size: '13px', weight: '400' },
+  { label: 'caption',   cls: 'text-caption',   size: '12px', weight: '400' },
+  { label: 'text-xs',   cls: 'text-text-xs',   size: '10px', weight: '400' },
+  { label: 'text-2xs',  cls: 'text-text-2xs',  size: '8px',  weight: '400' },
+]
+
+const buttonScale = [
+  { label: 'btn-lg', cls: 'text-btn-lg tracking-btn uppercase', size: '18px', weight: '600' },
+  { label: 'btn-md', cls: 'text-btn-md tracking-btn uppercase', size: '16px', weight: '600' },
+  { label: 'btn-sm', cls: 'text-btn-sm tracking-btn uppercase', size: '13px', weight: '600' },
+]
+
 export const Typography: Story = {
   render: () => (
-    <div className="flex flex-col gap-4 p-4">
-      {[
-        { label: 'display-xl',  cls: 'text-display-xl' },
-        { label: 'display',     cls: 'text-display' },
-        { label: 'heading-lg',  cls: 'text-heading-lg' },
-        { label: 'heading-md',  cls: 'text-heading-md' },
-        { label: 'heading-sm',  cls: 'text-heading-sm' },
-        { label: 'body-lg',     cls: 'text-body-lg' },
-        { label: 'body-md',     cls: 'text-body-md' },
-        { label: 'body-sm',     cls: 'text-body-sm' },
-        { label: 'caption',     cls: 'text-caption' },
-      ].map(t => (
-        <div key={t.label} className="flex items-baseline gap-6 border-b border-dark-15 pb-3">
-          <span className="text-caption text-dark-60 w-24 shrink-0">{t.label}</span>
-          <span className={`text-dark-100 ${t.cls}`}>Making confident property decisions</span>
+    <div className="flex flex-col gap-8 p-6 max-w-3xl">
+      <section>
+        <h3 className="text-body-sm font-semibold text-dark-45 uppercase tracking-btn mb-3">Headings — Semi Bold (600)</h3>
+        <div className="flex flex-col gap-1">
+          {headingScale.map(t => (
+            <div key={t.label} className="flex items-baseline gap-4 border-b border-dark-15 py-2">
+              <span className="text-caption text-dark-45 w-28 shrink-0 font-mono">{t.label}</span>
+              <span className="text-caption text-dark-30 w-8 shrink-0">{t.size}</span>
+              <span className={`text-dark-100 font-semibold ${t.cls}`}>Property decisions</span>
+            </div>
+          ))}
         </div>
-      ))}
+      </section>
+
+      <section>
+        <h3 className="text-body-sm font-semibold text-dark-45 uppercase tracking-btn mb-3">Body — Regular (400)</h3>
+        <div className="flex flex-col gap-1">
+          {bodyScale.map(t => (
+            <div key={t.label} className="flex items-baseline gap-4 border-b border-dark-15 py-2">
+              <span className="text-caption text-dark-45 w-28 shrink-0 font-mono">{t.label}</span>
+              <span className="text-caption text-dark-30 w-8 shrink-0">{t.size}</span>
+              <span className={`text-dark-100 ${t.cls}`}>Making confident property decisions</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h3 className="text-body-sm font-semibold text-dark-45 uppercase tracking-btn mb-3">Buttons — Semi Bold (600) / Uppercase</h3>
+        <div className="flex flex-col gap-1">
+          {buttonScale.map(t => (
+            <div key={t.label} className="flex items-baseline gap-4 border-b border-dark-15 py-2">
+              <span className="text-caption text-dark-45 w-28 shrink-0 font-mono">{t.label}</span>
+              <span className="text-caption text-dark-30 w-8 shrink-0">{t.size}</span>
+              <span className={`text-dark-100 font-semibold ${t.cls}`}>Get a quote</span>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   ),
 }

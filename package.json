@@ -14,9 +14,9 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.js"
     },
     "./tailwind.config": "./tailwind.config.ts",
     "./globals.css": "./globals.css"
@@ -67,8 +67,10 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
+    "@tabler/icons-react": "^3.44.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2",
+    "lucide-react": "^1.16.0",
     "tailwind-merge": "^2"
   },
   "repository": {
