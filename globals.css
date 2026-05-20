@@ -5,6 +5,43 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Non-purgeable design utilities ────────────────────────────────────────── */
+/* Defined outside @layer so they are never tree-shaken by Tailwind JIT.       */
+
+/* Testimonial carousel — upward triangle that fills the card bottom section   */
+.clip-triangle {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+/* Testimonial carousel — fade left/right edges to highlight center cards      */
+.mask-fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+/* ── Typography globals ────────────────────────────────────────────────────── */
+@layer utilities {
+  /* Button text: uppercase + 4% letter-spacing baked into every text-btn-* class */
+  .text-btn-sm,
+  .text-btn-md,
+  .text-btn-lg {
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* Semi-bold headings: -0.5% letter-spacing baked into every heading/display class */
+  .text-heading-sm,
+  .text-heading-md,
+  .text-heading-base,
+  .text-heading-lg,
+  .text-heading-3xl,
+  .text-display-sm,
+  .text-display,
+  .text-display-xl {
+    letter-spacing: -0.005em;
+  }
+}
+
 :root {
   /* Brand */
   --color-navy:   #090034;
@@ -69,6 +106,11 @@
   --color-warning-l2: #FEF5DC;
   --color-warning-l3: #FFF9EB;
 
+  /* Brand light tints — used for pill card backgrounds */
+  --color-cobalt-l1: #C8D0FB;
+  --color-teal-l1:   #BFE8E6;
+  --color-lime-l1:   #EAF8B0;
+
   /* Overlays */
   --color-overlay-95: #16181DF2;
   --color-overlay-50: #16181D80;
@@ -77,7 +119,7 @@
   --color-button-a: #F2F4F7CC;
   --color-button-b: #C2C6D1CC;
 
-  /* Category colours (inspection service types) */
+  /* Category colours */
   --color-category-01: #00BCD4;
   --color-category-02: #0097A7;
   --color-category-03: #29B6F6;

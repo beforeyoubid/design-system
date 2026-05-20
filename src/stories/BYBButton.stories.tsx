@@ -1,12 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { BYBButton } from '../components/BYBButton'
+import React from 'react'
 
 const meta: Meta<typeof BYBButton> = {
   title: 'Components/BYBButton',
   component: BYBButton,
   tags: ['autodocs'],
   argTypes: {
-    variant: { control: 'select', options: ['lime', 'navy', 'ghost-white', 'outline-navy'] },
+    variant: { control: 'select', options: ['lime', 'navy', 'outline-navy'] },
     size:    { control: 'select', options: ['sm', 'md', 'lg'] },
     loading: { control: 'boolean' },
     disabled:{ control: 'boolean' },
@@ -24,13 +25,8 @@ export const Navy: Story = {
   args: { variant: 'navy', size: 'md', children: 'Learn more' },
 }
 
-export const GhostWhite: Story = {
-  args: { variant: 'ghost-white', size: 'md', children: 'View details' },
-  parameters: { backgrounds: { default: 'navy' } },
-}
-
 export const OutlineNavy: Story = {
-  args: { variant: 'outline-navy', size: 'md', children: 'Cancel' },
+  args: { variant: 'outline-navy', size: 'md', children: 'Learn more' },
 }
 
 export const Sizes: Story = {
