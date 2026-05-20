@@ -187,7 +187,7 @@ export const WithSectionHeading: Story = {
           One platform. Built for every user.
         </h2>
         <p className="text-body-md text-dark-75 mt-2">
-          Whether you're buying, investing or managing — BYB has you covered.
+          Whether you&apos;re buying, investing or managing — BYB has you covered.
         </p>
       </div>
       <BYBPillTabs tabs={PLATFORM_TABS} variant="navy" defaultTab="buyers" />
