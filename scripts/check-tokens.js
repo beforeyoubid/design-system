@@ -1,58 +1,60 @@
 #!/usr/bin/env node
 /**
- * Token parity check — every CSS variable in globals.css must have a matching
- * Tailwind color alias in tailwind.config.ts, and vice versa.
+ * Token sanity check (Tailwind v4)
+ *
+ * Verifies that every brand colour primitive declared in `:root` is exposed
+ * as a Tailwind utility via `@theme inline` in globals.css.
+ *
+ * Catches the most common drift: adding a new colour primitive and forgetting
+ * to wire it into `@theme` so `bg-{name}` / `text-{name}` work in JSX.
+ *
+ * Semantic shadcn tokens (--background, --primary, --muted, …) are exposed
+ * separately and not checked here.
  */
 const fs = require('fs')
 const path = require('path')
 
-const root = path.join(__dirname, '..')
+const css = fs.readFileSync(path.join(__dirname, '..', 'globals.css'), 'utf8')
 
-const css = fs.readFileSync(path.join(root, 'globals.css'), 'utf8')
-const tw = fs.readFileSync(path.join(root, 'tailwind.config.ts'), 'utf8')
-
-// Extract all --color-{name} from globals.css
-const cssTokens = new Set()
-for (const [, name] of css.matchAll(/--color-([\w-]+)\s*:/g)) {
-  cssTokens.add(name)
+// Slice :root primitives — from `:root {` to the start of the semantic block
+// (marked by the first `--background:` declaration).
+const rootStart = css.indexOf(':root {')
+const semanticStart = css.indexOf('--background:', rootStart)
+if (rootStart === -1 || semanticStart === -1) {
+  console.error('❌ Could not locate :root block boundaries in globals.css')
+  process.exit(1)
 }
+const primitivesBlock = css.slice(rootStart, semanticStart)
 
-// Extract the colors block from tailwind.config.ts then pull all top-level keys
-const colorsBlock = tw.match(/colors:\s*\{([\s\S]*?)\},?\s*maxWidth/)
-if (!colorsBlock) {
-  console.error('ERROR: could not locate colors block in tailwind.config.ts')
+// Pull the @theme inline block
+const themeMatch = css.match(/@theme inline\s*\{([\s\S]*?)\n\}/)
+if (!themeMatch) {
+  console.error('❌ Could not locate @theme inline block in globals.css')
   process.exit(1)
 }
 
-const twTokens = new Set()
-// Quoted keys: 'mint-90':
-for (const [, name] of colorsBlock[1].matchAll(/'([\w-]+)'\s*:/g)) {
-  twTokens.add(name)
-}
-// Unquoted keys: navy:  lime:  green:
-for (const [, name] of colorsBlock[1].matchAll(/^\s{8}([\w-]+)\s*:/gm)) {
-  if (name !== 'DEFAULT') twTokens.add(name)
+// Every primitive declared as oklch(…)
+const primitives = new Set()
+for (const [, name] of primitivesBlock.matchAll(/^\s*--([\w-]+):\s*oklch/gm)) {
+  primitives.add(name)
 }
 
-const inCssNotTw = [...cssTokens].filter(t => !twTokens.has(t))
-const inTwNotCss = [...twTokens].filter(t => !cssTokens.has(t))
-
-let failed = false
-
-if (inCssNotTw.length) {
-  console.error('\n❌ CSS variables with no Tailwind alias:')
-  inCssNotTw.forEach(t => console.error(`   --color-${t}  (add to tailwind.config.ts colors)`))
-  failed = true
+// Every --color-X exposed in @theme inline
+const exposed = new Set()
+for (const [, name] of themeMatch[1].matchAll(/--color-([\w-]+)\s*:/g)) {
+  exposed.add(name)
 }
 
-if (inTwNotCss.length) {
-  console.error('\n❌ Tailwind color aliases with no CSS variable:')
-  inTwNotCss.forEach(t => console.error(`   ${t}  (add --color-${t} to globals.css)`))
-  failed = true
+const missing = [...primitives].filter((p) => !exposed.has(p))
+
+if (missing.length) {
+  console.error('\n❌ Colour primitives missing a --color-* exposure in @theme inline:')
+  missing.forEach((t) =>
+    console.error(`   --${t}  →  add  --color-${t}: var(--${t});  to @theme inline`),
+  )
+  process.exit(1)
 }
 
-if (!failed) {
-  console.log(`✅ Token parity OK — ${cssTokens.size} CSS vars / ${twTokens.size} Tailwind aliases, all matched.`)
-}
-
-process.exit(failed ? 1 : 0)
+console.log(
+  `✅ Token sanity OK — ${primitives.size} colour primitives, all exposed via @theme inline.`,
+)

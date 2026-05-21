@@ -37,7 +37,7 @@ const twMerge = extendTailwindMerge({
             // Dark neutrals
             'dark-100', 'dark-90', 'dark-75', 'dark-60', 'dark-45', 'dark-30', 'dark-15',
             // Light neutrals
-            'light-l1', 'light-l2', 'light-l3', 'light-sandy',
+            'light-l1', 'light-l2', 'light-l3', 'light-sandy', 'white',
             // Success
             'success-90', 'success-75', 'success-60', 'success-45', 'success-30', 'success-15', 'success-l1',
             // Error
@@ -45,6 +45,26 @@ const twMerge = extendTailwindMerge({
             // Warning
             'warning-75', 'warning-60', 'warning-45', 'warning-30', 'warning-15',
             'warning-l1', 'warning-l2', 'warning-l3',
+            // Category palette (data-viz)
+            'category-01', 'category-02', 'category-03', 'category-04', 'category-05',
+            'category-06', 'category-07', 'category-08', 'category-09', 'category-10',
+            'category-11', 'category-12', 'category-13', 'category-14', 'category-15',
+            'category-16',
+            // Semantic (shadcn slots)
+            'background', 'foreground',
+            'card', 'card-foreground', 'popover', 'popover-foreground',
+            'primary', 'primary-foreground',
+            'secondary', 'secondary-foreground',
+            'muted', 'muted-foreground',
+            'accent', 'accent-foreground',
+            'destructive', 'destructive-foreground',
+            'success-foreground', 'warning-foreground',
+            'border', 'input', 'ring',
+            'chart-1', 'chart-2', 'chart-3', 'chart-4', 'chart-5',
+            'sidebar', 'sidebar-foreground',
+            'sidebar-primary', 'sidebar-primary-foreground',
+            'sidebar-accent', 'sidebar-accent-foreground',
+            'sidebar-border', 'sidebar-ring',
           ],
         },
       ],

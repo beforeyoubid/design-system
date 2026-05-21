@@ -1,85 +1,168 @@
 # CLAUDE.md — @beforeyoubid/design-system
 
-This package is the BYB design system: Tailwind CSS tokens + shadcn-pattern components for the BYB marketing website.
+This package is the BYB design system: **Tailwind CSS v4 + shadcn/ui (BaseUI)** tokens and components for the BYB marketing website and any other product surfaces that opt in.
+
 Read this before adding or modifying any component or token.
 
 ## What lives here
 
 | Path | Purpose |
 |---|---|
-| `globals.css` | CSS custom properties (design tokens) — source of truth |
-| `tailwind.config.ts` | Tailwind aliases that map to CSS variables |
-| `src/tokens.ts` | Same tokens exported as JS constants (for non-Tailwind use) |
-| `src/components/` | BYB components — one file per component |
-| `src/stories/` | Storybook stories — one file per component, all variants |
-| `src/index.ts` | Public exports — every new component must be re-exported here |
+| `globals.css` | Design tokens + `@theme inline` → Tailwind utilities. **Source of truth.** |
+| `utilities.css` | Bespoke product utilities (`.clip-triangle`, `.mask-fade-x`, `.text-btn-*`, `.text-heading-*`). Imported by `globals.css`. |
+| `components.json` | shadcn CLI config — wire for `npx shadcn add <component>`. |
+| `src/components/` | BYB-opinionated components (`BYBButton`, `BYBCard`, …). One file per component. |
+| `src/components/ui/` | Where shadcn CLI scaffolds new base primitives. Customize after scaffolding. |
+| `src/tokens.ts` | Same brand colors and typography exported as JS constants (for non-Tailwind contexts). |
+| `src/lib/utils.ts` | `cn()` helper — `tailwind-merge` extended with every BYB token. |
+| `src/stories/` | Storybook — one file per component, all variants. |
+| `src/index.ts` | Public exports — every new component must be re-exported. |
+
+> `tailwind.config.ts` is **removed** in v2.0. All theme tokens live in `globals.css` via Tailwind v4's `@theme inline` directive.
 
 ## Token rules
 
-- **Never hard-code a hex value.** Use a token class (`text-navy`, `bg-lime`, `border-dark-15`).
-- **Never use arbitrary Tailwind values** (`text-[#090034]`, `p-[13px]`). If a token is missing, add it to `globals.css` + `tailwind.config.ts` + `tokens.ts`, then run `yarn check-tokens`.
-- Token naming follows the Figma palette exactly. When in doubt, check `globals.css`.
+- **Never hard-code a hex value.** Use a token utility (`bg-mint-45`, `text-navy`, `border-dark-15`).
+- **Never use arbitrary Tailwind values** (`text-[#090034]`, `p-[13px]`). If a token is missing, add it to `globals.css` and run `yarn check-tokens`.
+- **Token naming mirrors Figma 1:1.** When in doubt, check the Figma library or `globals.css`.
 
-### Colour tokens quick reference
+### Two layers of tokens
+
+1. **Primitives** — brand colours, exact Figma palette
+   `--mint-45`, `--mint-l1`, `--cobalt`, `--dark-75`, `--light-sandy`, `--warning-30`, `--category-09`, …
+2. **Semantic** — shadcn slots that components consume
+   `--primary`, `--background`, `--muted`, `--accent`, `--destructive`, `--border`, `--ring`, `--card`, `--popover`, `--sidebar-*`, `--chart-1…5`, plus `--success` and `--warning` as BYB extensions.
+
+**Use primitives for marketing pages and brand-coloured surfaces. Use semantic tokens inside reusable components** — that's what makes shadcn primitives drop-in compatible.
+
+### Colour reference (primitives)
 
 ```
-navy / lime / cobalt / teal — brand palette
-mint-90 → mint-l4           — primary brand scale (dark → light)
-dark-100 → dark-15          — neutral text and borders
-light-l1 → light-sandy      — page backgrounds and surfaces
-success-90 → success-l1     — success states (confirmed from Figma)
-error-90 → error-l2         — error states
-warning-75 → warning-l3     — warning states
-overlay-95 / overlay-50     — dark overlays
+mint-90 → mint-l4              primary brand scale (dark → light)
+navy, cobalt, teal, lime       brand accents
+cobalt-l1, teal-l1, lime-l1    accent tints (pill / badge backgrounds)
+dark-100 → dark-15             neutral text and borders (dark)
+light-l1 → light-sandy, white  neutrals (light)
+success-90 → success-l1        success states
+error-90  → error-l2           error / destructive states
+warning-75 → warning-l3        warning / amber states
+category-01 → category-16      data-viz palette
 ```
+
+### Transparent colours — use opacity modifiers
+
+The four Figma `Transparent/*` swatches are composites of an opaque primitive
++ alpha. There is no `--overlay-95` etc. token; use the Tailwind opacity
+modifier instead:
+
+| Figma name                   | Tailwind utility    |
+| ---------------------------- | ------------------- |
+| `Transparent/Overlay-95%`    | `bg-dark-100/95`    |
+| `Transparent/Overlay-50%`    | `bg-dark-100/50`    |
+| `Transparent/Button-B`       | `bg-dark-30/80`     |
+| `Transparent/Button-A`       | `bg-light-l2/80`    |
 
 ### Typography tokens
 
-Font: **Plus Jakarta Sans** — headings are weight 600 (semi-bold), not bold.
-Add `tracking-heading` (`-0.005em`) alongside heading classes for correct letter-spacing.
+Font: **Plus Jakarta Sans** — loaded by the consuming app (e.g. `next/font/google`). We declare the stack via `--font-sans` only.
+
+Pair semi-bold headings with `tracking-heading` (-0.005em); pair button text with `tracking-btn` (0.04em) + `uppercase`. The `.text-btn-*` and `.text-heading-*` classes in `utilities.css` already bake these in.
 
 ```
-text-display-xl   72px / 600   — hero headline only
-text-display      56px / 600   — section hero
-text-heading-lg   40px / 600   — major section headings  + tracking-heading
-text-heading-md   28px / 600   — sub-section headings    + tracking-heading
-text-heading-sm   20px / 600   — card/item headings
-text-body-lg      18px         — lead body copy
-text-body-md      16px         — default body
-text-body-sm      13px         — secondary body, labels
-text-caption      12px         — helper text, captions
+text-display-xl   72px / 600   hero headline only
+text-display      56px / 600   section hero
+text-display-sm   52px / 600
+text-heading-lg   40px / 600
+text-heading-3xl  36px / 600
+text-heading-md   28px / 600
+text-heading-base 24px / 600
+text-heading-sm   20px / 600
+text-body-lg      18px / 400
+text-body-md      16px / 400
+text-body-sm      13px / 400
+text-caption      12px / 400
+text-xs           10px / 400
+text-2xs           8px / 400
+text-medium-*     8–52px / 500
+text-btn-lg/md/sm 18 / 16 / 13 / 600 (uppercase + tracking-btn baked in)
 ```
 
 ### Spacing tokens
 
-Section vertical rhythm — use these, not arbitrary padding:
-
 ```
-py-section-sm   48px   — compact sections
-py-section-md   80px   — standard sections
-py-section-lg   120px  — hero / feature sections
+p-section-sm    48px
+p-section-md    80px
+p-section-lg   120px
 ```
 
 Max-width: `max-w-site` = 1280px — always use this for the content container.
 
+### Radius tokens
+
+```
+rounded-sm    4px
+rounded-md    8px   ← component default
+rounded-lg   12px
+rounded-xl   20px
+rounded-btn  18px
+rounded-full
+```
+
+shadcn components reference `var(--radius)` which aliases to `--radius-md`.
+
 ## Adding a token
 
-1. Add the CSS variable to `globals.css` under `:root`
-2. Add the matching alias to `tailwind.config.ts` under `colors` (or wherever appropriate)
-3. Export the value from `src/tokens.ts`
-4. Run `yarn check-tokens` — it fails if either side is missing
+1. Add the CSS variable to `globals.css` under `:root` (use OKLCH, keep the hex in a comment).
+2. Add the matching `--color-{name}: var(--{name});` (or `--text-*`, `--radius-*`, …) line inside `@theme inline` so it generates a utility class.
+3. Run `yarn check-tokens` — verifies parity.
+4. If non-Tailwind consumers may need the value, also add to `src/tokens.ts`.
+5. If it's a colour utility, add the name to the `text-color` group in `src/lib/utils.ts` so `cn()` handles it correctly.
+
+## Dark mode
+
+The package ships full dark-mode coverage via a `.dark` class. Toggling is the consuming app's responsibility (`<html class="dark">`). Component authors don't need to opt in — semantic tokens flip automatically.
+
+## Tree-shaking guarantees (don't break these)
+
+Consumers get full CSS + JS tree-shaking with zero config. Two pieces hold this together — touch them with care:
+
+### 1. `@source "./dist/**/*.{js,mjs}";` in `globals.css`
+
+Tailwind v4 doesn't scan `node_modules` by default. The `@source` directive at the top of `globals.css` tells the consumer's Tailwind build to scan our compiled output for utility classes. Without it, utilities used inside our components (e.g. `bg-primary` in `BYBButton`) would be tree-shaken out of the consumer's CSS bundle and components would render styleless.
+
+`@source` paths resolve **relative to the CSS file**, so when published, this points at `node_modules/@beforeyoubid/design-system/dist/**`. If `tsup` ever changes the output directory, update the `@source` path to match. If you add a new published path that contains JSX/className strings, add another `@source` line.
+
+### 2. `"sideEffects": ["**/*.css"]` in `package.json`
+
+This tells bundlers that JS exports are side-effect-free (free to tree-shake) but CSS files must be preserved. Without it, conservative bundlers may bundle the entire `dist/index.js` even when only one component is imported.
+
+**Don't add JS files with module-level side effects.** If you ever need one (analytics init, global registration, polyfills) it must be explicitly listed in the `sideEffects` array or it'll be silently dropped.
 
 ## Component rules
 
 - One component per file in `src/components/`
 - Every component must be exported from `src/index.ts`
 - Every component must have a story in `src/stories/` covering all variants
+- **Prefer semantic tokens** (`bg-primary`, `text-muted-foreground`) over brand primitives inside reusable components. Use primitives for marketing pages.
 - Use `cva` (class-variance-authority) for all component variants — not ad-hoc `Record<>` maps
 - Use `cn` (exported from `src/lib/utils.ts`) for all className merging — not raw `clsx`
 - Use `@radix-ui/react-slot` (`Slot`) for the `asChild` pattern on interactive components
 - For complex components needing accessibility primitives (Modal, Combobox, Tooltip), use `@radix-ui/*` packages
-- **No inline styles.** No `style={{}}` props unless absolutely unavoidable (e.g. dynamic values with no token equivalent)
-- **No MUI imports.** This package is MUI-free by design.
+- **No inline styles.** No `style={{}}` props unless absolutely unavoidable
+- **No MUI imports.** This package is MUI-free by design
+
+### Generating new components via shadcn CLI
+
+This package is configured for the shadcn CLI (`components.json` at the root). Scaffold a new primitive with:
+
+```bash
+npx shadcn@latest add button
+# generates src/components/ui/button.tsx
+```
+
+The output uses semantic tokens (`bg-primary`, `text-primary-foreground`, etc.) and works out of the box because the semantic layer is wired up in `globals.css`. After scaffolding, customize the variants and export from `src/index.ts`.
+
+Generated components live under `src/components/ui/` to keep BYB-opinionated wrappers (`BYBButton`) separate from shadcn primitives.
 
 ### Component API conventions
 
@@ -112,19 +195,22 @@ Use `asChild` on interactive components to allow rendering as `<Link>` or `<a>` 
 ## Running locally
 
 ```bash
+yarn install
 yarn dev          # watch mode — rebuild on save
 yarn storybook    # Storybook at http://localhost:6006
-yarn check-tokens # verify CSS variables ↔ Tailwind aliases are in sync
+yarn check-tokens # verify every colour primitive is exposed via @theme inline
 yarn type-check   # TypeScript strict check
 yarn lint         # ESLint
 ```
 
 ## Publishing
 
-Bump `version` in `package.json` (follow `1.0.0-alpha.N` until stable), then:
+Bump `version` in `package.json` then:
 
 ```bash
 yarn build-and-publish
 ```
 
-After publishing, update the version in `byb-website/package.json` and run `yarn install`.
+After publishing, update the version in consuming apps' `package.json` and run `yarn install`.
+
+> **v2.0 is a breaking change.** Consumers must upgrade their host app to Tailwind v4 and drop the v3 `tailwind.config.ts`-based wiring. Direct utility classes (`bg-mint-45`, `text-navy`, `text-heading-lg`) continue to work unchanged.

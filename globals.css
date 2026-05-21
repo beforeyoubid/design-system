@@ -1,139 +1,551 @@
-/* BYB Design System — CSS custom properties (design tokens)
-   Import this file once in the consuming app's root layout. */
+/* =============================================================================
+ * @beforeyoubid/design-system — globals.css
+ * Tailwind CSS v4 + shadcn/ui (BaseUI) — design tokens
+ *
+ * Source of truth: Figma BYB Design Library
+ *   https://www.figma.com/design/MKu0s7tCX3vOiSF5xTLpEN/BYB-Design-Library
+ *
+ * Import this file once in the consuming app's root layout.
+ *
+ *   import "@beforeyoubid/design-system/globals.css"
+ *
+ * Plus Jakarta Sans must be loaded by the consumer (e.g. via next/font/google).
+ *
+ * Layout:
+ *   1. Tailwind v4 import + dark-mode variant
+ *   2. Primitives — colors (OKLCH), typography, radius, shadows, spacing
+ *   3. Semantic tokens — shadcn slots (light + dark)
+ *   4. @theme inline — exposes everything as Tailwind utilities
+ *   5. Base layer + product utilities import
+ * ============================================================================= */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "./utilities.css";
 
-/* ── Non-purgeable design utilities ────────────────────────────────────────── */
-/* Defined outside @layer so they are never tree-shaken by Tailwind JIT.       */
+/* -----------------------------------------------------------------------------
+ * Source scanning — when this package is installed under node_modules, Tailwind
+ * won't see the classes used by our compiled components unless we tell it to.
+ * Paths are resolved relative to this file, so once published this resolves to
+ *   node_modules/@beforeyoubid/design-system/dist/**
+ * giving the consumer's Tailwind build full visibility with zero config.
+ * --------------------------------------------------------------------------- */
+@source "./dist/**/*.{js,mjs}";
 
-/* Testimonial carousel — upward triangle that fills the card bottom section   */
-.clip-triangle {
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
-/* Testimonial carousel — fade left/right edges to highlight center cards      */
-.mask-fade-x {
-  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
-}
-
-/* ── Typography globals ────────────────────────────────────────────────────── */
-@layer utilities {
-  /* Button text: uppercase + 4% letter-spacing baked into every text-btn-* class */
-  .text-btn-sm,
-  .text-btn-md,
-  .text-btn-lg {
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  /* Semi-bold headings: -0.5% letter-spacing baked into every heading/display class */
-  .text-heading-sm,
-  .text-heading-md,
-  .text-heading-base,
-  .text-heading-lg,
-  .text-heading-3xl,
-  .text-display-sm,
-  .text-display,
-  .text-display-xl {
-    letter-spacing: -0.005em;
-  }
-}
+/* =============================================================================
+ * PRIMITIVES
+ * ============================================================================= */
 
 :root {
-  /* Brand */
-  --color-navy:   #090034;
-  --color-lime:   #D4F269;
-  --color-cobalt: #015AFF;
-  --color-teal:   #35BDB2;
+  /* ---------- Mint (Primary brand) ---------- */
+  --mint-90: oklch(0.3926 0.072 178.49);  /* #005246 */
+  --mint-75: oklch(0.5187 0.0951 178.49); /* #007A69 */
+  --mint-60: oklch(0.6254 0.1156 177.46); /* #009E87 */
+  --mint-45: oklch(0.6715 0.124 177.54);  /* #00AE95 — Brand color */
+  --mint-30: oklch(0.7454 0.1091 179.2);  /* #4FC3AE */
+  --mint-15: oklch(0.7811 0.0957 180.91); /* #6BCCBB */
+  --mint-l1: oklch(0.8721 0.058 182.51);  /* #ABE2D8 */
+  --mint-l2: oklch(0.9297 0.0311 184.15); /* #D2EFEA */
+  --mint-l3: oklch(0.9543 0.0217 182.55); /* #E1F5F1 */
+  --mint-l4: oklch(0.9826 0.0075 186.9);  /* #F4FBFA */
 
-  /* Mint (Primary) */
-  --color-mint-90: #005246;
-  --color-mint-75: #007A69;
-  --color-mint-60: #009E87;
-  --color-mint-45: #00AE95;
-  --color-mint-30: #4FC3AE;
-  --color-mint-15: #6BCCBB;
-  --color-mint-l1: #ABE2D8;
-  --color-mint-l2: #D2EFEA;
-  --color-mint-l3: #E1F5F1;
-  --color-mint-l4: #F4FBFA;
+  /* ---------- Brand accents ---------- */
+  --navy:      oklch(0.1576 0.0965 278.31); /* #090034 */
+  --cobalt:    oklch(0.5418 0.2542 262.24); /* #015AFF */
+  --teal:      oklch(0.725 0.1141 186.95);  /* #35BDB2 */
+  --lime:      oklch(0.9126 0.1656 120.14); /* #D4F269 */
+  --cobalt-l1: oklch(0.8655 0.0603 276.79); /* #C8D0FB */
+  --teal-l1:   oklch(0.9014 0.0426 192.77); /* #BFE8E6 */
+  --lime-l1:   oklch(0.9518 0.0933 117.15); /* #EAF8B0 */
 
-  /* Dark (Neutrals) */
-  --color-dark-100: #16181D;
-  --color-dark-90:  #444A5A;
-  --color-dark-75:  #656E85;
-  --color-dark-60:  #858EA3;
-  --color-dark-45:  #A5ABBB;
-  --color-dark-30:  #C2C6D1;
-  --color-dark-15:  #DFE1E7;
+  /* ---------- Dark (Neutrals) ---------- */
+  --dark-100: oklch(0.2091 0.0104 268.19); /* #16181D */
+  --dark-90:  oklch(0.41 0.028 268.98);    /* #444A5A */
+  --dark-75:  oklch(0.5391 0.0377 268.32); /* #656E85 */
+  --dark-60:  oklch(0.6466 0.0331 267.05); /* #858EA3 */
+  --dark-45:  oklch(0.7415 0.024 269.36);  /* #A5ABBB */
+  --dark-30:  oklch(0.8268 0.0159 269.95); /* #C2C6D1 */
+  --dark-15:  oklch(0.9099 0.0084 271.32); /* #DFE1E7 */
 
-  /* Light (Neutrals) */
-  --color-light-l1:    #F9FAFB;
-  --color-light-l2:    #F2F4F7;
-  --color-light-l3:    #EAECF0;
-  --color-light-sandy: #F8F3EE;
-  --color-white:       #FFFFFF;
+  /* ---------- Light (Neutrals) ---------- */
+  --light-l1:    oklch(0.9846 0.0017 247.84); /* #F9FAFB */
+  --light-l2:    oklch(0.9665 0.0045 258.32); /* #F2F4F7 */
+  --light-l3:    oklch(0.9427 0.0058 264.53); /* #EAECF0 */
+  --light-sandy: oklch(0.9666 0.0086 67.72);  /* #F8F3EE */
+  --white:       oklch(1 0 0);                /* #FFFFFF */
+
+  /* ---------- Success (Green) ---------- */
+  --success-90: oklch(0.3606 0.0759 158.64); /* #0D492E */
+  --success-75: oklch(0.4986 0.1093 157.92); /* #15754A */
+  --success-60: oklch(0.6104 0.1363 157.51); /* #1C9B62 */
+  --success-45: oklch(0.6954 0.1555 157.63); /* #22B976 */
+  --success-30: oklch(0.7886 0.1698 158.37); /* #34DA90 */
+  --success-15: oklch(0.884 0.0943 164.68);  /* #9CEDC9 */
+  --success-l1: oklch(0.9726 0.0216 167.49); /* #E9FBF3 */
+
+  /* ---------- Error (Red) ---------- */
+  --error-90: oklch(0.3859 0.134 29.38);  /* #7C1A12 */
+  --error-75: oklch(0.5239 0.1892 29.35); /* #BF271C */
+  --error-60: oklch(0.6437 0.1775 27.58); /* #E5584D */
+  --error-45: oklch(0.7372 0.1219 24.74); /* #ED8A83 */
+  --error-30: oklch(0.8168 0.0804 22.76); /* #F3AFAB */
+  --error-15: oklch(0.9018 0.0394 21.79); /* #F8D5D3 */
+  --error-l1: oklch(0.9697 0.0119 17.36); /* #FDF2F2 */
+  --error-l2: oklch(0.9904 0.0032 17.21); /* #FEFBFB */
+
+  /* ---------- Warning (Amber) ---------- */
+  --warning-75: oklch(0.5442 0.1097 81.27); /* #906809 */
+  --warning-60: oklch(0.6417 0.1318 80.08); /* #B68205 */
+  --warning-45: oklch(0.717 0.1483 79.63);  /* #D49702 */
+  --warning-30: oklch(0.8176 0.1695 79.16); /* #FDB402 */
+  --warning-15: oklch(0.8929 0.1239 87.91); /* #FED776 */
+  --warning-l1: oklch(0.9488 0.0598 89.41); /* #FEEDC1 */
+  --warning-l2: oklch(0.9706 0.0341 90.5);  /* #FEF5DC */
+  --warning-l3: oklch(0.983 0.0195 87.51);  /* #FFF9EB */
+
+  /* ---------- Category palette (data-viz) ---------- */
+  --category-01: oklch(0.7291 0.1265 210.82); /* #00BCD4 */
+  --category-02: oklch(0.6187 0.1063 207.97); /* #0097A7 */
+  --category-03: oklch(0.7337 0.145 234.62);  /* #29B6F6 */
+  --category-04: oklch(0.6029 0.1466 243.46); /* #0288D1 */
+  --category-05: oklch(0.3537 0.0394 33.47);  /* #4E342E */
+  --category-06: oklch(0.4495 0.0486 39.21);  /* #6D4C41 */
+  --category-07: oklch(0.2443 0.0759 19.22);  /* #3D0C11 */
+  --category-08: oklch(0.4152 0.1605 355.69); /* #880E4F */
+  --category-09: oklch(0.6062 0.2298 9.63);   /* #E91E63 */
+  --category-10: oklch(0.4533 0.1988 312.96); /* #7B1FA2 */
+  --category-11: oklch(0.6116 0.2335 295.2);  /* #9357FD */
+  --category-12: oklch(0.4742 0.1862 294.78); /* #673AB7 */
+  --category-13: oklch(0.6993 0 0);           /* #9E9E9E */
+  --category-14: oklch(0.7984 0 0);           /* #BDBDBD */
+  --category-15: oklch(0.4495 0 0);           /* #555555 */
+  --category-16: oklch(0.2594 0.0045 17.45);  /* #262323 */
+
+  /* ---------- Transparent UI ----------
+   * The four Figma "Transparent/*" tokens are composites of opaque primitives
+   * + alpha. Use Tailwind's opacity modifier instead of defining them here:
+   *   Transparent/Overlay-95%  →  bg-dark-100/95
+   *   Transparent/Overlay-50%  →  bg-dark-100/50
+   *   Transparent/Button-B     →  bg-dark-30/80
+   *   Transparent/Button-A     →  bg-light-l2/80
+   */
+
+  /* =============================================================================
+   * Typography
+   * ============================================================================= */
+
+  /* Font family — Plus Jakarta Sans is loaded by the consuming app (e.g. via
+   * next/font/google). We just declare the stack here.
+   */
+  --font-sans:
+    "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Letter-spacing tokens (tracking-heading, tracking-btn) */
+  --tracking-heading: -0.005em;
+  --tracking-btn:     0.04em;
+
+  /* =============================================================================
+   * Radius scale
+   * ============================================================================= */
+
+  --radius-sm:   4px;
+  --radius-md:   8px;   /* BYB component default */
+  --radius-lg:   12px;
+  --radius-xl:   20px;
+  --radius-btn:  18px;
+  --radius-full: 9999px;
+
+  /* shadcn-compatible alias — components reference `var(--radius)` */
+  --radius: var(--radius-md);
+
+  /* =============================================================================
+   * Layout
+   * ============================================================================= */
+
+  --container-site: 1280px;
+
+  --spacing-section-sm: 48px;
+  --spacing-section-md: 80px;
+  --spacing-section-lg: 120px;
+
+  /* =============================================================================
+   * SEMANTIC TOKENS — light mode (shadcn slots)
+   * Components consume these. Re-skin BYB by editing the right-hand side only.
+   * ============================================================================= */
+
+  --background: var(--white);
+  --foreground: var(--dark-100);
+
+  --card:               var(--white);
+  --card-foreground:    var(--dark-100);
+  --popover:            var(--white);
+  --popover-foreground: var(--dark-100);
+
+  --primary:            var(--mint-45);
+  --primary-foreground: var(--white);
+
+  --secondary:            var(--light-l2);
+  --secondary-foreground: var(--dark-100);
+
+  --muted:            var(--light-l1);
+  --muted-foreground: var(--dark-75);
+
+  --accent:            var(--mint-l3);
+  --accent-foreground: var(--mint-90);
+
+  --destructive:            var(--error-60);
+  --destructive-foreground: var(--white);
+
+  /* shadcn doesn't ship these by default — common project extensions */
+  --success:            var(--success-45);
+  --success-foreground: var(--white);
+  --warning:            var(--warning-45);
+  --warning-foreground: var(--dark-100);
+
+  --border: var(--dark-15);
+  --input:  var(--dark-15);
+  --ring:   var(--mint-45);
+
+  /* shadcn chart slots */
+  --chart-1: var(--mint-45);
+  --chart-2: var(--teal);
+  --chart-3: var(--cobalt);
+  --chart-4: var(--warning-30);
+  --chart-5: var(--error-60);
+
+  /* Sidebar (shadcn 2025) */
+  --sidebar:                    var(--light-l1);
+  --sidebar-foreground:         var(--dark-100);
+  --sidebar-primary:            var(--mint-45);
+  --sidebar-primary-foreground: var(--white);
+  --sidebar-accent:             var(--mint-l3);
+  --sidebar-accent-foreground:  var(--mint-90);
+  --sidebar-border:             var(--dark-15);
+  --sidebar-ring:               var(--mint-45);
+}
+
+/* =============================================================================
+ * SEMANTIC TOKENS — dark mode
+ * ============================================================================= */
+
+.dark {
+  --background: var(--dark-100);
+  --foreground: var(--light-l1);
+
+  --card:               var(--dark-90);
+  --card-foreground:    var(--light-l1);
+  --popover:            var(--dark-90);
+  --popover-foreground: var(--light-l1);
+
+  --primary:            var(--mint-30);
+  --primary-foreground: var(--dark-100);
+
+  --secondary:            var(--dark-90);
+  --secondary-foreground: var(--light-l1);
+
+  --muted:            var(--dark-90);
+  --muted-foreground: var(--dark-45);
+
+  --accent:            var(--mint-90);
+  --accent-foreground: var(--mint-l2);
+
+  --destructive:            var(--error-45);
+  --destructive-foreground: var(--dark-100);
+
+  --success:            var(--success-30);
+  --success-foreground: var(--dark-100);
+  --warning:            var(--warning-30);
+  --warning-foreground: var(--dark-100);
+
+  --border: var(--dark-90);
+  --input:  var(--dark-90);
+  --ring:   var(--mint-30);
+
+  --sidebar:                    var(--dark-90);
+  --sidebar-foreground:         var(--light-l1);
+  --sidebar-primary:            var(--mint-30);
+  --sidebar-primary-foreground: var(--dark-100);
+  --sidebar-accent:             var(--mint-90);
+  --sidebar-accent-foreground:  var(--mint-l2);
+  --sidebar-border:             var(--dark-90);
+  --sidebar-ring:               var(--mint-30);
+}
+
+/* =============================================================================
+ * Keyframes
+ * ============================================================================= */
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes fade-in {
+  0%   { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* =============================================================================
+ * @theme — exposes every token as a Tailwind utility.
+ * `inline` is required so utilities resolve through the var-of-var chain.
+ * ============================================================================= */
+
+@theme inline {
+  /* ---------- Color primitives → bg-mint-45, text-cobalt, border-dark-15, … ---------- */
+
+  /* Mint */
+  --color-mint-90: var(--mint-90);
+  --color-mint-75: var(--mint-75);
+  --color-mint-60: var(--mint-60);
+  --color-mint-45: var(--mint-45);
+  --color-mint-30: var(--mint-30);
+  --color-mint-15: var(--mint-15);
+  --color-mint-l1: var(--mint-l1);
+  --color-mint-l2: var(--mint-l2);
+  --color-mint-l3: var(--mint-l3);
+  --color-mint-l4: var(--mint-l4);
+
+  /* Brand accents */
+  --color-navy:      var(--navy);
+  --color-cobalt:    var(--cobalt);
+  --color-teal:      var(--teal);
+  --color-lime:      var(--lime);
+  --color-cobalt-l1: var(--cobalt-l1);
+  --color-teal-l1:   var(--teal-l1);
+  --color-lime-l1:   var(--lime-l1);
+
+  /* Dark neutrals */
+  --color-dark-100: var(--dark-100);
+  --color-dark-90:  var(--dark-90);
+  --color-dark-75:  var(--dark-75);
+  --color-dark-60:  var(--dark-60);
+  --color-dark-45:  var(--dark-45);
+  --color-dark-30:  var(--dark-30);
+  --color-dark-15:  var(--dark-15);
+
+  /* Light neutrals */
+  --color-light-l1:    var(--light-l1);
+  --color-light-l2:    var(--light-l2);
+  --color-light-l3:    var(--light-l3);
+  --color-light-sandy: var(--light-sandy);
+  --color-white:       var(--white);
 
   /* Success */
-  --color-success-90: #0D492E;
-  --color-success-75: #15754A;
-  --color-success-60: #1C9B62;
-  --color-success-45: #22B976;
-  --color-success-30: #34DA90;
-  --color-success-15: #9CEDC9;
-  --color-success-l1: #E9FBF3;
+  --color-success-90: var(--success-90);
+  --color-success-75: var(--success-75);
+  --color-success-60: var(--success-60);
+  --color-success-45: var(--success-45);
+  --color-success-30: var(--success-30);
+  --color-success-15: var(--success-15);
+  --color-success-l1: var(--success-l1);
 
   /* Error */
-  --color-error-90: #7C1A12;
-  --color-error-75: #BF271C;
-  --color-error-60: #E5584D;
-  --color-error-45: #ED8A83;
-  --color-error-30: #F3AFAB;
-  --color-error-15: #F8D5D3;
-  --color-error-l1: #FDF2F2;
-  --color-error-l2: #FEFBFB;
+  --color-error-90: var(--error-90);
+  --color-error-75: var(--error-75);
+  --color-error-60: var(--error-60);
+  --color-error-45: var(--error-45);
+  --color-error-30: var(--error-30);
+  --color-error-15: var(--error-15);
+  --color-error-l1: var(--error-l1);
+  --color-error-l2: var(--error-l2);
 
   /* Warning */
-  --color-warning-75: #906809;
-  --color-warning-60: #B68205;
-  --color-warning-45: #D49702;
-  --color-warning-30: #FDB402;
-  --color-warning-15: #FED776;
-  --color-warning-l1: #FEEDC1;
-  --color-warning-l2: #FEF5DC;
-  --color-warning-l3: #FFF9EB;
+  --color-warning-75: var(--warning-75);
+  --color-warning-60: var(--warning-60);
+  --color-warning-45: var(--warning-45);
+  --color-warning-30: var(--warning-30);
+  --color-warning-15: var(--warning-15);
+  --color-warning-l1: var(--warning-l1);
+  --color-warning-l2: var(--warning-l2);
+  --color-warning-l3: var(--warning-l3);
 
-  /* Brand light tints — used for pill card backgrounds */
-  --color-cobalt-l1: #C8D0FB;
-  --color-teal-l1:   #BFE8E6;
-  --color-lime-l1:   #EAF8B0;
+  /* Category palette */
+  --color-category-01: var(--category-01);
+  --color-category-02: var(--category-02);
+  --color-category-03: var(--category-03);
+  --color-category-04: var(--category-04);
+  --color-category-05: var(--category-05);
+  --color-category-06: var(--category-06);
+  --color-category-07: var(--category-07);
+  --color-category-08: var(--category-08);
+  --color-category-09: var(--category-09);
+  --color-category-10: var(--category-10);
+  --color-category-11: var(--category-11);
+  --color-category-12: var(--category-12);
+  --color-category-13: var(--category-13);
+  --color-category-14: var(--category-14);
+  --color-category-15: var(--category-15);
+  --color-category-16: var(--category-16);
 
-  /* Overlays */
-  --color-overlay-95: #16181DF2;
-  --color-overlay-50: #16181D80;
+  /* ---------- shadcn semantic slots → bg-primary, text-muted-foreground, … ---------- */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
 
-  /* Transparent UI */
-  --color-button-a: #F2F4F7CC;
-  --color-button-b: #C2C6D1CC;
+  --color-card:               var(--card);
+  --color-card-foreground:    var(--card-foreground);
+  --color-popover:            var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
 
-  /* Category colours */
-  --color-category-01: #00BCD4;
-  --color-category-02: #0097A7;
-  --color-category-03: #29B6F6;
-  --color-category-04: #0288D1;
-  --color-category-05: #4E342E;
-  --color-category-06: #6D4C41;
-  --color-category-07: #3D0C11;
-  --color-category-08: #880E4F;
-  --color-category-09: #E91E63;
-  --color-category-10: #7B1FA2;
-  --color-category-11: #9357FD;
-  --color-category-12: #673AB7;
-  --color-category-13: #9E9E9E;
-  --color-category-14: #BDBDBD;
-  --color-category-15: #555555;
-  --color-category-16: #262323;
+  --color-primary:              var(--primary);
+  --color-primary-foreground:   var(--primary-foreground);
+  --color-secondary:            var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted:                var(--muted);
+  --color-muted-foreground:     var(--muted-foreground);
+  --color-accent:               var(--accent);
+  --color-accent-foreground:    var(--accent-foreground);
+
+  --color-destructive:            var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success:                var(--success);
+  --color-success-foreground:     var(--success-foreground);
+  --color-warning:                var(--warning);
+  --color-warning-foreground:     var(--warning-foreground);
+
+  --color-border: var(--border);
+  --color-input:  var(--input);
+  --color-ring:   var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar:                    var(--sidebar);
+  --color-sidebar-foreground:         var(--sidebar-foreground);
+  --color-sidebar-primary:            var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent:             var(--sidebar-accent);
+  --color-sidebar-accent-foreground:  var(--sidebar-accent-foreground);
+  --color-sidebar-border:             var(--sidebar-border);
+  --color-sidebar-ring:               var(--sidebar-ring);
+
+  /* ---------- Typography ---------- */
+  --font-sans: var(--font-sans);
+
+  /* Display (semi-bold 600) */
+  --text-display-xl:               72px;
+  --text-display-xl--line-height:  1.05;
+  --text-display-xl--font-weight:  600;
+  --text-display:                  56px;
+  --text-display--line-height:     1.08;
+  --text-display--font-weight:     600;
+  --text-display-sm:               52px;
+  --text-display-sm--line-height:  1.2;
+  --text-display-sm--font-weight:  600;
+
+  /* Heading (semi-bold 600) */
+  --text-heading-lg:                40px;
+  --text-heading-lg--line-height:   1.2;
+  --text-heading-lg--font-weight:   600;
+  --text-heading-3xl:               36px;
+  --text-heading-3xl--line-height:  1.2;
+  --text-heading-3xl--font-weight:  600;
+  --text-heading-md:                28px;
+  --text-heading-md--line-height:   1.2;
+  --text-heading-md--font-weight:   600;
+  --text-heading-base:              24px;
+  --text-heading-base--line-height: 1.2;
+  --text-heading-base--font-weight: 600;
+  --text-heading-sm:                20px;
+  --text-heading-sm--line-height:   1.3;
+  --text-heading-sm--font-weight:   600;
+
+  /* Body (regular 400) */
+  --text-body-lg:               18px;
+  --text-body-lg--line-height:  1.4;
+  --text-body-md:               16px;
+  --text-body-md--line-height:  1.4;
+  --text-body-sm:               13px;
+  --text-body-sm--line-height:  1.4;
+  --text-caption:               12px;
+  --text-caption--line-height:  1.4;
+
+  /* Small (regular 400) — overrides Tailwind defaults */
+  --text-xs:               10px;
+  --text-xs--line-height:  1.4;
+  --text-2xs:              8px;
+  --text-2xs--line-height: 1.4;
+
+  /* Medium (500) — Figma "medium" scale */
+  --text-medium-5xl:               52px;
+  --text-medium-5xl--line-height:  1.2;
+  --text-medium-5xl--font-weight:  500;
+  --text-medium-4xl:               40px;
+  --text-medium-4xl--line-height:  1.2;
+  --text-medium-4xl--font-weight:  500;
+  --text-medium-3xl:               36px;
+  --text-medium-3xl--line-height:  1.2;
+  --text-medium-3xl--font-weight:  500;
+  --text-medium-2xl:               28px;
+  --text-medium-2xl--line-height:  1.2;
+  --text-medium-2xl--font-weight:  500;
+  --text-medium-xl:                24px;
+  --text-medium-xl--line-height:   1.2;
+  --text-medium-xl--font-weight:   500;
+  --text-medium-lg:                18px;
+  --text-medium-lg--line-height:   1.2;
+  --text-medium-lg--font-weight:   500;
+  --text-medium-base:              16px;
+  --text-medium-base--line-height: 1.2;
+  --text-medium-base--font-weight: 500;
+  --text-medium-sm:                13px;
+  --text-medium-sm--line-height:   1.2;
+  --text-medium-sm--font-weight:   500;
+  --text-medium-xs:                10px;
+  --text-medium-xs--line-height:   1.2;
+  --text-medium-xs--font-weight:   500;
+  --text-medium-2xs:               8px;
+  --text-medium-2xs--line-height:  1.2;
+  --text-medium-2xs--font-weight:  500;
+
+  /* Button (semi-bold 600; pair with tracking-btn + uppercase utility) */
+  --text-btn-lg:               18px;
+  --text-btn-lg--line-height:  1.3;
+  --text-btn-lg--font-weight:  600;
+  --text-btn-md:               16px;
+  --text-btn-md--line-height:  1.3;
+  --text-btn-md--font-weight:  600;
+  --text-btn-sm:               13px;
+  --text-btn-sm--line-height:  1.3;
+  --text-btn-sm--font-weight:  600;
+
+  /* Letter spacing */
+  --tracking-heading: var(--tracking-heading);
+  --tracking-btn:     var(--tracking-btn);
+
+  /* ---------- Radius ---------- */
+  --radius-sm:   var(--radius-sm);
+  --radius-md:   var(--radius-md);
+  --radius-lg:   var(--radius-lg);
+  --radius-xl:   var(--radius-xl);
+  --radius-btn:  var(--radius-btn);
+  --radius-full: var(--radius-full);
+
+  /* ---------- Layout ---------- */
+  --container-site:     var(--container-site);
+  --spacing-section-sm: var(--spacing-section-sm);
+  --spacing-section-md: var(--spacing-section-md);
+  --spacing-section-lg: var(--spacing-section-lg);
+
+  /* ---------- Animation ---------- */
+  --animate-marquee:        marquee 35s linear infinite;
+  --animate-marquee-paused: marquee 35s linear infinite paused;
+  --animate-fade-in:        fade-in 0.25s ease-out both;
+}
+
+/* =============================================================================
+ * BASE
+ * ============================================================================= */
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
 }

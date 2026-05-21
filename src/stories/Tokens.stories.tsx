@@ -62,8 +62,8 @@ const bodyScale = [
   { label: 'body-md',   cls: 'text-body-md',   size: '16px', weight: '400' },
   { label: 'body-sm',   cls: 'text-body-sm',   size: '13px', weight: '400' },
   { label: 'caption',   cls: 'text-caption',   size: '12px', weight: '400' },
-  { label: 'text-xs',   cls: 'text-text-xs',   size: '10px', weight: '400' },
-  { label: 'text-2xs',  cls: 'text-text-2xs',  size: '8px',  weight: '400' },
+  { label: 'text-xs',   cls: 'text-xs',   size: '10px', weight: '400' },
+  { label: 'text-2xs',  cls: 'text-2xs',  size: '8px',  weight: '400' },
 ]
 
 const buttonScale = [

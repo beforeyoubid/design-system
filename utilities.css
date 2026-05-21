@@ -1,0 +1,61 @@
+/* =============================================================================
+ * @beforeyoubid/design-system — utilities.css
+ * Bespoke product utilities that don't belong in the theme token layer.
+ * Imported by globals.css.
+ * ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+ * Non-purgeable design utilities
+ * Defined outside @layer so they are never tree-shaken even if Tailwind's
+ * content scanner doesn't see them statically.
+ * --------------------------------------------------------------------------- */
+
+/* Testimonial carousel — upward triangle that fills the card bottom section */
+.clip-triangle {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+/* Testimonial carousel — fade left/right edges to highlight center cards */
+.mask-fade-x {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+}
+
+/* -----------------------------------------------------------------------------
+ * Typography augmentations — letter-spacing + casing applied on top of the
+ * text-* size utilities defined in globals.css.
+ * --------------------------------------------------------------------------- */
+
+@layer utilities {
+  /* Button text: uppercase + 4% letter-spacing baked into every text-btn-* size */
+  .text-btn-sm,
+  .text-btn-md,
+  .text-btn-lg {
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* Semi-bold headings: -0.5% letter-spacing baked into heading + display classes */
+  .text-heading-sm,
+  .text-heading-md,
+  .text-heading-base,
+  .text-heading-lg,
+  .text-heading-3xl,
+  .text-display-sm,
+  .text-display,
+  .text-display-xl {
+    letter-spacing: -0.005em;
+  }
+}
