@@ -535,6 +535,26 @@
   --animate-marquee:        marquee 35s linear infinite;
   --animate-marquee-paused: marquee 35s linear infinite paused;
   --animate-fade-in:        fade-in 0.25s ease-out both;
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
 }
 
 /* =============================================================================
