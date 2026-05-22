@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Home, Inbox, Calendar as CalendarIcon, Search, Settings } from 'lucide-react'
+import { IconHome, IconInbox, IconCalendar, IconSearch, IconSettings } from '@tabler/icons-react'
 import {
   Sidebar,
   SidebarContent,
@@ -22,11 +22,11 @@ export default meta
 type Story = StoryObj<typeof Sidebar>
 
 const items = [
-  { title: 'Home', icon: Home },
-  { title: 'Inbox', icon: Inbox },
-  { title: 'Calendar', icon: CalendarIcon },
-  { title: 'Search', icon: Search },
-  { title: 'Settings', icon: Settings },
+  { title: 'Home', icon: IconHome },
+  { title: 'Inbox', icon: IconInbox },
+  { title: 'Calendar', icon: IconCalendar },
+  { title: 'Search', icon: IconSearch },
+  { title: 'Settings', icon: IconSettings },
 ]
 
 export const Default: Story = {

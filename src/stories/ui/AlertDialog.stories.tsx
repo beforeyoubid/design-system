@@ -24,7 +24,7 @@ type Story = StoryObj<typeof AlertDialog>
 export const Default: Story = {
   render: () => (
     <AlertDialog>
-      <AlertDialogTrigger asChild><Button variant="destructive">Delete account</Button></AlertDialogTrigger>
+      <AlertDialogTrigger render={<Button variant="destructive">Delete account</Button>} />
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Calendar, Smile, Calculator, User, CreditCard, Settings } from 'lucide-react'
+import { IconCalendar, IconMoodSmile, IconCalculator, IconUser, IconCreditCard, IconSettings } from '@tabler/icons-react'
 import {
   Command,
   CommandEmpty,
@@ -27,15 +27,15 @@ export const Default: Story = {
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup heading="Suggestions">
-          <CommandItem><Calendar /><span>Calendar</span></CommandItem>
-          <CommandItem><Smile /><span>Search emoji</span></CommandItem>
-          <CommandItem><Calculator /><span>Calculator</span></CommandItem>
+          <CommandItem><IconCalendar /><span>Calendar</span></CommandItem>
+          <CommandItem><IconMoodSmile /><span>Search emoji</span></CommandItem>
+          <CommandItem><IconCalculator /><span>Calculator</span></CommandItem>
         </CommandGroup>
         <CommandSeparator />
         <CommandGroup heading="Settings">
-          <CommandItem><User /><span>Profile</span><CommandShortcut>⌘P</CommandShortcut></CommandItem>
-          <CommandItem><CreditCard /><span>Billing</span><CommandShortcut>⌘B</CommandShortcut></CommandItem>
-          <CommandItem><Settings /><span>Settings</span><CommandShortcut>⌘S</CommandShortcut></CommandItem>
+          <CommandItem><IconUser /><span>Profile</span><CommandShortcut>⌘P</CommandShortcut></CommandItem>
+          <CommandItem><IconCreditCard /><span>Billing</span><CommandShortcut>⌘B</CommandShortcut></CommandItem>
+          <CommandItem><IconSettings /><span>Settings</span><CommandShortcut>⌘S</CommandShortcut></CommandItem>
         </CommandGroup>
       </CommandList>
     </Command>

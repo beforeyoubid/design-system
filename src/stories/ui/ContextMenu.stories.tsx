@@ -26,7 +26,7 @@ export const Default: Story = {
         <ContextMenuItem>Open</ContextMenuItem>
         <ContextMenuItem>Rename</ContextMenuItem>
         <ContextMenuSeparator />
-        <ContextMenuItem variant="destructive">Delete</ContextMenuItem>
+        <ContextMenuItem>Delete</ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
   ),

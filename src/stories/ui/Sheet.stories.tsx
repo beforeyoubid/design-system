@@ -22,7 +22,7 @@ type Story = StoryObj<typeof Sheet>
 export const Right: Story = {
   render: () => (
     <Sheet>
-      <SheetTrigger asChild><Button variant="outline">Open</Button></SheetTrigger>
+      <SheetTrigger render={<Button variant="outline">Open</Button>} />
       <SheetContent>
         <SheetHeader>
           <SheetTitle>Edit profile</SheetTitle>
@@ -38,7 +38,7 @@ export const Right: Story = {
 export const Left: Story = {
   render: () => (
     <Sheet>
-      <SheetTrigger asChild><Button variant="outline">Open left</Button></SheetTrigger>
+      <SheetTrigger render={<Button variant="outline">Open left</Button>} />
       <SheetContent side="left">
         <SheetHeader>
           <SheetTitle>Menu</SheetTitle>

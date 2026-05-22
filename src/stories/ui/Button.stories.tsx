@@ -7,7 +7,7 @@ const meta: Meta<typeof Button> = {
   tags: ['autodocs'],
   argTypes: {
     variant: { control: 'select', options: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'] },
-    size: { control: 'select', options: ['default', 'sm', 'lg', 'icon'] },
+    size: { control: 'select', options: ['default', 'xs', 'sm', 'lg', 'icon', 'icon-xs', 'icon-sm', 'icon-lg'] },
   },
 }
 
@@ -20,10 +20,8 @@ export const Destructive: Story = { args: { variant: 'destructive', children: 'D
 export const Outline: Story = { args: { variant: 'outline', children: 'Outline' } }
 export const Ghost: Story = { args: { variant: 'ghost', children: 'Ghost' } }
 export const LinkStyle: Story = { args: { variant: 'link', children: 'Link' } }
-export const Small: Story = { args: { size: 'sm', children: 'Small' } }
-export const Large: Story = { args: { size: 'lg', children: 'Large' } }
 
-export const All: Story = {
+export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-wrap gap-3">
       <Button>Default</Button>
@@ -32,6 +30,17 @@ export const All: Story = {
       <Button variant="outline">Outline</Button>
       <Button variant="ghost">Ghost</Button>
       <Button variant="link">Link</Button>
+    </div>
+  ),
+}
+
+export const AllSizes: Story = {
+  render: () => (
+    <div className="flex items-center gap-3">
+      <Button size="xs">xs</Button>
+      <Button size="sm">sm</Button>
+      <Button>default</Button>
+      <Button size="lg">lg</Button>
     </div>
   ),
 }

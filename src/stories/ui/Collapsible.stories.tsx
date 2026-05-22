@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { ChevronsUpDown } from 'lucide-react'
+import { IconSelector } from '@tabler/icons-react'
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '../../components/ui/collapsible'
 import { Button } from '../../components/ui/button'
 
@@ -17,12 +17,12 @@ export const Default: Story = {
     <Collapsible className="w-80 space-y-2">
       <div className="flex items-center justify-between rounded-md border p-3">
         <span className="text-body-sm">@beforeyoubid/design-system</span>
-        <CollapsibleTrigger asChild>
-          <Button variant="ghost" size="sm"><ChevronsUpDown className="h-4 w-4" /></Button>
+        <CollapsibleTrigger render={<Button variant="ghost" size="icon-sm" />}>
+          <IconSelector className="h-4 w-4" />
         </CollapsibleTrigger>
       </div>
       <CollapsibleContent className="space-y-2">
-        <div className="rounded-md border p-3 text-body-sm">@radix-ui/react-slot</div>
+        <div className="rounded-md border p-3 text-body-sm">@base-ui/react</div>
         <div className="rounded-md border p-3 text-body-sm">class-variance-authority</div>
         <div className="rounded-md border p-3 text-body-sm">tailwind-merge</div>
       </CollapsibleContent>

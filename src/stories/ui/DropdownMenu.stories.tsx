@@ -21,7 +21,7 @@ type Story = StoryObj<typeof DropdownMenu>
 export const Default: Story = {
   render: () => (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild><Button variant="outline">Open menu</Button></DropdownMenuTrigger>
+      <DropdownMenuTrigger render={<Button variant="outline">Open menu</Button>} />
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>My account</DropdownMenuLabel>
         <DropdownMenuSeparator />
@@ -29,7 +29,7 @@ export const Default: Story = {
         <DropdownMenuItem>Billing</DropdownMenuItem>
         <DropdownMenuItem>Settings</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem variant="destructive">Sign out</DropdownMenuItem>
+        <DropdownMenuItem>Sign out</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   ),
