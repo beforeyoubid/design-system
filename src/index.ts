@@ -1,21 +1,23 @@
 // =============================================================================
-// BYB-opinionated wrappers
+// BYB-opinionated components — domain-specific, no shadcn equivalent
 // =============================================================================
-export { BYBButton, buttonVariants as bybButtonVariants } from './components/BYBButton'
-export { BYBTextButton, textButtonVariants } from './components/BYBTextButton'
 export { BYBCounter } from './components/BYBCounter'
 export { BYBPillCard } from './components/BYBPillCard'
-export { BYBPillTabs } from './components/BYBPillTabs'
-export type { PillTab } from './components/BYBPillTabs'
 export { BYBTestimonialCarousel, BYBTestimonialCard } from './components/BYBTestimonialCarousel'
 export type { Testimonial, BYBTestimonialCardProps } from './components/BYBTestimonialCarousel'
-export { BYBInput } from './components/BYBInput'
-export { BYBSelect } from './components/BYBSelect'
-export { BYBCard } from './components/BYBCard'
 export { BYBImage } from './components/BYBImage'
 
 // =============================================================================
-// shadcn/ui primitives — generated via `npx shadcn add`
+// Form composites — thin wrappers around ui/input and ui/select that add
+// label/hint/error slots. Replaces the legacy BYBInput / BYBSelect.
+// =============================================================================
+export { InputField } from './components/InputField'
+export type { InputFieldProps } from './components/InputField'
+export { SelectField } from './components/SelectField'
+export type { SelectFieldProps, SelectFieldOption } from './components/SelectField'
+
+// =============================================================================
+// shadcn/ui primitives — generated via `npx shadcn add` against base-maia
 // =============================================================================
 export * from './components/ui/accordion'
 export * from './components/ui/alert'
