@@ -154,6 +154,13 @@
   --radius-md:   8px;   /* BYB component default */
   --radius-lg:   12px;
   --radius-xl:   20px;
+  /* Matches Tailwind v4 defaults — explicit so our theme owns the full scale */
+  --radius-2xl:  1rem;    /* 16px */
+  --radius-3xl:  1.5rem;  /* 24px */
+  --radius-4xl:  2rem;    /* 32px */
+  /* TODO: base-maia components reference rounded-4xl (input, badge, select,
+   * dialog, tabs). Review each in the Phase 2 restyle and replace with the
+   * correct BYB token (rounded-md for inputs, rounded-btn for badges, etc.) */
   --radius-btn:  18px;
   --radius-full: 9999px;
 
@@ -522,6 +529,9 @@
   --radius-md:   var(--radius-md);
   --radius-lg:   var(--radius-lg);
   --radius-xl:   var(--radius-xl);
+  --radius-2xl:  var(--radius-2xl);
+  --radius-3xl:  var(--radius-3xl);
+  --radius-4xl:  var(--radius-4xl);
   --radius-btn:  var(--radius-btn);
   --radius-full: var(--radius-full);
 
