@@ -6,7 +6,13 @@ const meta: Meta<typeof Button> = {
   component: Button,
   tags: ['autodocs'],
   argTypes: {
-    variant: { control: 'select', options: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'] },
+    variant: {
+      control: 'select',
+      options: [
+        'default', 'destructive', 'outline', 'secondary', 'ghost', 'link',
+        'lime', 'navy', 'outline-navy',
+      ],
+    },
     size: { control: 'select', options: ['default', 'xs', 'sm', 'lg', 'icon', 'icon-xs', 'icon-sm', 'icon-lg'] },
   },
 }
@@ -20,6 +26,9 @@ export const Destructive: Story = { args: { variant: 'destructive', children: 'D
 export const Outline: Story = { args: { variant: 'outline', children: 'Outline' } }
 export const Ghost: Story = { args: { variant: 'ghost', children: 'Ghost' } }
 export const LinkStyle: Story = { args: { variant: 'link', children: 'Link' } }
+export const Lime: Story = { args: { variant: 'lime', children: 'Get a quote' } }
+export const Navy: Story = { args: { variant: 'navy', children: 'Continue' } }
+export const OutlineNavy: Story = { args: { variant: 'outline-navy', children: 'Learn more' } }
 
 export const AllVariants: Story = {
   render: () => (
@@ -30,6 +39,9 @@ export const AllVariants: Story = {
       <Button variant="outline">Outline</Button>
       <Button variant="ghost">Ghost</Button>
       <Button variant="link">Link</Button>
+      <Button variant="lime">Lime</Button>
+      <Button variant="navy">Navy</Button>
+      <Button variant="outline-navy">Outline navy</Button>
     </div>
   ),
 }
