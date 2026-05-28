@@ -95,12 +95,6 @@ export const colors = {
   warningL1: '#FEEDC1',
   warningL2: '#FEF5DC',
   warningL3: '#FFF9EB',
-  // Overlays
-  overlay95: '#16181DF2',
-  overlay50: '#16181D80',
-  // Transparent UI
-  buttonA: '#F2F4F7CC',
-  buttonB: '#C2C6D1CC',
   // Category colours
   category01: '#00BCD4',
   category02: '#0097A7',
