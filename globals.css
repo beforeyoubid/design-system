@@ -478,6 +478,9 @@
   --text-2xs--line-height: 1.4;
 
   /* Medium (500) — Figma "medium" scale */
+  --text-medium-6xl:               64px;
+  --text-medium-6xl--line-height:  1.2;
+  --text-medium-6xl--font-weight:  500;
   --text-medium-5xl:               52px;
   --text-medium-5xl--line-height:  1.2;
   --text-medium-5xl--font-weight:  500;
