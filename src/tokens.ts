@@ -17,6 +17,7 @@ export const typography = {
   textXs:   { fontSize: '10px', lineHeight: '1.4', fontWeight: 400 },
   text2xs:  { fontSize: '8px',  lineHeight: '1.4', fontWeight: 400 },
   // Medium (500) — Figma: medium scale
+  medium6xl:  { fontSize: '64px', lineHeight: '1.2', fontWeight: 500 },
   medium5xl:  { fontSize: '52px', lineHeight: '1.2', fontWeight: 500 },
   medium4xl:  { fontSize: '40px', lineHeight: '1.2', fontWeight: 500 },
   medium3xl:  { fontSize: '36px', lineHeight: '1.2', fontWeight: 500 },
