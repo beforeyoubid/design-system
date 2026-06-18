@@ -11,6 +11,7 @@ type Story = StoryObj
 
 const colorSwatches = [
   { name: 'Navy',     class: 'bg-navy',     hex: '#090034' },
+  { name: 'Teal',     class: 'bg-teal',     hex: '#35BDB2' },
   { name: 'Lime',     class: 'bg-lime',     hex: '#D4F269' },
   { name: 'Mint/90',  class: 'bg-mint-90',  hex: '#005246' },
   { name: 'Mint/75',  class: 'bg-mint-75',  hex: '#007A69' },
