@@ -20,6 +20,7 @@ export interface SelectFieldProps {
   label?: React.ReactNode
   hint?: React.ReactNode
   error?: React.ReactNode
+  required?: boolean
   /** Options to render. For more complex content (groups, separators), use `ui/select` directly with children. */
   options: SelectFieldOption[]
   value?: string
@@ -52,6 +53,7 @@ export function SelectField({
   onValueChange,
   placeholder = "Select…",
   disabled,
+  required,
   id,
   name,
   className,
@@ -68,7 +70,14 @@ export function SelectField({
 
   return (
     <div className={cn("flex w-full flex-col gap-1.5", wrapperClassName)}>
-      {label && <Label htmlFor={fieldId}>{label}</Label>}
+      {label && (
+        <Label htmlFor={fieldId}>
+          <span className="inline-flex items-start">
+            {label}
+            {required && <span className="ms-px font-sans text-xs font-semibold text-mint-60 leading-none">*</span>}
+          </span>
+        </Label>
+      )}
       <Select
         value={value}
         defaultValue={defaultValue}

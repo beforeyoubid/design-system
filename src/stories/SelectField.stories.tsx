@@ -1,3 +1,4 @@
+import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { SelectField } from '../components/SelectField'
 
@@ -49,6 +50,19 @@ export const WithError: Story = {
     label: 'State',
     options: STATES,
     error: 'Please choose a state.',
+  },
+  render: (args) => (
+    <div className="w-80">
+      <SelectField {...args} />
+    </div>
+  ),
+}
+
+export const Required: Story = {
+  args: {
+    label: 'State',
+    options: STATES,
+    required: true,
   },
   render: (args) => (
     <div className="w-80">
