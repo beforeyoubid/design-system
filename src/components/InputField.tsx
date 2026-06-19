@@ -10,6 +10,7 @@ export interface InputFieldProps extends React.ComponentProps<"input"> {
   error?: React.ReactNode
   /** Optional className for the wrapping element. */
   wrapperClassName?: string
+  required?: boolean
 }
 
 /**
@@ -25,6 +26,7 @@ export function InputField({
   error,
   className,
   wrapperClassName,
+  required,
   id,
   ...props
 }: InputFieldProps) {
@@ -40,7 +42,12 @@ export function InputField({
   return (
     <div className={cn("flex w-full flex-col gap-1.5", wrapperClassName)}>
       {label && (
-        <Label htmlFor={fieldId}>{label}</Label>
+        <Label htmlFor={fieldId}>
+          <span className="inline-flex items-start">
+            {label}
+            {required && <span className="ms-px font-sans text-xs font-semibold text-mint-60 leading-none">*</span>}
+          </span>
+        </Label>
       )}
       <Input
         id={fieldId}
