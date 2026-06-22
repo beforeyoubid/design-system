@@ -17,8 +17,24 @@ Read this before adding or modifying any component or token.
 | `src/lib/utils.ts` | `cn()` helper — `tailwind-merge` extended with every BYB token. |
 | `src/stories/` | Storybook — one file per component, all variants. |
 | `src/index.ts` | Public exports — every new component must be re-exported. |
+| `src/icons.ts` | Icon surface — re-exports the canonical icon set under the `@beforeyoubid/design-system/icons` subpath. |
 
 > `tailwind.config.ts` is **removed** in v2.0. All theme tokens live in `globals.css` via Tailwind v4's `@theme inline` directive.
+
+## Icons
+
+`@tabler/icons-react` is the **canonical** BYB icon set (lucide was dropped). Icons are exposed via a dedicated subpath — **not** the main barrel — so consumers opt in and keep full tree-shaking:
+
+```tsx
+import { IconHome, IconChevronRight } from '@beforeyoubid/design-system/icons'
+
+// Tabler renders currentColor strokes — BYB token utilities just work:
+<IconHome className="size-4 text-navy" />
+```
+
+- `src/icons.ts` is `export * from '@tabler/icons-react'`. The package is marked **external** in `tsup.config.ts`, so the entry compiles to a thin pass-through and the consumer's bundler shakes against the real package.
+- The icons entry is built **without** the `'use client'` banner (a second tsup config) — Tabler icons are plain SVG and stay usable inside RSC server components. Cleaning is done once via `yarn clean` before tsup runs; never set `clean: true` on the multi-config build or the concurrent configs race and wipe each other's `.d.ts`.
+- Use icons directly from this subpath. Don't add `@tabler/icons-react` as a direct dependency in consuming apps — import from the design system so the sanctioned set stays single-sourced.
 
 ## Token rules
 

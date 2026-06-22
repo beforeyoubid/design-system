@@ -21,11 +21,17 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
+    "./icons": {
+      "types": "./dist/icons.d.ts",
+      "import": "./dist/icons.mjs",
+      "require": "./dist/icons.js"
+    },
     "./globals.css": "./globals.css",
     "./utilities.css": "./utilities.css"
   },
   "scripts": {
-    "build": "tsup",
+    "clean": "rm -rf dist",
+    "build": "yarn clean && tsup",
     "build-and-publish": "npm run build && npm publish --access public",
     "dev": "tsup --watch",
     "lint": "eslint src --ext .ts,.tsx",
@@ -78,7 +84,6 @@
     "date-fns": "^4.2.1",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
-    "lucide-react": "^1.16.0",
     "next-themes": "^0.4.6",
     "react-day-picker": "^9.0.0",
     "react-resizable-panels": "^4.11.1",
