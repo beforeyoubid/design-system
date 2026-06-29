@@ -11,25 +11,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: yarn
+          cache: pnpm
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Token parity
-        run: yarn check-tokens
+        run: pnpm check-tokens
 
       - name: Type check
-        run: yarn type-check
+        run: pnpm type-check
 
       - name: Lint
-        run: yarn lint
+        run: pnpm lint
 
       - name: Build package
-        run: yarn build
+        run: pnpm build
 
       - name: Build Storybook
-        run: yarn build-storybook
+        run: pnpm build-storybook

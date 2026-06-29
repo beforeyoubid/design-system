@@ -25,9 +25,11 @@ Live Storybook: https://storybook.beforeyoubuy.com.au/design-system/
 ## Install
 
 ```bash
-yarn add @beforeyoubid/design-system
-yarn add -D tailwindcss@^4 @tailwindcss/postcss
+pnpm add @beforeyoubid/design-system
+pnpm add -D tailwindcss@^4 @tailwindcss/postcss
 ```
+
+> Using a different package manager in your app is fine — swap `pnpm add` for `yarn add` / `npm install` as appropriate.
 
 ```js
 // postcss.config.js
@@ -68,23 +70,25 @@ The package declares `"sideEffects": ["**/*.css"]` in its `package.json`, so bun
 
 ## Local development
 
+This repo uses **pnpm** (`pnpm@11.9.0` via corepack). Enable it once with `corepack enable pnpm`.
+
 ```bash
-yarn install
-yarn dev          # tsup watch mode
-yarn storybook    # Storybook at http://localhost:6006
+pnpm install
+pnpm dev          # tsup watch mode
+pnpm storybook    # Storybook at http://localhost:6006
 ```
 
 ### Scripts
 
 | Command | What it does |
 |---|---|
-| `yarn build` | Production build — ESM + CJS + types via tsup |
-| `yarn dev` | Watch mode build |
-| `yarn storybook` | Run Storybook locally on port 6006 |
-| `yarn build-storybook` | Static Storybook build |
-| `yarn lint` | ESLint across `src/` |
-| `yarn type-check` | TypeScript strict check (no emit) |
-| `yarn check-tokens` | Verify every colour primitive is exposed via `@theme inline` |
+| `pnpm build` | Production build — ESM + CJS + types via tsup |
+| `pnpm dev` | Watch mode build |
+| `pnpm storybook` | Run Storybook locally on port 6006 |
+| `pnpm build-storybook` | Static Storybook build |
+| `pnpm lint` | ESLint across `src/` |
+| `pnpm type-check` | TypeScript strict check (no emit) |
+| `pnpm check-tokens` | Verify every colour primitive is exposed via `@theme inline` |
 
 ## Generating new components
 
@@ -102,20 +106,20 @@ Customize the generated file, then re-export from `src/index.ts`.
 Publishing is manual — no CI publish step.
 
 ```bash
-yarn build-and-publish   # builds then runs npm publish --access public
+pnpm build-and-publish   # builds then runs npm publish --access public
 ```
 
 Bump the version in `package.json` before publishing. v2.0 onwards follows semver from `2.0.0-alpha.N`.
 
 ## Using in byb-website (local)
 
-byb-website uses Yarn 1 classic, so use `yarn link` for local development:
+byb-website uses Yarn 1 classic, so link the built package for local development:
 
 **1. Register the link (once, in design-system):**
 ```bash
 cd services/design-system
-yarn build        # must build first so dist/ exists
-yarn link
+pnpm build        # must build first so dist/ exists
+pnpm link --global
 ```
 
 **2. Use the link (in byb-website):**
@@ -124,7 +128,7 @@ cd services/byb-website
 yarn link @beforeyoubid/design-system
 ```
 
-From then on, run `yarn dev` in design-system while working — changes rebuild automatically and byb-website picks them up on next page refresh.
+From then on, run `pnpm dev` in design-system while working — changes rebuild automatically and byb-website picks them up on next page refresh.
 
 **To unlink when done:**
 ```bash
@@ -137,7 +141,7 @@ yarn install --force
 
 v1.x targeted Tailwind v3 with a `tailwind.config.ts` extension. v2.0 moves everything to Tailwind v4 + CSS-first config via `@theme inline`. To migrate a consumer:
 
-1. Upgrade Tailwind to v4: `yarn add -D tailwindcss@^4 @tailwindcss/postcss`
+1. Upgrade Tailwind to v4: `pnpm add -D tailwindcss@^4 @tailwindcss/postcss`
 2. Replace `@tailwind base; @tailwind components; @tailwind utilities;` with `@import "tailwindcss";`
 3. Remove the `tailwind.config.ts` import / extension from the design system (no longer published)
 4. Replace `bg-overlay-95` / `bg-button-a` etc. with the opacity-modifier equivalents — see CLAUDE.md
@@ -147,7 +151,7 @@ v1.x targeted Tailwind v3 with a `tailwind.config.ts` extension. v2.0 moves ever
 
 1. Add the CSS variable to `globals.css` under `:root`
 2. Add the matching `--color-{name}: var(--{name});` line in `@theme inline`
-3. Run `yarn check-tokens`
+3. Run `pnpm check-tokens`
 
 ## CI
 
