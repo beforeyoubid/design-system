@@ -4,6 +4,7 @@
   "description": "BYB design system — Tailwind CSS v4 + shadcn/ui (BaseUI) pattern components",
   "author": "Before You Buy",
   "license": "ISC",
+  "packageManager": "pnpm@11.9.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -31,8 +32,8 @@
   },
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "yarn clean && tsup",
-    "build-and-publish": "npm run build && npm publish --access public",
+    "build": "pnpm run clean && tsup",
+    "build-and-publish": "pnpm run build && npm publish --access public",
     "dev": "tsup --watch",
     "lint": "eslint src --ext .ts,.tsx",
     "type-check": "tsc --noEmit",

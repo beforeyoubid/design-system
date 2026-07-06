@@ -33,13 +33,13 @@ import { IconHome, IconChevronRight } from '@beforeyoubid/design-system/icons'
 ```
 
 - `src/icons.ts` is `export * from '@tabler/icons-react'`. The package is marked **external** in `tsup.config.ts`, so the entry compiles to a thin pass-through and the consumer's bundler shakes against the real package.
-- The icons entry is built **without** the `'use client'` banner (a second tsup config) — Tabler icons are plain SVG and stay usable inside RSC server components. Cleaning is done once via `yarn clean` before tsup runs; never set `clean: true` on the multi-config build or the concurrent configs race and wipe each other's `.d.ts`.
+- The icons entry is built **without** the `'use client'` banner (a second tsup config) — Tabler icons are plain SVG and stay usable inside RSC server components. Cleaning is done once via `pnpm clean` before tsup runs; never set `clean: true` on the multi-config build or the concurrent configs race and wipe each other's `.d.ts`.
 - Use icons directly from this subpath. Don't add `@tabler/icons-react` as a direct dependency in consuming apps — import from the design system so the sanctioned set stays single-sourced.
 
 ## Token rules
 
 - **Never hard-code a hex value.** Use a token utility (`bg-mint-45`, `text-navy`, `border-dark-15`).
-- **Never use arbitrary Tailwind values** (`text-[#090034]`, `p-[13px]`). If a token is missing, add it to `globals.css` and run `yarn check-tokens`.
+- **Never use arbitrary Tailwind values** (`text-[#090034]`, `p-[13px]`). If a token is missing, add it to `globals.css` and run `pnpm check-tokens`.
 - **Token naming mirrors Figma 1:1.** When in doubt, check the Figma library or `globals.css`.
 
 ### Two layers of tokens
@@ -130,7 +130,7 @@ shadcn components reference `var(--radius)` which aliases to `--radius-md`.
 
 1. Add the CSS variable to `globals.css` under `:root` (use OKLCH, keep the hex in a comment).
 2. Add the matching `--color-{name}: var(--{name});` (or `--text-*`, `--radius-*`, …) line inside `@theme inline` so it generates a utility class.
-3. Run `yarn check-tokens` — verifies parity.
+3. Run `pnpm check-tokens` — verifies parity.
 4. If non-Tailwind consumers may need the value, also add to `src/tokens.ts`.
 5. If it's a colour utility, add the name to the `text-color` group in `src/lib/utils.ts` so `cn()` handles it correctly.
 
@@ -210,13 +210,15 @@ Use `asChild` on interactive components to allow rendering as `<Link>` or `<a>` 
 
 ## Running locally
 
+This repo uses **pnpm** (`pnpm@11.9.0` via corepack — run `corepack enable pnpm` once).
+
 ```bash
-yarn install
-yarn dev          # watch mode — rebuild on save
-yarn storybook    # Storybook at http://localhost:6006
-yarn check-tokens # verify every colour primitive is exposed via @theme inline
-yarn type-check   # TypeScript strict check
-yarn lint         # ESLint
+pnpm install
+pnpm dev          # watch mode — rebuild on save
+pnpm storybook    # Storybook at http://localhost:6006
+pnpm check-tokens # verify every colour primitive is exposed via @theme inline
+pnpm type-check   # TypeScript strict check
+pnpm lint         # ESLint
 ```
 
 ## Publishing
@@ -224,9 +226,9 @@ yarn lint         # ESLint
 Bump `version` in `package.json` then:
 
 ```bash
-yarn build-and-publish
+pnpm build-and-publish
 ```
 
-After publishing, update the version in consuming apps' `package.json` and run `yarn install`.
+After publishing, update the version in consuming apps' `package.json` and run their install (`pnpm install` / `yarn install`).
 
 > **v2.0 is a breaking change.** Consumers must upgrade their host app to Tailwind v4 and drop the v3 `tailwind.config.ts`-based wiring. Direct utility classes (`bg-mint-45`, `text-navy`, `text-heading-lg`) continue to work unchanged.
