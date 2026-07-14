@@ -438,7 +438,7 @@ should be batched into one well-communicated major release.
 | 1.3 | Hand-write `registry.json` v1 — 52 components, variants from `cva`, use/NOT-use descriptions    | ✅     |
 | 1.4 | Ship `registry.json` in the package (`files` array)                                             | ✅     |
 | 1.5 | Designer review of registry descriptions (they steer agent decisions)                           | 🔲     |
-| 1.6 | Add missing `BYBImage` story (gap found during registry build)                                  | 🔲     |
+| 1.6 | Add missing `BYBImage` story (gap found during registry build)                                  | ✅     |
 
 ### Phase 2 — Tokens → JSON ✅
 

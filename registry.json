@@ -567,7 +567,7 @@
       "exports": ["BYBImage"],
       "variants": {},
       "externalDeps": ["next"],
-      "story": null,
+      "story": "src/stories/BYBImage.stories.tsx",
       "description": "next/image wrapper with a sensible responsive `sizes` default. Use instead of raw next/image in BYB Next.js apps for content imagery. NOT for avatars (use Avatar)."
     },
     {
