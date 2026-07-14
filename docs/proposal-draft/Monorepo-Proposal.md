@@ -29,6 +29,8 @@ design-system/                          ← this git repo (same URL, same histor
 │   ├── backyard/                       half generated (resolved tokens, manifest);
 │   └── assist/                         boundary enforced by a CI staleness check
 ├── packages/
+│   ├── README.md                       why one package + the 4-question admission test
+│   │                                   for adding another (see "Scaling packages/" below)
 │   └── design-system/                  ← current code moves here; npm name unchanged
 │       ├── package.json                @beforeyoubid/design-system (only published pkg)
 │       ├── tsup.config.ts              one entry per subpath export
@@ -66,6 +68,33 @@ Key properties:
 - Storybook remains inside the package (stories document the package). Split to `apps/storybook` only if its dependency
   footprint ever becomes a problem.
 - The conversion is a `git mv` in one PR. npm consumers notice nothing.
+
+### Scaling `packages/` — the four-question admission test
+
+`packages/` holding a single package is deliberate (§1): tree-shaking already gives pay-for-what-you-import, and one
+package means one version number and no cross-package compatibility matrix. The workspace glob (`packages/*`) means
+that *if* a second package ever earns its place, adding it is `mkdir` + `package.json`, never another restructure.
+
+Whether something earns its place is a **decision test, not a wish list** — all four must be yes
+(maintained in-repo in `packages/README.md`, with worked examples):
+
+1. **A library, not a deployed product app?** Apps live in their own repos.
+2. **Impossible as a subpath export?** Subpaths (`/icons`, planned `/chart`, `/byb`, `/tokens.json`) are the default
+   home; a package needs a different runtime, consumers that must not install the React package, or a heavy
+   self-contained domain suite.
+3. **Needs lockstep evolution with the design system?** If a published peer range (`>=1.1`) is enough coupling, a
+   separate consuming repo is fine.
+4. **Same owners and release authority?** A product team's library with its own cadence doesn't ride the
+   design-system release train.
+
+Worked example — `checkout-funnel` (config-driven React checkout library): passes 1 and 2, **fails 3 and 4** today
+(loose peer coupling, product-driven alpha cadence) → stays in its own repo; revisit if ownership merges and
+publish-round-trips become a measured drag. `apps/*` additions (mockups, docs site) are exempt from the test — private,
+never published, add as needed.
+
+What **never** goes in `packages/`: product apps (own repos, consume the published package), per-component packages
+(`@beforeyoubid/button` — version-matrix anti-pattern), or a `byb-ui` split (visible separation of the domain layer is a
+subpath export, `@beforeyoubid/design-system/byb`, same pattern as `/icons`).
 
 ## 3. Token & theme architecture
 
@@ -413,7 +442,7 @@ context with the canvas instead of a static screenshot hand-off.
 
 ## 8. Phased roadmap & action tracker
 
-> Status legend: ✅ done · 🔲 pending · Last updated: **2026-07-14** (phases 1–2 executed)
+> Status legend: ✅ done · 🔲 pending · Last updated: **2026-07-14** (phases 1–3 executed; publishing target decided: **GitHub Packages, private**)
 
 ### Summary
 
@@ -421,7 +450,7 @@ context with the canvas instead of a static screenshot hand-off.
 | ----------------------------- | ------------------------------------------------------- | ----------------------------------------------------------- | ----------------- |
 | **1. Governance docs**        | Rules + inventory that humans and AI agents decide with | None                                                        | ✅ (2 follow-ups) |
 | **2. Tokens → JSON**          | Tokens become data; CSS/TS become generated artifacts   | None                                                        | ✅ (1 deferred)   |
-| **3. Workspace conversion**   | Monorepo structure + demo app + automated publishing    | None                                                        | 🔲                |
+| **3. Workspace conversion**   | Monorepo structure + demo app + automated publishing    | None (consumers add GH Packages `.npmrc` at next upgrade)   | ✅ (1 optional)   |
 | **4. Dependency restructure** | Heavy deps become pay-for-what-you-use                  | **Major version** — 2-line migration for affected consumers | 🔲                |
 | **5. Registry + AI pipeline** | Automated inventory + Claude Design import + demo run   | None                                                        | 🔲                |
 | **6. Themes on demand**       | Second product theme, per-theme CSS entries, Figma sync | Additive                                                    | 🔲                |
@@ -452,17 +481,17 @@ should be batched into one well-communicated major release.
 | 2.6 | Wire `build-tokens` into `pnpm build`; update CLAUDE.md token workflow                                    | ✅     |
 | 2.7 | Variables-only `.vars.css` flavour for non-Tailwind consumers (backyard v2) — build when a consumer asks  | 🔲     |
 
-### Phase 3 — Workspace conversion 🔲
+### Phase 3 — Workspace conversion ✅
 
-| #   | Action                                                                                            |
-| --- | -------------------------------------------------------------------------------------------------- |
-| 3.1 | Root `package.json` (`"private": true`) + declare `packages/*`, `apps/*` in `pnpm-workspace.yaml` |
-| 3.2 | `git mv` package code into `packages/design-system/`; fix relative paths (one PR)                 |
-| 3.3 | Verify: `pnpm build`, Storybook, `npm publish --dry-run` produce an identical artifact            |
-| 3.4 | Scaffold `apps/demo` (private Next.js app, `workspace:*` dependency)                              |
-| 3.5 | Changesets: per-PR changeset files, auto "Version Packages" PR, CI publish with `NPM_TOKEN`       |
-| 3.6 | Wire Chromatic into CI (hosted Storybook per PR + visual regression)                              |
-| 3.7 | Update `CLAUDE.md` to describe the new layout (it must always reflect reality)                    |
+| #   | Action                                                                                                               | Status |
+| --- | --------------------------------------------------------------------------------------------------------------------- | ------ |
+| 3.1 | Root `package.json` (`"private": true`) + declare `packages/*`, `apps/*` in `pnpm-workspace.yaml`                    | ✅     |
+| 3.2 | `git mv` package code into `packages/design-system/`; fix relative paths (one PR)                                    | ✅     |
+| 3.3 | Verify: `pnpm build`, Storybook, `npm pack --dry-run` (17 files incl. registry.json), demo build, `-r type-check`    | ✅     |
+| 3.4 | Scaffold `apps/demo` (private Next.js app, `workspace:*` dependency, savings-calculator placeholder page)            | ✅     |
+| 3.5 | Changesets + Release workflow publishing to **GitHub Packages** via `GITHUB_TOKEN` (`publishConfig` set)             | ✅     |
+| 3.6 | Visual QA: existing S3 Storybook deploy preserved (path updated). Chromatic visual regression — optional, needs account/token | 🔲     |
+| 3.7 | Update `CLAUDE.md` to describe the new layout, root proxy scripts, and Changesets→GitHub Packages publishing          | ✅     |
 
 ### Phase 4 — Dependency restructure 🔲 (ships as a major)
 

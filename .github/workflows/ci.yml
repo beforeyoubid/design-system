@@ -21,10 +21,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Token parity
+      - name: Token staleness (generated artifacts match tokens/*.json)
         run: pnpm check-tokens
 
-      - name: Type check
+      - name: Type check (all workspace packages)
         run: pnpm type-check
 
       - name: Lint
@@ -32,6 +32,9 @@ jobs:
 
       - name: Build package
         run: pnpm build
+
+      - name: Build demo app (workspace consumption)
+        run: pnpm --filter demo build
 
       - name: Build Storybook
         run: pnpm build-storybook

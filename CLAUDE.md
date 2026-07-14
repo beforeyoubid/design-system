@@ -1,10 +1,22 @@
-# CLAUDE.md — @beforeyoubid/design-system
+# CLAUDE.md — BYB design-system monorepo
 
-This package is the BYB design system: **Tailwind CSS v4 + shadcn/ui (BaseUI)** tokens and components for the BYB marketing website and any other product surfaces that opt in.
+This repo is the BYB design-system platform: **Tailwind CSS v4 + shadcn/ui (BaseUI)** tokens and components for the BYB marketing website, backyard, BYB Assist, and any other product surfaces that opt in.
 
 Read this before adding or modifying any component or token.
 
-## What lives here
+## Monorepo layout (pnpm workspace)
+
+| Path | Purpose |
+|---|---|
+| `packages/design-system/` | **The published package** — `@beforeyoubid/design-system`. All library code lives here. |
+| `apps/demo/` | Private Next.js demo surface — consumes the package via `workspace:*` with zero publish latency. AI-pipeline output and POCs land here. Never published. |
+| `docs/` | `DECISION-FRAMEWORK.md` (create-vs-reuse rules) + the monorepo proposal & action tracker. |
+| `.changeset/` | Changesets config — every package-changing PR adds a changeset (`pnpm changeset`). |
+| `registry.json` | *(inside the package)* Machine-readable component inventory — shipped to consumers; AI agents read it before creating components. |
+
+Root scripts proxy into the package (`pnpm build`, `pnpm lint`, `pnpm storybook`, … work from the repo root). `pnpm demo` runs the demo app.
+
+## What lives in `packages/design-system/`
 
 | Path | Purpose |
 |---|---|
@@ -12,13 +24,14 @@ Read this before adding or modifying any component or token.
 | `globals.css` | Design tokens + `@theme inline` → Tailwind utilities. **GENERATED** from `tokens/` via `pnpm build-tokens` — do not edit by hand. |
 | `utilities.css` | Bespoke product utilities (`.clip-triangle`, `.mask-fade-x`, `.text-btn-*`, `.text-heading-*`). Imported by `globals.css`. |
 | `components.json` | shadcn CLI config — wire for `npx shadcn add <component>`. |
-| `src/components/` | BYB-opinionated components (`BYBButton`, `BYBCard`, …). One file per component. |
+| `src/components/` | BYB-opinionated components (`BYBCounter`, `BYBPillCard`, …). One file per component. |
 | `src/components/ui/` | Where shadcn CLI scaffolds new base primitives. Customize after scaffolding. |
 | `src/tokens.ts` | Same brand colors and typography exported as JS constants (for non-Tailwind contexts). **GENERATED** from `tokens/` — do not edit by hand. |
 | `src/lib/utils.ts` | `cn()` helper — `tailwind-merge` extended with every BYB token. |
 | `src/stories/` | Storybook — one file per component, all variants. |
 | `src/index.ts` | Public exports — every new component must be re-exported. |
 | `src/icons.ts` | Icon surface — re-exports the canonical icon set under the `@beforeyoubid/design-system/icons` subpath. |
+| `registry.json` | Component inventory (name, layer, variants, deps, description). Update alongside any component change. |
 
 > `tailwind.config.ts` is **removed** in v2.0. All theme tokens live in `globals.css` via Tailwind v4's `@theme inline` directive.
 
@@ -228,26 +241,27 @@ Use `asChild` on interactive components to allow rendering as `<Link>` or `<a>` 
 
 ## Running locally
 
-This repo uses **pnpm** (`pnpm@11.9.0` via corepack — run `corepack enable pnpm` once).
+This repo uses **pnpm** (`pnpm@11.9.0` via corepack — run `corepack enable pnpm` once). All commands work from the repo root (they proxy into `packages/design-system`).
 
 ```bash
-pnpm install
+pnpm install      # installs the whole workspace (package + demo app)
 pnpm dev          # watch mode — rebuild on save
 pnpm storybook    # Storybook at http://localhost:6006
+pnpm demo         # demo Next.js app — consumes the package live via workspace:*
 pnpm build-tokens # regenerate globals.css + src/tokens.ts from tokens/*.json
 pnpm check-tokens # staleness check — generated artifacts in sync with tokens/*.json
-pnpm type-check   # TypeScript strict check
+pnpm type-check   # TypeScript strict check (all workspace packages)
 pnpm lint         # ESLint
 ```
 
-## Publishing
+## Publishing — Changesets → GitHub Packages
 
-Bump `version` in `package.json` then:
+The package publishes to **GitHub Packages** (`npm.pkg.github.com`, private to the beforeyoubid org) via Changesets. Never publish from a laptop.
 
-```bash
-pnpm build-and-publish
-```
+1. In any PR that changes the package, run `pnpm changeset` and commit the generated file (pick patch/minor/major + a summary — this becomes the CHANGELOG entry).
+2. On merge to `main`, the Release workflow maintains a **"chore: version packages" PR** that accumulates pending changesets.
+3. Merging that PR publishes to GitHub Packages automatically (CI uses `GITHUB_TOKEN` — no manual npm auth).
 
-After publishing, update the version in consuming apps' `package.json` and run their install (`pnpm install` / `yarn install`).
+Consumers need a one-time `.npmrc` setup (`@beforeyoubid:registry=https://npm.pkg.github.com` + a `read:packages` token in the developer's `~/.npmrc` and in CI/build environments). After a release, bump the version in consuming apps and run their install.
 
 > **v2.0 is a breaking change.** Consumers must upgrade their host app to Tailwind v4 and drop the v3 `tailwind.config.ts`-based wiring. Direct utility classes (`bg-mint-45`, `text-navy`, `text-heading-lg`) continue to work unchanged.

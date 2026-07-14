@@ -1,0 +1,48 @@
+name: Release
+
+# Changesets flow:
+#   1. Feature PRs include a changeset file (`pnpm changeset`).
+#   2. On merge to main, this workflow maintains a "Version Packages" PR
+#      (accumulated bumps + CHANGELOG).
+#   3. Merging that PR re-runs this workflow, which publishes
+#      @beforeyoubid/design-system to GitHub Packages using GITHUB_TOKEN
+#      (publishConfig.registry = npm.pkg.github.com — no NPM_TOKEN needed).
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: write
+  pull-requests: write
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: https://npm.pkg.github.com
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Create release PR or publish
+        uses: changesets/action@v1
+        with:
+          publish: pnpm release
+          title: "chore: version packages"
+          commit: "chore: version packages"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

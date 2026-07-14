@@ -1,0 +1,25 @@
+{
+  "name": "demo",
+  "private": true,
+  "description": "Private demo/prototype surface — consumes the design system exactly like a real product app, with zero publish latency (workspace:*). AI-pipeline output and POCs land here. Never published.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@beforeyoubid/design-system": "workspace:*",
+    "next": "^14",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
