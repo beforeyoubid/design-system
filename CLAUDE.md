@@ -8,12 +8,13 @@ Read this before adding or modifying any component or token.
 
 | Path | Purpose |
 |---|---|
-| `globals.css` | Design tokens + `@theme inline` → Tailwind utilities. **Source of truth.** |
+| `tokens/` | **Source of truth for all design tokens** — `primitives.json` (brand facts) + `themes/website.json` (semantic mappings). Edit these, never the generated files. |
+| `globals.css` | Design tokens + `@theme inline` → Tailwind utilities. **GENERATED** from `tokens/` via `pnpm build-tokens` — do not edit by hand. |
 | `utilities.css` | Bespoke product utilities (`.clip-triangle`, `.mask-fade-x`, `.text-btn-*`, `.text-heading-*`). Imported by `globals.css`. |
 | `components.json` | shadcn CLI config — wire for `npx shadcn add <component>`. |
 | `src/components/` | BYB-opinionated components (`BYBButton`, `BYBCard`, …). One file per component. |
 | `src/components/ui/` | Where shadcn CLI scaffolds new base primitives. Customize after scaffolding. |
-| `src/tokens.ts` | Same brand colors and typography exported as JS constants (for non-Tailwind contexts). |
+| `src/tokens.ts` | Same brand colors and typography exported as JS constants (for non-Tailwind contexts). **GENERATED** from `tokens/` — do not edit by hand. |
 | `src/lib/utils.ts` | `cn()` helper — `tailwind-merge` extended with every BYB token. |
 | `src/stories/` | Storybook — one file per component, all variants. |
 | `src/index.ts` | Public exports — every new component must be re-exported. |
@@ -39,8 +40,8 @@ import { IconHome, IconChevronRight } from '@beforeyoubid/design-system/icons'
 ## Token rules
 
 - **Never hard-code a hex value.** Use a token utility (`bg-mint-45`, `text-navy`, `border-dark-15`).
-- **Never use arbitrary Tailwind values** (`text-[#090034]`, `p-[13px]`). If a token is missing, add it to `globals.css` and run `pnpm check-tokens`.
-- **Token naming mirrors Figma 1:1.** When in doubt, check the Figma library or `globals.css`.
+- **Never use arbitrary Tailwind values** (`text-[#090034]`, `p-[13px]`). If a token is missing, add it to `tokens/primitives.json` and run `pnpm build-tokens`.
+- **Token naming mirrors Figma 1:1.** When in doubt, check the Figma library or `tokens/primitives.json`.
 
 ### Two layers of tokens
 
@@ -128,10 +129,12 @@ shadcn components reference `var(--radius)` which aliases to `--radius-md`.
 
 ## Adding a token
 
-1. Add the CSS variable to `globals.css` under `:root` (use OKLCH, keep the hex in a comment).
-2. Add the matching `--color-{name}: var(--{name});` (or `--text-*`, `--radius-*`, …) line inside `@theme inline` so it generates a utility class.
-3. Run `pnpm check-tokens` — verifies parity.
-4. If non-Tailwind consumers may need the value, also add to `src/tokens.ts`.
+Tokens live in `tokens/*.json`; `globals.css` and `src/tokens.ts` are generated from them.
+
+1. Add the token to `tokens/primitives.json` (colours need both `oklch` and `hex`; both files are Figma-mirrored names).
+2. If it's a semantic slot change, edit `tokens/themes/website.json` instead — values may only reference primitives (`{mint-45}` syntax).
+3. Run `pnpm build-tokens` — regenerates `globals.css` + `src/tokens.ts` (the `:root` variable, `@theme inline` exposure, and TS constant are all emitted together, so they can never drift). Commit the regenerated files.
+4. `pnpm check-tokens` is the CI staleness check — it fails if committed artifacts don't match `tokens/*.json`.
 5. If it's a colour utility, add the name to the `text-color` group in `src/lib/utils.ts` so `cn()` handles it correctly.
 
 ## Dark mode
@@ -231,7 +234,8 @@ This repo uses **pnpm** (`pnpm@11.9.0` via corepack — run `corepack enable pnp
 pnpm install
 pnpm dev          # watch mode — rebuild on save
 pnpm storybook    # Storybook at http://localhost:6006
-pnpm check-tokens # verify every colour primitive is exposed via @theme inline
+pnpm build-tokens # regenerate globals.css + src/tokens.ts from tokens/*.json
+pnpm check-tokens # staleness check — generated artifacts in sync with tokens/*.json
 pnpm type-check   # TypeScript strict check
 pnpm lint         # ESLint
 ```

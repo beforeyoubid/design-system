@@ -33,14 +33,15 @@
   },
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "pnpm run clean && tsup",
+    "build-tokens": "node scripts/build-tokens.js",
+    "build": "pnpm run clean && node scripts/build-tokens.js && tsup",
     "build-and-publish": "pnpm run build && npm publish --access public",
     "dev": "tsup --watch",
     "lint": "eslint src --ext .ts,.tsx",
     "type-check": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "check-tokens": "node scripts/check-tokens.js",
+    "check-tokens": "node scripts/build-tokens.js --check",
     "test": "jest"
   },
   "peerDependencies": {

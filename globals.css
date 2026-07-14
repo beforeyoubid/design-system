@@ -2,7 +2,11 @@
  * @beforeyoubid/design-system — globals.css
  * Tailwind CSS v4 + shadcn/ui (BaseUI) — design tokens
  *
- * Source of truth: Figma BYB Design Library
+ * ⚠ GENERATED FILE — do not edit by hand.
+ *   Source: tokens/primitives.json + tokens/themes/website.json
+ *   Regenerate with: pnpm build-tokens
+ *
+ * Figma source of truth:
  *   https://www.figma.com/design/MKu0s7tCX3vOiSF5xTLpEN/BYB-Design-Library
  *
  * Import this file once in the consuming app's root layout.
@@ -10,13 +14,6 @@
  *   import "@beforeyoubid/design-system/globals.css"
  *
  * Plus Jakarta Sans must be loaded by the consumer (e.g. via next/font/google).
- *
- * Layout:
- *   1. Tailwind v4 import + dark-mode variant
- *   2. Primitives — colors (OKLCH), typography, radius, shadows, spacing
- *   3. Semantic tokens — shadcn slots (light + dark)
- *   4. @theme inline — exposes everything as Tailwind utilities
- *   5. Base layer + product utilities import
  * ============================================================================= */
 
 @import "tailwindcss";
@@ -39,21 +36,21 @@
 
 :root {
   /* ---------- Mint (Primary brand) ---------- */
-  --mint-90: oklch(0.3926 0.072 178.49);  /* #005246 */
+  --mint-90: oklch(0.3926 0.072 178.49); /* #005246 */
   --mint-75: oklch(0.5187 0.0951 178.49); /* #007A69 */
   --mint-60: oklch(0.6254 0.1156 177.46); /* #009E87 */
-  --mint-45: oklch(0.6715 0.124 177.54);  /* #00AE95 — Brand color */
-  --mint-30: oklch(0.7454 0.1091 179.2);  /* #4FC3AE */
+  --mint-45: oklch(0.6715 0.124 177.54); /* #00AE95 — Brand color */
+  --mint-30: oklch(0.7454 0.1091 179.2); /* #4FC3AE */
   --mint-15: oklch(0.7811 0.0957 180.91); /* #6BCCBB */
-  --mint-l1: oklch(0.8721 0.058 182.51);  /* #ABE2D8 */
+  --mint-l1: oklch(0.8721 0.058 182.51); /* #ABE2D8 */
   --mint-l2: oklch(0.9297 0.0311 184.15); /* #D2EFEA */
   --mint-l3: oklch(0.9543 0.0217 182.55); /* #E1F5F1 */
-  --mint-l4: oklch(0.9826 0.0075 186.9);  /* #F4FBFA */
+  --mint-l4: oklch(0.9826 0.0075 186.9); /* #F4FBFA */
 
   /* ---------- Brand accents ---------- */
   --navy:      oklch(0.1576 0.0965 278.31); /* #090034 */
   --cobalt:    oklch(0.5418 0.2542 262.24); /* #015AFF */
-  --teal:      oklch(0.725 0.1141 186.95);  /* #35BDB2 */
+  --teal:      oklch(0.725 0.1141 186.95); /* #35BDB2 */
   --lime:      oklch(0.9126 0.1656 120.14); /* #D4F269 */
   --cobalt-l1: oklch(0.8655 0.0603 276.79); /* #C8D0FB */
   --teal-l1:   oklch(0.9014 0.0426 192.77); /* #BFE8E6 */
@@ -61,10 +58,10 @@
 
   /* ---------- Dark (Neutrals) ---------- */
   --dark-100: oklch(0.2091 0.0104 268.19); /* #16181D */
-  --dark-90:  oklch(0.41 0.028 268.98);    /* #444A5A */
+  --dark-90:  oklch(0.41 0.028 268.98); /* #444A5A */
   --dark-75:  oklch(0.5391 0.0377 268.32); /* #656E85 */
   --dark-60:  oklch(0.6466 0.0331 267.05); /* #858EA3 */
-  --dark-45:  oklch(0.7415 0.024 269.36);  /* #A5ABBB */
+  --dark-45:  oklch(0.7415 0.024 269.36); /* #A5ABBB */
   --dark-30:  oklch(0.8268 0.0159 269.95); /* #C2C6D1 */
   --dark-15:  oklch(0.9099 0.0084 271.32); /* #DFE1E7 */
 
@@ -72,8 +69,8 @@
   --light-l1:    oklch(0.9846 0.0017 247.84); /* #F9FAFB */
   --light-l2:    oklch(0.9665 0.0045 258.32); /* #F2F4F7 */
   --light-l3:    oklch(0.9427 0.0058 264.53); /* #EAECF0 */
-  --light-sandy: oklch(0.9666 0.0086 67.72);  /* #F8F3EE */
-  --white:       oklch(1 0 0);                /* #FFFFFF */
+  --light-sandy: oklch(0.9666 0.0086 67.72); /* #F8F3EE */
+  --white:       oklch(1 0 0); /* #FFFFFF */
 
   /* ---------- Success (Green) ---------- */
   --success-90: oklch(0.3606 0.0759 158.64); /* #0D492E */
@@ -81,11 +78,11 @@
   --success-60: oklch(0.6104 0.1363 157.51); /* #1C9B62 */
   --success-45: oklch(0.6954 0.1555 157.63); /* #22B976 */
   --success-30: oklch(0.7886 0.1698 158.37); /* #34DA90 */
-  --success-15: oklch(0.884 0.0943 164.68);  /* #9CEDC9 */
+  --success-15: oklch(0.884 0.0943 164.68); /* #9CEDC9 */
   --success-l1: oklch(0.9726 0.0216 167.49); /* #E9FBF3 */
 
   /* ---------- Error (Red) ---------- */
-  --error-90: oklch(0.3859 0.134 29.38);  /* #7C1A12 */
+  --error-90: oklch(0.3859 0.134 29.38); /* #7C1A12 */
   --error-75: oklch(0.5239 0.1892 29.35); /* #BF271C */
   --error-60: oklch(0.6437 0.1775 27.58); /* #E5584D */
   --error-45: oklch(0.7372 0.1219 24.74); /* #ED8A83 */
@@ -97,30 +94,30 @@
   /* ---------- Warning (Amber) ---------- */
   --warning-75: oklch(0.5442 0.1097 81.27); /* #906809 */
   --warning-60: oklch(0.6417 0.1318 80.08); /* #B68205 */
-  --warning-45: oklch(0.717 0.1483 79.63);  /* #D49702 */
+  --warning-45: oklch(0.717 0.1483 79.63); /* #D49702 */
   --warning-30: oklch(0.8176 0.1695 79.16); /* #FDB402 */
   --warning-15: oklch(0.8929 0.1239 87.91); /* #FED776 */
   --warning-l1: oklch(0.9488 0.0598 89.41); /* #FEEDC1 */
-  --warning-l2: oklch(0.9706 0.0341 90.5);  /* #FEF5DC */
-  --warning-l3: oklch(0.983 0.0195 87.51);  /* #FFF9EB */
+  --warning-l2: oklch(0.9706 0.0341 90.5); /* #FEF5DC */
+  --warning-l3: oklch(0.983 0.0195 87.51); /* #FFF9EB */
 
   /* ---------- Category palette (data-viz) ---------- */
   --category-01: oklch(0.7291 0.1265 210.82); /* #00BCD4 */
   --category-02: oklch(0.6187 0.1063 207.97); /* #0097A7 */
-  --category-03: oklch(0.7337 0.145 234.62);  /* #29B6F6 */
+  --category-03: oklch(0.7337 0.145 234.62); /* #29B6F6 */
   --category-04: oklch(0.6029 0.1466 243.46); /* #0288D1 */
-  --category-05: oklch(0.3537 0.0394 33.47);  /* #4E342E */
-  --category-06: oklch(0.4495 0.0486 39.21);  /* #6D4C41 */
-  --category-07: oklch(0.2443 0.0759 19.22);  /* #3D0C11 */
+  --category-05: oklch(0.3537 0.0394 33.47); /* #4E342E */
+  --category-06: oklch(0.4495 0.0486 39.21); /* #6D4C41 */
+  --category-07: oklch(0.2443 0.0759 19.22); /* #3D0C11 */
   --category-08: oklch(0.4152 0.1605 355.69); /* #880E4F */
-  --category-09: oklch(0.6062 0.2298 9.63);   /* #E91E63 */
+  --category-09: oklch(0.6062 0.2298 9.63); /* #E91E63 */
   --category-10: oklch(0.4533 0.1988 312.96); /* #7B1FA2 */
-  --category-11: oklch(0.6116 0.2335 295.2);  /* #9357FD */
+  --category-11: oklch(0.6116 0.2335 295.2); /* #9357FD */
   --category-12: oklch(0.4742 0.1862 294.78); /* #673AB7 */
-  --category-13: oklch(0.6993 0 0);           /* #9E9E9E */
-  --category-14: oklch(0.7984 0 0);           /* #BDBDBD */
-  --category-15: oklch(0.4495 0 0);           /* #555555 */
-  --category-16: oklch(0.2594 0.0045 17.45);  /* #262323 */
+  --category-13: oklch(0.6993 0 0); /* #9E9E9E */
+  --category-14: oklch(0.7984 0 0); /* #BDBDBD */
+  --category-15: oklch(0.4495 0 0); /* #555555 */
+  --category-16: oklch(0.2594 0.0045 17.45); /* #262323 */
 
   /* ---------- Transparent UI ----------
    * The four Figma "Transparent/*" tokens are composites of opaque primitives
@@ -139,8 +136,7 @@
    * next/font/google). We just declare the stack here.
    */
   --font-sans:
-    "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
+    "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   /* Letter-spacing tokens (tracking-heading, tracking-btn) */
   --tracking-heading: -0.005em;
@@ -151,16 +147,12 @@
    * ============================================================================= */
 
   --radius-sm:   4px;
-  --radius-md:   8px;   /* BYB component default */
+  --radius-md:   8px; /* BYB component default */
   --radius-lg:   12px;
   --radius-xl:   20px;
-  /* Matches Tailwind v4 defaults — explicit so our theme owns the full scale */
-  --radius-2xl:  1rem;    /* 16px */
-  --radius-3xl:  1.5rem;  /* 24px */
-  --radius-4xl:  2rem;    /* 32px */
-  /* TODO: base-maia components reference rounded-4xl (input, badge, select,
-   * dialog, tabs). Review each in the Phase 2 restyle and replace with the
-   * correct BYB token (rounded-md for inputs, rounded-btn for badges, etc.) */
+  --radius-2xl:  1rem; /* 16px */
+  --radius-3xl:  1.5rem; /* 24px */
+  --radius-4xl:  2rem; /* 32px */
   --radius-btn:  18px;
   --radius-full: 9999px;
 
@@ -179,7 +171,7 @@
 
   /* =============================================================================
    * SEMANTIC TOKENS — light mode (shadcn slots)
-   * Components consume these. Re-skin BYB by editing the right-hand side only.
+   * Components consume these. Re-skin BYB by editing tokens/themes/*.json only.
    * ============================================================================= */
 
   --background: var(--white);
@@ -261,6 +253,7 @@
   --destructive:            var(--error-45);
   --destructive-foreground: var(--dark-100);
 
+  /* shadcn doesn't ship these by default — common project extensions */
   --success:            var(--success-30);
   --success-foreground: var(--dark-100);
   --warning:            var(--warning-30);
@@ -270,6 +263,7 @@
   --input:  var(--dark-90);
   --ring:   var(--mint-30);
 
+  /* Sidebar (shadcn 2025) */
   --sidebar:                    var(--dark-90);
   --sidebar-foreground:         var(--light-l1);
   --sidebar-primary:            var(--mint-30);
@@ -302,7 +296,7 @@
 @theme inline {
   /* ---------- Color primitives → bg-mint-45, text-cobalt, border-dark-15, … ---------- */
 
-  /* Mint */
+  /* Mint (Primary brand) */
   --color-mint-90: var(--mint-90);
   --color-mint-75: var(--mint-75);
   --color-mint-60: var(--mint-60);
@@ -323,7 +317,7 @@
   --color-teal-l1:   var(--teal-l1);
   --color-lime-l1:   var(--lime-l1);
 
-  /* Dark neutrals */
+  /* Dark (Neutrals) */
   --color-dark-100: var(--dark-100);
   --color-dark-90:  var(--dark-90);
   --color-dark-75:  var(--dark-75);
@@ -332,14 +326,14 @@
   --color-dark-30:  var(--dark-30);
   --color-dark-15:  var(--dark-15);
 
-  /* Light neutrals */
+  /* Light (Neutrals) */
   --color-light-l1:    var(--light-l1);
   --color-light-l2:    var(--light-l2);
   --color-light-l3:    var(--light-l3);
   --color-light-sandy: var(--light-sandy);
   --color-white:       var(--white);
 
-  /* Success */
+  /* Success (Green) */
   --color-success-90: var(--success-90);
   --color-success-75: var(--success-75);
   --color-success-60: var(--success-60);
@@ -348,7 +342,7 @@
   --color-success-15: var(--success-15);
   --color-success-l1: var(--success-l1);
 
-  /* Error */
+  /* Error (Red) */
   --color-error-90: var(--error-90);
   --color-error-75: var(--error-75);
   --color-error-60: var(--error-60);
@@ -358,7 +352,7 @@
   --color-error-l1: var(--error-l1);
   --color-error-l2: var(--error-l2);
 
-  /* Warning */
+  /* Warning (Amber) */
   --color-warning-75: var(--warning-75);
   --color-warning-60: var(--warning-60);
   --color-warning-45: var(--warning-45);
@@ -368,7 +362,7 @@
   --color-warning-l2: var(--warning-l2);
   --color-warning-l3: var(--warning-l3);
 
-  /* Category palette */
+  /* Category palette (data-viz) */
   --color-category-01: var(--category-01);
   --color-category-02: var(--category-02);
   --color-category-03: var(--category-03);
@@ -387,40 +381,34 @@
   --color-category-16: var(--category-16);
 
   /* ---------- shadcn semantic slots → bg-primary, text-muted-foreground, … ---------- */
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  --color-card:               var(--card);
-  --color-card-foreground:    var(--card-foreground);
-  --color-popover:            var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-
-  --color-primary:              var(--primary);
-  --color-primary-foreground:   var(--primary-foreground);
-  --color-secondary:            var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted:                var(--muted);
-  --color-muted-foreground:     var(--muted-foreground);
-  --color-accent:               var(--accent);
-  --color-accent-foreground:    var(--accent-foreground);
-
-  --color-destructive:            var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-success:                var(--success);
-  --color-success-foreground:     var(--success-foreground);
-  --color-warning:                var(--warning);
-  --color-warning-foreground:     var(--warning-foreground);
-
-  --color-border: var(--border);
-  --color-input:  var(--input);
-  --color-ring:   var(--ring);
-
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-
+  --color-background:                 var(--background);
+  --color-foreground:                 var(--foreground);
+  --color-card:                       var(--card);
+  --color-card-foreground:            var(--card-foreground);
+  --color-popover:                    var(--popover);
+  --color-popover-foreground:         var(--popover-foreground);
+  --color-primary:                    var(--primary);
+  --color-primary-foreground:         var(--primary-foreground);
+  --color-secondary:                  var(--secondary);
+  --color-secondary-foreground:       var(--secondary-foreground);
+  --color-muted:                      var(--muted);
+  --color-muted-foreground:           var(--muted-foreground);
+  --color-accent:                     var(--accent);
+  --color-accent-foreground:          var(--accent-foreground);
+  --color-destructive:                var(--destructive);
+  --color-destructive-foreground:     var(--destructive-foreground);
+  --color-success:                    var(--success);
+  --color-success-foreground:         var(--success-foreground);
+  --color-warning:                    var(--warning);
+  --color-warning-foreground:         var(--warning-foreground);
+  --color-border:                     var(--border);
+  --color-input:                      var(--input);
+  --color-ring:                       var(--ring);
+  --color-chart-1:                    var(--chart-1);
+  --color-chart-2:                    var(--chart-2);
+  --color-chart-3:                    var(--chart-3);
+  --color-chart-4:                    var(--chart-4);
+  --color-chart-5:                    var(--chart-5);
   --color-sidebar:                    var(--sidebar);
   --color-sidebar-foreground:         var(--sidebar-foreground);
   --color-sidebar-primary:            var(--sidebar-primary);
@@ -434,15 +422,15 @@
   --font-sans: var(--font-sans);
 
   /* Display (semi-bold 600) */
-  --text-display-xl:               72px;
-  --text-display-xl--line-height:  1.05;
-  --text-display-xl--font-weight:  600;
-  --text-display:                  56px;
-  --text-display--line-height:     1.08;
-  --text-display--font-weight:     600;
-  --text-display-sm:               52px;
-  --text-display-sm--line-height:  1.2;
-  --text-display-sm--font-weight:  600;
+  --text-display-xl:              72px;
+  --text-display-xl--line-height: 1.05;
+  --text-display-xl--font-weight: 600;
+  --text-display:                 56px;
+  --text-display--line-height:    1.08;
+  --text-display--font-weight:    600;
+  --text-display-sm:              52px;
+  --text-display-sm--line-height: 1.2;
+  --text-display-sm--font-weight: 600;
 
   /* Heading (semi-bold 600) */
   --text-heading-lg:                40px;
@@ -462,14 +450,14 @@
   --text-heading-sm--font-weight:   600;
 
   /* Body (regular 400) */
-  --text-body-lg:               18px;
-  --text-body-lg--line-height:  1.4;
-  --text-body-md:               16px;
-  --text-body-md--line-height:  1.4;
-  --text-body-sm:               13px;
-  --text-body-sm--line-height:  1.4;
-  --text-caption:               12px;
-  --text-caption--line-height:  1.4;
+  --text-body-lg:              18px;
+  --text-body-lg--line-height: 1.4;
+  --text-body-md:              16px;
+  --text-body-md--line-height: 1.4;
+  --text-body-sm:              13px;
+  --text-body-sm--line-height: 1.4;
+  --text-caption:              12px;
+  --text-caption--line-height: 1.4;
 
   /* Small (regular 400) — overrides Tailwind defaults */
   --text-xs:               10px;
@@ -513,15 +501,15 @@
   --text-medium-2xs--font-weight:  500;
 
   /* Button (semi-bold 600; pair with tracking-btn + uppercase utility) */
-  --text-btn-lg:               18px;
-  --text-btn-lg--line-height:  1.3;
-  --text-btn-lg--font-weight:  600;
-  --text-btn-md:               16px;
-  --text-btn-md--line-height:  1.3;
-  --text-btn-md--font-weight:  600;
-  --text-btn-sm:               13px;
-  --text-btn-sm--line-height:  1.3;
-  --text-btn-sm--font-weight:  600;
+  --text-btn-lg:              18px;
+  --text-btn-lg--line-height: 1.3;
+  --text-btn-lg--font-weight: 600;
+  --text-btn-md:              16px;
+  --text-btn-md--line-height: 1.3;
+  --text-btn-md--font-weight: 600;
+  --text-btn-sm:              13px;
+  --text-btn-sm--line-height: 1.3;
+  --text-btn-sm--font-weight: 600;
 
   /* Letter spacing */
   --tracking-heading: var(--tracking-heading);
@@ -549,7 +537,7 @@
   --animate-marquee-paused: marquee 35s linear infinite paused;
   --animate-fade-in:        fade-in 0.25s ease-out both;
   --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-accordion-up:   accordion-up 0.2s ease-out;
 
   @keyframes accordion-down {
     from {

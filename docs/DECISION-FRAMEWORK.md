@@ -7,7 +7,7 @@ that never enters the design system at all.
 an AI agent about to write any component code, follow the
 [audit procedure](#audit-procedure-required-before-writing-component-code) below first.
 
-Related: [`docs/byb-components/monorepo-proposal.md`](./byb-components/monorepo-proposal.md) (architecture) ·
+Related: [`docs/proposal-draft/Monorepo-Proposal.md`](./proposal-draft/Monorepo-Proposal.md) (architecture) ·
 `registry.json` (component inventory — if not yet present, scan `src/components/` and `src/stories/` instead).
 
 ---
