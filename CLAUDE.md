@@ -154,6 +154,21 @@ This tells bundlers that JS exports are side-effect-free (free to tree-shake) bu
 
 **Don't add JS files with module-level side effects.** If you ever need one (analytics init, global registration, polyfills) it must be explicitly listed in the `sideEffects` array or it'll be silently dropped.
 
+## Create vs reuse — mandatory audit before any component work
+
+Before creating **any** component (or variant), follow
+[`docs/DECISION-FRAMEWORK.md`](./docs/DECISION-FRAMEWORK.md):
+
+1. Load the component inventory (`registry.json` if present, else scan `src/components/` +
+   `src/stories/`).
+2. Classify each UI element through the decision tree: token → variant → new primitive →
+   BYB wrapper → app-local.
+3. Emit the audit table (`element → decision → justification`) and get it approved **before**
+   writing component code.
+
+Styling alone never makes a component BYB-specific — business meaning does. When in doubt, ask;
+don't guess.
+
 ## Component rules
 
 - One component per file in `src/components/`
