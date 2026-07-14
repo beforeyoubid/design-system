@@ -6,7 +6,7 @@ import {
   IconUsers,
   IconClock,
 } from '@tabler/icons-react'
-import { BYBCounter } from '../components/BYBCounter'
+import { BYBCounter } from '../components/byb/BYBCounter'
 
 const meta: Meta<typeof BYBCounter> = {
   title: 'Components/BYBCounter',

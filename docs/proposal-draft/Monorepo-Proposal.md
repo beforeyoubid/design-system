@@ -442,7 +442,7 @@ context with the canvas instead of a static screenshot hand-off.
 
 ## 8. Phased roadmap & action tracker
 
-> Status legend: ✅ done · 🔲 pending · Last updated: **2026-07-14** (phases 1–3 executed; publishing target decided: **GitHub Packages, private**)
+> Status legend: ✅ done · 🔲 pending · Last updated: **2026-07-14** (phases 1–4 executed; publishing target decided: **GitHub Packages, private**; v2.0.0 major changeset pending release)
 
 ### Summary
 
@@ -451,7 +451,7 @@ context with the canvas instead of a static screenshot hand-off.
 | **1. Governance docs**        | Rules + inventory that humans and AI agents decide with | None                                                        | ✅ (2 follow-ups) |
 | **2. Tokens → JSON**          | Tokens become data; CSS/TS become generated artifacts   | None                                                        | ✅ (1 deferred)   |
 | **3. Workspace conversion**   | Monorepo structure + demo app + automated publishing    | None (consumers add GH Packages `.npmrc` at next upgrade)   | ✅ (1 optional)   |
-| **4. Dependency restructure** | Heavy deps become pay-for-what-you-use                  | **Major version** — 2-line migration for affected consumers | 🔲                |
+| **4. Dependency restructure** | Heavy deps become pay-for-what-you-use                  | **Major version** — 2-line migration for affected consumers | ✅                |
 | **5. Registry + AI pipeline** | Automated inventory + Claude Design import + demo run   | None                                                        | 🔲                |
 | **6. Themes on demand**       | Second product theme, per-theme CSS entries, Figma sync | Additive                                                    | 🔲                |
 
@@ -459,6 +459,9 @@ Phases 1–2 were independent of the monorepo conversion and are done; phase 4 i
 should be batched into one well-communicated major release.
 
 ### Phase 1 — Governance docs ✅
+
+> **Intent:** written rules + a machine-readable component inventory, so humans and AI agents make consistent,
+> auditable create-vs-reuse decisions.
 
 | #   | Action                                                                                          | Status |
 | --- | ----------------------------------------------------------------------------------------------- | ------ |
@@ -470,6 +473,9 @@ should be batched into one well-communicated major release.
 | 1.6 | Add missing `BYBImage` story (gap found during registry build)                                  | ✅     |
 
 ### Phase 2 — Tokens → JSON ✅
+
+> **Intent:** one editable source of truth for brand facts; CSS/TS become generated artifacts so drift is
+> structurally impossible and new themes/formats are outputs, not rewrites.
 
 | #   | Action                                                                                                    | Status |
 | --- | ---------------------------------------------------------------------------------------------------------- | ------ |
@@ -483,6 +489,9 @@ should be batched into one well-communicated major release.
 
 ### Phase 3 — Workspace conversion ✅
 
+> **Intent:** make the repo the platform monorepo — a demo app consumes the package live (`workspace:*`), and
+> releasing becomes an automated CI train instead of laptop publishing.
+
 | #   | Action                                                                                                               | Status |
 | --- | --------------------------------------------------------------------------------------------------------------------- | ------ |
 | 3.1 | Root `package.json` (`"private": true`) + declare `packages/*`, `apps/*` in `pnpm-workspace.yaml`                    | ✅     |
@@ -493,16 +502,29 @@ should be batched into one well-communicated major release.
 | 3.6 | Visual QA: existing S3 Storybook deploy preserved (path updated). Chromatic visual regression — optional, needs account/token | 🔲     |
 | 3.7 | Update `CLAUDE.md` to describe the new layout, root proxy scripts, and Changesets→GitHub Packages publishing          | ✅     |
 
-### Phase 4 — Dependency restructure 🔲 (ships as a major)
+### Phase 4 — Dependency restructure ✅ (ships as a major — changeset pending release)
 
-| #   | Action                                                                                                      |
-| --- | ------------------------------------------------------------------------------------------------------------ |
-| 4.1 | Move Chart / Calendar / Carousel out of the barrel to `./chart`, `./calendar`, `./carousel` subpath entries |
-| 4.2 | `recharts`, `react-day-picker` (+ `date-fns`), `embla-carousel-react` → optional `peerDependencies`         |
-| 4.3 | Split `src/components/` into `ui/` + `ui-heavy/` + `byb/`; update registry layers                           |
-| 4.4 | Migration notes (2 lines per consumer: import path + peer install); batch into one major release            |
+> **Intent:** pay-for-what-you-use. Only 3 of ~50 components need heavy libraries (recharts, react-day-picker,
+> embla), yet every consumer installed them — so they become **optional peers** (4.2). Moving those components to
+> **subpath exports** (4.1) is what makes that safe: bundlers resolve every import in a file *before* tree-shaking, so
+> if `Chart` stayed in the main barrel, importing just `Button` would still try to resolve `recharts` and break the
+> build when the peer isn't installed. Optional deps only work if the optional code isn't in the shared barrel — the
+> same pattern `/icons` already uses.
+
+| #   | Action                                                                                                                | Status |
+| --- | ------------------------------------------------------------------------------------------------------------------------ | ------ |
+| 4.1 | Move Chart / Calendar / Carousel out of the barrel to `./chart`, `./calendar`, `./carousel` subpath entries             | ✅     |
+| 4.2 | `recharts`, `react-day-picker`, `embla-carousel-react` → optional `peerDependencies` (`date-fns` removed — was unused)  | ✅     |
+| 4.3 | Split `src/components/` into `ui/` + `ui-heavy/` + `byb/`; registry layers + paths updated                              | ✅     |
+| 4.4 | Migration notes written in the major changeset (`.changeset/heavy-deps-subpaths.md`); ships with the next release train | ✅     |
+
+Verified: main barrel has zero references to the heavy libs; subpath bundles externalize them as imports; lint,
+type-check, token staleness, Storybook build, and the demo app build all pass.
 
 ### Phase 5 — Registry + AI pipeline 🔲
+
+> **Intent:** make the inventory self-maintaining, wire Claude Design to the real design system, and prove the
+> design→audit→build pipeline manually once before automating it.
 
 | #   | Action                                                                                                            |
 | --- | ------------------------------------------------------------------------------------------------------------------ |
@@ -513,6 +535,9 @@ should be batched into one well-communicated major release.
 | 5.5 | Automate the pipeline using the manual run as the spec (validate multica.ai capabilities first)                   |
 
 ### Phase 6 — Themes on demand 🔲 (trigger: a designer defines a second product's look)
+
+> **Intent:** a second product gets its own look as a small theme file + generated self-contained CSS entry — one
+> design system, N themes, never a fork.
 
 | #   | Action                                                                                                                                          |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------ |

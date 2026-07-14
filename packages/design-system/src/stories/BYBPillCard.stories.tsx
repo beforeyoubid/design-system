@@ -7,7 +7,7 @@ import {
   IconFileDescription,
   IconStarFilled,
 } from '@tabler/icons-react'
-import { BYBPillCard } from '../components/BYBPillCard'
+import { BYBPillCard } from '../components/byb/BYBPillCard'
 
 const meta: Meta<typeof BYBPillCard> = {
   title: 'Components/BYBPillCard',

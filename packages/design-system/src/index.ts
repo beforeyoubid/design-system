@@ -1,23 +1,25 @@
 // =============================================================================
 // BYB-opinionated components — domain-specific, no shadcn equivalent
 // =============================================================================
-export { BYBCounter } from './components/BYBCounter'
-export { BYBPillCard } from './components/BYBPillCard'
-export { BYBTestimonialCarousel, BYBTestimonialCard } from './components/BYBTestimonialCarousel'
-export type { Testimonial, BYBTestimonialCardProps } from './components/BYBTestimonialCarousel'
-export { BYBImage } from './components/BYBImage'
+export { BYBCounter } from './components/byb/BYBCounter'
+export { BYBPillCard } from './components/byb/BYBPillCard'
+export { BYBTestimonialCarousel, BYBTestimonialCard } from './components/byb/BYBTestimonialCarousel'
+export type { Testimonial, BYBTestimonialCardProps } from './components/byb/BYBTestimonialCarousel'
+export { BYBImage } from './components/byb/BYBImage'
 
 // =============================================================================
 // Form composites — thin wrappers around ui/input and ui/select that add
 // label/hint/error slots. Replaces the legacy BYBInput / BYBSelect.
 // =============================================================================
-export { InputField } from './components/InputField'
-export type { InputFieldProps } from './components/InputField'
-export { SelectField } from './components/SelectField'
-export type { SelectFieldProps, SelectFieldOption } from './components/SelectField'
+export { InputField } from './components/byb/InputField'
+export type { InputFieldProps } from './components/byb/InputField'
+export { SelectField } from './components/byb/SelectField'
+export type { SelectFieldProps, SelectFieldOption } from './components/byb/SelectField'
 
 // =============================================================================
 // shadcn/ui primitives — generated via `npx shadcn add` against base-maia
+// NOTE: chart, calendar, carousel are NOT here — they ship via dedicated subpath
+// exports (/chart, /calendar, /carousel) with their heavy libs as optional peers.
 // =============================================================================
 export * from './components/ui/accordion'
 export * from './components/ui/alert'
@@ -27,10 +29,7 @@ export * from './components/ui/avatar'
 export * from './components/ui/badge'
 export * from './components/ui/breadcrumb'
 export * from './components/ui/button'
-export * from './components/ui/calendar'
 export * from './components/ui/card'
-export * from './components/ui/carousel'
-export * from './components/ui/chart'
 export * from './components/ui/checkbox'
 export * from './components/ui/collapsible'
 export * from './components/ui/command'

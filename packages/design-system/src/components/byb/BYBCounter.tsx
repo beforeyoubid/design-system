@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../lib/utils'
+import { cn } from '../../lib/utils'
 
 // ── Value parsing ─────────────────────────────────────────────────────────────
 
-interface ParsedValue {
+export interface ParsedValue {
   prefix: string
   number: number
   suffix: string
@@ -12,7 +12,7 @@ interface ParsedValue {
   decimals: number
 }
 
-function parseValue(raw: string): ParsedValue {
+export function parseValue(raw: string): ParsedValue {
   const match = raw.match(/^([^0-9]*)([0-9,]*\.?[0-9]+)(.*)$/)
   if (!match) return { prefix: '', number: 0, suffix: raw, useCommas: false, decimals: 0 }
   const [, prefix, numStr, suffix] = match
@@ -22,7 +22,7 @@ function parseValue(raw: string): ParsedValue {
   return { prefix, number: parseFloat(cleaned), suffix, useCommas, decimals }
 }
 
-function formatNumber(n: number, useCommas: boolean, decimals: number): string {
+export function formatNumber(n: number, useCommas: boolean, decimals: number): string {
   const fixed = n.toFixed(decimals)
   if (!useCommas) return fixed
   const [int, dec] = fixed.split('.')

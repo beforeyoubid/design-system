@@ -15,6 +15,18 @@ export default defineConfig({
   test: {
     projects: [
       {
+        // Fast node-environment unit tests for logic (parsers, cn, registry
+        // consistency). Run with `pnpm test`; no browser needed.
+        test: {
+          name: 'unit',
+          environment: 'node',
+          include: ['src/**/*.test.{ts,tsx}', 'tests/**/*.test.{ts,tsx}'],
+        },
+        resolve: {
+          alias: { '@': path.join(dirname, 'src') },
+        },
+      },
+      {
         extends: true,
         plugins: [
           // The plugin will run tests for the stories defined in your Storybook config

@@ -5,7 +5,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '../../components/ui/carousel'
+} from '../../components/ui-heavy/carousel'
 import { Card, CardContent } from '../../components/ui/card'
 
 const meta: Meta<typeof Carousel> = {

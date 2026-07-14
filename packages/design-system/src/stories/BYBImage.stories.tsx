@@ -1,6 +1,6 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { BYBImage } from '../components/BYBImage'
+import { BYBImage } from '../components/byb/BYBImage'
 import { AspectRatio } from '../components/ui/aspect-ratio'
 
 const meta: Meta<typeof BYBImage> = {

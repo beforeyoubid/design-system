@@ -31,6 +31,21 @@
       "import": "./dist/icons.mjs",
       "require": "./dist/icons.js"
     },
+    "./chart": {
+      "types": "./dist/chart.d.ts",
+      "import": "./dist/chart.mjs",
+      "require": "./dist/chart.js"
+    },
+    "./calendar": {
+      "types": "./dist/calendar.d.ts",
+      "import": "./dist/calendar.mjs",
+      "require": "./dist/calendar.js"
+    },
+    "./carousel": {
+      "types": "./dist/carousel.d.ts",
+      "import": "./dist/carousel.mjs",
+      "require": "./dist/carousel.js"
+    },
     "./globals.css": "./globals.css",
     "./utilities.css": "./utilities.css"
   },
@@ -45,13 +60,29 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "check-tokens": "node scripts/build-tokens.js --check",
-    "test": "jest"
+    "test": "vitest run --project unit",
+    "test:stories": "vitest run --project storybook",
+    "test:watch": "vitest --project unit"
   },
   "peerDependencies": {
+    "embla-carousel-react": ">=8.6",
     "next": ">=14",
     "react": ">=18",
     "react-dom": ">=18",
+    "react-day-picker": ">=9",
+    "recharts": ">=3.8",
     "tailwindcss": ">=4"
+  },
+  "peerDependenciesMeta": {
+    "embla-carousel-react": {
+      "optional": true
+    },
+    "react-day-picker": {
+      "optional": true
+    },
+    "recharts": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.1.2",
@@ -68,12 +99,15 @@
     "@typescript-eslint/parser": "^6",
     "@vitest/browser-playwright": "^4.1.5",
     "@vitest/coverage-v8": "^4.1.5",
+    "embla-carousel-react": "^8.6.0",
     "eslint": "^8",
     "eslint-plugin-react": "^7",
     "eslint-plugin-react-hooks": "^4",
     "eslint-plugin-storybook": "^10.3.6",
     "next": "^14",
     "playwright": "^1.59.1",
+    "react-day-picker": "^9.0.0",
+    "recharts": "3.8.0",
     "storybook": "^10.3.6",
     "tailwindcss": "^4",
     "tsup": "^8",
@@ -87,13 +121,9 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2",
     "cmdk": "^1.1.1",
-    "date-fns": "^4.2.1",
-    "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
     "next-themes": "^0.4.6",
-    "react-day-picker": "^9.0.0",
     "react-resizable-panels": "^4.11.1",
-    "recharts": "3.8.0",
     "sonner": "^2.0.7",
     "tailwind-merge": "^2",
     "vaul": "^1.1.2"

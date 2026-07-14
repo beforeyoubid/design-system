@@ -13,7 +13,12 @@ const shared = {
 export default defineConfig([
   {
     ...shared,
-    entry: ['src/index.ts'],
+    // chart/calendar/carousel are separate entries so their heavy libraries
+    // (recharts, react-day-picker, embla — optional peerDependencies) are only
+    // resolved by consumers who import the subpath. Keeping them in the main
+    // barrel would make every consumer's bundler resolve those libs during
+    // module-graph construction, breaking builds when the peer isn't installed.
+    entry: ['src/index.ts', 'src/chart.ts', 'src/calendar.ts', 'src/carousel.ts'],
     // Cleaning is done once via the `build` script (rm -rf dist) before tsup
     // runs — setting clean here would race the concurrent icons config and
     // wipe its freshly-emitted .d.ts.

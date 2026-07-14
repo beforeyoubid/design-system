@@ -1,6 +1,6 @@
 import React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../lib/utils'
+import { cn } from '../../lib/utils'
 
 const pillCardVariants = cva(
   'flex flex-row items-center gap-5 px-6 py-5 rounded-full',

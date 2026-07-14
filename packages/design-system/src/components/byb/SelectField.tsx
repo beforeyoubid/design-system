@@ -1,14 +1,14 @@
 import * as React from "react"
 
-import { cn } from "../lib/utils"
-import { Label } from "./ui/label"
+import { cn } from "../../lib/utils"
+import { Label } from "../ui/label"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select"
+} from "../ui/select"
 
 export interface SelectFieldOption {
   label: React.ReactNode

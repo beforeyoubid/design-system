@@ -1,6 +1,6 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { SelectField } from '../components/SelectField'
+import { SelectField } from '../components/byb/SelectField'
 
 const meta: Meta<typeof SelectField> = {
   title: 'BYB/SelectField',

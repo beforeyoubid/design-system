@@ -3,8 +3,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import {
   BYBTestimonialCarousel,
   BYBTestimonialCard,
-} from '../components/BYBTestimonialCarousel'
-import type { Testimonial } from '../components/BYBTestimonialCarousel'
+} from '../components/byb/BYBTestimonialCarousel'
+import type { Testimonial } from '../components/byb/BYBTestimonialCarousel'
 
 // ── Shared placeholder data ───────────────────────────────────────────────────
 

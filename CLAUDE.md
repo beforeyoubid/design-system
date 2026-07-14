@@ -24,8 +24,9 @@ Root scripts proxy into the package (`pnpm build`, `pnpm lint`, `pnpm storybook`
 | `globals.css` | Design tokens + `@theme inline` → Tailwind utilities. **GENERATED** from `tokens/` via `pnpm build-tokens` — do not edit by hand. |
 | `utilities.css` | Bespoke product utilities (`.clip-triangle`, `.mask-fade-x`, `.text-btn-*`, `.text-heading-*`). Imported by `globals.css`. |
 | `components.json` | shadcn CLI config — wire for `npx shadcn add <component>`. |
-| `src/components/` | BYB-opinionated components (`BYBCounter`, `BYBPillCard`, …). One file per component. |
-| `src/components/ui/` | Where shadcn CLI scaffolds new base primitives. Customize after scaffolding. |
+| `src/components/ui/` | shadcn primitives — no heavy deps. Where shadcn CLI scaffolds new primitives; customize after scaffolding. |
+| `src/components/ui-heavy/` | Primitives with a heavy external library (chart→recharts, calendar→react-day-picker, carousel→embla). Each ships via its **own subpath export** with the library as an **optional peer** — never exported from the main barrel. |
+| `src/components/byb/` | BYB-opinionated domain components (`BYBCounter`, `BYBPillCard`, field composites). One file per component. |
 | `src/tokens.ts` | Same brand colors and typography exported as JS constants (for non-Tailwind contexts). **GENERATED** from `tokens/` — do not edit by hand. |
 | `src/lib/utils.ts` | `cn()` helper — `tailwind-merge` extended with every BYB token. |
 | `src/stories/` | Storybook — one file per component, all variants. |
@@ -49,6 +50,18 @@ import { IconHome, IconChevronRight } from '@beforeyoubid/design-system/icons'
 - `src/icons.ts` is `export * from '@tabler/icons-react'`. The package is marked **external** in `tsup.config.ts`, so the entry compiles to a thin pass-through and the consumer's bundler shakes against the real package.
 - The icons entry is built **without** the `'use client'` banner (a second tsup config) — Tabler icons are plain SVG and stay usable inside RSC server components. Cleaning is done once via `pnpm clean` before tsup runs; never set `clean: true` on the multi-config build or the concurrent configs race and wipe each other's `.d.ts`.
 - Use icons directly from this subpath. Don't add `@tabler/icons-react` as a direct dependency in consuming apps — import from the design system so the sanctioned set stays single-sourced.
+
+## Heavy components — subpath exports + optional peers
+
+Chart, Calendar, and Carousel are **not in the main barrel**. Each ships from its own subpath with its heavy library as an optional `peerDependency` the consumer installs:
+
+```tsx
+import { ChartContainer } from '@beforeyoubid/design-system/chart'      // needs recharts
+import { Calendar } from '@beforeyoubid/design-system/calendar'         // needs react-day-picker
+import { Carousel } from '@beforeyoubid/design-system/carousel'         // needs embla-carousel-react
+```
+
+**Why the barrel exclusion is load-bearing:** a barrel re-export would make every consumer's bundler resolve the heavy library during module-graph construction — before tree-shaking — breaking builds for consumers who never use the component. When adding a new heavy component: put it in `src/components/ui-heavy/`, give it its own `src/<name>.ts` entry + tsup entry + `exports` map entry, declare the library as an optional peer (also add to devDependencies so Storybook works), and record it in `registry.json` with `layer: "ui-heavy"`.
 
 ## Token rules
 
@@ -187,7 +200,7 @@ don't guess.
 
 ## Component rules
 
-- One component per file in `src/components/`
+- One component per file: primitives in `src/components/ui/`, heavy primitives in `src/components/ui-heavy/`, BYB domain components in `src/components/byb/`
 - Every component must be exported from `src/index.ts`
 - Every component must have a story in `src/stories/` covering all variants
 - **Prefer semantic tokens** (`bg-primary`, `text-muted-foreground`) over brand primitives inside reusable components. Use primitives for marketing pages.

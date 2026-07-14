@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
-import { Calendar } from '../../components/ui/calendar'
+import { Calendar } from '../../components/ui-heavy/calendar'
 
 const meta: Meta<typeof Calendar> = {
   title: 'shadcn/Calendar',

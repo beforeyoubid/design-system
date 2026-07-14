@@ -5,7 +5,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from '../../components/ui/chart'
+} from '../../components/ui-heavy/chart'
 
 const meta: Meta = {
   title: 'shadcn/Chart',
