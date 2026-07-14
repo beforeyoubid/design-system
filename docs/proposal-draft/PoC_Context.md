@@ -116,3 +116,8 @@
 - The most practical setup is a token-driven, monorepo-based design system.
 - Claude Design can create the mockup; Claude Code can generate the React implementation.
 - shadcn/ui primitives are a strong base for building a private company library with reusable BYB components.
+
+Ref:
+
+- https://www.linkedin.com/pulse/from-styled-components-shadcn-ui-how-we-standardized-our-mattos-05yrf/
+- https://shadisbaih.medium.com/building-a-scalable-design-system-with-shadcn-ui-tailwind-css-and-design-tokens-031474b03690
