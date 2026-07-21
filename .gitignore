@@ -4,3 +4,7 @@ storybook-static
 .chromatic
 # override global gitignore — lock file must be committed
 !pnpm-lock.yaml
+
+
+.agent_context/
+.multica

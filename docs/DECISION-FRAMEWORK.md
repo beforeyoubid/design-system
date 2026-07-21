@@ -12,14 +12,89 @@ Related: [`docs/proposal-draft/Monorepo-Proposal.md`](./proposal-draft/Monorepo-
 
 ---
 
-## The layers
+## Component taxonomy — every kind of thing that can exist here
 
-| Layer                     | What it is                                                                               | Where it lives                                             |
-| ------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| **Tokens / themes**       | Brand facts: colours, typography, spacing, and per-product semantic mappings             | `globals.css` (`:root` + `@theme inline`), `src/tokens.ts` |
-| **Primitives**            | Generic UI roles: Button, Card, Dialog, Slider… Variants via `cva`. No business meaning. | `src/components/ui/`                                       |
-| **BYB domain components** | Encode BYB workflow, pricing, report logic, or domain copy. Compose primitives.          | `src/components/` (`BYB*`, field wrappers)                 |
-| **App-local components**  | Single-product UI unlikely to repeat                                                     | The consuming app's repo — **not here**                    |
+Summary (details per type below):
+
+| #   | Type                     | Lives in                                                         | Decided by                           | Real examples                                         |
+| --- | ------------------------ | ---------------------------------------------------------------- | ------------------------------------ | ----------------------------------------------------- |
+| T1  | Design token             | `tokens/primitives.json` → generated `globals.css` / `tokens.ts` | Q1                                   | `--mint-45`, `text-heading-lg`, `rounded-btn`         |
+| T2  | Theme                    | `tokens/themes/<product>.json`                                   | designer decision                    | `website.json`; future `backyard.json`                |
+| T3  | Primitive                | `src/components/ui/`                                             | Q2 (variant) / Q3 (new)              | `Button`, `Card`, `Dialog`, `Slider`                  |
+| T4  | Heavy primitive          | `src/components/ui-heavy/` + own subpath                         | Q3 + dependency rule                 | `Chart`, `Calendar`, `Carousel`                       |
+| T5  | Composite                | `src/components/byb/` (today)                                    | Q3                                   | `InputField`, `SelectField`                           |
+| T6  | BYB domain component     | `src/components/byb/`                                            | Q4                                   | `BYBCounter`, `BYBPillCard`, `BYBTestimonialCarousel` |
+| T7  | App-local component      | the consuming app's repo                                         | Q5                                   | inspector service-area map                            |
+| T8  | Satellite domain library | its own repo/package                                             | `packages/README.md` 4-question test | `@beforeyoubid/form`, `@byb-private/checkout-funnel`  |
+| T9  | Icon                     | `/icons` subpath (re-export of Tabler)                           | never created here                   | `IconHome`, `IconChevronRight`                        |
+
+### T1 — Design token
+
+- **What:** a brand fact — colour, type scale, spacing, radius, tracking. Zero code; generates a Tailwind utility.
+- **Boundary:** values only, mirrored 1:1 from Figma. Never invented ad hoc to make a mockup work — adding one is a
+  design decision.
+- **Example:** `--mint-45` → `bg-mint-45`; `--text-heading-lg` → `text-heading-lg`.
+
+### T2 — Theme
+
+- **What:** one product line's assignment of semantic slots (`--primary`, `--radius`, …) onto primitives.
+- **Boundary:** may ONLY reference primitives (`{navy}`) — can never invent a colour value (generator enforces this).
+  One theme per product line, named for design intent, not repos.
+- **Example:** `website.json` maps `primary → {mint-45}`; a future `backyard.json` might map `primary → {navy}`.
+
+### T3 — Primitive
+
+- **What:** a generic UI role any product could use — Button, Card, Dialog. Variants via `cva` for standard intents and
+  sizes.
+- **Boundary:** semantic tokens only (`bg-primary`, not `bg-mint-45`) so it re-themes automatically. **No business
+  meaning, no domain copy, no heavy external dependency.** Must be exported from the barrel, registered in
+  `registry.json`, and have a story.
+- **Example:** `Button` with `variant: lime|navy|…` — brand-styled yet fully generic.
+
+### T4 — Heavy primitive
+
+- **What:** a primitive whose implementation needs a heavy third-party library.
+- **Boundary:** everything T3 requires, PLUS: never exported from the main barrel; ships via its own subpath export
+  (`/chart`) with the library as an **optional peer dependency**. (Barrel exclusion is load-bearing — bundlers resolve
+  barrel imports before tree-shaking, so an uninstalled optional peer in the barrel breaks every consumer's build.)
+- **Example:** `Chart` (`recharts`), `Calendar` (`react-day-picker`), `Carousel` (`embla-carousel-react`).
+
+### T5 — Composite
+
+- **What:** a convenience assembly of primitives into a recurring generic pattern — still no business meaning.
+- **Boundary:** composes primitives, adds structure (label/hint/error slots), never re-implements a primitive's visuals.
+  Generic despite living in the `byb/` folder — classified by _meaning_, not location.
+- **Example:** `InputField` = `Label` + `Input` + hint/error slots. Replaces nothing about `Input`; wraps it.
+
+### T6 — BYB domain component
+
+- **What:** a component that encodes BYB business meaning — workflow, pricing, checkout, report logic, domain copy.
+  Audit-table decision value: `byb-wrapper`.
+- **Boundary:** owns the business meaning; delegates ALL "looks" to primitives and tokens. If it re-implements a
+  button/card/dialog inside, that piece goes back to Q2/Q3. Content arrives via props, not hard-coded page copy.
+- **Example:** `BYBCounter` (animated marketing stat), a future savings-calculator panel.
+
+### T7 — App-local component
+
+- **What:** UI used by one product, on one or two pages, unlikely to repeat.
+- **Boundary:** lives in the product's repo — never enters the design system until it meets ALL the
+  [promotion criteria](#promotion-criteria-app-local--design-system) below. Its dependencies are the app's problem.
+- **Example:** inspector service-area map (single product + heavy map dependency).
+
+### T8 — Satellite domain library
+
+- **What:** a whole library that composes the design system — big enough to be its own package.
+- **Boundary:** governed by the 4-question admission test in `packages/README.md` (library? impossible as subpath?
+  lockstep evolution? same owners?). Passing all four → `packages/<name>` here; failing any → its own repo consuming the
+  published package.
+- **Example:** `@beforeyoubid/form` (passes — planned move in), `@byb-private/checkout-funnel` (fails 3–4 — stays out).
+
+### T9 — Icon
+
+- **What:** the canonical Tabler icon set, re-exported via `@beforeyoubid/design-system/icons`.
+- **Boundary:** never hand-drawn here, never imported from `@tabler/icons-react` directly in consuming apps — the
+  subpath keeps the sanctioned set single-sourced. Icons render `currentColor`, so token utilities style them.
+- **Example:** `<IconHome className="size-4 text-navy" />`.
 
 ## The mental model
 
