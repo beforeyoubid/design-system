@@ -777,6 +777,28 @@
       "description": "Draggable track for selecting a numeric value or range (e.g. price/savings amount). NOT for exact numeric entry (pair with or use Input)."
     },
     {
+      "name": "Stepper",
+      "layer": "primitive",
+      "file": "src/components/ui/stepper.tsx",
+      "importPath": "@beforeyoubid/design-system",
+      "exports": [
+        "Stepper",
+        "stepperDotVariants",
+        "stepperLabelVariants",
+        "stepperConnectorVariants"
+      ],
+      "variants": {
+        "state": [
+          "done",
+          "active",
+          "upcoming"
+        ]
+      },
+      "externalDeps": [],
+      "story": "src/stories/ui/Stepper.stories.tsx",
+      "description": "Horizontal progress-steps indicator: labelled dots joined by connector lines, per-step done/active/upcoming states derived from an activeStep index; scrolls horizontally on overflow. Step labels are props — domain stage names (e.g. the BYB job lifecycle) stay in the caller. Use for multi-stage lifecycle/wizard progress display. NOT for percentage completion (use Progress) or clickable navigation between pages (use Tabs/Pagination)."
+    },
+    {
       "name": "Toaster",
       "layer": "primitive",
       "file": "src/components/ui/sonner.tsx",
