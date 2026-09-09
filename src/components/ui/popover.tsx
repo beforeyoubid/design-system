@@ -13,17 +13,27 @@ function PopoverTrigger({ ...props }: PopoverPrimitive.Trigger.Props) {
   return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />
 }
 
+/**
+ * `positionMethod` is forwarded rather than defaulted. Base UI renders the positioner
+ * unpositioned for a frame before it measures the anchor, and under the `absolute`
+ * default that unpositioned origin is the document's, not the viewport's — so anything
+ * inside the popup that calls `scrollIntoView` on mount (cmdk does, on its active item)
+ * scrolls the page to the top before the popup is ever placed. `fixed` makes that first
+ * frame land at the viewport origin, which is always in view. Only the callers that hit
+ * this need it, so it stays opt-in.
+ */
 function PopoverContent({
   className,
   align = "center",
   alignOffset = 0,
   side = "bottom",
   sideOffset = 4,
+  positionMethod,
   ...props
 }: PopoverPrimitive.Popup.Props &
   Pick<
     PopoverPrimitive.Positioner.Props,
-    "align" | "alignOffset" | "side" | "sideOffset"
+    "align" | "alignOffset" | "side" | "sideOffset" | "positionMethod"
   >) {
   return (
     <PopoverPrimitive.Portal>
@@ -32,6 +42,7 @@ function PopoverContent({
         alignOffset={alignOffset}
         side={side}
         sideOffset={sideOffset}
+        positionMethod={positionMethod}
         className="isolate z-50"
       >
         <PopoverPrimitive.Popup

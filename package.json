@@ -1,6 +1,6 @@
 {
   "name": "@beforeyoubid/design-system",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "BYB design system \u2014 Tailwind CSS v4 + shadcn/ui (BaseUI) pattern components",
   "author": "Before You Buy",
   "license": "ISC",
