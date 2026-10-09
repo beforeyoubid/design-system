@@ -9,7 +9,7 @@ import {
 import { Card, CardContent } from '../../components/ui/card'
 
 const meta: Meta<typeof Carousel> = {
-  title: 'shadcn/Carousel',
+  title: 'BYB Components/Carousel',
   component: Carousel,
   tags: ['autodocs'],
 }
@@ -25,7 +25,7 @@ export const Default: Story = {
           <CarouselItem key={i}>
             <Card>
               <CardContent className="flex aspect-square items-center justify-center p-6">
-                <span className="text-4xl font-semibold">{i + 1}</span>
+                <span className="text-heading-lg">{i + 1}</span>
               </CardContent>
             </Card>
           </CarouselItem>

@@ -13,7 +13,7 @@ import {
 } from '../../components/ui/sidebar'
 
 const meta: Meta<typeof Sidebar> = {
-  title: 'shadcn/Sidebar',
+  title: 'BYB Components/Sidebar',
   component: Sidebar,
   tags: ['autodocs'],
 }
@@ -51,7 +51,7 @@ export const Default: Story = {
           </SidebarGroup>
         </SidebarContent>
       </Sidebar>
-      <main className="flex-1 p-6 text-body-sm text-muted-foreground">Sidebar layout — main content goes here.</main>
+      <main className="flex-1 p-6 text-body-sm text-muted-foreground">Sidebar layout: main content goes here.</main>
     </SidebarProvider>
   ),
 }

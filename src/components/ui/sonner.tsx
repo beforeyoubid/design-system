@@ -32,6 +32,8 @@ const Toaster = ({ ...props }: ToasterProps) => {
           "--normal-text": "var(--popover-foreground)",
           "--normal-border": "var(--border)",
           "--border-radius": "var(--radius)",
+          // BYB toasts are 440px wide on desktop (full-width on mobile)
+          "--width": "440px",
         } as React.CSSProperties
       }
       toastOptions={{

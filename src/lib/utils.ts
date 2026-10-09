@@ -3,26 +3,21 @@ import { extendTailwindMerge } from 'tailwind-merge'
 
 // Extend tailwind-merge with every custom design-system token so it correctly
 // classifies our text-color and font-size utilities and never drops one when
-// the other appears in the same class list (e.g. text-mint-75 + text-btn-md).
+// the other appears in the same class list (e.g. text-mint-75 + text-button-md).
 const twMerge = extendTailwindMerge({
   extend: {
     classGroups: {
       'font-size': [
         {
           text: [
-            // Button sizes
-            'btn-sm', 'btn-md', 'btn-lg',
-            // Body
-            'body-lg', 'body-md', 'body-sm',
-            // Headings
-            'heading-sm', 'heading-md', 'heading-base', 'heading-lg', 'heading-3xl',
-            // Display
-            'display-xl', 'display', 'display-sm',
-            // Medium (500)
-            'medium-5xl', 'medium-4xl', 'medium-3xl', 'medium-2xl', 'medium-xl',
-            'medium-lg', 'medium-base', 'medium-sm', 'medium-xs', 'medium-2xs',
-            // Utility
-            'caption', 'text-xs', 'text-2xs',
+            // Display + heading (600)
+            'display-xl', 'display-lg', 'display-md', 'display-sm',
+            'heading-xl', 'heading-lg', 'heading-md', 'heading-sm', 'heading-xs',
+            // Body + caption (400)
+            'body-2xl', 'body-xl', 'body-lg', 'body-md', 'body-sm',
+            'caption', 'caption-sm', 'caption-xs',
+            // Uppercase UI text (600)
+            'overline', 'button-lg', 'button-md', 'button-sm',
           ],
         },
       ],

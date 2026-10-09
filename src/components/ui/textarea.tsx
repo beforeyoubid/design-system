@@ -1,15 +1,13 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { inputControlBase } from "@/components/ui/input"
 
 function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
   return (
     <textarea
       data-slot="textarea"
-      className={cn(
-        "flex field-sizing-content min-h-16 w-full resize-none rounded-lg border border-dark-45 bg-muted px-4 py-3 text-base text-dark-90 transition-colors outline-none hover:border-dark-30 placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 md:text-sm dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40",
-        className
-      )}
+      className={cn(inputControlBase, "flex min-h-auto resize-y py-2.5", className)}
       {...props}
     />
   )

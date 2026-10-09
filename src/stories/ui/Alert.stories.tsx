@@ -3,7 +3,7 @@ import { IconInfoCircle, IconAlertTriangle } from '@tabler/icons-react'
 import { Alert, AlertTitle, AlertDescription } from '../../components/ui/alert'
 
 const meta: Meta<typeof Alert> = {
-  title: 'shadcn/Alert',
+  title: 'BYB Components/Alert',
   component: Alert,
   tags: ['autodocs'],
 }

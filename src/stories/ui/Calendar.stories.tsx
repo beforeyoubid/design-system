@@ -3,7 +3,7 @@ import React from 'react'
 import { Calendar } from '../../components/ui/calendar'
 
 const meta: Meta<typeof Calendar> = {
-  title: 'shadcn/Calendar',
+  title: 'BYB Components/Calendar',
   component: Calendar,
   tags: ['autodocs'],
 }

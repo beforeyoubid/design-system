@@ -1,37 +1,31 @@
 // Typography tokens — mirrors Figma "font / plus jakarta sans" without the family prefix.
 // Semi-bold headings always pair with letterSpacing: '-0.005em' (tracking-heading class).
-// Button styles are uppercase with letterSpacing: '0.04em' (tracking-btn class).
+// Button styles are uppercase with letterSpacing: '0.04em' (tracking-button class).
 export const typography = {
-  // Semi-bold (600) — headings
-  displaySm:    { fontSize: '52px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
-  headingLg:    { fontSize: '40px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
-  heading3xl:   { fontSize: '36px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
-  headingMd:    { fontSize: '28px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
-  headingBase:  { fontSize: '24px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
-  headingSm:    { fontSize: '20px', lineHeight: '1.3',  fontWeight: 600 },
-  // Regular (400) — body
-  bodyLg:   { fontSize: '18px', lineHeight: '1.4', fontWeight: 400 },
-  bodyMd:   { fontSize: '16px', lineHeight: '1.4', fontWeight: 400 },
-  bodySm:   { fontSize: '13px', lineHeight: '1.4', fontWeight: 400 },
-  caption:  { fontSize: '12px', lineHeight: '1.4', fontWeight: 400 },
-  textXs:   { fontSize: '10px', lineHeight: '1.4', fontWeight: 400 },
-  text2xs:  { fontSize: '8px',  lineHeight: '1.4', fontWeight: 400 },
-  // Medium (500) — Figma: medium scale
-  medium6xl:  { fontSize: '64px', lineHeight: '1.2', fontWeight: 500 },
-  medium5xl:  { fontSize: '52px', lineHeight: '1.2', fontWeight: 500 },
-  medium4xl:  { fontSize: '40px', lineHeight: '1.2', fontWeight: 500 },
-  medium3xl:  { fontSize: '36px', lineHeight: '1.2', fontWeight: 500 },
-  medium2xl:  { fontSize: '28px', lineHeight: '1.2', fontWeight: 500 },
-  mediumXl:   { fontSize: '24px', lineHeight: '1.2', fontWeight: 500 },
-  mediumLg:   { fontSize: '18px', lineHeight: '1.2', fontWeight: 500 },
-  mediumBase: { fontSize: '16px', lineHeight: '1.2', fontWeight: 500 },
-  mediumSm:   { fontSize: '13px', lineHeight: '1.2', fontWeight: 500 },
-  mediumXs:   { fontSize: '10px', lineHeight: '1.2', fontWeight: 500 },
-  medium2xs:  { fontSize: '8px',  lineHeight: '1.2', fontWeight: 500 },
-  // Button (600, uppercase + 0.04em letter-spacing — also applied globally via globals.css)
-  btnLg: { fontSize: '18px', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
-  btnMd: { fontSize: '16px', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
-  btnSm: { fontSize: '13px', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
+  // Semi-bold (600): display + headings
+  displayXl:  { fontSize: '72px', lineHeight: '1.05', fontWeight: 600, letterSpacing: '-0.005em' },
+  displayLg:  { fontSize: '64px', lineHeight: '1.06', fontWeight: 600, letterSpacing: '-0.005em' },
+  displayMd:  { fontSize: '56px', lineHeight: '1.08', fontWeight: 600, letterSpacing: '-0.005em' },
+  displaySm:  { fontSize: '52px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
+  headingXl:  { fontSize: '40px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
+  headingLg:  { fontSize: '36px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
+  headingMd:  { fontSize: '28px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
+  headingSm:  { fontSize: '24px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
+  headingXs:  { fontSize: '20px', lineHeight: '1.3',  fontWeight: 600, letterSpacing: '-0.005em' },
+  // Regular (400): body + caption. For medium weight, pair with fontWeight: 500.
+  body2xl:    { fontSize: '24px', lineHeight: '1.4', fontWeight: 400 },
+  bodyXl:     { fontSize: '20px', lineHeight: '1.4', fontWeight: 400 },
+  bodyLg:     { fontSize: '18px', lineHeight: '1.4', fontWeight: 400 },
+  bodyMd:     { fontSize: '16px', lineHeight: '1.4', fontWeight: 400 },
+  bodySm:     { fontSize: '14px', lineHeight: '1.4', fontWeight: 400 },
+  caption:    { fontSize: '12px', lineHeight: '1.4', fontWeight: 400 },
+  captionSm:  { fontSize: '10px', lineHeight: '1.4', fontWeight: 400 },
+  captionXs:  { fontSize: '8px',  lineHeight: '1.4', fontWeight: 400 },
+  // Semi-bold (600), uppercase + 0.04em letter-spacing
+  overline:   { fontSize: '12px', lineHeight: '1.4', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
+  buttonLg:   { fontSize: '18px', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
+  buttonMd:   { fontSize: '16px', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
+  buttonSm:   { fontSize: '14px', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
 } as const
 
 export type TypographyToken = keyof typeof typography

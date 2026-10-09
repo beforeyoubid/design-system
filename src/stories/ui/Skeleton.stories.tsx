@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Skeleton } from '../../components/ui/skeleton'
 
 const meta: Meta<typeof Skeleton> = {
-  title: 'shadcn/Skeleton',
+  title: 'BYB Components/Skeleton',
   component: Skeleton,
   tags: ['autodocs'],
 }
@@ -19,8 +19,8 @@ export const Card: Story = {
     <div className="flex items-center space-x-4">
       <Skeleton className="h-12 w-12 rounded-full" />
       <div className="space-y-2">
-        <Skeleton className="h-4 w-[250px]" />
-        <Skeleton className="h-4 w-[200px]" />
+        <Skeleton className="h-4 w-62.5" />
+        <Skeleton className="h-4 w-50" />
       </div>
     </div>
   ),

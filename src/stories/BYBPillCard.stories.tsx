@@ -10,7 +10,7 @@ import {
 import { BYBPillCard } from '../components/BYBPillCard'
 
 const meta: Meta<typeof BYBPillCard> = {
-  title: 'Components/BYBPillCard',
+  title: 'BYB Components/BYBPillCard',
   component: BYBPillCard,
   tags: ['autodocs'],
   argTypes: {

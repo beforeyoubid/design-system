@@ -1,47 +1,63 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { IconArrowLeft, IconArrowUpRight } from '@tabler/icons-react'
 import { Button } from '../../components/ui/button'
 
 const meta: Meta<typeof Button> = {
-  title: 'shadcn/Button',
+  title: 'BYB Components/Button',
   component: Button,
   tags: ['autodocs'],
   argTypes: {
     variant: {
       control: 'select',
       options: [
-        'default', 'destructive', 'outline', 'secondary', 'ghost', 'link',
-        'lime', 'navy', 'outline-navy',
+        'primary', 'secondary', 'tertiary', 'ghost', 'destructive', 'link',
       ],
     },
-    size: { control: 'select', options: ['default', 'xs', 'sm', 'lg', 'icon', 'icon-xs', 'icon-sm', 'icon-lg'] },
+    size: { control: 'select', options: ['sm', 'md', 'lg', 'xs', 'icon', 'icon-xs', 'icon-sm', 'icon-lg'] },
+    loading: { control: 'boolean' },
+    iconPosition: { control: 'select', options: ['left', 'right'] },
+    disabled: { control: 'boolean' },
   },
 }
 
 export default meta
 type Story = StoryObj<typeof Button>
 
-export const Default: Story = { args: { children: 'Button' } }
+export const Primary: Story = { args: { children: 'Button' } }
 export const Secondary: Story = { args: { variant: 'secondary', children: 'Secondary' } }
-export const Destructive: Story = { args: { variant: 'destructive', children: 'Delete' } }
-export const Outline: Story = { args: { variant: 'outline', children: 'Outline' } }
+export const Tertiary: Story = { args: { variant: 'tertiary', children: 'Tertiary' } }
 export const Ghost: Story = { args: { variant: 'ghost', children: 'Ghost' } }
+export const Destructive: Story = { args: { variant: 'destructive', children: 'Delete' } }
 export const LinkStyle: Story = { args: { variant: 'link', children: 'Link' } }
-export const Lime: Story = { args: { variant: 'lime', children: 'Get a quote' } }
-export const Navy: Story = { args: { variant: 'navy', children: 'Continue' } }
-export const OutlineNavy: Story = { args: { variant: 'outline-navy', children: 'Learn more' } }
+export const Loading: Story = { args: { loading: true, children: 'Saving' } }
+export const IconRight: Story = {
+  args: { children: 'Get a quote', icon: <IconArrowUpRight />, iconPosition: 'right' },
+}
+export const IconLeft: Story = {
+  args: { variant: 'tertiary', children: 'Back', icon: <IconArrowLeft />, iconPosition: 'left' },
+}
+
+const DESIGN_VARIANTS = ['primary', 'secondary', 'tertiary', 'ghost', 'destructive', 'link'] as const
 
 export const AllVariants: Story = {
   render: () => (
-    <div className="flex flex-wrap gap-3">
-      <Button>Default</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="destructive">Destructive</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="link">Link</Button>
-      <Button variant="lime">Lime</Button>
-      <Button variant="navy">Navy</Button>
-      <Button variant="outline-navy">Outline navy</Button>
+    <div className="flex flex-col gap-4">
+      {(['default', 'icon-left', 'icon-right', 'disabled', 'loading'] as const).map((state) => (
+        <div key={state} className="flex flex-wrap items-center gap-3">
+          {DESIGN_VARIANTS.map((v) => (
+            <Button
+              key={v}
+              variant={v}
+              disabled={state === 'disabled'}
+              loading={state === 'loading'}
+              icon={state.startsWith('icon') ? <IconArrowUpRight /> : undefined}
+              iconPosition={state === 'icon-left' ? 'left' : 'right'}
+            >
+              {v}
+            </Button>
+          ))}
+        </div>
+      ))}
     </div>
   ),
 }
@@ -49,10 +65,9 @@ export const AllVariants: Story = {
 export const AllSizes: Story = {
   render: () => (
     <div className="flex items-center gap-3">
-      <Button size="xs">xs</Button>
-      <Button size="sm">sm</Button>
-      <Button>default</Button>
-      <Button size="lg">lg</Button>
+      <Button size="sm">sm · 36</Button>
+      <Button size="md">md · 40</Button>
+      <Button size="lg">lg · 44</Button>
     </div>
   ),
 }

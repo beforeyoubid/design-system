@@ -8,7 +8,7 @@ import {
 } from '../../components/ui/chart'
 
 const meta: Meta = {
-  title: 'shadcn/Chart',
+  title: 'BYB Components/Chart',
   tags: ['autodocs'],
 }
 
@@ -31,7 +31,7 @@ const config = {
 
 export const Bars: Story = {
   render: () => (
-    <ChartContainer config={config} className="h-64 w-[480px]">
+    <ChartContainer config={config} className="h-64 w-120">
       <BarChart data={data}>
         <CartesianGrid vertical={false} />
         <XAxis dataKey="month" tickLine={false} axisLine={false} tickMargin={8} />

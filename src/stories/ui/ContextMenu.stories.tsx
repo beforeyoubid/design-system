@@ -8,7 +8,7 @@ import {
 } from '../../components/ui/context-menu'
 
 const meta: Meta<typeof ContextMenu> = {
-  title: 'shadcn/ContextMenu',
+  title: 'BYB Components/ContextMenu',
   component: ContextMenu,
   tags: ['autodocs'],
 }

@@ -4,7 +4,7 @@ import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '../../compo
 import { Button } from '../../components/ui/button'
 
 const meta: Meta<typeof Collapsible> = {
-  title: 'shadcn/Collapsible',
+  title: 'BYB Components/Collapsible',
   component: Collapsible,
   tags: ['autodocs'],
 }

@@ -33,7 +33,7 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "group/accordion-trigger relative flex flex-1 items-center justify-between gap-6 py-5 text-start text-heading-sm font-semibold text-dark-100 transition-colors outline-none",
+          "group/accordion-trigger relative flex cursor-pointer flex-1 items-center justify-between gap-6 py-5 text-start text-heading-xs font-semibold text-dark-100 transition-colors outline-none",
           "hover:text-mint-45",
           "aria-expanded:text-mint-45",
           "aria-disabled:pointer-events-none aria-disabled:opacity-50",

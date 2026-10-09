@@ -11,7 +11,7 @@ import {
 } from '../../components/ui/sheet'
 
 const meta: Meta<typeof Sheet> = {
-  title: 'shadcn/Sheet',
+  title: 'BYB Components/Sheet',
   component: Sheet,
   tags: ['autodocs'],
 }
@@ -22,7 +22,7 @@ type Story = StoryObj<typeof Sheet>
 export const Right: Story = {
   render: () => (
     <Sheet>
-      <SheetTrigger render={<Button variant="outline">Open</Button>} />
+      <SheetTrigger render={<Button variant="tertiary">Open</Button>} />
       <SheetContent>
         <SheetHeader>
           <SheetTitle>Edit profile</SheetTitle>
@@ -38,7 +38,7 @@ export const Right: Story = {
 export const Left: Story = {
   render: () => (
     <Sheet>
-      <SheetTrigger render={<Button variant="outline">Open left</Button>} />
+      <SheetTrigger render={<Button variant="tertiary">Open left</Button>} />
       <SheetContent side="left">
         <SheetHeader>
           <SheetTitle>Menu</SheetTitle>

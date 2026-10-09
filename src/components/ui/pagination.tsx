@@ -46,9 +46,15 @@ function PaginationLink({
 }: PaginationLinkProps) {
   return (
     <Button
-      variant={isActive ? "default" : "ghost"}
+      variant={isActive ? "primary" : "ghost"}
       size={size}
-      className={cn(className)}
+      className={cn(
+        "text-body-sm font-medium tracking-normal normal-case",
+        isActive
+          ? "bg-lime text-navy shadow-none hover:brightness-95"
+          : "text-dark-90 hover:bg-light-l1 hover:text-dark-90",
+        className
+      )}
       nativeButton={false}
       render={
         <a
@@ -70,7 +76,7 @@ function PaginationPrevious({
   return (
     <PaginationLink
       aria-label="Go to previous page"
-      size="default"
+      size="md"
       className={cn("ps-2!", className)}
       {...props}
     >
@@ -88,7 +94,7 @@ function PaginationNext({
   return (
     <PaginationLink
       aria-label="Go to next page"
-      size="default"
+      size="md"
       className={cn("pe-2!", className)}
       {...props}
     >
@@ -107,7 +113,7 @@ function PaginationEllipsis({
       aria-hidden
       data-slot="pagination-ellipsis"
       className={cn(
-        "flex size-9 items-center justify-center [&_svg:not([class*='size-'])]:size-4",
+        "flex size-9 items-center justify-center text-dark-90 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}

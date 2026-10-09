@@ -9,37 +9,44 @@ Read this before adding or modifying any component or token.
 | Path | Purpose |
 |---|---|
 | `globals.css` | Design tokens + `@theme inline` → Tailwind utilities. **Source of truth.** |
-| `utilities.css` | Bespoke product utilities (`.clip-triangle`, `.mask-fade-x`, `.text-btn-*`, `.text-heading-*`). Imported by `globals.css`. |
+| `utilities.css` | Bespoke product utilities (`.clip-triangle`, `.mask-fade-x`, `.text-button-*`, `.text-overline`, `.text-heading-*`). Imported by `globals.css`. |
 | `components.json` | shadcn CLI config — wire for `npx shadcn add <component>`. |
-| `src/components/` | BYB-opinionated components (`BYBButton`, `BYBCard`, …). One file per component. |
+| `src/components/` | BYB composite components (`InputField`, `Modal`, `Stepper`, `AreaChart`, …). One file per component. |
 | `src/components/ui/` | Where shadcn CLI scaffolds new base primitives. Customize after scaffolding. |
 | `src/tokens.ts` | Same brand colors and typography exported as JS constants (for non-Tailwind contexts). |
 | `src/lib/utils.ts` | `cn()` helper — `tailwind-merge` extended with every BYB token. |
 | `src/stories/` | Storybook — one file per component, all variants. |
 | `src/index.ts` | Public exports — every new component must be re-exported. |
-| `src/icons.ts` | Icon surface — re-exports the canonical icon set under the `@beforeyoubid/design-system/icons` subpath. |
+| `src/icons.ts` | Icon surface — re-exports Tabler under the `@beforeyoubid/design-system/icons` subpath. |
+| `src/icons-lucide.ts` | Re-exports Lucide under the `@beforeyoubid/design-system/icons/lucide` subpath. |
 
 > `tailwind.config.ts` is **removed** in v2.0. All theme tokens live in `globals.css` via Tailwind v4's `@theme inline` directive.
 
 ## Icons
 
-`@tabler/icons-react` is the **canonical** BYB icon set (lucide was dropped). Icons are exposed via a dedicated subpath — **not** the main barrel — so consumers opt in and keep full tree-shaking:
+BYB uses two icon sets, each on its own subpath — **not** the main barrel — so consumers opt in and keep full tree-shaking:
+
+- `@tabler/icons-react` (primary, used inside our components) → `@beforeyoubid/design-system/icons`
+- `lucide-react` → `@beforeyoubid/design-system/icons/lucide`
+
+They live on separate subpaths because both packages export overlapping names (`Icon`, `icons`, …).
 
 ```tsx
 import { IconHome, IconChevronRight } from '@beforeyoubid/design-system/icons'
+import { House } from '@beforeyoubid/design-system/icons/lucide'
 
 // Tabler renders currentColor strokes — BYB token utilities just work:
 <IconHome className="size-4 text-navy" />
 ```
 
-- `src/icons.ts` is `export * from '@tabler/icons-react'`. The package is marked **external** in `tsup.config.ts`, so the entry compiles to a thin pass-through and the consumer's bundler shakes against the real package.
-- The icons entry is built **without** the `'use client'` banner (a second tsup config) — Tabler icons are plain SVG and stay usable inside RSC server components. Cleaning is done once via `pnpm clean` before tsup runs; never set `clean: true` on the multi-config build or the concurrent configs race and wipe each other's `.d.ts`.
-- Use icons directly from this subpath. Don't add `@tabler/icons-react` as a direct dependency in consuming apps — import from the design system so the sanctioned set stays single-sourced.
+- `src/icons.ts` is `export * from '@tabler/icons-react'` and `src/icons-lucide.ts` is `export * from 'lucide-react'`. Both packages are marked **external** in `tsup.config.ts`, so the entries compile to thin pass-throughs and the consumer's bundler shakes against the real packages.
+- The icons entries are built **without** the `'use client'` banner (a second tsup config) — Tabler icons are plain SVG and stay usable inside RSC server components. Cleaning is done once via `pnpm clean` before tsup runs; never set `clean: true` on the multi-config build or the concurrent configs race and wipe each other's `.d.ts`.
+- Use icons directly from this subpath. Don't add `@tabler/icons-react` or `lucide-react` as a direct dependency in consuming apps — import from the design system so the sanctioned set stays single-sourced.
 
 ## Token rules
 
 - **Never hard-code a hex value.** Use a token utility (`bg-mint-45`, `text-navy`, `border-dark-15`).
-- **Never use arbitrary Tailwind values** (`text-[#090034]`, `p-[13px]`). If a token is missing, add it to `globals.css` and run `pnpm check-tokens`.
+- **Never use arbitrary Tailwind values** (`text-[#090034]`). If a token is missing, add it to `globals.css` and run `pnpm check-tokens`.
 - **Token naming mirrors Figma 1:1.** When in doubt, check the Figma library or `globals.css`.
 
 ### Two layers of tokens
@@ -82,26 +89,33 @@ modifier instead:
 
 Font: **Plus Jakarta Sans** — loaded by the consuming app (e.g. `next/font/google`). We declare the stack via `--font-sans` only.
 
-Pair semi-bold headings with `tracking-heading` (-0.005em); pair button text with `tracking-btn` (0.04em) + `uppercase`. The `.text-btn-*` and `.text-heading-*` classes in `utilities.css` already bake these in.
+Class names follow **role + size**: the same suffix always means the same step within a role. Need a different weight? Add `font-medium` / `font-semibold` to the size class; there is no separate weight scale. Tailwind's default `text-xs`…`text-9xl` are disabled, so only these sizes exist.
+
+Display and heading classes bake in `tracking-heading` (-0.005em). Button and overline classes bake in `uppercase` + `tracking-button` (0.04em). Both are applied in `utilities.css`.
 
 ```
-text-display-xl   72px / 600   hero headline only
-text-display      56px / 600   section hero
-text-display-sm   52px / 600
-text-heading-lg   40px / 600
-text-heading-3xl  36px / 600
-text-heading-md   28px / 600
-text-heading-base 24px / 600
-text-heading-sm   20px / 600
-text-body-lg      18px / 400
-text-body-md      16px / 400
-text-body-sm      13px / 400
-text-caption      12px / 400
-text-xs           10px / 400
-text-2xs           8px / 400
-text-medium-*     8–52px / 500
-text-btn-lg/md/sm 18 / 16 / 13 / 600 (uppercase + tracking-btn baked in)
+text-display-xl    72px / 600   hero headline only
+text-display-lg    64px / 600
+text-display-md    56px / 600   section hero
+text-display-sm    52px / 600
+text-heading-xl    40px / 600
+text-heading-lg    36px / 600
+text-heading-md    28px / 600
+text-heading-sm    24px / 600
+text-heading-xs    20px / 600
+text-body-2xl      24px / 400
+text-body-xl       20px / 400
+text-body-lg       18px / 400
+text-body-md       16px / 400
+text-body-sm       14px / 400
+text-caption       12px / 400
+text-caption-sm    10px / 400
+text-caption-xs     8px / 400
+text-overline      12px / 600   uppercase eyebrows, table headers, stat labels
+text-button-lg/md/sm 18 / 16 / 14px / 600   uppercase
 ```
+
+Medium-weight text: `text-body-sm font-medium`, `text-heading-sm font-medium`, etc.
 
 ### Spacing tokens
 
@@ -118,11 +132,14 @@ Max-width: `max-w-site` = 1280px — always use this for the content container.
 ```
 rounded-sm    4px
 rounded-md    8px   ← component default
-rounded-lg   12px
+rounded-lg   12px   ← cards, inputs, small buttons
+rounded-2xl  16px   ← default (md) and large buttons
 rounded-xl   20px
-rounded-btn  18px
 rounded-full
 ```
+
+Buttons: `sm` uses `rounded-lg` (12px); `md`/`lg` use `rounded-2xl` (16px). Cards use `rounded-lg`.
+Overlays/backdrops use `bg-dark-100/50`. New components don't need dark-mode styling.
 
 shadcn components reference `var(--radius)` which aliases to `--radius-md`.
 
@@ -162,8 +179,8 @@ This tells bundlers that JS exports are side-effect-free (free to tree-shake) bu
 - **Prefer semantic tokens** (`bg-primary`, `text-muted-foreground`) over brand primitives inside reusable components. Use primitives for marketing pages.
 - Use `cva` (class-variance-authority) for all component variants — not ad-hoc `Record<>` maps
 - Use `cn` (exported from `src/lib/utils.ts`) for all className merging — not raw `clsx`
-- Use `@radix-ui/react-slot` (`Slot`) for the `asChild` pattern on interactive components
-- For complex components needing accessibility primitives (Modal, Combobox, Tooltip), use `@radix-ui/*` packages
+- Use Base UI's `render` prop (not `asChild`) to render an interactive component as another element
+- For complex components needing accessibility primitives (Modal, Combobox, Tooltip), use `@base-ui/react`
 - **No inline styles.** No `style={{}}` props unless absolutely unavoidable
 - **No MUI imports.** This package is MUI-free by design
 
@@ -178,34 +195,34 @@ npx shadcn@latest add button
 
 The output uses semantic tokens (`bg-primary`, `text-primary-foreground`, etc.) and works out of the box because the semantic layer is wired up in `globals.css`. After scaffolding, customize the variants and export from `src/index.ts`.
 
-Generated components live under `src/components/ui/` to keep BYB-opinionated wrappers (`BYBButton`) separate from shadcn primitives.
+Generated components live under `src/components/ui/` to keep BYB composites (`InputField`, `Modal`, …) separate from the primitives.
 
 ### Component API conventions
 
 ```tsx
 // Use cva for variants — export the variants object so consumers can extend
 const buttonVariants = cva('base-classes', {
-  variants: { variant: { lime: '…', navy: '…' }, size: { sm: '…', md: '…' } },
-  defaultVariants: { variant: 'lime', size: 'md' },
+  variants: { variant: { primary: '…', tertiary: '…' }, size: { sm: '…', md: '…' } },
+  defaultVariants: { variant: 'primary', size: 'md' },
 })
 
-// Interface extends both native element props AND cva VariantProps
-export interface BYBButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+// Interface extends both the primitive's props AND cva VariantProps
+export interface ButtonProps
+  extends ButtonPrimitive.Props,
     VariantProps<typeof buttonVariants> {}
 
 // Use cn() — not clsx() — for className merging (cn handles Tailwind conflicts)
 className={cn(buttonVariants({ variant, size, className }))}
 ```
 
-### asChild pattern
+### render pattern
 
-Use `asChild` on interactive components to allow rendering as `<Link>` or `<a>` without losing styles:
+Use the Base UI `render` prop to render an interactive component as `<Link>` or `<a>` without losing styles:
 
 ```tsx
-<BYBButton asChild variant="lime">
-  <Link href="/get-a-quote">Get a quote</Link>
-</BYBButton>
+<Button nativeButton={false} render={<Link href="/get-a-quote" />}>
+  Get a quote
+</Button>
 ```
 
 ## Running locally
@@ -231,4 +248,4 @@ pnpm build-and-publish
 
 After publishing, update the version in consuming apps' `package.json` and run their install (`pnpm install` / `yarn install`).
 
-> **v2.0 is a breaking change.** Consumers must upgrade their host app to Tailwind v4 and drop the v3 `tailwind.config.ts`-based wiring. Direct utility classes (`bg-mint-45`, `text-navy`, `text-heading-lg`) continue to work unchanged.
+> **v2.0 is a breaking change.** Consumers must upgrade their host app to Tailwind v4 and drop the v3 `tailwind.config.ts`-based wiring. Direct utility classes (`bg-mint-45`, `text-navy`, `text-body-md`) continue to work unchanged.

@@ -48,36 +48,40 @@ export const Colors: Story = {
 }
 
 const headingScale = [
-  { label: 'display-xl',  cls: 'text-display-xl tracking-heading',  size: '72px', weight: '600' },
-  { label: 'display',     cls: 'text-display tracking-heading',      size: '56px', weight: '600' },
-  { label: 'display-sm',  cls: 'text-display-sm tracking-heading',   size: '52px', weight: '600' },
-  { label: 'heading-lg',  cls: 'text-heading-lg tracking-heading',   size: '40px', weight: '600' },
-  { label: 'heading-3xl', cls: 'text-heading-3xl tracking-heading',  size: '36px', weight: '600' },
-  { label: 'heading-md',  cls: 'text-heading-md tracking-heading',   size: '28px', weight: '600' },
-  { label: 'heading-base',cls: 'text-heading-base tracking-heading', size: '24px', weight: '600' },
-  { label: 'heading-sm',  cls: 'text-heading-sm',                    size: '20px', weight: '600' },
+  { label: 'display-xl', cls: 'text-display-xl', size: '72px', weight: '600' },
+  { label: 'display-lg', cls: 'text-display-lg', size: '64px', weight: '600' },
+  { label: 'display-md', cls: 'text-display-md', size: '56px', weight: '600' },
+  { label: 'display-sm', cls: 'text-display-sm', size: '52px', weight: '600' },
+  { label: 'heading-xl', cls: 'text-heading-xl', size: '40px', weight: '600' },
+  { label: 'heading-lg', cls: 'text-heading-lg', size: '36px', weight: '600' },
+  { label: 'heading-md', cls: 'text-heading-md', size: '28px', weight: '600' },
+  { label: 'heading-sm', cls: 'text-heading-sm', size: '24px', weight: '600' },
+  { label: 'heading-xs', cls: 'text-heading-xs', size: '20px', weight: '600' },
 ]
 
 const bodyScale = [
-  { label: 'body-lg',   cls: 'text-body-lg',   size: '18px', weight: '400' },
-  { label: 'body-md',   cls: 'text-body-md',   size: '16px', weight: '400' },
-  { label: 'body-sm',   cls: 'text-body-sm',   size: '13px', weight: '400' },
-  { label: 'caption',   cls: 'text-caption',   size: '12px', weight: '400' },
-  { label: 'text-xs',   cls: 'text-xs',   size: '10px', weight: '400' },
-  { label: 'text-2xs',  cls: 'text-2xs',  size: '8px',  weight: '400' },
+  { label: 'body-2xl',   cls: 'text-body-2xl',   size: '24px', weight: '400' },
+  { label: 'body-xl',    cls: 'text-body-xl',    size: '20px', weight: '400' },
+  { label: 'body-lg',    cls: 'text-body-lg',    size: '18px', weight: '400' },
+  { label: 'body-md',    cls: 'text-body-md',    size: '16px', weight: '400' },
+  { label: 'body-sm',    cls: 'text-body-sm',    size: '14px', weight: '400' },
+  { label: 'caption',    cls: 'text-caption',    size: '12px', weight: '400' },
+  { label: 'caption-sm', cls: 'text-caption-sm', size: '10px', weight: '400' },
+  { label: 'caption-xs', cls: 'text-caption-xs', size: '8px',  weight: '400' },
 ]
 
 const buttonScale = [
-  { label: 'btn-lg', cls: 'text-btn-lg tracking-btn uppercase', size: '18px', weight: '600' },
-  { label: 'btn-md', cls: 'text-btn-md tracking-btn uppercase', size: '16px', weight: '600' },
-  { label: 'btn-sm', cls: 'text-btn-sm tracking-btn uppercase', size: '13px', weight: '600' },
+  { label: 'button-lg', cls: 'text-button-lg', size: '18px', weight: '600' },
+  { label: 'button-md', cls: 'text-button-md', size: '16px', weight: '600' },
+  { label: 'button-sm', cls: 'text-button-sm', size: '14px', weight: '600' },
+  { label: 'overline',  cls: 'text-overline',  size: '12px', weight: '600' },
 ]
 
 export const Typography: Story = {
   render: () => (
     <div className="flex flex-col gap-8 p-6 max-w-3xl">
       <section>
-        <h3 className="text-body-sm font-semibold text-dark-45 uppercase tracking-btn mb-3">Headings — Semi Bold (600)</h3>
+        <h3 className="text-body-sm font-semibold text-dark-45 uppercase tracking-button mb-3">Headings · Semi Bold (600)</h3>
         <div className="flex flex-col gap-1">
           {headingScale.map(t => (
             <div key={t.label} className="flex items-baseline gap-4 border-b border-dark-15 py-2">
@@ -90,7 +94,7 @@ export const Typography: Story = {
       </section>
 
       <section>
-        <h3 className="text-body-sm font-semibold text-dark-45 uppercase tracking-btn mb-3">Body — Regular (400)</h3>
+        <h3 className="text-body-sm font-semibold text-dark-45 uppercase tracking-button mb-3">Body · Regular (400)</h3>
         <div className="flex flex-col gap-1">
           {bodyScale.map(t => (
             <div key={t.label} className="flex items-baseline gap-4 border-b border-dark-15 py-2">
@@ -103,7 +107,7 @@ export const Typography: Story = {
       </section>
 
       <section>
-        <h3 className="text-body-sm font-semibold text-dark-45 uppercase tracking-btn mb-3">Buttons — Semi Bold (600) / Uppercase</h3>
+        <h3 className="text-body-sm font-semibold text-dark-45 uppercase tracking-button mb-3">Buttons + overline · Semi Bold (600) / Uppercase</h3>
         <div className="flex flex-col gap-1">
           {buttonScale.map(t => (
             <div key={t.label} className="flex items-baseline gap-4 border-b border-dark-15 py-2">

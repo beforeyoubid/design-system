@@ -3,7 +3,7 @@ import { IconBold, IconItalic, IconUnderline } from '@tabler/icons-react'
 import { Toggle } from '../../components/ui/toggle'
 
 const meta: Meta<typeof Toggle> = {
-  title: 'shadcn/Toggle',
+  title: 'BYB Components/Toggle',
   component: Toggle,
   tags: ['autodocs'],
 }
