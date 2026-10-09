@@ -3,7 +3,7 @@ import { ScrollArea } from '../../components/ui/scroll-area'
 import { Separator } from '../../components/ui/separator'
 
 const meta: Meta<typeof ScrollArea> = {
-  title: 'shadcn/ScrollArea',
+  title: 'BYB Components/ScrollArea',
   component: ScrollArea,
   tags: ['autodocs'],
 }

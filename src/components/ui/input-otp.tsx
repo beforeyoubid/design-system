@@ -4,7 +4,6 @@ import * as React from "react"
 import { OTPInput, OTPInputContext } from "input-otp"
 
 import { cn } from "@/lib/utils"
-import { IconMinus } from "@tabler/icons-react"
 
 function InputOTP({
   className,
@@ -17,7 +16,7 @@ function InputOTP({
     <OTPInput
       data-slot="input-otp"
       containerClassName={cn(
-        "cn-input-otp flex items-center has-disabled:opacity-50",
+        "cn-input-otp group/input-otp flex items-center gap-1 has-disabled:cursor-not-allowed",
         containerClassName
       )}
       spellCheck={false}
@@ -27,14 +26,12 @@ function InputOTP({
   )
 }
 
+/** A run of separate slots, 2px apart. */
 function InputOTPGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="input-otp-group"
-      className={cn(
-        "flex items-center rounded-lg has-aria-invalid:border-destructive has-aria-invalid:ring-[3px] has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40",
-        className
-      )}
+      className={cn("flex items-center gap-0.5", className)}
       {...props}
     />
   )
@@ -55,7 +52,13 @@ function InputOTPSlot({
       data-slot="input-otp-slot"
       data-active={isActive}
       className={cn(
-        "relative flex size-9 items-center justify-center border-y border-e border-input bg-input/30 text-sm transition-all outline-none first:rounded-s-4xl first:border-s last:rounded-e-4xl aria-invalid:border-destructive data-[active=true]:z-10 data-[active=true]:border-ring data-[active=true]:ring-[3px] data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:border-destructive data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40",
+        "relative flex size-8 items-center justify-center rounded-md border border-dark-15 bg-white text-body-sm font-medium text-dark-100 transition outline-none",
+        // active
+        "data-[active=true]:z-10 data-[active=true]:border-mint-45 data-[active=true]:text-navy data-[active=true]:ring-3 data-[active=true]:ring-mint-45/30",
+        // error — on the slot itself or anywhere inside an invalid OTP input
+        "aria-invalid:border-error-75 group-has-aria-invalid/input-otp:border-error-75 data-[active=true]:aria-invalid:ring-error-75/20 group-has-aria-invalid/input-otp:data-[active=true]:ring-error-75/20",
+        // disabled
+        "group-has-disabled/input-otp:bg-light-l2 group-has-disabled/input-otp:text-dark-45",
         className
       )}
       {...props}
@@ -63,23 +66,23 @@ function InputOTPSlot({
       {char}
       {hasFakeCaret && (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="h-4 w-px animate-caret-blink bg-foreground duration-1000" />
+          <div className="h-4 w-px animate-pulse bg-mint-75" />
         </div>
       )}
     </div>
   )
 }
 
-function InputOTPSeparator({ ...props }: React.ComponentProps<"div">) {
+/** Dash between slot groups. */
+function InputOTPSeparator({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="input-otp-separator"
-      className="flex items-center [&_svg:not([class*='size-'])]:size-4"
       role="separator"
+      className={cn("flex items-center px-1 text-body-sm text-dark-60", className)}
       {...props}
     >
-      <IconMinus
-      />
+      -
     </div>
   )
 }

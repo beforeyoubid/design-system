@@ -5,7 +5,7 @@ import { Label } from '../../components/ui/label'
 import { Input } from '../../components/ui/input'
 
 const meta: Meta<typeof Popover> = {
-  title: 'shadcn/Popover',
+  title: 'BYB Components/Popover',
   component: Popover,
   tags: ['autodocs'],
 }
@@ -16,7 +16,7 @@ type Story = StoryObj<typeof Popover>
 export const Default: Story = {
   render: () => (
     <Popover>
-      <PopoverTrigger render={<Button variant="outline">Dimensions</Button>} />
+      <PopoverTrigger render={<Button variant="tertiary">Dimensions</Button>} />
       <PopoverContent className="w-72">
         <div className="grid gap-3">
           <div className="grid grid-cols-3 items-center gap-3">

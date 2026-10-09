@@ -142,9 +142,16 @@
     "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
 
-  /* Letter-spacing tokens (tracking-heading, tracking-btn) */
+  /* Letter-spacing tokens (tracking-heading, tracking-button) */
   --tracking-heading: -0.005em;
-  --tracking-btn:     0.04em;
+  --tracking-button:  0.04em;
+
+  /* =============================================================================
+   * Motion
+   * ============================================================================= */
+
+  /* Fast start, long soft settle — sliding indicators and panel transitions */
+  --ease-snappy: cubic-bezier(0.32, 0.72, 0, 1);
 
   /* =============================================================================
    * Radius scale
@@ -158,10 +165,6 @@
   --radius-2xl:  1rem;    /* 16px */
   --radius-3xl:  1.5rem;  /* 24px */
   --radius-4xl:  2rem;    /* 32px */
-  /* TODO: base-maia components reference rounded-4xl (input, badge, select,
-   * dialog, tabs). Review each in the Phase 2 restyle and replace with the
-   * correct BYB token (rounded-md for inputs, rounded-btn for badges, etc.) */
-  --radius-btn:  18px;
   --radius-full: 9999px;
 
   /* shadcn-compatible alias — components reference `var(--radius)` */
@@ -431,101 +434,85 @@
   --color-sidebar-ring:               var(--sidebar-ring);
 
   /* ---------- Typography ---------- */
+  /* Clear Tailwind's default text-xs…text-9xl so only BYB sizes exist. */
+  --text-*: initial;
+
   --font-sans: var(--font-sans);
 
   /* Display (semi-bold 600) */
-  --text-display-xl:               72px;
-  --text-display-xl--line-height:  1.05;
-  --text-display-xl--font-weight:  600;
-  --text-display:                  56px;
-  --text-display--line-height:     1.08;
-  --text-display--font-weight:     600;
-  --text-display-sm:               52px;
-  --text-display-sm--line-height:  1.2;
-  --text-display-sm--font-weight:  600;
+  --text-display-xl:              72px;
+  --text-display-xl--line-height: 1.05;
+  --text-display-xl--font-weight: 600;
+  --text-display-lg:              64px;
+  --text-display-lg--line-height: 1.06;
+  --text-display-lg--font-weight: 600;
+  --text-display-md:              56px;
+  --text-display-md--line-height: 1.08;
+  --text-display-md--font-weight: 600;
+  --text-display-sm:              52px;
+  --text-display-sm--line-height: 1.2;
+  --text-display-sm--font-weight: 600;
 
   /* Heading (semi-bold 600) */
-  --text-heading-lg:                40px;
-  --text-heading-lg--line-height:   1.2;
-  --text-heading-lg--font-weight:   600;
-  --text-heading-3xl:               36px;
-  --text-heading-3xl--line-height:  1.2;
-  --text-heading-3xl--font-weight:  600;
-  --text-heading-md:                28px;
-  --text-heading-md--line-height:   1.2;
-  --text-heading-md--font-weight:   600;
-  --text-heading-base:              24px;
-  --text-heading-base--line-height: 1.2;
-  --text-heading-base--font-weight: 600;
-  --text-heading-sm:                20px;
-  --text-heading-sm--line-height:   1.3;
-  --text-heading-sm--font-weight:   600;
+  --text-heading-xl:              40px;
+  --text-heading-xl--line-height: 1.2;
+  --text-heading-xl--font-weight: 600;
+  --text-heading-lg:              36px;
+  --text-heading-lg--line-height: 1.2;
+  --text-heading-lg--font-weight: 600;
+  --text-heading-md:              28px;
+  --text-heading-md--line-height: 1.2;
+  --text-heading-md--font-weight: 600;
+  --text-heading-sm:              24px;
+  --text-heading-sm--line-height: 1.2;
+  --text-heading-sm--font-weight: 600;
+  --text-heading-xs:              20px;
+  --text-heading-xs--line-height: 1.3;
+  --text-heading-xs--font-weight: 600;
 
   /* Body (regular 400) */
+  --text-body-2xl:              24px;
+  --text-body-2xl--line-height: 1.4;
+  --text-body-xl:               20px;
+  --text-body-xl--line-height:  1.4;
   --text-body-lg:               18px;
   --text-body-lg--line-height:  1.4;
   --text-body-md:               16px;
   --text-body-md--line-height:  1.4;
-  --text-body-sm:               13px;
+  --text-body-sm:               14px;
   --text-body-sm--line-height:  1.4;
   --text-caption:               12px;
   --text-caption--line-height:  1.4;
 
-  /* Small (regular 400) — overrides Tailwind defaults */
-  --text-xs:               10px;
-  --text-xs--line-height:  1.4;
-  --text-2xs:              8px;
-  --text-2xs--line-height: 1.4;
+  /* Caption (regular 400) */
+  --text-caption-sm:              10px;
+  --text-caption-sm--line-height: 1.4;
+  --text-caption-xs:              8px;
+  --text-caption-xs--line-height: 1.4;
 
-  /* Medium (500) — Figma "medium" scale */
-  --text-medium-6xl:               64px;
-  --text-medium-6xl--line-height:  1.2;
-  --text-medium-6xl--font-weight:  500;
-  --text-medium-5xl:               52px;
-  --text-medium-5xl--line-height:  1.2;
-  --text-medium-5xl--font-weight:  500;
-  --text-medium-4xl:               40px;
-  --text-medium-4xl--line-height:  1.2;
-  --text-medium-4xl--font-weight:  500;
-  --text-medium-3xl:               36px;
-  --text-medium-3xl--line-height:  1.2;
-  --text-medium-3xl--font-weight:  500;
-  --text-medium-2xl:               28px;
-  --text-medium-2xl--line-height:  1.2;
-  --text-medium-2xl--font-weight:  500;
-  --text-medium-xl:                24px;
-  --text-medium-xl--line-height:   1.2;
-  --text-medium-xl--font-weight:   500;
-  --text-medium-lg:                18px;
-  --text-medium-lg--line-height:   1.2;
-  --text-medium-lg--font-weight:   500;
-  --text-medium-base:              16px;
-  --text-medium-base--line-height: 1.2;
-  --text-medium-base--font-weight: 500;
-  --text-medium-sm:                13px;
-  --text-medium-sm--line-height:   1.2;
-  --text-medium-sm--font-weight:   500;
-  --text-medium-xs:                10px;
-  --text-medium-xs--line-height:   1.2;
-  --text-medium-xs--font-weight:   500;
-  --text-medium-2xs:               8px;
-  --text-medium-2xs--line-height:  1.2;
-  --text-medium-2xs--font-weight:  500;
+  /* Overline (semi-bold 600, uppercase + tracking-button baked in via utilities.css)
+   * Eyebrows, table headers, stat labels. */
+  --text-overline:              12px;
+  --text-overline--line-height: 1.4;
+  --text-overline--font-weight: 600;
 
-  /* Button (semi-bold 600; pair with tracking-btn + uppercase utility) */
-  --text-btn-lg:               18px;
-  --text-btn-lg--line-height:  1.3;
-  --text-btn-lg--font-weight:  600;
-  --text-btn-md:               16px;
-  --text-btn-md--line-height:  1.3;
-  --text-btn-md--font-weight:  600;
-  --text-btn-sm:               13px;
-  --text-btn-sm--line-height:  1.3;
-  --text-btn-sm--font-weight:  600;
+  /* Button (semi-bold 600, uppercase + tracking-button baked in via utilities.css) */
+  --text-button-lg:              18px;
+  --text-button-lg--line-height: 1.3;
+  --text-button-lg--font-weight: 600;
+  --text-button-md:              16px;
+  --text-button-md--line-height: 1.3;
+  --text-button-md--font-weight: 600;
+  --text-button-sm:              14px;
+  --text-button-sm--line-height: 1.3;
+  --text-button-sm--font-weight: 600;
 
   /* Letter spacing */
   --tracking-heading: var(--tracking-heading);
-  --tracking-btn:     var(--tracking-btn);
+  --tracking-button:  var(--tracking-button);
+
+  /* ---------- Motion ---------- */
+  --ease-snappy: var(--ease-snappy);
 
   /* ---------- Radius ---------- */
   --radius-sm:   var(--radius-sm);
@@ -535,7 +522,6 @@
   --radius-2xl:  var(--radius-2xl);
   --radius-3xl:  var(--radius-3xl);
   --radius-4xl:  var(--radius-4xl);
-  --radius-btn:  var(--radius-btn);
   --radius-full: var(--radius-full);
 
   /* ---------- Layout ---------- */
@@ -550,6 +536,9 @@
   --animate-fade-in:        fade-in 0.25s ease-out both;
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
+  /* Tabs panel — slides in from the side of the newly selected tab */
+  --animate-tab-in-right:   tab-in-right 0.3s var(--ease-snappy) both;
+  --animate-tab-in-left:    tab-in-left 0.3s var(--ease-snappy) both;
 
   @keyframes accordion-down {
     from {
@@ -566,6 +555,28 @@
     }
     to {
       height: 0;
+    }
+  }
+
+  @keyframes tab-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(0.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes tab-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-0.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 }

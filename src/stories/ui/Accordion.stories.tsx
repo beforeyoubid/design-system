@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/ui/accordion'
 
 const meta: Meta<typeof Accordion> = {
-  title: 'shadcn/Accordion',
+  title: 'BYB Components/Accordion',
   component: Accordion,
   tags: ['autodocs'],
 }

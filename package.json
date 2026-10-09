@@ -1,7 +1,7 @@
 {
   "name": "@beforeyoubid/design-system",
   "version": "1.1.5",
-  "description": "BYB design system \u2014 Tailwind CSS v4 + shadcn/ui (BaseUI) pattern components",
+  "description": "BYB design system — Tailwind CSS v4 + shadcn/ui (BaseUI) pattern components",
   "author": "Before You Buy",
   "license": "ISC",
   "packageManager": "pnpm@11.9.0",
@@ -26,6 +26,11 @@
       "types": "./dist/icons.d.ts",
       "import": "./dist/icons.mjs",
       "require": "./dist/icons.js"
+    },
+    "./icons/lucide": {
+      "types": "./dist/icons-lucide.d.ts",
+      "import": "./dist/icons-lucide.mjs",
+      "require": "./dist/icons-lucide.js"
     },
     "./globals.css": "./globals.css",
     "./utilities.css": "./utilities.css"
@@ -85,6 +90,7 @@
     "date-fns": "^4.2.1",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
+    "lucide-react": "^1.47.0",
     "next-themes": "^0.4.6",
     "react-day-picker": "^9.0.0",
     "react-resizable-panels": "^4.11.1",

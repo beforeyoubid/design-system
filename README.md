@@ -10,7 +10,7 @@ Live Storybook: https://storybook.beforeyoubuy.com.au/design-system/
 
 - Brand colour palette (OKLCH, full Figma parity) — `bg-mint-45`, `bg-cobalt`, `text-navy`, …
 - shadcn semantic layer — `bg-primary`, `text-foreground`, `bg-destructive`, dark mode, … out of the box
-- Typography scale — `text-display-xl`, `text-heading-lg`, `text-body-md`, `text-btn-md`, …
+- Typography scale — `text-display-xl`, `text-heading-xl`, `text-body-md`, `text-button-md`, `text-overline`, …
 - Radius, shadow, spacing, animation tokens
 - Components — opinionated BYB wrappers (`BYBButton`, `BYBCard`, `BYBPillTabs`, …)
 - `cn()` helper with `tailwind-merge` extended for every BYB token
@@ -145,7 +145,7 @@ v1.x targeted Tailwind v3 with a `tailwind.config.ts` extension. v2.0 moves ever
 2. Replace `@tailwind base; @tailwind components; @tailwind utilities;` with `@import "tailwindcss";`
 3. Remove the `tailwind.config.ts` import / extension from the design system (no longer published)
 4. Replace `bg-overlay-95` / `bg-button-a` etc. with the opacity-modifier equivalents — see CLAUDE.md
-5. Continue using `bg-mint-45`, `text-heading-lg`, etc. — these names are unchanged
+5. Continue using `bg-mint-45`, `text-body-md`, etc. — these names are unchanged (headings were re-scaled in v2.x — see CLAUDE.md)
 
 ## Adding a token
 

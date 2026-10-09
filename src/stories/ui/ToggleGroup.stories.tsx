@@ -3,7 +3,7 @@ import { IconAlignLeft, IconAlignCenter, IconAlignRight } from '@tabler/icons-re
 import { ToggleGroup, ToggleGroupItem } from '../../components/ui/toggle-group'
 
 const meta: Meta<typeof ToggleGroup> = {
-  title: 'shadcn/ToggleGroup',
+  title: 'BYB Components/ToggleGroup',
   component: ToggleGroup,
   tags: ['autodocs'],
 }

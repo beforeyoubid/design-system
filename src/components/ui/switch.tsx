@@ -1,32 +1,111 @@
 "use client"
 
+import * as React from "react"
 import { Switch as SwitchPrimitive } from "@base-ui/react/switch"
+import { cva } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
+const switchVariants = cva(
+  "peer group/switch relative inline-flex shrink-0 cursor-pointer items-center rounded-full p-0.5 transition-colors outline-none after:absolute after:-inset-x-3 after:-inset-y-2 data-unchecked:bg-dark-30 data-checked:bg-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30 aria-invalid:ring-3 aria-invalid:ring-error-75/20 data-disabled:cursor-not-allowed data-disabled:opacity-50",
+  {
+    variants: {
+      // sm 28×16 · md 36×20 (design default) · lg 44×24
+      size: {
+        sm: "h-4 w-7",
+        md: "h-5 w-9",
+        lg: "h-6 w-11",
+      },
+    },
+    defaultVariants: {
+      size: "md",
+    },
+  }
+)
+
+const switchThumbVariants = cva(
+  "pointer-events-none block rounded-full bg-white shadow-xs ring-0 transition-transform data-unchecked:translate-x-0",
+  {
+    variants: {
+      size: {
+        sm: "size-3 data-checked:translate-x-3 rtl:data-checked:-translate-x-3",
+        md: "size-4 data-checked:translate-x-4 rtl:data-checked:-translate-x-4",
+        lg: "size-5 data-checked:translate-x-5 rtl:data-checked:-translate-x-5",
+      },
+    },
+    defaultVariants: {
+      size: "md",
+    },
+  }
+)
+
+export interface SwitchProps extends SwitchPrimitive.Root.Props {
+  /** sm 28×16 · md 36×20 (default) · lg 44×24 */
+  size?: "sm" | "md" | "lg"
+  /** Optional label. When provided (or `description`), renders a row with text on the left and the switch on the right. */
+  label?: React.ReactNode
+  /** Optional helper text rendered under the label. */
+  description?: React.ReactNode
+  /** className for the wrapping `<label>` row (only used when `label`/`description` is set). */
+  wrapperClassName?: string
+}
+
 function Switch({
   className,
-  size = "default",
+  size = "md",
+  label,
+  description,
+  wrapperClassName,
   ...props
-}: SwitchPrimitive.Root.Props & {
-  size?: "sm" | "default"
-}) {
-  return (
+}: SwitchProps) {
+  const hasText = label != null || description != null
+
+  const control = (
     <SwitchPrimitive.Root
       data-slot="switch"
       data-size={size}
       className={cn(
-        "peer group/switch relative inline-flex shrink-0 items-center rounded-full border border-transparent transition-all outline-none after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 data-[size=default]:h-[18.4px] data-[size=default]:w-[32px] data-[size=sm]:h-[14px] data-[size=sm]:w-[24px] dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 data-checked:bg-primary data-unchecked:bg-input dark:data-unchecked:bg-input/80 data-disabled:cursor-not-allowed data-disabled:opacity-50",
+        switchVariants({ size }),
+        hasText && "data-disabled:opacity-100",
         className
       )}
       {...props}
     >
       <SwitchPrimitive.Thumb
         data-slot="switch-thumb"
-        className="pointer-events-none block rounded-full bg-background ring-0 transition-transform group-data-[size=default]/switch:size-4 group-data-[size=sm]/switch:size-3 group-data-[size=default]/switch:data-checked:translate-x-[calc(100%-2px)] rtl:group-data-[size=default]/switch:data-checked:-translate-x-[calc(100%-2px)] group-data-[size=sm]/switch:data-checked:translate-x-[calc(100%-2px)] rtl:group-data-[size=sm]/switch:data-checked:-translate-x-[calc(100%-2px)] dark:data-checked:bg-primary-foreground group-data-[size=default]/switch:data-unchecked:translate-x-0 rtl:group-data-[size=default]/switch:data-unchecked:-translate-x-0 group-data-[size=sm]/switch:data-unchecked:translate-x-0 rtl:group-data-[size=sm]/switch:data-unchecked:-translate-x-0 dark:data-unchecked:bg-foreground"
+        className={switchThumbVariants({ size })}
       />
     </SwitchPrimitive.Root>
   )
+
+  if (!hasText) return control
+
+  return (
+    <label
+      data-slot="switch-field"
+      className={cn(
+        "flex cursor-pointer items-start justify-between gap-4 has-data-disabled:cursor-not-allowed has-data-disabled:opacity-50",
+        wrapperClassName
+      )}
+    >
+      <span className="flex min-w-0 flex-1 flex-col gap-1">
+        {label != null && (
+          <span
+            data-slot="switch-label"
+            className="text-body-sm leading-tight font-semibold text-navy"
+          >
+            {label}
+          </span>
+        )}
+        {description != null && (
+          <span data-slot="switch-description" className="text-body-sm text-dark-60">
+            {description}
+          </span>
+        )}
+      </span>
+      {control}
+    </label>
+  )
 }
 
-export { Switch }
+export { Switch, switchVariants, switchThumbVariants }

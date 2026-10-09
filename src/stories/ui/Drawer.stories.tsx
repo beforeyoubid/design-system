@@ -11,7 +11,7 @@ import {
 } from '../../components/ui/drawer'
 
 const meta: Meta<typeof Drawer> = {
-  title: 'shadcn/Drawer',
+  title: 'BYB Components/Drawer',
   component: Drawer,
   tags: ['autodocs'],
 }
@@ -22,7 +22,7 @@ type Story = StoryObj<typeof Drawer>
 export const Default: Story = {
   render: () => (
     <Drawer>
-      <DrawerTrigger asChild><Button variant="outline">Open drawer</Button></DrawerTrigger>
+      <DrawerTrigger asChild><Button variant="tertiary">Open drawer</Button></DrawerTrigger>
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>

@@ -3,7 +3,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from '../../components/ui/button'
 
 const meta: Meta<typeof Card> = {
-  title: 'shadcn/Card',
+  title: 'BYB Components/Card',
   component: Card,
   tags: ['autodocs'],
 }
@@ -24,7 +24,7 @@ export const Default: Story = {
         </p>
       </CardContent>
       <CardFooter className="gap-2">
-        <Button variant="outline">Download PDF</Button>
+        <Button variant="tertiary">Download PDF</Button>
         <Button>View report</Button>
       </CardFooter>
     </Card>
