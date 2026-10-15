@@ -17,10 +17,10 @@ export const Default: Story = {
   render: () => (
     <ScrollArea className="h-72 w-56 rounded-md border">
       <div className="p-4">
-        <h4 className="mb-3 text-body-md font-medium">Tags</h4>
+        <h4 className="mb-3 text-body-4 font-medium">Tags</h4>
         {tags.map((tag) => (
           <div key={tag}>
-            <div className="text-body-sm">{tag}</div>
+            <div className="text-body-5">{tag}</div>
             <Separator className="my-2" />
           </div>
         ))}

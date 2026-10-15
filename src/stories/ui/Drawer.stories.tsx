@@ -29,7 +29,7 @@ export const Default: Story = {
             <DrawerTitle>Move goal</DrawerTitle>
             <DrawerDescription>Set your daily activity goal.</DrawerDescription>
           </DrawerHeader>
-          <div className="p-4 text-body-sm text-muted-foreground">Drawer body content.</div>
+          <div className="p-4 text-body-5 text-muted-foreground">Drawer body content.</div>
           <DrawerFooter>
             <Button>Save</Button>
           </DrawerFooter>

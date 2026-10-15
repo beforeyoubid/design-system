@@ -60,7 +60,7 @@ export function InputField({
       {label && (
         <label
           htmlFor={fieldId}
-          className="text-body-sm leading-tight font-semibold text-navy"
+          className="text-body-5 leading-tight font-semibold text-navy"
         >
           {label}
           {required && <span className="ms-0.5 text-mint-45">*</span>}
@@ -76,14 +76,14 @@ export function InputField({
         <Input {...controlProps} {...props} />
       )}
       {hint && !error && (
-        <p id={`${fieldId}-hint`} className="text-body-sm text-dark-60">
+        <p id={`${fieldId}-hint`} className="text-body-5 text-dark-60">
           {hint}
         </p>
       )}
       {error && (
         <p
           id={`${fieldId}-error`}
-          className="text-body-sm text-error-75"
+          className="text-body-5 text-error-75"
           role="alert"
         >
           {error}

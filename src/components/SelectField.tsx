@@ -105,13 +105,13 @@ export function SelectField(props: SelectFieldProps) {
         {shown.map((v) => (
           <span
             key={v}
-            className="inline-flex h-6 min-w-0 shrink items-center rounded-full bg-mint-l2 px-2 text-caption font-medium text-mint-90"
+            className="inline-flex h-6 min-w-0 shrink items-center rounded-full bg-mint-l2 px-2 text-caption-1 font-medium text-mint-90"
           >
             <span className="truncate">{labelFor(v)}</span>
           </span>
         ))}
         {rest > 0 && (
-          <span className="inline-flex h-6 shrink-0 items-center rounded-full bg-light-l2 px-2 text-caption font-medium text-dark-75">
+          <span className="inline-flex h-6 shrink-0 items-center rounded-full bg-light-l2 px-2 text-caption-1 font-medium text-dark-75">
             +{rest}
           </span>
         )}
@@ -149,7 +149,7 @@ export function SelectField(props: SelectFieldProps) {
         <Label
           htmlFor={fieldId}
           className={cn(
-            "text-body-sm leading-tight font-semibold text-navy",
+            "text-body-5 leading-tight font-semibold text-navy",
             disabled && "opacity-50"
           )}
         >
@@ -212,12 +212,12 @@ export function SelectField(props: SelectFieldProps) {
         </SelectContent>
       </Select>
       {hint && !error && (
-        <p id={`${fieldId}-hint`} className="text-body-sm text-dark-60">
+        <p id={`${fieldId}-hint`} className="text-body-5 text-dark-60">
           {hint}
         </p>
       )}
       {error && (
-        <p id={`${fieldId}-error`} className="text-body-sm text-error-75" role="alert">
+        <p id={`${fieldId}-error`} className="text-body-5 text-error-75" role="alert">
           {error}
         </p>
       )}

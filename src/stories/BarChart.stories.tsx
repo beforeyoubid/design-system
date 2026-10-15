@@ -122,7 +122,7 @@ export const Selectable: Story = {
           activeIndex={active}
           onActiveChange={setActive}
         />
-        <p className="text-caption text-dark-60">
+        <p className="text-caption-1 text-dark-60">
           Active: {active === null ? 'none' : monthly[active]?.month}
         </p>
       </div>

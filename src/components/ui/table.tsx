@@ -21,7 +21,7 @@ const tableContainerVariants = cva("relative w-full overflow-x-auto", {
  * Variant + size are written to data attributes on <table>; rows and cells
  * read them via `group-data-*\/table`, so sub-components need no props.
  */
-const tableVariants = cva("group/table w-full caption-bottom text-body-sm", {
+const tableVariants = cva("group/table w-full caption-bottom text-body-5", {
   variants: {
     variant: { default: "", striped: "", card: "", bordered: "" },
     size: { sm: "", md: "", lg: "" },
@@ -122,7 +122,7 @@ function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
     <tfoot
       data-slot="table-footer"
       className={cn(
-        "border-t border-border bg-light-l1 text-body-sm font-medium text-navy [&>tr]:last:border-b-0",
+        "border-t border-border bg-light-l1 text-body-5 font-medium text-navy [&>tr]:last:border-b-0",
         className
       )}
       {...props}
@@ -198,7 +198,7 @@ function TableEmpty({ colSpan, className, ...props }: TableEmptyProps) {
   )
 }
 
-const captionClasses = "mt-3 text-center text-body-sm text-muted-foreground"
+const captionClasses = "mt-3 text-center text-body-5 text-muted-foreground"
 
 /**
  * Table caption. Inside `<Table>` it is shown below the table (and below the

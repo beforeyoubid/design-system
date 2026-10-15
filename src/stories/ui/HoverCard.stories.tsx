@@ -23,9 +23,9 @@ export const Default: Story = {
           <IconUser className="size-4.5" />
         </div>
         <div className="flex flex-col gap-1">
-          <p className="text-body-sm font-semibold text-navy">Jane Inspector</p>
-          <p className="text-body-sm text-dark-90">Licensed building &amp; pest inspector covering Sydney&apos;s inner west.</p>
-          <p className="text-caption text-dark-60">142 reports · Joined 2019</p>
+          <p className="text-body-5 font-semibold text-navy">Jane Inspector</p>
+          <p className="text-body-5 text-dark-90">Licensed building &amp; pest inspector covering Sydney&apos;s inner west.</p>
+          <p className="text-caption-1 text-dark-60">142 reports · Joined 2019</p>
         </div>
       </HoverCardContent>
     </HoverCard>
@@ -41,9 +41,9 @@ export const Property: Story = {
           <IconBuildingCommunity className="size-4.5" />
         </div>
         <div className="flex flex-col gap-1">
-          <p className="text-body-sm font-semibold text-navy">12 Smith St, Newtown NSW</p>
-          <p className="text-body-sm text-dark-90">3 bed · 2 bath terrace. Building &amp; pest and strata reports available.</p>
-          <p className="text-caption text-dark-60">Updated 2 days ago</p>
+          <p className="text-body-5 font-semibold text-navy">12 Smith St, Newtown NSW</p>
+          <p className="text-body-5 text-dark-90">3 bed · 2 bath terrace. Building &amp; pest and strata reports available.</p>
+          <p className="text-caption-1 text-dark-60">Updated 2 days ago</p>
         </div>
       </HoverCardContent>
     </HoverCard>

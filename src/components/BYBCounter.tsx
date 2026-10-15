@@ -57,7 +57,7 @@ function useCountUp(target: number, duration = 2000, start = false): number {
 // ── cva ───────────────────────────────────────────────────────────────────────
 
 const counterValueVariants = cva(
-  'text-display-sm font-semibold leading-none',
+  'text-display-4 font-semibold leading-none',
   {
     variants: {
       variant: {
@@ -71,7 +71,7 @@ const counterValueVariants = cva(
 )
 
 const counterLabelVariants = cva(
-  'text-body-md text-center',
+  'text-body-4 text-center',
   {
     variants: {
       variant: {

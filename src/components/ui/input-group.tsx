@@ -38,7 +38,7 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 const inputGroupAddonVariants = cva(
-  "flex h-auto cursor-text items-center justify-center gap-2 text-body-sm text-dark-60 select-none group-data-[disabled=true]/input-group:opacity-50 **:data-[slot=kbd]:rounded-sm **:data-[slot=kbd]:bg-light-l2 **:data-[slot=kbd]:px-1.5 [&>svg:not([class*='size-'])]:size-4",
+  "flex h-auto cursor-text items-center justify-center gap-2 text-body-5 text-dark-60 select-none group-data-[disabled=true]/input-group:opacity-50 **:data-[slot=kbd]:rounded-sm **:data-[slot=kbd]:bg-light-l2 **:data-[slot=kbd]:px-1.5 [&>svg:not([class*='size-'])]:size-4",
   {
     variants: {
       align: {
@@ -128,7 +128,7 @@ function InputGroupText({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
       className={cn(
-        "flex items-center gap-2 text-body-sm text-dark-75 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
+        "flex items-center gap-2 text-body-5 text-dark-75 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}

@@ -51,7 +51,7 @@ export const Default: Story = {
           </SidebarGroup>
         </SidebarContent>
       </Sidebar>
-      <main className="flex-1 p-6 text-body-sm text-muted-foreground">Sidebar layout: main content goes here.</main>
+      <main className="flex-1 p-6 text-body-5 text-muted-foreground">Sidebar layout: main content goes here.</main>
     </SidebarProvider>
   ),
 }

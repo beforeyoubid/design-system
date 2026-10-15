@@ -19,7 +19,7 @@ export const Default: Story = {
         <CardDescription>Generated 3 hours ago</CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="text-body-sm text-muted-foreground">
+        <p className="text-body-5 text-muted-foreground">
           The property passed all 47 critical checks. View the full report for room-by-room detail.
         </p>
       </CardContent>
@@ -34,7 +34,7 @@ export const Default: Story = {
 export const Minimal: Story = {
   render: () => (
     <Card className="w-96 p-6">
-      <p className="text-body-md">A minimal card with just content.</p>
+      <p className="text-body-4">A minimal card with just content.</p>
     </Card>
   ),
 }

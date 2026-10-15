@@ -75,10 +75,10 @@ function Toast({
       </span>
       <div className="flex min-w-0 flex-1 flex-col gap-1 pe-6">
         {title && (
-          <div className="text-body-sm font-semibold">{title}</div>
+          <div className="text-body-5 font-semibold">{title}</div>
         )}
         {(description || actionLabel) && (
-          <div className="text-body-sm text-dark-90">
+          <div className="text-body-5 text-dark-90">
             {description}
             {actionLabel && (
               <button

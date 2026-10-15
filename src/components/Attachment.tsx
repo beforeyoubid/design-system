@@ -95,10 +95,10 @@ function FileUploadCard({
           <IconFileText className="size-4.5" />
         </span>
         <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-          <span className="truncate text-body-sm font-semibold text-navy">
+          <span className="truncate text-body-5 font-semibold text-navy">
             {name}
           </span>
-          <span className="flex flex-wrap items-center gap-2 text-caption-sm text-dark-60">
+          <span className="flex flex-wrap items-center gap-2 text-caption-2 text-dark-60">
             <span>
               {done
                 ? formatBytes(size)
@@ -148,7 +148,7 @@ function FileUploadCard({
         </ProgressPrimitive.Root>
       )}
       {failed && (
-        <div className="flex items-center justify-between gap-3 text-caption text-error-75">
+        <div className="flex items-center justify-between gap-3 text-caption-1 text-error-75">
           <span>{error}</span>
           {onRetry && (
             <button
@@ -170,7 +170,7 @@ function FileUploadCard({
 // -----------------------------------------------------------------------------
 
 const dropZoneVariants = cva(
-  "flex min-h-26 items-center justify-center gap-2.5 rounded-lg border border-dashed p-4 text-center text-body-md outline-none transition-all duration-150",
+  "flex min-h-26 items-center justify-center gap-2.5 rounded-lg border border-dashed p-4 text-center text-body-4 outline-none transition-all duration-150",
   {
     variants: {
       state: {
@@ -394,7 +394,7 @@ function Attachment({
         <label
           htmlFor={`${uid}-input`}
           className={cn(
-            "text-body-sm leading-tight font-semibold",
+            "text-body-5 leading-tight font-semibold",
             disabled ? "text-dark-45" : "text-navy"
           )}
         >
@@ -479,7 +479,7 @@ function Attachment({
           id={`${uid}-hint`}
           role={err ? "alert" : undefined}
           className={cn(
-            "text-body-sm",
+            "text-body-5",
             err ? "text-error-75" : disabled ? "text-dark-45" : "text-dark-60"
           )}
         >

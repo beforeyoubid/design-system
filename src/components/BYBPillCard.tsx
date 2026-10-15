@@ -54,8 +54,8 @@ export function BYBPillCard({
         {Icon && <Icon size={iconSize} strokeWidth={1.5} aria-hidden="true" />}
       </div>
       <div className="flex flex-col gap-1.5">
-        <h3 className="text-heading-sm font-semibold text-navy">{heading}</h3>
-        <p className="text-body-sm text-dark-75">{subheading}</p>
+        <h3 className="text-h4 font-semibold text-navy">{heading}</h3>
+        <p className="text-body-5 text-dark-75">{subheading}</p>
       </div>
     </div>
   )

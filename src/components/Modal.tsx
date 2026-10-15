@@ -90,7 +90,7 @@ function Modal({
         )}
       >
         <div className="flex items-center justify-between gap-4 border-b border-light-l3 pb-4">
-          <AlertDialogTitle className="text-body-lg leading-tight font-semibold text-navy">
+          <AlertDialogTitle className="text-body-3 leading-tight font-semibold text-navy">
             {title}
           </AlertDialogTitle>
           <AlertDialogPrimitive.Close
@@ -101,7 +101,7 @@ function Modal({
           </AlertDialogPrimitive.Close>
         </div>
         {description && (
-          <AlertDialogDescription className="text-body-md leading-normal text-dark-90">
+          <AlertDialogDescription className="text-body-4 leading-normal text-dark-90">
             {description}
           </AlertDialogDescription>
         )}

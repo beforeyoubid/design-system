@@ -6,7 +6,7 @@ import { Calendar } from "./ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 
 const controlClasses =
-  "h-10 rounded-lg border border-dark-15 bg-white text-body-sm text-dark-100 outline-none transition-all focus-visible:border-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30 disabled:cursor-not-allowed disabled:bg-light-l2"
+  "h-10 rounded-lg border border-dark-15 bg-white text-body-5 text-dark-100 outline-none transition-all focus-visible:border-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30 disabled:cursor-not-allowed disabled:bg-light-l2"
 
 export interface DatePickerProps {
   value?: Date
@@ -126,12 +126,12 @@ function DatePicker({
             disabled={disabled}
             aria-label="Time"
             onChange={(e) => onTimeChange?.(e.target.value)}
-            className={cn(controlClasses, "w-28 px-2.5 font-mono text-caption")}
+            className={cn(controlClasses, "w-28 px-2.5 font-mono text-caption-1")}
           />
         )}
       </div>
       {description && (
-        <span className="text-body-sm text-dark-60">{description}</span>
+        <span className="text-body-5 text-dark-60">{description}</span>
       )}
     </div>
   )

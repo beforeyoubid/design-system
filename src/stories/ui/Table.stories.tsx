@@ -70,7 +70,7 @@ const meta: Meta<typeof Table> = {
     docs: {
       description: {
         component:
-          'Data table with BYB typography: uppercase `text-caption` headers and `text-body-sm` cells. Set `variant` and `size` on `Table`; rows and cells pick them up automatically.',
+          'Data table with BYB typography: uppercase `text-caption-1` headers and `text-body-5` cells. Set `variant` and `size` on `Table`; rows and cells pick them up automatically.',
       },
     },
   },
@@ -115,8 +115,8 @@ function Cells({ r }: { r: (typeof reports)[number] }) {
   return (
     <>
       <TableCell>
-        <div className="text-body-sm font-medium text-navy">{r.address}</div>
-        <div className="text-caption text-dark-60">{r.suburb}</div>
+        <div className="text-body-5 font-medium text-navy">{r.address}</div>
+        <div className="text-caption-1 text-dark-60">{r.suburb}</div>
       </TableCell>
       <TableCell>{r.type}</TableCell>
       <TableCell>{r.inspector}</TableCell>
@@ -124,7 +124,7 @@ function Cells({ r }: { r: (typeof reports)[number] }) {
       <TableCell>
         <Badge variant={statusBadge[r.status].variant} dot>{statusBadge[r.status].label}</Badge>
       </TableCell>
-      <TableCell className="text-end text-body-sm font-medium text-navy tabular-nums">{aud(r.price)}</TableCell>
+      <TableCell className="text-end text-body-5 font-medium text-navy tabular-nums">{aud(r.price)}</TableCell>
     </>
   )
 }
@@ -262,7 +262,7 @@ export const SelectableRows: Story = {
             })}
           </TableBody>
         </Table>
-        <p className="mt-3 text-body-sm text-dark-60">{selected.length} of {reports.length} selected</p>
+        <p className="mt-3 text-body-5 text-dark-60">{selected.length} of {reports.length} selected</p>
       </div>
     )
   },
@@ -305,8 +305,8 @@ export const WithHeaderAndOptions: Story = {
       <section className={`${frame} flex flex-col gap-4`}>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="flex flex-col gap-1">
-            <h2 className="text-heading-sm text-navy">Inspection reports</h2>
-            <p className="text-body-sm text-dark-60">All reports ordered for your properties.</p>
+            <h2 className="text-h4 text-navy">Inspection reports</h2>
+            <p className="text-body-5 text-dark-60">All reports ordered for your properties.</p>
           </div>
           <Button size="sm">
             <IconPlus data-icon="inline-start" />

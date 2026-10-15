@@ -25,7 +25,7 @@ export const CHART_GRID_STROKE = "var(--light-l3)"
 
 /** Shared tooltip surface: white, light-l3 border, rounded-md, shadow-md, caption text. */
 export const CHART_TOOLTIP_CLASS =
-  "rounded-md border-light-l3 bg-white text-caption text-dark-90 shadow-md"
+  "rounded-md border-light-l3 bg-white text-caption-1 text-dark-90 shadow-md"
 
 export type ChartXValue = string | number | Date
 
@@ -68,7 +68,7 @@ function ChartLegendList({
     <ul
       data-slot="chart-legend"
       className={cn(
-        "flex flex-wrap items-center justify-center gap-4 text-caption text-dark-75",
+        "flex flex-wrap items-center justify-center gap-4 text-caption-1 text-dark-75",
         className
       )}
       {...props}
@@ -140,12 +140,12 @@ function ChartFrame({
           {(title || description) && (
             <div className="flex min-w-0 flex-col gap-1">
               {title && (
-                <div className="text-body-md font-semibold text-navy">
+                <div className="text-body-4 font-semibold text-navy">
                   {title}
                 </div>
               )}
               {description && (
-                <div className="text-body-sm text-dark-60">{description}</div>
+                <div className="text-body-5 text-dark-60">{description}</div>
               )}
             </div>
           )}
@@ -156,13 +156,13 @@ function ChartFrame({
       {hasFooter && (
         <div className="flex flex-col gap-1">
           {trend && (
-            <div className="flex items-center gap-2 text-body-sm font-medium text-navy">
+            <div className="flex items-center gap-2 text-body-5 font-medium text-navy">
               {trend}
               <IconTrendingUp className="size-4" />
             </div>
           )}
           {caption && (
-            <div className="text-body-sm text-dark-60">{caption}</div>
+            <div className="text-body-5 text-dark-60">{caption}</div>
           )}
         </div>
       )}

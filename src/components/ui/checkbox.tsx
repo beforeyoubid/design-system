@@ -79,7 +79,7 @@ function Checkbox({
         {label != null && (
           <span
             data-slot="checkbox-label"
-            className="text-body-sm leading-tight font-semibold text-navy"
+            className="text-body-5 leading-tight font-semibold text-navy"
           >
             {label}
           </span>
@@ -87,7 +87,7 @@ function Checkbox({
         {description != null && (
           <span
             data-slot="checkbox-description"
-            className="text-body-sm text-dark-60"
+            className="text-body-5 text-dark-60"
           >
             {description}
           </span>

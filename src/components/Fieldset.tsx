@@ -37,13 +37,13 @@ function Fieldset({
           {legend && (
             <span
               id={legendId}
-              className="text-body-md leading-tight font-semibold text-navy"
+              className="text-body-4 leading-tight font-semibold text-navy"
             >
               {legend}
             </span>
           )}
           {description && (
-            <span className="text-body-sm text-dark-60">{description}</span>
+            <span className="text-body-5 text-dark-60">{description}</span>
           )}
         </div>
       )}

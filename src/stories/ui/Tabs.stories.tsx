@@ -31,7 +31,7 @@ const meta: Meta<typeof TabsList> = {
 export default meta
 type Story = StoryObj<typeof TabsList>
 
-const copy = 'py-4 text-body-md text-dark-75'
+const copy = 'py-4 text-body-4 text-dark-75'
 
 // ── Basic examples ───────────────────────────────────────────────────────────
 
@@ -127,19 +127,19 @@ export const Panel: Story = {
         <TabsTrigger value="history">History</TabsTrigger>
       </TabsList>
       <TabsContent value="overview" panel>
-        <p className="text-caption text-dark-60">Property</p>
-        <h3 className="text-heading-xs text-navy">12 Smith St, Newtown</h3>
-        <p className="text-body-md text-dark-90">3 bed · 2 bath terrace with two reports available.</p>
+        <p className="text-caption-1 text-dark-60">Property</p>
+        <h3 className="text-h5 text-navy">12 Smith St, Newtown</h3>
+        <p className="text-body-4 text-dark-90">3 bed · 2 bath terrace with two reports available.</p>
       </TabsContent>
       <TabsContent value="reports" panel>
-        <p className="text-caption text-dark-60">2 available</p>
-        <h3 className="text-heading-xs text-navy">Reports</h3>
-        <p className="text-body-md text-dark-90">Building &amp; pest, strata.</p>
+        <p className="text-caption-1 text-dark-60">2 available</p>
+        <h3 className="text-h5 text-navy">Reports</h3>
+        <p className="text-body-4 text-dark-90">Building &amp; pest, strata.</p>
       </TabsContent>
       <TabsContent value="history" panel>
-        <p className="text-caption text-dark-60">Timeline</p>
-        <h3 className="text-heading-xs text-navy">History</h3>
-        <p className="text-body-md text-dark-90">Listed 14 days ago.</p>
+        <p className="text-caption-1 text-dark-60">Timeline</p>
+        <h3 className="text-h5 text-navy">History</h3>
+        <p className="text-body-4 text-dark-90">Listed 14 days ago.</p>
       </TabsContent>
     </Tabs>
   ),

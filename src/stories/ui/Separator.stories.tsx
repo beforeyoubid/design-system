@@ -13,16 +13,16 @@ type Story = StoryObj<typeof Separator>
 export const Horizontal: Story = {
   render: () => (
     <div className="w-64">
-      <div className="text-body-md">Section A</div>
+      <div className="text-body-4">Section A</div>
       <Separator className="my-3" />
-      <div className="text-body-md">Section B</div>
+      <div className="text-body-4">Section B</div>
     </div>
   ),
 }
 
 export const Vertical: Story = {
   render: () => (
-    <div className="flex h-12 items-center gap-3 text-body-sm">
+    <div className="flex h-12 items-center gap-3 text-body-5">
       <span>Home</span>
       <Separator orientation="vertical" />
       <span>Docs</span>

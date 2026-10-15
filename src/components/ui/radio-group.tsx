@@ -112,7 +112,7 @@ function RadioGroupItem({
           <span
             data-slot="radio-group-label"
             className={cn(
-              "text-body-sm leading-tight text-navy",
+              "text-body-5 leading-tight text-navy",
               variant === "card" ? "font-semibold" : "font-medium"
             )}
           >
@@ -122,7 +122,7 @@ function RadioGroupItem({
         {description != null && (
           <span
             data-slot="radio-group-description"
-            className="text-body-sm text-dark-60"
+            className="text-body-5 text-dark-60"
           >
             {description}
           </span>

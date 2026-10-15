@@ -54,7 +54,7 @@ function MenubarTrigger({
     <DropdownMenuTrigger
       data-slot="menubar-trigger"
       className={cn(
-        "flex cursor-pointer items-center rounded-sm px-2 py-0.75 text-body-sm font-medium outline-hidden select-none hover:bg-muted aria-expanded:bg-muted",
+        "flex cursor-pointer items-center rounded-sm px-2 py-0.75 text-body-5 font-medium outline-hidden select-none hover:bg-muted aria-expanded:bg-muted",
         className
       )}
       {...props}
@@ -93,7 +93,7 @@ function MenubarItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        "group/menubar-item cursor-pointer gap-2.5 rounded-md px-3 py-2 text-body-sm focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-inset:ps-9.5 data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive dark:data-[variant=destructive]:focus:bg-destructive/20 data-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 data-[variant=destructive]:*:[svg]:text-destructive!",
+        "group/menubar-item cursor-pointer gap-2.5 rounded-md px-3 py-2 text-body-5 focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-inset:ps-9.5 data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive dark:data-[variant=destructive]:focus:bg-destructive/20 data-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 data-[variant=destructive]:*:[svg]:text-destructive!",
         className
       )}
       {...props}
@@ -115,7 +115,7 @@ function MenubarCheckboxItem({
       data-slot="menubar-checkbox-item"
       data-inset={inset}
       className={cn(
-        "relative flex cursor-pointer items-center gap-2.5 rounded-md py-2 pe-3 ps-9.5 text-body-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-9.5 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "relative flex cursor-pointer items-center gap-2.5 rounded-md py-2 pe-3 ps-9.5 text-body-5 outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-9.5 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className
       )}
       checked={checked}
@@ -151,7 +151,7 @@ function MenubarRadioItem({
       data-slot="menubar-radio-item"
       data-inset={inset}
       className={cn(
-        "relative flex cursor-pointer items-center gap-2.5 rounded-md py-2 pe-3 ps-9.5 text-body-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-9.5 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "relative flex cursor-pointer items-center gap-2.5 rounded-md py-2 pe-3 ps-9.5 text-body-5 outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-9.5 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}
@@ -179,7 +179,7 @@ function MenubarLabel({
       data-slot="menubar-label"
       data-inset={inset}
       className={cn(
-        "px-3.5 py-2.5 text-caption-sm text-muted-foreground data-inset:ps-9.5",
+        "px-3.5 py-2.5 text-caption-2 text-muted-foreground data-inset:ps-9.5",
         className
       )}
       {...props}
@@ -208,7 +208,7 @@ function MenubarShortcut({
     <DropdownMenuShortcut
       data-slot="menubar-shortcut"
       className={cn(
-        "ms-auto text-caption-sm tracking-button text-muted-foreground group-focus/menubar-item:text-accent-foreground",
+        "ms-auto text-caption-2 tracking-button text-muted-foreground group-focus/menubar-item:text-accent-foreground",
         className
       )}
       {...props}
@@ -234,7 +234,7 @@ function MenubarSubTrigger({
       data-slot="menubar-sub-trigger"
       data-inset={inset}
       className={cn(
-        "cursor-pointer gap-2 rounded-md px-3 py-2 text-body-sm focus:bg-accent focus:text-accent-foreground data-inset:ps-9.5 data-open:bg-accent data-open:text-accent-foreground [&_svg:not([class*='size-'])]:size-4",
+        "cursor-pointer gap-2 rounded-md px-3 py-2 text-body-5 focus:bg-accent focus:text-accent-foreground data-inset:ps-9.5 data-open:bg-accent data-open:text-accent-foreground [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}

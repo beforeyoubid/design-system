@@ -28,7 +28,7 @@ export const Right: Story = {
           <SheetTitle>Edit profile</SheetTitle>
           <SheetDescription>Update your details and save when you&apos;re done.</SheetDescription>
         </SheetHeader>
-        <div className="py-4 text-body-sm text-muted-foreground">Sheet body content.</div>
+        <div className="py-4 text-body-5 text-muted-foreground">Sheet body content.</div>
         <SheetFooter><Button>Save changes</Button></SheetFooter>
       </SheetContent>
     </Sheet>

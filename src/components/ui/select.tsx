@@ -40,7 +40,7 @@ function SelectTrigger({
       data-slot="select-trigger"
       data-size={size}
       className={cn(
-        "group/select-trigger flex h-10 cursor-pointer w-full items-center justify-between gap-2 rounded-lg border border-dark-15 bg-white px-3 text-body-sm text-dark-100 whitespace-nowrap transition-[color,background-color,border-color,box-shadow] outline-none",
+        "group/select-trigger flex h-10 cursor-pointer w-full items-center justify-between gap-2 rounded-lg border border-dark-15 bg-white px-3 text-body-5 text-dark-100 whitespace-nowrap transition-[color,background-color,border-color,box-shadow] outline-none",
         "hover:border-dark-30 focus-visible:border-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30",
         "data-placeholder:text-dark-60",
         "data-popup-open:border-mint-45 data-popup-open:bg-mint-l4 data-popup-open:text-mint-75 data-popup-open:ring-3 data-popup-open:ring-mint-45/30 data-popup-open:data-placeholder:text-mint-75",
@@ -112,14 +112,14 @@ function SelectLabel({
   return (
     <SelectPrimitive.GroupLabel
       data-slot="select-label"
-      className={cn("px-2 pt-1.5 pb-1 text-caption text-dark-60", className)}
+      className={cn("px-2 pt-1.5 pb-1 text-caption-1 text-dark-60", className)}
       {...props}
     />
   )
 }
 
 const selectItemVariants = cva(
-  "group/select-item relative flex min-h-8 w-full cursor-pointer items-center rounded-md py-1.5 text-body-sm text-dark-100 outline-hidden select-none data-highlighted:bg-light-l1 focus:bg-light-l1 data-disabled:pointer-events-none data-disabled:text-dark-45 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/select-item relative flex min-h-8 w-full cursor-pointer items-center rounded-md py-1.5 text-body-5 text-dark-100 outline-hidden select-none data-highlighted:bg-light-l1 focus:bg-light-l1 data-disabled:pointer-events-none data-disabled:text-dark-45 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       indicator: {
@@ -181,7 +181,7 @@ function SelectFooter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="select-footer"
       className={cn(
-        "sticky bottom-0 -mx-1 -mb-1 mt-1 flex items-center justify-between gap-2 border-t border-light-l3 bg-white px-3 py-2 text-caption text-dark-60",
+        "sticky bottom-0 -mx-1 -mb-1 mt-1 flex items-center justify-between gap-2 border-t border-light-l3 bg-white px-3 py-2 text-caption-1 text-dark-60",
         className
       )}
       {...props}

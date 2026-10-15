@@ -61,12 +61,12 @@ function EmptyState({
       {(title || description) && (
         <div className="flex max-w-sm flex-col gap-1.5">
           {title && (
-            <h3 className="m-0 text-body-md leading-tight font-semibold text-navy">
+            <h3 className="m-0 text-body-4 leading-tight font-semibold text-navy">
               {title}
             </h3>
           )}
           {description && (
-            <p className="m-0 text-body-sm leading-normal text-dark-60">
+            <p className="m-0 text-body-5 leading-normal text-dark-60">
               {description}
             </p>
           )}
@@ -76,7 +76,7 @@ function EmptyState({
       {actions && (
         <div className="flex flex-wrap justify-center gap-2">{actions}</div>
       )}
-      {footer && <div className="text-body-sm text-dark-60">{footer}</div>}
+      {footer && <div className="text-body-5 text-dark-60">{footer}</div>}
     </div>
   )
 }

@@ -56,9 +56,9 @@ const tabsTriggerVariants = cva(
   {
     variants: {
       variant: {
-        pill: "h-7 rounded-full px-2.5 text-body-sm font-semibold tracking-button text-navy uppercase not-data-active:hover:bg-light-l1 data-active:text-white",
-        line: "h-10 rounded-sm px-1 text-body-sm font-semibold tracking-button text-dark-60 uppercase hover:text-navy data-active:text-navy group-data-[orientation=horizontal]/tabs:after:absolute group-data-[orientation=horizontal]/tabs:after:inset-x-0 group-data-[orientation=horizontal]/tabs:after:-bottom-px group-data-[orientation=horizontal]/tabs:after:h-0.75 group-data-[orientation=horizontal]/tabs:after:rounded-t-full group-data-[orientation=horizontal]/tabs:after:bg-dark-15 group-data-[orientation=horizontal]/tabs:after:opacity-0 group-data-[orientation=horizontal]/tabs:after:transition-opacity group-data-[orientation=horizontal]/tabs:not-data-active:hover:after:opacity-100 group-data-[orientation=vertical]/tabs:h-9 group-data-[orientation=vertical]/tabs:px-4 group-data-[orientation=vertical]/tabs:not-data-active:hover:bg-light-l1",
-        segmented: "h-8 flex-1 rounded-md px-3 text-body-sm font-semibold tracking-button text-navy uppercase data-active:text-white",
+        pill: "h-7 rounded-full px-2.5 text-body-5 font-semibold tracking-button text-navy uppercase not-data-active:hover:bg-light-l1 data-active:text-white",
+        line: "h-10 rounded-sm px-1 text-body-5 font-semibold tracking-button text-dark-60 uppercase hover:text-navy data-active:text-navy group-data-[orientation=horizontal]/tabs:after:absolute group-data-[orientation=horizontal]/tabs:after:inset-x-0 group-data-[orientation=horizontal]/tabs:after:-bottom-px group-data-[orientation=horizontal]/tabs:after:h-0.75 group-data-[orientation=horizontal]/tabs:after:rounded-t-full group-data-[orientation=horizontal]/tabs:after:bg-dark-15 group-data-[orientation=horizontal]/tabs:after:opacity-0 group-data-[orientation=horizontal]/tabs:after:transition-opacity group-data-[orientation=horizontal]/tabs:not-data-active:hover:after:opacity-100 group-data-[orientation=vertical]/tabs:h-9 group-data-[orientation=vertical]/tabs:px-4 group-data-[orientation=vertical]/tabs:not-data-active:hover:bg-light-l1",
+        segmented: "h-8 flex-1 rounded-md px-3 text-body-5 font-semibold tracking-button text-navy uppercase data-active:text-white",
       },
     },
     defaultVariants: {
@@ -129,7 +129,7 @@ function TabsTrigger({
   )
 }
 
-const tabsContentVariants = cva("flex-1 text-body-sm outline-none data-ending-style:hidden data-[activation-direction=right]:animate-tab-in-right data-[activation-direction=left]:animate-tab-in-left motion-reduce:animate-none", {
+const tabsContentVariants = cva("flex-1 text-body-5 outline-none data-ending-style:hidden data-[activation-direction=right]:animate-tab-in-right data-[activation-direction=left]:animate-tab-in-left motion-reduce:animate-none", {
   variants: {
     panel: {
       true: "flex flex-col gap-5 rounded-2xl border border-light-l3 bg-white p-6 shadow-xs",

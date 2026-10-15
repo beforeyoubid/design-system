@@ -25,7 +25,7 @@ export const Default: Story = {
           <CarouselItem key={i}>
             <Card>
               <CardContent className="flex aspect-square items-center justify-center p-6">
-                <span className="text-heading-lg">{i + 1}</span>
+                <span className="text-h2">{i + 1}</span>
               </CardContent>
             </Card>
           </CarouselItem>

@@ -92,13 +92,13 @@ function Switch({
         {label != null && (
           <span
             data-slot="switch-label"
-            className="text-body-sm leading-tight font-semibold text-navy"
+            className="text-body-5 leading-tight font-semibold text-navy"
           >
             {label}
           </span>
         )}
         {description != null && (
-          <span data-slot="switch-description" className="text-body-sm text-dark-60">
+          <span data-slot="switch-description" className="text-body-5 text-dark-60">
             {description}
           </span>
         )}

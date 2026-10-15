@@ -20,7 +20,7 @@ export const Stages: Story = {
     <div className="w-72 space-y-3">
       {[10, 33, 66, 100].map((v) => (
         <div key={v}>
-          <div className="text-body-sm text-muted-foreground mb-1">{v}%</div>
+          <div className="text-body-5 text-muted-foreground mb-1">{v}%</div>
           <Progress value={v} />
         </div>
       ))}

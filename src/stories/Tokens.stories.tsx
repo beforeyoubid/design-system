@@ -39,8 +39,8 @@ export const Colors: Story = {
       {colorSwatches.map(s => (
         <div key={s.name} className="flex flex-col items-center gap-2">
           <div className={`w-16 h-16 rounded-lg border border-dark-15 ${s.class}`} />
-          <p className="text-caption text-dark-100 font-medium text-center">{s.name}</p>
-          <p className="text-caption text-dark-60">{s.hex}</p>
+          <p className="text-caption-1 text-dark-100 font-medium text-center">{s.name}</p>
+          <p className="text-caption-1 text-dark-60">{s.hex}</p>
         </div>
       ))}
     </div>
@@ -48,26 +48,27 @@ export const Colors: Story = {
 }
 
 const headingScale = [
-  { label: 'display-xl', cls: 'text-display-xl', size: '72px', weight: '600' },
-  { label: 'display-lg', cls: 'text-display-lg', size: '64px', weight: '600' },
-  { label: 'display-md', cls: 'text-display-md', size: '56px', weight: '600' },
-  { label: 'display-sm', cls: 'text-display-sm', size: '52px', weight: '600' },
-  { label: 'heading-xl', cls: 'text-heading-xl', size: '40px', weight: '600' },
-  { label: 'heading-lg', cls: 'text-heading-lg', size: '36px', weight: '600' },
-  { label: 'heading-md', cls: 'text-heading-md', size: '28px', weight: '600' },
-  { label: 'heading-sm', cls: 'text-heading-sm', size: '24px', weight: '600' },
-  { label: 'heading-xs', cls: 'text-heading-xs', size: '20px', weight: '600' },
+  { label: 'display-1', cls: 'text-display-1',    size: '72px', weight: '600' },
+  { label: 'display-2', cls: 'text-display-2',    size: '64px', weight: '600' },
+  { label: 'display-3', cls: 'text-display-3',    size: '56px', weight: '600' },
+  { label: 'display-4', cls: 'text-display-4',    size: '52px', weight: '600' },
+  { label: 'h1',        cls: 'text-h1',           size: '40px', weight: '600' },
+  { label: 'h2',        cls: 'text-h2',           size: '36px', weight: '600' },
+  { label: 'h3',        cls: 'text-h3',           size: '28px', weight: '600' },
+  { label: 'h4',        cls: 'text-h4',           size: '24px', weight: '600' },
+  { label: 'h5',        cls: 'text-h5',           size: '20px', weight: '600' },
+  { label: 'h6',        cls: 'text-h6',           size: '18px', weight: '600' },
 ]
 
 const bodyScale = [
-  { label: 'body-2xl',   cls: 'text-body-2xl',   size: '24px', weight: '400' },
-  { label: 'body-xl',    cls: 'text-body-xl',    size: '20px', weight: '400' },
-  { label: 'body-lg',    cls: 'text-body-lg',    size: '18px', weight: '400' },
-  { label: 'body-md',    cls: 'text-body-md',    size: '16px', weight: '400' },
-  { label: 'body-sm',    cls: 'text-body-sm',    size: '14px', weight: '400' },
-  { label: 'caption',    cls: 'text-caption',    size: '12px', weight: '400' },
-  { label: 'caption-sm', cls: 'text-caption-sm', size: '10px', weight: '400' },
-  { label: 'caption-xs', cls: 'text-caption-xs', size: '8px',  weight: '400' },
+  { label: 'body-2xl',   cls: 'text-body-1',   size: '24px', weight: '400' },
+  { label: 'body-xl',    cls: 'text-body-2',    size: '20px', weight: '400' },
+  { label: 'body-lg',    cls: 'text-body-3',    size: '18px', weight: '400' },
+  { label: 'body-md',    cls: 'text-body-4',    size: '16px', weight: '400' },
+  { label: 'body-sm',    cls: 'text-body-5',    size: '14px', weight: '400' },
+  { label: 'caption',    cls: 'text-caption-1',    size: '12px', weight: '400' },
+  { label: 'caption-sm', cls: 'text-caption-2', size: '10px', weight: '400' },
+  { label: 'caption-xs', cls: 'text-caption-3', size: '8px',  weight: '400' },
 ]
 
 const buttonScale = [
@@ -81,12 +82,12 @@ export const Typography: Story = {
   render: () => (
     <div className="flex flex-col gap-8 p-6 max-w-3xl">
       <section>
-        <h3 className="text-body-sm font-semibold text-dark-45 uppercase tracking-button mb-3">Headings · Semi Bold (600)</h3>
+        <h3 className="text-body-5 font-semibold text-dark-45 uppercase tracking-button mb-3">Headings · Semi Bold (600)</h3>
         <div className="flex flex-col gap-1">
           {headingScale.map(t => (
             <div key={t.label} className="flex items-baseline gap-4 border-b border-dark-15 py-2">
-              <span className="text-caption text-dark-45 w-28 shrink-0 font-mono">{t.label}</span>
-              <span className="text-caption text-dark-30 w-8 shrink-0">{t.size}</span>
+              <span className="text-caption-1 text-dark-45 w-28 shrink-0 font-mono">{t.label}</span>
+              <span className="text-caption-1 text-dark-30 w-8 shrink-0">{t.size}</span>
               <span className={`text-dark-100 font-semibold ${t.cls}`}>Property decisions</span>
             </div>
           ))}
@@ -94,12 +95,12 @@ export const Typography: Story = {
       </section>
 
       <section>
-        <h3 className="text-body-sm font-semibold text-dark-45 uppercase tracking-button mb-3">Body · Regular (400)</h3>
+        <h3 className="text-body-5 font-semibold text-dark-45 uppercase tracking-button mb-3">Body · Regular (400)</h3>
         <div className="flex flex-col gap-1">
           {bodyScale.map(t => (
             <div key={t.label} className="flex items-baseline gap-4 border-b border-dark-15 py-2">
-              <span className="text-caption text-dark-45 w-28 shrink-0 font-mono">{t.label}</span>
-              <span className="text-caption text-dark-30 w-8 shrink-0">{t.size}</span>
+              <span className="text-caption-1 text-dark-45 w-28 shrink-0 font-mono">{t.label}</span>
+              <span className="text-caption-1 text-dark-30 w-8 shrink-0">{t.size}</span>
               <span className={`text-dark-100 ${t.cls}`}>Making confident property decisions</span>
             </div>
           ))}
@@ -107,12 +108,12 @@ export const Typography: Story = {
       </section>
 
       <section>
-        <h3 className="text-body-sm font-semibold text-dark-45 uppercase tracking-button mb-3">Buttons + overline · Semi Bold (600) / Uppercase</h3>
+        <h3 className="text-body-5 font-semibold text-dark-45 uppercase tracking-button mb-3">Buttons + overline · Semi Bold (600) / Uppercase</h3>
         <div className="flex flex-col gap-1">
           {buttonScale.map(t => (
             <div key={t.label} className="flex items-baseline gap-4 border-b border-dark-15 py-2">
-              <span className="text-caption text-dark-45 w-28 shrink-0 font-mono">{t.label}</span>
-              <span className="text-caption text-dark-30 w-8 shrink-0">{t.size}</span>
+              <span className="text-caption-1 text-dark-45 w-28 shrink-0 font-mono">{t.label}</span>
+              <span className="text-caption-1 text-dark-30 w-8 shrink-0">{t.size}</span>
               <span className={`text-dark-100 font-semibold ${t.cls}`}>Get a quote</span>
             </div>
           ))}

@@ -49,7 +49,7 @@ function PaginationLink({
       variant={isActive ? "primary" : "ghost"}
       size={size}
       className={cn(
-        "text-body-sm font-medium tracking-normal normal-case",
+        "text-body-5 font-medium tracking-normal normal-case",
         isActive
           ? "bg-lime text-navy shadow-none hover:brightness-95"
           : "text-dark-90 hover:bg-light-l1 hover:text-dark-90",

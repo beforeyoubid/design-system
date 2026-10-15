@@ -9,7 +9,8 @@ Read this before adding or modifying any component or token.
 | Path | Purpose |
 |---|---|
 | `globals.css` | Design tokens + `@theme inline` → Tailwind utilities. **Source of truth.** |
-| `utilities.css` | Bespoke product utilities (`.clip-triangle`, `.mask-fade-x`, `.text-button-*`, `.text-overline`, `.text-heading-*`). Imported by `globals.css`. |
+| `DESIGN.md` | Human-readable design spec (tokens, typography, breakpoints, components). Update it in the same PR as any token or component change. |
+| `utilities.css` | Bespoke product utilities (`.clip-triangle`, `.mask-fade-x`, `.text-button-*`, `.text-overline`, `.text-h*` / `.text-display-*` tracking). Imported by `globals.css`. |
 | `components.json` | shadcn CLI config — wire for `npx shadcn add <component>`. |
 | `src/components/` | BYB composite components (`InputField`, `Modal`, `Stepper`, `AreaChart`, …). One file per component. |
 | `src/components/ui/` | Where shadcn CLI scaffolds new base primitives. Customize after scaffolding. |
@@ -69,7 +70,8 @@ light-l1 → light-sandy, white  neutrals (light)
 success-90 → success-l1        success states
 error-90  → error-l2           error / destructive states
 warning-75 → warning-l3        warning / amber states
-category-01 → category-16      data-viz palette
+category-01 → category-35      data-viz + product palette (20–35 unassigned)
+badge-product-*                product badge aliases (see "Product badges" below)
 ```
 
 ### Transparent colours — use opacity modifiers
@@ -85,37 +87,55 @@ modifier instead:
 | `Transparent/Button-B`       | `bg-dark-30/80`     |
 | `Transparent/Button-A`       | `bg-light-l2/80`    |
 
+### Product badges
+
+Each BYB product has a badge colour token that aliases a category primitive
+(`--badge-product-bpi: var(--category-01)`). Mapping lives in the Confluence
+"Product Badges" page (ER space). To reassign a product, repoint its alias in
+`globals.css` and update `badgeProductColors` in `src/tokens.ts`.
+
+```tsx
+<Badge product="electrical-report">Electrical Inspection</Badge>        // component
+<span className="badge-product-electrical-report">…</span>              // fill + white text
+<div className="border-badge-product-bpi text-badge-product-bpi">…</div> // colour only
+```
+
+`category-20` → `category-35` are unassigned placeholders for future products.
+
 ### Typography tokens
 
 Font: **Plus Jakarta Sans** — loaded by the consuming app (e.g. `next/font/google`). We declare the stack via `--font-sans` only.
 
 Class names follow **role + size**: the same suffix always means the same step within a role. Need a different weight? Add `font-medium` / `font-semibold` to the size class; there is no separate weight scale. Tailwind's default `text-xs`…`text-9xl` are disabled, so only these sizes exist.
 
+Heading classes are **style names, not tags** — `<h2 className="text-h1">` is fine; pick the tag for document structure and the class for looks. The old `text-display-xl…sm`, `text-heading-xl…xs`, `text-body-2xl…sm` and `text-caption`/`-sm`/`-xs` names still work but are deprecated (same values); use the new names in all new code.
+
 Display and heading classes bake in `tracking-heading` (-0.005em). Button and overline classes bake in `uppercase` + `tracking-button` (0.04em). Both are applied in `utilities.css`.
 
 ```
-text-display-xl    72px / 600   hero headline only
-text-display-lg    64px / 600
-text-display-md    56px / 600   section hero
-text-display-sm    52px / 600
-text-heading-xl    40px / 600
-text-heading-lg    36px / 600
-text-heading-md    28px / 600
-text-heading-sm    24px / 600
-text-heading-xs    20px / 600
-text-body-2xl      24px / 400
-text-body-xl       20px / 400
-text-body-lg       18px / 400
-text-body-md       16px / 400
-text-body-sm       14px / 400
-text-caption       12px / 400
-text-caption-sm    10px / 400
-text-caption-xs     8px / 400
+text-display-1     72px / 600   primary KPI / standout screen title
+text-display-2     64px / 600
+text-display-3     56px / 600   stat card numbers
+text-display-4     52px / 600
+text-h1            40px / 600
+text-h2            36px / 600
+text-h3            28px / 600
+text-h4            24px / 600
+text-h5            20px / 600
+text-h6            18px / 600
+text-body-1        24px / 400
+text-body-2        20px / 400
+text-body-3        18px / 400
+text-body-4        16px / 400
+text-body-5        14px / 400
+text-caption-1     12px / 400
+text-caption-2     10px / 400
+text-caption-3      8px / 400
 text-overline      12px / 600   uppercase eyebrows, table headers, stat labels
 text-button-lg/md/sm 18 / 16 / 14px / 600   uppercase
 ```
 
-Medium-weight text: `text-body-sm font-medium`, `text-heading-sm font-medium`, etc.
+Medium-weight text: `text-body-5 font-medium`, `text-h4 font-medium`, etc.
 
 ### Spacing tokens
 

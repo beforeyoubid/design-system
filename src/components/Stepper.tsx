@@ -9,9 +9,9 @@ const stepIndicatorVariants = cva(
   {
     variants: {
       size: {
-        sm: "size-6 text-caption [&_svg]:size-3.5",
-        md: "size-8 text-body-sm [&_svg]:size-4",
-        lg: "size-10 text-body-sm [&_svg]:size-5",
+        sm: "size-6 text-caption-1 [&_svg]:size-3.5",
+        md: "size-8 text-body-5 [&_svg]:size-4",
+        lg: "size-10 text-body-5 [&_svg]:size-5",
         dot: "size-3",
       },
       status: {
@@ -204,7 +204,7 @@ function Stepper({
               {step.title && (
                 <span
                   className={cn(
-                    "text-body-sm leading-tight font-semibold",
+                    "text-body-5 leading-tight font-semibold",
                     status === "error" ? "text-error-75" : "text-navy"
                   )}
                 >
@@ -212,7 +212,7 @@ function Stepper({
                 </span>
               )}
               {step.description && (
-                <span className="text-body-sm text-dark-60">
+                <span className="text-body-5 text-dark-60">
                   {step.description}
                 </span>
               )}
