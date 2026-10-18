@@ -42,7 +42,7 @@ function SelectTrigger({
       className={cn(
         "group/select-trigger flex h-10 cursor-pointer w-full items-center justify-between gap-2 rounded-lg border border-dark-15 bg-white px-3 text-body-5 text-dark-100 whitespace-nowrap transition-[color,background-color,border-color,box-shadow] outline-none",
         "hover:border-dark-30 focus-visible:border-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30",
-        "data-placeholder:text-dark-60",
+        "data-placeholder:text-dark-90",
         "data-popup-open:border-mint-45 data-popup-open:bg-mint-l4 data-popup-open:text-mint-75 data-popup-open:ring-3 data-popup-open:ring-mint-45/30 data-popup-open:data-placeholder:text-mint-75",
         "aria-invalid:border-error-75 aria-invalid:hover:border-error-75",
         "disabled:cursor-not-allowed disabled:bg-light-l2 disabled:text-dark-45 data-disabled:cursor-not-allowed data-disabled:bg-light-l2 data-disabled:text-dark-45 data-disabled:hover:border-dark-15",
@@ -112,7 +112,7 @@ function SelectLabel({
   return (
     <SelectPrimitive.GroupLabel
       data-slot="select-label"
-      className={cn("px-2 pt-1.5 pb-1 text-caption-1 text-dark-60", className)}
+      className={cn("px-2 pt-2 pb-1 text-overline text-dark-60", className)}
       {...props}
     />
   )
@@ -123,7 +123,7 @@ const selectItemVariants = cva(
   {
     variants: {
       indicator: {
-        // Single select: mint row + trailing check
+        // Single select: mint row + trailing check (no check when the row has a `meta`)
         check: "ps-2 pe-8 data-selected:bg-mint-l2 data-selected:text-mint-75",
         // Multiple select: leading checkbox, no row fill
         checkbox: "gap-2.5 px-2",
@@ -135,19 +135,36 @@ const selectItemVariants = cva(
 
 export interface SelectItemProps
   extends SelectPrimitive.Item.Props,
-    VariantProps<typeof selectItemVariants> {}
+    VariantProps<typeof selectItemVariants> {
+  /**
+   * Right-aligned content: a count ("12"), hint ("VIC only") or any node, e.g.
+   * a `<ColorDot />`. On single-select rows it replaces the trailing check;
+   * the mint row fill still marks the selection.
+   */
+  meta?: React.ReactNode
+  /** Leading content before the label, e.g. an icon, avatar or `<ColorDot />`. */
+  start?: React.ReactNode
+}
 
 function SelectItem({
   className,
   children,
   indicator = "check",
+  meta,
+  start,
   ...props
 }: SelectItemProps) {
+  const hasMeta = meta != null
+  const showCheck = indicator === "check" && !hasMeta
   return (
     <SelectPrimitive.Item
       data-slot="select-item"
       data-indicator={indicator}
-      className={cn(selectItemVariants({ indicator }), className)}
+      className={cn(
+        selectItemVariants({ indicator }),
+        indicator === "check" && hasMeta && "pe-2",
+        className
+      )}
       {...props}
     >
       {indicator === "checkbox" ? (
@@ -159,7 +176,7 @@ function SelectItem({
             <IconCheck className="size-3" stroke={3} />
           </SelectPrimitive.ItemIndicator>
         </span>
-      ) : (
+      ) : showCheck ? (
         <SelectPrimitive.ItemIndicator
           render={
             <span className="pointer-events-none absolute end-2 flex size-3.5 items-center justify-center" />
@@ -167,10 +184,26 @@ function SelectItem({
         >
           <IconCheck className="size-3.5 text-mint-75" />
         </SelectPrimitive.ItemIndicator>
+      ) : null}
+      {start != null && (
+        <span
+          data-slot="select-item-start"
+          className={cn("flex shrink-0 items-center", indicator === "check" && "me-2.5")}
+        >
+          {start}
+        </span>
       )}
       <SelectPrimitive.ItemText className="flex flex-1 shrink-0 whitespace-nowrap">
         {children}
       </SelectPrimitive.ItemText>
+      {meta != null && (
+        <span
+          data-slot="select-item-meta"
+          className="ms-auto flex shrink-0 items-center ps-3 text-body-5 text-dark-60 group-data-disabled/select-item:text-dark-45"
+        >
+          {meta}
+        </span>
+      )}
     </SelectPrimitive.Item>
   )
 }
@@ -181,7 +214,7 @@ function SelectFooter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="select-footer"
       className={cn(
-        "sticky bottom-0 -mx-1 -mb-1 mt-1 flex items-center justify-between gap-2 border-t border-light-l3 bg-white px-3 py-2 text-caption-1 text-dark-60",
+        "sticky -bottom-1 -mx-1 -mb-1 mt-1 flex items-center justify-between gap-2 border-t border-light-l3 bg-white px-3 py-2 text-caption-1 text-dark-60",
         className
       )}
       {...props}

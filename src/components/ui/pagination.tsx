@@ -52,7 +52,7 @@ function PaginationLink({
         "text-body-5 font-medium tracking-normal normal-case",
         isActive
           ? "bg-lime text-navy shadow-none hover:brightness-95"
-          : "text-dark-90 hover:bg-light-l1 hover:text-dark-90",
+          : "text-dark-90 hover:text-navy",
         className
       )}
       nativeButton={false}

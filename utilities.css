@@ -15,6 +15,15 @@
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
+/* Hide the scrollbar but keep scrolling (wheel, touch, keyboard) — e.g. the
+ * TimePicker columns, where a scrollbar would cover the selected value. */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* Fade left/right edges — e.g. carousels that highlight centre cards */
 .mask-fade-x {
   -webkit-mask-image: linear-gradient(

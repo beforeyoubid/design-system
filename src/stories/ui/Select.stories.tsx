@@ -10,7 +10,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../../components/ui/select'
-import { SelectField } from '../../components/SelectField'
+import { FileText, ShieldCheck, Waves } from 'lucide-react'
+import { SelectField, productSelectOptions } from '../../components/SelectField'
+import { ColorDot } from '../../components/ui/color-dot'
 
 const meta: Meta<typeof Select> = {
   title: 'BYB Components/Select',
@@ -233,5 +235,176 @@ export const MultiplePrimitive: Story = {
         </SelectFooter>
       </SelectContent>
     </Select>
+  ),
+}
+
+/* ---------------------------------------------------------------- */
+/* Multiple: categories and right-hand labels                      */
+/* ---------------------------------------------------------------- */
+
+const REPORT_GROUPS = [
+  {
+    label: 'Inspections',
+    options: [
+      { label: 'Building & pest', value: 'bpi', meta: '26' },
+      { label: 'Building', value: 'building', meta: '9' },
+      { label: 'Pest', value: 'pest', meta: '4' },
+    ],
+  },
+  {
+    label: 'Certificates',
+    options: [
+      { label: 'Owners corporation (VIC)', value: 'oc', meta: '3' },
+      { label: 'Electrical safety', value: 'esc', meta: '1' },
+    ],
+  },
+  {
+    label: 'Reports',
+    options: [
+      { label: 'Strata', value: 'strata', meta: '12' },
+      { label: 'Dilapidation', value: 'dilap', meta: '0', disabled: true },
+    ],
+  },
+]
+
+/** `options` entries shaped `{ label, options }` render as category headings. */
+export const MultipleWithCategories: Story = {
+  name: 'Multiple: categories',
+  render: () => (
+    <div className="w-80">
+      <SelectField
+        multiple
+        label="Reports"
+        placeholder="Select reports"
+        defaultValue={['bpi', 'strata']}
+        options={REPORT_GROUPS.map((g) => ({
+          ...g,
+          options: g.options.map((o) => ({ label: o.label, value: o.value, disabled: o.disabled })),
+        }))}
+      />
+    </div>
+  ),
+}
+
+/** `meta` on an option shows a right-aligned label, e.g. a count. */
+export const MultipleWithRightLabel: Story = {
+  name: 'Multiple: right label',
+  render: () => (
+    <div className="w-80">
+      <SelectField
+        multiple
+        label="Reports"
+        placeholder="Select reports"
+        defaultValue={['bpi']}
+        options={REPORT_GROUPS.flatMap((g) => g.options)}
+      />
+    </div>
+  ),
+}
+
+export const MultipleWithCategoriesAndRightLabel: Story = {
+  name: 'Multiple: categories + right label',
+  render: () => (
+    <div className="w-80">
+      <SelectField
+        multiple
+        label="Reports"
+        placeholder="Select reports"
+        options={REPORT_GROUPS}
+      />
+    </div>
+  ),
+}
+
+/** Single select also supports `meta`; it sits before the trailing check. */
+/** Single choice with a right label: the label replaces the trailing check; the mint row marks the selection. */
+export const SingleWithRightLabel: Story = {
+  name: 'Single: right label',
+  render: () => (
+    <div className="w-80">
+      <Select
+        defaultValue="vic"
+        items={{
+          nsw: "New South Wales",
+          vic: "Victoria",
+          qld: "Queensland",
+          wa: "Western Australia",
+          sa: "South Australia",
+        }}
+      >
+        <SelectTrigger aria-label="State">
+          <SelectValue placeholder="Select a state" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Eastern states</SelectLabel>
+            <SelectItem value="nsw" meta="142 jobs">New South Wales</SelectItem>
+            <SelectItem value="vic" meta="98 jobs">Victoria</SelectItem>
+            <SelectItem value="qld" meta="61 jobs">Queensland</SelectItem>
+          </SelectGroup>
+          <SelectSeparator />
+          <SelectGroup>
+            <SelectLabel>Western states</SelectLabel>
+            <SelectItem value="wa" meta="17 jobs">Western Australia</SelectItem>
+            <SelectItem value="sa" meta="9 jobs">South Australia</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
+  ),
+}
+
+/**
+ * Custom content per option: `meta` (right side of the row) and `chip`
+ * (inside the selected chip) take any node. `productSelectOptions()` builds
+ * product options with their badge-colour dots.
+ */
+export const MultipleWithProductColours: Story = {
+  name: 'Multiple: product colours',
+  render: () => (
+    <div className="w-80">
+      <SelectField
+        multiple
+        label="Products"
+        maxDisplayed={1}
+        defaultValue={['bpi', 'building-inspection', 'strata-report', 'electrical-report', 'pool-inspection']}
+        options={productSelectOptions(
+          ['bpi', 'building-inspection', 'pest-inspection', 'strata-report', 'electrical-report', 'pool-inspection'],
+          { bpi: { label: 'Building & Pest Report' }, 'pest-inspection': { label: 'Timber Pest Inspection' } }
+        )}
+      />
+    </div>
+  ),
+}
+
+/** Single choice with product colours: the dot sits on the right of each row and before the chosen value. */
+export const SingleWithProductColours: Story = {
+  name: 'Single: product colours',
+  render: () => (
+    <div className="w-80">
+      <SelectField label="Product" defaultValue="strata-report" options={productSelectOptions()} />
+    </div>
+  ),
+}
+
+/**
+ * Scales to any content: `start` for a leading icon, `meta` for anything on
+ * the right, `chip` for what the field shows once picked.
+ */
+export const MultipleWithCustomContent: Story = {
+  name: 'Multiple: custom content',
+  render: () => (
+    <div className="w-80">
+      <SelectField
+        multiple
+        label="Add-ons"
+        defaultValue={['report']}
+        options={[
+          { value: 'report', label: 'PDF report', start: <FileText className="text-dark-60" />, meta: 'Free', chip: <FileText className="size-3.5" /> },
+          { value: 'pool', label: 'Pool check', start: <Waves className="text-dark-60" />, meta: '$120', chip: <Waves className="size-3.5" /> },
+          { value: 'warranty', label: 'Warranty review', start: <ShieldCheck className="text-dark-60" />, meta: <ColorDot className="bg-warning-45" />, chip: <ColorDot className="bg-warning-45" /> },
+        ]}
+      />
+    </div>
   ),
 }

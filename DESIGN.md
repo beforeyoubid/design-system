@@ -217,7 +217,7 @@ Every style is **`{role}-{step}`**, and **1 is always the largest**. Headings us
 
 JS: `import { typography } from '@beforeyoubid/design-system'` → `typography.h1`, `typography.body4`.
 
-**Responsive:** step headings down on mobile, e.g. `text-h3 md:text-h1` (or `text-h3 desktop:text-h1`).
+**Responsive:** step headings down on mobile, e.g. `text-h3 tablet:text-h1`.
 
 **Colour:** headings `text-navy`; body `text-dark-90`; secondary `text-dark-75`; hints `text-dark-60` (not for essential content).
 
@@ -242,39 +242,24 @@ Common component rhythm: card padding 24px (16px for `size="sm"`), form field he
 
 ## Breakpoints and grid
 
-Mobile-first: unprefixed classes are mobile; prefixes apply **from that width up**. Values follow the Confluence **Responsive Breakpoints** page.
+Use the **BYB variants** `mobile:`, `tablet:`, `desktop:`, `wide:` in all page code. Don't use Tailwind's `sm:` / `md:` / `lg:` / `xl:` / `2xl:` / `max-*:` prefixes. They exist only for shadcn component internals. Values follow the Confluence **Responsive Breakpoints** page.
 
-| Tier | Width | Prefix | Device | Layout |
+Mobile-first: unprefixed classes are the mobile styles. `tablet:`, `desktop:` and `wide:` apply **from that width up**, so a value carries to bigger screens until a larger variant overrides it. `mobile:` is the one range variant: it applies **below 768px only**.
+
+| Tier | Width | Variant | Device | Layout |
 |---|---|---|---|---|
-| Mobile | < 768px | *(none)* | Phones | Single column, adjusted spacing |
-| Tablet | 768–1023px | `md:` | Tablets | Multi-column, card-based |
-| Desktop | 1024–1439px | `lg:` | Laptops / desktops | Full layouts, side navigation |
-| Large | ≥ 1440px | `xl:` | Large screens | Max content width, extra assets |
+| Mobile | < 768px | *(none)*, or `mobile:` for mobile-only | Phones | Single column, adjusted spacing |
+| Tablet | 768–1023px | `tablet:` (≥ 768px) | Tablets | Multi-column, card-based |
+| Desktop | 1024–1439px | `desktop:` (≥ 1024px) | Laptops / desktops | Full layouts, side navigation |
+| Large | ≥ 1440px | `wide:` (≥ 1440px) | Large screens | Max content width, extra assets |
 
 ```tsx
-<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">…</div>
-<nav className="hidden lg:flex">…</nav>          // desktop-only
-<div className="md:hidden">…</div>               // mobile-only
+<div className="grid grid-cols-1 gap-4 tablet:grid-cols-2 desktop:grid-cols-3">…</div>
+<nav className="hidden desktop:flex">…</nav>               // desktop and up
+<div className="desktop:hidden">…</div>                    // mobile + tablet
+<aside className="mobile:hidden">…</aside>                 // tablet and up
+<div className="hidden tablet:block desktop:hidden">…</div> // tablet only
 ```
-
-- `sm:` (640px) and `2xl:` (1536px) exist for shadcn internals. Don't use them for page layout.
-- Range-only styles: `max-md:` (mobile only), `md:max-lg:` (tablet only).
-
-**Named device variants** (same widths, read like the design spec):
-
-| Variant | Range | Equivalent |
-|---|---|---|
-| `mobile:` | < 768px | `max-md:` |
-| `tablet:` | 768–1023px | `md:max-lg:` |
-| `desktop:` | ≥ 1024px | `lg:` |
-| `wide:` | ≥ 1440px | `xl:` |
-
-```tsx
-<div className="px-4 tablet:px-6 desktop:px-16">…</div>
-<aside className="mobile:hidden">…</aside>
-```
-
-Pick one style per file. Don't mix `lg:` and `desktop:` on the same element.
 
 **Design grid (Figma frames)**
 
@@ -284,7 +269,7 @@ Pick one style per file. Don't mix `lg:` and `desktop:` on the same element.
 | 968px | Tablet | 8 | 24px (`px-6`) | 16px (`gap-4`) |
 | 1440px | Desktop | 12 | 64px (`px-16`) | 20px (`gap-5`) |
 
-Page container: `mx-auto w-full max-w-site px-4 md:px-6 lg:px-16`. Touch targets ≥ 48px on mobile.
+Page container: `mx-auto w-full max-w-site px-4 tablet:px-6 desktop:px-16`. Grid: `grid-cols-4 gap-4 tablet:grid-cols-8 desktop:grid-cols-12 desktop:gap-5`. Touch targets ≥ 48px on mobile.
 
 ---
 
@@ -376,7 +361,7 @@ Props: `loading` (spinner + `aria-busy`), `icon`, `iconPosition` (`left` / `righ
 
 ### Badge
 
-Pill, 20px tall, `text-caption-2` semibold, optional status `dot`.
+Pill, `text-caption-2` semibold. Sizes `sm` / `md` (default, 20px) / `lg`; `spinner` shows a 12px loading spinner. No status dot.
 
 | Variant | Fill / border / text |
 |---|---|
@@ -387,64 +372,133 @@ Pill, 20px tall, `text-caption-2` semibold, optional status `dot`.
 | `error` | error-l1 / error-15 / error-75 |
 | `warning` | warning-l3 / warning-l1 / warning-75 |
 
-`category={1…35}`: 24px solid badge in the category palette, white `text-body-5` medium.
+`category={1…35}`: solid badge in the category palette, white text (md: 24px, `text-body-5` medium). Follows `size`.
 `product="electrical-report"` (any product badge name): same solid style in the product's colour. Overrides `category`.
 
 ### Form controls (Input, Textarea, InputGroup, Select)
 
-- 40px tall, `rounded-lg`, `border-dark-15`, white fill, `text-body-5 text-dark-100`, placeholder `dark-60`.
+- 40px tall, `rounded-lg`, `border-dark-15`, white fill, `text-body-5 text-dark-100`, placeholder `dark-90`.
 - Focus: `border-mint-45` + `ring-3 ring-mint-45/30`.
 - Invalid (`aria-invalid`): `border-error-75`, red ring on focus.
 - Disabled: `bg-light-l2 text-dark-45`.
-- `InputField` / `SelectField` add label, hint and error slots. `Fieldset` groups them. `DatePicker` pairs the input with `Calendar`.
-- Checkbox, Radio, Switch: mint-checked; labels `text-body-5 font-semibold text-navy`, descriptions `text-dark-60`.
+- `InputField` / `SelectField` add label, hint and error slots. `SelectField` options can be grouped into categories (`{ label, options }`) and take custom content in three slots, each accepting any node: `start` (before the label in the row), `meta` (right side of the row, e.g. a count or `<ColorDot />`) and `chip` (shown before the label once selected, in the chip or the field). `productSelectOptions(keys?, overrides?)` builds product options with their badge-colour dots. On single-select rows a `meta` replaces the trailing check; the mint row fill marks the selection. `Fieldset` groups them. `DatePicker` pairs the trigger with `Calendar` and shows dates as DD/MM/YYYY (`formatDateDMY`); `time` adds a `TimePicker` with matching trigger and scrollable hour / minute columns: 24-hour (no AM/PM), selected value in lime like the calendar's selected day; columns scroll without a visible scrollbar (`scrollbar-none`).
+- Checkbox, Radio, Switch: mint-checked; `RadioGroup` sizes `sm` / `md` / `lg`; labels `text-body-5 font-semibold text-navy`, descriptions `text-dark-60`.
 
 ### Card
 
-`rounded-lg border-border bg-card shadow-xs`, padding 24px (`size="sm"`: 16px). Title `text-body-4 font-medium`, description `text-body-5 text-muted-foreground`. Parts: `CardHeader`, `CardTitle`, `CardDescription`, `CardAction`, `CardContent`, `CardFooter`.
+`rounded-lg border-border bg-card shadow-xs`, padding 24px (`size="sm"`: 16px). Title `text-body-4 font-medium`, description `text-body-5 text-muted-foreground`. Parts: `CardHeader`, `CardTitle`, `CardDescription`, `CardAction`, `CardContent`, `CardFooter`, `CardIcon`. `<CardHeader icon={<FileText />} iconTone="navy">` adds an `IconTile` above the title.
+
+### IconTile
+
+Lucide icon on a tinted tile; used by Card, EmptyState, Dialog and the product dropdown.
+
+| Prop | Options |
+|---|---|
+| `tone` | `mint` (mint-l3 / mint-75), `navy` (navy / white), `lime` (lime / navy), `warning` (warning-l2 / warning-75), `error` (error-l1 / error-75), `neutral` (light-l2 / navy) |
+| `size` | `sm` 32px (16px icon), `md` 40px (20px), `lg` 48px (24px) |
+| `shape` | `circle` (default), `square` (`rounded-lg`) |
+
+Product icons, names and badge colours come from `productBadges` (`src/lib/product-badges.ts`).
 
 ### Tabs
 
 | Variant | Look |
 |---|---|
 | `pill` (default) | White track with `dark-15` border, sliding `mint-60` pill, active text white |
-| `line` | Underline row, 3px `mint-60` indicator, inactive `dark-60` → hover `navy` |
+| `line` | Underline row, 3px `mint-60` indicator, inactive `dark-100` → hover `dark-75`, active `navy` (same in vertical) |
 | `segmented` | `light-l2` track, sliding `mint-45` segment, active text white |
 
 All triggers: `text-body-5 font-semibold tracking-button uppercase`. Indicator slides with `ease-snappy` 300ms; panels slide 0.5rem. `TabsContent panel` gives a `rounded-2xl` bordered panel. Supports vertical orientation.
 
 ### Table
 
-Headers use `text-overline text-muted-foreground`; cells `text-body-5 text-dark-90`; rows hover `mint-l4`, selected `mint-l3`.
+Headers use `text-overline text-dark-100`; sortable headers (`sortable`, `sortDirection`, `onSort`) show Lucide arrows in `dark-60` and set `aria-sort`; cells `text-body-5 text-dark-90`; rows hover `mint-l4`, selected `mint-l3`.
 
 | Prop | Options |
 |---|---|
 | `variant` | `default` (row dividers), `card` (rounded-lg frame + shadow-xs, light-l1 header), `striped` (zebra rows), `bordered` (frame + column lines) |
 | `size` | `sm` (head 36px, cell py 8), `md` (44 / 12), `lg` (48 / 16) |
 
-`TableEmpty` renders an `EmptyState` across all columns. `TableCaption` displays below the frame. Selectable rows: whole row is clickable.
+`TableEmpty` renders an `EmptyState` across all columns. `TableCaption` displays below the frame. Selectable rows: whole row is clickable. `TableExpandableRow` reveals a detail row and the whole row is clickable (clicks on buttons, links and menu items inside it don't toggle it). The chevron sits in a trailing **Controls** column (`<TableControlsHead />`) together with `controls`, e.g. a ⋮ `DropdownMenuIconTrigger` menu. `TableViewMore` reveals rows beyond an initial count.
 
 ### Overlays
 
 | Component | Notes |
 |---|---|
-| `Modal` / `Dialog` / `AlertDialog` | Backdrop `bg-dark-100/50`, white panel, title `text-body-3 font-semibold text-navy`, body `text-body-4 text-dark-90`, actions right-aligned |
+| `Dialog` / `AlertDialog` | Backdrop `bg-dark-100/50`, white panel, actions right-aligned. One layout: 24px radius, × close, a divider under the header and above the actions, and a scrolling `DialogBody` for long content (no double divider when there is no body). `DialogHeader icon iconTone` adds an `IconTile` and centres the header and actions. `DialogContent` `size` `sm` / `md` / `lg` / `xl`. `DialogCollapsible` (`view-more` or `dropdown`). `ConfirmDialog` replaces the old `Modal` (cancel / action, `destructive`). |
 | `Sheet` / `Drawer` | Edge panels for secondary flows |
-| `Popover`, `HoverCard`, `Tooltip` | `rounded-lg`, floating shadow (`shadow-md` / `shadow-lg`) |
-| `DropdownMenu`, `ContextMenu`, `Menubar`, `Command` | Panel `rounded-lg`, items `rounded-md`, hover `accent` |
+| `Popover`, `HoverCard` | `rounded-lg`, floating shadow (`shadow-md` / `shadow-lg`) |
+| `Tooltip` | Navy bubble, white `text-body-4`, `rounded-2xl`, navy arrow, above the trigger on hover |
+| `DropdownMenu`, `ContextMenu`, `Menubar`, `Command` | Panel `rounded-lg`, items `rounded-md`, hover `accent`. Dropdown checkbox items match Select; radio items show the selection with a mint fill (no check mark). `DropdownMenuProductItem` gives a 54px product row with the colour dot on the right. `DropdownMenuIconTrigger` is an icon-only trigger (no button styling): `icon` = `kebab` ⋮ (default), `meatball` ⋯, `chevron`, `settings` or any element; `tone` mint / dark / navy; `size` sm / md / lg; always pass `label`. `DropdownMenuCardTrigger` / `DropdownMenuCardGrid` / `DropdownMenuCardItem` and `ProductSwitcher` give the card-grid picker. |
 
 ### Feedback
 
 | Component | Variants |
 |---|---|
 | `Alert` | `default`, `info` (mint-l4), `success`, `warning`, `destructive`; `rounded-xl`, tint fill + `-15` border + `-75` text |
-| `Toast` | `success` (mint-l3), `warning` (warning-l3), `error` (error-l1); `rounded-xl`; `showToast()` / `dismissToast()` |
-| `EmptyState` | `plain`, `dashed`, `muted`; 40px `mint-l3` icon circle, navy title, actions row |
-| `Progress`, `Spinner`, `Skeleton` | Loading states |
+| `Toaster` + `sonner()` (Sonner) | See **Toasts (Sonner)** below |
+| `EmptyState` | `plain`, `dashed`, `muted`; mint `IconTile`, navy title, actions row |
+| `Progress`, `Spinner` | Loading states |
+| `Skeleton` | `light-l2` fill with a white shimmer sweep (`animate-shimmer`); static when reduced motion is on |
+
+### Toasts (Sonner)
+
+Short, non-blocking feedback after an action. Mount `<Toaster />` once in the app root, then call `sonner.success(title, { description, action })`, `sonner.warning(…)`, `sonner.error(…)`, `sonner.info(…)` or `sonner(…)`. `sonner.promise`, `sonner.loading` and `sonner.dismiss` are also available (see **In-progress toasts** below). `toast` still works as a deprecated alias.
+
+| Variant | Fill | Title, icon, ×, action link | Use for |
+|---|---|---|---|
+| `success` | `mint-l3` | `mint-60`, check | A completed action: "Inspection booked" |
+| `info` | `mint-l4` | `mint-75`, "i" | Neutral updates: "Report is being prepared" |
+| `warning` | `warning-l3` | `warning-60`, exclamation mark | Needs attention but nothing failed: "Please check your conditions" |
+| `error` | `error-l1` | `error-60`, × | Something failed or is blocked: "You are not verified" |
+| default `sonner()` | `light-l2` | `navy`, bell | General notices that aren't success, warning or error: "Settings saved" |
+
+Anatomy (the original BYB Toast): flat, 20px radius (`rounded-xl`), 8px / 12px padding; 32px white circle with a tone-coloured border holding the Tabler icon; title `text-body-5` semibold in the tone colour; description `text-body-5 text-dark-90`; optional action as an underlined text link in the tone colour, right after the description ("Undo", closes the toast when clicked); × top-right in the tone colour. `<Toast>` renders the same surface inline.
+
+**In-progress toasts (`sonner.promise`, `sonner.loading`)**
+
+One toast follows the action from start to finish. It is never navy.
+
+| Stage | Look |
+|---|---|
+| Pending | Spinner in the icon circle, coloured by what the action does: `tone="error"` red for deleting / removing, `tone="warning"` amber for risky changes, `tone="info"` light mint (default) for everything else. Stays until the promise settles. |
+| Success | Same toast turns **green** (`success`), auto-dismisses after 5s |
+| Error | Same toast turns **red** (`error`), stays until closed |
+
+```tsx
+sonner.promise(deleteReport(id), {
+  tone: 'error',
+  loading: 'Deleting report…',
+  success: 'Report deleted',
+  error: "Couldn't delete the report",
+})
+```
+
+**Placement**
+
+| Screen | Position |
+|---|---|
+| Desktop (≥ 768px) | Bottom-right, 440px wide, 24px from the edges |
+| Mobile (< 768px) | Bottom, full width (16px side margins below 600px, 24px from 600–767px) |
+
+New toasts stack on top; hovering the stack expands it.
+
+**When it disappears**
+
+| Variant | Auto-dismiss |
+|---|---|
+| `success` | 5 seconds |
+| `warning` | 8 seconds |
+| `error` | Never: stays until the user closes it |
+| `info`, default | 5 seconds |
+
+Every toast has a × so it can be closed early. Override per toast with `duration` only when the user needs longer to read or act, e.g. a toast with an Undo action. Don't put the only path to an action inside a toast; it may disappear before the user acts.
+
+`showToast()` / `dismissToast()` still work as deprecated aliases for `sonner.*()` / `sonner.dismiss()`.
 
 ### Navigation and structure
 
-`Stepper` (sizes `sm/md/lg/dot`; statuses active mint-60 with ring, complete mint-l2, upcoming light-l2, error error-75) · `Breadcrumb` · `Pagination` · `NavigationMenu` · `Sidebar` · `Accordion` · `Collapsible` · `Separator` · `ScrollArea` · `Resizable` · `AspectRatio` · `Carousel`.
+`Stepper` (sizes `sm/md/lg/dot`; statuses active mint-60 with ring, complete mint-l2, upcoming light-l2, error error-75) · `Breadcrumb` · `Pagination` · `NavigationMenu` · `Sidebar` · `Accordion` (`size` `sm` / `md` / `lg`) · `Collapsible` · `Separator` · `ScrollArea` · `Resizable` · `AspectRatio` · `Carousel`.
 
 ### Data and media
 
@@ -473,5 +527,6 @@ Headers use `text-overline text-muted-foreground`; cells `text-body-5 text-dark-
 5. **No inline styles, no MUI.** Use `cva` for variants, `cn()` for merging, Base UI `render` for links.
 6. **New tokens:** add to `globals.css` `:root` (OKLCH + hex comment) → `@theme inline` → run `pnpm check-tokens` → `src/tokens.ts` if needed → `cn()` group in `src/lib/utils.ts`.
 7. **Typography by role + step** (`text-h3`, `text-body-4`), never pixel sizes. Tag for structure, class for looks.
-8. **Mobile-first breakpoints:** `md:` 768, `lg:` 1024, `xl:` 1440. No `sm:`/`2xl:` in page layout.
+8. **Breakpoints:** `tablet:` 768, `desktop:` 1024, `wide:` 1440, `mobile:` below 768 only. Never `sm:`/`md:`/`lg:`/`xl:`/`2xl:`/`max-*:` in page code.
 9. **Badge colours keep white text at AA.** New category colours must pass 4.5:1 against white.
+10. **Hover never adds a background to a bare text or icon control.** Links, page numbers, text tabs, nav triggers, × and other icon buttons change colour only. Controls that already have a fill (buttons, chips) change their fill; rows in lists, menus, selects, tables and the calendar keep their row highlight.

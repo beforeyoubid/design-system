@@ -5,6 +5,9 @@ const meta: Meta<typeof Accordion> = {
   title: 'BYB Components/Accordion',
   component: Accordion,
   tags: ['autodocs'],
+  argTypes: {
+    size: { control: 'select', options: ['sm', 'md', 'lg'] },
+  },
 }
 
 export default meta
@@ -81,5 +84,28 @@ export const SingleOpen: Story = {
         </AccordionItem>
       ))}
     </Accordion>
+  ),
+}
+
+/** `size` on `Accordion` sets every trigger and panel; `md` is the default. */
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex max-w-2xl flex-col gap-10">
+      {(['sm', 'md', 'lg'] as const).map((size) => (
+        <div key={size} className="flex flex-col gap-2">
+          <span className="text-overline text-dark-60">{size}</span>
+          <Accordion size={size} defaultValue={['share-cost']}>
+            {FAQ_ITEMS.slice(0, 3).map((item) => (
+              <AccordionItem key={item.value} value={item.value}>
+                <AccordionTrigger>{item.question}</AccordionTrigger>
+                <AccordionContent>
+                  <p>{item.answer}</p>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      ))}
+    </div>
   ),
 }

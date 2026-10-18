@@ -12,7 +12,7 @@ Read this before adding or modifying any component or token.
 | `DESIGN.md` | Human-readable design spec (tokens, typography, breakpoints, components). Update it in the same PR as any token or component change. |
 | `utilities.css` | Bespoke product utilities (`.clip-triangle`, `.mask-fade-x`, `.text-button-*`, `.text-overline`, `.text-h*` / `.text-display-*` tracking). Imported by `globals.css`. |
 | `components.json` | shadcn CLI config — wire for `npx shadcn add <component>`. |
-| `src/components/` | BYB composite components (`InputField`, `Modal`, `Stepper`, `AreaChart`, …). One file per component. |
+| `src/components/` | BYB composite components (`InputField`, `SelectField`, `Stepper`, `AreaChart`, …). One file per component. |
 | `src/components/ui/` | Where shadcn CLI scaffolds new base primitives. Customize after scaffolding. |
 | `src/tokens.ts` | Same brand colors and typography exported as JS constants (for non-Tailwind contexts). |
 | `src/lib/utils.ts` | `cn()` helper — `tailwind-merge` extended with every BYB token. |
@@ -200,7 +200,7 @@ This tells bundlers that JS exports are side-effect-free (free to tree-shake) bu
 - Use `cva` (class-variance-authority) for all component variants — not ad-hoc `Record<>` maps
 - Use `cn` (exported from `src/lib/utils.ts`) for all className merging — not raw `clsx`
 - Use Base UI's `render` prop (not `asChild`) to render an interactive component as another element
-- For complex components needing accessibility primitives (Modal, Combobox, Tooltip), use `@base-ui/react`
+- For complex components needing accessibility primitives (Dialog, Combobox, Tooltip), use `@base-ui/react`
 - **No inline styles.** No `style={{}}` props unless absolutely unavoidable
 - **No MUI imports.** This package is MUI-free by design
 
@@ -215,7 +215,7 @@ npx shadcn@latest add button
 
 The output uses semantic tokens (`bg-primary`, `text-primary-foreground`, etc.) and works out of the box because the semantic layer is wired up in `globals.css`. After scaffolding, customize the variants and export from `src/index.ts`.
 
-Generated components live under `src/components/ui/` to keep BYB composites (`InputField`, `Modal`, …) separate from the primitives.
+Generated components live under `src/components/ui/` to keep BYB composites (`InputField`, `DatePicker`, …) separate from the primitives.
 
 ### Component API conventions
 

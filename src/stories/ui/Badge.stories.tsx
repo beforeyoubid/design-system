@@ -37,7 +37,7 @@ const meta: Meta<typeof Badge> = {
         'bmc',
       ],
     },
-    dot: { control: 'boolean' },
+    size: { control: 'inline-radio', options: ['sm', 'md', 'lg'] },
     spinner: { control: 'boolean' },
   },
 }
@@ -46,6 +46,7 @@ export default meta
 type Story = StoryObj<typeof Badge>
 
 const TONES = ['gray', 'mint', 'lime', 'success', 'error', 'warning'] as const
+const SIZES = ['sm', 'md', 'lg'] as const
 const CATEGORIES = Array.from({ length: 35 }, (_, i) => (i + 1) as BadgeCategory)
 
 const PRODUCTS: { product: BadgeProduct; label: string }[] = [
@@ -70,7 +71,7 @@ const PRODUCTS: { product: BadgeProduct; label: string }[] = [
   { product: 'bmc', label: 'BMC' },
 ]
 
-export const Default: Story = { args: { children: 'Badge', dot: true } }
+export const Default: Story = { args: { children: 'Badge' } }
 export const Syncing: Story = { args: { variant: 'mint', spinner: true, children: 'Syncing' } }
 export const Category: Story = { args: { category: 5, children: 'Category' } }
 export const Product: Story = { args: { product: 'electrical-report', children: 'Electrical Inspection' } }
@@ -78,9 +79,6 @@ export const Product: Story = { args: { product: 'electrical-report', children: 
 export const Tones: Story = {
   render: () => (
     <div className="flex flex-col gap-3">
-      <div className="flex flex-wrap gap-2">
-        {TONES.map((t) => <Badge key={t} variant={t} dot>{t}</Badge>)}
-      </div>
       <div className="flex flex-wrap gap-2">
         {TONES.map((t) => <Badge key={t} variant={t}>{t}</Badge>)}
       </div>
@@ -118,6 +116,24 @@ export const Products: Story = {
           </span>
         ))}
       </div>
+    </div>
+  ),
+}
+
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4">
+      {SIZES.map((size) => (
+        <div key={size} className="flex flex-wrap items-center gap-2">
+          <span className="w-8 text-caption-1 text-dark-60">{size}</span>
+          {TONES.map((t) => (
+            <Badge key={t} variant={t} size={size}>{t}</Badge>
+          ))}
+          <Badge size={size} variant="mint" spinner>Syncing</Badge>
+          <Badge size={size} category={4}>Category 4</Badge>
+          <Badge size={size} product="electrical-report">Electrical Inspection</Badge>
+        </div>
+      ))}
     </div>
   ),
 }

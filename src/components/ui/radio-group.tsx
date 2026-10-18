@@ -8,51 +8,114 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 type RadioGroupVariant = "default" | "card"
+type RadioSize = "sm" | "md" | "lg"
 
-const RadioGroupVariantContext = React.createContext<RadioGroupVariant>("default")
+const RadioGroupContext = React.createContext<{
+  variant: RadioGroupVariant
+  size: RadioSize
+}>({ variant: "default", size: "md" })
 
 const radioGroupVariants = cva("grid w-full", {
   variants: {
     variant: {
-      default: "gap-2.5",
-      card: "gap-2",
+      default: "",
+      card: "",
+    },
+    size: {
+      sm: "gap-2",
+      md: "gap-2.5",
+      lg: "gap-3",
     },
   },
+  compoundVariants: [{ variant: "card", className: "gap-2" }],
   defaultVariants: {
     variant: "default",
+    size: "md",
   },
 })
 
 const radioItemFieldVariants = cva(
-  "group/radio-field flex cursor-pointer items-start gap-2.5 has-data-disabled:cursor-not-allowed has-data-disabled:opacity-50",
+  "group/radio-field flex cursor-pointer items-start has-data-disabled:cursor-not-allowed has-data-disabled:opacity-50",
   {
     variants: {
       variant: {
         default: "",
-        card: "flex-row-reverse justify-between gap-4 rounded-lg border border-dark-15 bg-white px-4 py-3.5 transition-colors has-data-checked:border-mint-45 has-data-checked:bg-mint-l4",
+        card: "flex-row-reverse justify-between gap-4 rounded-lg border border-dark-15 bg-white transition-colors has-data-checked:border-mint-45 has-data-checked:bg-mint-l4",
+      },
+      size: {
+        sm: "gap-2",
+        md: "gap-2.5",
+        lg: "gap-3",
       },
     },
+    compoundVariants: [
+      { variant: "card", size: "sm", className: "gap-3 px-3 py-2.5" },
+      { variant: "card", size: "md", className: "gap-4 px-4 py-3.5" },
+      { variant: "card", size: "lg", className: "gap-4 px-5 py-4" },
+    ],
     defaultVariants: {
       variant: "default",
+      size: "md",
     },
   }
 )
+
+/** The radio circle and its checked dot, per size. */
+const radioControlVariants = cva("", {
+  variants: {
+    size: {
+      sm: "size-3.5 [&_[data-slot=radio-group-dot]]:size-1.5",
+      md: "size-4 [&_[data-slot=radio-group-dot]]:size-2",
+      lg: "size-5 [&_[data-slot=radio-group-dot]]:size-2.5",
+    },
+  },
+  defaultVariants: { size: "md" },
+})
+
+const radioLabelVariants = cva("leading-tight text-navy", {
+  variants: {
+    size: {
+      sm: "text-caption-1",
+      md: "text-body-5",
+      lg: "text-body-4",
+    },
+  },
+  defaultVariants: { size: "md" },
+})
+
+const radioDescriptionVariants = cva("text-dark-60", {
+  variants: {
+    size: {
+      sm: "text-caption-1",
+      md: "text-body-5",
+      lg: "text-body-5",
+    },
+  },
+  defaultVariants: { size: "md" },
+})
 
 export interface RadioGroupProps
   extends RadioGroupPrimitive.Props,
     VariantProps<typeof radioGroupVariants> {}
 
-function RadioGroup({ className, variant, ...props }: RadioGroupProps) {
-  const resolved: RadioGroupVariant = variant ?? "default"
+function RadioGroup({ className, variant, size, ...props }: RadioGroupProps) {
+  const resolvedVariant: RadioGroupVariant = variant ?? "default"
+  const resolvedSize: RadioSize = size ?? "md"
   return (
-    <RadioGroupVariantContext.Provider value={resolved}>
+    <RadioGroupContext.Provider
+      value={{ variant: resolvedVariant, size: resolvedSize }}
+    >
       <RadioGroupPrimitive
         data-slot="radio-group"
-        data-variant={resolved}
-        className={cn(radioGroupVariants({ variant: resolved }), className)}
+        data-variant={resolvedVariant}
+        data-size={resolvedSize}
+        className={cn(
+          radioGroupVariants({ variant: resolvedVariant, size: resolvedSize }),
+          className
+        )}
         {...props}
       />
-    </RadioGroupVariantContext.Provider>
+    </RadioGroupContext.Provider>
   )
 }
 
@@ -63,6 +126,8 @@ export interface RadioGroupItemProps extends RadioPrimitive.Root.Props {
   description?: React.ReactNode
   /** className for the wrapping `<label>` (only used when `label`/`description` is set). */
   wrapperClassName?: string
+  /** Override the group's size for this item. */
+  size?: RadioSize
 }
 
 function RadioGroupItem({
@@ -70,21 +135,27 @@ function RadioGroupItem({
   label,
   description,
   wrapperClassName,
+  size: sizeProp,
   ...props
 }: RadioGroupItemProps) {
-  const variant = React.useContext(RadioGroupVariantContext)
+  const group = React.useContext(RadioGroupContext)
+  const variant = group.variant
+  const size = sizeProp ?? group.size
   const hasText = label != null || description != null
 
   const control = (
     <RadioPrimitive.Root
       data-slot="radio-group-item"
+      data-size={size}
       className={cn(
-        "group/radio-group-item peer relative flex aspect-square cursor-pointer data-disabled:cursor-not-allowed size-4 shrink-0 items-center justify-center rounded-full border border-dark-30 bg-white transition-[border-color,box-shadow] outline-none after:absolute after:-inset-x-3 after:-inset-y-2",
+        "group/radio-group-item peer relative flex aspect-square cursor-pointer data-disabled:cursor-not-allowed shrink-0 items-center justify-center rounded-full border border-dark-30 bg-white transition-[border-color,box-shadow] outline-none after:absolute after:-inset-x-3 after:-inset-y-2",
+        radioControlVariants({ size }),
         "focus-visible:border-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30",
         "data-checked:border-mint-45",
         "aria-invalid:border-error-75 aria-invalid:ring-3 aria-invalid:ring-error-75/20 aria-invalid:data-checked:border-mint-45",
         "disabled:cursor-not-allowed disabled:opacity-50 data-disabled:cursor-not-allowed data-disabled:opacity-50",
-        hasText && "mt-px data-disabled:opacity-100",
+        hasText && size !== "lg" && "mt-px",
+        hasText && "data-disabled:opacity-100",
         className
       )}
       {...props}
@@ -93,7 +164,10 @@ function RadioGroupItem({
         data-slot="radio-group-indicator"
         className="flex items-center justify-center"
       >
-        <span className="size-2 rounded-full bg-mint-45" />
+        <span
+          data-slot="radio-group-dot"
+          className="rounded-full bg-mint-45"
+        />
       </RadioPrimitive.Indicator>
     </RadioPrimitive.Root>
   )
@@ -104,7 +178,8 @@ function RadioGroupItem({
     <label
       data-slot="radio-group-field"
       data-variant={variant}
-      className={cn(radioItemFieldVariants({ variant }), wrapperClassName)}
+      data-size={size}
+      className={cn(radioItemFieldVariants({ variant, size }), wrapperClassName)}
     >
       {control}
       <span className="flex min-w-0 flex-1 flex-col gap-1">
@@ -112,7 +187,7 @@ function RadioGroupItem({
           <span
             data-slot="radio-group-label"
             className={cn(
-              "text-body-5 leading-tight text-navy",
+              radioLabelVariants({ size }),
               variant === "card" ? "font-semibold" : "font-medium"
             )}
           >
@@ -122,7 +197,7 @@ function RadioGroupItem({
         {description != null && (
           <span
             data-slot="radio-group-description"
-            className="text-body-5 text-dark-60"
+            className={radioDescriptionVariants({ size })}
           >
             {description}
           </span>
@@ -132,4 +207,4 @@ function RadioGroupItem({
   )
 }
 
-export { RadioGroup, RadioGroupItem, radioGroupVariants }
+export { RadioGroup, RadioGroupItem, radioGroupVariants, radioControlVariants }

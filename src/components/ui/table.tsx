@@ -1,5 +1,6 @@
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
+import { ArrowDown, ArrowUp, ArrowUpDown, ChevronDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { EmptyState, type EmptyStateProps } from "@/components/EmptyState"
@@ -149,18 +150,65 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
 const cellBase =
   "px-3 align-middle whitespace-nowrap border-border group-data-[variant=bordered]/table:border-e group-data-[variant=bordered]/table:last:border-e-0 [&:has([role=checkbox])]:w-10 [&:has([role=checkbox])]:pe-0"
 
-function TableHead({ className, ...props }: React.ComponentProps<"th">) {
+type SortDirection = "asc" | "desc" | false
+
+interface TableHeadProps extends React.ComponentProps<"th"> {
+  /** Render the header as a sort button with an ascending / descending / unsorted icon. */
+  sortable?: boolean
+  /** Current sort for this column. `false` (default) shows the neutral icon. */
+  sortDirection?: SortDirection
+  /** Called when the header button is clicked. Cycle the direction in your state. */
+  onSort?: () => void
+}
+
+const sortIcons = { asc: ArrowUp, desc: ArrowDown } as const
+
+function TableHead({
+  className,
+  sortable = false,
+  sortDirection = false,
+  onSort,
+  children,
+  ...props
+}: TableHeadProps) {
+  const SortIcon = sortDirection ? sortIcons[sortDirection] : ArrowUpDown
   return (
     <th
       data-slot="table-head"
+      aria-sort={
+        sortable
+          ? sortDirection === "asc"
+            ? "ascending"
+            : sortDirection === "desc"
+              ? "descending"
+              : "none"
+          : undefined
+      }
       className={cn(
         cellBase,
-        "text-overline h-11 text-start text-muted-foreground",
+        "text-overline h-11 text-start text-dark-100",
         "group-data-[size=sm]/table:h-9 group-data-[size=lg]/table:h-12",
         className
       )}
       {...props}
-    />
+    >
+      {sortable ? (
+        <button
+          type="button"
+          onClick={onSort}
+          data-slot="table-sort-button"
+          className="-mx-1 inline-flex cursor-pointer items-center gap-1 rounded-sm px-1 text-overline text-dark-100 uppercase outline-none hover:text-navy focus-visible:ring-2 focus-visible:ring-mint-45"
+        >
+          {children}
+          <SortIcon
+            aria-hidden
+            className={cn("size-3.5 shrink-0 text-dark-60", !sortDirection && "opacity-70")}
+          />
+        </button>
+      ) : (
+        children
+      )}
+    </th>
   )
 }
 
@@ -198,6 +246,162 @@ function TableEmpty({ colSpan, className, ...props }: TableEmptyProps) {
   )
 }
 
+interface TableExpandableRowProps extends React.ComponentProps<"tr"> {
+  /** Content revealed in a full-width row underneath. */
+  detail: React.ReactNode
+  /** Number of columns in the table, including the Controls column. */
+  colSpan: number
+  /** Row actions shown in the Controls cell beside the chevron, e.g. a ⋮ menu. */
+  controls?: React.ReactNode
+  defaultOpen?: boolean
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
+  /** Accessible label for the toggle. Default "Show details". */
+  toggleLabel?: string
+}
+
+/** Clicks on these inside a row do their own thing and don't expand the row. */
+const INTERACTIVE =
+  "button, a, input, select, textarea, label, [role=menuitem], [role=menuitemradio], [role=menuitemcheckbox], [data-row-toggle-ignore]"
+
+/**
+ * Row that drops down a detail row. The whole row is clickable; the expand
+ * chevron (keyboard / screen-reader control) and any `controls` sit in a
+ * trailing Controls cell, so add `<TableControlsHead />` as the last header.
+ * Clicks on buttons, links, inputs or menu items inside the row don't toggle it.
+ */
+function TableExpandableRow({
+  detail,
+  colSpan,
+  controls,
+  defaultOpen = false,
+  open: openProp,
+  onOpenChange,
+  toggleLabel = "Show details",
+  className,
+  children,
+  onClick,
+  ...props
+}: TableExpandableRowProps) {
+  const [openState, setOpenState] = React.useState(defaultOpen)
+  const open = openProp ?? openState
+  const detailId = React.useId()
+  const toggle = () => {
+    if (openProp === undefined) setOpenState(!open)
+    onOpenChange?.(!open)
+  }
+
+  const chevron = (
+    <button
+      type="button"
+      aria-expanded={open}
+      aria-controls={detailId}
+      aria-label={toggleLabel}
+      onClick={toggle}
+      className="inline-flex size-7 cursor-pointer items-center justify-center rounded-md text-dark-60 transition-colors outline-none hover:text-navy focus-visible:ring-2 focus-visible:ring-mint-45"
+    >
+      <ChevronDown className={cn("size-4 transition-transform", open && "rotate-180")} />
+    </button>
+  )
+
+  return (
+    <>
+      <TableRow
+        data-slot="table-expandable-row"
+        data-state={open ? "open" : "closed"}
+        className={cn("cursor-pointer", open && "border-b-0 bg-mint-l4", className)}
+        onClick={(event) => {
+          onClick?.(event)
+          const target = event.target as HTMLElement
+          if (!event.defaultPrevented && !target.closest(INTERACTIVE)) toggle()
+        }}
+        {...props}
+      >
+        {children}
+        <TableCell data-slot="table-controls-cell" className="w-px text-end whitespace-nowrap">
+          <div className="flex items-center justify-end gap-1">
+            {chevron}
+            {controls}
+          </div>
+        </TableCell>
+      </TableRow>
+      {open && (
+        <tr
+          id={detailId}
+          data-slot="table-detail-row"
+          className="border-b border-border bg-mint-l4"
+        >
+          <td
+            colSpan={colSpan}
+            className="px-3 pt-1 pb-4 text-body-5 whitespace-normal text-dark-90"
+          >
+            {detail}
+          </td>
+        </tr>
+      )}
+    </>
+  )
+}
+
+/** "Controls" header cell for the column holding `TableExpandableRow`'s chevron and actions. */
+function TableControlsHead({ className, children = "Controls", ...props }: TableHeadProps) {
+  return (
+    <TableHead className={cn("w-px text-end", className)} {...props}>
+      {children}
+    </TableHead>
+  )
+}
+
+interface TableViewMoreProps extends Omit<React.ComponentProps<"tr">, "onToggle"> {
+  /** Number of columns the control spans. */
+  colSpan: number
+  /** Whether the extra rows are shown. */
+  expanded: boolean
+  onExpandedChange: (expanded: boolean) => void
+  /** How many rows are hidden; shown as "View more (n)". */
+  hiddenCount?: number
+  moreLabel?: React.ReactNode
+  lessLabel?: React.ReactNode
+}
+
+/**
+ * "View more / View less" row placed after the visible rows. Slice your rows
+ * by `expanded` yourself, e.g. `rows.slice(0, expanded ? undefined : 5)`.
+ */
+function TableViewMore({
+  colSpan,
+  expanded,
+  onExpandedChange,
+  hiddenCount,
+  moreLabel = "View more",
+  lessLabel = "View less",
+  className,
+  ...props
+}: TableViewMoreProps) {
+  return (
+    <tr
+      data-slot="table-view-more"
+      className={cn("border-t border-border", className)}
+      {...props}
+    >
+      <td colSpan={colSpan} className="px-3 py-2 text-center">
+        <button
+          type="button"
+          aria-expanded={expanded}
+          onClick={() => onExpandedChange(!expanded)}
+          className="inline-flex cursor-pointer items-center gap-1 rounded-sm text-body-5 font-semibold text-mint-75 outline-none hover:text-mint-45 focus-visible:ring-2 focus-visible:ring-mint-45"
+        >
+          {expanded ? lessLabel : moreLabel}
+          {!expanded && hiddenCount ? ` (${hiddenCount})` : null}
+          <ChevronDown
+            className={cn("size-4 transition-transform", expanded && "rotate-180")}
+          />
+        </button>
+      </td>
+    </tr>
+  )
+}
+
 const captionClasses = "mt-3 text-center text-body-5 text-muted-foreground"
 
 /**
@@ -228,6 +432,10 @@ export {
   TableCell,
   TableCaption,
   TableEmpty,
+  TableExpandableRow,
+  TableControlsHead,
+  TableViewMore,
   tableVariants,
   tableContainerVariants,
 }
+export type { TableHeadProps, TableExpandableRowProps, TableViewMoreProps, SortDirection }

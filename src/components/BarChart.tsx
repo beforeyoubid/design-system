@@ -84,7 +84,7 @@ export interface BarChartProps
 const NEGATIVE_PALETTE = ["var(--mint-15)", "var(--mint-45)"] as const
 
 const statToggleVariants = cva(
-  "flex min-w-28 flex-col items-start gap-1 rounded-md px-4 py-2 text-start transition-colors outline-none hover:bg-light-l2 focus-visible:ring-3 focus-visible:ring-ring/50",
+  "flex min-w-28 flex-col items-start gap-1 rounded-md px-4 py-2 text-start transition-colors outline-none hover:text-navy focus-visible:ring-3 focus-visible:ring-ring/50",
   {
     variants: {
       active: {

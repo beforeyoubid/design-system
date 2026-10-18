@@ -128,7 +128,7 @@ function FileUploadCard({
           type="button"
           aria-label={uploading ? `Cancel upload of ${name}` : `Remove ${name}`}
           onClick={uploading ? onCancel : onRemove}
-          className="-me-1 -mt-1 flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-dark-60 outline-none hover:bg-light-l1 hover:text-dark-90 focus-visible:ring-2 focus-visible:ring-mint-45"
+          className="-me-1 -mt-1 flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-dark-60 transition-colors outline-none hover:text-dark-100 focus-visible:ring-2 focus-visible:ring-mint-45"
         >
           {uploading ? (
             <IconX className="size-4" />

@@ -1,5 +1,6 @@
 import * as React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { ArrowUpRight, Link, Send } from 'lucide-react'
 import {
   IconAdjustmentsHorizontal,
   IconDots,
@@ -19,6 +20,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
+  DropdownMenuIconTrigger,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
@@ -34,10 +36,14 @@ import {
   TableCaption,
   TableCell,
   TableEmpty,
+  TableControlsHead,
+  TableExpandableRow,
   TableFooter,
   TableHead,
   TableHeader,
   TableRow,
+  TableViewMore,
+  type SortDirection,
 } from '../../components/ui/table'
 
 const meta: Meta<typeof Table> = {
@@ -70,7 +76,7 @@ const meta: Meta<typeof Table> = {
     docs: {
       description: {
         component:
-          'Data table with BYB typography: uppercase `text-caption-1` headers and `text-body-5` cells. Set `variant` and `size` on `Table`; rows and cells pick them up automatically.',
+          'Data table with BYB typography: uppercase `text-overline` headers in `dark-100` and `text-body-5` cells. Headers can sort (`sortable`), rows can expand (`TableExpandableRow`) and long tables can collapse behind `TableViewMore`. Set `variant` and `size` on `Table`; rows and cells pick them up automatically.',
       },
     },
   },
@@ -122,7 +128,7 @@ function Cells({ r }: { r: (typeof reports)[number] }) {
       <TableCell>{r.inspector}</TableCell>
       <TableCell className="text-dark-75">{r.date}</TableCell>
       <TableCell>
-        <Badge variant={statusBadge[r.status].variant} dot>{statusBadge[r.status].label}</Badge>
+        <Badge variant={statusBadge[r.status].variant}>{statusBadge[r.status].label}</Badge>
       </TableCell>
       <TableCell className="text-end text-body-5 font-medium text-navy tabular-nums">{aud(r.price)}</TableCell>
     </>
@@ -436,4 +442,160 @@ export const NoResults: Story = {
       </Table>
     </div>
   ),
+}
+
+type SortKey = 'address' | 'date' | 'price'
+
+/** Click a sortable header to cycle ascending → descending → unsorted. Arrows are dark-60; the header sets aria-sort. */
+export const Sortable: Story = {
+  render: function Render(args) {
+    const [sort, setSort] = React.useState<{
+      key: SortKey;
+      dir: SortDirection;
+    }>({
+      key: 'price',
+      dir: 'desc'
+    });
+    const cycle = (key: SortKey) => setSort(s => ({
+      key,
+      dir: s.key !== key ? 'asc' : s.dir === 'asc' ? 'desc' : s.dir === 'desc' ? false : 'asc'
+    }));
+    const dirFor = (key: SortKey): SortDirection => sort.key === key ? sort.dir : false;
+    const rows = [...reports].sort((a, b) => {
+      if (!sort.dir) return 0;
+      const av = sort.key === 'price' ? a.price : sort.key === 'date' ? a.id : a.address;
+      const bv = sort.key === 'price' ? b.price : sort.key === 'date' ? b.id : b.address;
+      const cmp = av < bv ? -1 : av > bv ? 1 : 0;
+      return sort.dir === 'asc' ? cmp : -cmp;
+    });
+    return <div className={frame}>
+        <Table {...args}>
+          <TableHeader>
+            <TableRow>
+              <TableHead sortable sortDirection={dirFor('address')} onSort={() => cycle('address')}>Property</TableHead>
+              <TableHead>Report</TableHead>
+              <TableHead>Inspector</TableHead>
+              <TableHead sortable sortDirection={dirFor('date')} onSort={() => cycle('date')}>Date</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead className="text-end" sortable sortDirection={dirFor('price')} onSort={() => cycle('price')}>Price</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {rows.map(r => <TableRow key={r.id}>
+                <Cells r={r} />
+              </TableRow>)}
+          </TableBody>
+        </Table>
+      </div>;
+  }
+}
+
+/** Row actions menu (⋮) used in the controls column. */
+function ControlsMenu({ address }: { address: string }) {
+  return (
+    <DropdownMenu>
+      <DropdownMenuIconTrigger label={`Actions for ${address}`} />
+      <DropdownMenuContent align="end" className="w-56">
+        <DropdownMenuItem>
+          <Send />
+          Send link letter
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link />
+          Copy purchase link
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <ArrowUpRight />
+          Open product
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}
+
+/**
+ * Expandable rows: a trailing **Controls** column with the expand chevron and a
+ * ⋮ actions menu. Click anywhere on a row to expand it; the chevron and menu do
+ * their own thing.
+ */
+export const WithControlsColumn: Story = {
+  name: 'Collapsible: with controls column',
+  render: (args) => (
+    <div className={frame}>
+      <Table {...args}>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Property</TableHead>
+            <TableHead>Report</TableHead>
+            <TableHead>Inspector</TableHead>
+            <TableHead>Date</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead className="text-end">Price</TableHead>
+            <TableControlsHead />
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {reports.map((r, i) => (
+            <TableExpandableRow
+              key={r.id}
+              colSpan={7}
+              defaultOpen={i === 0}
+              toggleLabel={`Show details for ${r.address}`}
+              controls={<ControlsMenu address={r.address} />}
+              detail={
+                <div className="grid grid-cols-3 gap-4">
+                  <div>
+                    <div className="text-overline text-dark-60">Report ID</div>
+                    <div className="text-navy">{r.id}</div>
+                  </div>
+                  <div>
+                    <div className="text-overline text-dark-60">Access</div>
+                    <div>Keys with agent, 9:00 am</div>
+                  </div>
+                  <div>
+                    <div className="text-overline text-dark-60">Notes</div>
+                    <div>Roof void access via hallway hatch.</div>
+                  </div>
+                </div>
+              }
+            >
+              <Cells r={r} />
+            </TableExpandableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
+  ),
+}
+
+/** Show the first rows and reveal the rest with "View more". */
+export const ViewMore: Story = {
+  name: 'Collapsible: view more',
+  render: function Render(args) {
+    const [expanded, setExpanded] = React.useState(false)
+    const limit = 3
+    const visible = expanded ? reports : reports.slice(0, limit)
+    return (
+      <div className={frame}>
+        <Table {...args}>
+          <TableHeader>
+            <HeaderRow />
+          </TableHeader>
+          <TableBody>
+            {visible.map((r) => (
+              <TableRow key={r.id}>
+                <Cells r={r} />
+              </TableRow>
+            ))}
+            <TableViewMore
+              colSpan={6}
+              expanded={expanded}
+              onExpandedChange={setExpanded}
+              hiddenCount={reports.length - limit}
+            />
+          </TableBody>
+        </Table>
+      </div>
+    )
+  },
 }

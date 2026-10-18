@@ -55,6 +55,9 @@ export const Pill: Story = { ...Default, args: { variant: 'pill' } }
 
 export const Line: Story = {
   args: { variant: 'line' },
+  parameters: {
+    docs: { description: { story: 'Inactive tabs are `dark-100`, hover `dark-75`, active `navy` with the mint-60 underline.' } },
+  },
   render: ({ variant }) => (
     <Tabs defaultValue="overview" className="w-120">
       <TabsList variant={variant}>
@@ -104,6 +107,9 @@ export const SegmentedCompact: Story = {
 
 export const Vertical: Story = {
   args: { variant: 'line' },
+  parameters: {
+    docs: { description: { story: 'Vertical line tabs use the same colours: `dark-100` inactive, `dark-75` hover.' } },
+  },
   render: ({ variant }) => (
     <Tabs defaultValue="account" orientation="vertical" className="w-120 gap-6">
       <TabsList variant={variant}>

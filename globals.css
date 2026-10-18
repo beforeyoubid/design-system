@@ -33,14 +33,16 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Named device variants — aliases for the BYB breakpoint tiers (see @theme
- * --breakpoint-*). Same widths as md/lg/xl; use whichever reads better.
- *   mobile:   < 768px          (same as max-md:)
- *   tablet:   768px – 1023px   (same as md:max-lg:)
- *   desktop:  ≥ 1024px         (same as lg:)
- *   wide:     ≥ 1440px         (same as xl:) */
+/* BYB breakpoint variants — use these in page code, not md: / lg: / xl:.
+ * Mobile-first: unprefixed classes are mobile; tablet / desktop / wide apply
+ * from that width up, so a value carries to bigger screens until overridden.
+ *   mobile:   < 768px only   (styles that must NOT reach tablet and up)
+ *   tablet:   ≥ 768px
+ *   desktop:  ≥ 1024px
+ *   wide:     ≥ 1440px
+ * md / lg / xl in @theme have the same widths for shadcn internals. */
 @custom-variant mobile (@media (width < 48rem));
-@custom-variant tablet (@media (48rem <= width < 64rem));
+@custom-variant tablet (@media (width >= 48rem));
 @custom-variant desktop (@media (width >= 64rem));
 @custom-variant wide (@media (width >= 90rem));
 
@@ -351,6 +353,12 @@
 @keyframes fade-in {
   0%   { opacity: 0; transform: translateY(6px); }
   100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Skeleton shimmer — a highlight band sweeping left → right */
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 /* =============================================================================
@@ -693,6 +701,7 @@
   --animate-marquee:        marquee 35s linear infinite;
   --animate-marquee-paused: marquee 35s linear infinite paused;
   --animate-fade-in:        fade-in 0.25s ease-out both;
+  --animate-shimmer:        shimmer 1.6s ease-in-out infinite;
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
   /* Tabs panel — slides in from the side of the newly selected tab */

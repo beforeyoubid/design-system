@@ -7,11 +7,11 @@ import { cn } from "@/lib/utils"
 import { Spinner } from "@/components/ui/spinner"
 
 const badgeVariants = cva(
-  "group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full border border-transparent px-2 py-0.5 text-caption-2 font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
+  "group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full border border-transparent font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none",
   {
     variants: {
       variant: {
-        // BYB status tones (Claude Design "Badge") — tinted fill + border + dot
+        // BYB status tones (Claude Design "Badge") — tinted fill + border
         gray: "border-dark-15 bg-light-l2 font-semibold text-dark-75",
         mint: "border-mint-l1 bg-mint-l2 font-semibold text-mint-90 [a]:hover:bg-mint-l1",
         lime: "border-lime bg-lime font-semibold text-navy [a]:hover:bg-lime/80",
@@ -19,31 +19,38 @@ const badgeVariants = cva(
         error: "border-error-15 bg-error-l1 font-semibold text-error-75",
         warning: "border-warning-l1 bg-warning-l3 font-semibold text-warning-75",
       },
+      size: {
+        sm: "",
+        md: "",
+        lg: "",
+      },
+      /** Solid category / product fill. Set automatically by `category` and `product`. */
+      filled: {
+        true: "border-transparent font-medium text-white",
+        false: "",
+      },
     },
+    compoundVariants: [
+      // Tinted status badges: md is the original 20px pill
+      { filled: false, size: "sm", className: "h-4 px-1.5 text-caption-2 [&>svg]:size-2.5!" },
+      { filled: false, size: "md", className: "h-5 px-2 py-0.5 text-caption-2 [&>svg]:size-3!" },
+      { filled: false, size: "lg", className: "h-6 px-2.5 text-caption-1 [&>svg]:size-3.5!" },
+      // Solid category / product badges: md is the original 24px pill
+      { filled: true, size: "sm", className: "h-5 px-2 text-caption-1 [&>svg]:size-3!" },
+      { filled: true, size: "md", className: "h-6 px-2.5 text-body-5 [&>svg]:size-3.5!" },
+      { filled: true, size: "lg", className: "h-7 px-3 text-body-4 [&>svg]:size-4!" },
+    ],
     defaultVariants: {
       variant: "gray",
+      size: "md",
+      filled: false,
     },
   }
 )
 
-/** Status dot colour per tone, only rendered when `dot` is set. */
-const badgeDotVariants = cva("size-1.5 shrink-0 rounded-full", {
-  variants: {
-    variant: {
-      gray: "bg-dark-60",
-      mint: "bg-mint-60",
-      lime: "bg-navy",
-      success: "bg-mint-60",
-      error: "bg-error-75",
-      warning: "bg-warning-30",
-    },
-  },
-  defaultVariants: { variant: "gray" },
-})
-
-/** Filled category badge (data-viz palette 1–35). Overrides `variant` and `dot`. */
+/** Filled category badge colour (data-viz palette 1–35). Overrides `variant`; size comes from `size`. */
 const badgeCategoryVariants = cva(
-  "h-6 border-transparent px-2.5 text-body-5 font-medium text-white",
+  "",
   {
     variants: {
       category: {
@@ -87,9 +94,9 @@ const badgeCategoryVariants = cva(
   }
 )
 
-/** Filled product badge — colours from the "Product Badges" token map. Overrides `variant` and `dot`. */
+/** Filled product badge colour (Product Badges token map). Overrides `variant`; size comes from `size`. */
 const badgeProductVariants = cva(
-  "h-6 border-transparent px-2.5 text-body-5 font-medium text-white",
+  "",
   {
     variants: {
       product: {
@@ -127,20 +134,18 @@ type BadgeProduct = NonNullable<
 
 export type BadgeProps = useRender.ComponentProps<"span"> &
   VariantProps<typeof badgeVariants> & {
-    /** Show the coloured status dot before the label. */
-    dot?: boolean
-    /** Replace the dot with a 12px Spinner in the tone's text colour (e.g. "Syncing"). */
+    /** Show a small Spinner in the tone's text colour before the label (e.g. "Syncing"). */
     spinner?: boolean
-    /** Filled category badge, 1–35. When set, overrides `variant` and `dot`. */
+    /** Filled category badge, 1–35. When set, overrides `variant`. */
     category?: BadgeCategory
-    /** Filled product badge, e.g. "electrical-report". When set, overrides `variant`, `dot` and `category`. */
+    /** Filled product badge, e.g. "electrical-report". When set, overrides `variant` and `category`. */
     product?: BadgeProduct
   }
 
 function Badge({
   className,
   variant = "gray",
-  dot = false,
+  size = "md",
   spinner = false,
   category,
   product,
@@ -148,20 +153,18 @@ function Badge({
   children,
   ...props
 }: BadgeProps) {
-  const prefix = category || product
-    ? null
-    : spinner
-      ? <Spinner size="sm" color="current" label="Loading" />
-      : dot
-        ? <span aria-hidden="true" className={badgeDotVariants({ variant })} />
-        : null
+  const filled = Boolean(category || product)
+  const prefix =
+    !filled && spinner ? (
+      <Spinner size="sm" color="current" label="Loading" />
+    ) : null
 
   return useRender({
     defaultTagName: "span",
     props: mergeProps<"span">(
       {
         className: cn(
-          badgeVariants({ variant }),
+          badgeVariants({ variant, size, filled }),
           product
             ? badgeProductVariants({ product })
             : category && badgeCategoryVariants({ category }),
@@ -180,6 +183,7 @@ function Badge({
     state: {
       slot: "badge",
       variant,
+      size,
     },
   })
 }
@@ -187,7 +191,6 @@ function Badge({
 export {
   Badge,
   badgeVariants,
-  badgeDotVariants,
   badgeCategoryVariants,
   badgeProductVariants,
 }

@@ -7,6 +7,7 @@ const meta: Meta<typeof RadioGroup> = {
   tags: ['autodocs'],
   argTypes: {
     variant: { control: 'inline-radio', options: ['default', 'card'] },
+    size: { control: 'inline-radio', options: ['sm', 'md', 'lg'] },
   },
 }
 
@@ -80,6 +81,48 @@ export const Card: Story = {
         description="Not available in your area."
         disabled
       />
+    </RadioGroup>
+  ),
+}
+
+const SIZES = ['sm', 'md', 'lg'] as const
+
+export const Sizes: Story = {
+  render: () => (
+    <div className="grid grid-cols-3 gap-8">
+      {SIZES.map((size) => (
+        <div key={size} className="flex flex-col gap-3">
+          <span className="text-overline text-dark-60">{size}</span>
+          <RadioGroup size={size} defaultValue="standard">
+            <RadioGroupItem value="basic" label="Basic" description="Building inspection only." />
+            <RadioGroupItem value="standard" label="Standard" description="Building and pest." />
+            <RadioGroupItem value="premium" label="Premium" disabled />
+          </RadioGroup>
+        </div>
+      ))}
+    </div>
+  ),
+}
+
+export const CardSizes: Story = {
+  render: () => (
+    <div className="grid grid-cols-3 gap-6">
+      {SIZES.map((size) => (
+        <RadioGroup key={size} variant="card" size={size} defaultValue="standard">
+          <RadioGroupItem value="basic" label="Basic" description="Building inspection only." />
+          <RadioGroupItem value="standard" label="Standard" description="Building and pest." />
+        </RadioGroup>
+      ))}
+    </div>
+  ),
+}
+
+export const BareSizes: Story = {
+  render: () => (
+    <RadioGroup defaultValue="md" className="flex w-auto items-center gap-4" aria-label="Sizes">
+      <RadioGroupItem value="sm" size="sm" aria-label="Small" />
+      <RadioGroupItem value="md" size="md" aria-label="Medium" />
+      <RadioGroupItem value="lg" size="lg" aria-label="Large" />
     </RadioGroup>
   ),
 }

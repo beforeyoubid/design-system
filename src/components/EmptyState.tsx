@@ -2,6 +2,7 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "../lib/utils"
+import { IconTile } from "./ui/icon-tile"
 
 const emptyStateVariants = cva(
   "flex w-full flex-col items-center gap-4 px-6 py-10 text-center",
@@ -20,7 +21,7 @@ const emptyStateVariants = cva(
 export interface EmptyStateProps
   extends Omit<React.ComponentProps<"div">, "title">,
     VariantProps<typeof emptyStateVariants> {
-  /** Icon element (e.g. `<IconFolder />`), shown in a 40px mint-l3 circle. */
+  /** Icon element (e.g. `<FolderOpen />`), shown in a 40px mint `IconTile`. */
   icon?: React.ReactNode
   /** Custom visual instead of the icon, e.g. an avatar or avatar group. */
   media?: React.ReactNode
@@ -54,9 +55,7 @@ function EmptyState({
     >
       {media ??
         (icon && (
-          <span className="flex size-10 items-center justify-center rounded-full bg-mint-l3 text-mint-75 [&_svg:not([class*='size-'])]:size-5">
-            {icon}
-          </span>
+          <IconTile tone="mint" size="md" icon={icon} />
         ))}
       {(title || description) && (
         <div className="flex max-w-sm flex-col gap-1.5">
