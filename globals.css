@@ -20,6 +20,7 @@
  * ============================================================================= */
 
 @import "tailwindcss";
+@import "tw-animate-css";
 @import "./utilities.css";
 
 /* -----------------------------------------------------------------------------
@@ -525,8 +526,8 @@
   --color-sidebar-ring:               var(--sidebar-ring);
 
   /* ---------- Typography ---------- */
-  /* Clear Tailwind's default text-xs…text-9xl so only BYB sizes exist. */
-  --text-*: initial;
+  /* Tailwind's default text-xs…text-9xl stay available; BYB role + step sizes
+   * are added alongside them, never in place of them. */
 
   --font-sans: var(--font-sans);
 
@@ -656,13 +657,13 @@
       height: 0;
     }
     to {
-      height: var(--radix-accordion-content-height);
+      height: var(--accordion-panel-height);
     }
   }
 
   @keyframes accordion-up {
     from {
-      height: var(--radix-accordion-content-height);
+      height: var(--accordion-panel-height);
     }
     to {
       height: 0;
