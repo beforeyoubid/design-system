@@ -23,6 +23,11 @@ const buttonVariants = cva(
         destructive:
           "bg-error-75 text-white shadow-xs hover:bg-error-45 focus-visible:ring-error-75 disabled:bg-light-l2 disabled:text-dark-45 disabled:shadow-none",
         link: "text-mint-75 underline-offset-4 hover:text-mint-45 hover:underline disabled:text-dark-45",
+        // Navy CTAs used across the marketing website and order flows
+        navy:
+          "bg-navy text-white shadow-xs hover:bg-navy/90 aria-expanded:bg-navy/90 disabled:bg-light-l2 disabled:text-dark-45 disabled:shadow-none",
+        "outline-navy":
+          "border border-navy bg-white text-navy hover:bg-navy hover:text-white aria-expanded:bg-navy aria-expanded:text-white disabled:border-light-l2 disabled:bg-light-l2 disabled:text-dark-45",
       },
       size: {
         // sm 36px · md 40px · lg 44px. Radius: sm 12px, md/lg 16px.

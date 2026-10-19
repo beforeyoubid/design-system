@@ -118,8 +118,6 @@ const VARIANT_HELPERS = { buttonVariants: 'Button', badgeVariants: 'Badge' }
 export const PROP_REVIEW = {
   Button: {
     variant: {
-      navy: 'no navy button any more',
-      'outline-navy': 'no navy outline button any more; tertiary has a grey border',
     },
   },
   Badge: {

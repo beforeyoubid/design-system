@@ -10,7 +10,7 @@ Upgrade an app with `npx design-system-migrate` (dry run) then `--write`, in the
 - **Tailwind's default `text-xs` is 12px again.** 1.1.x overrode it to 10px; those uses become `text-caption-2`.
 - **`rounded-xl` is 16px and `rounded-2xl` 20px** (they were 20px and 16px). Components were swapped to match; the migrator swaps app uses. `rounded-btn` is removed (→ `rounded-xl`).
 - **`cobalt` is renamed `electric-blue`**, including `-l1` and the CSS variables.
-- **Button, Badge, Switch and TabsList variants renamed.** Button `default` and `lime` → `primary`, `outline` → `tertiary`, size `default` → `md`; the default Button variant is now `primary` (lime), and the migrator removes mint fill overrides (`bg-mint-45 … text-white`) so those Buttons are lime too. Badge `default`/`secondary`/`outline` → `gray`, `destructive` → `error`; `dot` removed. TabsList `default`/`pills` → `pill`.
+- **Button, Badge, Switch and TabsList variants renamed.** Button `default` and `lime` → `primary`, `outline` → `tertiary`, size `default` → `md` (`navy` and `outline-navy` stay); the default Button variant is now `primary` (lime), and the migrator removes mint fill overrides (`bg-mint-45 … text-white`) so those Buttons are lime too. Badge `default`/`secondary`/`outline` → `gray`, `destructive` → `error`; `dot` removed. TabsList `default`/`pills` → `pill`.
 - **`colors` and `typography` are no longer exported.** Use `generateDesignSystemTokens({ overrides })` for non-CSS contexts, or a utility class.
 - **`2xl:` breakpoint is 1440px** (was 1536px). `xl:` stays at 1280px.
 

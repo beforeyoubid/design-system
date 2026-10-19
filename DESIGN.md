@@ -355,6 +355,8 @@ Base: semibold, UPPERCASE, 0.04em tracking, focus ring `ring-2 ring-navy ring-of
 | `ghost` | `text-mint-75` | `text-mint-45` | Low emphasis |
 | `destructive` | `bg-error-75 text-white` | `bg-error-45` | Delete, irreversible |
 | `link` | `text-mint-75` | underline | Inline action |
+| `navy` | `bg-navy text-white shadow-xs` | `bg-navy/90` | Order and pricing CTAs on navy-led marketing layouts |
+| `outline-navy` | `bg-white border-navy text-navy` | `bg-navy text-white` | Secondary order CTA (header, social sign-in) |
 
 Disabled (filled variants): `bg-light-l2 text-dark-45`.
 

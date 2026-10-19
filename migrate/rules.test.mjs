@@ -89,9 +89,9 @@ test('flags variants with no replacement and removed props; implicit Buttons nee
   )
   assert.deepEqual(
     reviews.map((r) => r.line),
-    [3, 4, 4],
+    [4, 4],
   )
-  assert.match(reviews[0].message, /navy/)
+  assert.match(reviews[0].message, /cobalt/)
 })
 
 test('mint Buttons become the lime primary', () => {
@@ -112,12 +112,12 @@ test('mint Buttons become the lime primary', () => {
 
 test('renames variant values inside expressions', () => {
   const { text, reviews } = migrateSource(
-    withImports("<Badge variant={done ? 'secondary' : 'lime'} />\n<Button variant={primary ? \"lime\" : 'navy'} />"),
+    withImports("<Badge variant={done ? 'secondary' : 'teal'} />\n<Button variant={primary ? \"lime\" : 'navy'} />"),
   )
-  assert.match(text, /<Badge variant=\{done \? 'gray' : 'lime'\} \/>/)
+  assert.match(text, /<Badge variant=\{done \? 'gray' : 'teal'\} \/>/)
   assert.match(text, /<Button variant=\{primary \? "primary" : 'navy'\} \/>/)
   assert.equal(reviews.length, 1)
-  assert.match(reviews[0].message, /navy/)
+  assert.match(reviews[0].message, /teal/)
 })
 
 test('flags variants that come from a variable or function', () => {

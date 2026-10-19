@@ -10,7 +10,7 @@ const meta: Meta<typeof Button> = {
     variant: {
       control: 'select',
       options: [
-        'primary', 'secondary', 'tertiary', 'ghost', 'destructive', 'link',
+        'primary', 'secondary', 'tertiary', 'ghost', 'destructive', 'link', 'navy', 'outline-navy',
       ],
     },
     size: { control: 'select', options: ['sm', 'md', 'lg', 'xs', 'icon', 'icon-xs', 'icon-sm', 'icon-lg'] },
@@ -29,6 +29,8 @@ export const Tertiary: Story = { args: { variant: 'tertiary', children: 'Tertiar
 export const Ghost: Story = { args: { variant: 'ghost', children: 'Ghost' } }
 export const Destructive: Story = { args: { variant: 'destructive', children: 'Delete' } }
 export const LinkStyle: Story = { args: { variant: 'link', children: 'Link' } }
+export const Navy: Story = { args: { variant: 'navy', children: 'Order report' } }
+export const OutlineNavy: Story = { args: { variant: 'outline-navy', children: 'Order report' } }
 export const Loading: Story = { args: { loading: true, children: 'Saving' } }
 export const IconRight: Story = {
   args: { children: 'Get a quote', icon: <IconArrowUpRight />, iconPosition: 'right' },
@@ -37,7 +39,7 @@ export const IconLeft: Story = {
   args: { variant: 'tertiary', children: 'Back', icon: <IconArrowLeft />, iconPosition: 'left' },
 }
 
-const DESIGN_VARIANTS = ['primary', 'secondary', 'tertiary', 'ghost', 'destructive', 'link'] as const
+const DESIGN_VARIANTS = ['primary', 'secondary', 'tertiary', 'ghost', 'destructive', 'link', 'navy', 'outline-navy'] as const
 
 export const AllVariants: Story = {
   render: () => (
