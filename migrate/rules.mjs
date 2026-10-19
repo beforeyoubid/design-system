@@ -101,7 +101,8 @@ const CSS_VAR_PATTERN = /(?<![\w-])--(color-)?cobalt(-l1)?(?![\w-])/g
 // ---------------------------------------------------------------------------
 export const PROP_RENAMES = {
   Button: {
-    variant: { outline: 'tertiary', lime: 'primary' },
+    // The old default (mint-45 fill) becomes primary (lime), as confirmed by design
+    variant: { default: 'primary', outline: 'tertiary', lime: 'primary' },
     size: { default: 'md' },
   },
   Badge: {
@@ -117,7 +118,6 @@ const VARIANT_HELPERS = { buttonVariants: 'Button', badgeVariants: 'Badge' }
 export const PROP_REVIEW = {
   Button: {
     variant: {
-      default: 'the old mint-45 fill has no match: pick secondary (mint-75) or primary (lime)',
       navy: 'no navy button any more',
       'outline-navy': 'no navy outline button any more; tertiary has a grey border',
     },
@@ -180,8 +180,23 @@ function findTagEnd(text, start) {
 
 const lineOf = (text, index) => text.slice(0, index).split('\n').length
 
+// Buttons filled mint through className (bg-mint-45 hover:bg-mint-60 text-white) become the
+// lime primary button: drop the fill, its hover and the white text, which would sit on lime.
+const MINT_FILL = /(?<![\w-])(?:[\w-]+:)*(?:bg-mint-\d+|text-white)(?![\w-])/g
+function dropMintFill(tag, line, report) {
+  return tag.replace(/(\s*)(\bclassName=)(["'])([^"']*)\3/, (whole, space, head, quote, classes) => {
+    if (!/(?<![\w-])bg-mint-\d+(?![\w-])/.test(classes)) return whole
+    report.change('Button mint fill override removed (primary is lime)', line)
+    const rest = classes.replace(MINT_FILL, '').replace(/\s+/g, ' ').trim()
+    return rest ? `${space}${head}${quote}${rest}${quote}` : ''
+  })
+}
+
 // prop="x" | prop={'x'} | prop={"x"}  (also `prop: 'x'` inside a cva helper call)
 const attrPattern = (prop) => new RegExp(`(\\b${prop}=)(?:"([^"]*)"|\\{\\s*['"]([^'"]*)['"]\\s*\\})`, 'g')
+// prop={cond ? 'a' : 'b'}: an expression whose string literals are variant values
+const expressionPattern = (prop) => new RegExp(`(\\b${prop}=\\{)([^{}]*['"][^{}]*)\\}`, 'g')
+const LITERAL = /(['"])([\w-]+)\1/g
 const keyPattern = (prop) => new RegExp(`(\\b${prop}\\s*:\\s*)(['"])([^'"]*)\\2`, 'g')
 
 function migrateProps(text, report) {
@@ -210,6 +225,20 @@ function migrateProps(text, report) {
           report.change(`${imported} ${prop}="${value}" → "${values[value]}"`, line)
           return `${head}"${values[value]}"`
         })
+        updated = updated.replace(expressionPattern(prop), (whole, head, expression) =>
+          `${head}${expression.replace(LITERAL, (literal, quote, value) => {
+            if (!(value in values)) return literal
+            report.change(`${imported} ${prop}="${value}" → "${values[value]}"`, line)
+            return `${quote}${values[value]}${quote}`
+          })}}`,
+        )
+      }
+      for (const prop of Object.keys(renames)) {
+        for (const [, expression] of source.matchAll(new RegExp(`\\b${prop}=\\{([^}]*)\\}`, 'g'))) {
+          if (!/['"]/.test(expression)) {
+            report.review(`${imported} ${prop}={${expression.trim()}}: check the values it can return against the renamed ${prop}s`, line)
+          }
+        }
       }
       for (const [prop, values] of Object.entries(review)) {
         if (typeof values === 'string') {
@@ -220,10 +249,13 @@ function migrateProps(text, report) {
           const value = plain ?? braced
           if (value in values) report.review(`${imported} ${prop}="${value}": ${values[value]}`, line)
         }
+        for (const [, , expression] of source.matchAll(expressionPattern(prop))) {
+          for (const [, , value] of expression.matchAll(LITERAL)) {
+            if (value in values) report.review(`${imported} ${prop}="${value}": ${values[value]}`, line)
+          }
+        }
       }
-      if (imported === 'Button' && !/\svariant=/.test(source)) {
-        report.review('Button with no variant: the default changed from the mint-45 fill to primary (lime)', line)
-      }
+      if (imported === 'Button') updated = dropMintFill(updated, line, report)
       if (updated !== source) edits.push([tag.index, end, updated])
     }
   }

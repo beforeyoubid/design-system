@@ -83,16 +83,47 @@ test('renames component variants on package components', () => {
   assert.equal(reviews.length, 0)
 })
 
-test('flags variants with no replacement, removed props and implicit Button defaults', () => {
+test('flags variants with no replacement and removed props; implicit Buttons need no review', () => {
   const { reviews } = migrateSource(
     withImports('<Button>Go</Button>\n<Button variant="navy" />\n<Badge variant="cobalt" dot>New</Badge>'),
   )
   assert.deepEqual(
     reviews.map((r) => r.line),
-    [2, 3, 4, 4],
+    [3, 4, 4],
   )
-  assert.match(reviews[0].message, /no variant/)
-  assert.match(reviews[1].message, /navy/)
+  assert.match(reviews[0].message, /navy/)
+})
+
+test('mint Buttons become the lime primary', () => {
+  const text = withImports(
+    [
+      '<Button variant="default">A</Button>',
+      '<Button size="sm" onClick={go} className="bg-mint-45 hover:bg-mint-60 text-white">B</Button>',
+      '<Button\n  onClick={save}\n  className="bg-mint-45 hover:bg-mint-60 text-white px-8"\n>C</Button>',
+      '<Button variant="ghost" className="text-mint-45">D</Button>',
+    ].join('\n'),
+  )
+  const lines = run(text).split('\n')
+  assert.equal(lines[1], '<Button variant="primary">A</Button>')
+  assert.equal(lines[2], '<Button size="sm" onClick={go}>B</Button>')
+  assert.equal(lines[5], '  className="px-8"')
+  assert.equal(lines[7], '<Button variant="ghost" className="text-mint-45">D</Button>')
+})
+
+test('renames variant values inside expressions', () => {
+  const { text, reviews } = migrateSource(
+    withImports("<Badge variant={done ? 'secondary' : 'lime'} />\n<Button variant={primary ? \"lime\" : 'navy'} />"),
+  )
+  assert.match(text, /<Badge variant=\{done \? 'gray' : 'lime'\} \/>/)
+  assert.match(text, /<Button variant=\{primary \? "primary" : 'navy'\} \/>/)
+  assert.equal(reviews.length, 1)
+  assert.match(reviews[0].message, /navy/)
+})
+
+test('flags variants that come from a variable or function', () => {
+  const { reviews } = migrateSource(withImports('<Badge variant={statusVariant(row.status)} />'))
+  assert.equal(reviews.length, 1)
+  assert.match(reviews[0].message, /statusVariant\(row\.status\)/)
 })
 
 test('respects aliased imports and ignores components from elsewhere', () => {
