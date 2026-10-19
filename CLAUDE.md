@@ -14,7 +14,9 @@ Read this before adding or modifying any component or token.
 | `components.json` | shadcn CLI config — wire for `npx shadcn add <component>`. |
 | `src/components/` | BYB composite components (`InputField`, `SelectField`, `Stepper`, `AreaChart`, …). One file per component. |
 | `src/components/ui/` | Where shadcn CLI scaffolds new base primitives. Customize after scaffolding. |
-| `src/tokens.ts` | Same brand colors and typography exported as JS constants (for non-Tailwind contexts). |
+| `src/tokens.ts` | `generateDesignSystemTokens({ overrides })` — tokens for non-CSS contexts (Stripe, canvas). Reads `src/generated/default-tokens.ts`. |
+| `src/generated/default-tokens.ts` | Generated from `globals.css` + `utilities.css` by `pnpm generate-tokens`. Never edit by hand. |
+| `migrate/` | `design-system-migrate` codemod that moves apps from 1.1.x to the role + step names. Tests: `pnpm test:migrate`. |
 | `src/lib/utils.ts` | `cn()` helper — `tailwind-merge` extended with every BYB token. |
 | `src/stories/` | Storybook — one file per component, all variants. |
 | `src/index.ts` | Public exports — every new component must be re-exported. |
@@ -92,7 +94,7 @@ modifier instead:
 Each BYB product has a badge colour token that aliases a category primitive
 (`--badge-product-bpi: var(--category-01)`). Mapping lives in the Confluence
 "Product Badges" page (ER space). To reassign a product, repoint its alias in
-`globals.css` and update `badgeProductColors` in `src/tokens.ts`.
+`globals.css` and run `pnpm generate-tokens`.
 
 ```tsx
 <Badge product="electrical-report">Electrical Inspection</Badge>        // component
@@ -106,9 +108,9 @@ Each BYB product has a badge colour token that aliases a category primitive
 
 Font: **Plus Jakarta Sans** — loaded by the consuming app (e.g. `next/font/google`). We declare the stack via `--font-sans` only.
 
-Class names follow **role + size**: the same suffix always means the same step within a role. Need a different weight? Add `font-medium` / `font-semibold` to the size class; there is no separate weight scale. Tailwind's default `text-xs`…`text-9xl` are disabled, so only these sizes exist.
+Class names follow **role + size**: the same suffix always means the same step within a role. Need a different weight? Add `font-medium` / `font-semibold` to the size class; there is no separate weight scale. Tailwind's own `text-xs`…`text-9xl` still exist underneath (we never redefine Tailwind's base scale) but aren't used for designed text.
 
-Heading classes are **style names, not tags** — `<h2 className="text-h1">` is fine; pick the tag for document structure and the class for looks.
+Heading classes are **style names, not tags** — `<h2 className="text-h1">` is fine; pick the tag for document structure and the class for looks. The old 1.1.x names are gone; apps move with `npx design-system-migrate`.
 
 Display and heading classes bake in `tracking-heading` (-0.005em). Button and overline classes bake in `uppercase` + `tracking-button` (0.04em). Both are applied in `utilities.css`.
 
@@ -170,7 +172,7 @@ shadcn components reference `var(--radius)` which aliases to `--radius-md`.
 1. Add the CSS variable to `globals.css` under `:root` (use OKLCH, keep the hex in a comment).
 2. Add the matching `--color-{name}: var(--{name});` (or `--text-*`, `--radius-*`, …) line inside `@theme inline` so it generates a utility class.
 3. Run `pnpm check-tokens` — verifies parity.
-4. If non-Tailwind consumers may need the value, also add to `src/tokens.ts`.
+4. Run `pnpm generate-tokens` so the JS defaults pick it up (`pnpm check-tokens` fails until you do).
 5. If it's a colour utility, add the name to the `text-color` group in `src/lib/utils.ts` so `cn()` handles it correctly.
 
 ## Dark mode
@@ -255,7 +257,9 @@ This repo uses **pnpm** (`pnpm@11.9.0` via corepack — run `corepack enable pnp
 pnpm install
 pnpm dev          # watch mode — rebuild on save
 pnpm storybook    # Storybook at http://localhost:6006
-pnpm check-tokens # verify every colour primitive is exposed via @theme inline
+pnpm check-tokens # verify every colour primitive is exposed via @theme inline, and generated tokens are current
+pnpm generate-tokens # regenerate src/generated/default-tokens.ts from globals.css
+pnpm test:migrate # migrator tests
 pnpm type-check   # TypeScript strict check
 pnpm lint         # ESLint
 ```

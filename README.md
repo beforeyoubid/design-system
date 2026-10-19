@@ -88,7 +88,9 @@ pnpm storybook    # Storybook at http://localhost:6006
 | `pnpm build-storybook` | Static Storybook build |
 | `pnpm lint` | ESLint across `src/` |
 | `pnpm type-check` | TypeScript strict check (no emit) |
-| `pnpm check-tokens` | Verify every colour primitive is exposed via `@theme inline` |
+| `pnpm check-tokens` | Verify every colour primitive is exposed via `@theme inline` and the generated JS tokens are current |
+| `pnpm generate-tokens` | Regenerate `src/generated/default-tokens.ts` from `globals.css` |
+| `pnpm test:migrate` | Run the `design-system-migrate` codemod tests |
 
 ## Generating new components
 
@@ -151,11 +153,11 @@ v1.x targeted Tailwind v3 with a `tailwind.config.ts` extension. v2.0 moves ever
 
 1. Add the CSS variable to `globals.css` under `:root`
 2. Add the matching `--color-{name}: var(--{name});` line in `@theme inline`
-3. Run `pnpm check-tokens`
+3. Run `pnpm generate-tokens`, then `pnpm check-tokens`
 
 ## CI
 
-Every PR runs: token sanity check → type-check → lint → build → Storybook build.
+Every PR runs: token sanity check → type-check → lint → migrator tests → build → Storybook build.
 
 Merging to `main` triggers an automatic Storybook deploy to S3 + CloudFront invalidation.
 

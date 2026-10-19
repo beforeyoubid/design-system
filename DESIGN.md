@@ -1,7 +1,7 @@
 # BYB Design System
 
 > Design spec for `@beforeyoubid/design-system`.
-> Source of truth is the code: `globals.css`, `utilities.css`, `src/tokens.ts` and `src/components`. When this file and the code disagree, the code wins. Update this file in the same PR.
+> Source of truth is the code: `globals.css`, `utilities.css` and `src/components` (`src/tokens.ts` is generated from the CSS). When this file and the code disagree, the code wins. Update this file in the same PR.
 > Stack: Tailwind CSS v4 + shadcn/ui on Base UI. Font: Plus Jakarta Sans. Icons: Tabler (primary), Lucide (secondary).
 > Related Confluence (ER space): Typography · Product Badges · Responsive Breakpoints.
 
@@ -21,6 +21,8 @@
 10. [Components](#components)
 11. [Accessibility](#accessibility)
 12. [Rules for designers and engineers](#rules-for-designers-and-engineers)
+13. [Tokens in JS](#tokens-in-js)
+14. [Upgrading from 1.1.x](#upgrading-from-11x)
 
 ---
 
@@ -186,7 +188,7 @@ Dark mode is turned on by the app with `<html class="dark">`; semantic tokens fl
 
 ### Naming
 
-Every style is **`{role}-{step}`**, and **1 is always the largest**. Headings use H1–H6 because that's how the team already talks about them. Tailwind's default `text-xs`…`text-9xl` are disabled, so only these sizes exist. For a different weight, add `font-medium` / `font-semibold`; there is no weight scale.
+Every style is **`{role}-{step}`**, and **1 is always the largest**. Headings use H1–H6 because that's how the team already talks about them. Use these for all product type. Tailwind's own `text-xs`…`text-9xl` still exist underneath, but don't use them for designed text. For a different weight, add `font-medium` / `font-semibold`; there is no weight scale.
 
 **Style names are not tags.** Pick the HTML tag for document structure (one `<h1>` per page, no skipped levels) and the class for looks: `<h2 className="text-h1">` is correct.
 
@@ -215,12 +217,13 @@ Every style is **`{role}-{step}`**, and **1 is always the largest**. Headings us
 | `text-button-md` | 16px | 1.3 | 600 | 0.04em, UPPERCASE | Button `size="lg"` label |
 | `text-button-sm` | 14px | 1.3 | 600 | 0.04em, UPPERCASE | Button `size="sm"` and `size="md"` labels (default) |
 
-JS: `import { typography } from '@beforeyoubid/design-system'` → `typography.h1`, `typography.body4`.
+JS (non-CSS contexts only, e.g. canvas or Stripe): `generateDesignSystemTokens().typography.h1`. See [Tokens in JS](#tokens-in-js).
 
 **Responsive:** step headings down on mobile, e.g. `text-h3 md:text-h1`.
 
 **Colour:** headings `text-navy`; **sub-headings `text-dark-90`**: overlines, group and section labels, column labels (e.g. "INSPECTION TYPE", "Switch inspection type", Select group labels, the time picker's "HR / MIN"), never `dark-60` or `dark-75`; body `text-dark-90`; descriptions and secondary text `text-muted-foreground` (`dark-75`, unchanged); hints, helper text and icons `text-dark-75`. Don't use `dark-60` for text or icons.
 
+**Upgrading from 1.1.x:** the old names (`text-heading-lg`, `text-medium-4xl`, `text-body-md`, the 10px `text-xs`, …) are gone. Run the migrator (see [Upgrading](#upgrading-from-11x)); it maps each one to its role + step class.
 
 ---
 
@@ -292,7 +295,7 @@ Page container: `mx-auto w-full max-w-site px-4 md:px-6 lg:px-16`. Grid: `grid-c
 | `rounded-4xl` | 32px | |
 | `rounded-full` | 9999px | Pills, badges, avatars, icon buttons, pill tabs |
 
-The scale runs in order: 4, 8, 12, 16, 20, 24, 32px. **Upgrading:** `rounded-xl` and `rounded-2xl` used to be swapped (xl was 20px, 2xl 16px). Every library component was updated so nothing changed on screen; in app code, swap `rounded-xl` ↔ `rounded-2xl` (including side variants like `rounded-t-xl`) to keep the same look.
+The scale runs in order: 4, 8, 12, 16, 20, 24, 32px. **Upgrading:** `rounded-xl` and `rounded-2xl` used to be swapped (xl was 20px, 2xl 16px). Every library component was updated so nothing changed on screen; the migrator swaps app code the same way (including side variants like `rounded-t-xl`) and maps the removed `rounded-btn` to `rounded-xl`.
 
 ---
 
@@ -531,10 +534,44 @@ Every toast has a × so it can be closed early. Override per toast with `duratio
 3. **One lime CTA per view.**
 4. **Content width is `max-w-site`.**
 5. **No inline styles, no MUI.** Use `cva` for variants, `cn()` for merging, Base UI `render` for links.
-6. **New tokens:** add to `globals.css` `:root` (OKLCH + hex comment) → `@theme inline` → run `pnpm check-tokens` → `src/tokens.ts` if needed → `cn()` group in `src/lib/utils.ts`.
+6. **New tokens:** add to `globals.css` `:root` (OKLCH + hex comment) → `@theme inline` → run `pnpm generate-tokens` (updates the JS defaults) and `pnpm check-tokens` → `cn()` group in `src/lib/utils.ts`.
 7. **Typography by role + step** (`text-h3`, `text-body-4`), never pixel sizes. Tag for structure, class for looks.
 8. **Breakpoints:** standard Tailwind prefixes, mobile-first: no prefix for mobile, `md:` 768, `lg:` 1024, `xl:` 1280, `2xl:` 1440 (`sm:` 640 for large phones). One range only: `max-md:`, `md:max-lg:`, `xl:max-2xl:`.
 9. **Badge colours keep white text at AA.** New category colours must pass 4.5:1 against white.
 10. **Hover never adds a background to a bare text or icon control.** Links, page numbers, text tabs, nav triggers, × and other icon buttons change colour only. Controls that already have a fill (buttons, chips) change their fill; rows in lists, menus, selects, tables and the calendar keep their row highlight.
 11. **Sub-headings are `dark-90`.** Overlines, group labels, section labels and column labels use `text-dark-90`; `dark-60` and `dark-75` are too grey for them. Descriptions keep `text-muted-foreground`.
 12. **No `dark-60` for text or icons.** Hints, helper text, meta labels and icons use `text-dark-75`; `dark-60` is too light (3.3:1 on white).
+
+---
+
+## Tokens in JS
+
+In the DOM, always use utility classes. For places CSS can't reach (Stripe Elements, canvas, charts drawn in JS, emails), each app keeps **one** theme module that calls `generateDesignSystemTokens`, and reads every token from it:
+
+```ts
+// app/theme.ts
+import { generateDesignSystemTokens } from '@beforeyoubid/design-system'
+
+export const tokens = generateDesignSystemTokens({
+  // Only what this app overrides in its CSS, with the same values
+  overrides: { colors: { mint45: '#00A08A' } },
+})
+
+tokens.colors.mint45                  // '#00A08A'
+tokens.badgeProductColors.bpi         // follows colors.category01
+tokens.typography.h1                  // { fontSize: '40px', lineHeight: '1.2', fontWeight: 600, letterSpacing: '-0.005em' }
+```
+
+The defaults are generated from `globals.css`, so they always match the CSS. Don't hard-code hex values or import raw token objects.
+
+## Upgrading from 1.1.x
+
+Run the migrator once per app, in the PR that upgrades the package, on a clean working tree:
+
+```bash
+npx design-system-migrate            # dry run: what would change, and what needs a decision
+npx design-system-migrate --write    # apply
+```
+
+It renames the old type, button, radius and colour classes, swaps `rounded-xl` ↔ `rounded-2xl`, moves `dark-60` text and icons to `dark-75`, and renames Button, Badge, Switch and TabsList variants. It lists anything with no like-for-like replacement (for example Buttons with no `variant`, whose default moved from the mint fill to lime) with its file and line. `--map old=new` changes a mapping for one app, e.g. `--map text-xs=text-sm`. Run it only once: a second run would swap the radius classes back.
+

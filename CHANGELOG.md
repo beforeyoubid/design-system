@@ -1,5 +1,30 @@
 # Changelog
 
+## Unreleased (major)
+
+Upgrade an app with `npx design-system-migrate` (dry run) then `--write`, in the same PR as the version bump. See DESIGN.md → "Upgrading from 1.1.x".
+
+### Breaking
+
+- **Type classes are role + step.** `text-display-1…4`, `text-h1…h6`, `text-body-1…5`, `text-caption-1…3`, `text-overline`, `text-button-lg/md/sm`. The 1.1.x names (`text-heading-*`, `text-medium-*`, `text-body-lg/md/sm`, `text-caption`, `text-btn-*`, the 10px `text-xs`, `text-2xs`) and `tracking-btn` are removed; the migrator maps each one.
+- **Tailwind's default `text-xs` is 12px again.** 1.1.x overrode it to 10px; those uses become `text-caption-2`.
+- **`rounded-xl` is 16px and `rounded-2xl` 20px** (they were 20px and 16px). Components were swapped to match; the migrator swaps app uses. `rounded-btn` is removed (→ `rounded-xl`).
+- **`cobalt` is renamed `electric-blue`**, including `-l1` and the CSS variables.
+- **Button, Badge, Switch and TabsList variants renamed.** Button `outline` → `tertiary`, `lime` → `primary`, size `default` → `md`; the default Button variant is now `primary` (lime). Badge `default`/`secondary`/`outline` → `gray`, `destructive` → `error`; `dot` removed. TabsList `default`/`pills` → `pill`.
+- **`colors` and `typography` are no longer exported.** Use `generateDesignSystemTokens({ overrides })` for non-CSS contexts, or a utility class.
+- **`2xl:` breakpoint is 1440px** (was 1536px). `xl:` stays at 1280px.
+
+### Added
+
+- `generateDesignSystemTokens({ overrides })`: colours, product badge colours and type styles for non-CSS contexts, generated from `globals.css` so they can't drift.
+- `design-system-migrate` codemod.
+- `tw-animate-css` is a dependency and imported by `globals.css`, so overlay enter/exit animations (`animate-in`, `fade-in-0`, `zoom-in-95`, `slide-in-from-*`) work. Apps need no change.
+
+### Fixed
+
+- Accordion panels animate open and closed (the keyframes read Radix's height variable instead of Base UI's `--accordion-panel-height`).
+- Tailwind's default text sizes are no longer cleared, so `text-sm`, `text-lg` and the rest keep working in apps.
+
 ## 1.1.5
 
 ### Added
