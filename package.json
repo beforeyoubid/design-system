@@ -14,8 +14,13 @@
   "files": [
     "dist",
     "globals.css",
-    "utilities.css"
+    "utilities.css",
+    "migrate/index.mjs",
+    "migrate/rules.mjs"
   ],
+  "bin": {
+    "design-system-migrate": "migrate/index.mjs"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -46,7 +51,8 @@
     "build-storybook": "storybook build",
     "check-tokens": "node scripts/check-tokens.js && node scripts/generate-tokens.mjs --check",
     "generate-tokens": "node scripts/generate-tokens.mjs",
-    "test": "jest"
+    "test": "jest",
+    "test:migrate": "node --test migrate/rules.test.mjs"
   },
   "peerDependencies": {
     "next": ">=14",

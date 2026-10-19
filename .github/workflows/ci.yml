@@ -30,6 +30,9 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: Migrator tests
+        run: pnpm test:migrate
+
       - name: Build package
         run: pnpm build
 
