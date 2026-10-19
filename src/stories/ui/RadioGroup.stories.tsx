@@ -92,7 +92,7 @@ export const Sizes: Story = {
     <div className="grid grid-cols-3 gap-8">
       {SIZES.map((size) => (
         <div key={size} className="flex flex-col gap-3">
-          <span className="text-overline text-dark-60">{size}</span>
+          <span className="text-overline text-dark-90">{size}</span>
           <RadioGroup size={size} defaultValue="standard">
             <RadioGroupItem value="basic" label="Basic" description="Building inspection only." />
             <RadioGroupItem value="standard" label="Standard" description="Building and pest." />

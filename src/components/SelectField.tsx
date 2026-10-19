@@ -150,7 +150,7 @@ export function SelectField(props: SelectFieldProps) {
 
   const renderMultiple = (selected: string[] | null) => {
     if (!selected || selected.length === 0) {
-      return <span className="truncate text-dark-60">{placeholder}</span>
+      return <span className="truncate text-dark-90">{placeholder}</span>
     }
     const shown = selected.slice(0, maxDisplayed)
     const rest = selected.length - shown.length
@@ -295,7 +295,7 @@ export function SelectField(props: SelectFieldProps) {
         </SelectContent>
       </Select>
       {hint && !error && (
-        <p id={`${fieldId}-hint`} className="text-body-5 text-dark-60">
+        <p id={`${fieldId}-hint`} className="text-body-5 text-dark-75">
           {hint}
         </p>
       )}

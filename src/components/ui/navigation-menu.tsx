@@ -71,7 +71,7 @@ function NavigationMenuTrigger({
       {...props}
     >
       {children}{" "}
-      <IconChevronDown className="relative size-3.5 text-dark-60 transition duration-300 group-data-popup-open/navigation-menu-trigger:text-mint-75 group-data-popup-open/navigation-menu-trigger:rotate-180 group-data-open/navigation-menu-trigger:rotate-180" aria-hidden="true" />
+      <IconChevronDown className="relative size-3.5 text-dark-75 transition duration-300 group-data-popup-open/navigation-menu-trigger:text-mint-75 group-data-popup-open/navigation-menu-trigger:rotate-180 group-data-open/navigation-menu-trigger:rotate-180" aria-hidden="true" />
     </NavigationMenuPrimitive.Trigger>
   )
 }

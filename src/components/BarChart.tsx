@@ -226,7 +226,7 @@ function BarChart({
             className={cn(statToggleVariants({ active }))}
             onClick={() => setActiveSeries(s.key)}
           >
-            <span className="text-caption-1 text-dark-60">{s.label}</span>
+            <span className="text-caption-1 text-dark-75">{s.label}</span>
             <span className="text-h5 text-navy">
               {(totals[s.key] ?? 0).toLocaleString()}
             </span>

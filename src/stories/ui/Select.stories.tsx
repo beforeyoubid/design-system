@@ -400,9 +400,9 @@ export const MultipleWithCustomContent: Story = {
         label="Add-ons"
         defaultValue={['report']}
         options={[
-          { value: 'report', label: 'PDF report', start: <FileText className="text-dark-60" />, meta: 'Free', chip: <FileText className="size-3.5" /> },
-          { value: 'pool', label: 'Pool check', start: <Waves className="text-dark-60" />, meta: '$120', chip: <Waves className="size-3.5" /> },
-          { value: 'warranty', label: 'Warranty review', start: <ShieldCheck className="text-dark-60" />, meta: <ColorDot className="bg-warning-45" />, chip: <ColorDot className="bg-warning-45" /> },
+          { value: 'report', label: 'PDF report', start: <FileText className="text-dark-75" />, meta: 'Free', chip: <FileText className="size-3.5" /> },
+          { value: 'pool', label: 'Pool check', start: <Waves className="text-dark-75" />, meta: '$120', chip: <Waves className="size-3.5" /> },
+          { value: 'warranty', label: 'Warranty review', start: <ShieldCheck className="text-dark-75" />, meta: <ColorDot className="bg-warning-45" />, chip: <ColorDot className="bg-warning-45" /> },
         ]}
       />
     </div>

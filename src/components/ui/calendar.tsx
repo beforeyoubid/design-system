@@ -84,13 +84,13 @@ function Calendar({
           "select-none text-navy",
           captionLayout === "label"
             ? "text-body-5 font-semibold"
-            : "flex items-center gap-1 rounded-(--cell-radius) text-body-5 font-medium [&>svg]:size-3 [&>svg]:text-dark-60",
+            : "flex items-center gap-1 rounded-(--cell-radius) text-body-5 font-medium [&>svg]:size-3 [&>svg]:text-dark-75",
           defaultClassNames.caption_label
         ),
         table: "w-full border-collapse",
         weekdays: cn("flex", defaultClassNames.weekdays),
         weekday: cn(
-          "flex-1 rounded-(--cell-radius) text-caption-2 font-normal text-dark-60 select-none",
+          "flex-1 rounded-(--cell-radius) text-caption-2 font-normal text-dark-75 select-none",
           defaultClassNames.weekday
         ),
         week: cn("mt-2 flex w-full", defaultClassNames.week),

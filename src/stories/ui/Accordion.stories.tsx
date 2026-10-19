@@ -93,7 +93,7 @@ export const Sizes: Story = {
     <div className="flex max-w-2xl flex-col gap-10">
       {(['sm', 'md', 'lg'] as const).map((size) => (
         <div key={size} className="flex flex-col gap-2">
-          <span className="text-overline text-dark-60">{size}</span>
+          <span className="text-overline text-dark-90">{size}</span>
           <Accordion size={size} defaultValue={['share-cost']}>
             {FAQ_ITEMS.slice(0, 3).map((item) => (
               <AccordionItem key={item.value} value={item.value}>

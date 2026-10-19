@@ -221,7 +221,7 @@ function DropdownMenuSubTrigger({
       {...props}
     >
       {children}
-      <IconChevronRight className="ms-auto size-3.5 text-dark-60 rtl:rotate-180" />
+      <IconChevronRight className="ms-auto size-3.5 text-dark-75 rtl:rotate-180" />
     </MenuPrimitive.SubmenuTrigger>
   )
 }
@@ -355,7 +355,7 @@ function DropdownMenuProductItem({
       className={cn("rounded-lg py-4 text-body-4", className)}
       {...props}
     >
-      <Icon className="text-dark-60" />
+      <Icon className="text-dark-75" />
       <span className="min-w-0 flex-1 truncate">{text}</span>
       <span aria-hidden="true" className={cn("size-2 shrink-0 rounded-full", bg)} />
     </DropdownMenuRadioItem>
@@ -383,7 +383,7 @@ function DropdownMenuShortcut({
     <span
       data-slot="dropdown-menu-shortcut"
       className={cn(
-        "ms-auto text-caption-1 text-dark-60",
+        "ms-auto text-caption-1 text-dark-75",
         className
       )}
       {...props}
@@ -430,7 +430,7 @@ function DropdownMenuCardTrigger({
       {icon && <IconTile tone="mint" size="lg" icon={icon} />}
       <span className="flex min-w-0 flex-1 flex-col gap-0.5">
         {label && (
-          <span className="text-overline text-dark-60">{label}</span>
+          <span className="text-overline text-dark-90">{label}</span>
         )}
         <span className="flex min-w-0 items-center gap-2">
           {dotClassName && (
@@ -449,7 +449,7 @@ function DropdownMenuCardTrigger({
       )}
       <ChevronDown
         aria-hidden="true"
-        className="size-4 shrink-0 text-dark-60 transition-transform group-data-popup-open/card-trigger:rotate-180 group-data-popup-open/card-trigger:text-mint-75"
+        className="size-4 shrink-0 text-dark-75 transition-transform group-data-popup-open/card-trigger:rotate-180 group-data-popup-open/card-trigger:text-mint-75"
       />
     </MenuPrimitive.Trigger>
   )
@@ -584,7 +584,7 @@ function ProductSwitcher({
         className={cn("w-160 max-w-(--available-width) p-3", contentClassName)}
       >
         <DropdownMenuGroup>
-          <DropdownMenuLabel className="px-1 pt-0 pb-2 text-dark-60">
+          <DropdownMenuLabel className="px-1 pt-0 pb-2 text-dark-90">
             {heading}
           </DropdownMenuLabel>
           <DropdownMenuCardGrid

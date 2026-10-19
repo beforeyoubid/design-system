@@ -43,7 +43,7 @@ function Fieldset({
             </span>
           )}
           {description && (
-            <span className="text-body-5 text-dark-60">{description}</span>
+            <span className="text-body-5 text-dark-75">{description}</span>
           )}
         </div>
       )}

@@ -98,7 +98,7 @@ function FileUploadCard({
           <span className="truncate text-body-5 font-semibold text-navy">
             {name}
           </span>
-          <span className="flex flex-wrap items-center gap-2 text-caption-2 text-dark-60">
+          <span className="flex flex-wrap items-center gap-2 text-caption-2 text-dark-75">
             <span>
               {done
                 ? formatBytes(size)
@@ -128,7 +128,7 @@ function FileUploadCard({
           type="button"
           aria-label={uploading ? `Cancel upload of ${name}` : `Remove ${name}`}
           onClick={uploading ? onCancel : onRemove}
-          className="-me-1 -mt-1 flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-dark-60 transition-colors outline-none hover:text-dark-100 focus-visible:ring-2 focus-visible:ring-mint-45"
+          className="-me-1 -mt-1 flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-dark-75 transition-colors outline-none hover:text-dark-100 focus-visible:ring-2 focus-visible:ring-mint-45"
         >
           {uploading ? (
             <IconX className="size-4" />
@@ -403,7 +403,7 @@ function Attachment({
             <span
               className={cn(
                 "ms-1 font-normal",
-                disabled ? "text-dark-45" : "text-dark-60"
+                disabled ? "text-dark-45" : "text-dark-75"
               )}
             >
               (optional)
@@ -480,7 +480,7 @@ function Attachment({
           role={err ? "alert" : undefined}
           className={cn(
             "text-body-5",
-            err ? "text-error-75" : disabled ? "text-dark-45" : "text-dark-60"
+            err ? "text-error-75" : disabled ? "text-dark-45" : "text-dark-75"
           )}
         >
           {err || hint}

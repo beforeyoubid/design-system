@@ -245,7 +245,7 @@ function DialogCollapsible({
         <>
           <CollapsiblePrimitive.Trigger className="group/dc flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg px-4 py-3 text-start text-body-5 font-semibold text-navy outline-none hover:text-mint-75 focus-visible:ring-2 focus-visible:ring-mint-45">
             {label ?? "Details"}
-            <ChevronDown className="size-4 shrink-0 text-dark-60 transition-transform group-data-panel-open/dc:rotate-180" />
+            <ChevronDown className="size-4 shrink-0 text-dark-75 transition-transform group-data-panel-open/dc:rotate-180" />
           </CollapsiblePrimitive.Trigger>
           <CollapsiblePrimitive.Panel className="border-t border-light-l3 px-4 py-3 text-body-5 text-dark-90">
             {children}

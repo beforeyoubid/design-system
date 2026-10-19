@@ -98,7 +98,7 @@ function Switch({
           </span>
         )}
         {description != null && (
-          <span data-slot="switch-description" className="text-body-5 text-dark-60">
+          <span data-slot="switch-description" className="text-body-5 text-dark-75">
             {description}
           </span>
         )}

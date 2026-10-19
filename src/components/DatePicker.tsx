@@ -122,7 +122,7 @@ function TimeColumn({
 
   return (
     <div className="flex flex-col gap-1">
-      <span className="px-2 text-center text-overline text-dark-60">{label}</span>
+      <span className="px-2 text-center text-overline text-dark-90">{label}</span>
       <div
         ref={listRef}
         role="listbox"
@@ -192,7 +192,7 @@ function TimePicker({
         className={cn(triggerClasses, "w-32 tabular-nums", className)}
       >
         <TriggerText text={text} placeholder={placeholder} />
-        <Clock className="size-4 shrink-0 text-dark-60 group-data-popup-open:text-mint-75" />
+        <Clock className="size-4 shrink-0 text-dark-75 group-data-popup-open:text-mint-75" />
       </PopoverTrigger>
       <PopoverContent
         align="start"
@@ -291,9 +291,9 @@ function DatePicker({
           >
             <TriggerText text={text} placeholder={placeholder} />
             {icon === "calendar" ? (
-              <IconCalendar className="size-4 shrink-0 text-dark-60 group-data-popup-open:text-mint-75" />
+              <IconCalendar className="size-4 shrink-0 text-dark-75 group-data-popup-open:text-mint-75" />
             ) : (
-              <IconChevronDown className="size-4 shrink-0 text-dark-60 transition-transform group-data-popup-open:rotate-180 group-data-popup-open:text-mint-75" />
+              <IconChevronDown className="size-4 shrink-0 text-dark-75 transition-transform group-data-popup-open:rotate-180 group-data-popup-open:text-mint-75" />
             )}
           </PopoverTrigger>
           <PopoverContent
@@ -324,7 +324,7 @@ function DatePicker({
         )}
       </div>
       {description && (
-        <span className="text-body-5 text-dark-60">{description}</span>
+        <span className="text-body-5 text-dark-75">{description}</span>
       )}
     </div>
   )

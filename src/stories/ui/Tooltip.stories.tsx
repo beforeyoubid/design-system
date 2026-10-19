@@ -17,14 +17,14 @@ export const Default: Story = {
       <TooltipProvider>
         <div className="flex flex-col items-center gap-3">
           <Button variant="tertiary">Hover</Button>
-          <span className="text-overline text-dark-60">Default</span>
+          <span className="text-overline text-dark-90">Default</span>
         </div>
         <div className="flex flex-col items-center gap-3">
           <Tooltip defaultOpen>
             <TooltipTrigger render={<Button variant="tertiary">Hover</Button>} />
             <TooltipContent>Add to library</TooltipContent>
           </Tooltip>
-          <span className="text-overline text-dark-60">Hover · tooltip shown</span>
+          <span className="text-overline text-dark-90">Hover · tooltip shown</span>
         </div>
       </TooltipProvider>
     </div>

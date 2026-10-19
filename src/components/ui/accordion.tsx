@@ -81,7 +81,7 @@ function AccordionTrigger({
         {...props}
       >
         {children}
-        <IconChevronDown className="pointer-events-none shrink-0 text-dark-60 transition-colors group-hover/accordion-trigger:text-mint-45 group-aria-expanded/accordion-trigger:hidden" />
+        <IconChevronDown className="pointer-events-none shrink-0 text-dark-75 transition-colors group-hover/accordion-trigger:text-mint-45 group-aria-expanded/accordion-trigger:hidden" />
         <IconChevronUp className="pointer-events-none hidden shrink-0 text-mint-45 group-aria-expanded/accordion-trigger:inline" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>

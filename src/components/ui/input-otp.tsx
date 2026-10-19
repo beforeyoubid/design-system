@@ -79,7 +79,7 @@ function InputOTPSeparator({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="input-otp-separator"
       role="separator"
-      className={cn("flex items-center px-1 text-body-5 text-dark-60", className)}
+      className={cn("flex items-center px-1 text-body-5 text-dark-75", className)}
       {...props}
     >
       -

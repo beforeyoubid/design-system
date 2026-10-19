@@ -122,7 +122,7 @@ function Cells({ r }: { r: (typeof reports)[number] }) {
     <>
       <TableCell>
         <div className="text-body-5 font-medium text-navy">{r.address}</div>
-        <div className="text-caption-1 text-dark-60">{r.suburb}</div>
+        <div className="text-caption-1 text-dark-75">{r.suburb}</div>
       </TableCell>
       <TableCell>{r.type}</TableCell>
       <TableCell>{r.inspector}</TableCell>
@@ -176,7 +176,7 @@ export const Sizes: Story = {
     <div className={`${frame} flex flex-col gap-8`}>
       {(['sm', 'md', 'lg'] as const).map((size) => (
         <div key={size} className="flex flex-col gap-2">
-          <p className="text-overline text-dark-60">size=&quot;{size}&quot;</p>
+          <p className="text-overline text-dark-90">size=&quot;{size}&quot;</p>
           <BasicTable variant={variant ?? 'card'} size={size} />
         </div>
       ))}
@@ -268,7 +268,7 @@ export const SelectableRows: Story = {
             })}
           </TableBody>
         </Table>
-        <p className="mt-3 text-body-5 text-dark-60">{selected.length} of {reports.length} selected</p>
+        <p className="mt-3 text-body-5 text-dark-75">{selected.length} of {reports.length} selected</p>
       </div>
     )
   },
@@ -312,7 +312,7 @@ export const WithHeaderAndOptions: Story = {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="flex flex-col gap-1">
             <h2 className="text-h4 text-navy">Inspection reports</h2>
-            <p className="text-body-5 text-dark-60">All reports ordered for your properties.</p>
+            <p className="text-body-5 text-dark-75">All reports ordered for your properties.</p>
           </div>
           <Button size="sm">
             <IconPlus data-icon="inline-start" />
@@ -446,7 +446,7 @@ export const NoResults: Story = {
 
 type SortKey = 'address' | 'date' | 'price'
 
-/** Click a sortable header to cycle ascending → descending → unsorted. Arrows are dark-60; the header sets aria-sort. */
+/** Click a sortable header to cycle ascending → descending → unsorted. Arrows are dark-75; the header sets aria-sort. */
 export const Sortable: Story = {
   render: function Render(args) {
     const [sort, setSort] = React.useState<{
@@ -545,15 +545,15 @@ export const WithControlsColumn: Story = {
               detail={
                 <div className="grid grid-cols-3 gap-4">
                   <div>
-                    <div className="text-overline text-dark-60">Report ID</div>
+                    <div className="text-overline text-dark-90">Report ID</div>
                     <div className="text-navy">{r.id}</div>
                   </div>
                   <div>
-                    <div className="text-overline text-dark-60">Access</div>
+                    <div className="text-overline text-dark-90">Access</div>
                     <div>Keys with agent, 9:00 am</div>
                   </div>
                   <div>
-                    <div className="text-overline text-dark-60">Notes</div>
+                    <div className="text-overline text-dark-90">Notes</div>
                     <div>Roof void access via hallway hatch.</div>
                   </div>
                 </div>

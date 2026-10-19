@@ -65,7 +65,7 @@ export const WithLabel: Story = {
       <InputOTP id="otp" maxLength={6}>
         <ThreeThree />
       </InputOTP>
-      <span className="text-body-5 text-dark-60">Enter the 6-digit code we sent to 0400 000 000.</span>
+      <span className="text-body-5 text-dark-75">Enter the 6-digit code we sent to 0400 000 000.</span>
     </div>
   ),
 }

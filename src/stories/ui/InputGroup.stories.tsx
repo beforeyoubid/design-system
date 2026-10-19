@@ -127,7 +127,7 @@ export const TextareaWithFooter: Story = {
           <IconPaperclip />
         </InputGroupButton>
         <div className="flex items-center gap-2">
-          <InputGroupText className="text-caption-1 text-dark-60">0 / 500</InputGroupText>
+          <InputGroupText className="text-caption-1 text-dark-75">0 / 500</InputGroupText>
           <InputGroupButton variant="primary">
             Send
             <IconSend />

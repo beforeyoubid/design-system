@@ -56,7 +56,7 @@ function SelectTrigger({
       <SelectPrimitive.Icon
         data-slot="select-icon"
         render={
-          <span className="pointer-events-none flex size-3.5 items-center justify-center text-dark-60 transition-transform group-data-popup-open/select-trigger:rotate-180 group-data-popup-open/select-trigger:text-mint-75 group-data-disabled/select-trigger:text-dark-45" />
+          <span className="pointer-events-none flex size-3.5 items-center justify-center text-dark-75 transition-transform group-data-popup-open/select-trigger:rotate-180 group-data-popup-open/select-trigger:text-mint-75 group-data-disabled/select-trigger:text-dark-45" />
         }
       >
         <IconChevronDown className="size-3.5" />
@@ -112,7 +112,7 @@ function SelectLabel({
   return (
     <SelectPrimitive.GroupLabel
       data-slot="select-label"
-      className={cn("px-2 pt-2 pb-1 text-overline text-dark-60", className)}
+      className={cn("px-2 pt-2 pb-1 text-overline text-dark-90", className)}
       {...props}
     />
   )
@@ -199,7 +199,7 @@ function SelectItem({
       {meta != null && (
         <span
           data-slot="select-item-meta"
-          className="ms-auto flex shrink-0 items-center ps-3 text-body-5 text-dark-60 group-data-disabled/select-item:text-dark-45"
+          className="ms-auto flex shrink-0 items-center ps-3 text-body-5 text-dark-75 group-data-disabled/select-item:text-dark-45"
         >
           {meta}
         </span>
@@ -214,7 +214,7 @@ function SelectFooter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="select-footer"
       className={cn(
-        "sticky -bottom-1 -mx-1 -mb-1 mt-1 flex items-center justify-between gap-2 border-t border-light-l3 bg-white px-3 py-2 text-caption-1 text-dark-60",
+        "sticky -bottom-1 -mx-1 -mb-1 mt-1 flex items-center justify-between gap-2 border-t border-light-l3 bg-white px-3 py-2 text-caption-1 text-dark-75",
         className
       )}
       {...props}
@@ -246,7 +246,7 @@ function SelectScrollUpButton({
     <SelectPrimitive.ScrollUpArrow
       data-slot="select-scroll-up-button"
       className={cn(
-        "top-0 z-10 flex w-full cursor-default items-center justify-center bg-white py-1 text-dark-60 [&_svg:not([class*='size-'])]:size-4",
+        "top-0 z-10 flex w-full cursor-default items-center justify-center bg-white py-1 text-dark-75 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}
@@ -265,7 +265,7 @@ function SelectScrollDownButton({
     <SelectPrimitive.ScrollDownArrow
       data-slot="select-scroll-down-button"
       className={cn(
-        "bottom-0 z-10 flex w-full cursor-default items-center justify-center bg-white py-1 text-dark-60 [&_svg:not([class*='size-'])]:size-4",
+        "bottom-0 z-10 flex w-full cursor-default items-center justify-center bg-white py-1 text-dark-75 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}

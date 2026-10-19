@@ -81,9 +81,9 @@ Utility pattern: `bg-{token}`, `text-{token}`, `border-{token}`, `ring-{token}`,
 | Dark | Hex | Use | | Light | Hex | Use |
 |---|---|---|---|---|---|---|
 | `dark-100` | `#16181D` | Default text, overlays | | `light-l1` | `#F9FAFB` | Muted surface, table header |
-| `dark-90` | `#444A5A` | Body text | | `light-l2` | `#F2F4F7` | Disabled fill, segmented track |
-| `dark-75` | `#656E85` | Secondary text | | `light-l3` | `#EAECF0` | Dividers on white |
-| `dark-60` | `#858EA3` | Placeholder, hint | | `light-sandy` | `#F8F3EE` | Warm marketing surface |
+| `dark-90` | `#444A5A` | Body text, sub-headings, placeholders | | `light-l2` | `#F2F4F7` | Disabled fill, segmented track |
+| `dark-75` | `#656E85` | Secondary text via `muted-foreground`, hints, icons (not sub-headings) | | `light-l3` | `#EAECF0` | Dividers on white |
+| `dark-60` | `#858EA3` | Not used for text or icons (too light: 3.3:1 on white); use `dark-75` | | `light-sandy` | `#F8F3EE` | Warm marketing surface |
 | `dark-45` | `#A5ABBB` | Disabled text, tertiary hover | | `white` | `#FFFFFF` | Page and card background |
 | `dark-30` | `#C2C6D1` | | | | | |
 | `dark-15` | `#DFE1E7` | Borders, inputs | | | | |
@@ -219,7 +219,7 @@ JS: `import { typography } from '@beforeyoubid/design-system'` → `typography.h
 
 **Responsive:** step headings down on mobile, e.g. `text-h3 tablet:text-h1`.
 
-**Colour:** headings `text-navy`; body `text-dark-90`; secondary `text-dark-75`; hints `text-dark-60` (not for essential content).
+**Colour:** headings `text-navy`; **sub-headings `text-dark-90`**: overlines, group and section labels, column labels (e.g. "INSPECTION TYPE", "Switch inspection type", Select group labels, the time picker's "HR / MIN"), never `dark-60` or `dark-75`; body `text-dark-90`; descriptions and secondary text `text-muted-foreground` (`dark-75`, unchanged); hints, helper text and icons `text-dark-75`. Don't use `dark-60` for text or icons.
 
 **Deprecated names** (same values, removed next major): `text-display-xl/lg/md/sm`, `text-heading-xl/lg/md/sm/xs`, `text-body-2xl/xl/lg/md/sm`, `text-caption`, `-sm`, `-xs`. Display and body map largest-first (`display-xl` → `display-1`, `body-md` → `body-4`), `heading-xl…xs` → `h1…h5`, `caption`/`-sm`/`-xs` → `caption-1/2/3`. Full table on the Confluence **Typography** page.
 
@@ -382,7 +382,7 @@ Pill, `text-caption-2` semibold. Sizes `sm` / `md` (default, 20px) / `lg`; `spin
 - Invalid (`aria-invalid`): `border-error-75`, red ring on focus.
 - Disabled: `bg-light-l2 text-dark-45`.
 - `InputField` / `SelectField` add label, hint and error slots. `SelectField` options can be grouped into categories (`{ label, options }`) and take custom content in three slots, each accepting any node: `start` (before the label in the row), `meta` (right side of the row, e.g. a count or `<ColorDot />`) and `chip` (shown before the label once selected, in the chip or the field). `productSelectOptions(keys?, overrides?)` builds product options with their badge-colour dots. On single-select rows a `meta` replaces the trailing check; the mint row fill marks the selection. `Fieldset` groups them. `DatePicker` pairs the trigger with `Calendar` and shows dates as DD/MM/YYYY (`formatDateDMY`); `time` adds a `TimePicker` with matching trigger and scrollable hour / minute columns: 24-hour (no AM/PM), selected value in lime like the calendar's selected day; columns scroll without a visible scrollbar (`scrollbar-none`).
-- Checkbox, Radio, Switch: mint-checked; `RadioGroup` sizes `sm` / `md` / `lg`; labels `text-body-5 font-semibold text-navy`, descriptions `text-dark-60`.
+- Checkbox, Radio, Switch: mint-checked; `RadioGroup` sizes `sm` / `md` / `lg`; labels `text-body-5 font-semibold text-navy`, descriptions `text-dark-75`.
 
 ### Card
 
@@ -412,7 +412,7 @@ All triggers: `text-body-5 font-semibold tracking-button uppercase`. Indicator s
 
 ### Table
 
-Headers use `text-overline text-dark-100`; sortable headers (`sortable`, `sortDirection`, `onSort`) show Lucide arrows in `dark-60` and set `aria-sort`; cells `text-body-5 text-dark-90`; rows hover `mint-l4`, selected `mint-l3`.
+Headers use `text-overline text-dark-100`; sortable headers (`sortable`, `sortDirection`, `onSort`) show Lucide arrows in `dark-75` and set `aria-sort`; cells `text-body-5 text-dark-90`; rows hover `mint-l4`, selected `mint-l3`.
 
 | Prop | Options |
 |---|---|
@@ -508,7 +508,7 @@ Every toast has a × so it can be closed early. Override per toast with `duratio
 
 ## Accessibility
 
-- Contrast: navy, dark-100 and dark-90 on white pass AA for body text. `dark-60` is for hints and placeholders only, not essential content. Lime buttons always use navy text.
+- Contrast: navy, dark-100 and dark-90 on white pass AA for body text. `dark-75` (5.1:1) is the lightest colour for text and icons; hints, helper text and icons use it. `dark-60` (3.3:1) is not used for text or icons. Placeholders and sub-headings are `dark-90`. Lime buttons always use navy text.
 - Focus is always visible: mint-45 ring on inputs, navy ring on buttons.
 - Interactive targets are 36px or larger (buttons `sm` and up, form controls 40px).
 - Base UI primitives provide keyboard support and ARIA; don't remove it.
@@ -530,3 +530,5 @@ Every toast has a × so it can be closed early. Override per toast with `duratio
 8. **Breakpoints:** `tablet:` 768, `desktop:` 1024, `wide:` 1440, `mobile:` below 768 only. Never `sm:`/`md:`/`lg:`/`xl:`/`2xl:`/`max-*:` in page code.
 9. **Badge colours keep white text at AA.** New category colours must pass 4.5:1 against white.
 10. **Hover never adds a background to a bare text or icon control.** Links, page numbers, text tabs, nav triggers, × and other icon buttons change colour only. Controls that already have a fill (buttons, chips) change their fill; rows in lists, menus, selects, tables and the calendar keep their row highlight.
+11. **Sub-headings are `dark-90`.** Overlines, group labels, section labels and column labels use `text-dark-90`; `dark-60` and `dark-75` are too grey for them. Descriptions keep `text-muted-foreground`.
+12. **No `dark-60` for text or icons.** Hints, helper text, meta labels and icons use `text-dark-75`; `dark-60` is too light (3.3:1 on white).

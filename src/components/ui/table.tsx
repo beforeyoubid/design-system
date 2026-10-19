@@ -202,7 +202,7 @@ function TableHead({
           {children}
           <SortIcon
             aria-hidden
-            className={cn("size-3.5 shrink-0 text-dark-60", !sortDirection && "opacity-70")}
+            className={cn("size-3.5 shrink-0 text-dark-75", !sortDirection && "opacity-70")}
           />
         </button>
       ) : (
@@ -298,7 +298,7 @@ function TableExpandableRow({
       aria-controls={detailId}
       aria-label={toggleLabel}
       onClick={toggle}
-      className="inline-flex size-7 cursor-pointer items-center justify-center rounded-md text-dark-60 transition-colors outline-none hover:text-navy focus-visible:ring-2 focus-visible:ring-mint-45"
+      className="inline-flex size-7 cursor-pointer items-center justify-center rounded-md text-dark-75 transition-colors outline-none hover:text-navy focus-visible:ring-2 focus-visible:ring-mint-45"
     >
       <ChevronDown className={cn("size-4 transition-transform", open && "rotate-180")} />
     </button>

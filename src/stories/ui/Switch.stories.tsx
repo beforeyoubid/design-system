@@ -38,7 +38,7 @@ export const Sizes: Story = {
         <div key={size} className="flex items-center gap-4">
           <Switch size={size} aria-label={`${size} off`} />
           <Switch size={size} defaultChecked aria-label={`${size} on`} />
-          <span className="text-body-5 text-dark-60">{size}</span>
+          <span className="text-body-5 text-dark-75">{size}</span>
         </div>
       ))}
     </div>

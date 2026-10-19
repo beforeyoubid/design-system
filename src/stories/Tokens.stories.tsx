@@ -40,7 +40,7 @@ export const Colors: Story = {
         <div key={s.name} className="flex flex-col items-center gap-2">
           <div className={`w-16 h-16 rounded-lg border border-dark-15 ${s.class}`} />
           <p className="text-caption-1 text-dark-100 font-medium text-center">{s.name}</p>
-          <p className="text-caption-1 text-dark-60">{s.hex}</p>
+          <p className="text-caption-1 text-dark-75">{s.hex}</p>
         </div>
       ))}
     </div>

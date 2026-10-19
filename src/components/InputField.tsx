@@ -76,7 +76,7 @@ export function InputField({
         <Input {...controlProps} {...props} />
       )}
       {hint && !error && (
-        <p id={`${fieldId}-hint`} className="text-body-5 text-dark-60">
+        <p id={`${fieldId}-hint`} className="text-body-5 text-dark-75">
           {hint}
         </p>
       )}

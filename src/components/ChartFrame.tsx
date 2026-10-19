@@ -17,8 +17,8 @@ export const CHART_PALETTE = [
   "var(--mint-45)",
 ] as const
 
-/** Shared Recharts axis tick style: dark-60, 12px. */
-export const CHART_TICK = { fill: "var(--dark-60)", fontSize: 12 } as const
+/** Shared Recharts axis tick style: dark-75, 12px. */
+export const CHART_TICK = { fill: "var(--dark-75)", fontSize: 12 } as const
 
 /** Shared Recharts grid stroke: light-l3. */
 export const CHART_GRID_STROKE = "var(--light-l3)"
@@ -145,7 +145,7 @@ function ChartFrame({
                 </div>
               )}
               {description && (
-                <div className="text-body-5 text-dark-60">{description}</div>
+                <div className="text-body-5 text-dark-75">{description}</div>
               )}
             </div>
           )}
@@ -162,7 +162,7 @@ function ChartFrame({
             </div>
           )}
           {caption && (
-            <div className="text-body-5 text-dark-60">{caption}</div>
+            <div className="text-body-5 text-dark-75">{caption}</div>
           )}
         </div>
       )}

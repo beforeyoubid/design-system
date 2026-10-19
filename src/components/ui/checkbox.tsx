@@ -87,7 +87,7 @@ function Checkbox({
         {description != null && (
           <span
             data-slot="checkbox-description"
-            className="text-body-5 text-dark-60"
+            className="text-body-5 text-dark-75"
           >
             {description}
           </span>

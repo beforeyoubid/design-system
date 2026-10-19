@@ -59,11 +59,11 @@ export const WithAction: Story = {
 function SonnerRule() {
   return (
     <div className="flex w-60 shrink-0 flex-col gap-3">
-      <span className="text-overline text-dark-60">Desktop · bottom right</span>
+      <span className="text-overline text-dark-90">Desktop · bottom right</span>
       <div className="relative h-28 rounded-xl border border-dark-15 bg-light-l1">
         <div className="absolute end-2 bottom-2 h-5 w-24 rounded-md bg-mint-l3" />
       </div>
-      <span className="mt-2 text-overline text-dark-60">Mobile · full width</span>
+      <span className="mt-2 text-overline text-dark-90">Mobile · full width</span>
       <div className="relative h-36 w-20 rounded-xl border border-dark-15 bg-light-l1">
         <div className="absolute inset-x-1 bottom-1 h-5 rounded-md bg-mint-l3" />
       </div>

@@ -83,7 +83,7 @@ const radioLabelVariants = cva("leading-tight text-navy", {
   defaultVariants: { size: "md" },
 })
 
-const radioDescriptionVariants = cva("text-dark-60", {
+const radioDescriptionVariants = cva("text-dark-75", {
   variants: {
     size: {
       sm: "text-caption-1",

@@ -212,7 +212,7 @@ function Stepper({
                 </span>
               )}
               {step.description && (
-                <span className="text-body-5 text-dark-60">
+                <span className="text-body-5 text-dark-75">
                   {step.description}
                 </span>
               )}

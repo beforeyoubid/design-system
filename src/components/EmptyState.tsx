@@ -65,7 +65,7 @@ function EmptyState({
             </h3>
           )}
           {description && (
-            <p className="m-0 text-body-5 leading-normal text-dark-60">
+            <p className="m-0 text-body-5 leading-normal text-dark-75">
               {description}
             </p>
           )}
@@ -75,7 +75,7 @@ function EmptyState({
       {actions && (
         <div className="flex flex-wrap justify-center gap-2">{actions}</div>
       )}
-      {footer && <div className="text-body-5 text-dark-60">{footer}</div>}
+      {footer && <div className="text-body-5 text-dark-75">{footer}</div>}
     </div>
   )
 }

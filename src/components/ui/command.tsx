@@ -69,7 +69,7 @@ function CommandInput({
       data-slot="command-input-wrapper"
       className="flex h-11 shrink-0 items-center gap-2 border-b border-light-l3 px-3"
     >
-      <IconSearch className="size-4 shrink-0 text-dark-60" />
+      <IconSearch className="size-4 shrink-0 text-dark-75" />
       <CommandPrimitive.Input
         data-slot="command-input"
         className={cn(
@@ -105,7 +105,7 @@ function CommandEmpty({
   return (
     <CommandPrimitive.Empty
       data-slot="command-empty"
-      className={cn("py-6 text-center text-body-5 text-dark-60", className)}
+      className={cn("py-6 text-center text-body-5 text-dark-75", className)}
       {...props}
     />
   )
@@ -119,7 +119,7 @@ function CommandGroup({
     <CommandPrimitive.Group
       data-slot="command-group"
       className={cn(
-        "overflow-hidden text-dark-90 **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:pt-2 **:[[cmdk-group-heading]]:pb-1 **:[[cmdk-group-heading]]:text-caption-1 **:[[cmdk-group-heading]]:text-dark-60",
+        "overflow-hidden text-dark-90 **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:pt-2 **:[[cmdk-group-heading]]:pb-1 **:[[cmdk-group-heading]]:text-caption-1 **:[[cmdk-group-heading]]:text-dark-90",
         className
       )}
       {...props}
@@ -168,7 +168,7 @@ function CommandShortcut({
     <span
       data-slot="command-shortcut"
       className={cn(
-        "ms-auto text-caption-1 text-dark-60",
+        "ms-auto text-caption-1 text-dark-75",
         className
       )}
       {...props}

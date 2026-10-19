@@ -252,7 +252,7 @@ function CardMenuDemo() {
         />
         <DropdownMenuContent sideOffset={8} className="p-3">
           <DropdownMenuGroup>
-            <DropdownMenuLabel className="px-1 pt-0 pb-2 text-dark-60">
+            <DropdownMenuLabel className="px-1 pt-0 pb-2 text-dark-75">
               Switch document
             </DropdownMenuLabel>
             <DropdownMenuCardGrid columns={1} value={value} onValueChange={setValue}>
@@ -327,7 +327,7 @@ export const IconTrigger: Story = {
               <DropdownMenuIconTrigger icon={icon} label={`${icon} menu`} />
               <DropdownMenuContent className="w-56">{ROW_ACTIONS}</DropdownMenuContent>
             </DropdownMenu>
-            <span className="text-caption-1 text-dark-60">{icon}</span>
+            <span className="text-caption-1 text-dark-75">{icon}</span>
           </div>
         ))}
         <div className="flex flex-col items-center gap-2">
@@ -335,7 +335,7 @@ export const IconTrigger: Story = {
             <DropdownMenuIconTrigger icon={<FileText />} label="Report menu" />
             <DropdownMenuContent className="w-56">{ROW_ACTIONS}</DropdownMenuContent>
           </DropdownMenu>
-          <span className="text-caption-1 text-dark-60">custom</span>
+          <span className="text-caption-1 text-dark-75">custom</span>
         </div>
       </div>
       <div className="flex items-center gap-6">
