@@ -60,30 +60,30 @@ test('is a no-op on already-migrated classes except the radius swap', () => {
   assert.equal(run(text), text)
 })
 
-const withImports = (body, names = 'Button, Badge, Switch, TabsList, buttonVariants') =>
+const withImports = (body, names = 'Button, Badge, Switch, TabsList, buttonVariants, badgeVariants') =>
   `import { ${names} } from '@beforeyoubid/design-system'\n${body}`
 
 test('renames component variants on package components', () => {
   const { text, reviews } = migrateSource(
     withImports(
       [
-        '<Button variant="outline" size="default" onClick={() => go(a > b)}>Go</Button>',
-        "<Button variant={'lime'}>Buy</Button>",
+        '<Badge variant="outline" onClick={() => go(a > b)}>Go</Badge>',
+        "<Badge variant={'default'}>New</Badge>",
         '<Badge variant="destructive">Late</Badge>',
         '<Switch size="default" />',
         '<TabsList variant="pills">',
       ].join('\n'),
     ),
   )
-  assert.match(text, /<Button variant="tertiary" size="md" onClick=\{\(\) => go\(a > b\)\}>/)
-  assert.match(text, /<Button variant="primary">Buy/)
+  assert.match(text, /<Badge variant="gray" onClick=\{\(\) => go\(a > b\)\}>/)
+  assert.match(text, /<Badge variant="gray">New/)
   assert.match(text, /<Badge variant="error">/)
   assert.match(text, /<Switch size="md" \/>/)
   assert.match(text, /<TabsList variant="pill">/)
   assert.equal(reviews.length, 0)
 })
 
-test('flags variants with no replacement and removed props; implicit Buttons need no review', () => {
+test('flags variants with no replacement and removed props', () => {
   const { reviews } = migrateSource(
     withImports('<Button>Go</Button>\n<Button variant="navy" />\n<Badge variant="cobalt" dot>New</Badge>'),
   )
@@ -94,35 +94,34 @@ test('flags variants with no replacement and removed props; implicit Buttons nee
   assert.match(reviews[0].message, /cobalt/)
 })
 
-test('mint Buttons become the lime primary', () => {
+test('leaves every Button variant and size alone', () => {
   const text = withImports(
     [
-      '<Button variant="default">A</Button>',
-      '<Button size="sm" onClick={go} className="bg-mint-45 hover:bg-mint-60 text-white">B</Button>',
-      '<Button\n  onClick={save}\n  className="bg-mint-45 hover:bg-mint-60 text-white px-8"\n>C</Button>',
-      '<Button variant="ghost" className="text-mint-45">D</Button>',
+      '<Button variant="default" size="default">A</Button>',
+      '<Button variant="outline" className="bg-mint-45 text-white">B</Button>',
+      "<Button variant={'lime'} />",
+      '<Button variant="navy" />',
+      "buttonVariants({ variant: 'outline-navy', size: 'default' })",
     ].join('\n'),
   )
-  const lines = run(text).split('\n')
-  assert.equal(lines[1], '<Button variant="primary">A</Button>')
-  assert.equal(lines[2], '<Button size="sm" onClick={go}>B</Button>')
-  assert.equal(lines[5], '  className="px-8"')
-  assert.equal(lines[7], '<Button variant="ghost" className="text-mint-45">D</Button>')
+  const { text: result, reviews } = migrateSource(text)
+  assert.equal(result, text)
+  assert.equal(reviews.length, 0)
 })
 
 test('reads past comments between props', () => {
   const text = withImports(
-    "<Button\n  // the action can't be re-triggered\n  /* it's > fine */\n  variant=\"outline\"\n>Refund</Button>",
+    "<Badge\n  // the status can't change\n  /* it's > fine */\n  variant=\"outline\"\n>Refund</Badge>",
   )
-  assert.match(run(text), /variant="tertiary"/)
+  assert.match(run(text), /variant="gray"/)
 })
 
 test('renames variant values inside expressions', () => {
   const { text, reviews } = migrateSource(
-    withImports("<Badge variant={done ? 'secondary' : 'teal'} />\n<Button variant={primary ? \"lime\" : 'navy'} />"),
+    withImports("<Badge variant={done ? 'secondary' : 'teal'} />\n<Badge variant={late ? \"destructive\" : 'mint'} />"),
   )
   assert.match(text, /<Badge variant=\{done \? 'gray' : 'teal'\} \/>/)
-  assert.match(text, /<Button variant=\{primary \? "primary" : 'navy'\} \/>/)
+  assert.match(text, /<Badge variant=\{late \? "error" : 'mint'\} \/>/)
   assert.equal(reviews.length, 1)
   assert.match(reviews[0].message, /teal/)
 })
@@ -135,20 +134,20 @@ test('flags variants that come from a variable or function', () => {
 
 test('respects aliased imports and ignores components from elsewhere', () => {
   const text = [
-    "import { Button as DSButton } from '@beforeyoubid/design-system'",
-    "import { Button } from '@/components/Button'",
-    '<DSButton variant="outline" />',
-    '<Button variant="outline" />',
+    "import { Badge as DSBadge } from '@beforeyoubid/design-system'",
+    "import { Badge } from '@/components/Badge'",
+    '<DSBadge variant="outline" />',
+    '<Badge variant="outline" />',
   ].join('\n')
   const result = run(text)
-  assert.match(result, /<DSButton variant="tertiary" \/>/)
-  assert.match(result, /<Button variant="outline" \/>/)
+  assert.match(result, /<DSBadge variant="gray" \/>/)
+  assert.match(result, /<Badge variant="outline" \/>/)
 })
 
 test('renames cva helper calls', () => {
   assert.equal(
-    run(withImports("buttonVariants({ variant: 'outline', size: 'default' })")).split('\n')[1],
-    "buttonVariants({ variant: 'tertiary', size: 'md' })",
+    run(withImports("badgeVariants({ variant: 'secondary' })")).split('\n')[1],
+    "badgeVariants({ variant: 'gray' })",
   )
 })
 

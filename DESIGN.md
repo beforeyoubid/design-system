@@ -56,7 +56,7 @@ Utility pattern: `bg-{token}`, `text-{token}`, `border-{token}`, `ring-{token}`,
 |---|---|---|---|
 | `mint-45` | `#00AE95` | 0, 174, 149 | **Brand colour.** Focus rings, active states, indicators |
 | `navy` | `#090034` | 9, 0, 52 | Headings, key text, text on lime |
-| `lime` | `#D4F269` | 212, 242, 105 | **Primary button**, key accents |
+| `lime` | `#D4F269` | 212, 242, 105 | Key accents, `lime` button |
 | `electric-blue` | `#015AFF` | 1, 90, 255 | Accent, charts |
 | `teal` | `#35BDB2` | 53, 189, 178 | Accent, charts |
 | `electric-blue-l1` | `#C8D0FB` | | Pill / badge tint |
@@ -349,14 +349,22 @@ Base: semibold, UPPERCASE, 0.04em tracking, focus ring `ring-2 ring-navy ring-of
 
 | Variant | Default | Hover | Use |
 |---|---|---|---|
-| `primary` | `bg-lime text-navy shadow-xs` | brightness 95% | **Main CTA**, one per view |
+| `primary` | `bg-primary` (mint-45) `text-white shadow-xs` | `bg-primary/80` | **Main CTA**, one per view |
 | `secondary` | `bg-white border-navy text-navy` | `bg-navy text-white` | Secondary action |
 | `tertiary` | `bg-white border-dark-15 text-dark-90` | `bg-dark-45 text-white` | Neutral / cancel |
 | `ghost` | `text-mint-75` | `text-mint-45` | Low emphasis |
 | `destructive` | `bg-error-75 text-white` | `bg-error-45` | Delete, irreversible |
 | `link` | `text-mint-75` | underline | Inline action |
-| `navy` | `bg-navy text-white shadow-xs` | `bg-navy/90` | Order and pricing CTAs on navy-led marketing layouts |
-| `outline-navy` | `bg-white border-navy text-navy` | `bg-navy text-white` | Secondary order CTA (header, social sign-in) |
+
+Use `primary`, `secondary` and `tertiary` where they fit. These 1.x variants stay so existing screens don't change, and are there when a design needs them:
+
+| Variant | Same as / look | Use |
+|---|---|---|
+| `default` | alias of `primary` | shadcn's name for the main button |
+| `outline-navy` | alias of `secondary` | |
+| `outline` | `bg-input/30 border-border` | shadcn outline |
+| `lime` | `bg-lime text-navy` | Lime brand CTA |
+| `navy` | `bg-navy text-white` | Order and pricing CTAs on navy-led marketing layouts |
 
 Disabled (filled variants): `bg-light-l2 text-dark-45`.
 
@@ -364,7 +372,7 @@ Disabled (filled variants): `bg-light-l2 text-dark-45`.
 |---|---|---|---|
 | `xs` | 28px | 8px | `text-caption-2` |
 | `sm` | 36px | 12px | `text-button-sm` |
-| `md` (default) | 40px | 16px | `text-button-sm` |
+| `md` (default; `default` is an alias) | 40px | 16px | `text-button-sm` |
 | `lg` | 44px | 16px | `text-button-md` |
 | `icon-xs/sm/icon/lg` | 28 / 36 / 40 / 44px | full | |
 
@@ -533,7 +541,7 @@ Every toast has a × so it can be closed early. Override per toast with `duratio
 
 1. **Never hard-code hex** or arbitrary values (`text-[#090034]`, `p-[13px]`). Add a token instead.
 2. **Primitives for marketing, semantic tokens inside components.**
-3. **One lime CTA per view.**
+3. **One primary CTA per view.**
 4. **Content width is `max-w-site`.**
 5. **No inline styles, no MUI.** Use `cva` for variants, `cn()` for merging, Base UI `render` for links.
 6. **New tokens:** add to `globals.css` `:root` (OKLCH + hex comment) → `@theme inline` → run `pnpm generate-tokens` (updates the JS defaults) → `cn()` group in `src/lib/utils.ts`.
@@ -575,5 +583,5 @@ npx design-system-migrate            # dry run: what would change, and what need
 npx design-system-migrate --write    # apply
 ```
 
-It renames the old type, button, radius and colour classes, swaps `rounded-xl` ↔ `rounded-2xl`, moves `dark-60` text and icons to `dark-75`, and renames Button, Badge, Switch and TabsList variants. It lists anything with no like-for-like replacement (for example Buttons with no `variant`, whose default moved from the mint fill to lime) with its file and line. `--map old=new` changes a mapping for one app, e.g. `--map text-xs=text-sm`. Run it only once: a second run would swap the radius classes back.
+It renames the old type, button, radius and colour classes, swaps `rounded-xl` ↔ `rounded-2xl`, moves `dark-60` text and icons to `dark-75`, and renames Badge, Switch and TabsList variants. Button variants are left alone: every 1.x variant still exists and looks the same. It lists anything with no like-for-like replacement with its file and line. `--map old=new` changes a mapping for one app, e.g. `--map text-xs=text-sm`. Run it only once: a second run would swap the radius classes back.
 

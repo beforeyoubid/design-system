@@ -100,11 +100,6 @@ const CSS_VAR_PATTERN = /(?<![\w-])--(color-)?cobalt(-l1)?(?![\w-])/g
 // Component props. Only applied to components imported from the package.
 // ---------------------------------------------------------------------------
 export const PROP_RENAMES = {
-  Button: {
-    // The old default (mint-45 fill) becomes primary (lime), as confirmed by design
-    variant: { default: 'primary', outline: 'tertiary', lime: 'primary' },
-    size: { default: 'md' },
-  },
   Badge: {
     variant: { default: 'gray', secondary: 'gray', outline: 'gray', destructive: 'error' },
   },
@@ -116,10 +111,6 @@ const VARIANT_HELPERS = { buttonVariants: 'Button', badgeVariants: 'Badge' }
 
 /** Values with no like-for-like replacement: a person picks the new one. */
 export const PROP_REVIEW = {
-  Button: {
-    variant: {
-    },
-  },
   Badge: {
     variant: {
       cobalt: 'tinted cobalt badge removed: use category={n} or another variant',
@@ -180,18 +171,6 @@ function findTagEnd(text, start) {
 
 const lineOf = (text, index) => text.slice(0, index).split('\n').length
 
-// Buttons filled mint through className (bg-mint-45 hover:bg-mint-60 text-white) become the
-// lime primary button: drop the fill, its hover and the white text, which would sit on lime.
-const MINT_FILL = /(?<![\w-])(?:[\w-]+:)*(?:bg-mint-\d+|text-white)(?![\w-])/g
-function dropMintFill(tag, line, report) {
-  return tag.replace(/(\s*)(\bclassName=)(["'])([^"']*)\3/, (whole, space, head, quote, classes) => {
-    if (!/(?<![\w-])bg-mint-\d+(?![\w-])/.test(classes)) return whole
-    report.change('Button mint fill override removed (primary is lime)', line)
-    const rest = classes.replace(MINT_FILL, '').replace(/\s+/g, ' ').trim()
-    return rest ? `${space}${head}${quote}${rest}${quote}` : ''
-  })
-}
-
 // prop="x" | prop={'x'} | prop={"x"}  (also `prop: 'x'` inside a cva helper call)
 const attrPattern = (prop) => new RegExp(`(\\b${prop}=)(?:"([^"]*)"|\\{\\s*['"]([^'"]*)['"]\\s*\\})`, 'g')
 // prop={cond ? 'a' : 'b'}: an expression whose string literals are variant values
@@ -202,7 +181,7 @@ const keyPattern = (prop) => new RegExp(`(\\b${prop}\\s*:\\s*)(['"])([^'"]*)\\2`
 function migrateProps(text, report) {
   const locals = readPackageImports(text)
   const components = Object.entries(locals).filter(([, imported]) => PROP_RENAMES[imported] || PROP_REVIEW[imported])
-  const helpers = Object.entries(locals).filter(([, imported]) => VARIANT_HELPERS[imported])
+  const helpers = Object.entries(locals).filter(([, imported]) => PROP_RENAMES[VARIANT_HELPERS[imported]] || PROP_REVIEW[VARIANT_HELPERS[imported]])
   if (!components.length && !helpers.length) return text
 
   const edits = []
@@ -255,7 +234,6 @@ function migrateProps(text, report) {
           }
         }
       }
-      if (imported === 'Button') updated = dropMintFill(updated, line, report)
       if (updated !== source) edits.push([tag.index, end, updated])
     }
   }
@@ -266,7 +244,7 @@ function migrateProps(text, report) {
     for (const call of text.matchAll(callPattern)) {
       const line = lineOf(text, call.index)
       let updated = call[0]
-      for (const [prop, values] of Object.entries(PROP_RENAMES[component])) {
+      for (const [prop, values] of Object.entries(PROP_RENAMES[component] ?? {})) {
         updated = updated.replace(keyPattern(prop), (whole, head, quote, value) => {
           if (!(value in values)) return whole
           report.change(`${imported} ${prop}: '${value}' → '${values[value]}'`, line)
