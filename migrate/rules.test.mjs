@@ -110,6 +110,13 @@ test('mint Buttons become the lime primary', () => {
   assert.equal(lines[7], '<Button variant="ghost" className="text-mint-45">D</Button>')
 })
 
+test('reads past comments between props', () => {
+  const text = withImports(
+    "<Button\n  // the action can't be re-triggered\n  /* it's > fine */\n  variant=\"outline\"\n>Refund</Button>",
+  )
+  assert.match(run(text), /variant="tertiary"/)
+})
+
 test('renames variant values inside expressions', () => {
   const { text, reviews } = migrateSource(
     withImports("<Badge variant={done ? 'secondary' : 'teal'} />\n<Button variant={primary ? \"lime\" : 'navy'} />"),

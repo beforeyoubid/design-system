@@ -157,7 +157,7 @@ function readPackageImports(text) {
   return locals
 }
 
-/** End index of a JSX opening tag that starts at `start` (the `<`), skipping {…} and strings. */
+/** End index of a JSX opening tag that starts at `start` (the `<`), skipping {…}, strings and comments. */
 function findTagEnd(text, start) {
   let depth = 0
   let quote = null
@@ -168,7 +168,9 @@ function findTagEnd(text, start) {
       else if (ch === quote) quote = null
       continue
     }
-    if (ch === '"' || ch === "'" || ch === '`') quote = ch
+    if (ch === '/' && text[i + 1] === '/') i = text.indexOf('\n', i) === -1 ? text.length : text.indexOf('\n', i)
+    else if (ch === '/' && text[i + 1] === '*') i = text.indexOf('*/', i + 2) === -1 ? text.length : text.indexOf('*/', i + 2) + 1
+    else if (ch === '"' || ch === "'" || ch === '`') quote = ch
     else if (ch === '{') depth++
     else if (ch === '}') depth--
     else if (ch === '>' && depth === 0) return i
