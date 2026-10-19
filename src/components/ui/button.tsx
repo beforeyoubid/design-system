@@ -15,7 +15,7 @@ const buttonVariants = cva(
         primary:
           "bg-lime text-navy shadow-xs hover:brightness-95 disabled:bg-light-l2 disabled:text-dark-45 disabled:shadow-none",
         secondary:
-          "bg-mint-75 text-white shadow-xs hover:bg-mint-30 aria-expanded:bg-mint-30 disabled:bg-light-l2 disabled:text-dark-45 disabled:shadow-none",
+          "border border-navy bg-white text-navy hover:bg-navy hover:text-white aria-expanded:bg-navy aria-expanded:text-white disabled:border-dark-15 disabled:bg-light-l2 disabled:text-dark-45",
         tertiary:
           "border border-dark-15 bg-white text-dark-90 hover:border-dark-45 hover:bg-dark-45 hover:text-white aria-expanded:border-mint-45 aria-expanded:bg-mint-l4 aria-expanded:text-mint-75 aria-expanded:ring-3 aria-expanded:ring-mint-45/30 disabled:border-light-l2 disabled:bg-light-l2 disabled:text-dark-45",
         ghost:

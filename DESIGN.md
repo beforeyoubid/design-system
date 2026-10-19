@@ -347,7 +347,7 @@ Base: semibold, UPPERCASE, 0.04em tracking, focus ring `ring-2 ring-navy ring-of
 | Variant | Default | Hover | Use |
 |---|---|---|---|
 | `primary` | `bg-lime text-navy shadow-xs` | brightness 95% | **Main CTA**, one per view |
-| `secondary` | `bg-mint-75 text-white` | `bg-mint-30` | Secondary action |
+| `secondary` | `bg-white border-navy text-navy` | `bg-navy text-white` | Secondary action |
 | `tertiary` | `bg-white border-dark-15 text-dark-90` | `bg-dark-45 text-white` | Neutral / cancel |
 | `ghost` | `text-mint-75` | `text-mint-45` | Low emphasis |
 | `destructive` | `bg-error-75 text-white` | `bg-error-45` | Delete, irreversible |
