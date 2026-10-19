@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * Generates src/generated/default-tokens.ts from globals.css + utilities.css,
- * so the JS token defaults can never drift from the CSS.
+ * so the JS token defaults can never drift from the CSS. Also fails if a colour
+ * primitive has no `--color-*` line in @theme inline (no bg-/text- utility).
  *
  *   node scripts/generate-tokens.mjs           write the file
  *   node scripts/generate-tokens.mjs --check   fail if the file is out of date
@@ -57,6 +58,15 @@ if (missingHex.length) {
 }
 
 // Product badges alias a colour token, like --badge-product-bpi: var(--category-01)
+// Every colour primitive needs a --color-* line in @theme inline, or it has no utility class
+const exposed = new Set([...themeBlock.matchAll(/--color-([\w-]+)\s*:/g)].map((m) => m[1]))
+const unexposed = Object.keys(hexByVar).filter((name) => !exposed.has(name))
+if (unexposed.length) {
+  throw new Error(
+    `Colour primitives with no utility class. Add to @theme inline:\n${unexposed.map((n) => `  --color-${n}: var(--${n});`).join('\n')}`,
+  )
+}
+
 const badgeProductAliases = {}
 for (const [, name, ref] of rootBlock.matchAll(/^\s*--badge-product-([\w-]+):\s*var\(--([\w-]+)\);/gm)) {
   if (!hexByVar[ref]) throw new Error(`--badge-product-${name} points at unknown colour --${ref}`)

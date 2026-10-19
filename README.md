@@ -88,7 +88,7 @@ pnpm storybook    # Storybook at http://localhost:6006
 | `pnpm build-storybook` | Static Storybook build |
 | `pnpm lint` | ESLint across `src/` |
 | `pnpm type-check` | TypeScript strict check (no emit) |
-| `pnpm check-tokens` | Verify every colour primitive is exposed via `@theme inline` and the generated JS tokens are current |
+| `pnpm check-tokens` | Fail if a colour primitive has no utility class or the generated JS tokens are out of date |
 | `pnpm generate-tokens` | Regenerate `src/generated/default-tokens.ts` from `globals.css` |
 | `pnpm test:migrate` | Run the `design-system-migrate` codemod tests |
 

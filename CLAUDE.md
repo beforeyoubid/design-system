@@ -171,9 +171,8 @@ shadcn components reference `var(--radius)` which aliases to `--radius-md`.
 
 1. Add the CSS variable to `globals.css` under `:root` (use OKLCH, keep the hex in a comment).
 2. Add the matching `--color-{name}: var(--{name});` (or `--text-*`, `--radius-*`, …) line inside `@theme inline` so it generates a utility class.
-3. Run `pnpm check-tokens` — verifies parity.
-4. Run `pnpm generate-tokens` so the JS defaults pick it up (`pnpm check-tokens` fails until you do).
-5. If it's a colour utility, add the name to the `text-color` group in `src/lib/utils.ts` so `cn()` handles it correctly.
+3. Run `pnpm generate-tokens` so the JS defaults pick it up (`pnpm check-tokens` fails until you do, or if the colour has no `@theme inline` line).
+4. If it's a colour utility, add the name to the `text-color` group in `src/lib/utils.ts` so `cn()` handles it correctly.
 
 ## Dark mode
 
@@ -257,7 +256,7 @@ This repo uses **pnpm** (`pnpm@11.9.0` via corepack — run `corepack enable pnp
 pnpm install
 pnpm dev          # watch mode — rebuild on save
 pnpm storybook    # Storybook at http://localhost:6006
-pnpm check-tokens # verify every colour primitive is exposed via @theme inline, and generated tokens are current
+pnpm check-tokens # fail if a colour has no utility class or generated tokens are stale
 pnpm generate-tokens # regenerate src/generated/default-tokens.ts from globals.css
 pnpm test:migrate # migrator tests
 pnpm type-check   # TypeScript strict check

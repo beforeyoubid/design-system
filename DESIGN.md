@@ -534,7 +534,7 @@ Every toast has a × so it can be closed early. Override per toast with `duratio
 3. **One lime CTA per view.**
 4. **Content width is `max-w-site`.**
 5. **No inline styles, no MUI.** Use `cva` for variants, `cn()` for merging, Base UI `render` for links.
-6. **New tokens:** add to `globals.css` `:root` (OKLCH + hex comment) → `@theme inline` → run `pnpm generate-tokens` (updates the JS defaults) and `pnpm check-tokens` → `cn()` group in `src/lib/utils.ts`.
+6. **New tokens:** add to `globals.css` `:root` (OKLCH + hex comment) → `@theme inline` → run `pnpm generate-tokens` (updates the JS defaults) → `cn()` group in `src/lib/utils.ts`.
 7. **Typography by role + step** (`text-h3`, `text-body-4`), never pixel sizes. Tag for structure, class for looks.
 8. **Breakpoints:** standard Tailwind prefixes, mobile-first: no prefix for mobile, `md:` 768, `lg:` 1024, `xl:` 1280, `2xl:` 1440 (`sm:` 640 for large phones). One range only: `max-md:`, `md:max-lg:`, `xl:max-2xl:`.
 9. **Badge colours keep white text at AA.** New category colours must pass 4.5:1 against white.
