@@ -34,7 +34,7 @@ const twMerge = extendTailwindMerge({
             'mint-90', 'mint-75', 'mint-60', 'mint-45', 'mint-30', 'mint-15',
             'mint-l1', 'mint-l2', 'mint-l3', 'mint-l4',
             // Brand
-            'navy', 'lime', 'lime-l1', 'cobalt', 'cobalt-l1', 'teal', 'teal-l1',
+            'navy', 'lime', 'lime-l1', 'electric-blue', 'electric-blue-l1', 'teal', 'teal-l1',
             // Dark neutrals
             'dark-100', 'dark-90', 'dark-75', 'dark-60', 'dark-45', 'dark-30', 'dark-15',
             // Light neutrals

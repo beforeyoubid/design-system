@@ -132,7 +132,7 @@ function TabsTrigger({
 const tabsContentVariants = cva("flex-1 text-body-5 outline-none data-ending-style:hidden data-[activation-direction=right]:animate-tab-in-right data-[activation-direction=left]:animate-tab-in-left motion-reduce:animate-none", {
   variants: {
     panel: {
-      true: "flex flex-col gap-5 rounded-2xl border border-light-l3 bg-white p-6 shadow-xs",
+      true: "flex flex-col gap-5 rounded-xl border border-light-l3 bg-white p-6 shadow-xs",
       false: "",
     },
   },

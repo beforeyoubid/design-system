@@ -55,9 +55,9 @@ Utility pattern: `bg-{token}`, `text-{token}`, `border-{token}`, `ring-{token}`,
 | `mint-45` | `#00AE95` | 0, 174, 149 | **Brand colour.** Focus rings, active states, indicators |
 | `navy` | `#090034` | 9, 0, 52 | Headings, key text, text on lime |
 | `lime` | `#D4F269` | 212, 242, 105 | **Primary button**, key accents |
-| `cobalt` | `#015AFF` | 1, 90, 255 | Accent, charts |
+| `electric-blue` | `#015AFF` | 1, 90, 255 | Accent, charts |
 | `teal` | `#35BDB2` | 53, 189, 178 | Accent, charts |
-| `cobalt-l1` | `#C8D0FB` | | Pill / badge tint |
+| `electric-blue-l1` | `#C8D0FB` | | Pill / badge tint |
 | `teal-l1` | `#BFE8E6` | | Pill / badge tint |
 | `lime-l1` | `#EAF8B0` | | Pill / badge tint |
 
@@ -146,7 +146,7 @@ Each product has a badge token that aliases a category colour. Mapping is owned 
 <div className="border-badge-product-bpi text-badge-product-bpi">  // colour only: bg- / text- / border-
 ```
 
-Charts use `chart-1…5` first (mint-45, teal, cobalt, warning-30, error-60), then the category palette.
+Charts use `chart-1…5` first (mint-45, teal, electric-blue, warning-30, error-60), then the category palette.
 
 ### Transparency
 
@@ -217,7 +217,7 @@ Every style is **`{role}-{step}`**, and **1 is always the largest**. Headings us
 
 JS: `import { typography } from '@beforeyoubid/design-system'` → `typography.h1`, `typography.body4`.
 
-**Responsive:** step headings down on mobile, e.g. `text-h3 tablet:text-h1`.
+**Responsive:** step headings down on mobile, e.g. `text-h3 md:text-h1`.
 
 **Colour:** headings `text-navy`; **sub-headings `text-dark-90`**: overlines, group and section labels, column labels (e.g. "INSPECTION TYPE", "Switch inspection type", Select group labels, the time picker's "HR / MIN"), never `dark-60` or `dark-75`; body `text-dark-90`; descriptions and secondary text `text-muted-foreground` (`dark-75`, unchanged); hints, helper text and icons `text-dark-75`. Don't use `dark-60` for text or icons.
 
@@ -242,23 +242,27 @@ Common component rhythm: card padding 24px (16px for `size="sm"`), form field he
 
 ## Breakpoints and grid
 
-Use the **BYB variants** `mobile:`, `tablet:`, `desktop:`, `wide:` in all page code. Don't use Tailwind's `sm:` / `md:` / `lg:` / `xl:` / `2xl:` / `max-*:` prefixes. They exist only for shadcn component internals. Values follow the Confluence **Responsive Breakpoints** page.
+Use Tailwind's standard prefixes `sm:`, `md:`, `lg:` and `xl:`. Values follow the Confluence **Responsive Breakpoints** page.
 
-Mobile-first: unprefixed classes are the mobile styles. `tablet:`, `desktop:` and `wide:` apply **from that width up**, so a value carries to bigger screens until a larger variant overrides it. `mobile:` is the one range variant: it applies **below 768px only**.
+Mobile-first: unprefixed classes are the mobile styles, and each prefix applies **from that width up**, so a value carries to bigger screens until a larger prefix overrides it.
 
-| Tier | Width | Variant | Device | Layout |
+| Tier | Width | Prefix | Device | Layout |
 |---|---|---|---|---|
-| Mobile | < 768px | *(none)*, or `mobile:` for mobile-only | Phones | Single column, adjusted spacing |
-| Tablet | 768–1023px | `tablet:` (≥ 768px) | Tablets | Multi-column, card-based |
-| Desktop | 1024–1439px | `desktop:` (≥ 1024px) | Laptops / desktops | Full layouts, side navigation |
-| Large | ≥ 1440px | `wide:` (≥ 1440px) | Large screens | Max content width, extra assets |
+| Mobile | < 768px | *(none)*: base styles | Phones | Single column, adjusted spacing |
+| Tablet | 768–1023px | `md:` (≥ 768px) | Tablets | Multi-column, card-based |
+| Desktop | 1024–1439px | `lg:` (≥ 1024px) | Laptops / desktops | Full layouts, side navigation |
+| Large | ≥ 1440px | `xl:` (≥ 1440px) | Large screens | Max content width, extra assets |
+
+- `sm:` (≥ 640px) is available for large phones, between the mobile base and `md:`. Our "SM" mobile tier is the **unprefixed** base, not `sm:`.
+- `2xl:` (≥ 1536px) keeps Tailwind's default.
+- One range only: `max-md:` (mobile only), `md:max-lg:` (tablet only), `lg:max-xl:` (desktop only).
 
 ```tsx
-<div className="grid grid-cols-1 gap-4 tablet:grid-cols-2 desktop:grid-cols-3">…</div>
-<nav className="hidden desktop:flex">…</nav>               // desktop and up
-<div className="desktop:hidden">…</div>                    // mobile + tablet
-<aside className="mobile:hidden">…</aside>                 // tablet and up
-<div className="hidden tablet:block desktop:hidden">…</div> // tablet only
+<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">…</div>
+<nav className="hidden lg:flex">…</nav>              // desktop and up
+<div className="lg:hidden">…</div>                   // mobile + tablet
+<aside className="max-md:hidden">…</aside>           // tablet and up
+<div className="hidden md:max-lg:block">…</div>       // tablet only
 ```
 
 **Design grid (Figma frames)**
@@ -269,7 +273,7 @@ Mobile-first: unprefixed classes are the mobile styles. `tablet:`, `desktop:` an
 | 968px | Tablet | 8 | 24px (`px-6`) | 16px (`gap-4`) |
 | 1440px | Desktop | 12 | 64px (`px-16`) | 20px (`gap-5`) |
 
-Page container: `mx-auto w-full max-w-site px-4 tablet:px-6 desktop:px-16`. Grid: `grid-cols-4 gap-4 tablet:grid-cols-8 desktop:grid-cols-12 desktop:gap-5`. Touch targets ≥ 48px on mobile.
+Page container: `mx-auto w-full max-w-site px-4 md:px-6 lg:px-16`. Grid: `grid-cols-4 gap-4 md:grid-cols-8 lg:grid-cols-12 lg:gap-5`. Touch targets ≥ 48px on mobile.
 
 ---
 
@@ -280,13 +284,13 @@ Page container: `mx-auto w-full max-w-site px-4 tablet:px-6 desktop:px-16`. Grid
 | `rounded-sm` | 4px | Menubar trigger, small chips |
 | `rounded-md` | 8px | **Component default** (`--radius`), menu items, segmented tab |
 | `rounded-lg` | 12px | Cards, inputs, small buttons, menus/popovers, tables (card/bordered) |
-| `rounded-2xl` | 16px | Default and large buttons, tab panel |
-| `rounded-xl` | 20px | Alerts, toasts |
-| `rounded-3xl` | 24px | |
+| `rounded-xl` | 16px | Default and large buttons, tooltip, tab panel |
+| `rounded-2xl` | 20px | Alerts, toasts, popovers, alert dialogs, drawers, skeletons, sidebar inset |
+| `rounded-3xl` | 24px | Dialogs |
 | `rounded-4xl` | 32px | |
 | `rounded-full` | 9999px | Pills, badges, avatars, icon buttons, pill tabs |
 
-Note: `rounded-xl` (20px) is larger than `rounded-2xl` (16px) in this system. This mirrors Figma.
+The scale runs in order: 4, 8, 12, 16, 20, 24, 32px. **Upgrading:** `rounded-xl` and `rounded-2xl` used to be swapped (xl was 20px, 2xl 16px). Every library component was updated so nothing changed on screen; in app code, swap `rounded-xl` ↔ `rounded-2xl` (including side variants like `rounded-t-xl`) to keep the same look.
 
 ---
 
@@ -408,7 +412,7 @@ Product icons, names and badge colours come from `productBadges` (`src/lib/produ
 | `line` | Underline row, 3px `mint-60` indicator, inactive `dark-100` → hover `dark-75`, active `navy` (same in vertical) |
 | `segmented` | `light-l2` track, sliding `mint-45` segment, active text white |
 
-All triggers: `text-body-5 font-semibold tracking-button uppercase`. Indicator slides with `ease-snappy` 300ms; panels slide 0.5rem. `TabsContent panel` gives a `rounded-2xl` bordered panel. Supports vertical orientation.
+All triggers: `text-body-5 font-semibold tracking-button uppercase`. Indicator slides with `ease-snappy` 300ms; panels slide 0.5rem. `TabsContent panel` gives a `rounded-xl` bordered panel. Supports vertical orientation.
 
 ### Table
 
@@ -428,14 +432,14 @@ Headers use `text-overline text-dark-100`; sortable headers (`sortable`, `sortDi
 | `Dialog` / `AlertDialog` | Backdrop `bg-dark-100/50`, white panel, actions right-aligned. One layout: 24px radius, × close, a divider under the header and above the actions, and a scrolling `DialogBody` for long content (no double divider when there is no body). `DialogHeader icon iconTone` adds an `IconTile` and centres the header and actions. `DialogContent` `size` `sm` / `md` / `lg` / `xl`. `DialogCollapsible` (`view-more` or `dropdown`). `ConfirmDialog` replaces the old `Modal` (cancel / action, `destructive`). |
 | `Sheet` / `Drawer` | Edge panels for secondary flows |
 | `Popover`, `HoverCard` | `rounded-lg`, floating shadow (`shadow-md` / `shadow-lg`) |
-| `Tooltip` | Navy bubble, white `text-body-4`, `rounded-2xl`, navy arrow, above the trigger on hover |
+| `Tooltip` | Navy bubble, white `text-body-4`, `rounded-xl`, navy arrow, above the trigger on hover |
 | `DropdownMenu`, `ContextMenu`, `Menubar`, `Command` | Panel `rounded-lg`, items `rounded-md`, hover `accent`. Dropdown checkbox items match Select; radio items show the selection with a mint fill (no check mark). `DropdownMenuProductItem` gives a 54px product row with the colour dot on the right. `DropdownMenuIconTrigger` is an icon-only trigger (no button styling): `icon` = `kebab` ⋮ (default), `meatball` ⋯, `chevron`, `settings` or any element; `tone` mint / dark / navy; `size` sm / md / lg; always pass `label`. `DropdownMenuCardTrigger` / `DropdownMenuCardGrid` / `DropdownMenuCardItem` and `ProductSwitcher` give the card-grid picker. |
 
 ### Feedback
 
 | Component | Variants |
 |---|---|
-| `Alert` | `default`, `info` (mint-l4), `success`, `warning`, `destructive`; `rounded-xl`, tint fill + `-15` border + `-75` text |
+| `Alert` | `default`, `info` (mint-l4), `success`, `warning`, `destructive`; `rounded-2xl`, tint fill + `-15` border + `-75` text |
 | `Toaster` + `sonner()` (Sonner) | See **Toasts (Sonner)** below |
 | `EmptyState` | `plain`, `dashed`, `muted`; mint `IconTile`, navy title, actions row |
 | `Progress`, `Spinner` | Loading states |
@@ -453,7 +457,7 @@ Short, non-blocking feedback after an action. Mount `<Toaster />` once in the ap
 | `error` | `error-l1` | `error-60`, × | Something failed or is blocked: "You are not verified" |
 | default `sonner()` | `light-l2` | `navy`, bell | General notices that aren't success, warning or error: "Settings saved" |
 
-Anatomy (the original BYB Toast): flat, 20px radius (`rounded-xl`), 8px / 12px padding; 32px white circle with a tone-coloured border holding the Tabler icon; title `text-body-5` semibold in the tone colour; description `text-body-5 text-dark-90`; optional action as an underlined text link in the tone colour, right after the description ("Undo", closes the toast when clicked); × top-right in the tone colour. `<Toast>` renders the same surface inline.
+Anatomy (the original BYB Toast): flat, 20px radius (`rounded-2xl`), 8px / 12px padding; 32px white circle with a tone-coloured border holding the Tabler icon; title `text-body-5` semibold in the tone colour; description `text-body-5 text-dark-90`; optional action as an underlined text link in the tone colour, right after the description ("Undo", closes the toast when clicked); × top-right in the tone colour. `<Toast>` renders the same surface inline.
 
 **In-progress toasts (`sonner.promise`, `sonner.loading`)**
 
@@ -527,7 +531,7 @@ Every toast has a × so it can be closed early. Override per toast with `duratio
 5. **No inline styles, no MUI.** Use `cva` for variants, `cn()` for merging, Base UI `render` for links.
 6. **New tokens:** add to `globals.css` `:root` (OKLCH + hex comment) → `@theme inline` → run `pnpm check-tokens` → `src/tokens.ts` if needed → `cn()` group in `src/lib/utils.ts`.
 7. **Typography by role + step** (`text-h3`, `text-body-4`), never pixel sizes. Tag for structure, class for looks.
-8. **Breakpoints:** `tablet:` 768, `desktop:` 1024, `wide:` 1440, `mobile:` below 768 only. Never `sm:`/`md:`/`lg:`/`xl:`/`2xl:`/`max-*:` in page code.
+8. **Breakpoints:** standard Tailwind prefixes, mobile-first: no prefix for mobile, `md:` 768, `lg:` 1024, `xl:` 1440 (`sm:` 640 for large phones). One range only: `max-md:`, `md:max-lg:`.
 9. **Badge colours keep white text at AA.** New category colours must pass 4.5:1 against white.
 10. **Hover never adds a background to a bare text or icon control.** Links, page numbers, text tabs, nav triggers, × and other icon buttons change colour only. Controls that already have a fill (buttons, chips) change their fill; rows in lists, menus, selects, tables and the calendar keep their row highlight.
 11. **Sub-headings are `dark-90`.** Overlines, group labels, section labels and column labels use `text-dark-90`; `dark-60` and `dark-75` are too grey for them. Descriptions keep `text-muted-foreground`.

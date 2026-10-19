@@ -33,19 +33,6 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* BYB breakpoint variants — use these in page code, not md: / lg: / xl:.
- * Mobile-first: unprefixed classes are mobile; tablet / desktop / wide apply
- * from that width up, so a value carries to bigger screens until overridden.
- *   mobile:   < 768px only   (styles that must NOT reach tablet and up)
- *   tablet:   ≥ 768px
- *   desktop:  ≥ 1024px
- *   wide:     ≥ 1440px
- * md / lg / xl in @theme have the same widths for shadcn internals. */
-@custom-variant mobile (@media (width < 48rem));
-@custom-variant tablet (@media (width >= 48rem));
-@custom-variant desktop (@media (width >= 64rem));
-@custom-variant wide (@media (width >= 90rem));
-
 /* =============================================================================
  * PRIMITIVES
  * ============================================================================= */
@@ -65,10 +52,10 @@
 
   /* ---------- Brand accents ---------- */
   --navy:      oklch(0.1576 0.0965 278.31); /* #090034 */
-  --cobalt:    oklch(0.5418 0.2542 262.24); /* #015AFF */
+  --electric-blue:    oklch(0.5418 0.2542 262.24); /* #015AFF */
   --teal:      oklch(0.725 0.1141 186.95);  /* #35BDB2 */
   --lime:      oklch(0.9126 0.1656 120.14); /* #D4F269 */
-  --cobalt-l1: oklch(0.8655 0.0603 276.79); /* #C8D0FB */
+  --electric-blue-l1: oklch(0.8655 0.0603 276.79); /* #C8D0FB */
   --teal-l1:   oklch(0.9014 0.0426 192.77); /* #BFE8E6 */
   --lime-l1:   oklch(0.9518 0.0933 117.15); /* #EAF8B0 */
 
@@ -196,9 +183,9 @@
   --radius-sm:   4px;
   --radius-md:   8px;   /* BYB component default */
   --radius-lg:   12px;
-  --radius-xl:   20px;
+  --radius-xl:   1rem;    /* 16px */
+  --radius-2xl:  20px;
   /* Matches Tailwind v4 defaults — explicit so our theme owns the full scale */
-  --radius-2xl:  1rem;    /* 16px */
   --radius-3xl:  1.5rem;  /* 24px */
   --radius-4xl:  2rem;    /* 32px */
   --radius-full: 9999px;
@@ -257,7 +244,7 @@
   /* shadcn chart slots */
   --chart-1: var(--mint-45);
   --chart-2: var(--teal);
-  --chart-3: var(--cobalt);
+  --chart-3: var(--electric-blue);
   --chart-4: var(--warning-30);
   --chart-5: var(--error-60);
 
@@ -367,7 +354,7 @@
  * ============================================================================= */
 
 @theme inline {
-  /* ---------- Color primitives → bg-mint-45, text-cobalt, border-dark-15, … ---------- */
+  /* ---------- Color primitives → bg-mint-45, text-electric-blue, border-dark-15, … ---------- */
 
   /* Mint */
   --color-mint-90: var(--mint-90);
@@ -383,10 +370,10 @@
 
   /* Brand accents */
   --color-navy:      var(--navy);
-  --color-cobalt:    var(--cobalt);
+  --color-electric-blue:    var(--electric-blue);
   --color-teal:      var(--teal);
   --color-lime:      var(--lime);
-  --color-cobalt-l1: var(--cobalt-l1);
+  --color-electric-blue-l1: var(--electric-blue-l1);
   --color-teal-l1:   var(--teal-l1);
   --color-lime-l1:   var(--lime-l1);
 
@@ -685,14 +672,15 @@
   --spacing-section-lg: var(--spacing-section-lg);
 
   /* ---------- Breakpoints (mobile-first, min-width) ----------
-   * Confluence "Responsive Breakpoints" (ER space):
-   *   Mobile   < 768px      no prefix
-   *   Tablet   768–1023px   md:
-   *   Desktop  1024–1439px  lg:
+   * Standard Tailwind prefixes; values follow the Confluence "Responsive
+   * Breakpoints" page (ER space):
+   *   Mobile   < 768px      no prefix (base styles)
+   *   Tablet   ≥ 768px      md:
+   *   Desktop  ≥ 1024px     lg:
    *   Large    ≥ 1440px     xl:
+   * sm: (640px, large phones) and 2xl: (1536px) keep Tailwind's defaults.
    * md/lg match Tailwind defaults; xl is raised from 1280px to 1440px.
-   * sm (640px) and 2xl (1536px) stay at Tailwind defaults for shadcn internals —
-   * don't use them for page layout. */
+   * One range only: max-md: (mobile), md:max-lg: (tablet), lg:max-xl: (desktop). */
   --breakpoint-md: 48rem;
   --breakpoint-lg: 64rem;
   --breakpoint-xl: 90rem;

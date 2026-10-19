@@ -10,7 +10,7 @@ function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="skeleton"
       aria-hidden="true"
       className={cn(
-        "relative isolate overflow-hidden rounded-xl bg-light-l2",
+        "relative isolate overflow-hidden rounded-2xl bg-light-l2",
         "before:absolute before:inset-0 before:-z-10 before:animate-shimmer before:bg-linear-to-r before:from-transparent before:via-white/70 before:to-transparent motion-reduce:before:hidden",
         className
       )}

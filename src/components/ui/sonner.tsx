@@ -33,7 +33,7 @@ const TOAST_DURATIONS = {
 
 /** The toast surface: tint fill, tone-coloured title / icon / ×. */
 const toastVariants = cva(
-  "relative flex w-full items-center gap-2 rounded-xl px-2 py-3 font-sans",
+  "relative flex w-full items-center gap-2 rounded-2xl px-2 py-3 font-sans",
   {
     variants: {
       tone: {
@@ -185,7 +185,7 @@ const Toaster = ({ className, toastOptions, ...props }: ToasterProps) => {
         // Only sonner-native toasts (toast.loading / toast.promise) use these;
         // every BYB tone renders the <Toast> surface above.
         classNames: {
-          toast: "rounded-xl! border-light-l3! font-sans! text-body-5!",
+          toast: "rounded-2xl! border-light-l3! font-sans! text-body-5!",
           ...toastOptions?.classNames,
         },
       }}

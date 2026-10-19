@@ -60,11 +60,11 @@ function SonnerRule() {
   return (
     <div className="flex w-60 shrink-0 flex-col gap-3">
       <span className="text-overline text-dark-90">Desktop · bottom right</span>
-      <div className="relative h-28 rounded-xl border border-dark-15 bg-light-l1">
+      <div className="relative h-28 rounded-2xl border border-dark-15 bg-light-l1">
         <div className="absolute end-2 bottom-2 h-5 w-24 rounded-md bg-mint-l3" />
       </div>
       <span className="mt-2 text-overline text-dark-90">Mobile · full width</span>
-      <div className="relative h-36 w-20 rounded-xl border border-dark-15 bg-light-l1">
+      <div className="relative h-36 w-20 rounded-2xl border border-dark-15 bg-light-l1">
         <div className="absolute inset-x-1 bottom-1 h-5 rounded-md bg-mint-l3" />
       </div>
       <p className="m-0 mt-2 text-body-5 text-dark-75">

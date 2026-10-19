@@ -53,7 +53,7 @@ import { House } from '@beforeyoubid/design-system/icons/lucide'
 ### Two layers of tokens
 
 1. **Primitives** — brand colours, exact Figma palette
-   `--mint-45`, `--mint-l1`, `--cobalt`, `--dark-75`, `--light-sandy`, `--warning-30`, `--category-09`, …
+   `--mint-45`, `--mint-l1`, `--electric-blue`, `--dark-75`, `--light-sandy`, `--warning-30`, `--category-09`, …
 2. **Semantic** — shadcn slots that components consume
    `--primary`, `--background`, `--muted`, `--accent`, `--destructive`, `--border`, `--ring`, `--card`, `--popover`, `--sidebar-*`, `--chart-1…5`, plus `--success` and `--warning` as BYB extensions.
 
@@ -63,8 +63,8 @@ import { House } from '@beforeyoubid/design-system/icons/lucide'
 
 ```
 mint-90 → mint-l4              primary brand scale (dark → light)
-navy, cobalt, teal, lime       brand accents
-cobalt-l1, teal-l1, lime-l1    accent tints (pill / badge backgrounds)
+navy, electric-blue, teal, lime   brand accents
+electric-blue-l1, teal-l1, lime-l1   accent tints (pill / badge backgrounds)
 dark-100 → dark-15             neutral text and borders (dark)
 light-l1 → light-sandy, white  neutrals (light)
 success-90 → success-l1        success states
@@ -153,12 +153,14 @@ Max-width: `max-w-site` = 1280px — always use this for the content container.
 rounded-sm    4px
 rounded-md    8px   ← component default
 rounded-lg   12px   ← cards, inputs, small buttons
-rounded-2xl  16px   ← default (md) and large buttons
-rounded-xl   20px
+rounded-xl   16px   ← default (md) and large buttons, tooltip, tab panel
+rounded-2xl  20px   ← alerts, toasts, popovers, drawers
+rounded-3xl  24px   ← dialogs
+rounded-4xl  32px
 rounded-full
 ```
 
-Buttons: `sm` uses `rounded-lg` (12px); `md`/`lg` use `rounded-2xl` (16px). Cards use `rounded-lg`.
+Buttons: `sm` uses `rounded-lg` (12px); `md`/`lg` use `rounded-xl` (16px). Cards use `rounded-lg`.
 Overlays/backdrops use `bg-dark-100/50`. New components don't need dark-mode styling.
 
 shadcn components reference `var(--radius)` which aliases to `--radius-md`.

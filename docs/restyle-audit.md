@@ -104,14 +104,14 @@ source code, and the token system in `globals.css`.
 | Radius | `rounded-4xl` | `rounded-btn` (18px, pill-ish) | Change class |
 | Height | `h-5` (20px) | `h-5` | No change |
 | Text size | `text-xs` (10px — our override) | `text-xs` | No change |
-| Variants | default, secondary, destructive, outline, ghost, link | Add brand variants: `mint`, `cobalt`, `teal` | New cva variants |
+| Variants | default, secondary, destructive, outline, ghost, link | Add brand variants: `mint`, `electric-blue`, `teal` | New cva variants |
 | Border | `border-transparent` | `border-transparent` by default | No change |
 
 **New badge variants to add:**
 
 ```
 mint:   bg-mint-l2 text-mint-90 border-mint-l1
-cobalt: bg-cobalt-l1 text-cobalt
+electric-blue: bg-electric-blue-l1 text-electric-blue
 teal:   bg-teal-l1 text-teal
 lime:   bg-lime-l1 text-navy
 ```

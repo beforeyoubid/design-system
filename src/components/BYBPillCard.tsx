@@ -7,12 +7,12 @@ const pillCardVariants = cva(
   {
     variants: {
       variant: {
-        cobalt: 'bg-cobalt-l1',
+        'electric-blue': 'bg-electric-blue-l1',
         teal:   'bg-teal-l1',
         lime:   'bg-lime-l1',
       },
     },
-    defaultVariants: { variant: 'cobalt' },
+    defaultVariants: { variant: 'electric-blue' },
   }
 )
 
@@ -21,12 +21,12 @@ const iconCircleVariants = cva(
   {
     variants: {
       variant: {
-        cobalt: 'border-cobalt text-cobalt',
+        'electric-blue': 'border-electric-blue text-electric-blue',
         teal:   'border-teal text-teal',
         lime:   'border-lime text-lime',
       },
     },
-    defaultVariants: { variant: 'cobalt' },
+    defaultVariants: { variant: 'electric-blue' },
   }
 )
 
