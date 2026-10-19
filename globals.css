@@ -646,29 +646,9 @@
   --animate-marquee-paused: marquee 35s linear infinite paused;
   --animate-fade-in:        fade-in 0.25s ease-out both;
   --animate-shimmer:        shimmer 1.6s ease-in-out infinite;
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
   /* Tabs panel — slides in from the side of the newly selected tab */
   --animate-tab-in-right:   tab-in-right 0.3s var(--ease-snappy) both;
   --animate-tab-in-left:    tab-in-left 0.3s var(--ease-snappy) both;
-
-  @keyframes accordion-down {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--accordion-panel-height);
-    }
-  }
-
-  @keyframes accordion-up {
-    from {
-      height: var(--accordion-panel-height);
-    }
-    to {
-      height: 0;
-    }
-  }
 
   @keyframes tab-in-right {
     from {

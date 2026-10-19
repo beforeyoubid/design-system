@@ -22,7 +22,7 @@ Upgrade an app with `npx design-system-migrate` (dry run) then `--write`, in the
 
 ### Fixed
 
-- Accordion panels animate open and closed (the keyframes read Radix's height variable instead of Base UI's `--accordion-panel-height`).
+- Accordion panels animate open and closed. They used keyframes that read Radix's height variable, which Base UI never sets; the panel now transitions to Base UI's `--accordion-panel-height`.
 - Tailwind's default text sizes are no longer cleared, so `text-sm`, `text-lg` and the rest keep working in apps.
 
 ## 1.1.5

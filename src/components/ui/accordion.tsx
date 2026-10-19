@@ -22,7 +22,7 @@ const accordionTriggerVariants = cva(
 
 /** Panel body: text size and bottom padding per `size`. */
 const accordionContentVariants = cva(
-  "h-(--accordion-panel-height) px-4 pt-0 data-ending-style:h-0 data-starting-style:h-0 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground",
+  "px-4 pt-0 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground",
   {
     variants: {
       size: {
@@ -98,7 +98,7 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Panel
       data-slot="accordion-content"
-      className="overflow-hidden text-dark-75 data-open:animate-accordion-down data-closed:animate-accordion-up"
+      className="h-(--accordion-panel-height) overflow-hidden text-dark-75 transition-[height] duration-200 ease-out data-starting-style:h-0 data-ending-style:h-0 motion-reduce:transition-none"
       {...props}
     >
       <div className={cn(accordionContentVariants({ size: size ?? groupSize }), className)}>
