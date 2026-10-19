@@ -108,7 +108,7 @@ Font: **Plus Jakarta Sans** — loaded by the consuming app (e.g. `next/font/goo
 
 Class names follow **role + size**: the same suffix always means the same step within a role. Need a different weight? Add `font-medium` / `font-semibold` to the size class; there is no separate weight scale. Tailwind's default `text-xs`…`text-9xl` are disabled, so only these sizes exist.
 
-Heading classes are **style names, not tags** — `<h2 className="text-h1">` is fine; pick the tag for document structure and the class for looks. The old `text-display-xl…sm`, `text-heading-xl…xs`, `text-body-2xl…sm` and `text-caption`/`-sm`/`-xs` names still work but are deprecated (same values); use the new names in all new code.
+Heading classes are **style names, not tags** — `<h2 className="text-h1">` is fine; pick the tag for document structure and the class for looks.
 
 Display and heading classes bake in `tracking-heading` (-0.005em). Button and overline classes bake in `uppercase` + `tracking-button` (0.04em). Both are applied in `utilities.css`.
 
@@ -270,4 +270,4 @@ pnpm build-and-publish
 
 After publishing, update the version in consuming apps' `package.json` and run their install (`pnpm install` / `yarn install`).
 
-> **v2.0 is a breaking change.** Consumers must upgrade their host app to Tailwind v4 and drop the v3 `tailwind.config.ts`-based wiring. Direct utility classes (`bg-mint-45`, `text-navy`, `text-body-md`) continue to work unchanged.
+> **v2.0 is a breaking change.** Consumers must upgrade their host app to Tailwind v4 and drop the v3 `tailwind.config.ts`-based wiring. Direct utility classes (`bg-mint-45`, `text-navy`, `text-body-4`) continue to work unchanged.

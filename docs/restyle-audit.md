@@ -82,7 +82,7 @@ source code, and the token system in `globals.css`.
 | Border | `border-input` | `border-border` | Change class |
 | Border hover | None | `hover:border-dark-30` | Add hover modifier |
 | Padding | `px-3 py-1` | `px-4` | Change class |
-| Text size | `text-base` (16px) / `md:text-sm` | `text-body-md` (16px) | Simplify to `text-body-md` |
+| Text size | `text-base` (16px) / `md:text-sm` | `text-body-4` (16px) | Simplify to `text-body-4` |
 
 #### Card
 
@@ -159,7 +159,7 @@ All use existing tokens, no new tokens needed.
 | **Popover** | Content: `rounded-xl border-border`. No `ring`. Padding `p-4`. |
 | **Sheet** | Content: `rounded-xl` on the opening edge, `border-border`. Otherwise fine. |
 | **Slider** | Track: `bg-muted`. Range: `bg-primary`. Thumb: `bg-white ring-2 ring-primary`. base-maia likely close — verify. |
-| **Accordion** | Trigger: `text-foreground font-medium`, no uppercase. Content `text-body-sm text-muted-foreground`. Fine as-is. |
+| **Accordion** | Trigger: `text-foreground font-medium`, no uppercase. Content `text-body-5 text-muted-foreground`. Fine as-is. |
 | **Breadcrumb** | Separator colour: `text-dark-45`. Active: `text-foreground`. Fine as-is. |
 | **Pagination** | Active page: `bg-primary text-primary-foreground rounded-btn`. Nav arrows: `border-border`. |
 
@@ -184,7 +184,7 @@ these will look correct or near-correct.
 | Progress | Track: `bg-muted`. Fill: `bg-primary`. Fine. |
 | Skeleton | `bg-muted animate-pulse`. Fine. |
 | Separator | `bg-border`. Fine. |
-| Label | `text-body-sm font-medium text-foreground`. Verify size. |
+| Label | `text-body-5 font-medium text-foreground`. Verify size. |
 | Textarea | Same treatment as Input: radius, height, background. |
 | InputOTP | `rounded-md` per slot. Fine. |
 | InputGroup | New in base-maia. `rounded-btn` on container → `rounded-md`. |

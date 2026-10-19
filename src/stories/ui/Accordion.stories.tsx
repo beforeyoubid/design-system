@@ -63,7 +63,7 @@ const FAQ_ITEMS = [
 
 export const Default: Story = {
   render: () => (
-    <Accordion defaultValue={null} className="max-w-2xl">
+    <Accordion defaultValue={[]} className="max-w-2xl">
       {FAQ_ITEMS.map(item => (
         <AccordionItem key={item.value} value={item.value}>
           <AccordionTrigger>{item.question}</AccordionTrigger>
@@ -76,7 +76,7 @@ export const Default: Story = {
 
 export const SingleOpen: Story = {
   render: () => (
-    <Accordion defaultValue="share-cost" className="max-w-2xl">
+    <Accordion defaultValue={['share-cost']} className="max-w-2xl">
       {FAQ_ITEMS.map(item => (
         <AccordionItem key={item.value} value={item.value}>
           <AccordionTrigger>{item.question}</AccordionTrigger>

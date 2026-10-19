@@ -564,35 +564,6 @@
   --text-h6--line-height:         1.3;
   --text-h6--font-weight:         600;
 
-  /* DEPRECATED — old display/heading names, kept for one release. Remove in the next major. */
-  --text-display-xl:              72px;
-  --text-display-xl--line-height: 1.05;
-  --text-display-xl--font-weight: 600;
-  --text-display-lg:              64px;
-  --text-display-lg--line-height: 1.06;
-  --text-display-lg--font-weight: 600;
-  --text-display-md:              56px;
-  --text-display-md--line-height: 1.08;
-  --text-display-md--font-weight: 600;
-  --text-display-sm:              52px;
-  --text-display-sm--line-height: 1.2;
-  --text-display-sm--font-weight: 600;
-  --text-heading-xl:              40px;
-  --text-heading-xl--line-height: 1.2;
-  --text-heading-xl--font-weight: 600;
-  --text-heading-lg:              36px;
-  --text-heading-lg--line-height: 1.2;
-  --text-heading-lg--font-weight: 600;
-  --text-heading-md:              28px;
-  --text-heading-md--line-height: 1.2;
-  --text-heading-md--font-weight: 600;
-  --text-heading-sm:              24px;
-  --text-heading-sm--line-height: 1.2;
-  --text-heading-sm--font-weight: 600;
-  --text-heading-xs:              20px;
-  --text-heading-xs--line-height: 1.3;
-  --text-heading-xs--font-weight: 600;
-
   /* Body (regular 400) — 1 = largest. Lead paragraphs use body-1/2, UI copy body-4/5. */
   --text-body-1:                24px;
   --text-body-1--line-height:   1.4;
@@ -612,24 +583,6 @@
   --text-caption-2--line-height: 1.4;
   --text-caption-3:              8px;
   --text-caption-3--line-height: 1.4;
-
-  /* DEPRECATED — old body/caption names, kept for one release. Remove in the next major. */
-  --text-body-2xl:              24px;
-  --text-body-2xl--line-height: 1.4;
-  --text-body-xl:               20px;
-  --text-body-xl--line-height:  1.4;
-  --text-body-lg:               18px;
-  --text-body-lg--line-height:  1.4;
-  --text-body-md:               16px;
-  --text-body-md--line-height:  1.4;
-  --text-body-sm:               14px;
-  --text-body-sm--line-height:  1.4;
-  --text-caption:               12px;
-  --text-caption--line-height:  1.4;
-  --text-caption-sm:              10px;
-  --text-caption-sm--line-height: 1.4;
-  --text-caption-xs:              8px;
-  --text-caption-xs--line-height: 1.4;
 
   /* Overline (semi-bold 600, uppercase + tracking-button baked in via utilities.css)
    * Eyebrows, table headers, stat labels. */
@@ -674,16 +627,18 @@
   /* ---------- Breakpoints (mobile-first, min-width) ----------
    * Standard Tailwind prefixes; values follow the Confluence "Responsive
    * Breakpoints" page (ER space):
-   *   Mobile   < 768px      no prefix (base styles)
-   *   Tablet   ≥ 768px      md:
-   *   Desktop  ≥ 1024px     lg:
-   *   Large    ≥ 1440px     xl:
-   * sm: (640px, large phones) and 2xl: (1536px) keep Tailwind's defaults.
-   * md/lg match Tailwind defaults; xl is raised from 1280px to 1440px.
-   * One range only: max-md: (mobile), md:max-lg: (tablet), lg:max-xl: (desktop). */
+   *   Mobile        < 768px      no prefix (base styles)
+   *   Tablet        ≥ 768px      md:
+   *   Desktop       ≥ 1024px     lg:
+   *   Laptop        ≥ 1280px     xl:   (Tailwind default; the website relies on it)
+   *   Large screen  ≥ 1440px     2xl:  (Figma desktop frame; Tailwind default is 1536px)
+   * sm: (640px, large phones) keeps Tailwind's default.
+   * One range only: max-md: (mobile), md:max-lg: (tablet), lg:max-xl: (desktop),
+   * xl:max-2xl: (1280–1439px laptops). */
   --breakpoint-md: 48rem;
   --breakpoint-lg: 64rem;
-  --breakpoint-xl: 90rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 90rem;
 
   /* ---------- Animation ---------- */
   --animate-marquee:        marquee 35s linear infinite;

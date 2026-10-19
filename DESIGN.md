@@ -221,7 +221,6 @@ JS: `import { typography } from '@beforeyoubid/design-system'` → `typography.h
 
 **Colour:** headings `text-navy`; **sub-headings `text-dark-90`**: overlines, group and section labels, column labels (e.g. "INSPECTION TYPE", "Switch inspection type", Select group labels, the time picker's "HR / MIN"), never `dark-60` or `dark-75`; body `text-dark-90`; descriptions and secondary text `text-muted-foreground` (`dark-75`, unchanged); hints, helper text and icons `text-dark-75`. Don't use `dark-60` for text or icons.
 
-**Deprecated names** (same values, removed next major): `text-display-xl/lg/md/sm`, `text-heading-xl/lg/md/sm/xs`, `text-body-2xl/xl/lg/md/sm`, `text-caption`, `-sm`, `-xs`. Display and body map largest-first (`display-xl` → `display-1`, `body-md` → `body-4`), `heading-xl…xs` → `h1…h5`, `caption`/`-sm`/`-xs` → `caption-1/2/3`. Full table on the Confluence **Typography** page.
 
 ---
 
@@ -242,7 +241,7 @@ Common component rhythm: card padding 24px (16px for `size="sm"`), form field he
 
 ## Breakpoints and grid
 
-Use Tailwind's standard prefixes `sm:`, `md:`, `lg:` and `xl:`. Values follow the Confluence **Responsive Breakpoints** page.
+Use Tailwind's standard prefixes `sm:`, `md:`, `lg:`, `xl:` and `2xl:`. Values follow the Confluence **Responsive Breakpoints** page.
 
 Mobile-first: unprefixed classes are the mobile styles, and each prefix applies **from that width up**, so a value carries to bigger screens until a larger prefix overrides it.
 
@@ -250,19 +249,22 @@ Mobile-first: unprefixed classes are the mobile styles, and each prefix applies 
 |---|---|---|---|---|
 | Mobile | < 768px | *(none)*: base styles | Phones | Single column, adjusted spacing |
 | Tablet | 768–1023px | `md:` (≥ 768px) | Tablets | Multi-column, card-based |
-| Desktop | 1024–1439px | `lg:` (≥ 1024px) | Laptops / desktops | Full layouts, side navigation |
-| Large | ≥ 1440px | `xl:` (≥ 1440px) | Large screens | Max content width, extra assets |
+| Desktop | 1024–1279px | `lg:` (≥ 1024px) | Small laptops, desktops | Full layouts, side navigation |
+| Laptop | 1280–1439px | `xl:` (≥ 1280px) | Most laptops | Full layouts (the website's main desktop layout) |
+| Large | ≥ 1440px | `2xl:` (≥ 1440px) | Large screens; the 1440px Figma desktop frame | Max content width, extra assets |
 
+- `xl:` stays at Tailwind's default 1280px; the website relies on it in 300+ places.
+- `2xl:` is moved from Tailwind's 1536px to **1440px** to match the Figma desktop frame, so the 1440px layout has its own prefix.
 - `sm:` (≥ 640px) is available for large phones, between the mobile base and `md:`. Our "SM" mobile tier is the **unprefixed** base, not `sm:`.
-- `2xl:` (≥ 1536px) keeps Tailwind's default.
-- One range only: `max-md:` (mobile only), `md:max-lg:` (tablet only), `lg:max-xl:` (desktop only).
+- One range only: `max-md:` (mobile), `md:max-lg:` (tablet), `lg:max-xl:` (desktop), `xl:max-2xl:` (1280–1439px laptops).
 
 ```tsx
-<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">…</div>
+<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">…</div>
 <nav className="hidden lg:flex">…</nav>              // desktop and up
 <div className="lg:hidden">…</div>                   // mobile + tablet
 <aside className="max-md:hidden">…</aside>           // tablet and up
 <div className="hidden md:max-lg:block">…</div>       // tablet only
+<aside className="hidden 2xl:block">…</aside>         // 1440px and up only
 ```
 
 **Design grid (Figma frames)**
@@ -531,7 +533,7 @@ Every toast has a × so it can be closed early. Override per toast with `duratio
 5. **No inline styles, no MUI.** Use `cva` for variants, `cn()` for merging, Base UI `render` for links.
 6. **New tokens:** add to `globals.css` `:root` (OKLCH + hex comment) → `@theme inline` → run `pnpm check-tokens` → `src/tokens.ts` if needed → `cn()` group in `src/lib/utils.ts`.
 7. **Typography by role + step** (`text-h3`, `text-body-4`), never pixel sizes. Tag for structure, class for looks.
-8. **Breakpoints:** standard Tailwind prefixes, mobile-first: no prefix for mobile, `md:` 768, `lg:` 1024, `xl:` 1440 (`sm:` 640 for large phones). One range only: `max-md:`, `md:max-lg:`.
+8. **Breakpoints:** standard Tailwind prefixes, mobile-first: no prefix for mobile, `md:` 768, `lg:` 1024, `xl:` 1280, `2xl:` 1440 (`sm:` 640 for large phones). One range only: `max-md:`, `md:max-lg:`, `xl:max-2xl:`.
 9. **Badge colours keep white text at AA.** New category colours must pass 4.5:1 against white.
 10. **Hover never adds a background to a bare text or icon control.** Links, page numbers, text tabs, nav triggers, × and other icon buttons change colour only. Controls that already have a fill (buttons, chips) change their fill; rows in lists, menus, selects, tables and the calendar keep their row highlight.
 11. **Sub-headings are `dark-90`.** Overlines, group labels, section labels and column labels use `text-dark-90`; `dark-60` and `dark-75` are too grey for them. Descriptions keep `text-muted-foreground`.

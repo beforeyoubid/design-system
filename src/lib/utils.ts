@@ -13,15 +13,9 @@ const twMerge = extendTailwindMerge({
             // Display + heading (600)
             'display-1', 'display-2', 'display-3', 'display-4',
             'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-            // Deprecated display/heading names
-            'display-xl', 'display-lg', 'display-md', 'display-sm',
-            'heading-xl', 'heading-lg', 'heading-md', 'heading-sm', 'heading-xs',
             // Body + caption (400)
             'body-1', 'body-2', 'body-3', 'body-4', 'body-5',
             'caption-1', 'caption-2', 'caption-3',
-            // Deprecated body/caption names
-            'body-2xl', 'body-xl', 'body-lg', 'body-md', 'body-sm',
-            'caption', 'caption-sm', 'caption-xs',
             // Uppercase UI text (600)
             'overline', 'button-lg', 'button-md', 'button-sm',
           ],

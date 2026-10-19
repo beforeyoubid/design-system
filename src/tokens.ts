@@ -1,7 +1,7 @@
 // Typography tokens — mirrors Figma "font / plus jakarta sans" without the family prefix.
 // Semi-bold headings always pair with letterSpacing: '-0.005em' (tracking-heading class).
 // Button styles are uppercase with letterSpacing: '0.04em' (tracking-button class).
-const typographyScale = {
+export const typography = {
   // Semi-bold (600): display + headings
   display1:   { fontSize: '72px', lineHeight: '1.05', fontWeight: 600, letterSpacing: '-0.005em' },
   display2:   { fontSize: '64px', lineHeight: '1.06', fontWeight: 600, letterSpacing: '-0.005em' },
@@ -27,45 +27,6 @@ const typographyScale = {
   buttonLg:   { fontSize: '18px', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
   buttonMd:   { fontSize: '16px', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
   buttonSm:   { fontSize: '14px', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
-} as const
-
-export const typography = {
-  ...typographyScale,
-  // Deprecated aliases for the old display/heading/body/caption names — remove in the next major.
-  /** @deprecated use `typography.display1` */
-  displayXl: typographyScale.display1,
-  /** @deprecated use `typography.display2` */
-  displayLg: typographyScale.display2,
-  /** @deprecated use `typography.display3` */
-  displayMd: typographyScale.display3,
-  /** @deprecated use `typography.display4` */
-  displaySm: typographyScale.display4,
-  /** @deprecated use `typography.h1` */
-  headingXl: typographyScale.h1,
-  /** @deprecated use `typography.h2` */
-  headingLg: typographyScale.h2,
-  /** @deprecated use `typography.h3` */
-  headingMd: typographyScale.h3,
-  /** @deprecated use `typography.h4` */
-  headingSm: typographyScale.h4,
-  /** @deprecated use `typography.h5` */
-  headingXs: typographyScale.h5,
-  /** @deprecated use `typography.body1` */
-  body2xl: typographyScale.body1,
-  /** @deprecated use `typography.body2` */
-  bodyXl: typographyScale.body2,
-  /** @deprecated use `typography.body3` */
-  bodyLg: typographyScale.body3,
-  /** @deprecated use `typography.body4` */
-  bodyMd: typographyScale.body4,
-  /** @deprecated use `typography.body5` */
-  bodySm: typographyScale.body5,
-  /** @deprecated use `typography.caption1` */
-  caption: typographyScale.caption1,
-  /** @deprecated use `typography.caption2` */
-  captionSm: typographyScale.caption2,
-  /** @deprecated use `typography.caption3` */
-  captionXs: typographyScale.caption3,
 } as const
 
 export type TypographyToken = keyof typeof typography
