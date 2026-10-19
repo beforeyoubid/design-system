@@ -1,158 +1,71 @@
-// Typography tokens — mirrors Figma "font / plus jakarta sans" without the family prefix.
-// Semi-bold headings always pair with letterSpacing: '-0.005em' (tracking-heading class).
-// Button styles are uppercase with letterSpacing: '0.04em' (tracking-button class).
-export const typography = {
-  // Semi-bold (600): display + headings
-  display1:   { fontSize: '72px', lineHeight: '1.05', fontWeight: 600, letterSpacing: '-0.005em' },
-  display2:   { fontSize: '64px', lineHeight: '1.06', fontWeight: 600, letterSpacing: '-0.005em' },
-  display3:   { fontSize: '56px', lineHeight: '1.08', fontWeight: 600, letterSpacing: '-0.005em' },
-  display4:   { fontSize: '52px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
-  h1:         { fontSize: '40px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
-  h2:         { fontSize: '36px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
-  h3:         { fontSize: '28px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
-  h4:         { fontSize: '24px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
-  h5:         { fontSize: '20px', lineHeight: '1.3',  fontWeight: 600, letterSpacing: '-0.005em' },
-  h6:         { fontSize: '18px', lineHeight: '1.3',  fontWeight: 600, letterSpacing: '-0.005em' },
-  // Regular (400): body + caption. For medium weight, pair with fontWeight: 500.
-  body1:      { fontSize: '24px', lineHeight: '1.4', fontWeight: 400 },
-  body2:      { fontSize: '20px', lineHeight: '1.4', fontWeight: 400 },
-  body3:      { fontSize: '18px', lineHeight: '1.4', fontWeight: 400 },
-  body4:      { fontSize: '16px', lineHeight: '1.4', fontWeight: 400 },
-  body5:      { fontSize: '14px', lineHeight: '1.4', fontWeight: 400 },
-  caption1:   { fontSize: '12px', lineHeight: '1.4', fontWeight: 400 },
-  caption2:   { fontSize: '10px', lineHeight: '1.4', fontWeight: 400 },
-  caption3:   { fontSize: '8px',  lineHeight: '1.4', fontWeight: 400 },
-  // Semi-bold (600), uppercase + 0.04em letter-spacing
-  overline:   { fontSize: '12px', lineHeight: '1.4', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
-  buttonLg:   { fontSize: '18px', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
-  buttonMd:   { fontSize: '16px', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
-  buttonSm:   { fontSize: '14px', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
-} as const
+// Design tokens for non-CSS contexts (Stripe Elements, canvas, charts, emails).
+// In the DOM, use the Tailwind utilities (`bg-mint-45`, `text-h1`) instead.
+//
+// The defaults are generated from globals.css (src/generated/default-tokens.ts),
+// so they always match the CSS. An app that overrides a CSS variable passes the
+// same value here, so its JS and CSS stay in step:
+//
+//   // app/theme.ts — the one place the app reads tokens from
+//   export const tokens = generateDesignSystemTokens({
+//     overrides: { colors: { mint45: '#00A08A' } },
+//   })
+//
+//   tokens.colors.mint45           // '#00A08A'
+//   tokens.typography.h1.fontSize  // '40px'
+import {
+  defaultBadgeProductAliases,
+  defaultColors,
+  defaultTypography,
+} from './generated/default-tokens'
 
-export type TypographyToken = keyof typeof typography
+export type ColorToken = keyof typeof defaultColors
+export type BadgeProductToken = keyof typeof defaultBadgeProductAliases
+export type TypographyToken = keyof typeof defaultTypography
 
-export const colors = {
-  // Brand
-  navy:   '#090034',
-  lime:   '#D4F269',
-  limeL1: '#EAF8B0',
-  electricBlue:   '#015AFF',
-  electricBlueL1: '#C8D0FB',
-  teal:     '#35BDB2',
-  tealL1:   '#BFE8E6',
-  // Mint (Primary)
-  mint90: '#005246',
-  mint75: '#007A69',
-  mint60: '#009E87',
-  mint45: '#00AE95',
-  mint30: '#4FC3AE',
-  mint15: '#6BCCBB',
-  mintL1: '#ABE2D8',
-  mintL2: '#D2EFEA',
-  mintL3: '#E1F5F1',
-  mintL4: '#F4FBFA',
-  // Dark (Neutrals)
-  dark100: '#16181D',
-  dark90:  '#444A5A',
-  dark75:  '#656E85',
-  dark60:  '#858EA3',
-  dark45:  '#A5ABBB',
-  dark30:  '#C2C6D1',
-  dark15:  '#DFE1E7',
-  // Light (Neutrals)
-  white:      '#FFFFFF',
-  lightSandy: '#F8F3EE',
-  lightL1:    '#F9FAFB',
-  lightL2:    '#F2F4F7',
-  lightL3:    '#EAECF0',
-  // Success
-  success90: '#0D492E',
-  success75: '#15754A',
-  success60: '#1C9B62',
-  success45: '#22B976',
-  success30: '#34DA90',
-  success15: '#9CEDC9',
-  successL1: '#E9FBF3',
-  // Error
-  error90: '#7C1A12',
-  error75: '#BF271C',
-  error60: '#E5584D',
-  error45: '#ED8A83',
-  error30: '#F3AFAB',
-  error15: '#F8D5D3',
-  errorL1: '#FDF2F2',
-  errorL2: '#FEFBFB',
-  // Warning
-  warning75: '#906809',
-  warning60: '#B68205',
-  warning45: '#D49702',
-  warning30: '#FDB402',
-  warning15: '#FED776',
-  warningL1: '#FEEDC1',
-  warningL2: '#FEF5DC',
-  warningL3: '#FFF9EB',
-  // Category colours
-  category01: '#068091',
-  category02: '#026772',
-  category03: '#037DAE',
-  category04: '#016299',
-  category05: '#4E342E',
-  category06: '#6D4C41',
-  category07: '#3D0C11',
-  category08: '#880E4F',
-  category09: '#E4145F',
-  category10: '#7B1FA2',
-  category11: '#8C4FF5',
-  category12: '#673AB7',
-  category13: '#757575',
-  category14: '#616161',
-  category15: '#555555',
-  category16: '#262323',
-  category17: '#2E7D32',
-  category18: '#C2410C',
-  category19: '#303F9F',
-  category20: '#00796B',
-  category21: '#33691E',
-  category22: '#827717',
-  category23: '#8A6100',
-  category24: '#B91C1C',
-  category25: '#1565C0',
-  category26: '#AD1457',
-  category27: '#37474F',
-  category28: '#9A3412',
-  category29: '#065F46',
-  category30: '#4A148C',
-  category31: '#9F1239',
-  category32: '#A21CAF',
-  category33: '#004D40',
-  category34: '#546E7A',
-  category35: '#5C6BC0',
-} as const
+export interface TypographyStyle {
+  fontSize: string
+  lineHeight: string
+  fontWeight: number
+  letterSpacing?: string
+  textTransform?: 'uppercase'
+}
 
-export type ColorToken = keyof typeof colors
+export interface DesignSystemTokens {
+  colors: Record<ColorToken, string>
+  /** Product badge colours. Each follows its colour token unless overridden directly. */
+  badgeProductColors: Record<BadgeProductToken, string>
+  typography: Record<TypographyToken, TypographyStyle>
+}
 
-// Product badge colours — each product aliases a category colour.
-// Mirrors --badge-product-* in globals.css.
-export const badgeProductColors = {
-  bpi: colors.category01,
-  buildingInspection: colors.category02,
-  pestInspection: colors.category03,
-  strataReport: colors.category04,
-  ownersCorpCert: colors.category05,
-  poolInspection: colors.category06,
-  electricalReport: colors.category07,
-  electricalSafetyCert: colors.category08,
-  plumbingReport: colors.category09,
-  handoverInspection: colors.category10,
-  valuations: colors.category11,
-  asbestosTesting: colors.category12,
-  dilapidationReport: colors.category13,
-  depreciationSchedule: colors.category14,
-  ownerBuilderReport: colors.category15,
-  minimumStandards: colors.category16,
-  newBuildingInspection: colors.category17,
-  homeEnergyRating: colors.category18,
-  bmc: colors.category19,
-} as const
+export interface GenerateDesignSystemTokensOptions {
+  /** Values the app sets differently from the design system, matching its CSS overrides. */
+  overrides?: {
+    colors?: Partial<Record<ColorToken, string>>
+    badgeProductColors?: Partial<Record<BadgeProductToken, string>>
+    typography?: Partial<Record<TypographyToken, Partial<TypographyStyle>>>
+  }
+}
 
-export type BadgeProductToken = keyof typeof badgeProductColors
+export function generateDesignSystemTokens(
+  options: GenerateDesignSystemTokensOptions = {},
+): DesignSystemTokens {
+  const { overrides = {} } = options
+
+  const colors = { ...defaultColors, ...overrides.colors } as Record<ColorToken, string>
+
+  const badgeProductColors = Object.fromEntries(
+    (Object.keys(defaultBadgeProductAliases) as BadgeProductToken[]).map((product) => [
+      product,
+      overrides.badgeProductColors?.[product] ?? colors[defaultBadgeProductAliases[product]],
+    ]),
+  ) as Record<BadgeProductToken, string>
+
+  const typography = Object.fromEntries(
+    (Object.keys(defaultTypography) as TypographyToken[]).map((style) => [
+      style,
+      { ...defaultTypography[style], ...overrides.typography?.[style] },
+    ]),
+  ) as Record<TypographyToken, TypographyStyle>
+
+  return { colors, badgeProductColors, typography }
+}
