@@ -1,3 +1,4 @@
+import * as React from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 import { cva, type VariantProps } from "class-variance-authority"
@@ -18,6 +19,17 @@ const badgeVariants = cva(
         success: "border-mint-l1 bg-mint-l3 font-semibold text-mint-75",
         error: "border-error-15 bg-error-l1 font-semibold text-error-75",
         warning: "border-warning-l1 bg-warning-l3 font-semibold text-warning-75",
+        "electric-blue":
+          "border-electric-blue-l1 bg-electric-blue-l1/40 font-semibold text-electric-blue",
+      },
+      /**
+       * `tint` (default): light fill + border, coloured text.
+       * `solid`: the tone's full colour with white (or navy) text, e.g. status pills
+       * like "Awaiting authority", "Live", "Booked".
+       */
+      appearance: {
+        tint: "",
+        solid: "font-semibold",
       },
       size: {
         sm: "",
@@ -31,10 +43,18 @@ const badgeVariants = cva(
       },
     },
     compoundVariants: [
-      // Tinted status badges: md is the original 20px pill
+      // Status badges (tint or solid): md is the original 20px pill; lg is 28px / 14px text
       { filled: false, size: "sm", className: "h-4 px-1.5 text-caption-2 [&>svg]:size-2.5!" },
       { filled: false, size: "md", className: "h-5 px-2 py-0.5 text-caption-2 [&>svg]:size-3!" },
-      { filled: false, size: "lg", className: "h-6 px-2.5 text-caption-1 [&>svg]:size-3.5!" },
+      { filled: false, size: "lg", className: "h-7 gap-1.5 px-3 text-body-5 [&>svg]:size-4!" },
+      // Solid status fills (tokens only)
+      { appearance: "solid", variant: "gray", className: "border-dark-75 bg-dark-75 text-white" },
+      { appearance: "solid", variant: "mint", className: "border-mint-45 bg-mint-45 text-white [a]:hover:bg-mint-60" },
+      { appearance: "solid", variant: "lime", className: "border-lime bg-lime text-navy" },
+      { appearance: "solid", variant: "success", className: "border-mint-60 bg-mint-60 text-white" },
+      { appearance: "solid", variant: "error", className: "border-error-75 bg-error-75 text-white" },
+      { appearance: "solid", variant: "warning", className: "border-warning-30 bg-warning-30 text-navy" },
+      { appearance: "solid", variant: "electric-blue", className: "border-electric-blue bg-electric-blue text-white" },
       // Solid category / product badges: md is the original 24px pill
       { filled: true, size: "sm", className: "h-5 px-2 text-caption-1 [&>svg]:size-3!" },
       { filled: true, size: "md", className: "h-6 px-2.5 text-body-5 [&>svg]:size-3.5!" },
@@ -42,6 +62,7 @@ const badgeVariants = cva(
     ],
     defaultVariants: {
       variant: "gray",
+      appearance: "tint",
       size: "md",
       filled: false,
     },
@@ -136,6 +157,10 @@ export type BadgeProps = useRender.ComponentProps<"span"> &
   VariantProps<typeof badgeVariants> & {
     /** Show a small Spinner in the tone's text colour before the label (e.g. "Syncing"). */
     spinner?: boolean
+    /** Icon element, e.g. `<Clock />` from Lucide. Sized by `size` (16px on `lg`). */
+    icon?: React.ReactNode
+    /** Which side of the label the icon sits on. Default `left`. */
+    iconPosition?: "left" | "right"
     /** Filled category badge, 1–35. When set, overrides `variant`. */
     category?: BadgeCategory
     /** Filled product badge, e.g. "electrical-report". When set, overrides `variant` and `category`. */
@@ -145,8 +170,11 @@ export type BadgeProps = useRender.ComponentProps<"span"> &
 function Badge({
   className,
   variant = "gray",
+  appearance = "tint",
   size = "md",
   spinner = false,
+  icon,
+  iconPosition = "left",
   category,
   product,
   render,
@@ -154,17 +182,27 @@ function Badge({
   ...props
 }: BadgeProps) {
   const filled = Boolean(category || product)
+  // Mark the icon so the badge trims its padding on that side.
+  const iconNode = React.isValidElement<{ "data-icon"?: string; "aria-hidden"?: boolean }>(icon)
+    ? React.cloneElement(icon, {
+        "data-icon": iconPosition === "left" ? "inline-start" : "inline-end",
+        "aria-hidden": true,
+      })
+    : icon
   const prefix =
     !filled && spinner ? (
       <Spinner size="sm" color="current" label="Loading" />
+    ) : iconPosition === "left" ? (
+      iconNode
     ) : null
+  const suffix = iconPosition === "right" ? iconNode : null
 
   return useRender({
     defaultTagName: "span",
     props: mergeProps<"span">(
       {
         className: cn(
-          badgeVariants({ variant, size, filled }),
+          badgeVariants({ variant, appearance, size, filled }),
           product
             ? badgeProductVariants({ product })
             : category && badgeCategoryVariants({ category }),
@@ -174,6 +212,7 @@ function Badge({
           <>
             {prefix}
             {children}
+            {suffix}
           </>
         ),
       },
@@ -183,6 +222,7 @@ function Badge({
     state: {
       slot: "badge",
       variant,
+      appearance,
       size,
     },
   })

@@ -24,6 +24,57 @@
   }
 }
 
+/* Fade the top / bottom edges of a scroll container only while there is more
+ * to scroll to (top fades once scrolled down, bottom fades until the end).
+ * Short content that doesn't scroll shows no fade. Uses scroll-driven
+ * animation; browsers without it just scroll with no fade. e.g. DialogBody. */
+@property --scroll-fade-top {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --scroll-fade-bottom {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@keyframes scroll-fade-y {
+  0% {
+    --scroll-fade-top: 0px;
+    --scroll-fade-bottom: 24px;
+  }
+  8% {
+    --scroll-fade-top: 24px;
+  }
+  92% {
+    --scroll-fade-bottom: 24px;
+  }
+  100% {
+    --scroll-fade-top: 24px;
+    --scroll-fade-bottom: 0px;
+  }
+}
+@utility scroll-fade-y {
+  @supports (animation-timeline: scroll()) {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black var(--scroll-fade-top),
+      black calc(100% - var(--scroll-fade-bottom)),
+      transparent
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black var(--scroll-fade-top),
+      black calc(100% - var(--scroll-fade-bottom)),
+      transparent
+    );
+    animation: scroll-fade-y linear both;
+    animation-timeline: scroll(self);
+  }
+}
+
 /* Fade left/right edges — e.g. carousels that highlight centre cards */
 .mask-fade-x {
   -webkit-mask-image: linear-gradient(

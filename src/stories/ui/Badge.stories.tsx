@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { CalendarCheck, CircleCheck, Clock, X } from 'lucide-react'
 import { Badge, type BadgeCategory, type BadgeProduct } from '../../components/ui/badge'
 
 const meta: Meta<typeof Badge> = {
@@ -9,9 +10,11 @@ const meta: Meta<typeof Badge> = {
     variant: {
       control: 'select',
       options: [
-        'gray', 'mint', 'lime', 'success', 'error', 'warning',
+        'gray', 'mint', 'lime', 'success', 'error', 'warning', 'electric-blue',
       ],
     },
+    appearance: { control: 'inline-radio', options: ['tint', 'solid'] },
+    iconPosition: { control: 'inline-radio', options: ['left', 'right'] },
     category: { control: { type: 'number', min: 1, max: 35 } },
     product: {
       control: 'select',
@@ -45,7 +48,7 @@ const meta: Meta<typeof Badge> = {
 export default meta
 type Story = StoryObj<typeof Badge>
 
-const TONES = ['gray', 'mint', 'lime', 'success', 'error', 'warning'] as const
+const TONES = ['gray', 'mint', 'lime', 'success', 'error', 'warning', 'electric-blue'] as const
 const SIZES = ['sm', 'md', 'lg'] as const
 const CATEGORIES = Array.from({ length: 35 }, (_, i) => (i + 1) as BadgeCategory)
 
@@ -132,6 +135,56 @@ export const Sizes: Story = {
           <Badge size={size} variant="mint" spinner>Syncing</Badge>
           <Badge size={size} category={4}>Category 4</Badge>
           <Badge size={size} product="electrical-report">Electrical Inspection</Badge>
+        </div>
+      ))}
+    </div>
+  ),
+}
+
+/**
+ * Solid status pills with an icon (`appearance="solid"`, `size="lg"`: 28px tall,
+ * 14px text, 16px icon). Colours are tokens: warning-30 + navy, mint-45 + white,
+ * electric-blue + white.
+ */
+export const StatusPills: Story = {
+  name: 'Status pills',
+  render: () => (
+    <div className="flex flex-wrap items-center gap-3">
+      <Badge size="lg" appearance="solid" variant="warning" icon={<Clock />}>Awaiting authority</Badge>
+      <Badge size="lg" appearance="solid" variant="mint" icon={<CircleCheck />}>Live</Badge>
+      <Badge size="lg" appearance="solid" variant="electric-blue" icon={<CalendarCheck />}>Booked</Badge>
+    </div>
+  ),
+}
+
+/** `icon` on either side with `iconPosition`, at every size. */
+export const WithIcon: Story = {
+  name: 'With icon (left / right)',
+  render: () => (
+    <div className="flex flex-col gap-3">
+      {(['sm', 'md', 'lg'] as const).map((size) => (
+        <div key={size} className="flex flex-wrap items-center gap-3">
+          <span className="w-6 text-caption-1 text-dark-75">{size}</span>
+          <Badge size={size} variant="mint" icon={<CircleCheck />}>Left</Badge>
+          <Badge size={size} variant="mint" icon={<X />} iconPosition="right">Right</Badge>
+          <Badge size={size} appearance="solid" variant="electric-blue" icon={<CalendarCheck />}>Booked</Badge>
+          <Badge size={size} appearance="solid" variant="warning" icon={<Clock />} iconPosition="right">Awaiting</Badge>
+        </div>
+      ))}
+    </div>
+  ),
+}
+
+/** Every tone in `tint` (default) and `solid`. */
+export const Appearances: Story = {
+  render: () => (
+    <div className="flex flex-col gap-3">
+      {(['tint', 'solid'] as const).map((appearance) => (
+        <div key={appearance} className="flex flex-wrap items-center gap-2">
+          <span className="w-12 text-caption-1 text-dark-75">{appearance}</span>
+          {TONES.map((t) => (
+            <Badge key={t} size="lg" appearance={appearance} variant={t}>{t}</Badge>
+          ))}
         </div>
       ))}
     </div>

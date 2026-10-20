@@ -367,7 +367,7 @@ Props: `loading` (spinner + `aria-busy`), `icon`, `iconPosition` (`left` / `righ
 
 ### Badge
 
-Pill, `text-caption-2` semibold. Sizes `sm` / `md` (default, 20px) / `lg`; `spinner` shows a 12px loading spinner. No status dot.
+Pill, semibold. Sizes `sm` / `md` (default, 20px, `text-caption-2`) / `lg` (28px, **14px** `text-body-5`, 16px icon). `appearance`: `tint` (default, light fill + border) or `solid` (full tone colour, e.g. status pills). `icon` + `iconPosition` (`left` default / `right`) add a Lucide icon; `spinner` shows a loading spinner. No status dot.
 
 | Variant | Fill / border / text |
 |---|---|
@@ -377,6 +377,9 @@ Pill, `text-caption-2` semibold. Sizes `sm` / `md` (default, 20px) / `lg`; `spin
 | `success` | mint-l3 / mint-l1 / mint-75 |
 | `error` | error-l1 / error-15 / error-75 |
 | `warning` | warning-l3 / warning-l1 / warning-75 |
+| `electric-blue` | electric-blue-l1 (40%) / electric-blue-l1 / electric-blue |
+
+Solid (`appearance="solid"`): gray dark-75 + white · mint mint-45 + white · lime lime + navy · success mint-60 + white · error error-75 + white · warning warning-30 + navy · electric-blue electric-blue + white. Example: `<Badge size="lg" appearance="solid" variant="warning" icon={<Clock />}>Awaiting authority</Badge>`.
 
 `category={1…35}`: solid badge in the category palette, white text (md: 24px, `text-body-5` medium). Follows `size`.
 `product="electrical-report"` (any product badge name): same solid style in the product's colour. Overrides `category`.
@@ -431,7 +434,7 @@ Headers use `text-overline text-dark-100`; sortable headers (`sortable`, `sortDi
 
 | Component | Notes |
 |---|---|
-| `Dialog` / `AlertDialog` | Backdrop `bg-dark-100/50`, white panel, actions right-aligned. One layout: 24px radius, × close, a divider under the header and above the actions, and a scrolling `DialogBody` for long content (no double divider when there is no body). `DialogHeader icon iconTone` adds an `IconTile` and centres the header and actions. `DialogContent` `size` `sm` / `md` / `lg` / `xl`. `DialogCollapsible` (`view-more` or `dropdown`). `ConfirmDialog` replaces the old `Modal` (cancel / action, `destructive`). |
+| `Dialog` / `AlertDialog` | Backdrop `bg-dark-100/50`, white panel, actions right-aligned. One layout: 24px radius, × close, header / content / actions separated by spacing (no divider lines), and a scrolling `DialogBody` for long content whose top and bottom edges fade only while there is more to scroll to (`scroll-fade-y` utility). `DialogHeader icon iconTone` adds an `IconTile` and centres the header and actions. `DialogContent` `size` `sm` / `md` / `lg` / `xl`. `DialogCollapsible` (`view-more` or `dropdown`). `ConfirmDialog` replaces the old `Modal` (cancel / action, `destructive`). |
 | `Sheet` / `Drawer` | Edge panels for secondary flows |
 | `Popover`, `HoverCard` | `rounded-lg`, floating shadow (`shadow-md` / `shadow-lg`) |
 | `Tooltip` | Navy bubble, white `text-body-4`, `rounded-xl`, navy arrow, above the trigger on hover |

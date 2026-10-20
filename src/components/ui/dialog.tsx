@@ -43,9 +43,9 @@ function DialogOverlay({
 }
 
 /**
- * One layout for every dialog: a divider under the header and above the
- * actions, with `DialogBody` scrolling in between on long content. A header
- * `icon` centres the header and the actions.
+ * One layout for every dialog: header, content and actions separated by
+ * spacing (no divider lines); long content scrolls in `DialogBody`, whose edges
+ * fade while there's more to see. A header `icon` centres the header and the actions.
  */
 const dialogContentVariants = cva(
   "group/dialog fixed top-1/2 start-1/2 z-50 flex max-h-11/12 w-11/12 rounded-3xl -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 flex-col gap-4 bg-white p-6 text-body-5 text-dark-90 shadow-2xl duration-100 outline-none data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
@@ -114,7 +114,7 @@ function DialogHeader({
       data-slot="dialog-header"
       data-with-icon={icon ? "" : undefined}
       className={cn(
-        "flex flex-col gap-3 border-b border-light-l3 pe-10 pb-4",
+        "flex flex-col gap-3 pe-10",
         icon && "items-center px-10 text-center",
         className
       )}
@@ -140,7 +140,7 @@ function DialogFooter({
     <div
       data-slot="dialog-footer"
       className={cn(
-        "flex flex-wrap justify-end gap-2 border-t border-light-l3 pt-4 group-has-data-with-icon/dialog:justify-center [[data-slot=dialog-header]+&]:border-t-0 [[data-slot=dialog-header]+&]:pt-0",
+        "flex flex-wrap justify-end gap-2 pt-2 group-has-data-with-icon/dialog:justify-center",
         className
       )}
       {...props}
@@ -182,12 +182,15 @@ function DialogDescription({
   )
 }
 
-/** Main content area between the dividers; scrolls on its own when content is long. */
+/**
+ * Main content area. Scrolls on its own when content is long; the top / bottom
+ * edges fade only while there is more to scroll to (`scroll-fade-y`).
+ */
 function DialogBody({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="dialog-body"
-      className={cn("-mx-6 min-h-0 flex-1 overflow-y-auto px-6", className)}
+      className={cn("-mx-6 min-h-0 flex-1 overflow-y-auto px-6 scroll-fade-y", className)}
       {...props}
     />
   )

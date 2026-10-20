@@ -38,11 +38,11 @@ export const Default: Story = {
         <div className="flex flex-col gap-3">
           <div className="grid gap-1.5">
             <Label htmlFor="name">Name</Label>
-            <Input id="name" defaultValue="Dean" />
+            <Input id="name" defaultValue="Design" />
           </div>
           <div className="grid gap-1.5">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" defaultValue="dean@beforeyoubuy.com.au" />
+            <Input id="email" defaultValue="design@beforeyoubuy.com.au" />
           </div>
         </div>
         <DialogFooter>
