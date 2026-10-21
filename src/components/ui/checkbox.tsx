@@ -13,7 +13,7 @@ const checkboxFieldVariants = cva(
     variants: {
       variant: {
         default: "",
-        card: "rounded-lg border border-dark-15 bg-white px-4 py-3.5 transition-colors has-data-checked:border-mint-45 has-data-checked:bg-mint-l4",
+        card: "rounded-lg border border-dark-45 bg-white px-4 py-3.5 transition-colors has-data-checked:border-mint-45 has-data-checked:bg-mint-l4",
       },
     },
     defaultVariants: {
@@ -47,7 +47,7 @@ function Checkbox({
     <CheckboxPrimitive.Root
       data-slot="checkbox"
       className={cn(
-        "peer relative flex size-4 cursor-pointer data-disabled:cursor-not-allowed shrink-0 items-center justify-center rounded-sm border border-dark-30 bg-white text-white transition-[color,background-color,border-color,box-shadow] outline-none group-has-disabled/field:opacity-50 after:absolute after:-inset-x-3 after:-inset-y-2",
+        "peer relative flex size-4 cursor-pointer data-disabled:cursor-not-allowed shrink-0 items-center justify-center rounded-sm border border-dark-45 bg-white text-white transition-[color,background-color,border-color,box-shadow] outline-none group-has-disabled/field:opacity-50 after:absolute after:-inset-x-3 after:-inset-y-2",
         "focus-visible:border-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30",
         "data-checked:border-mint-45 data-checked:bg-mint-45",
         "aria-invalid:border-error-75 aria-invalid:ring-3 aria-invalid:ring-error-75/20 aria-invalid:data-checked:border-mint-45",

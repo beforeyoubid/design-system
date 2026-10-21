@@ -40,12 +40,12 @@ function SelectTrigger({
       data-slot="select-trigger"
       data-size={size}
       className={cn(
-        "group/select-trigger flex h-10 cursor-pointer w-full items-center justify-between gap-2 rounded-lg border border-dark-15 bg-white px-3 text-body-5 text-dark-100 whitespace-nowrap transition-[color,background-color,border-color,box-shadow] outline-none",
-        "hover:border-dark-30 focus-visible:border-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30",
+        "group/select-trigger flex h-10 cursor-pointer w-full items-center justify-between gap-2 rounded-lg border border-dark-45 bg-white px-3 text-body-5 text-dark-100 whitespace-nowrap transition-[color,background-color,border-color,box-shadow] outline-none",
+        "hover:border-dark-75 focus-visible:border-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30",
         "data-placeholder:text-dark-90",
         "data-popup-open:border-mint-45 data-popup-open:bg-mint-l4 data-popup-open:text-mint-75 data-popup-open:ring-3 data-popup-open:ring-mint-45/30 data-popup-open:data-placeholder:text-mint-75",
         "aria-invalid:border-error-75 aria-invalid:hover:border-error-75",
-        "disabled:cursor-not-allowed disabled:bg-light-l2 disabled:text-dark-45 data-disabled:cursor-not-allowed data-disabled:bg-light-l2 data-disabled:text-dark-45 data-disabled:hover:border-dark-15",
+        "disabled:cursor-not-allowed disabled:bg-light-l2 disabled:text-dark-45 data-disabled:cursor-not-allowed data-disabled:bg-light-l2 data-disabled:text-dark-45 data-disabled:hover:border-dark-45",
         "data-[size=sm]:h-9",
         "*:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
@@ -93,7 +93,7 @@ function SelectContent({
         <SelectPrimitive.Popup
           data-slot="select-content"
           data-align-trigger={alignItemWithTrigger}
-          className={cn("relative isolate z-50 max-h-70 w-(--anchor-width) min-w-36 origin-(--transform-origin) overflow-x-hidden overflow-y-auto rounded-lg border border-light-l3 bg-white p-1 text-dark-100 shadow-md duration-100 data-[align-trigger=true]:animate-none data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-start-2 data-[side=inline-start]:slide-in-from-end-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95", className )}
+          className={cn("relative isolate z-50 max-h-70 w-(--anchor-width) min-w-36 origin-(--transform-origin) overflow-x-hidden overflow-y-auto rounded-lg border border-dark-45 bg-white p-1 text-dark-100 shadow-md duration-100 data-[align-trigger=true]:animate-none data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-start-2 data-[side=inline-start]:slide-in-from-end-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95", className )}
           {...props}
         >
           <SelectScrollUpButton />
@@ -170,7 +170,7 @@ function SelectItem({
       {indicator === "checkbox" ? (
         <span
           aria-hidden="true"
-          className="flex size-4 shrink-0 items-center justify-center rounded-sm border border-dark-30 bg-white text-white transition-colors group-data-selected/select-item:border-mint-45 group-data-selected/select-item:bg-mint-45 group-data-disabled/select-item:opacity-50"
+          className="flex size-4 shrink-0 items-center justify-center rounded-sm border border-dark-45 bg-white text-white transition-colors group-data-selected/select-item:border-mint-45 group-data-selected/select-item:bg-mint-45 group-data-disabled/select-item:opacity-50"
         >
           <SelectPrimitive.ItemIndicator>
             <IconCheck className="size-3" stroke={3} />

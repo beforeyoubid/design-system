@@ -84,9 +84,9 @@ Utility pattern: `bg-{token}`, `text-{token}`, `border-{token}`, `ring-{token}`,
 | `dark-90` | `#444A5A` | Body text, sub-headings, placeholders | | `light-l2` | `#F2F4F7` | Disabled fill, segmented track |
 | `dark-75` | `#656E85` | Secondary text via `muted-foreground`, hints, icons (not sub-headings) | | `light-l3` | `#EAECF0` | Dividers on white |
 | `dark-60` | `#858EA3` | Not used for text or icons (too light: 3.3:1 on white); use `dark-75` | | `light-sandy` | `#F8F3EE` | Warm marketing surface |
-| `dark-45` | `#A5ABBB` | Disabled text, tertiary hover | | `white` | `#FFFFFF` | Page and card background |
+| `dark-45` | `#A5ABBB` | Form control borders (inputs, select, date picker, dropdown menus, checkbox, radio, choice cards), disabled text, tertiary hover | | `white` | `#FFFFFF` | Page and card background |
 | `dark-30` | `#C2C6D1` | | | | | |
-| `dark-15` | `#DFE1E7` | Borders, inputs | | | | |
+| `dark-15` | `#DFE1E7` | Borders on cards and non-form surfaces | | | | |
 
 ### Status
 
@@ -386,11 +386,12 @@ Solid (`appearance="solid"`): gray dark-75 + white · mint mint-45 + white · li
 
 ### Form controls (Input, Textarea, InputGroup, Select)
 
-- 40px tall, `rounded-lg`, `border-dark-15`, white fill, `text-body-5 text-dark-100`, placeholder `dark-90`.
+- 40px tall, `rounded-lg`, `border-dark-45`, white fill, `text-body-5 text-dark-100`, placeholder `dark-90`.
 - Focus: `border-mint-45` + `ring-3 ring-mint-45/30`.
 - Invalid (`aria-invalid`): `border-error-75`, red ring on focus.
 - Disabled: `bg-light-l2 text-dark-45`.
 - `InputField` / `SelectField` add label, hint and error slots. `SelectField` options can be grouped into categories (`{ label, options }`) and take custom content in three slots, each accepting any node: `start` (before the label in the row), `meta` (right side of the row, e.g. a count or `<ColorDot />`) and `chip` (shown before the label once selected, in the chip or the field). `productSelectOptions(keys?, overrides?)` builds product options with their badge-colour dots. On single-select rows a `meta` replaces the trailing check; the mint row fill marks the selection. `Fieldset` groups them. `DatePicker` pairs the trigger with `Calendar` and shows dates as DD/MM/YYYY (`formatDateDMY`); `time` adds a `TimePicker` with matching trigger and scrollable hour / minute columns: 24-hour (no AM/PM), selected value in lime like the calendar's selected day; columns scroll without a visible scrollbar (`scrollbar-none`).
+- Resting border `dark-45` on every form control and menu: Input, Textarea, InputGroup, InputOTP, Select trigger and panel, DatePicker / TimePicker trigger and panel, DropdownMenu panel, card trigger and card items, Checkbox and Radio boxes, and checkbox / radio choice cards. Select trigger hover `dark-75`. Focus, open, checked and invalid states keep mint-45 / error-75.
 - Checkbox, Radio, Switch: mint-checked; `RadioGroup` sizes `sm` / `md` / `lg`; labels `text-body-5 font-semibold text-navy`, descriptions `text-dark-75`.
 
 ### Card

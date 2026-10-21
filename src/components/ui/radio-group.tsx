@@ -40,7 +40,7 @@ const radioItemFieldVariants = cva(
     variants: {
       variant: {
         default: "",
-        card: "flex-row-reverse justify-between gap-4 rounded-lg border border-dark-15 bg-white transition-colors has-data-checked:border-mint-45 has-data-checked:bg-mint-l4",
+        card: "flex-row-reverse justify-between gap-4 rounded-lg border border-dark-45 bg-white transition-colors has-data-checked:border-mint-45 has-data-checked:bg-mint-l4",
       },
       size: {
         sm: "gap-2",
@@ -148,7 +148,7 @@ function RadioGroupItem({
       data-slot="radio-group-item"
       data-size={size}
       className={cn(
-        "group/radio-group-item peer relative flex aspect-square cursor-pointer data-disabled:cursor-not-allowed shrink-0 items-center justify-center rounded-full border border-dark-30 bg-white transition-[border-color,box-shadow] outline-none after:absolute after:-inset-x-3 after:-inset-y-2",
+        "group/radio-group-item peer relative flex aspect-square cursor-pointer data-disabled:cursor-not-allowed shrink-0 items-center justify-center rounded-full border border-dark-45 bg-white transition-[border-color,box-shadow] outline-none after:absolute after:-inset-x-3 after:-inset-y-2",
         radioControlVariants({ size }),
         "focus-visible:border-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30",
         "data-checked:border-mint-45",
