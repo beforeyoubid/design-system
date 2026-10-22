@@ -508,7 +508,7 @@ Every toast has a × so it can be closed early. Override per toast with `duratio
 
 ### Navigation and structure
 
-`Stepper` (sizes `sm/md/lg/dot`; statuses active mint-60 with ring, complete mint-l2, upcoming light-l2, error error-75) · `Breadcrumb` · `Pagination` · `NavigationMenu` · `Sidebar` · `Accordion` (`size` `sm` / `md` / `lg`) · `Collapsible` · `Separator` · `ScrollArea` · `Resizable` · `AspectRatio` · `Carousel`.
+`Stepper` (sizes `sm/md/lg/dot`; statuses active mint-60 with ring, complete mint-l2, upcoming white with 2px navy border and navy number, error error-75; title `text-body-4 font-semibold text-navy` (`text-body-5` at sm), description `text-body-5 text-dark-90`) · `Breadcrumb` · `Pagination` · `NavigationMenu` · `Sidebar` · `Accordion` (`size` `sm` / `md` / `lg`) · `Collapsible` · `Separator` · `ScrollArea` · `Resizable` · `AspectRatio` · `Carousel`.
 
 ### Data and media
 
