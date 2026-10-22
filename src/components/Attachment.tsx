@@ -4,6 +4,7 @@ import { Progress as ProgressPrimitive } from "@base-ui/react/progress"
 import {
   IconAlertCircle,
   IconCircleCheck,
+  IconDownload,
   IconFileText,
   IconFileUpload,
   IconTrash,
@@ -13,8 +14,13 @@ import {
 import { cn } from "../lib/utils"
 import { ProgressIndicator, ProgressTrack } from "./ui/progress"
 import { Spinner } from "./ui/spinner"
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 
-export type AttachmentStatus = "uploading" | "completed" | "error"
+/**
+ * uploading · completed (just uploaded) · error · uploaded (already attached,
+ * e.g. loaded from the server: shows the upload date and a download action).
+ */
+export type AttachmentStatus = "uploading" | "completed" | "error" | "uploaded"
 
 export interface AttachmentFile {
   name: string
@@ -24,6 +30,10 @@ export interface AttachmentFile {
   /** 0–100 */
   progress?: number
   error?: string
+  /** When the file was uploaded; shown on `uploaded` cards. */
+  uploadedAt?: Date | string
+  /** Download link for the file; shows the download action. */
+  url?: string
 }
 
 export interface AttachmentUploadHandlers {
@@ -38,6 +48,63 @@ const formatBytes = (b: number) =>
     : b >= 1024
       ? `${Math.round(b / 1024)} KB`
       : `${b} B`
+
+const formatDate = (d: Date | string) =>
+  typeof d === "string"
+    ? d
+    : d.toLocaleDateString("en-AU", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      })
+
+const actionVariants = cva(
+  "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-md transition-colors outline-none focus-visible:ring-2 focus-visible:ring-mint-45 [&_svg]:size-5",
+  {
+    variants: {
+      action: {
+        download: "text-mint-75 hover:text-mint-90",
+        delete: "text-error-75 hover:text-error-90",
+        cancel: "text-dark-75 hover:text-dark-100",
+      },
+    },
+  }
+)
+
+/** Icon-only card action with a tooltip; renders a link when `href` is set. */
+function CardAction({
+  action,
+  label,
+  tooltip,
+  href,
+  onClick,
+  className,
+  children,
+}: {
+  action: "download" | "delete" | "cancel"
+  label: string
+  tooltip?: string
+  href?: string
+  onClick?: () => void
+  className?: string
+  children: React.ReactNode
+}) {
+  const classes = cn(actionVariants({ action }), className)
+  const element = href ? (
+    <a href={href} download aria-label={label} onClick={onClick} className={classes} />
+  ) : (
+    <button type="button" aria-label={label} onClick={onClick} className={classes} />
+  )
+  if (!tooltip) return React.cloneElement(element, undefined, children)
+  return (
+    <Tooltip>
+      <TooltipTrigger delay={300} render={element}>
+        {children}
+      </TooltipTrigger>
+      <TooltipContent>{tooltip}</TooltipContent>
+    </Tooltip>
+  )
+}
 
 // -----------------------------------------------------------------------------
 // FileUploadCard
@@ -58,6 +125,12 @@ export interface FileUploadCardProps
   onRemove?: () => void
   /** Shows a Retry action on failed cards */
   onRetry?: () => void
+  /** `uploaded` cards: shown as "Uploaded 12 Oct 2026" after the size. */
+  uploadedAt?: Date | string
+  /** Download link; shows the download action on completed / uploaded cards. */
+  downloadHref?: string
+  /** Download handler; shows the download action on completed / uploaded cards. */
+  onDownload?: () => void
 }
 
 function FileUploadCard({
@@ -69,9 +142,66 @@ function FileUploadCard({
   onCancel,
   onRemove,
   onRetry,
+  uploadedAt,
+  downloadHref,
+  onDownload,
   className,
   ...props
 }: FileUploadCardProps) {
+  if (status === "uploaded") {
+    const canDownload = !!(downloadHref || onDownload)
+    return (
+      <div
+        role="group"
+        aria-label={name}
+        data-slot="file-upload-card"
+        data-status={status}
+        className={cn(
+          "flex w-full items-center gap-4 rounded-lg border border-dark-15 bg-white p-4 shadow-xs",
+          className
+        )}
+        {...props}
+      >
+        <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-mint-l3 text-mint-60">
+          <IconFileText className="size-5" />
+        </span>
+        <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+          <span className="truncate text-body-4 font-semibold text-navy">
+            {name}
+          </span>
+          <span className="truncate text-caption-1 text-dark-75">
+            {[size ? formatBytes(size) : null, uploadedAt ? `Uploaded ${formatDate(uploadedAt)}` : null]
+              .filter(Boolean)
+              .join(" · ")}
+          </span>
+        </div>
+        <div className="-me-1 flex shrink-0 items-center gap-1">
+          {canDownload && (
+            <CardAction
+              action="download"
+              label={`Download ${name}`}
+              tooltip="Download"
+              href={downloadHref}
+              onClick={onDownload}
+            >
+              <IconDownload />
+            </CardAction>
+          )}
+          {onRemove && (
+            <CardAction
+              action="delete"
+              label={`Delete ${name}`}
+              tooltip="Delete"
+              onClick={onRemove}
+            >
+              <IconTrash />
+            </CardAction>
+          )}
+        </div>
+      </div>
+    )
+  }
+
   const uploading = status === "uploading"
   const done = status === "completed"
   const failed = status === "error"
@@ -124,18 +254,42 @@ function FileUploadCard({
             )}
           </span>
         </div>
-        <button
-          type="button"
-          aria-label={uploading ? `Cancel upload of ${name}` : `Remove ${name}`}
-          onClick={uploading ? onCancel : onRemove}
-          className="-me-1 -mt-1 flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-dark-75 transition-colors outline-none hover:text-dark-100 focus-visible:ring-2 focus-visible:ring-mint-45"
-        >
+        <div className="-me-1.5 -mt-1.5 flex shrink-0 items-center gap-0.5">
           {uploading ? (
-            <IconX className="size-4" />
+            <CardAction
+              action="cancel"
+              label={`Cancel upload of ${name}`}
+              onClick={onCancel}
+              className="[&_svg]:size-4"
+            >
+              <IconX />
+            </CardAction>
           ) : (
-            <IconTrash className="size-4" />
+            <>
+              {done && (downloadHref || onDownload) && (
+                <CardAction
+                  action="download"
+                  label={`Download ${name}`}
+                  tooltip="Download"
+                  href={downloadHref}
+                  onClick={onDownload}
+                  className="[&_svg]:size-4"
+                >
+                  <IconDownload />
+                </CardAction>
+              )}
+              <CardAction
+                action="delete"
+                label={`Delete ${name}`}
+                tooltip="Delete"
+                onClick={onRemove}
+                className="[&_svg]:size-4"
+              >
+                <IconTrash />
+              </CardAction>
+            </>
           )}
-        </button>
+        </div>
       </div>
       {uploading && (
         <ProgressPrimitive.Root
@@ -220,8 +374,13 @@ export interface AttachmentProps {
   error?: string
   /** Message shown when a dropped file fails `accept` / `maxSize`. */
   invalidText?: string
-  /** Files already attached (shown as Completed). */
+  /**
+   * Files already attached. Shown as `uploaded` cards (size, upload date,
+   * download + delete) unless they set their own `status`.
+   */
   defaultFiles?: AttachmentFile[]
+  /** Download handler; files with a `url` download from it without this. */
+  onDownload?: (file: AttachmentFile) => void
   onFilesChange?: (files: AttachmentFile[]) => void
   /** Real upload hook. Omit to simulate progress (useful for prototypes and stories). */
   onUpload?: (file: File, handlers: AttachmentUploadHandlers) => void
@@ -242,12 +401,13 @@ function Attachment({
   defaultFiles = [],
   onFilesChange,
   onUpload,
+  onDownload,
   className,
 }: AttachmentProps) {
   const [files, setFiles] = React.useState<AttachmentItem[]>(() =>
     defaultFiles.map((f, i) => ({
       id: `d${i}`,
-      status: "completed",
+      status: "uploaded",
       progress: 100,
       ...f,
     }))
@@ -268,12 +428,14 @@ function Attachment({
   React.useEffect(() => {
     if (mounted.current) {
       onFilesChange?.(
-        files.map(({ name, size, status, progress, error }) => ({
+        files.map(({ name, size, status, progress, error, uploadedAt, url }) => ({
           name,
           size,
           status,
           progress,
           error,
+          uploadedAt,
+          url,
         }))
       )
     } else {
@@ -379,6 +541,20 @@ function Attachment({
       progress={f.progress}
       status={f.status}
       error={f.error}
+      uploadedAt={f.uploadedAt}
+      downloadHref={f.url}
+      onDownload={
+        onDownload
+          ? () =>
+              onDownload({
+                name: f.name,
+                size: f.size,
+                status: f.status,
+                uploadedAt: f.uploadedAt,
+                url: f.url,
+              })
+          : undefined
+      }
       onCancel={() => remove(f.id)}
       onRemove={() => remove(f.id)}
       onRetry={() => start(f)}

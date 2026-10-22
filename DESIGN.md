@@ -512,7 +512,7 @@ Every toast has a × so it can be closed early. Override per toast with `duratio
 
 ### Data and media
 
-`AreaChart`, `BarChart`, `ChartFrame` (with `ChartLegendList`, `CHART_PALETTE`), `Chart` · `Avatar` · `Attachment` / `FileUploadCard` (drag-and-drop upload with status) · `BYBImage` · `BYBPillCard` · `BYBCounter` · `Toggle` / `ToggleGroup` · `Slider` · `InputOTP` · `Calendar` · `Label`.
+`AreaChart`, `BarChart`, `ChartFrame` (with `ChartLegendList`, `CHART_PALETTE`), `Chart` · `Avatar` · `Attachment` / `FileUploadCard` (drag-and-drop upload with status: `uploading` · `completed` · `error` · `uploaded`. `uploaded` is an already-attached file, the default for `defaultFiles`: 36px mint-l3 file icon, name `text-body-4 font-semibold text-navy`, "4 MB · Uploaded 12 Oct 2026" in `text-caption-1 text-dark-75`, then icon-only download (`mint-75`, hover `mint-90`) and delete (trash, `error-75`, hover `error-90`) with "Download" / "Delete" tooltips; download shows when the file has a `url` or `onDownload` is set) · `BYBImage` · `BYBPillCard` · `BYBCounter` · `Toggle` / `ToggleGroup` · `Slider` · `InputOTP` · `Calendar` · `Label`.
 
 ---
 
