@@ -1,4 +1,5 @@
 import * as React from "react"
+import { IconX } from "@tabler/icons-react"
 
 import { cn } from "../lib/utils"
 import { productBadges, type ProductBadgeKey } from "../lib/product-badges"
@@ -84,6 +85,8 @@ interface SelectFieldBaseProps {
   className?: string
   /** Optional className for the wrapping element. */
   wrapperClassName?: string
+  /** Show an × beside the chevron that clears the selection. Default true. */
+  clearable?: boolean
 }
 
 interface SelectFieldSingleProps extends SelectFieldBaseProps {
@@ -101,7 +104,7 @@ interface SelectFieldMultipleProps extends SelectFieldBaseProps {
   onValueChange?: (value: string[]) => void
   /** How many chips to show in the field before collapsing to "+N". Default 2. */
   maxDisplayed?: number
-  /** Show the "N selected · Clear" footer in the list. Default true. */
+  /** Show the "N selected · CLEAR" footer in the list. Default true. */
   showFooter?: boolean
 }
 
@@ -129,6 +132,7 @@ export function SelectField(props: SelectFieldProps) {
   className,
   wrapperClassName,
   multiple,
+  clearable = true,
   } = props
   const maxDisplayed = props.multiple ? (props.maxDisplayed ?? 2) : 0
   const flatOptions = options.flatMap((o) => (isGroup(o) ? o.options : [o]))
@@ -146,6 +150,25 @@ export function SelectField(props: SelectFieldProps) {
     if (props.value === undefined) setInnerValues(next)
     props.onValueChange?.(next)
   }
+  // Single-select also keeps its own state so the × can clear it uncontrolled.
+  const [innerSingle, setInnerSingle] = React.useState<string | null>(
+    !props.multiple ? (props.defaultValue ?? null) : null
+  )
+  const singleValue = !props.multiple
+    ? props.value !== undefined
+      ? props.value
+      : innerSingle
+    : null
+  const setSingle = (next: string | null) => {
+    if (props.multiple) return
+    if (props.value === undefined) setInnerSingle(next)
+    props.onValueChange?.(next)
+  }
+  const hasSelection = props.multiple
+    ? selectedValues.length > 0
+    : singleValue != null && singleValue !== ""
+  const showClear = clearable && hasSelection && !disabled
+  const clear = () => (props.multiple ? setValues([]) : setSingle(null))
   const showFooter = props.multiple ? (props.showFooter ?? true) : false
 
   const renderMultiple = (selected: string[] | null) => {
@@ -184,9 +207,8 @@ export function SelectField(props: SelectFieldProps) {
           onValueChange: (next: string[]) => setValues(next),
         }
       : {
-          value: props.value,
-          defaultValue: props.defaultValue,
-          onValueChange: props.onValueChange,
+          value: singleValue,
+          onValueChange: (next: string | null) => setSingle(next),
         }
   ) as unknown as Partial<React.ComponentProps<typeof Select>>
   const renderSingle = (selected: string | null) => {
@@ -248,19 +270,32 @@ export function SelectField(props: SelectFieldProps) {
         disabled={disabled}
         name={name}
       >
-        <SelectTrigger
-          id={fieldId}
-          aria-describedby={describedById}
-          aria-invalid={hasError || undefined}
-          aria-required={required || undefined}
-          className={cn("w-full", className)}
-        >
-          {multiple ? (
-            <SelectValue>{renderMultiple}</SelectValue>
-          ) : (
-            <SelectValue placeholder={placeholder}>{renderSingle}</SelectValue>
+        <div className="relative w-full">
+          <SelectTrigger
+            id={fieldId}
+            aria-describedby={describedById}
+            aria-invalid={hasError || undefined}
+            aria-required={required || undefined}
+            className={cn("w-full", showClear && "*:data-[slot=select-value]:me-7", className)}
+          >
+            {multiple ? (
+              <SelectValue>{renderMultiple}</SelectValue>
+            ) : (
+              <SelectValue placeholder={placeholder}>{renderSingle}</SelectValue>
+            )}
+          </SelectTrigger>
+          {showClear && (
+            <button
+              type="button"
+              onClick={clear}
+              aria-label="Clear selection"
+              title="Clear selection"
+              className="absolute end-8 top-1/2 flex size-5 -translate-y-1/2 cursor-pointer items-center justify-center rounded-sm text-dark-75 transition-colors outline-none hover:text-dark-100 focus-visible:ring-2 focus-visible:ring-mint-45/30"
+            >
+              <IconX className="size-3.5" />
+            </button>
           )}
-        </SelectTrigger>
+        </div>
         <SelectContent>
           {options.map((entry, i) =>
             isGroup(entry) ? (
@@ -284,9 +319,9 @@ export function SelectField(props: SelectFieldProps) {
               </span>
               <button
                 type="button"
-                onClick={() => setValues([])}
+                onClick={clear}
                 disabled={selectedValues.length === 0}
-                className="cursor-pointer rounded-sm font-semibold text-mint-75 outline-none hover:underline focus-visible:ring-2 focus-visible:ring-mint-45/30 disabled:cursor-not-allowed disabled:text-dark-45 disabled:no-underline"
+                className="cursor-pointer rounded-sm text-overline text-mint-75 transition-colors outline-none hover:text-mint-90 focus-visible:ring-2 focus-visible:ring-mint-45/30 disabled:cursor-not-allowed disabled:text-dark-45"
               >
                 Clear
               </button>
