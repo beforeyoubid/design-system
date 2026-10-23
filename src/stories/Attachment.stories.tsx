@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Attachment, FileUploadCard } from '../components/Attachment'
+import { Toaster } from '../components/ui/sonner'
 
 const meta: Meta<typeof Attachment> = {
   title: 'BYB Components/Attachment',
@@ -8,6 +9,7 @@ const meta: Meta<typeof Attachment> = {
   render: (args) => (
     <div className="w-112">
       <Attachment {...args} />
+      <Toaster />
     </div>
   ),
 }

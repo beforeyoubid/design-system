@@ -57,7 +57,7 @@ Utility pattern: `bg-{token}`, `text-{token}`, `border-{token}`, `ring-{token}`,
 | `lime` | `#D4F269` | 212, 242, 105 | **Primary button**, key accents |
 | `electric-blue` | `#015AFF` | 1, 90, 255 | Accent, charts |
 | `teal` | `#35BDB2` | 53, 189, 178 | Accent, charts |
-| `electric-blue-l1` | `#C8D0FB` | | Pill / badge tint |
+| `electric-blue-l1` | `#E6EEFF` | | Pill / badge tint |
 | `teal-l1` | `#BFE8E6` | | Pill / badge tint |
 | `lime-l1` | `#EAF8B0` | | Pill / badge tint |
 
@@ -377,7 +377,7 @@ Pill, semibold. Sizes `sm` / `md` (default, 20px, `text-caption-2`) / `lg` (28px
 | `success` | mint-l3 / mint-l1 / mint-75 |
 | `error` | error-l1 / error-15 / error-75 |
 | `warning` | warning-l3 / warning-l1 / warning-75 |
-| `electric-blue` | electric-blue-l1 (40%) / electric-blue-l1 / electric-blue |
+| `electric-blue` | electric-blue-l1 / electric-blue-l1 / electric-blue |
 
 Solid (`appearance="solid"`): gray dark-75 + white · mint mint-45 + white · lime lime + navy · success mint-60 + white · error error-75 + white · warning warning-30 + navy · electric-blue electric-blue + white. Example: `<Badge size="lg" appearance="solid" variant="warning" icon={<Clock />}>Awaiting authority</Badge>`.
 
@@ -435,7 +435,7 @@ Headers use `text-overline text-dark-100`; sortable headers (`sortable`, `sortDi
 
 | Component | Notes |
 |---|---|
-| `Dialog` / `AlertDialog` | Backdrop `bg-dark-100/50`, white panel, actions right-aligned. One layout: 24px radius, × close, header / content / actions separated by spacing (no divider lines), and a scrolling `DialogBody` for long content whose top and bottom edges fade only while there is more to scroll to (`scroll-fade-y` utility). `DialogHeader icon iconTone` adds an `IconTile` and centres the header and actions. `DialogContent` `size` `sm` / `md` / `lg` / `xl`. `DialogCollapsible` (`view-more` or `dropdown`). `ConfirmDialog` replaces the old `Modal` (cancel / action, `destructive`). |
+| `Dialog` / `AlertDialog` | Backdrop `bg-dark-100/50`, white panel, actions right-aligned. One layout: 24px radius, × close, header / content / actions separated by spacing (no divider lines), and a scrolling `DialogBody` for long content whose top and bottom edges fade only while there is more to scroll to (`scroll-fade-y` utility). All dialog content is left-aligned. `DialogHeader icon iconTone` adds a 40px `IconTile` on the left, in one row with the title (12px gap, vertically centred); the description wraps below at full width, starting under the icon (also when it is passed inside `DialogHeader`), and actions stay right-aligned. `DialogContent` `size` `sm` / `md` / `lg` / `xl`. `DialogCollapsible` (`view-more` or `dropdown`). `ConfirmDialog` replaces the old `Modal` (cancel / action, `destructive`). Title `text-navy`; the description / sub-heading under it (`DialogDescription`) is `text-body-5 text-dark-90`. |
 | `Sheet` / `Drawer` | Edge panels for secondary flows |
 | `Popover`, `HoverCard` | `rounded-lg`, floating shadow (`shadow-md` / `shadow-lg`) |
 | `Tooltip` | Navy bubble, white `text-body-4`, `rounded-xl`, navy arrow, above the trigger on hover |
@@ -512,7 +512,7 @@ Every toast has a × so it can be closed early. Override per toast with `duratio
 
 ### Data and media
 
-`AreaChart`, `BarChart`, `ChartFrame` (with `ChartLegendList`, `CHART_PALETTE`), `Chart` · `Avatar` · `Attachment` / `FileUploadCard` (drag-and-drop upload with status: `uploading` · `completed` · `error` · `uploaded`. `uploaded` is an already-attached file, the default for `defaultFiles`: 36px mint-l3 file icon, name `text-body-4 font-semibold text-navy`, "4 MB · Uploaded 12 Oct 2026" in `text-caption-1 text-dark-75`, then icon-only download (`mint-75`, hover `mint-90`) and delete (trash, `error-75`, hover `error-90`) with "Download" / "Delete" tooltips; download shows when the file has a `url` or `onDownload` is set) · `BYBImage` · `BYBPillCard` · `BYBCounter` · `Toggle` / `ToggleGroup` · `Slider` · `InputOTP` · `Calendar` · `Label`.
+`AreaChart`, `BarChart`, `ChartFrame` (with `ChartLegendList`, `CHART_PALETTE`), `Chart` · `Avatar` · `Attachment` / `FileUploadCard` (drag-and-drop upload with status: `uploading` · `completed` · `error` · `uploaded`. `uploaded` is an already-attached file, the default for `defaultFiles`: 36px mint-l3 file icon, name `text-body-4 font-semibold text-dark-90` (file names are dark-90 on every card), "4 MB · Uploaded 12 Oct 2026" in `text-caption-1 text-dark-75`, then icon-only download (`mint-75`, hover `mint-90`) and delete (trash, `error-75`, hover `error-90`) with "Download" / "Delete" tooltips; download shows when the file has a `url` or `onDownload` is set. Deleting a file first opens a destructive `ConfirmDialog` ("Delete this file?", trash `IconTile`, Cancel / Delete; `confirmDelete`, default true); confirming fires `sonner.success("File deleted")` with the file name and an Undo action that puts it back in place (`deleteToast`, default true); cancelling an upload shows no toast) · `BYBImage` · `BYBPillCard` · `BYBCounter` · `Toggle` / `ToggleGroup` · `Slider` · `InputOTP` · `Calendar` · `Label`.
 
 ---
 
@@ -540,5 +540,6 @@ Every toast has a × so it can be closed early. Override per toast with `duratio
 8. **Breakpoints:** standard Tailwind prefixes, mobile-first: no prefix for mobile, `md:` 768, `lg:` 1024, `xl:` 1280, `2xl:` 1440 (`sm:` 640 for large phones). One range only: `max-md:`, `md:max-lg:`, `xl:max-2xl:`.
 9. **Badge colours keep white text at AA.** New category colours must pass 4.5:1 against white.
 10. **Hover never adds a background to a bare text or icon control.** Links, page numbers, text tabs, nav triggers, × and other icon buttons change colour only. Controls that already have a fill (buttons, chips) change their fill; rows in lists, menus, selects, tables and the calendar keep their row highlight.
-11. **Sub-headings are `dark-90`.** Overlines, group labels, section labels and column labels use `text-dark-90`; `dark-60` and `dark-75` are too grey for them. Descriptions keep `text-muted-foreground`.
+11. **Sub-headings are `dark-90`.** Overlines, group labels, section labels and column labels use `text-dark-90`; `dark-60` and `dark-75` are too grey for them. Descriptions keep `text-muted-foreground`, except dialog descriptions (`DialogDescription`), which are `dark-90`.
 12. **No `dark-60` for text or icons.** Hints, helper text, meta labels and icons use `text-dark-75`; `dark-60` is too light (3.3:1 on white).
+13. **Deleting anything asks first.** Every delete or remove action (files, rows, reports, list items, saved records) opens a delete dialog before anything is removed: `ConfirmDialog destructive` with a trash `IconTile`, a title that names the thing ("Delete this file?"), a description naming the item and what happens, and Cancel (focused by default) / Delete. Only after Delete is confirmed is the item removed, followed by a `sonner.success` toast ("File deleted") with an Undo action where the delete can be reversed. Cancelling an upload in progress or clearing a field is not a delete and needs no dialog. Other destructive row actions such as "Cancel order" follow the same pattern ("Cancel this order?", Keep order / Cancel order). Built in: `Attachment` (`confirmDelete`); examples in the DropdownMenu, ContextMenu and Table stories.

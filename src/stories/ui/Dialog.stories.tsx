@@ -221,7 +221,7 @@ export const Confirmation: Story = {
         destructive
         icon={<Trash2 />}
         title="Delete this report?"
-        description="This permanently removes the building & pest report for 12 Smith St."
+        description="This permanently removes the building & pest report for 12 Smith St. This can’t be undone."
         actionLabel="Delete"
       />
     </div>

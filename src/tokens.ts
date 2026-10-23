@@ -37,7 +37,7 @@ export const colors = {
   lime:   '#D4F269',
   limeL1: '#EAF8B0',
   electricBlue:   '#015AFF',
-  electricBlueL1: '#C8D0FB',
+  electricBlueL1: '#E6EEFF',
   teal:     '#35BDB2',
   tealL1:   '#BFE8E6',
   // Mint (Primary)

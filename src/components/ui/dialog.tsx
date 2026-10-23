@@ -45,7 +45,8 @@ function DialogOverlay({
 /**
  * One layout for every dialog: header, content and actions separated by
  * spacing (no divider lines); long content scrolls in `DialogBody`, whose edges
- * fade while there's more to see. A header `icon` centres the header and the actions.
+ * fade while there's more to see. Everything is left-aligned; a header `icon`
+ * sits on the left in one row with the title.
  */
 const dialogContentVariants = cva(
   "group/dialog fixed top-1/2 start-1/2 z-50 flex max-h-11/12 w-11/12 rounded-3xl -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 flex-col gap-4 bg-white p-6 text-body-5 text-dark-90 shadow-2xl duration-100 outline-none data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
@@ -96,7 +97,7 @@ function DialogContent({
 }
 
 interface DialogHeaderProps extends React.ComponentProps<"div"> {
-  /** Lucide icon in an `IconTile` above the title; centres the header and actions. */
+  /** Lucide icon in an `IconTile` on the left, in one row with the title. */
   icon?: React.ReactNode
   /** IconTile colour. Default `mint`; use `error` for destructive confirms. */
   iconTone?: IconTileTone
@@ -114,16 +115,18 @@ function DialogHeader({
       data-slot="dialog-header"
       data-with-icon={icon ? "" : undefined}
       className={cn(
-        "flex flex-col gap-3 pe-10",
-        icon && "items-center px-10 text-center",
+        "flex text-start",
+        // With an icon: icon + title share the first row; the description and
+        // anything else wrap below at full width.
+        icon
+          ? "flex-row flex-wrap items-center gap-x-3 gap-y-3 *:data-[slot=dialog-title]:min-w-0 *:data-[slot=dialog-title]:flex-1 *:data-[slot=dialog-title]:pe-10 *:not-first:not-data-[slot=dialog-title]:basis-full"
+          : "flex-col gap-1.5 pe-10",
         className
       )}
       {...props}
     >
       {icon && <IconTile tone={iconTone} size="md" icon={icon} />}
-      <div className={cn("flex flex-col gap-1.5", icon && "items-center")}>
-        {children}
-      </div>
+      {children}
     </div>
   )
 }
@@ -140,7 +143,7 @@ function DialogFooter({
     <div
       data-slot="dialog-footer"
       className={cn(
-        "flex flex-wrap justify-end gap-2 pt-2 group-has-data-with-icon/dialog:justify-center",
+        "flex flex-wrap justify-end gap-2 pt-2",
         className
       )}
       {...props}
@@ -174,7 +177,7 @@ function DialogDescription({
       data-slot="dialog-description"
       className={cn(
         "*:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-navy",
-        "text-body-5 text-dark-75",
+        "text-body-5 text-dark-90",
         className
       )}
       {...props}
@@ -292,7 +295,7 @@ export interface ConfirmDialogProps {
   onAction?: () => void
   /** Use the red destructive Button for the action. */
   destructive?: boolean
-  /** Lucide icon in an IconTile above the title. */
+  /** Lucide icon in an IconTile left of the title (one row). */
   icon?: React.ReactNode
   /** IconTile colour. Defaults to `error` when `destructive`, else `mint`. */
   iconTone?: IconTileTone

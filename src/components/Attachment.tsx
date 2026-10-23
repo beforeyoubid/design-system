@@ -12,7 +12,9 @@ import {
 } from "@tabler/icons-react"
 
 import { cn } from "../lib/utils"
+import { ConfirmDialog } from "./ui/dialog"
 import { ProgressIndicator, ProgressTrack } from "./ui/progress"
+import { sonner } from "./ui/sonner"
 import { Spinner } from "./ui/spinner"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 
@@ -166,7 +168,7 @@ function FileUploadCard({
           <IconFileText className="size-5" />
         </span>
         <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-          <span className="truncate text-body-4 font-semibold text-navy">
+          <span className="truncate text-body-4 font-semibold text-dark-90">
             {name}
           </span>
           <span className="truncate text-caption-1 text-dark-75">
@@ -225,7 +227,7 @@ function FileUploadCard({
           <IconFileText className="size-4.5" />
         </span>
         <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-          <span className="truncate text-body-5 font-semibold text-navy">
+          <span className="truncate text-body-5 font-semibold text-dark-90">
             {name}
           </span>
           <span className="flex flex-wrap items-center gap-2 text-caption-2 text-dark-75">
@@ -381,6 +383,16 @@ export interface AttachmentProps {
   defaultFiles?: AttachmentFile[]
   /** Download handler; files with a `url` download from it without this. */
   onDownload?: (file: AttachmentFile) => void
+  /**
+   * Ask for confirmation in a destructive `ConfirmDialog` before deleting a
+   * file (not when cancelling an upload). Default true.
+   */
+  confirmDelete?: boolean
+  /**
+   * Show a "File deleted" success toast with an Undo action when a file is
+   * deleted (not when an upload is cancelled). Default true. Needs `<Toaster />`.
+   */
+  deleteToast?: boolean
   onFilesChange?: (files: AttachmentFile[]) => void
   /** Real upload hook. Omit to simulate progress (useful for prototypes and stories). */
   onUpload?: (file: File, handlers: AttachmentUploadHandlers) => void
@@ -402,6 +414,8 @@ function Attachment({
   onFilesChange,
   onUpload,
   onDownload,
+  deleteToast = true,
+  confirmDelete = true,
   className,
 }: AttachmentProps) {
   const [files, setFiles] = React.useState<AttachmentItem[]>(() =>
@@ -413,6 +427,9 @@ function Attachment({
     }))
   )
   const [dragging, setDragging] = React.useState(false)
+  // File waiting for the delete confirmation (kept while the dialog animates out).
+  const [pendingDelete, setPendingDelete] = React.useState<AttachmentItem | null>(null)
+  const [confirmOpen, setConfirmOpen] = React.useState(false)
   const [invalid, setInvalid] = React.useState("")
   const inputRef = React.useRef<HTMLInputElement>(null)
   const timers = React.useRef<Record<string, ReturnType<typeof setInterval>>>(
@@ -514,9 +531,36 @@ function Attachment({
     items.forEach(start)
   }
 
-  const remove = (id: string) => {
+  const cancel = (id: string) => {
     clearInterval(timers.current[id])
     setFiles((fs) => fs.filter((f) => f.id !== id))
+  }
+  const remove = (id: string) => {
+    const index = files.findIndex((f) => f.id === id)
+    const item = files[index]
+    cancel(id)
+    if (!item || !deleteToast) return
+    sonner.success("File deleted", {
+      description: `${item.name} was removed.`,
+      action: {
+        label: "Undo",
+        onClick: () =>
+          setFiles((fs) => {
+            if (fs.some((f) => f.id === item.id)) return fs
+            if (!multiple) return [item]
+            const next = [...fs]
+            next.splice(Math.min(index, next.length), 0, item)
+            return next
+          }),
+      },
+    })
+  }
+  const requestRemove = (id: string) => {
+    const item = files.find((f) => f.id === id)
+    if (!item) return
+    if (!confirmDelete) return remove(id)
+    setPendingDelete(item)
+    setConfirmOpen(true)
   }
   const browse = () => {
     if (!disabled) inputRef.current?.click()
@@ -555,8 +599,8 @@ function Attachment({
               })
           : undefined
       }
-      onCancel={() => remove(f.id)}
-      onRemove={() => remove(f.id)}
+      onCancel={() => cancel(f.id)}
+      onRemove={() => requestRemove(f.id)}
       onRetry={() => start(f)}
     />
   )
@@ -664,6 +708,28 @@ function Attachment({
       )}
       {!single && files.length > 0 && (
         <div className="mt-1 flex flex-col gap-2">{files.map(card)}</div>
+      )}
+      {confirmDelete && (
+        <ConfirmDialog
+          open={confirmOpen}
+          onOpenChange={setConfirmOpen}
+          destructive
+          size="md"
+          icon={<IconTrash />}
+          title="Delete this file?"
+          description={
+            pendingDelete ? (
+              <>
+                <span className="font-semibold text-dark-90">{pendingDelete.name}</span>{" "}
+                will be removed from {typeof label === "string" ? label.toLowerCase() : "this upload"}.
+              </>
+            ) : null
+          }
+          actionLabel="Delete"
+          onAction={() => {
+            if (pendingDelete) remove(pendingDelete.id)
+          }}
+        />
       )}
     </div>
   )

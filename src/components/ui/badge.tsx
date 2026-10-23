@@ -20,7 +20,7 @@ const badgeVariants = cva(
         error: "border-error-15 bg-error-l1 font-semibold text-error-75",
         warning: "border-warning-l1 bg-warning-l3 font-semibold text-warning-75",
         "electric-blue":
-          "border-electric-blue-l1 bg-electric-blue-l1/40 font-semibold text-electric-blue",
+          "border-electric-blue-l1 bg-electric-blue-l1 font-semibold text-electric-blue",
       },
       /**
        * `tint` (default): light fill + border, coloured text.
