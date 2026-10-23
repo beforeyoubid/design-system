@@ -1,27 +1,192 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Badge } from '../../components/ui/badge'
+import { CalendarCheck, CircleCheck, Clock, X } from 'lucide-react'
+import { Badge, type BadgeCategory, type BadgeProduct } from '../../components/ui/badge'
 
 const meta: Meta<typeof Badge> = {
-  title: 'shadcn/Badge',
+  title: 'BYB Components/Badge',
   component: Badge,
   tags: ['autodocs'],
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: [
+        'gray', 'mint', 'lime', 'success', 'error', 'warning', 'electric-blue',
+      ],
+    },
+    appearance: { control: 'inline-radio', options: ['tint', 'solid'] },
+    iconPosition: { control: 'inline-radio', options: ['left', 'right'] },
+    category: { control: { type: 'number', min: 1, max: 35 } },
+    product: {
+      control: 'select',
+      options: [
+        'bpi',
+        'building-inspection',
+        'pest-inspection',
+        'strata-report',
+        'owners-corp-cert',
+        'pool-inspection',
+        'electrical-report',
+        'electrical-safety-cert',
+        'plumbing-report',
+        'handover-inspection',
+        'valuations',
+        'asbestos-testing',
+        'dilapidation-report',
+        'depreciation-schedule',
+        'owner-builder-report',
+        'minimum-standards',
+        'new-building-inspection',
+        'home-energy-rating',
+        'bmc',
+      ],
+    },
+    size: { control: 'inline-radio', options: ['sm', 'md', 'lg'] },
+    spinner: { control: 'boolean' },
+  },
 }
 
 export default meta
 type Story = StoryObj<typeof Badge>
 
-export const Default: Story = { args: { children: 'Badge' } }
-export const Secondary: Story = { args: { variant: 'secondary', children: 'Secondary' } }
-export const Destructive: Story = { args: { variant: 'destructive', children: 'Destructive' } }
-export const Outline: Story = { args: { variant: 'outline', children: 'Outline' } }
+const TONES = ['gray', 'mint', 'lime', 'success', 'error', 'warning', 'electric-blue'] as const
+const SIZES = ['sm', 'md', 'lg'] as const
+const CATEGORIES = Array.from({ length: 35 }, (_, i) => (i + 1) as BadgeCategory)
 
-export const All: Story = {
+const PRODUCTS: { product: BadgeProduct; label: string }[] = [
+  { product: 'bpi', label: 'Building & Pest Inspection' },
+  { product: 'building-inspection', label: 'Building Inspection' },
+  { product: 'pest-inspection', label: 'Pest Inspection' },
+  { product: 'strata-report', label: 'Strata Inspection' },
+  { product: 'owners-corp-cert', label: 'Owners Corporation Certificate (VIC)' },
+  { product: 'pool-inspection', label: 'Pool Inspection' },
+  { product: 'electrical-report', label: 'Electrical Inspection' },
+  { product: 'electrical-safety-cert', label: 'Electrical Safety Certificate' },
+  { product: 'plumbing-report', label: 'Plumbing Inspection' },
+  { product: 'handover-inspection', label: 'Handover Inspection' },
+  { product: 'valuations', label: 'Valuations' },
+  { product: 'asbestos-testing', label: 'Asbestos Testing' },
+  { product: 'dilapidation-report', label: 'Dilapidation Report' },
+  { product: 'depreciation-schedule', label: 'Depreciation Schedule' },
+  { product: 'owner-builder-report', label: 'Owner Builder Report' },
+  { product: 'minimum-standards', label: 'Minimum Standards' },
+  { product: 'new-building-inspection', label: 'New Build Inspection' },
+  { product: 'home-energy-rating', label: 'Home Energy Rating' },
+  { product: 'bmc', label: 'BMC' },
+]
+
+export const Default: Story = { args: { children: 'Badge' } }
+export const Syncing: Story = { args: { variant: 'mint', spinner: true, children: 'Syncing' } }
+export const Category: Story = { args: { category: 5, children: 'Category' } }
+export const Product: Story = { args: { product: 'electrical-report', children: 'Electrical Inspection' } }
+
+export const Tones: Story = {
+  render: () => (
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-wrap gap-2">
+        {TONES.map((t) => <Badge key={t} variant={t}>{t}</Badge>)}
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {TONES.map((t) => <Badge key={t} variant={t} spinner>{t}</Badge>)}
+      </div>
+    </div>
+  ),
+}
+
+export const Categories: Story = {
   render: () => (
     <div className="flex flex-wrap gap-2">
-      <Badge>Default</Badge>
-      <Badge variant="secondary">Secondary</Badge>
-      <Badge variant="destructive">Destructive</Badge>
-      <Badge variant="outline">Outline</Badge>
+      {CATEGORIES.map((c) => <Badge key={c} category={c}>Category {c}</Badge>)}
+    </div>
+  ),
+}
+
+export const Products: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-wrap gap-2">
+        {PRODUCTS.map(({ product, label }) => (
+          <Badge key={product} product={product}>{label}</Badge>
+        ))}
+      </div>
+      {/* Plain CSS class — usable outside React */}
+      <div className="flex flex-wrap gap-2">
+        {PRODUCTS.map(({ product, label }) => (
+          <span
+            key={product}
+            className={`badge-product-${product} rounded-full px-2.5 py-0.5 text-body-5 font-medium`}
+          >
+            {label}
+          </span>
+        ))}
+      </div>
+    </div>
+  ),
+}
+
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4">
+      {SIZES.map((size) => (
+        <div key={size} className="flex flex-wrap items-center gap-2">
+          <span className="w-8 text-caption-1 text-dark-75">{size}</span>
+          {TONES.map((t) => (
+            <Badge key={t} variant={t} size={size}>{t}</Badge>
+          ))}
+          <Badge size={size} variant="mint" spinner>Syncing</Badge>
+          <Badge size={size} category={4}>Category 4</Badge>
+          <Badge size={size} product="electrical-report">Electrical Inspection</Badge>
+        </div>
+      ))}
+    </div>
+  ),
+}
+
+/**
+ * Solid status pills with an icon (`appearance="solid"`, `size="lg"`: 28px tall,
+ * 14px text, 16px icon). Colours are tokens: warning-30 + navy, mint-45 + white,
+ * electric-blue + white.
+ */
+export const StatusPills: Story = {
+  name: 'Status pills',
+  render: () => (
+    <div className="flex flex-wrap items-center gap-3">
+      <Badge size="lg" appearance="solid" variant="warning" icon={<Clock />}>Awaiting authority</Badge>
+      <Badge size="lg" appearance="solid" variant="mint" icon={<CircleCheck />}>Live</Badge>
+      <Badge size="lg" appearance="solid" variant="electric-blue" icon={<CalendarCheck />}>Booked</Badge>
+    </div>
+  ),
+}
+
+/** `icon` on either side with `iconPosition`, at every size. */
+export const WithIcon: Story = {
+  name: 'With icon (left / right)',
+  render: () => (
+    <div className="flex flex-col gap-3">
+      {(['sm', 'md', 'lg'] as const).map((size) => (
+        <div key={size} className="flex flex-wrap items-center gap-3">
+          <span className="w-6 text-caption-1 text-dark-75">{size}</span>
+          <Badge size={size} variant="mint" icon={<CircleCheck />}>Left</Badge>
+          <Badge size={size} variant="mint" icon={<X />} iconPosition="right">Right</Badge>
+          <Badge size={size} appearance="solid" variant="electric-blue" icon={<CalendarCheck />}>Booked</Badge>
+          <Badge size={size} appearance="solid" variant="warning" icon={<Clock />} iconPosition="right">Awaiting</Badge>
+        </div>
+      ))}
+    </div>
+  ),
+}
+
+/** Every tone in `tint` (default) and `solid`. */
+export const Appearances: Story = {
+  render: () => (
+    <div className="flex flex-col gap-3">
+      {(['tint', 'solid'] as const).map((appearance) => (
+        <div key={appearance} className="flex flex-wrap items-center gap-2">
+          <span className="w-12 text-caption-1 text-dark-75">{appearance}</span>
+          {TONES.map((t) => (
+            <Badge key={t} size="lg" appearance={appearance} variant={t}>{t}</Badge>
+          ))}
+        </div>
+      ))}
     </div>
   ),
 }

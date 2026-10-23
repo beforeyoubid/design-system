@@ -10,12 +10,72 @@
  * content scanner doesn't see them statically.
  * --------------------------------------------------------------------------- */
 
-/* Testimonial carousel — upward triangle that fills the card bottom section */
+/* Upward triangle clip — e.g. decorative card sections */
 .clip-triangle {
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
-/* Testimonial carousel — fade left/right edges to highlight center cards */
+/* Hide the scrollbar but keep scrolling (wheel, touch, keyboard) — e.g. the
+ * TimePicker columns, where a scrollbar would cover the selected value. */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Fade the top / bottom edges of a scroll container only while there is more
+ * to scroll to (top fades once scrolled down, bottom fades until the end).
+ * Short content that doesn't scroll shows no fade. Uses scroll-driven
+ * animation; browsers without it just scroll with no fade. e.g. DialogBody. */
+@property --scroll-fade-top {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --scroll-fade-bottom {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@keyframes scroll-fade-y {
+  0% {
+    --scroll-fade-top: 0px;
+    --scroll-fade-bottom: 24px;
+  }
+  8% {
+    --scroll-fade-top: 24px;
+  }
+  92% {
+    --scroll-fade-bottom: 24px;
+  }
+  100% {
+    --scroll-fade-top: 24px;
+    --scroll-fade-bottom: 0px;
+  }
+}
+@utility scroll-fade-y {
+  @supports (animation-timeline: scroll()) {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black var(--scroll-fade-top),
+      black calc(100% - var(--scroll-fade-bottom)),
+      transparent
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black var(--scroll-fade-top),
+      black calc(100% - var(--scroll-fade-bottom)),
+      transparent
+    );
+    animation: scroll-fade-y linear both;
+    animation-timeline: scroll(self);
+  }
+}
+
+/* Fade left/right edges — e.g. carousels that highlight centre cards */
 .mask-fade-x {
   -webkit-mask-image: linear-gradient(
     to right,
@@ -39,23 +99,132 @@
  * --------------------------------------------------------------------------- */
 
 @layer utilities {
-  /* Button text: uppercase + 4% letter-spacing baked into every text-btn-* size */
-  .text-btn-sm,
-  .text-btn-md,
-  .text-btn-lg {
+  /* Button + overline text: uppercase + 4% letter-spacing baked in */
+  .text-button-sm,
+  .text-button-md,
+  .text-button-lg,
+  .text-overline {
     text-transform: uppercase;
     letter-spacing: 0.04em;
   }
 
   /* Semi-bold headings: -0.5% letter-spacing baked into heading + display classes */
-  .text-heading-sm,
-  .text-heading-md,
-  .text-heading-base,
-  .text-heading-lg,
-  .text-heading-3xl,
-  .text-display-sm,
-  .text-display,
-  .text-display-xl {
+  .text-h1,
+  .text-h2,
+  .text-h3,
+  .text-h4,
+  .text-h5,
+  .text-h6,
+  .text-display-1,
+  .text-display-2,
+  .text-display-3,
+  .text-display-4 {
     letter-spacing: -0.005em;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * Product badges — filled product colour + white label.
+ *   <span class="badge-product-electrical-report">Electrical</span>
+ * Always emitted (not tree-shaken), so class names built at runtime work too:
+ *   <span class={`badge-product-${slug}`}>
+ * Colour-only utilities are also available: bg-badge-product-*,
+ * text-badge-product-*, border-badge-product-*.
+ * --------------------------------------------------------------------------- */
+
+@layer utilities {
+  .badge-product-bpi {
+    background-color: var(--badge-product-bpi);
+    color: var(--white);
+  }
+
+  .badge-product-building-inspection {
+    background-color: var(--badge-product-building-inspection);
+    color: var(--white);
+  }
+
+  .badge-product-pest-inspection {
+    background-color: var(--badge-product-pest-inspection);
+    color: var(--white);
+  }
+
+  .badge-product-strata-report {
+    background-color: var(--badge-product-strata-report);
+    color: var(--white);
+  }
+
+  .badge-product-owners-corp-cert {
+    background-color: var(--badge-product-owners-corp-cert);
+    color: var(--white);
+  }
+
+  .badge-product-pool-inspection {
+    background-color: var(--badge-product-pool-inspection);
+    color: var(--white);
+  }
+
+  .badge-product-electrical-report {
+    background-color: var(--badge-product-electrical-report);
+    color: var(--white);
+  }
+
+  .badge-product-electrical-safety-cert {
+    background-color: var(--badge-product-electrical-safety-cert);
+    color: var(--white);
+  }
+
+  .badge-product-plumbing-report {
+    background-color: var(--badge-product-plumbing-report);
+    color: var(--white);
+  }
+
+  .badge-product-handover-inspection {
+    background-color: var(--badge-product-handover-inspection);
+    color: var(--white);
+  }
+
+  .badge-product-valuations {
+    background-color: var(--badge-product-valuations);
+    color: var(--white);
+  }
+
+  .badge-product-asbestos-testing {
+    background-color: var(--badge-product-asbestos-testing);
+    color: var(--white);
+  }
+
+  .badge-product-dilapidation-report {
+    background-color: var(--badge-product-dilapidation-report);
+    color: var(--white);
+  }
+
+  .badge-product-depreciation-schedule {
+    background-color: var(--badge-product-depreciation-schedule);
+    color: var(--white);
+  }
+
+  .badge-product-owner-builder-report {
+    background-color: var(--badge-product-owner-builder-report);
+    color: var(--white);
+  }
+
+  .badge-product-minimum-standards {
+    background-color: var(--badge-product-minimum-standards);
+    color: var(--white);
+  }
+
+  .badge-product-new-building-inspection {
+    background-color: var(--badge-product-new-building-inspection);
+    color: var(--white);
+  }
+
+  .badge-product-home-energy-rating {
+    background-color: var(--badge-product-home-energy-rating);
+    color: var(--white);
+  }
+
+  .badge-product-bmc {
+    background-color: var(--badge-product-bmc);
+    color: var(--white);
   }
 }

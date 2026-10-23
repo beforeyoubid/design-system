@@ -1,37 +1,32 @@
 // Typography tokens — mirrors Figma "font / plus jakarta sans" without the family prefix.
 // Semi-bold headings always pair with letterSpacing: '-0.005em' (tracking-heading class).
-// Button styles are uppercase with letterSpacing: '0.04em' (tracking-btn class).
+// Button styles are uppercase with letterSpacing: '0.04em' (tracking-button class).
 export const typography = {
-  // Semi-bold (600) — headings
-  displaySm:    { fontSize: '52px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
-  headingLg:    { fontSize: '40px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
-  heading3xl:   { fontSize: '36px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
-  headingMd:    { fontSize: '28px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
-  headingBase:  { fontSize: '24px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
-  headingSm:    { fontSize: '20px', lineHeight: '1.3',  fontWeight: 600 },
-  // Regular (400) — body
-  bodyLg:   { fontSize: '18px', lineHeight: '1.4', fontWeight: 400 },
-  bodyMd:   { fontSize: '16px', lineHeight: '1.4', fontWeight: 400 },
-  bodySm:   { fontSize: '13px', lineHeight: '1.4', fontWeight: 400 },
-  caption:  { fontSize: '12px', lineHeight: '1.4', fontWeight: 400 },
-  textXs:   { fontSize: '10px', lineHeight: '1.4', fontWeight: 400 },
-  text2xs:  { fontSize: '8px',  lineHeight: '1.4', fontWeight: 400 },
-  // Medium (500) — Figma: medium scale
-  medium6xl:  { fontSize: '64px', lineHeight: '1.2', fontWeight: 500 },
-  medium5xl:  { fontSize: '52px', lineHeight: '1.2', fontWeight: 500 },
-  medium4xl:  { fontSize: '40px', lineHeight: '1.2', fontWeight: 500 },
-  medium3xl:  { fontSize: '36px', lineHeight: '1.2', fontWeight: 500 },
-  medium2xl:  { fontSize: '28px', lineHeight: '1.2', fontWeight: 500 },
-  mediumXl:   { fontSize: '24px', lineHeight: '1.2', fontWeight: 500 },
-  mediumLg:   { fontSize: '18px', lineHeight: '1.2', fontWeight: 500 },
-  mediumBase: { fontSize: '16px', lineHeight: '1.2', fontWeight: 500 },
-  mediumSm:   { fontSize: '13px', lineHeight: '1.2', fontWeight: 500 },
-  mediumXs:   { fontSize: '10px', lineHeight: '1.2', fontWeight: 500 },
-  medium2xs:  { fontSize: '8px',  lineHeight: '1.2', fontWeight: 500 },
-  // Button (600, uppercase + 0.04em letter-spacing — also applied globally via globals.css)
-  btnLg: { fontSize: '18px', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
-  btnMd: { fontSize: '16px', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
-  btnSm: { fontSize: '13px', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
+  // Semi-bold (600): display + headings
+  display1:   { fontSize: '72px', lineHeight: '1.05', fontWeight: 600, letterSpacing: '-0.005em' },
+  display2:   { fontSize: '64px', lineHeight: '1.06', fontWeight: 600, letterSpacing: '-0.005em' },
+  display3:   { fontSize: '56px', lineHeight: '1.08', fontWeight: 600, letterSpacing: '-0.005em' },
+  display4:   { fontSize: '52px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
+  h1:         { fontSize: '40px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
+  h2:         { fontSize: '36px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
+  h3:         { fontSize: '28px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
+  h4:         { fontSize: '24px', lineHeight: '1.2',  fontWeight: 600, letterSpacing: '-0.005em' },
+  h5:         { fontSize: '20px', lineHeight: '1.3',  fontWeight: 600, letterSpacing: '-0.005em' },
+  h6:         { fontSize: '18px', lineHeight: '1.3',  fontWeight: 600, letterSpacing: '-0.005em' },
+  // Regular (400): body + caption. For medium weight, pair with fontWeight: 500.
+  body1:      { fontSize: '24px', lineHeight: '1.4', fontWeight: 400 },
+  body2:      { fontSize: '20px', lineHeight: '1.4', fontWeight: 400 },
+  body3:      { fontSize: '18px', lineHeight: '1.4', fontWeight: 400 },
+  body4:      { fontSize: '16px', lineHeight: '1.4', fontWeight: 400 },
+  body5:      { fontSize: '14px', lineHeight: '1.4', fontWeight: 400 },
+  caption1:   { fontSize: '12px', lineHeight: '1.4', fontWeight: 400 },
+  caption2:   { fontSize: '10px', lineHeight: '1.4', fontWeight: 400 },
+  caption3:   { fontSize: '8px',  lineHeight: '1.4', fontWeight: 400 },
+  // Semi-bold (600), uppercase + 0.04em letter-spacing
+  overline:   { fontSize: '12px', lineHeight: '1.4', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
+  buttonLg:   { fontSize: '18px', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
+  buttonMd:   { fontSize: '16px', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
+  buttonSm:   { fontSize: '14px', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' as const },
 } as const
 
 export type TypographyToken = keyof typeof typography
@@ -41,8 +36,8 @@ export const colors = {
   navy:   '#090034',
   lime:   '#D4F269',
   limeL1: '#EAF8B0',
-  cobalt:   '#015AFF',
-  cobaltL1: '#C8D0FB',
+  electricBlue:   '#015AFF',
+  electricBlueL1: '#E6EEFF',
   teal:     '#35BDB2',
   tealL1:   '#BFE8E6',
   // Mint (Primary)
@@ -97,22 +92,67 @@ export const colors = {
   warningL2: '#FEF5DC',
   warningL3: '#FFF9EB',
   // Category colours
-  category01: '#00BCD4',
-  category02: '#0097A7',
-  category03: '#29B6F6',
-  category04: '#0288D1',
+  category01: '#068091',
+  category02: '#026772',
+  category03: '#037DAE',
+  category04: '#016299',
   category05: '#4E342E',
   category06: '#6D4C41',
   category07: '#3D0C11',
   category08: '#880E4F',
-  category09: '#E91E63',
+  category09: '#E4145F',
   category10: '#7B1FA2',
-  category11: '#9357FD',
+  category11: '#8C4FF5',
   category12: '#673AB7',
-  category13: '#9E9E9E',
-  category14: '#BDBDBD',
+  category13: '#757575',
+  category14: '#616161',
   category15: '#555555',
   category16: '#262323',
+  category17: '#2E7D32',
+  category18: '#C2410C',
+  category19: '#303F9F',
+  category20: '#00796B',
+  category21: '#33691E',
+  category22: '#827717',
+  category23: '#8A6100',
+  category24: '#B91C1C',
+  category25: '#1565C0',
+  category26: '#AD1457',
+  category27: '#37474F',
+  category28: '#9A3412',
+  category29: '#065F46',
+  category30: '#4A148C',
+  category31: '#9F1239',
+  category32: '#A21CAF',
+  category33: '#004D40',
+  category34: '#546E7A',
+  category35: '#5C6BC0',
 } as const
 
 export type ColorToken = keyof typeof colors
+
+// Product badge colours — each product aliases a category colour.
+// Mirrors --badge-product-* in globals.css.
+export const badgeProductColors = {
+  bpi: colors.category01,
+  buildingInspection: colors.category02,
+  pestInspection: colors.category03,
+  strataReport: colors.category04,
+  ownersCorpCert: colors.category05,
+  poolInspection: colors.category06,
+  electricalReport: colors.category07,
+  electricalSafetyCert: colors.category08,
+  plumbingReport: colors.category09,
+  handoverInspection: colors.category10,
+  valuations: colors.category11,
+  asbestosTesting: colors.category12,
+  dilapidationReport: colors.category13,
+  depreciationSchedule: colors.category14,
+  ownerBuilderReport: colors.category15,
+  minimumStandards: colors.category16,
+  newBuildingInspection: colors.category17,
+  homeEnergyRating: colors.category18,
+  bmc: colors.category19,
+} as const
+
+export type BadgeProductToken = keyof typeof badgeProductColors

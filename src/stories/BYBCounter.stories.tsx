@@ -9,7 +9,7 @@ import {
 import { BYBCounter } from '../components/BYBCounter'
 
 const meta: Meta<typeof BYBCounter> = {
-  title: 'Components/BYBCounter',
+  title: 'BYB Components/BYBCounter',
   component: BYBCounter,
   tags: ['autodocs'],
   argTypes: {

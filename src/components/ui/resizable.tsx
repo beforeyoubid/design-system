@@ -2,6 +2,11 @@ import * as ResizablePrimitive from "react-resizable-panels"
 
 import { cn } from "@/lib/utils"
 
+/**
+ * Fills its parent: react-resizable-panels v4 sets an inline `height: 100%;
+ * width: 100%`, so size the group with a wrapper (`<div className="h-48">`),
+ * not with height / width classes on the group itself.
+ */
 function ResizablePanelGroup({
   className,
   ...props

@@ -10,11 +10,11 @@ import {
 import { BYBPillCard } from '../components/BYBPillCard'
 
 const meta: Meta<typeof BYBPillCard> = {
-  title: 'Components/BYBPillCard',
+  title: 'BYB Components/BYBPillCard',
   component: BYBPillCard,
   tags: ['autodocs'],
   argTypes: {
-    variant:    { control: 'select', options: ['cobalt', 'teal', 'lime'] },
+    variant:    { control: 'select', options: ['electric-blue', 'teal', 'lime'] },
     heading:    { control: 'text' },
     subheading: { control: 'text' },
   },
@@ -25,9 +25,9 @@ type Story = StoryObj<typeof BYBPillCard>
 
 // ── Variants ──────────────────────────────────────────────────────────────────
 
-export const Cobalt: Story = {
+export const ElectricBlue: Story = {
   args: {
-    variant:    'cobalt',
+    variant:    'electric-blue',
     heading:    'Search',
     subheading: 'Find your property and see available reports. No report? No problem. You can order a new one instantly.',
   },
@@ -56,9 +56,9 @@ export const Lime: Story = {
 
 export const HowItWorks: Story = {
   render: () => (
-    <div className="flex flex-col gap-4 p-8 bg-light-sandy rounded-xl max-w-site sm:flex-row">
+    <div className="flex flex-col gap-4 p-8 bg-light-sandy rounded-2xl max-w-site sm:flex-row">
       <BYBPillCard
-        variant="cobalt"
+        variant="electric-blue"
         icon={IconHomeSearch}
         heading="Search"
         subheading="Find your property and see available reports. No report? No problem. You can order a new one instantly."
@@ -84,7 +84,7 @@ export const HowItWorks: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-4 max-w-xl">
-      <BYBPillCard variant="cobalt" icon={IconHomeSearch}      heading="Search"  subheading="Find your property and see available reports." />
+      <BYBPillCard variant="electric-blue" icon={IconHomeSearch}      heading="Search"  subheading="Find your property and see available reports." />
       <BYBPillCard variant="teal"   icon={IconFileDescription} heading="Review"  subheading="Check inspector qualifications and pricing." />
       <BYBPillCard variant="lime"   icon={IconStarFilled}      heading="Rate"    subheading="Share your experience and help others decide." />
     </div>

@@ -10,7 +10,7 @@ import {
 } from '../../components/ui/menubar'
 
 const meta: Meta<typeof Menubar> = {
-  title: 'shadcn/Menubar',
+  title: 'BYB Components/Menubar',
   component: Menubar,
   tags: ['autodocs'],
 }

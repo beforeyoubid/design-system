@@ -9,7 +9,7 @@ import {
 } from '../../components/ui/breadcrumb'
 
 const meta: Meta<typeof Breadcrumb> = {
-  title: 'shadcn/Breadcrumb',
+  title: 'BYB Components/Breadcrumb',
   component: Breadcrumb,
   tags: ['autodocs'],
 }

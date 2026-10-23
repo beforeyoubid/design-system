@@ -4,9 +4,10 @@ const shared = {
   format: ['esm', 'cjs'] as const,
   dts: true,
   sourcemap: true,
-  // @tabler/icons-react is external so `src/icons.ts` compiles to a thin
-  // re-export and the consumer's bundler tree-shakes against the real package.
-  external: ['react', 'react-dom', 'next', 'tailwindcss', '@tabler/icons-react'],
+  // The icon packages are external so `src/icons.ts` / `src/icons-lucide.ts`
+  // compile to thin re-exports and the consumer's bundler tree-shakes against
+  // the real packages.
+  external: ['react', 'react-dom', 'next', 'tailwindcss', '@tabler/icons-react', 'lucide-react'],
   outDir: 'dist',
 }
 
@@ -28,10 +29,10 @@ export default defineConfig([
   },
   {
     ...shared,
-    entry: ['src/icons.ts'],
+    entry: ['src/icons.ts', 'src/icons-lucide.ts'],
     // Don't wipe the index build above; this config runs after it.
     clean: false,
-    // No 'use client' banner — Tabler icons are plain SVG and stay usable
+    // No 'use client' banner — Tabler and Lucide icons are plain SVG and stay usable
     // inside RSC server components.
   },
 ])

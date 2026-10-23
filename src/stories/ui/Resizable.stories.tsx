@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '../../components/ui/resizable'
 
 const meta: Meta<typeof ResizablePanelGroup> = {
-  title: 'shadcn/Resizable',
+  title: 'BYB Components/Resizable',
   component: ResizablePanelGroup,
   tags: ['autodocs'],
 }
@@ -12,22 +12,24 @@ type Story = StoryObj<typeof ResizablePanelGroup>
 
 export const Horizontal: Story = {
   render: () => (
-    <ResizablePanelGroup direction="horizontal" className="h-48 w-[600px] rounded-md border">
-      <ResizablePanel defaultSize={50}>
-        <div className="flex h-full items-center justify-center p-6 text-body-sm">One</div>
-      </ResizablePanel>
-      <ResizableHandle withHandle />
-      <ResizablePanel defaultSize={50}>
-        <ResizablePanelGroup direction="vertical">
-          <ResizablePanel defaultSize={50}>
-            <div className="flex h-full items-center justify-center p-6 text-body-sm">Two</div>
-          </ResizablePanel>
-          <ResizableHandle withHandle />
-          <ResizablePanel defaultSize={50}>
-            <div className="flex h-full items-center justify-center p-6 text-body-sm">Three</div>
-          </ResizablePanel>
-        </ResizablePanelGroup>
-      </ResizablePanel>
-    </ResizablePanelGroup>
+    <div className="h-48 w-150 max-w-full overflow-hidden rounded-md border">
+      <ResizablePanelGroup orientation="horizontal">
+        <ResizablePanel defaultSize="50%">
+          <div className="flex h-full items-center justify-center p-6 text-body-5">One</div>
+        </ResizablePanel>
+        <ResizableHandle withHandle />
+        <ResizablePanel defaultSize="50%">
+          <ResizablePanelGroup orientation="vertical">
+            <ResizablePanel defaultSize="50%">
+              <div className="flex h-full items-center justify-center p-6 text-body-5">Two</div>
+            </ResizablePanel>
+            <ResizableHandle withHandle />
+            <ResizablePanel defaultSize="50%">
+              <div className="flex h-full items-center justify-center p-6 text-body-5">Three</div>
+            </ResizablePanel>
+          </ResizablePanelGroup>
+        </ResizablePanel>
+      </ResizablePanelGroup>
+    </div>
   ),
 }

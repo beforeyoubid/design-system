@@ -2,9 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/ui/accordion'
 
 const meta: Meta<typeof Accordion> = {
-  title: 'shadcn/Accordion',
+  title: 'BYB Components/Accordion',
   component: Accordion,
   tags: ['autodocs'],
+  argTypes: {
+    size: { control: 'select', options: ['sm', 'md', 'lg'] },
+  },
 }
 
 export default meta
@@ -60,7 +63,7 @@ const FAQ_ITEMS = [
 
 export const Default: Story = {
   render: () => (
-    <Accordion defaultValue={null} className="max-w-2xl">
+    <Accordion defaultValue={[]} className="max-w-2xl">
       {FAQ_ITEMS.map(item => (
         <AccordionItem key={item.value} value={item.value}>
           <AccordionTrigger>{item.question}</AccordionTrigger>
@@ -73,7 +76,7 @@ export const Default: Story = {
 
 export const SingleOpen: Story = {
   render: () => (
-    <Accordion defaultValue="share-cost" className="max-w-2xl">
+    <Accordion defaultValue={['share-cost']} className="max-w-2xl">
       {FAQ_ITEMS.map(item => (
         <AccordionItem key={item.value} value={item.value}>
           <AccordionTrigger>{item.question}</AccordionTrigger>
@@ -81,5 +84,28 @@ export const SingleOpen: Story = {
         </AccordionItem>
       ))}
     </Accordion>
+  ),
+}
+
+/** `size` on `Accordion` sets every trigger and panel; `md` is the default. */
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex max-w-2xl flex-col gap-10">
+      {(['sm', 'md', 'lg'] as const).map((size) => (
+        <div key={size} className="flex flex-col gap-2">
+          <span className="text-overline text-dark-90">{size}</span>
+          <Accordion size={size} defaultValue={['share-cost']}>
+            {FAQ_ITEMS.slice(0, 3).map((item) => (
+              <AccordionItem key={item.value} value={item.value}>
+                <AccordionTrigger>{item.question}</AccordionTrigger>
+                <AccordionContent>
+                  <p>{item.answer}</p>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      ))}
+    </div>
   ),
 }

@@ -3,18 +3,42 @@
 // =============================================================================
 export { BYBCounter } from './components/BYBCounter'
 export { BYBPillCard } from './components/BYBPillCard'
-export { BYBTestimonialCarousel, BYBTestimonialCard } from './components/BYBTestimonialCarousel'
-export type { Testimonial, BYBTestimonialCardProps } from './components/BYBTestimonialCarousel'
 export { BYBImage } from './components/BYBImage'
 
 // =============================================================================
 // Form composites — thin wrappers around ui/input and ui/select that add
-// label/hint/error slots. Replaces the legacy BYBInput / BYBSelect.
+// label/hint/error slots.
 // =============================================================================
 export { InputField } from './components/InputField'
 export type { InputFieldProps } from './components/InputField'
-export { SelectField } from './components/SelectField'
-export type { SelectFieldProps, SelectFieldOption } from './components/SelectField'
+export { SelectField, productSelectOptions } from './components/SelectField'
+export type { SelectFieldProps, SelectFieldOption, SelectFieldOptionGroup } from './components/SelectField'
+export { Fieldset } from './components/Fieldset'
+export type { FieldsetProps } from './components/Fieldset'
+export { DatePicker, TimePicker, formatDateDMY } from './components/DatePicker'
+export type { DatePickerProps, TimePickerProps } from './components/DatePicker'
+export { Attachment, FileUploadCard, dropZoneVariants } from './components/Attachment'
+export type {
+  AttachmentProps,
+  AttachmentFile,
+  AttachmentStatus,
+  AttachmentUploadHandlers,
+  FileUploadCardProps,
+} from './components/Attachment'
+
+// =============================================================================
+// BYB design-system components (Claude Design library)
+// =============================================================================
+export { EmptyState, emptyStateVariants } from './components/EmptyState'
+export type { EmptyStateProps } from './components/EmptyState'
+export { Stepper, stepIndicatorVariants } from './components/Stepper'
+export type { StepperProps, StepperStep } from './components/Stepper'
+export { AreaChart } from './components/AreaChart'
+export type { AreaChartProps, AreaChartSeries, AreaChartRange, AreaChartDatum } from './components/AreaChart'
+export { BarChart, statToggleVariants } from './components/BarChart'
+export type { BarChartProps, BarChartSeries, BarChartDatum } from './components/BarChart'
+export { ChartFrame, ChartLegendList, CHART_PALETTE } from './components/ChartFrame'
+export type { ChartFrameProps, ChartLegendListProps, ChartLegendItem } from './components/ChartFrame'
 
 // =============================================================================
 // shadcn/ui primitives — generated via `npx shadcn add` against base-maia
@@ -33,12 +57,14 @@ export * from './components/ui/carousel'
 export * from './components/ui/chart'
 export * from './components/ui/checkbox'
 export * from './components/ui/collapsible'
+export * from './components/ui/color-dot'
 export * from './components/ui/command'
 export * from './components/ui/context-menu'
 export * from './components/ui/dialog'
 export * from './components/ui/drawer'
 export * from './components/ui/dropdown-menu'
 export * from './components/ui/hover-card'
+export * from './components/ui/icon-tile'
 export * from './components/ui/input'
 export * from './components/ui/input-group'
 export * from './components/ui/input-otp'
@@ -57,6 +83,7 @@ export * from './components/ui/sheet'
 export * from './components/ui/sidebar'
 export * from './components/ui/skeleton'
 export * from './components/ui/slider'
+export * from './components/ui/spinner'
 export * from './components/ui/sonner'
 export * from './components/ui/switch'
 export * from './components/ui/table'
@@ -72,3 +99,4 @@ export * from './components/ui/tooltip'
 export { useIsMobile } from './hooks/use-mobile'
 export { cn } from './lib/utils'
 export * from './tokens'
+export * from './lib/product-badges'

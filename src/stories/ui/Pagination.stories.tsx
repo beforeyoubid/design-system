@@ -10,7 +10,7 @@ import {
 } from '../../components/ui/pagination'
 
 const meta: Meta<typeof Pagination> = {
-  title: 'shadcn/Pagination',
+  title: 'BYB Components/Pagination',
   component: Pagination,
   tags: ['autodocs'],
 }
