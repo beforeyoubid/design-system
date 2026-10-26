@@ -12,6 +12,8 @@ import {
 } from '@tabler/icons-react'
 import { ArrowUpRight, FileText, Gavel, Home, Link, Send, ShieldCheck } from 'lucide-react'
 import { Button } from '../../components/ui/button'
+import { ConfirmDialog } from '../../components/ui/dialog'
+import { Toaster, sonner } from '../../components/ui/sonner'
 import { productBadges, type ProductBadgeKey } from '../../lib/product-badges'
 import {
   DropdownMenu,
@@ -112,10 +114,12 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultOpen: Story = {
-  name: 'Open (trigger active state)',
-  render: () => (
-    <DropdownMenu defaultOpen>
+/** Delete asks first (DESIGN.md rule 13): menu item → ConfirmDialog → toast with Undo. */
+function DeleteFlowDemo() {
+  const [confirmOpen, setConfirmOpen] = React.useState(false)
+  return (
+    <>
+      <DropdownMenu defaultOpen>
       <Trigger>Actions</Trigger>
       <DropdownMenuContent>
         <DropdownMenuItem>
@@ -127,13 +131,36 @@ export const DefaultOpen: Story = {
           Download
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem variant="destructive">
+        <DropdownMenuItem variant="destructive" onClick={() => setConfirmOpen(true)}>
           <IconTrash />
           Delete
         </DropdownMenuItem>
       </DropdownMenuContent>
-    </DropdownMenu>
-  ),
+      </DropdownMenu>
+      <ConfirmDialog
+        open={confirmOpen}
+        onOpenChange={setConfirmOpen}
+        destructive
+        size="md"
+        icon={<IconTrash />}
+        title="Delete this report?"
+        description="The building & pest report for 12 Smith St, Newtown will be permanently deleted."
+        actionLabel="Delete"
+        onAction={() =>
+          sonner.success('Report deleted', {
+            description: '12 Smith St, Newtown',
+            action: { label: 'Undo', onClick: () => {} },
+          })
+        }
+      />
+      <Toaster />
+    </>
+  )
+}
+
+export const DefaultOpen: Story = {
+  name: 'Open (trigger active state)',
+  render: () => <DeleteFlowDemo />,
 }
 
 function CheckboxesDemo() {

@@ -38,11 +38,11 @@ export const Default: Story = {
         <div className="flex flex-col gap-3">
           <div className="grid gap-1.5">
             <Label htmlFor="name">Name</Label>
-            <Input id="name" defaultValue="Dean" />
+            <Input id="name" defaultValue="Design" />
           </div>
           <div className="grid gap-1.5">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" defaultValue="dean@beforeyoubuy.com.au" />
+            <Input id="email" defaultValue="design@beforeyoubuy.com.au" />
           </div>
         </div>
         <DialogFooter>
@@ -221,7 +221,7 @@ export const Confirmation: Story = {
         destructive
         icon={<Trash2 />}
         title="Delete this report?"
-        description="This permanently removes the building & pest report for 12 Smith St."
+        description="This permanently removes the building & pest report for 12 Smith St. This can’t be undone."
         actionLabel="Delete"
       />
     </div>

@@ -19,7 +19,7 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="input-group"
       role="group"
       className={cn(
-        "group/input-group relative flex min-h-10 w-full min-w-0 items-center gap-2 rounded-lg border border-dark-15 bg-white px-3 transition outline-none",
+        "group/input-group relative flex min-h-10 w-full min-w-0 items-center gap-2 rounded-lg border border-dark-45 bg-white px-3 transition outline-none",
         // focus
         "focus-within:border-mint-45 focus-within:ring-3 focus-within:ring-mint-45/30",
         // error
@@ -27,7 +27,7 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
         // disabled
         "has-[[data-slot=input-group-control]:disabled]:cursor-not-allowed has-[[data-slot=input-group-control]:disabled]:bg-light-l2 has-[[data-slot=input-group-control]:disabled]:opacity-70 data-[disabled=true]:bg-light-l2 data-[disabled=true]:opacity-70",
         // combobox popup: no ring
-        "in-data-[slot=combobox-content]:focus-within:border-dark-15 in-data-[slot=combobox-content]:focus-within:ring-0",
+        "in-data-[slot=combobox-content]:focus-within:border-dark-45 in-data-[slot=combobox-content]:focus-within:ring-0",
         // block addons / textarea stack vertically
         "has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-start]]:flex-col has-[>textarea]:items-stretch",
         className

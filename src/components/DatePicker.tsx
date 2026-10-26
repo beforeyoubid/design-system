@@ -7,7 +7,7 @@ import { Calendar } from "./ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 
 const controlClasses =
-  "h-10 rounded-lg border border-dark-15 bg-white text-body-5 text-dark-100 outline-none transition-all focus-visible:border-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30 disabled:cursor-not-allowed disabled:bg-light-l2"
+  "h-10 rounded-lg border border-dark-45 bg-white text-body-5 text-dark-100 outline-none transition-all focus-visible:border-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30 disabled:cursor-not-allowed disabled:bg-light-l2"
 
 /** Popover trigger shared by the date and time pickers (mint when open). */
 const triggerClasses = cn(
@@ -15,7 +15,7 @@ const triggerClasses = cn(
   "group flex cursor-pointer items-center justify-between gap-2 px-3 text-start data-popup-open:border-mint-45 data-popup-open:bg-mint-l4 data-popup-open:ring-3 data-popup-open:ring-mint-45/30"
 )
 
-const popoverClasses = "w-auto rounded-lg border-light-l3 p-0 shadow-md"
+const popoverClasses = "w-auto rounded-lg border-dark-45 p-0 shadow-md"
 
 function TriggerText({ text, placeholder }: { text: string; placeholder: string }) {
   return (

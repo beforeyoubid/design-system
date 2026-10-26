@@ -115,7 +115,7 @@ function DropdownMenuContent({
         <MenuPrimitive.Popup
           data-slot="dropdown-menu-content"
           className={cn(
-            "z-50 max-h-(--available-height) w-(--anchor-width) min-w-55 origin-(--transform-origin) overflow-x-hidden overflow-y-auto rounded-lg border border-light-l3 bg-white p-1 text-body-5 text-dark-90 shadow-md duration-100 outline-none data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-start-2 data-[side=inline-start]:slide-in-from-end-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:overflow-hidden data-closed:fade-out-0 data-closed:zoom-out-95",
+            "z-50 max-h-(--available-height) w-(--anchor-width) min-w-55 origin-(--transform-origin) overflow-x-hidden overflow-y-auto rounded-lg border border-dark-45 bg-white p-1 text-body-5 text-dark-90 shadow-md duration-100 outline-none data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-start-2 data-[side=inline-start]:slide-in-from-end-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:overflow-hidden data-closed:fade-out-0 data-closed:zoom-out-95",
             className
           )}
           {...props}
@@ -279,7 +279,7 @@ function DropdownMenuCheckboxItem({
       <span
         aria-hidden="true"
         data-slot="dropdown-menu-checkbox-item-indicator"
-        className="pointer-events-none flex size-4 shrink-0 items-center justify-center rounded-sm border border-dark-30 bg-white text-white transition-colors group-data-checked/dropdown-menu-checkbox-item:border-mint-45 group-data-checked/dropdown-menu-checkbox-item:bg-mint-45 group-data-disabled/dropdown-menu-checkbox-item:opacity-50"
+        className="pointer-events-none flex size-4 shrink-0 items-center justify-center rounded-sm border border-dark-45 bg-white text-white transition-colors group-data-checked/dropdown-menu-checkbox-item:border-mint-45 group-data-checked/dropdown-menu-checkbox-item:bg-mint-45 group-data-disabled/dropdown-menu-checkbox-item:opacity-50"
       >
         <MenuPrimitive.CheckboxItemIndicator className="flex items-center justify-center">
           <IconCheck className="size-3" stroke={3} />
@@ -422,7 +422,7 @@ function DropdownMenuCardTrigger({
     <MenuPrimitive.Trigger
       data-slot="dropdown-menu-card-trigger"
       className={cn(
-        "group/card-trigger flex w-full cursor-pointer items-center gap-4 rounded-lg border border-dark-15 bg-white p-3 pe-4 text-start outline-none transition-[background-color,border-color,box-shadow] hover:border-mint-30 focus-visible:border-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30 data-popup-open:border-mint-45 data-popup-open:bg-mint-l4 data-popup-open:ring-3 data-popup-open:ring-mint-45/30 disabled:cursor-not-allowed disabled:bg-light-l2",
+        "group/card-trigger flex w-full cursor-pointer items-center gap-4 rounded-lg border border-dark-45 bg-white p-3 pe-4 text-start outline-none transition-[background-color,border-color,box-shadow] hover:border-mint-30 focus-visible:border-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30 data-popup-open:border-mint-45 data-popup-open:bg-mint-l4 data-popup-open:ring-3 data-popup-open:ring-mint-45/30 disabled:cursor-not-allowed disabled:bg-light-l2",
         className
       )}
       {...props}
@@ -506,7 +506,7 @@ function DropdownMenuCardItem({
     <MenuPrimitive.RadioItem
       data-slot="dropdown-menu-card-item"
       className={cn(
-        "flex min-h-18 cursor-pointer items-center gap-3 rounded-lg border border-light-l3 bg-white p-3 text-start outline-hidden transition-colors select-none data-highlighted:border-dark-15 data-highlighted:bg-light-l1 data-checked:border-mint-45 data-checked:bg-mint-l3 data-disabled:pointer-events-none data-disabled:opacity-50",
+        "flex min-h-18 cursor-pointer items-center gap-3 rounded-lg border border-dark-45 bg-white p-3 text-start outline-hidden transition-colors select-none data-highlighted:border-dark-75 data-highlighted:bg-light-l1 data-checked:border-mint-45 data-checked:bg-mint-l3 data-disabled:pointer-events-none data-disabled:opacity-50",
         className
       )}
       {...props}

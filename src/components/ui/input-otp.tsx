@@ -52,7 +52,7 @@ function InputOTPSlot({
       data-slot="input-otp-slot"
       data-active={isActive}
       className={cn(
-        "relative flex size-8 items-center justify-center rounded-md border border-dark-15 bg-white text-body-5 font-medium text-dark-100 transition outline-none",
+        "relative flex size-8 items-center justify-center rounded-md border border-dark-45 bg-white text-body-5 font-medium text-dark-100 transition outline-none",
         // active
         "data-[active=true]:z-10 data-[active=true]:border-mint-45 data-[active=true]:text-navy data-[active=true]:ring-3 data-[active=true]:ring-mint-45/30",
         // error — on the slot itself or anywhere inside an invalid OTP input

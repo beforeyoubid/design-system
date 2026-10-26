@@ -18,13 +18,13 @@ const stepIndicatorVariants = cva(
         active:
           "bg-mint-60 text-white ring-2 ring-mint-45 ring-offset-2 ring-offset-white",
         complete: "bg-mint-l2 text-mint-75",
-        upcoming: "bg-light-l2 text-dark-75",
+        upcoming: "border-2 border-navy bg-white text-navy",
         error: "bg-error-75 text-white",
       },
     },
     compoundVariants: [
       { size: "dot", status: "complete", className: "bg-mint-60" },
-      { size: "dot", status: "upcoming", className: "bg-dark-15" },
+      { size: "dot", status: "upcoming", className: "border-0 bg-dark-15" },
     ],
     defaultVariants: { size: "md", status: "upcoming" },
   }
@@ -204,7 +204,8 @@ function Stepper({
               {step.title && (
                 <span
                   className={cn(
-                    "text-body-5 leading-tight font-semibold",
+                    "leading-tight font-semibold",
+                    size === "sm" ? "text-body-5" : "text-body-4",
                     status === "error" ? "text-error-75" : "text-navy"
                   )}
                 >
@@ -212,7 +213,7 @@ function Stepper({
                 </span>
               )}
               {step.description && (
-                <span className="text-body-5 text-dark-75">
+                <span className="text-body-5 text-dark-90">
                   {step.description}
                 </span>
               )}
@@ -301,7 +302,7 @@ function Stepper({
               {!last && (
                 <StepperLine
                   on={i < current}
-                  className={cn("min-w-3 flex-1", dot ? "mx-2" : "mx-4")}
+                  className={cn("min-w-3 flex-1", dot ? "mx-2" : "mx-5")}
                 />
               )}
             </li>

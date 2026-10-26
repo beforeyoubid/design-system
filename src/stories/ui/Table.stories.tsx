@@ -16,6 +16,8 @@ import {
 import { Badge } from '../../components/ui/badge'
 import { Button } from '../../components/ui/button'
 import { Checkbox } from '../../components/ui/checkbox'
+import { ConfirmDialog } from '../../components/ui/dialog'
+import { Toaster, sonner } from '../../components/ui/sonner'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -275,7 +277,9 @@ export const SelectableRows: Story = {
 }
 
 function RowActions({ address }: { address: string }) {
+  const [confirmOpen, setConfirmOpen] = React.useState(false)
   return (
+    <>
     <DropdownMenu>
       <DropdownMenuTrigger
         render={
@@ -291,9 +295,25 @@ function RowActions({ address }: { address: string }) {
           <DropdownMenuItem><IconShare /> Share</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem variant="destructive"><IconTrash /> Cancel order</DropdownMenuItem>
+        <DropdownMenuItem variant="destructive" onClick={() => setConfirmOpen(true)}>
+          <IconTrash /> Cancel order
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
+    {/* Destructive row actions ask first (DESIGN.md rule 13). */}
+    <ConfirmDialog
+      open={confirmOpen}
+      onOpenChange={setConfirmOpen}
+      destructive
+      size="md"
+      icon={<IconTrash />}
+      title="Cancel this order?"
+      description={`The inspection order for ${address} will be cancelled.`}
+      cancelLabel="Keep order"
+      actionLabel="Cancel order"
+      onAction={() => sonner.success('Order cancelled', { description: address })}
+    />
+    </>
   )
 }
 
@@ -380,6 +400,7 @@ export const WithHeaderAndOptions: Story = {
             )}
           </TableBody>
         </Table>
+        <Toaster />
       </section>
     )
   },

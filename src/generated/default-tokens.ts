@@ -16,7 +16,7 @@ export const defaultColors = {
   electricBlue: '#015AFF',
   teal: '#35BDB2',
   lime: '#D4F269',
-  electricBlueL1: '#C8D0FB',
+  electricBlueL1: '#E6EEFF',
   tealL1: '#BFE8E6',
   limeL1: '#EAF8B0',
   dark100: '#16181D',
