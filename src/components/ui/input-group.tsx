@@ -81,8 +81,8 @@ function InputGroupAddon({
 
 /**
  * Compact button that sits inside the group. Defaults to `ghost` (icon /
- * text action); use `primary` (lime), `secondary` (mint-75) or `tertiary`
- * (outlined) for a filled inline CTA.
+ * text action); use `primary` (mint), `secondary` (navy outline) or `tertiary`
+ * (grey outline) for an inline CTA.
  */
 const inputGroupButtonVariants = cva(
   "text-overline flex items-center gap-1 rounded-md shadow-none",
