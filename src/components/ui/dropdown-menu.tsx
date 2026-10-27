@@ -12,7 +12,7 @@ import {
   productBadges,
   type ProductBadgeKey,
 } from "@/lib/product-badges"
-import { IconTile } from "@/components/ui/icon-tile"
+import { BYBIconTile } from "@/components/BYBIconTile"
 import { IconChevronRight, IconCheck } from "@tabler/icons-react"
 
 function DropdownMenu({ ...props }: MenuPrimitive.Root.Props) {
@@ -398,7 +398,7 @@ function DropdownMenuShortcut({
 
 interface DropdownMenuCardTriggerProps
   extends Omit<MenuPrimitive.Trigger.Props, "title"> {
-  /** Lucide icon for the current selection, shown in a mint IconTile. */
+  /** Lucide icon for the current selection, shown in a mint BYBIconTile. */
   icon?: React.ReactNode
   /** Small uppercase label above the title, e.g. "Inspection type". */
   label?: React.ReactNode
@@ -427,7 +427,7 @@ function DropdownMenuCardTrigger({
       )}
       {...props}
     >
-      {icon && <IconTile tone="mint" size="lg" icon={icon} />}
+      {icon && <BYBIconTile tone="mint" size="lg" icon={icon} />}
       <span className="flex min-w-0 flex-1 flex-col gap-0.5">
         {label && (
           <span className="text-overline text-dark-90">{label}</span>
@@ -484,7 +484,7 @@ function DropdownMenuCardGrid({
 
 interface DropdownMenuCardItemProps
   extends Omit<MenuPrimitive.RadioItem.Props, "title"> {
-  /** Lucide icon, shown in a neutral IconTile. */
+  /** Lucide icon, shown in a neutral BYBIconTile. */
   icon?: React.ReactNode
   /** Background class for the dot, e.g. `bg-badge-product-pest-inspection`. */
   dotClassName?: string
@@ -511,7 +511,7 @@ function DropdownMenuCardItem({
       )}
       {...props}
     >
-      {icon && <IconTile tone="neutral" size="md" icon={icon} />}
+      {icon && <BYBIconTile tone="neutral" size="md" icon={icon} />}
       <span className="flex min-w-0 flex-1 flex-col gap-0.5">
         <span className="flex items-start gap-2">
           {dotClassName && (

@@ -21,17 +21,17 @@ import {
 } from "./ui/chart"
 import {
   CHART_GRID_STROKE,
-  CHART_PALETTE,
+  BYB_CHART_PALETTE,
   CHART_TICK,
   CHART_TOOLTIP_CLASS,
-  ChartFrame,
-  ChartLegendList,
+  BYBChartFrame,
+  BYBChartLegendList,
   formatChartCategory,
   formatChartDate,
   type ChartXValue,
-} from "./ChartFrame"
+} from "./BYBChartFrame"
 
-export interface BarChartSeries {
+export interface BYBBarChartSeries {
   /** Data key for this series' numeric values. */
   key: string
   label: React.ReactNode
@@ -43,16 +43,16 @@ export interface BarChartSeries {
   negativeColor?: string
 }
 
-export type BarChartDatum = Record<string, ChartXValue | null | undefined>
+export type BYBBarChartDatum = Record<string, ChartXValue | null | undefined>
 
-export interface BarChartProps
+export interface BYBBarChartProps
   extends Omit<React.ComponentProps<"div">, "title"> {
   title?: React.ReactNode
   description?: React.ReactNode
-  data: BarChartDatum[]
+  data: BYBBarChartDatum[]
   /** Row key holding the category. Defaults to `"month"` (`"date"` when interactive). */
   xKey?: string
-  series: BarChartSeries[]
+  series: BYBBarChartSeries[]
   /** `vertical` = upright columns (default); `horizontal` = bars running left → right. */
   layout?: "vertical" | "horizontal"
   /** Stack series on top of each other. */
@@ -83,7 +83,7 @@ export interface BarChartProps
 
 const NEGATIVE_PALETTE = ["var(--mint-15)", "var(--mint-45)"] as const
 
-const statToggleVariants = cva(
+const bybStatToggleVariants = cva(
   "flex min-w-28 flex-col items-start gap-1 rounded-md px-4 py-2 text-start transition-colors outline-none hover:text-navy focus-visible:ring-3 focus-visible:ring-ring/50",
   {
     variants: {
@@ -117,7 +117,7 @@ function barRadius(
   return 0
 }
 
-function BarChart({
+function BYBBarChart({
   title,
   description,
   data,
@@ -128,7 +128,7 @@ function BarChart({
   legend = false,
   labels = "none",
   colorBy = "series",
-  colors = [...CHART_PALETTE],
+  colors = [...BYB_CHART_PALETTE],
   activeIndex: activeIndexProp,
   defaultActiveIndex = null,
   onActiveChange,
@@ -139,7 +139,7 @@ function BarChart({
   interactive = false,
   className,
   ...props
-}: BarChartProps) {
+}: BYBBarChartProps) {
   const xKey = xKeyProp ?? (interactive ? "date" : "month")
   const height = heightProp ?? (interactive ? 240 : 200)
   const horizontal = layout === "horizontal"
@@ -160,7 +160,7 @@ function BarChart({
     () =>
       series.map((s, i) => ({
         ...s,
-        color: s.color ?? CHART_PALETTE[i % CHART_PALETTE.length],
+        color: s.color ?? BYB_CHART_PALETTE[i % BYB_CHART_PALETTE.length],
         negativeColor:
           s.negativeColor ?? NEGATIVE_PALETTE[i % NEGATIVE_PALETTE.length],
       })),
@@ -223,7 +223,7 @@ function BarChart({
             key={s.key}
             type="button"
             aria-pressed={active}
-            className={cn(statToggleVariants({ active }))}
+            className={cn(bybStatToggleVariants({ active }))}
             onClick={() => setActiveSeries(s.key)}
           >
             <span className="text-caption-1 text-dark-75">{s.label}</span>
@@ -246,7 +246,7 @@ function BarChart({
   } as const
 
   return (
-    <ChartFrame
+    <BYBChartFrame
       data-slot="bar-chart"
       title={title}
       description={description}
@@ -390,10 +390,10 @@ function BarChart({
         </RechartsBarChart>
       </ChartContainer>
       {legend && (
-        <ChartLegendList items={legendItems} />
+        <BYBChartLegendList items={legendItems} />
       )}
-    </ChartFrame>
+    </BYBChartFrame>
   )
 }
 
-export { BarChart, statToggleVariants }
+export { BYBBarChart, bybStatToggleVariants }

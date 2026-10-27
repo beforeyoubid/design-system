@@ -1,21 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Attachment, FileUploadCard } from '../components/Attachment'
+import { BYBAttachment, BYBFileUploadCard } from '../components/BYBAttachment'
 import { Toaster } from '../components/ui/toast'
 
-const meta: Meta<typeof Attachment> = {
-  title: 'BYB Components/Attachment',
-  component: Attachment,
+const meta: Meta<typeof BYBAttachment> = {
+  title: 'BYB Components/BYBAttachment',
+  component: BYBAttachment,
   tags: ['autodocs'],
   render: (args) => (
     <div className="w-112">
-      <Attachment {...args} />
+      <BYBAttachment {...args} />
       <Toaster />
     </div>
   ),
 }
 
 export default meta
-type Story = StoryObj<typeof Attachment>
+type Story = StoryObj<typeof BYBAttachment>
 
 export const Default: Story = {}
 /** Already-attached files (`defaultFiles`) show as `uploaded` cards: size, upload date, download and delete. */
@@ -45,9 +45,9 @@ export const Disabled: Story = { args: { disabled: true } }
 export const FileCards: Story = {
   render: () => (
     <div className="flex w-112 flex-col gap-2">
-      <FileUploadCard name="Building report.pdf" size={4_200_000} progress={45} status="uploading" />
-      <FileUploadCard name="Pest report.pdf" size={1_800_000} status="completed" />
-      <FileUploadCard name="Strata report.pdf" size={3_100_000} status="error" onRetry={() => {}} />
+      <BYBFileUploadCard name="Building report.pdf" size={4_200_000} progress={45} status="uploading" />
+      <BYBFileUploadCard name="Pest report.pdf" size={1_800_000} status="completed" />
+      <BYBFileUploadCard name="Strata report.pdf" size={3_100_000} status="error" onRetry={() => {}} />
     </div>
   ),
 }
@@ -60,7 +60,7 @@ export const UploadedCard: Story = {
   name: 'Uploaded (already attached)',
   render: () => (
     <div className="flex w-112 flex-col gap-2">
-      <FileUploadCard
+      <BYBFileUploadCard
         name="Contract of sale.pdf"
         size={4_200_000}
         status="uploaded"
@@ -68,7 +68,7 @@ export const UploadedCard: Story = {
         onDownload={() => {}}
         onRemove={() => {}}
       />
-      <FileUploadCard
+      <BYBFileUploadCard
         name="Pest report.pdf"
         size={1_800_000}
         status="completed"

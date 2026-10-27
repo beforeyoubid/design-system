@@ -181,7 +181,7 @@ export const Sizes: Story = {
   ),
 }
 
-/** A header icon (IconTile) centres the header and the actions. */
+/** A header icon (BYBIconTile) centres the header and the actions. */
 export const WithIcon: Story = {
   name: 'With icon',
   render: () => (
@@ -197,7 +197,7 @@ export const WithIcon: Story = {
           <DialogContent>
             <DialogHeader icon={icon} iconTone={tone}>
               <DialogTitle>{title}</DialogTitle>
-              <DialogDescription>Icons come from Lucide and sit on an IconTile in the chosen tone.</DialogDescription>
+              <DialogDescription>Icons come from Lucide and sit on an BYBIconTile in the chosen tone.</DialogDescription>
             </DialogHeader>
             <DialogFooter showCloseButton />
           </DialogContent>

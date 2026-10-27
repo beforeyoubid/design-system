@@ -4,7 +4,7 @@ import { IconCheck, IconExclamationMark } from "@tabler/icons-react"
 
 import { cn } from "../lib/utils"
 
-const stepIndicatorVariants = cva(
+const bybStepIndicatorVariants = cva(
   "flex shrink-0 items-center justify-center rounded-full leading-none font-semibold transition-all duration-250",
   {
     variants: {
@@ -38,10 +38,10 @@ const stepLabelOffset = cva("", {
 })
 
 type StepStatus = NonNullable<
-  VariantProps<typeof stepIndicatorVariants>["status"]
+  VariantProps<typeof bybStepIndicatorVariants>["status"]
 >
 
-export interface StepperStep {
+export interface BYBStepperStep {
   title?: React.ReactNode
   description?: React.ReactNode
   /** Icon element shown when `indicator="icon"`. */
@@ -51,9 +51,9 @@ export interface StepperStep {
   disabled?: boolean
 }
 
-export interface StepperProps
+export interface BYBStepperProps
   extends Omit<React.ComponentProps<"div">, "onChange" | "defaultValue"> {
-  steps: StepperStep[]
+  steps: BYBStepperStep[]
   /** Controlled active step (0-based). Pass `steps.length` to show every step complete. */
   value?: number
   defaultValue?: number
@@ -72,7 +72,7 @@ export interface StepperProps
   breakpoint?: number
 }
 
-function StepperLine({
+function BYBStepperLine({
   on,
   vertical,
   className,
@@ -101,7 +101,7 @@ function StepperLine({
   )
 }
 
-function Stepper({
+function BYBStepper({
   steps,
   value,
   defaultValue = 0,
@@ -114,7 +114,7 @@ function Stepper({
   breakpoint = 560,
   className,
   ...props
-}: StepperProps) {
+}: BYBStepperProps) {
   const [internal, setInternal] = React.useState(defaultValue)
   const current = value ?? internal
   const rootRef = React.useRef<HTMLDivElement>(null)
@@ -144,7 +144,7 @@ function Stepper({
     if (value === undefined) setInternal(i)
     onChange?.(i)
   }
-  const statusOf = (step: StepperStep, i: number): StepStatus =>
+  const statusOf = (step: BYBStepperStep, i: number): StepStatus =>
     step.error
       ? "error"
       : i < current
@@ -152,11 +152,11 @@ function Stepper({
         : i === current
           ? "active"
           : "upcoming"
-  const canClick = (step: StepperStep, i: number) =>
+  const canClick = (step: BYBStepperStep, i: number) =>
     !step.disabled &&
     i !== current &&
     (clickable === "all" || (clickable === "completed" && i < current))
-  const glyph = (step: StepperStep, i: number, status: StepStatus) =>
+  const glyph = (step: BYBStepperStep, i: number, status: StepStatus) =>
     dot ? null : status === "complete" ? (
       <IconCheck />
     ) : status === "error" ? (
@@ -188,7 +188,7 @@ function Stepper({
           const click = canClick(step, i)
           const circle = (
             <span
-              className={stepIndicatorVariants({ size: circleSize, status })}
+              className={bybStepIndicatorVariants({ size: circleSize, status })}
             >
               {glyph(step, i, status)}
             </span>
@@ -246,7 +246,7 @@ function Stepper({
                     )}
                   >
                     {circle}
-                    {!last && <StepperLine vertical on={i < current} />}
+                    {!last && <BYBStepperLine vertical on={i < current} />}
                   </span>
                   {label}
                 </button>
@@ -265,12 +265,12 @@ function Stepper({
                   )}
                 >
                   <span className="flex w-full items-center">
-                    <StepperLine
+                    <BYBStepperLine
                       on={i <= current}
                       className={cn("flex-1", i === 0 && "invisible")}
                     />
                     <span className="mx-2 flex">{circle}</span>
-                    <StepperLine
+                    <BYBStepperLine
                       on={i < current}
                       className={cn("flex-1", last && "invisible")}
                     />
@@ -300,7 +300,7 @@ function Stepper({
                 {label}
               </button>
               {!last && (
-                <StepperLine
+                <BYBStepperLine
                   on={i < current}
                   className={cn("min-w-3 flex-1", dot ? "mx-2" : "mx-5")}
                 />
@@ -313,4 +313,4 @@ function Stepper({
   )
 }
 
-export { Stepper, stepIndicatorVariants }
+export { BYBStepper, bybStepIndicatorVariants }

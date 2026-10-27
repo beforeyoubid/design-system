@@ -13,28 +13,40 @@ export { InputField } from './components/InputField'
 export type { InputFieldProps } from './components/InputField'
 export { SelectField, productSelectOptions } from './components/SelectField'
 export type { SelectFieldProps, SelectFieldOption, SelectFieldOptionGroup } from './components/SelectField'
-export { DatePicker, TimePicker, formatDateDMY } from './components/DatePicker'
-export type { DatePickerProps, TimePickerProps } from './components/DatePicker'
-export { Attachment, FileUploadCard, dropZoneVariants } from './components/Attachment'
-export type {
-  AttachmentProps,
-  AttachmentFile,
-  AttachmentStatus,
-  AttachmentUploadHandlers,
-  FileUploadCardProps,
-} from './components/Attachment'
 
 // =============================================================================
-// BYB design-system components (Claude Design library)
+// BYB components (Rey's design library) — product-specific, no shadcn equivalent
 // =============================================================================
-export { Stepper, stepIndicatorVariants } from './components/Stepper'
-export type { StepperProps, StepperStep } from './components/Stepper'
-export { AreaChart } from './components/AreaChart'
-export type { AreaChartProps, AreaChartSeries, AreaChartRange, AreaChartDatum } from './components/AreaChart'
-export { BarChart, statToggleVariants } from './components/BarChart'
-export type { BarChartProps, BarChartSeries, BarChartDatum } from './components/BarChart'
-export { ChartFrame, ChartLegendList, CHART_PALETTE } from './components/ChartFrame'
-export type { ChartFrameProps, ChartLegendListProps, ChartLegendItem } from './components/ChartFrame'
+export * from './components/BYBIconTile'
+export * from './components/BYBColorDot'
+export { BYBStepper, bybStepIndicatorVariants } from './components/BYBStepper'
+export type { BYBStepperProps, BYBStepperStep } from './components/BYBStepper'
+
+// =============================================================================
+// BYB components kept for side-by-side review while their stock shadcn
+// replacements are styled to match. Removed once the replacements are signed off.
+// =============================================================================
+export * from './components/BYBSpinner'
+export { BYBEmptyState, bybEmptyStateVariants } from './components/BYBEmptyState'
+export type { BYBEmptyStateProps } from './components/BYBEmptyState'
+export { BYBFieldset } from './components/BYBFieldset'
+export type { BYBFieldsetProps } from './components/BYBFieldset'
+export { BYBDatePicker, BYBTimePicker, formatDateDMY } from './components/BYBDatePicker'
+export type { BYBDatePickerProps, BYBTimePickerProps } from './components/BYBDatePicker'
+export { BYBAttachment, BYBFileUploadCard, bybDropZoneVariants } from './components/BYBAttachment'
+export type {
+  BYBAttachmentProps,
+  BYBAttachmentFile,
+  BYBAttachmentStatus,
+  BYBAttachmentUploadHandlers,
+  BYBFileUploadCardProps,
+} from './components/BYBAttachment'
+export { BYBAreaChart } from './components/BYBAreaChart'
+export type { BYBAreaChartProps, BYBAreaChartSeries, BYBAreaChartRange, BYBAreaChartDatum } from './components/BYBAreaChart'
+export { BYBBarChart, bybStatToggleVariants } from './components/BYBBarChart'
+export type { BYBBarChartProps, BYBBarChartSeries, BYBBarChartDatum } from './components/BYBBarChart'
+export { BYBChartFrame, BYBChartLegendList, BYB_CHART_PALETTE } from './components/BYBChartFrame'
+export type { BYBChartFrameProps, BYBChartLegendListProps, BYBChartLegendItem } from './components/BYBChartFrame'
 
 // =============================================================================
 // shadcn/ui primitives — generated via `npx shadcn add` against base-maia
@@ -53,7 +65,6 @@ export * from './components/ui/carousel'
 export * from './components/ui/chart'
 export * from './components/ui/checkbox'
 export * from './components/ui/collapsible'
-export * from './components/ui/color-dot'
 export * from './components/ui/command'
 export * from './components/ui/context-menu'
 export * from './components/ui/dialog'
@@ -62,7 +73,6 @@ export * from './components/ui/empty'
 export * from './components/ui/dropdown-menu'
 export * from './components/ui/field'
 export * from './components/ui/hover-card'
-export * from './components/ui/icon-tile'
 export * from './components/ui/input'
 export * from './components/ui/input-group'
 export * from './components/ui/input-otp'
@@ -81,7 +91,6 @@ export * from './components/ui/sheet'
 export * from './components/ui/sidebar'
 export * from './components/ui/skeleton'
 export * from './components/ui/slider'
-export * from './components/ui/spinner'
 export * from './components/ui/toast'
 export * from './components/ui/switch'
 export * from './components/ui/table'

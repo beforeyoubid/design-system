@@ -44,7 +44,7 @@ function useControllableOpen(
 }
 
 // =============================================================================
-// TimePicker
+// BYBTimePicker
 // =============================================================================
 
 const pad = (n: number) => String(n).padStart(2, "0")
@@ -58,7 +58,7 @@ function parseTime(value?: string) {
   }
 }
 
-export interface TimePickerProps {
+export interface BYBTimePickerProps {
   /** "HH:MM" or "HH:MM:SS" (24-hour). Seconds are shown when the value has them or `withSeconds` is set. */
   value?: string
   onChange?: (time: string) => void
@@ -153,7 +153,7 @@ function TimeColumn({
 }
 
 /** 40px trigger that opens a popover with hour / minute (/ second) columns. */
-function TimePicker({
+function BYBTimePicker({
   value,
   onChange,
   placeholder = "Select a time",
@@ -164,7 +164,7 @@ function TimePicker({
   onOpenChange,
   className,
   "aria-label": ariaLabel = "Time",
-}: TimePickerProps) {
+}: BYBTimePickerProps) {
   const [open, setOpen] = useControllableOpen(openProp, onOpenChange)
   const { hour, minute, second } = parseTime(value)
   const showSeconds = withSeconds ?? second !== undefined
@@ -222,10 +222,10 @@ function TimePicker({
 }
 
 // =============================================================================
-// DatePicker
+// BYBDatePicker
 // =============================================================================
 
-export interface DatePickerProps {
+export interface BYBDatePickerProps {
   value?: Date
   onChange?: (date: Date | undefined) => void
   placeholder?: string
@@ -233,7 +233,7 @@ export interface DatePickerProps {
   icon?: "chevron" | "calendar"
   /** Override the shown text, e.g. "In 2 days" for natural-language input. */
   displayValue?: string
-  /** Pass a "HH:MM" or "HH:MM:SS" string to show a TimePicker beside the date. */
+  /** Pass a "HH:MM" or "HH:MM:SS" string to show a BYBTimePicker beside the date. */
   time?: string
   onTimeChange?: (time: string) => void
   /** Helper line under the control. */
@@ -256,8 +256,8 @@ export interface DatePickerProps {
 const formatDateDMY = (d: Date) =>
   `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()}`
 
-/** 40px trigger that opens a popover Calendar, with an optional TimePicker. */
-function DatePicker({
+/** 40px trigger that opens a popover Calendar, with an optional BYBTimePicker. */
+function BYBDatePicker({
   value,
   onChange,
   placeholder = "DD/MM/YYYY",
@@ -274,7 +274,7 @@ function DatePicker({
   formatDate = formatDateDMY,
   className,
   triggerClassName,
-}: DatePickerProps) {
+}: BYBDatePickerProps) {
   const [open, setOpen] = useControllableOpen(openProp, onOpenChange)
   const text = displayValue || (value ? formatDate(value) : "")
 
@@ -315,7 +315,7 @@ function DatePicker({
           </PopoverContent>
         </Popover>
         {time !== undefined && (
-          <TimePicker
+          <BYBTimePicker
             value={time}
             onChange={onTimeChange}
             disabled={disabled}
@@ -330,4 +330,4 @@ function DatePicker({
   )
 }
 
-export { DatePicker, TimePicker, formatDateDMY }
+export { BYBDatePicker, BYBTimePicker, formatDateDMY }

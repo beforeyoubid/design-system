@@ -48,6 +48,7 @@
     "dev": "tsup --watch",
     "lint": "eslint src --ext .ts,.tsx",
     "type-check": "tsc --noEmit",
+    "type-check:stories": "tsc --noEmit -p tsconfig.stories.json",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "check-tokens": "node scripts/generate-tokens.mjs --check",

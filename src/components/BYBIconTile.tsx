@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
  * Dialog and the product DropdownMenu so every icon chip in the library looks
  * the same.
  */
-const iconTileVariants = cva(
+const bybIconTileVariants = cva(
   "inline-flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0",
   {
     variants: {
@@ -34,17 +34,17 @@ const iconTileVariants = cva(
   }
 )
 
-type IconTileTone = NonNullable<VariantProps<typeof iconTileVariants>["tone"]>
+type BYBIconTileTone = NonNullable<VariantProps<typeof bybIconTileVariants>["tone"]>
 
-interface IconTileProps
+interface BYBIconTileProps
   extends Omit<React.ComponentProps<"span">, "children">,
-    VariantProps<typeof iconTileVariants> {
+    VariantProps<typeof bybIconTileVariants> {
   /** The icon element, e.g. `<Bug />` from `@beforeyoubid/design-system/icons/lucide`. */
   icon?: React.ReactNode
   children?: React.ReactNode
 }
 
-function IconTile({
+function BYBIconTile({
   icon,
   children,
   tone,
@@ -52,13 +52,13 @@ function IconTile({
   shape,
   className,
   ...props
-}: IconTileProps) {
+}: BYBIconTileProps) {
   return (
     <span
       data-slot="icon-tile"
       data-tone={tone ?? "mint"}
       aria-hidden={props["aria-label"] ? undefined : true}
-      className={cn(iconTileVariants({ tone, size, shape }), className)}
+      className={cn(bybIconTileVariants({ tone, size, shape }), className)}
       {...props}
     >
       {icon ?? children}
@@ -66,5 +66,5 @@ function IconTile({
   )
 }
 
-export { IconTile, iconTileVariants }
-export type { IconTileProps, IconTileTone }
+export { BYBIconTile, bybIconTileVariants }
+export type { BYBIconTileProps, BYBIconTileTone }

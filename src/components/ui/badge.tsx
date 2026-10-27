@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
-import { Spinner } from "@/components/ui/spinner"
+import { BYBSpinner } from "@/components/BYBSpinner"
 
 const badgeVariants = cva(
   "group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full border border-transparent font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none",
@@ -155,7 +155,7 @@ type BadgeProduct = NonNullable<
 
 export type BadgeProps = useRender.ComponentProps<"span"> &
   VariantProps<typeof badgeVariants> & {
-    /** Show a small Spinner in the tone's text colour before the label (e.g. "Syncing"). */
+    /** Show a small BYBSpinner in the tone's text colour before the label (e.g. "Syncing"). */
     spinner?: boolean
     /** Icon element, e.g. `<Clock />` from Lucide. Sized by `size` (16px on `lg`). */
     icon?: React.ReactNode
@@ -191,7 +191,7 @@ function Badge({
     : icon
   const prefix =
     !filled && spinner ? (
-      <Spinner size="sm" color="current" label="Loading" />
+      <BYBSpinner size="sm" color="current" label="Loading" />
     ) : iconPosition === "left" ? (
       iconNode
     ) : null

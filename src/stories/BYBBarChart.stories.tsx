@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { useState } from 'react'
-import { BarChart } from '../components/BarChart'
+import { BYBBarChart } from '../components/BYBBarChart'
 
 const monthly = [
   { month: 'January', desktop: 186, mobile: 80 },
@@ -41,9 +41,9 @@ const both = [
   { key: 'mobile', label: 'Mobile' },
 ]
 
-const meta: Meta<typeof BarChart> = {
-  title: 'BYB Components/BarChart',
-  component: BarChart,
+const meta: Meta<typeof BYBBarChart> = {
+  title: 'BYB Components/BYBBarChart',
+  component: BYBBarChart,
   tags: ['autodocs'],
   argTypes: {
     layout: { control: 'select', options: ['vertical', 'horizontal'] },
@@ -68,7 +68,7 @@ const meta: Meta<typeof BarChart> = {
 }
 
 export default meta
-type Story = StoryObj<typeof BarChart>
+type Story = StoryObj<typeof BYBBarChart>
 
 export const Default: Story = {}
 
@@ -116,7 +116,7 @@ export const Selectable: Story = {
     const [active, setActive] = useState<number | null>(1)
     return (
       <div className="flex flex-col gap-2">
-        <BarChart
+        <BYBBarChart
           {...args}
           selectable
           activeIndex={active}

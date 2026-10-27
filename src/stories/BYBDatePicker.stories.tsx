@@ -1,10 +1,10 @@
 import * as React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { DatePicker, TimePicker } from '../components/DatePicker'
+import { BYBDatePicker, BYBTimePicker } from '../components/BYBDatePicker'
 
-const meta: Meta<typeof DatePicker> = {
-  title: 'BYB Components/DatePicker',
-  component: DatePicker,
+const meta: Meta<typeof BYBDatePicker> = {
+  title: 'BYB Components/BYBDatePicker',
+  component: BYBDatePicker,
   tags: ['autodocs'],
   argTypes: {
     icon: { control: 'select', options: ['chevron', 'calendar'] },
@@ -15,7 +15,7 @@ const meta: Meta<typeof DatePicker> = {
     const [time, setTime] = React.useState(args.time)
     return (
       <div className="h-96">
-        <DatePicker
+        <BYBDatePicker
           {...args}
           value={date}
           onChange={setDate}
@@ -28,7 +28,7 @@ const meta: Meta<typeof DatePicker> = {
 }
 
 export default meta
-type Story = StoryObj<typeof DatePicker>
+type Story = StoryObj<typeof BYBDatePicker>
 
 export const Default: Story = {}
 export const CalendarIcon: Story = { args: { icon: 'calendar' } }
@@ -55,17 +55,17 @@ export const DateFormat: Story = {
 }
 
 /** The time picker on its own: same trigger and popover as the date picker. */
-export const StandaloneTimePicker: StoryObj<typeof TimePicker> = {
+export const StandaloneTimePicker: StoryObj<typeof BYBTimePicker> = {
   render: function Render() {
     const [time, setTime] = React.useState('')
     const [withSec, setWithSec] = React.useState('09:15:30')
     const [stepped, setStepped] = React.useState('14:30')
     return (
       <div className="flex h-96 items-start gap-4">
-        <TimePicker value={time} onChange={setTime} />
-        <TimePicker value={withSec} onChange={setWithSec} />
-        <TimePicker value={stepped} onChange={setStepped} minuteStep={15} />
-        <TimePicker value="08:00" disabled />
+        <BYBTimePicker value={time} onChange={setTime} />
+        <BYBTimePicker value={withSec} onChange={setWithSec} />
+        <BYBTimePicker value={stepped} onChange={setStepped} minuteStep={15} />
+        <BYBTimePicker value="08:00" disabled />
       </div>
     )
   },

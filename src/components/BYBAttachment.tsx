@@ -15,20 +15,20 @@ import { cn } from "../lib/utils"
 import { ConfirmDialog } from "./ui/dialog"
 import { ProgressIndicator, ProgressTrack } from "./ui/progress"
 import { toast } from "./ui/toast"
-import { Spinner } from "./ui/spinner"
+import { BYBSpinner } from "./BYBSpinner"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 
 /**
  * uploading · completed (just uploaded) · error · uploaded (already attached,
  * e.g. loaded from the server: shows the upload date and a download action).
  */
-export type AttachmentStatus = "uploading" | "completed" | "error" | "uploaded"
+export type BYBAttachmentStatus = "uploading" | "completed" | "error" | "uploaded"
 
-export interface AttachmentFile {
+export interface BYBAttachmentFile {
   name: string
   /** Bytes */
   size: number
-  status?: AttachmentStatus
+  status?: BYBAttachmentStatus
   /** 0–100 */
   progress?: number
   error?: string
@@ -38,7 +38,7 @@ export interface AttachmentFile {
   url?: string
 }
 
-export interface AttachmentUploadHandlers {
+export interface BYBAttachmentUploadHandlers {
   onProgress: (percent: number) => void
   onDone: () => void
   onError: (message: string) => void
@@ -109,17 +109,17 @@ function CardAction({
 }
 
 // -----------------------------------------------------------------------------
-// FileUploadCard
+// BYBFileUploadCard
 // -----------------------------------------------------------------------------
 
-export interface FileUploadCardProps
+export interface BYBFileUploadCardProps
   extends Omit<React.ComponentProps<"div">, "children"> {
   name: string
   /** Bytes */
   size?: number
   /** 0–100 */
   progress?: number
-  status?: AttachmentStatus
+  status?: BYBAttachmentStatus
   error?: string
   /** × while uploading */
   onCancel?: () => void
@@ -135,7 +135,7 @@ export interface FileUploadCardProps
   onDownload?: () => void
 }
 
-function FileUploadCard({
+function BYBFileUploadCard({
   name,
   size = 0,
   progress = 0,
@@ -149,7 +149,7 @@ function FileUploadCard({
   onDownload,
   className,
   ...props
-}: FileUploadCardProps) {
+}: BYBFileUploadCardProps) {
   if (status === "uploaded") {
     const canDownload = !!(downloadHref || onDownload)
     return (
@@ -238,7 +238,7 @@ function FileUploadCard({
             </span>
             {uploading && (
               <span className="inline-flex items-center gap-1 text-dark-75">
-                <Spinner size="sm" variant="dots" label="Uploading" />
+                <BYBSpinner size="sm" variant="dots" label="Uploading" />
                 Uploading
               </span>
             )}
@@ -322,10 +322,10 @@ function FileUploadCard({
 }
 
 // -----------------------------------------------------------------------------
-// Attachment
+// BYBAttachment
 // -----------------------------------------------------------------------------
 
-const dropZoneVariants = cva(
+const bybDropZoneVariants = cva(
   "flex min-h-26 items-center justify-center gap-2.5 rounded-lg border border-dashed p-4 text-center text-body-4 outline-none transition-all duration-150",
   {
     variants: {
@@ -354,9 +354,9 @@ const dropZoneIconVariants = cva("size-5 shrink-0", {
   defaultVariants: { state: "default" },
 })
 
-type AttachmentItem = AttachmentFile & { id: string; file?: File }
+type BYBAttachmentItem = BYBAttachmentFile & { id: string; file?: File }
 
-export interface AttachmentProps {
+export interface BYBAttachmentProps {
   label?: React.ReactNode
   /** Appends "(optional)" to the label. */
   optional?: boolean
@@ -380,9 +380,9 @@ export interface AttachmentProps {
    * Files already attached. Shown as `uploaded` cards (size, upload date,
    * download + delete) unless they set their own `status`.
    */
-  defaultFiles?: AttachmentFile[]
+  defaultFiles?: BYBAttachmentFile[]
   /** Download handler; files with a `url` download from it without this. */
-  onDownload?: (file: AttachmentFile) => void
+  onDownload?: (file: BYBAttachmentFile) => void
   /**
    * Ask for confirmation in a destructive `ConfirmDialog` before deleting a
    * file (not when cancelling an upload). Default true.
@@ -393,14 +393,14 @@ export interface AttachmentProps {
    * deleted (not when an upload is cancelled). Default true. Needs `<Toaster />`.
    */
   deleteToast?: boolean
-  onFilesChange?: (files: AttachmentFile[]) => void
+  onFilesChange?: (files: BYBAttachmentFile[]) => void
   /** Real upload hook. Omit to simulate progress (useful for prototypes and stories). */
-  onUpload?: (file: File, handlers: AttachmentUploadHandlers) => void
+  onUpload?: (file: File, handlers: BYBAttachmentUploadHandlers) => void
   className?: string
 }
 
 /** Labelled drop zone + file list with upload progress, retry and remove. */
-function Attachment({
+function BYBAttachment({
   label = "Attachments",
   optional = true,
   hint = "PDF or DOCX. Maximum file size 28 MB.",
@@ -417,8 +417,8 @@ function Attachment({
   deleteToast = true,
   confirmDelete = true,
   className,
-}: AttachmentProps) {
-  const [files, setFiles] = React.useState<AttachmentItem[]>(() =>
+}: BYBAttachmentProps) {
+  const [files, setFiles] = React.useState<BYBAttachmentItem[]>(() =>
     defaultFiles.map((f, i) => ({
       id: `d${i}`,
       status: "uploaded",
@@ -428,7 +428,7 @@ function Attachment({
   )
   const [dragging, setDragging] = React.useState(false)
   // File waiting for the delete confirmation (kept while the dialog animates out).
-  const [pendingDelete, setPendingDelete] = React.useState<AttachmentItem | null>(null)
+  const [pendingDelete, setPendingDelete] = React.useState<BYBAttachmentItem | null>(null)
   const [confirmOpen, setConfirmOpen] = React.useState(false)
   const [invalid, setInvalid] = React.useState("")
   const inputRef = React.useRef<HTMLInputElement>(null)
@@ -461,10 +461,10 @@ function Attachment({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [files])
 
-  const patch = (id: string, p: Partial<AttachmentItem>) =>
+  const patch = (id: string, p: Partial<BYBAttachmentItem>) =>
     setFiles((fs) => fs.map((f) => (f.id === id ? { ...f, ...p } : f)))
 
-  const start = (item: AttachmentItem) => {
+  const start = (item: BYBAttachmentItem) => {
     patch(item.id, { status: "uploading", progress: 0, error: undefined })
     if (onUpload && item.file) {
       onUpload(item.file, {
@@ -515,7 +515,7 @@ function Attachment({
     if (!arr.length) return
     const ok = arr.filter(accepts)
     setInvalid(ok.length < arr.length ? invalidText : "")
-    const items: AttachmentItem[] = (multiple ? ok : ok.slice(0, 1)).map(
+    const items: BYBAttachmentItem[] = (multiple ? ok : ok.slice(0, 1)).map(
       (file) => ({
         id: `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
         name: file.name,
@@ -579,8 +579,8 @@ function Attachment({
   const single = !multiple && files.length > 0
   const first = files[0]
 
-  const card = (f: AttachmentItem) => (
-    <FileUploadCard
+  const card = (f: BYBAttachmentItem) => (
+    <BYBFileUploadCard
       key={f.id}
       name={f.name}
       size={f.size}
@@ -667,7 +667,7 @@ function Attachment({
             setDragging(false)
             add(e.dataTransfer.files)
           }}
-          className={dropZoneVariants({ state })}
+          className={bybDropZoneVariants({ state })}
         >
           <IconFileUpload className={dropZoneIconVariants({ state })} />
           <span>
@@ -737,4 +737,4 @@ function Attachment({
   )
 }
 
-export { Attachment, FileUploadCard, dropZoneVariants }
+export { BYBAttachment, BYBFileUploadCard, bybDropZoneVariants }

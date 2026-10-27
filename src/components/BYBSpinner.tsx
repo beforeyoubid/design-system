@@ -4,7 +4,7 @@ import { IconLoader, IconLoader2 } from "@tabler/icons-react"
 
 import { cn } from "@/lib/utils"
 
-const spinnerVariants = cva("shrink-0", {
+const bybSpinnerVariants = cva("shrink-0", {
   variants: {
     size: {
       sm: "size-3",
@@ -32,15 +32,15 @@ const spinnerVariants = cva("shrink-0", {
   },
 })
 
-export interface SpinnerProps
+export interface BYBSpinnerProps
   extends Omit<React.ComponentProps<"svg">, "color">,
-    VariantProps<typeof spinnerVariants> {
+    VariantProps<typeof bybSpinnerVariants> {
   /** Screen-reader text. Default "Loading". */
   label?: string
   strokeWidth?: number
 }
 
-function Spinner({
+function BYBSpinner({
   className,
   size,
   color,
@@ -48,7 +48,7 @@ function Spinner({
   label = "Loading",
   strokeWidth = 2,
   ...props
-}: SpinnerProps) {
+}: BYBSpinnerProps) {
   const Glyph = variant === "dots" ? IconLoader : IconLoader2
   return (
     <Glyph
@@ -56,10 +56,10 @@ function Spinner({
       role="status"
       aria-label={label}
       stroke={strokeWidth}
-      className={cn(spinnerVariants({ size, color, variant }), className)}
+      className={cn(bybSpinnerVariants({ size, color, variant }), className)}
       {...props}
     />
   )
 }
 
-export { Spinner, spinnerVariants }
+export { BYBSpinner, bybSpinnerVariants }

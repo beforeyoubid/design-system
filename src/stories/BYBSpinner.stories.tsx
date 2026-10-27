@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Spinner } from '../../components/ui/spinner'
+import { BYBSpinner } from '../components/BYBSpinner'
 
-const meta: Meta<typeof Spinner> = {
-  title: 'BYB Components/Spinner',
-  component: Spinner,
+const meta: Meta<typeof BYBSpinner> = {
+  title: 'BYB Components/BYBSpinner',
+  component: BYBSpinner,
   tags: ['autodocs'],
   argTypes: {
     size: { control: 'select', options: ['sm', 'md', 'lg', 'xl'] },
@@ -13,7 +13,7 @@ const meta: Meta<typeof Spinner> = {
 }
 
 export default meta
-type Story = StoryObj<typeof Spinner>
+type Story = StoryObj<typeof BYBSpinner>
 
 export const Default: Story = {}
 export const Dots: Story = { args: { variant: 'dots' } }
@@ -24,13 +24,13 @@ export const AllVariants: Story = {
       {(['ring', 'dots'] as const).map((variant) => (
         <div key={variant} className="flex items-center gap-4">
           {(['sm', 'md', 'lg', 'xl'] as const).map((size) => (
-            <Spinner key={size} variant={variant} size={size} />
+            <BYBSpinner key={size} variant={variant} size={size} />
           ))}
           {(['mint', 'lime', 'navy'] as const).map((color) => (
-            <Spinner key={color} variant={variant} size="lg" color={color} />
+            <BYBSpinner key={color} variant={variant} size="lg" color={color} />
           ))}
           <span className="inline-flex items-center gap-1 text-error-75">
-            <Spinner variant={variant} color="current" /> current
+            <BYBSpinner variant={variant} color="current" /> current
           </span>
         </div>
       ))}

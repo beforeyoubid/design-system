@@ -24,17 +24,17 @@ import {
 } from "./ui/select"
 import {
   CHART_GRID_STROKE,
-  CHART_PALETTE,
+  BYB_CHART_PALETTE,
   CHART_TICK,
   CHART_TOOLTIP_CLASS,
-  ChartFrame,
-  ChartLegendList,
+  BYBChartFrame,
+  BYBChartLegendList,
   formatChartCategory,
   formatChartDate,
   type ChartXValue,
-} from "./ChartFrame"
+} from "./BYBChartFrame"
 
-export interface AreaChartSeries {
+export interface BYBAreaChartSeries {
   /** Data key for this series' numeric values. */
   key: string
   label: React.ReactNode
@@ -44,24 +44,24 @@ export interface AreaChartSeries {
   icon?: React.ComponentType<{ className?: string }>
 }
 
-export interface AreaChartRange {
+export interface BYBAreaChartRange {
   value: string
   label: React.ReactNode
   /** Days to show; defaults to the leading number in `value` (e.g. "30d" → 30). */
   days?: number
 }
 
-export type AreaChartDatum = Record<string, ChartXValue | null | undefined>
+export type BYBAreaChartDatum = Record<string, ChartXValue | null | undefined>
 
-export interface AreaChartProps
+export interface BYBAreaChartProps
   extends Omit<React.ComponentProps<"div">, "title"> {
   title?: React.ReactNode
   description?: React.ReactNode
-  data: AreaChartDatum[]
+  data: BYBAreaChartDatum[]
   /** Row key holding the x value. Defaults to `"month"` (`"date"` when interactive). */
   xKey?: string
   /** Series in stacking order; the first renders at the bottom. */
-  series: AreaChartSeries[]
+  series: BYBAreaChartSeries[]
   /** `natural` = smooth monotone curve (default), `linear`, or `step`. */
   curve?: "natural" | "linear" | "step"
   /** Stack series on top of each other. Default `true`. */
@@ -84,7 +84,7 @@ export interface AreaChartProps
   caption?: React.ReactNode
   /** Daily data with a date-range Select in the header (also turns the legend on). */
   interactive?: boolean
-  ranges?: AreaChartRange[]
+  ranges?: BYBAreaChartRange[]
   defaultRange?: string
 }
 
@@ -94,7 +94,7 @@ const CURVE_TYPE = {
   step: "step",
 } as const
 
-const DEFAULT_RANGES: AreaChartRange[] = [
+const DEFAULT_RANGES: BYBAreaChartRange[] = [
   { value: "90d", label: "Last 3 months" },
   { value: "30d", label: "Last 30 days" },
   { value: "7d", label: "Last 7 days" },
@@ -102,7 +102,7 @@ const DEFAULT_RANGES: AreaChartRange[] = [
 
 const DAY_MS = 24 * 60 * 60 * 1000
 
-function rangeDays(range: AreaChartRange | undefined) {
+function rangeDays(range: BYBAreaChartRange | undefined) {
   if (!range) return undefined
   if (range.days != null) return range.days
   const parsed = parseInt(range.value, 10)
@@ -120,7 +120,7 @@ function niceMax(value: number) {
   return Math.ceil(value / step) * step
 }
 
-function AreaChart({
+function BYBAreaChart({
   title,
   description,
   data,
@@ -141,7 +141,7 @@ function AreaChart({
   defaultRange,
   className,
   ...props
-}: AreaChartProps) {
+}: BYBAreaChartProps) {
   const xKey = xKeyProp ?? (interactive ? "date" : "month")
   const height = heightProp ?? (interactive ? 220 : 200)
   const gradientId = React.useId().replace(/:/g, "")
@@ -153,7 +153,7 @@ function AreaChart({
     () =>
       series.map((s, i) => ({
         ...s,
-        color: s.color ?? CHART_PALETTE[i % CHART_PALETTE.length],
+        color: s.color ?? BYB_CHART_PALETTE[i % BYB_CHART_PALETTE.length],
       })),
     [series]
   )
@@ -222,7 +222,7 @@ function AreaChart({
   ) : undefined
 
   return (
-    <ChartFrame
+    <BYBChartFrame
       data-slot="area-chart"
       title={title}
       description={description}
@@ -327,13 +327,13 @@ function AreaChart({
         </RechartsAreaChart>
       </ChartContainer>
       {showLegend && (
-        <ChartLegendList
+        <BYBChartLegendList
           items={resolvedSeries}
           useIcons={legendIcons}
         />
       )}
-    </ChartFrame>
+    </BYBChartFrame>
   )
 }
 
-export { AreaChart }
+export { BYBAreaChart }

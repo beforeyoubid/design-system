@@ -58,7 +58,7 @@ export const Invalid: Story = {
   ),
 }
 
-/** Sections split by a `FieldSeparator` (replaces Fieldset `divided`). */
+/** Sections split by a `FieldSeparator` (replaces BYBFieldset `divided`). */
 export const Separated: Story = {
   render: () => (
     <div className="w-96">

@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
-import { Spinner } from "@/components/ui/spinner"
+import { BYBSpinner } from "@/components/BYBSpinner"
 
 // Mint fill, matching the live buttons. Moving primary to lime is planned for later.
 const PRIMARY =
@@ -66,7 +66,7 @@ const buttonVariants = cva(
 export interface ButtonProps
   extends ButtonPrimitive.Props,
     VariantProps<typeof buttonVariants> {
-  /** Shows a Spinner before the label, dims to 70% and blocks clicks (aria-busy). */
+  /** Shows a BYBSpinner before the label, dims to 70% and blocks clicks (aria-busy). */
   loading?: boolean
   /** Icon element, e.g. `<IconArrowUpRight />`. Hidden while `loading`. */
   icon?: React.ReactNode
@@ -102,7 +102,7 @@ function Button({
       {...props}
     >
       {loading && (
-        <Spinner
+        <BYBSpinner
           color="current"
           size={size === "sm" || size === "xs" ? "md" : "lg"}
           label="Loading"

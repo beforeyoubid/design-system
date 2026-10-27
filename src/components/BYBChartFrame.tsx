@@ -8,7 +8,7 @@ import { cn } from "../lib/utils"
 /* -------------------------------------------------------------------------- */
 
 /** Default series palette: mint scale, light → dark. */
-export const CHART_PALETTE = [
+export const BYB_CHART_PALETTE = [
   "var(--mint-30)",
   "var(--mint-60)",
   "var(--mint-90)",
@@ -42,28 +42,28 @@ export function formatChartCategory(value: unknown) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* ChartLegendList                                                            */
+/* BYBChartLegendList                                                            */
 /* -------------------------------------------------------------------------- */
 
-export interface ChartLegendItem {
+export interface BYBChartLegendItem {
   key: string
   label: React.ReactNode
   color: string
   icon?: React.ComponentType<{ className?: string }>
 }
 
-export interface ChartLegendListProps extends React.ComponentProps<"ul"> {
-  items: ChartLegendItem[]
+export interface BYBChartLegendListProps extends React.ComponentProps<"ul"> {
+  items: BYBChartLegendItem[]
   /** Render each item's `icon` instead of the colour swatch. */
   useIcons?: boolean
 }
 
-function ChartLegendList({
+function BYBChartLegendList({
   items,
   useIcons = false,
   className,
   ...props
-}: ChartLegendListProps) {
+}: BYBChartLegendListProps) {
   return (
     <ul
       data-slot="chart-legend"
@@ -94,10 +94,10 @@ function ChartLegendList({
 }
 
 /* -------------------------------------------------------------------------- */
-/* ChartFrame                                                                 */
+/* BYBChartFrame                                                                 */
 /* -------------------------------------------------------------------------- */
 
-export interface ChartFrameProps
+export interface BYBChartFrameProps
   extends Omit<React.ComponentProps<"div">, "title"> {
   title?: React.ReactNode
   description?: React.ReactNode
@@ -110,10 +110,10 @@ export interface ChartFrameProps
 }
 
 /**
- * Card shell shared by `AreaChart` and `BarChart`: title / description header,
+ * Card shell shared by `BYBAreaChart` and `BYBBarChart`: title / description header,
  * optional header action, the chart body, and a trend + caption footer.
  */
-function ChartFrame({
+function BYBChartFrame({
   title,
   description,
   action,
@@ -122,7 +122,7 @@ function ChartFrame({
   className,
   children,
   ...props
-}: ChartFrameProps) {
+}: BYBChartFrameProps) {
   const hasHeader = Boolean(title || description || action)
   const hasFooter = Boolean(trend || caption)
 
@@ -170,4 +170,4 @@ function ChartFrame({
   )
 }
 
-export { ChartFrame, ChartLegendList }
+export { BYBChartFrame, BYBChartLegendList }

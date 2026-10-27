@@ -138,11 +138,11 @@ export interface SelectItemProps
     VariantProps<typeof selectItemVariants> {
   /**
    * Right-aligned content: a count ("12"), hint ("VIC only") or any node, e.g.
-   * a `<ColorDot />`. On single-select rows it replaces the trailing check;
+   * a `<BYBColorDot />`. On single-select rows it replaces the trailing check;
    * the mint row fill still marks the selection.
    */
   meta?: React.ReactNode
-  /** Leading content before the label, e.g. an icon, avatar or `<ColorDot />`. */
+  /** Leading content before the label, e.g. an icon, avatar or `<BYBColorDot />`. */
   start?: React.ReactNode
 }
 

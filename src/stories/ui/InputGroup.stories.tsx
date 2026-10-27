@@ -15,7 +15,7 @@ import {
   InputGroupText,
   InputGroupTextarea,
 } from '../../components/ui/input-group'
-import { Spinner } from '../../components/ui/spinner'
+import { BYBSpinner } from '../../components/BYBSpinner'
 
 const meta: Meta<typeof InputGroup> = {
   title: 'BYB Components/InputGroup',
@@ -112,7 +112,7 @@ export const Loading: Story = {
       </InputGroupAddon>
       <InputGroupInput defaultValue="12 Smith St" />
       <InputGroupAddon align="inline-end">
-        <Spinner size="md" />
+        <BYBSpinner size="md" />
       </InputGroupAddon>
     </InputGroup>
   ),

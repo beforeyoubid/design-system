@@ -8,7 +8,7 @@ import { ChevronDown, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { IconTile, type IconTileTone } from "@/components/ui/icon-tile"
+import { BYBIconTile, type BYBIconTileTone } from "@/components/BYBIconTile"
 
 function Dialog({ ...props }: DialogPrimitive.Root.Props) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />
@@ -97,10 +97,10 @@ function DialogContent({
 }
 
 interface DialogHeaderProps extends React.ComponentProps<"div"> {
-  /** Lucide icon in an `IconTile` on the left, in one row with the title. */
+  /** Lucide icon in an `BYBIconTile` on the left, in one row with the title. */
   icon?: React.ReactNode
-  /** IconTile colour. Default `mint`; use `error` for destructive confirms. */
-  iconTone?: IconTileTone
+  /** BYBIconTile colour. Default `mint`; use `error` for destructive confirms. */
+  iconTone?: BYBIconTileTone
 }
 
 function DialogHeader({
@@ -125,7 +125,7 @@ function DialogHeader({
       )}
       {...props}
     >
-      {icon && <IconTile tone={iconTone} size="md" icon={icon} />}
+      {icon && <BYBIconTile tone={iconTone} size="md" icon={icon} />}
       {children}
     </div>
   )
@@ -295,10 +295,10 @@ export interface ConfirmDialogProps {
   onAction?: () => void
   /** Use the red destructive Button for the action. */
   destructive?: boolean
-  /** Lucide icon in an IconTile left of the title (one row). */
+  /** Lucide icon in an BYBIconTile left of the title (one row). */
   icon?: React.ReactNode
-  /** IconTile colour. Defaults to `error` when `destructive`, else `mint`. */
-  iconTone?: IconTileTone
+  /** BYBIconTile colour. Defaults to `error` when `destructive`, else `mint`. */
+  iconTone?: BYBIconTileTone
   size?: VariantProps<typeof dialogContentVariants>["size"]
   className?: string
 }

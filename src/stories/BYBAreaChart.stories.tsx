@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { IconDeviceDesktop, IconDeviceMobile } from '@tabler/icons-react'
-import { AreaChart } from '../components/AreaChart'
+import { BYBAreaChart } from '../components/BYBAreaChart'
 
 const monthly = [
   { month: 'January', desktop: 186, mobile: 80 },
@@ -26,9 +26,9 @@ const daily = Array.from({ length: 91 }, (_, i) => {
   }
 })
 
-const meta: Meta<typeof AreaChart> = {
-  title: 'BYB Components/AreaChart',
-  component: AreaChart,
+const meta: Meta<typeof BYBAreaChart> = {
+  title: 'BYB Components/BYBAreaChart',
+  component: BYBAreaChart,
   tags: ['autodocs'],
   argTypes: {
     curve: { control: 'select', options: ['natural', 'linear', 'step'] },
@@ -51,7 +51,7 @@ const meta: Meta<typeof AreaChart> = {
 }
 
 export default meta
-type Story = StoryObj<typeof AreaChart>
+type Story = StoryObj<typeof BYBAreaChart>
 
 export const Default: Story = {
   args: { series: [{ key: 'desktop', label: 'Desktop' }] },
