@@ -13,7 +13,7 @@ import {
 import { ArrowUpRight, FileText, Gavel, Home, Link, Send, ShieldCheck } from 'lucide-react'
 import { Button } from '../../components/ui/button'
 import { ConfirmDialog } from '../../components/ui/dialog'
-import { Toaster, sonner } from '../../components/ui/sonner'
+import { Toaster, toast } from '../../components/ui/toast'
 import { productBadges, type ProductBadgeKey } from '../../lib/product-badges'
 import {
   DropdownMenu,
@@ -147,9 +147,11 @@ function DeleteFlowDemo() {
         description="The building & pest report for 12 Smith St, Newtown will be permanently deleted."
         actionLabel="Delete"
         onAction={() =>
-          sonner.success('Report deleted', {
+          toast.add({
+            type: 'success',
+            title: 'Report deleted',
             description: '12 Smith St, Newtown',
-            action: { label: 'Undo', onClick: () => {} },
+            actionProps: { children: 'Undo', onClick: () => {} },
           })
         }
       />

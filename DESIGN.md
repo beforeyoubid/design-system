@@ -459,39 +459,49 @@ Headers use `text-overline text-dark-100`; sortable headers (`sortable`, `sortDi
 | Component | Variants |
 |---|---|
 | `Alert` | `default`, `info` (mint-l4), `success`, `warning`, `destructive`; `rounded-2xl`, tint fill + `-15` border + `-75` text |
-| `Toaster` + `sonner()` (Sonner) | See **Toasts (Sonner)** below |
+| `Toaster` + `toast` (Base UI) | See **Toasts** below |
 | `EmptyState` | `plain`, `dashed`, `muted`; mint `IconTile`, navy title, actions row |
 | `Progress`, `Spinner` | Loading states |
 | `Skeleton` | `light-l2` fill with a white shimmer sweep (`animate-shimmer`); static when reduced motion is on |
 
-### Toasts (Sonner)
+### Toasts
 
-Short, non-blocking feedback after an action. Mount `<Toaster />` once in the app root, then call `sonner.success(title, { description, action })`, `sonner.warning(…)`, `sonner.error(…)`, `sonner.info(…)` or `sonner(…)`. `sonner.promise`, `sonner.loading` and `sonner.dismiss` are also available (see **In-progress toasts** below). `toast` still works as a deprecated alias.
+Short, non-blocking feedback after an action. shadcn's `toast` on Base UI's Toast (no Sonner). Mount `<Toaster />` once in the app root, then call `toast.add({ type, title, description, actionProps })`. `toast.promise`, `toast.update` and `toast.close` are also available (see **In-progress toasts** below).
 
-| Variant | Fill | Title, icon, ×, action link | Use for |
+```tsx
+toast.add({
+  type: 'success',
+  title: 'File deleted',
+  description: 'Contract of sale.pdf was removed.',
+  actionProps: { children: 'Undo', onClick: restoreFile },
+})
+```
+
+| `type` | Fill | Title, icon, ×, action link | Use for |
 |---|---|---|---|
 | `success` | `mint-l3` | `mint-60`, check | A completed action: "Inspection booked" |
 | `info` | `mint-l4` | `mint-75`, "i" | Neutral updates: "Report is being prepared" |
 | `warning` | `warning-l3` | `warning-60`, exclamation mark | Needs attention but nothing failed: "Please check your conditions" |
 | `error` | `error-l1` | `error-60`, × | Something failed or is blocked: "You are not verified" |
-| default `sonner()` | `light-l2` | `navy`, bell | General notices that aren't success, warning or error: "Settings saved" |
+| none (default) | `light-l2` | `navy`, bell | General notices that aren't success, warning or error: "Settings saved" |
 
-Anatomy (the original BYB Toast): flat, 20px radius (`rounded-2xl`), 8px / 12px padding; 32px white circle with a tone-coloured border holding the Tabler icon; title `text-body-5` semibold in the tone colour; description `text-body-5 text-dark-90`; optional action as an underlined text link in the tone colour, right after the description ("Undo", closes the toast when clicked); × top-right in the tone colour. `<Toast>` renders the same surface inline.
+Anatomy (the original BYB Toast): flat, 20px radius (`rounded-2xl`), 8px / 12px padding; 32px white circle with a type-coloured border holding the Tabler icon; title `text-body-5` semibold in the type colour; description `text-body-5 text-dark-90`; optional action as an underlined text link in the type colour, right after the description ("Undo"). Clicking the action closes the toast unless its `onClick` calls `event.preventDefault()`. × top-right in the type colour.
 
-**In-progress toasts (`sonner.promise`, `sonner.loading`)**
+**In-progress toasts (`toast.promise`, `type: 'loading'`)**
 
 One toast follows the action from start to finish. It is never navy.
 
 | Stage | Look |
 |---|---|
-| Pending | Spinner in the icon circle, coloured by what the action does: `tone="error"` red for deleting / removing, `tone="warning"` amber for risky changes, `tone="info"` light mint (default) for everything else. Stays until the promise settles. |
+| Pending | Spinner in the icon circle, coloured by `data.pendingType`: `error` red for deleting / removing, `warning` amber for risky changes, `info` light mint (default) for everything else. Stays until the promise settles. |
 | Success | Same toast turns **green** (`success`), auto-dismisses after 5s |
 | Error | Same toast turns **red** (`error`), stays until closed |
 
+A string stage is the toast title; pass an object for a description.
+
 ```tsx
-sonner.promise(deleteReport(id), {
-  tone: 'error',
-  loading: 'Deleting report…',
+toast.promise(deleteReport(id), {
+  loading: { title: 'Deleting report…', data: { pendingType: 'error' } },
   success: 'Report deleted',
   error: "Couldn't delete the report",
 })
@@ -502,22 +512,20 @@ sonner.promise(deleteReport(id), {
 | Screen | Position |
 |---|---|
 | Desktop (≥ 768px) | Bottom-right, 440px wide, 24px from the edges |
-| Mobile (< 768px) | Bottom, full width (16px side margins below 600px, 24px from 600–767px) |
+| Mobile (< 768px) | Bottom, full width (16px side margins below 640px, 24px from 640–767px) |
 
 New toasts stack on top; hovering the stack expands it.
 
 **When it disappears**
 
-| Variant | Auto-dismiss |
+| `type` | Auto-dismiss |
 |---|---|
 | `success` | 5 seconds |
 | `warning` | 8 seconds |
 | `error` | Never: stays until the user closes it |
 | `info`, default | 5 seconds |
 
-Every toast has a × so it can be closed early. Override per toast with `duration` only when the user needs longer to read or act, e.g. a toast with an Undo action. Don't put the only path to an action inside a toast; it may disappear before the user acts.
-
-`showToast()` / `dismissToast()` still work as deprecated aliases for `sonner.*()` / `sonner.dismiss()`.
+Every toast has a × so it can be closed early. Override per toast with `timeout` (ms, `0` = stays) only when the user needs longer to read or act, e.g. a toast with an Undo action. Don't put the only path to an action inside a toast; it may disappear before the user acts.
 
 ### Navigation and structure
 
@@ -525,7 +533,7 @@ Every toast has a × so it can be closed early. Override per toast with `duratio
 
 ### Data and media
 
-`AreaChart`, `BarChart`, `ChartFrame` (with `ChartLegendList`, `CHART_PALETTE`), `Chart` · `Avatar` · `Attachment` / `FileUploadCard` (drag-and-drop upload with status: `uploading` · `completed` · `error` · `uploaded`. `uploaded` is an already-attached file, the default for `defaultFiles`: 36px mint-l3 file icon, name `text-body-4 font-semibold text-dark-90` (file names are dark-90 on every card), "4 MB · Uploaded 12 Oct 2026" in `text-caption-1 text-dark-75`, then icon-only download (`mint-75`, hover `mint-90`) and delete (trash, `error-75`, hover `error-90`) with "Download" / "Delete" tooltips; download shows when the file has a `url` or `onDownload` is set. Deleting a file first opens a destructive `ConfirmDialog` ("Delete this file?", trash `IconTile`, Cancel / Delete; `confirmDelete`, default true); confirming fires `sonner.success("File deleted")` with the file name and an Undo action that puts it back in place (`deleteToast`, default true); cancelling an upload shows no toast) · `BYBImage` · `BYBPillCard` · `BYBCounter` · `Toggle` / `ToggleGroup` · `Slider` · `InputOTP` · `Calendar` · `Label`.
+`AreaChart`, `BarChart`, `ChartFrame` (with `ChartLegendList`, `CHART_PALETTE`), `Chart` · `Avatar` · `Attachment` / `FileUploadCard` (drag-and-drop upload with status: `uploading` · `completed` · `error` · `uploaded`. `uploaded` is an already-attached file, the default for `defaultFiles`: 36px mint-l3 file icon, name `text-body-4 font-semibold text-dark-90` (file names are dark-90 on every card), "4 MB · Uploaded 12 Oct 2026" in `text-caption-1 text-dark-75`, then icon-only download (`mint-75`, hover `mint-90`) and delete (trash, `error-75`, hover `error-90`) with "Download" / "Delete" tooltips; download shows when the file has a `url` or `onDownload` is set. Deleting a file first opens a destructive `ConfirmDialog` ("Delete this file?", trash `IconTile`, Cancel / Delete; `confirmDelete`, default true); confirming fires a `success` toast ("File deleted") with the file name and an Undo action that puts it back in place (`deleteToast`, default true); cancelling an upload shows no toast) · `BYBImage` · `BYBPillCard` · `BYBCounter` · `Toggle` / `ToggleGroup` · `Slider` · `InputOTP` · `Calendar` · `Label`.
 
 ---
 
@@ -555,7 +563,7 @@ Every toast has a × so it can be closed early. Override per toast with `duratio
 10. **Hover never adds a background to a bare text or icon control.** Links, page numbers, text tabs, nav triggers, × and other icon buttons change colour only. Controls that already have a fill (buttons, chips) change their fill; rows in lists, menus, selects, tables and the calendar keep their row highlight.
 11. **Sub-headings are `dark-90`.** Overlines, group labels, section labels and column labels use `text-dark-90`; `dark-60` and `dark-75` are too grey for them. Descriptions keep `text-muted-foreground`, except dialog descriptions (`DialogDescription`), which are `dark-90`.
 12. **No `dark-60` for text or icons.** Hints, helper text, meta labels and icons use `text-dark-75`; `dark-60` is too light (3.3:1 on white).
-13. **Deleting anything asks first.** Every delete or remove action (files, rows, reports, list items, saved records) opens a delete dialog before anything is removed: `ConfirmDialog destructive` with a trash `IconTile`, a title that names the thing ("Delete this file?"), a description naming the item and what happens, and Cancel (focused by default) / Delete. Only after Delete is confirmed is the item removed, followed by a `sonner.success` toast ("File deleted") with an Undo action where the delete can be reversed. Cancelling an upload in progress or clearing a field is not a delete and needs no dialog. Other destructive row actions such as "Cancel order" follow the same pattern ("Cancel this order?", Keep order / Cancel order). Built in: `Attachment` (`confirmDelete`); examples in the DropdownMenu, ContextMenu and Table stories.
+13. **Deleting anything asks first.** Every delete or remove action (files, rows, reports, list items, saved records) opens a delete dialog before anything is removed: `ConfirmDialog destructive` with a trash `IconTile`, a title that names the thing ("Delete this file?"), a description naming the item and what happens, and Cancel (focused by default) / Delete. Only after Delete is confirmed is the item removed, followed by a `success` toast ("File deleted") with an Undo action where the delete can be reversed. Cancelling an upload in progress or clearing a field is not a delete and needs no dialog. Other destructive row actions such as "Cancel order" follow the same pattern ("Cancel this order?", Keep order / Cancel order). Built in: `Attachment` (`confirmDelete`); examples in the DropdownMenu, ContextMenu and Table stories.
 
 ---
 

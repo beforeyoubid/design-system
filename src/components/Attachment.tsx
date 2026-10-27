@@ -14,7 +14,7 @@ import {
 import { cn } from "../lib/utils"
 import { ConfirmDialog } from "./ui/dialog"
 import { ProgressIndicator, ProgressTrack } from "./ui/progress"
-import { sonner } from "./ui/sonner"
+import { toast } from "./ui/toast"
 import { Spinner } from "./ui/spinner"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 
@@ -540,10 +540,12 @@ function Attachment({
     const item = files[index]
     cancel(id)
     if (!item || !deleteToast) return
-    sonner.success("File deleted", {
+    toast.add({
+      type: "success",
+      title: "File deleted",
       description: `${item.name} was removed.`,
-      action: {
-        label: "Undo",
+      actionProps: {
+        children: "Undo",
         onClick: () =>
           setFiles((fs) => {
             if (fs.some((f) => f.id === item.id)) return fs

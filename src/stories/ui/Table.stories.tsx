@@ -17,7 +17,7 @@ import { Badge } from '../../components/ui/badge'
 import { Button } from '../../components/ui/button'
 import { Checkbox } from '../../components/ui/checkbox'
 import { ConfirmDialog } from '../../components/ui/dialog'
-import { Toaster, sonner } from '../../components/ui/sonner'
+import { Toaster, toast } from '../../components/ui/toast'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -311,7 +311,7 @@ function RowActions({ address }: { address: string }) {
       description={`The inspection order for ${address} will be cancelled.`}
       cancelLabel="Keep order"
       actionLabel="Cancel order"
-      onAction={() => sonner.success('Order cancelled', { description: address })}
+      onAction={() => toast.add({ type: 'success', title: 'Order cancelled', description: address })}
     />
     </>
   )

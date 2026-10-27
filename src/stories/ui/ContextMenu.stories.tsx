@@ -2,7 +2,7 @@ import * as React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { IconTrash } from '@tabler/icons-react'
 import { ConfirmDialog } from '../../components/ui/dialog'
-import { Toaster, sonner } from '../../components/ui/sonner'
+import { Toaster, toast } from '../../components/ui/toast'
 import {
   ContextMenu,
   ContextMenuContent,
@@ -48,10 +48,12 @@ function ContextMenuDemo() {
       description="Contract of sale.pdf will be permanently deleted."
       actionLabel="Delete"
       onAction={() =>
-        sonner.success('File deleted', {
-          description: 'Contract of sale.pdf was removed.',
-          action: { label: 'Undo', onClick: () => {} },
-        })
+        toast.add({
+            type: 'success',
+            title: 'File deleted',
+            description: 'Contract of sale.pdf was removed.',
+            actionProps: { children: 'Undo', onClick: () => {} },
+          })
       }
     />
     <Toaster />

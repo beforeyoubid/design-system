@@ -14,6 +14,7 @@ Upgrade an app with `npx design-system-migrate` (dry run) then `--write`, in the
 - **Button gains `secondary` (navy outline) and `tertiary` (grey outline); every 1.x variant stays.** `primary` is the mint fill, with `default` as an alias, and `outline-navy` is an alias of `secondary`. `outline`, `lime` and `navy` are unchanged, and size `default` is an alias of `md`. `ghost`, `destructive` and `link` take the BYB styling.
 - **`colors` and `typography` are no longer exported.** Use `generateDesignSystemTokens({ overrides })` for non-CSS contexts, or a utility class.
 - **`2xl:` breakpoint is 1440px** (was 1536px). `xl:` stays at 1280px.
+- **Toasts use shadcn's `toast` on Base UI; Sonner is removed.** `sonner`, `showToast`, `dismissToast` and the inline `<Toast tone>` surface are gone. Fire toasts with `toast.add({ type, title, description, actionProps })` and `toast.promise(promise, { loading, success, error })`; `<Toaster />` is still mounted once. Types, colours, timings and the inline Undo link are unchanged. The `sonner` and `next-themes` dependencies are dropped.
 
 ### Added
 

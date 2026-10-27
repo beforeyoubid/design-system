@@ -1,11 +1,124 @@
 import * as React from "react"
-import { Toast as ToastPrimitive } from "@base-ui/react/toast"
+import {
+  Toast as ToastPrimitive,
+  type ToastManagerAddOptions,
+  type ToastManagerUpdateOptions,
+} from "@base-ui/react/toast"
+import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
-import { Button } from "@/components/ui/button"
-import { IconX, IconCircleCheck, IconInfoCircle, IconAlertTriangle, IconAlertOctagon, IconLoader } from "@tabler/icons-react"
+import {
+  IconX,
+  IconCheck,
+  IconInfoSmall,
+  IconExclamationMark,
+  IconBell,
+  IconLoader2,
+} from "@tabler/icons-react"
 
-const toast = ToastPrimitive.createToastManager()
+/** BYB toast types. Untyped toasts render as `default`. */
+type ToastType = "success" | "info" | "warning" | "error" | "default"
+
+/** Colour of an in-flight `loading` toast, set via `data.pendingType`. */
+type ToastPendingType = "info" | "warning" | "error"
+
+interface ToastData {
+  /** `error` red for deleting, `warning` amber for risky changes, `info` light mint (default). */
+  pendingType?: ToastPendingType
+}
+
+/**
+ * Auto-dismiss delay per type (ms). `0` = stays until closed.
+ * success 5s · warning 8s · error stays · info / default 5s.
+ */
+const TOAST_TIMEOUTS: Record<ToastType, number> = {
+  success: 5000,
+  warning: 8000,
+  error: 0,
+  info: 5000,
+  default: 5000,
+}
+
+/** The toast surface: tint fill, type-coloured title / icon / ×. */
+const toastVariants = cva("", {
+  variants: {
+    type: {
+      success: "bg-mint-l3 text-mint-60",
+      warning: "bg-warning-l3 text-warning-60",
+      error: "bg-error-l1 text-error-60",
+      info: "bg-mint-l4 text-mint-75",
+      default: "bg-light-l2 text-navy",
+    },
+  },
+  defaultVariants: { type: "default" },
+})
+
+/** The type a toast is painted with: a `loading` toast takes its `pendingType`. */
+function getToastType(
+  toast: Pick<ToastPrimitive.Root.ToastObject<ToastData>, "type" | "data">
+): ToastType {
+  if (toast.type === "loading") return toast.data?.pendingType ?? "info"
+  return toast.type && toast.type in TOAST_TIMEOUTS
+    ? (toast.type as ToastType)
+    : "default"
+}
+
+type ToastOptions = ToastManagerUpdateOptions<ToastData>
+
+/** Fill in the type's timeout and announcement priority unless the caller set them. */
+function withTypeDefaults<O extends ToastOptions>(options: O): O {
+  const type = getToastType(options)
+  return {
+    ...options,
+    timeout: options.timeout ?? TOAST_TIMEOUTS[type],
+    priority: options.priority ?? (type === "error" ? "high" : "low"),
+  }
+}
+
+type PromiseStage<Value> =
+  | string
+  | ToastOptions
+  | ((value: Value) => string | ToastOptions)
+
+/** A string stage becomes the toast title (Base UI would make it the description). */
+function toStageOptions<Value>(stage: PromiseStage<Value>, value: Value) {
+  const resolved = typeof stage === "function" ? stage(value) : stage
+  return typeof resolved === "string" ? { title: resolved } : resolved
+}
+
+/**
+ * Base UI's toast manager with BYB defaults: each type's timeout, and
+ * `promise` stages that read as titles. `promise` takes `data.pendingType`
+ * on the loading stage for its colour.
+ */
+function createToastManager() {
+  const manager = ToastPrimitive.createToastManager<ToastData>()
+  return {
+    ...manager,
+    add: (options: ToastManagerAddOptions<ToastData>) =>
+      manager.add(withTypeDefaults(options)),
+    update: (id: string, updates: ToastOptions) =>
+      manager.update(id, updates.type ? withTypeDefaults(updates) : updates),
+    promise: <Value,>(
+      promise: Promise<Value>,
+      stages: {
+        loading: string | ToastOptions
+        success: PromiseStage<Value>
+        error: PromiseStage<unknown>
+      }
+    ) =>
+      manager.promise(promise, {
+        loading: toStageOptions(stages.loading, undefined),
+        success: (value: Value) =>
+          withTypeDefaults({ ...toStageOptions(stages.success, value), type: "success" }),
+        error: (error: unknown) =>
+          withTypeDefaults({ ...toStageOptions(stages.error, error), type: "error" }),
+      }),
+  }
+}
+
+/** The app-wide manager `<Toaster />` listens to by default. */
+const toast = createToastManager()
 
 function ToastProvider({ ...props }: ToastPrimitive.Provider.Props) {
   return <ToastPrimitive.Provider {...props} />
@@ -20,7 +133,8 @@ function ToastViewport({ className, ...props }: ToastPrimitive.Viewport.Props) {
     <ToastPrimitive.Viewport
       data-slot="toast-viewport"
       className={cn(
-        "pointer-events-none fixed inset-x-4 bottom-4 z-50 mx-auto w-auto max-w-sm outline-none sm:end-4 sm:start-auto sm:mx-0 sm:w-full",
+        // Mobile: full width at the bottom. Desktop (md+): bottom-right, 440px.
+        "pointer-events-none fixed inset-x-4 bottom-4 z-50 outline-none sm:inset-x-6 sm:bottom-6 md:start-auto md:w-110",
         className
       )}
       {...props}
@@ -28,12 +142,16 @@ function ToastViewport({ className, ...props }: ToastPrimitive.Viewport.Props) {
   )
 }
 
-function Toast({ className, ...props }: ToastPrimitive.Root.Props) {
+function Toast({ className, toast, ...props }: ToastPrimitive.Root.Props) {
+  const type = getToastType(toast)
   return (
     <ToastPrimitive.Root
       data-slot="toast"
+      data-type={type}
+      toast={toast}
       className={cn(
-        "group/toast pointer-events-auto absolute end-0 bottom-0 z-[calc(1000-var(--toast-index))] w-full origin-bottom rounded-2xl border bg-popover text-popover-foreground shadow-lg will-change-transform outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
+        "group/toast pointer-events-auto absolute end-0 bottom-0 z-[calc(1000-var(--toast-index))] w-full origin-bottom rounded-2xl font-sans will-change-transform outline-none select-none focus-visible:ring-[3px] focus-visible:ring-ring/50",
+        toastVariants({ type }),
         "[--gap:0.75rem] [--height:var(--toast-frontmost-height,var(--toast-height))] [--offset-y:calc(var(--toast-offset-y)*-1+calc(var(--toast-index)*var(--gap)*-1)+var(--toast-swipe-movement-y))] [--peek:0.75rem] [--scale:calc(max(0,1-(var(--toast-index)*0.1)))] [--shrink:calc(1-var(--scale))]",
         "h-(--height) [transform:translateX(var(--toast-swipe-movement-x))_translateY(calc(var(--toast-swipe-movement-y)-(var(--toast-index)*var(--peek))-(var(--shrink)*var(--height))))_scale(var(--scale))] [transition:transform_500ms_cubic-bezier(0.22,1,0.36,1),opacity_500ms,height_150ms]",
         "after:absolute after:top-full after:start-0 after:h-[calc(var(--gap)+1px)] after:w-full after:content-['']",
@@ -60,7 +178,7 @@ function ToastContent({ className, ...props }: ToastPrimitive.Content.Props) {
     <ToastPrimitive.Content
       data-slot="toast-content"
       className={cn(
-        "flex h-full items-center gap-3 overflow-hidden p-4 transition-opacity duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] data-behind:opacity-0 data-expanded:opacity-100",
+        "relative flex h-full items-center gap-2 overflow-hidden px-2 py-3 transition-opacity duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] data-behind:opacity-0 data-expanded:opacity-100",
         className
       )}
       {...props}
@@ -72,7 +190,7 @@ function ToastTitle({ className, ...props }: ToastPrimitive.Title.Props) {
   return (
     <ToastPrimitive.Title
       data-slot="toast-title"
-      className={cn("text-sm font-medium", className)}
+      className={cn("text-body-5 font-semibold", className)}
       {...props}
     />
   )
@@ -85,22 +203,21 @@ function ToastDescription({
   return (
     <ToastPrimitive.Description
       data-slot="toast-description"
-      className={cn("text-sm text-muted-foreground", className)}
+      className={cn("text-body-5 text-dark-90", className)}
       {...props}
     />
   )
 }
 
-function ToastAction({
-  className,
-  render = <Button variant="outline" size="sm" />,
-  ...props
-}: ToastPrimitive.Action.Props) {
+/** Inline text link in the type's colour, e.g. "Undo". Never a filled button. */
+function ToastAction({ className, ...props }: ToastPrimitive.Action.Props) {
   return (
     <ToastPrimitive.Action
       data-slot="toast-action"
-      render={render}
-      className={cn("shrink-0", className)}
+      className={cn(
+        "inline cursor-pointer font-semibold underline underline-offset-3",
+        className
+      )}
       {...props}
     />
   )
@@ -109,16 +226,14 @@ function ToastAction({
 function ToastClose({
   className,
   children,
-  render = <Button variant="ghost" size="icon-sm" />,
   ...props
 }: ToastPrimitive.Close.Props) {
   return (
     <ToastPrimitive.Close
       data-slot="toast-close"
       aria-label="Close toast"
-      render={render}
       className={cn(
-        "relative shrink-0 text-muted-foreground after:absolute after:-inset-2 after:content-[''] hover:text-foreground",
+        "absolute end-2 top-2 flex cursor-pointer p-1 transition-colors after:absolute after:-inset-2 after:content-[''] hover:text-navy [&_svg:not([class*='size-'])]:size-4.5",
         className
       )}
       {...props}
@@ -130,71 +245,66 @@ function ToastClose({
   )
 }
 
+const TOAST_ICONS = {
+  success: IconCheck,
+  info: IconInfoSmall,
+  warning: IconExclamationMark,
+  error: IconX,
+  default: IconBell,
+} as const
+
+/** 32px white circle with a type-coloured border; a spinner while loading. */
 function ToastIcon({ type }: { type: string | undefined }) {
-  let icon: React.ReactNode = null
-
-  if (type === "success") {
-    icon = (
-      <IconCircleCheck aria-hidden="true" />
-    )
-  }
-
-  if (type === "info") {
-    icon = (
-      <IconInfoCircle aria-hidden="true" />
-    )
-  }
-
-  if (type === "warning") {
-    icon = (
-      <IconAlertTriangle aria-hidden="true" />
-    )
-  }
-
-  if (type === "error") {
-    icon = (
-      <IconAlertOctagon className="text-destructive" aria-hidden="true" />
-    )
-  }
-
-  if (type === "loading") {
-    icon = (
-      <IconLoader className="animate-spin" aria-hidden="true" />
-    )
-  }
-
-  if (!icon) {
-    return null
-  }
+  const Icon =
+    type === "loading"
+      ? IconLoader2
+      : TOAST_ICONS[(type ?? "default") as ToastType] ?? IconBell
 
   return (
     <span
       data-slot="toast-icon"
-      className="shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4"
+      className="flex size-8 shrink-0 items-center justify-center rounded-full border border-current bg-white [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4.5"
     >
-      {icon}
+      <Icon
+        className={cn(type === "loading" && "animate-spin")}
+        aria-hidden="true"
+      />
     </span>
   )
 }
 
 function ToastList() {
-  const { toasts } = ToastPrimitive.useToastManager()
+  const { toasts, close } = ToastPrimitive.useToastManager<ToastData>()
 
   return toasts.map((toastItem) => (
     <Toast key={toastItem.id} toast={toastItem}>
       <ToastContent>
         <ToastIcon type={toastItem.type} />
-        <div className="flex min-w-0 flex-1 flex-col gap-1">
+        <div className="flex min-w-0 flex-1 flex-col gap-1 pe-6">
           <ToastTitle />
-          <ToastDescription />
+          {(toastItem.description || toastItem.actionProps) && (
+            <div className="text-body-5">
+              <ToastDescription render={<span />} />
+              {toastItem.description && toastItem.actionProps && " "}
+              <ToastAction
+                // Runs after the caller's onClick: close unless they prevented it.
+                onClick={(event) => {
+                  if (!event.defaultPrevented) close(toastItem.id)
+                }}
+              />
+            </div>
+          )}
         </div>
-        <ToastAction />
         <ToastClose />
       </ToastContent>
     </Toast>
   ))
 }
 
+/**
+ * Mount once in the app root, then fire toasts with `toast.add`,
+ * `toast.promise`, `toast.update` and `toast.close`.
+ */
 function Toaster({
   children,
   toastManager = toast,
@@ -212,8 +322,7 @@ function Toaster({
   )
 }
 
-const createToastManager = ToastPrimitive.createToastManager
-const useToastManager = ToastPrimitive.useToastManager
+const useToastManager = ToastPrimitive.useToastManager<ToastData>
 
 export {
   Toaster,
@@ -228,5 +337,8 @@ export {
   ToastViewport,
   createToastManager,
   toast,
+  toastVariants,
   useToastManager,
+  TOAST_TIMEOUTS,
 }
+export type { ToastType, ToastPendingType, ToastData }
