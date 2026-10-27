@@ -29,6 +29,7 @@ Upgrade an app with `npx design-system-migrate` (dry run) then `--write`, in the
 ### Fixed
 
 - Accordion panels animate open and closed. They used keyframes that read Radix's height variable, which Base UI never sets; the panel now transitions to Base UI's `--accordion-panel-height`.
+- `--input` is dark-45, the form-control border in DESIGN.md (it was dark-15, shared with `--border`). Stock shadcn controls that read `border-input` now match the BYB ones.
 - Tailwind's default text sizes are no longer cleared, so `text-sm`, `text-lg` and the rest keep working in apps.
 
 ## 1.1.5

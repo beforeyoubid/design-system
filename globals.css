@@ -249,7 +249,7 @@
   --warning-foreground: var(--dark-100);
 
   --border: var(--dark-15);
-  --input:  var(--dark-15);
+  --input:  var(--dark-45);
   --ring:   var(--mint-45);
 
   /* shadcn chart slots */

@@ -174,7 +174,8 @@ No separate tokens; use opacity modifiers.
 | `destructive` | error-60 | error-45 |
 | `success` | success-45 | success-30 |
 | `warning` | warning-45 | warning-30 |
-| `border`, `input` | dark-15 | dark-90 |
+| `border` | dark-15 | dark-90 |
+| `input` | dark-45 | dark-90 |
 | `ring` | mint-45 | mint-30 |
 | `sidebar-*` | light-l1 surface, mint-45 primary, mint-l3 accent | dark-90 surface, mint-30 primary |
 
