@@ -47,6 +47,13 @@ import {
   TableViewMore,
   type SortDirection,
 } from '../../components/ui/table'
+import {
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from '../../components/ui/empty'
 
 const meta: Meta<typeof Table> = {
   title: 'BYB Components/Table',
@@ -377,17 +384,18 @@ export const WithHeaderAndOptions: Story = {
           </TableHeader>
           <TableBody>
             {rows.length === 0 ? (
-              <TableEmpty
-                colSpan={7}
-                icon={<IconFileSearch />}
-                title="No matching reports"
-                description={`Nothing matches “${query}”. Try a different address or inspector name.`}
-                actions={
+              <TableEmpty colSpan={7}>
+                <EmptyHeader>
+                  <EmptyMedia variant="icon"><IconFileSearch /></EmptyMedia>
+                  <EmptyTitle>No matching reports</EmptyTitle>
+                  <EmptyDescription>{`Nothing matches “${query}”. Try a different address or inspector name.`}</EmptyDescription>
+                </EmptyHeader>
+                <EmptyContent>
                   <Button variant="tertiary" size="sm" onClick={() => setQuery('')}>
                     Clear search
                   </Button>
-                }
-              />
+                </EmptyContent>
+              </TableEmpty>
             ) : (
               rows.map((r) => (
                 <TableRow key={r.id}>
@@ -415,22 +423,25 @@ export const Empty: Story = {
           <HeaderRow />
         </TableHeader>
         <TableBody>
-          <TableEmpty
-            colSpan={6}
-            icon={<IconMoodEmpty />}
-            title="No reports yet"
-            description="Order a property report and it will show up here."
-            actions={
-              <>
+          <TableEmpty colSpan={6}>
+            <EmptyHeader>
+              <EmptyMedia variant="icon"><IconMoodEmpty /></EmptyMedia>
+              <EmptyTitle>No reports yet</EmptyTitle>
+              <EmptyDescription>Order a property report and it will show up here.</EmptyDescription>
+            </EmptyHeader>
+            <EmptyContent>
+              <div className="flex flex-wrap justify-center gap-2">
                 <Button size="sm">
                   <IconPlus data-icon="inline-start" />
                   Order a report
                 </Button>
                 <Button variant="tertiary" size="sm">Learn more</Button>
-              </>
-            }
-            footer="Need help? Contact support"
-          />
+              </div>
+              <EmptyDescription>
+                Need help? <a href="#">Contact support</a>
+              </EmptyDescription>
+            </EmptyContent>
+          </TableEmpty>
         </TableBody>
       </Table>
     </div>
@@ -447,18 +458,19 @@ export const NoResults: Story = {
           <HeaderRow />
         </TableHeader>
         <TableBody>
-          <TableEmpty
-            colSpan={6}
-            icon={<IconFileSearch />}
-            title="No matching reports"
-            description="Try adjusting your search or filters to find what you’re looking for."
-            actions={
-              <>
+          <TableEmpty colSpan={6}>
+            <EmptyHeader>
+              <EmptyMedia variant="icon"><IconFileSearch /></EmptyMedia>
+              <EmptyTitle>No matching reports</EmptyTitle>
+              <EmptyDescription>Try adjusting your search or filters to find what you’re looking for.</EmptyDescription>
+            </EmptyHeader>
+            <EmptyContent>
+              <div className="flex flex-wrap justify-center gap-2">
                 <Button variant="tertiary" size="sm">Clear filters</Button>
                 <Button variant="ghost" size="sm">Reset search</Button>
-              </>
-            }
-          />
+              </div>
+            </EmptyContent>
+          </TableEmpty>
         </TableBody>
       </Table>
     </div>

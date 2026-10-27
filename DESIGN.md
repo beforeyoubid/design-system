@@ -413,7 +413,7 @@ Solid (`appearance="solid"`): gray dark-75 + white · mint mint-45 + white · li
 
 ### IconTile
 
-Lucide icon on a tinted tile; used by Card, EmptyState, Dialog and the product dropdown.
+Lucide icon on a tinted tile; used by Card, Dialog and the product dropdown. `EmptyMedia variant="icon"` draws the same mint circle.
 
 | Prop | Options |
 |---|---|
@@ -442,7 +442,7 @@ Headers use `text-overline text-dark-100`; sortable headers (`sortable`, `sortDi
 | `variant` | `default` (row dividers), `card` (rounded-lg frame + shadow-xs, light-l1 header), `striped` (zebra rows), `bordered` (frame + column lines) |
 | `size` | `sm` (head 36px, cell py 8), `md` (44 / 12), `lg` (48 / 16) |
 
-`TableEmpty` renders an `EmptyState` across all columns. `TableCaption` displays below the frame. Selectable rows: whole row is clickable. `TableExpandableRow` reveals a detail row and the whole row is clickable (clicks on buttons, links and menu items inside it don't toggle it). The chevron sits in a trailing **Controls** column (`<TableControlsHead />`) together with `controls`, e.g. a ⋮ `DropdownMenuIconTrigger` menu. `TableViewMore` reveals rows beyond an initial count.
+`TableEmpty` renders an `Empty` across all columns; compose it with `EmptyHeader`, `EmptyMedia`, `EmptyTitle`, `EmptyDescription` and `EmptyContent`. `TableCaption` displays below the frame. Selectable rows: whole row is clickable. `TableExpandableRow` reveals a detail row and the whole row is clickable (clicks on buttons, links and menu items inside it don't toggle it). The chevron sits in a trailing **Controls** column (`<TableControlsHead />`) together with `controls`, e.g. a ⋮ `DropdownMenuIconTrigger` menu. `TableViewMore` reveals rows beyond an initial count.
 
 ### Overlays
 
@@ -460,7 +460,7 @@ Headers use `text-overline text-dark-100`; sortable headers (`sortable`, `sortDi
 |---|---|
 | `Alert` | `default`, `info` (mint-l4), `success`, `warning`, `destructive`; `rounded-2xl`, tint fill + `-15` border + `-75` text |
 | `Toaster` + `toast` (Base UI) | See **Toasts** below |
-| `EmptyState` | `plain`, `dashed`, `muted`; mint `IconTile`, navy title, actions row |
+| `Empty` (shadcn) | `default`, `outline` (dashed border), `muted`; `EmptyMedia variant="icon"` mint circle, navy `EmptyTitle`, `EmptyContent` for actions |
 | `Progress`, `Spinner` | Loading states |
 | `Skeleton` | `light-l2` fill with a white shimmer sweep (`animate-shimmer`); static when reduced motion is on |
 

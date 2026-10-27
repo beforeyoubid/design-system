@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 /**
- * A Lucide (or any SVG) icon on a tinted tile. Shared by Card, EmptyState,
+ * A Lucide (or any SVG) icon on a tinted tile. Shared by Card,
  * Dialog and the product DropdownMenu so every icon chip in the library looks
  * the same.
  */

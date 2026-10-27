@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { ArrowDown, ArrowUp, ArrowUpDown, ChevronDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { EmptyState, type EmptyStateProps } from "@/components/EmptyState"
+import { Empty } from "@/components/ui/empty"
 
 /** Wrapper around the scrollable table; owns the outer frame for `card` / `bordered`. */
 const tableContainerVariants = cva("relative w-full overflow-x-auto", {
@@ -227,20 +227,21 @@ function TableCell({ className, ...props }: React.ComponentProps<"td">) {
   )
 }
 
-export interface TableEmptyProps extends EmptyStateProps {
+export interface TableEmptyProps extends React.ComponentProps<typeof Empty> {
   /** Number of columns the empty state spans. Match your header column count. */
   colSpan: number
 }
 
 /**
- * Empty / no-results row. Renders the BYB `EmptyState` (icon, title,
- * description, actions, footer) across the full table width.
+ * Empty / no-results row: an `Empty` across the full table width. Compose it
+ * with `EmptyHeader`, `EmptyMedia`, `EmptyTitle`, `EmptyDescription` and
+ * `EmptyContent`.
  */
 function TableEmpty({ colSpan, className, ...props }: TableEmptyProps) {
   return (
     <TableRow data-slot="table-empty" className="hover:bg-transparent group-data-[variant=striped]/table:hover:bg-transparent">
       <TableCell colSpan={colSpan} className="p-0 whitespace-normal group-data-[variant=bordered]/table:border-e-0">
-        <EmptyState className={cn("py-12", className)} {...props} />
+        <Empty className={cn("py-12", className)} {...props} />
       </TableCell>
     </TableRow>
   )

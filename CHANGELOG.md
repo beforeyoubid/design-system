@@ -15,6 +15,8 @@ Upgrade an app with `npx design-system-migrate` (dry run) then `--write`, in the
 - **`colors` and `typography` are no longer exported.** Use `generateDesignSystemTokens({ overrides })` for non-CSS contexts, or a utility class.
 - **`2xl:` breakpoint is 1440px** (was 1536px). `xl:` stays at 1280px.
 - **Toasts use shadcn's `toast` on Base UI; Sonner is removed.** `sonner`, `showToast`, `dismissToast` and the inline `<Toast tone>` surface are gone. Fire toasts with `toast.add({ type, title, description, actionProps })` and `toast.promise(promise, { loading, success, error })`; `<Toaster />` is still mounted once. Types, colours, timings and the inline Undo link are unchanged. The `sonner` and `next-themes` dependencies are dropped.
+- **`EmptyState` is replaced by shadcn's `Empty`** (`Empty`, `EmptyHeader`, `EmptyMedia`, `EmptyTitle`, `EmptyDescription`, `EmptyContent`) with the same look. `plain` / `dashed` / `muted` are `default` / `outline` / `muted`. `TableEmpty` takes those parts as children instead of `icon` / `title` / `description` / `actions` / `footer` props.
+- **`Fieldset` is replaced by shadcn's `Field` parts** (`FieldSet`, `FieldLegend`, `FieldDescription`, `FieldGroup`, `Field`, `FieldLabel`, `FieldError`, `FieldSeparator`) styled to match. `divided` becomes a `FieldSeparator` between sections.
 
 ### Added
 
