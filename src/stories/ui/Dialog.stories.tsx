@@ -197,7 +197,7 @@ export const WithIcon: Story = {
           <DialogContent>
             <DialogHeader icon={icon} iconTone={tone}>
               <DialogTitle>{title}</DialogTitle>
-              <DialogDescription>Icons come from Lucide and sit on an BYBIconTile in the chosen tone.</DialogDescription>
+              <DialogDescription>Icons come from Lucide and sit on a BYBIconTile in the chosen tone.</DialogDescription>
             </DialogHeader>
             <DialogFooter showCloseButton />
           </DialogContent>

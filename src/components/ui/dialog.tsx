@@ -295,7 +295,7 @@ export interface ConfirmDialogProps {
   onAction?: () => void
   /** Use the red destructive Button for the action. */
   destructive?: boolean
-  /** Lucide icon in an BYBIconTile left of the title (one row). */
+  /** Lucide icon in a BYBIconTile left of the title (one row). */
   icon?: React.ReactNode
   /** BYBIconTile colour. Defaults to `error` when `destructive`, else `mint`. */
   iconTone?: BYBIconTileTone

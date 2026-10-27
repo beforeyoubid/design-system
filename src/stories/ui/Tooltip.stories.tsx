@@ -48,14 +48,15 @@ export const OnHover: Story = {
 export const Sides: Story = {
   render: () => (
     <div className="grid w-fit grid-cols-2 gap-x-48 gap-y-24 p-20">
-      <TooltipProvider>
-        {(['top', 'right', 'bottom', 'left'] as const).map((side) => (
-          <Tooltip key={side} defaultOpen>
+      {/* One provider per tooltip: a shared provider opens one tooltip at a time. */}
+      {(['top', 'right', 'bottom', 'left'] as const).map((side) => (
+        <TooltipProvider key={side}>
+          <Tooltip defaultOpen>
             <TooltipTrigger render={<Button variant="tertiary">{side}</Button>} />
             <TooltipContent side={side}>Add to library</TooltipContent>
           </Tooltip>
-        ))}
-      </TooltipProvider>
+        </TooltipProvider>
+      ))}
     </div>
   ),
 }

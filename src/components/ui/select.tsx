@@ -124,7 +124,7 @@ const selectItemVariants = cva(
     variants: {
       indicator: {
         // Single select: mint row + trailing check (no check when the row has a `meta`)
-        check: "ps-2 pe-8 data-selected:bg-mint-l2 data-selected:text-mint-75",
+        check: "ps-2 pe-8 data-selected:bg-mint-l2 data-selected:text-mint-75 data-selected:data-highlighted:bg-mint-l2",
         // Multiple select: leading checkbox, no row fill
         checkbox: "gap-2.5 px-2",
       },
