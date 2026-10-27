@@ -35,6 +35,15 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* shadcn.css narrows `data-selected:` to [data-selected="true"], but Base UI
+ * marks selected Select / Combobox items with a bare `data-selected`. Match it
+ * the way shadcn matches its other variants: present and not "false". */
+@custom-variant data-selected {
+  &:where([data-selected]:not([data-selected="false"])) {
+    @slot;
+  }
+}
+
 /* =============================================================================
  * PRIMITIVES
  * ============================================================================= */
