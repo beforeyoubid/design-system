@@ -3,6 +3,7 @@ import {
   Toast as ToastPrimitive,
   type ToastManagerAddOptions,
   type ToastManagerUpdateOptions,
+  type ToastObject,
 } from "@base-ui/react/toast"
 import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
@@ -97,8 +98,21 @@ function createToastManager() {
     ...manager,
     add: (options: ToastManagerAddOptions<ToastData>) =>
       manager.add(withTypeDefaults(options)),
-    update: (id: string, updates: ToastOptions) =>
-      manager.update(id, updates.type ? withTypeDefaults(updates) : updates),
+    update: <T extends ToastData = ToastData>(
+      id: string,
+      updates:
+        | ToastManagerUpdateOptions<T>
+        | ((prevToast: ToastObject<T>) => ToastManagerUpdateOptions<T>)
+    ) => {
+      const retype = (next: ToastManagerUpdateOptions<T>) =>
+        next.type ? withTypeDefaults(next) : next
+      manager.update<T>(
+        id,
+        typeof updates === "function"
+          ? (prevToast) => retype(updates(prevToast))
+          : retype(updates)
+      )
+    },
     promise: <Value,>(
       promise: Promise<Value>,
       stages: {
