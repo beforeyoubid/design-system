@@ -128,7 +128,7 @@ function TimeColumn({
         role="listbox"
         aria-label={label}
         onKeyDown={onKeyDown}
-        className="relative flex h-56 w-14 flex-col gap-0.5 overflow-y-auto overscroll-contain scrollbar-none px-1"
+        className="relative flex h-56 w-14 flex-col gap-0.5 overflow-y-auto overscroll-contain no-scrollbar px-1"
       >
         {values.map((n) => {
           const isSelected = n === selected
