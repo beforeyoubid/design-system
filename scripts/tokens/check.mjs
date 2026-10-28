@@ -67,7 +67,10 @@ for (const { component, file } of files) {
     continue
   }
   for (const rule of parsed.rules) {
-    const ui = [...uiSources].find(([, src]) => findSites(src).slots.has(rule.slot))
+    // Prefer the file that defines the part's cva: another file can pass the same
+    // data-slot to it (combobox renders an input-group-button).
+    const withSlot = [...uiSources].filter(([, src]) => findSites(src).slots.has(rule.slot))
+    const ui = withSlot.find(([, src]) => findSites(src).slots.get(rule.slot).cva) ?? withSlot[0]
     const keys = ui ? (() => {
       const { slots, cvas } = findSites(ui[1])
       const c = slots.get(rule.slot)?.cva

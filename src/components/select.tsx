@@ -4,7 +4,10 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { IconCheck, IconChevronDown, IconX } from "@tabler/icons-react"
 
 import { cn } from "@/lib/utils"
-import { SelectTrigger as StockSelectTrigger } from "@/components/ui/select"
+import {
+  SelectContent as StockSelectContent,
+  SelectTrigger as StockSelectTrigger,
+} from "@/components/ui/select"
 
 export * from "@/components/ui/select"
 
@@ -100,12 +103,12 @@ function SelectChipOverflow({ count, className, ...props }: React.ComponentProps
 }
 
 const selectItemVariants = cva(
-  "group/select-item relative flex min-h-8 w-full cursor-pointer items-center rounded-md py-1.5 text-body-5 text-dark-100 outline-hidden select-none data-highlighted:bg-light-l1 focus:bg-light-l1 data-disabled:pointer-events-none data-disabled:text-dark-45 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/select-item relative flex min-h-(--_select-item-min-height) w-full cursor-pointer items-center rounded-(--_select-item-radius) py-(--_select-item-padding-y) text-body-5 text-(--_select-item-foreground) outline-hidden select-none data-highlighted:bg-(--_select-item-highlighted) focus:bg-(--_select-item-focus) data-disabled:pointer-events-none data-disabled:text-(--_select-item-disabled-foreground) [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       indicator: {
         // Single select: mint row + trailing check (no check when the row has a `meta`)
-        check: "ps-2 pe-8 data-selected:bg-mint-l2 data-selected:text-mint-75 data-selected:data-highlighted:bg-mint-l2",
+        check: "ps-2 pe-8 data-selected:bg-(--_select-item-selected) data-selected:text-(--_select-item-selected-foreground) data-selected:data-highlighted:bg-(--_select-item-selected)",
         // Multiple select: leading checkbox, no row fill
         checkbox: "gap-2.5 px-2",
       },
@@ -151,7 +154,7 @@ function SelectItem({
       {indicator === "checkbox" ? (
         <span
           aria-hidden="true"
-          className="flex size-4 shrink-0 items-center justify-center rounded-sm border border-dark-45 bg-white text-white transition-colors group-data-selected/select-item:border-mint-45 group-data-selected/select-item:bg-mint-45 group-data-disabled/select-item:opacity-50"
+          className="flex size-4 shrink-0 items-center justify-center rounded-sm border border-(--_select-item-checkbox-border) bg-(--_select-item-checkbox) text-(--_select-item-checkbox-checked-foreground) transition-colors group-data-selected/select-item:border-(--_select-item-checkbox-checked) group-data-selected/select-item:bg-(--_select-item-checkbox-checked) group-data-disabled/select-item:opacity-50"
         >
           <SelectPrimitive.ItemIndicator>
             <IconCheck className="size-3" stroke={3} />
@@ -163,7 +166,7 @@ function SelectItem({
             <span className="pointer-events-none absolute end-2 flex size-3.5 items-center justify-center" />
           }
         >
-          <IconCheck className="size-3.5 text-mint-75" />
+          <IconCheck className="size-3.5 text-(--_select-item-check-foreground)" />
         </SelectPrimitive.ItemIndicator>
       ) : null}
       {start != null && (
@@ -180,7 +183,7 @@ function SelectItem({
       {meta != null && (
         <span
           data-slot="select-item-meta"
-          className="ms-auto flex shrink-0 items-center ps-3 text-body-5 text-dark-75 group-data-disabled/select-item:text-dark-45"
+          className="ms-auto flex shrink-0 items-center ps-3 text-body-5 text-(--_select-item-meta-foreground) group-data-disabled/select-item:text-(--_select-item-disabled-foreground)"
         >
           {meta}
         </span>
@@ -203,5 +206,20 @@ function SelectFooter({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { SelectChip, SelectChipOverflow, SelectFooter, SelectItem, SelectTrigger, selectItemVariants }
+/** Stock `SelectContent`, opening below the field (6px gap) instead of over it. */
+function SelectContent({
+  sideOffset = 6,
+  alignItemWithTrigger = false,
+  ...props
+}: React.ComponentProps<typeof StockSelectContent>) {
+  return (
+    <StockSelectContent
+      sideOffset={sideOffset}
+      alignItemWithTrigger={alignItemWithTrigger}
+      {...props}
+    />
+  )
+}
+
+export { SelectChip, SelectChipOverflow, SelectContent, SelectFooter, SelectItem, SelectTrigger, selectItemVariants }
 export type { SelectItemProps }

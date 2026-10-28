@@ -41,6 +41,32 @@
   --_input-group-addon-foreground: var(--input-group-addon-foreground, var(--dark-75));
 }
 
+[data-slot="input-group-button"] {
+  /* @remove text-sm */
+  /* @add text-overline */
+  /* @remove(size.xs) gap-1 [&>svg:not([class*='size-'])]:size-3.5 */
+  /* @add(size.xs) py-0 [&>svg:not([class*='size-'])]:size-3.5 */
+  /* @add(size.sm) py-0 [&>svg:not([class*='size-'])]:size-4 */
+  /* @add(size.icon-xs) [&>svg:not([class*='size-'])]:size-4 */
+  /* @add(size.icon-sm) [&>svg:not([class*='size-'])]:size-4 */
+  /* Gap between items of the button. */
+  --_input-group-button-gap: var(--input-group-button-gap, calc(var(--spacing) * 1));
+  /* Corner radius of the button. */
+  --_input-group-button-radius: var(--input-group-button-radius, var(--radius-md));
+  /* Height of the button (xs size). */
+  --_input-group-button-xs-height: var(--input-group-button-xs-height, calc(var(--spacing) * 7));
+  /* Horizontal padding of the button (xs size). */
+  --_input-group-button-xs-padding-x: var(--input-group-button-xs-padding-x, calc(var(--spacing) * 2.5));
+  /* Height of the button (sm size). */
+  --_input-group-button-sm-height: var(--input-group-button-sm-height, calc(var(--spacing) * 8));
+  /* Horizontal padding of the button (sm size). */
+  --_input-group-button-sm-padding-x: var(--input-group-button-sm-padding-x, calc(var(--spacing) * 3));
+  /* Width and height of the button (icon-xs size). */
+  --_input-group-button-icon-xs-size: var(--input-group-button-icon-xs-size, calc(var(--spacing) * 7));
+  /* Width and height of the button (icon-sm size). */
+  --_input-group-button-icon-sm-size: var(--input-group-button-icon-sm-size, calc(var(--spacing) * 8));
+}
+
 [data-slot="input-group-control"] {
   /* @add h-auto disabled:bg-transparent */
   /* Minimum height of the control. */

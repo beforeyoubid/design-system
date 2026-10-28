@@ -1272,7 +1272,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>input-group</strong> (14)</summary>
+<summary><strong>input-group</strong> (22)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -1286,6 +1286,14 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--input-group-focus-ring` | Ring colour of the input-group when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
 | `--input-group-addon-gap` | Gap between items of the addon. | `calc(var(--spacing) * 2)` |
 | `--input-group-addon-foreground` | Text colour of the addon. | `var(--dark-75)` |
+| `--input-group-button-gap` | Gap between items of the button. | `calc(var(--spacing) * 1)` |
+| `--input-group-button-radius` | Corner radius of the button. | `var(--radius-md)` |
+| `--input-group-button-xs-height` | Height of the button (xs size). | `calc(var(--spacing) * 7)` |
+| `--input-group-button-xs-padding-x` | Horizontal padding of the button (xs size). | `calc(var(--spacing) * 2.5)` |
+| `--input-group-button-sm-height` | Height of the button (sm size). | `calc(var(--spacing) * 8)` |
+| `--input-group-button-sm-padding-x` | Horizontal padding of the button (sm size). | `calc(var(--spacing) * 3)` |
+| `--input-group-button-icon-xs-size` | Width and height of the button (icon-xs size). | `calc(var(--spacing) * 7)` |
+| `--input-group-button-icon-sm-size` | Width and height of the button (icon-sm size). | `calc(var(--spacing) * 8)` |
 | `--input-group-control-min-height` | Minimum height of the control. | `calc(var(--spacing) * 9)` |
 | `--input-group-control-radius` | Corner radius of the control. | `0` |
 | `--input-group-control-padding-x` | Horizontal padding of the control. | `calc(var(--spacing) * 0)` |
@@ -1609,7 +1617,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>select</strong> (56)</summary>
+<summary><strong>select</strong> (62)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -1661,6 +1669,12 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--select-item-selected` | Fill colour of the item when selected. | `var(--mint-l2)` |
 | `--select-item-selected-foreground` | Text colour of the item when selected. | `var(--mint-75)` |
 | `--select-item-disabled-foreground` | Text colour of the item when disabled. | `var(--dark-45)` |
+| `--select-item-checkbox` | Fill colour of the checkbox in a multiple-select row. | `var(--white)` |
+| `--select-item-checkbox-border` | Border colour of the checkbox in a multiple-select row. | `var(--dark-45)` |
+| `--select-item-checkbox-checked` | Fill and border colour of the checkbox when its row is selected. | `var(--mint-45)` |
+| `--select-item-checkbox-checked-foreground` | Colour of the tick in a selected checkbox. | `var(--white)` |
+| `--select-item-check-foreground` | Colour of the trailing tick on the selected row (single select). | `var(--mint-75)` |
+| `--select-item-meta-foreground` | Text colour of the right-hand label (meta) in a row. | `var(--dark-75)` |
 | `--select-separator-height` | Height of the separator. | `1px` |
 | `--select-separator` | Fill colour of the separator. | `var(--light-l3)` |
 | `--select-scroll-up-button` | Fill colour of the scroll-up-button. | `var(--white)` |

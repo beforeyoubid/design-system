@@ -34,12 +34,12 @@ outputs.push({
 
 // ---------- manifest ----------
 const uiSources = fs.readdirSync(uiDir).filter((f) => f.endsWith('.tsx')).map((f) => fs.readFileSync(path.join(uiDir, f), 'utf8'))
+// The file that defines the part's cva wins over one that only passes its data-slot.
 const keysFor = (slot) => {
   for (const src of uiSources) {
     const { slots, cvas } = findSites(src)
-    if (!slots.has(slot)) continue
-    const c = slots.get(slot).cva
-    return c ? [...(cvas.get(c)?.keys.keys() ?? [])] : []
+    const c = slots.get(slot)?.cva
+    if (c) return [...(cvas.get(c)?.keys.keys() ?? [])]
   }
   return []
 }

@@ -82,5 +82,11 @@
   "fill": "--_badge-success-solid",
   "status": "undecided",
   "note": "Solid success badge: white on mint-60 is 3.36:1. Options: accept it for short status labels, or use mint-75 for the solid fill."
+ },
+ {
+  "foreground": "--_select-item-checkbox-checked-foreground",
+  "fill": "--_select-item-checkbox-checked",
+  "status": "undecided",
+  "note": "Multiple-select checkbox: a white tick on mint-45 is 2.80:1, under the 3:1 a graphic needs. It's the same pair as the primary button and the Checkbox component. Options: accept it with those, or use mint-75 for the checked fill."
  }
 ]

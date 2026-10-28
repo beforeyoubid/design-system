@@ -400,6 +400,18 @@ export function findSites(source, fileName = 'x.tsx') {
       const slot = slotAttr?.initializer && ts.isStringLiteral(slotAttr.initializer) ? slotAttr.initializer.text : null
       const classAttr = attrs.find((a) => a.name.getText(sf) === 'className')
       if (slot && classAttr?.initializer) addSite(slot, classAttr.initializer)
+      // function InputGroupButton() { return <Button className={cn(inputGroupButtonVariants(…))} /> }
+      // renders another component and sets no data-slot of its own: the part is
+      // named after the function whose cva it uses.
+      else if (!slot && classAttr?.initializer) {
+        let fn = node.parent
+        while (fn && !ts.isFunctionDeclaration(fn)) fn = fn.parent
+        const name = fn?.name?.getText(sf)
+        const cvaName = name && name[0].toLowerCase() + name.slice(1) + 'Variants'
+        if (cvaName && classAttr.initializer.getText(sf).includes(`${cvaName}(`)) {
+          addSite(name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase(), classAttr.initializer)
+        }
+      }
     }
     // useRender({ props: mergeProps({ className: cn("…") }, props), state: { slot: "slot" } })
     if (ts.isCallExpression(node) && node.expression.getText(sf) === 'useRender') {

@@ -9,7 +9,7 @@
 
 [data-slot="select-trigger"] {
   /* @remove py-2 disabled:opacity-50 aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 data-[size=default]:h-9 */
-  /* @add group/select-trigger cursor-pointer w-full text-body-5 transition-[color,background-color,border-color,box-shadow] focus-visible:ring-3 data-popup-open:ring-3 data-popup-open:data-placeholder:text-mint-75 aria-invalid:hover:border-error-75 data-disabled:cursor-not-allowed data-disabled:hover:border-dark-45 data-[size=sm]:h-9 */
+  /* @add group/select-trigger cursor-pointer w-full text-body-5 transition-[color,background-color,border-color,box-shadow] focus-visible:ring-3 data-popup-open:ring-3 data-popup-open:data-placeholder:text-mint-75 aria-invalid:hover:border-error-75 aria-invalid:data-popup-open:border-(--_select-trigger-invalid-border) data-disabled:cursor-not-allowed data-disabled:hover:border-dark-45 data-[size=sm]:h-9 */
   /* Height of the trigger. */
   --_select-trigger-height: var(--select-trigger-height, calc(var(--spacing) * 10));
   /* Gap between items of the trigger. */
@@ -133,6 +133,18 @@
   --_select-item-selected-foreground: var(--select-item-selected-foreground, var(--mint-75));
   /* Text colour of the item when disabled. */
   --_select-item-disabled-foreground: var(--select-item-disabled-foreground, var(--dark-45));
+  /* Fill colour of the checkbox in a multiple-select row. @ours */
+  --_select-item-checkbox: var(--select-item-checkbox, var(--white));
+  /* Border colour of the checkbox in a multiple-select row. @ours */
+  --_select-item-checkbox-border: var(--select-item-checkbox-border, var(--dark-45));
+  /* Fill and border colour of the checkbox when its row is selected. @ours */
+  --_select-item-checkbox-checked: var(--select-item-checkbox-checked, var(--mint-45));
+  /* Colour of the tick in a selected checkbox. @ours */
+  --_select-item-checkbox-checked-foreground: var(--select-item-checkbox-checked-foreground, var(--white));
+  /* Colour of the trailing tick on the selected row (single select). @ours */
+  --_select-item-check-foreground: var(--select-item-check-foreground, var(--mint-75));
+  /* Text colour of the right-hand label (meta) in a row. @ours */
+  --_select-item-meta-foreground: var(--select-item-meta-foreground, var(--dark-75));
 }
 
 [data-slot="select-separator"] {

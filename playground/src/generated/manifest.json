@@ -7545,6 +7545,118 @@
      ]
     },
     {
+     "name": "--input-group-button-gap",
+     "private": "--_input-group-button-gap",
+     "default": "calc(var(--spacing) * 1)",
+     "description": "Gap between items of the button.",
+     "type": "length",
+     "part": "input-group-button",
+     "variant": null,
+     "state": null,
+     "property": "gap",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--input-group-button-radius",
+     "private": "--_input-group-button-radius",
+     "default": "var(--radius-md)",
+     "description": "Corner radius of the button.",
+     "type": "radius",
+     "part": "input-group-button",
+     "variant": null,
+     "state": null,
+     "property": "radius",
+     "reads": [
+      "--radius-md"
+     ]
+    },
+    {
+     "name": "--input-group-button-xs-height",
+     "private": "--_input-group-button-xs-height",
+     "default": "calc(var(--spacing) * 7)",
+     "description": "Height of the button (xs size).",
+     "type": "length",
+     "part": "input-group-button",
+     "variant": "xs",
+     "state": null,
+     "property": "height",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--input-group-button-xs-padding-x",
+     "private": "--_input-group-button-xs-padding-x",
+     "default": "calc(var(--spacing) * 2.5)",
+     "description": "Horizontal padding of the button (xs size).",
+     "type": "length",
+     "part": "input-group-button",
+     "variant": "xs",
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--input-group-button-sm-height",
+     "private": "--_input-group-button-sm-height",
+     "default": "calc(var(--spacing) * 8)",
+     "description": "Height of the button (sm size).",
+     "type": "length",
+     "part": "input-group-button",
+     "variant": "sm",
+     "state": null,
+     "property": "height",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--input-group-button-sm-padding-x",
+     "private": "--_input-group-button-sm-padding-x",
+     "default": "calc(var(--spacing) * 3)",
+     "description": "Horizontal padding of the button (sm size).",
+     "type": "length",
+     "part": "input-group-button",
+     "variant": "sm",
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--input-group-button-icon-xs-size",
+     "private": "--_input-group-button-icon-xs-size",
+     "default": "calc(var(--spacing) * 7)",
+     "description": "Width and height of the button (icon-xs size).",
+     "type": "length",
+     "part": "input-group-button",
+     "variant": "icon-xs",
+     "state": null,
+     "property": "size",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--input-group-button-icon-sm-size",
+     "private": "--_input-group-button-icon-sm-size",
+     "default": "calc(var(--spacing) * 8)",
+     "description": "Width and height of the button (icon-sm size).",
+     "type": "length",
+     "part": "input-group-button",
+     "variant": "icon-sm",
+     "state": null,
+     "property": "size",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
      "name": "--input-group-control-min-height",
      "private": "--_input-group-control-min-height",
      "default": "calc(var(--spacing) * 9)",
@@ -11153,6 +11265,90 @@
      ]
     },
     {
+     "name": "--select-item-checkbox",
+     "private": "--_select-item-checkbox",
+     "default": "var(--white)",
+     "description": "Fill colour of the checkbox in a multiple-select row.",
+     "type": "color",
+     "part": "select-item",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--white"
+     ]
+    },
+    {
+     "name": "--select-item-checkbox-border",
+     "private": "--_select-item-checkbox-border",
+     "default": "var(--dark-45)",
+     "description": "Border colour of the checkbox in a multiple-select row.",
+     "type": "color",
+     "part": "select-item",
+     "variant": null,
+     "state": null,
+     "property": "border",
+     "reads": [
+      "--dark-45"
+     ]
+    },
+    {
+     "name": "--select-item-checkbox-checked",
+     "private": "--_select-item-checkbox-checked",
+     "default": "var(--mint-45)",
+     "description": "Fill and border colour of the checkbox when its row is selected.",
+     "type": "color",
+     "part": "select-item",
+     "variant": null,
+     "state": "checked",
+     "property": "fill",
+     "reads": [
+      "--mint-45"
+     ]
+    },
+    {
+     "name": "--select-item-checkbox-checked-foreground",
+     "private": "--_select-item-checkbox-checked-foreground",
+     "default": "var(--white)",
+     "description": "Colour of the tick in a selected checkbox.",
+     "type": "color",
+     "part": "select-item",
+     "variant": null,
+     "state": "checked",
+     "property": "foreground",
+     "reads": [
+      "--white"
+     ]
+    },
+    {
+     "name": "--select-item-check-foreground",
+     "private": "--_select-item-check-foreground",
+     "default": "var(--mint-75)",
+     "description": "Colour of the trailing tick on the selected row (single select).",
+     "type": "color",
+     "part": "select-item",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--mint-75"
+     ]
+    },
+    {
+     "name": "--select-item-meta-foreground",
+     "private": "--_select-item-meta-foreground",
+     "default": "var(--dark-75)",
+     "description": "Text colour of the right-hand label (meta) in a row.",
+     "type": "color",
+     "part": "select-item",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-75"
+     ]
+    },
+    {
      "name": "--select-separator-height",
      "private": "--_select-separator-height",
      "default": "1px",
@@ -14635,6 +14831,12 @@
    "fill": "--_badge-success-solid",
    "status": "undecided",
    "note": "Solid success badge: white on mint-60 is 3.36:1. Options: accept it for short status labels, or use mint-75 for the solid fill."
+  },
+  {
+   "foreground": "--_select-item-checkbox-checked-foreground",
+   "fill": "--_select-item-checkbox-checked",
+   "status": "undecided",
+   "note": "Multiple-select checkbox: a white tick on mint-45 is 2.80:1, under the 3:1 a graphic needs. It's the same pair as the primary button and the Checkbox component. Options: accept it with those, or use mint-75 for the checked fill."
   }
  ]
 }
