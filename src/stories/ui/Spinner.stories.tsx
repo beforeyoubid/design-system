@@ -14,19 +14,19 @@ type Story = StoryObj<typeof Spinner>
 
 export const Default: Story = {}
 
-/** Size and colour come from `className`; the spinner inherits the text colour. */
+/** Primary (mint) by default; size and colour come from `className`. */
 export const Sizes: Story = {
   render: () => (
     <div className="flex items-center gap-4">
       <Spinner className="size-3" />
       <Spinner />
       <Spinner className="size-5" />
-      <Spinner className="size-6 text-primary" />
+      <Spinner className="size-6" />
     </div>
   ),
 }
 
-/** In a Button or Badge, place it with `data-icon` and disable the control. */
+/** In a Button or Badge, place it with `data-icon` (it takes the control's text colour) and disable the control. */
 export const InControls: Story = {
   render: () => (
     <div className="flex items-center gap-4">
