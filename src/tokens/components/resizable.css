@@ -1,7 +1,7 @@
 /* Resizable — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --resizable-handle-width: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/resizable.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/resizable.tsx follow from these names. */
 
 [data-slot="resizable-handle"] {
   /* Width of the handle. */

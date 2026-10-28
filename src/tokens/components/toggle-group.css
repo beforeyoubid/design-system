@@ -1,7 +1,7 @@
 /* Toggle Group — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --toggle-group-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/toggle-group.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/toggle-group.tsx follow from these names. */
 
 [data-slot="toggle-group"] {
   /* @add data-[spacing=0]:data-[variant=outline]:rounded-md */

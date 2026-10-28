@@ -1,4 +1,4 @@
 /* Aspect Ratio — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --aspect-ratio-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/aspect-ratio.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/aspect-ratio.tsx follow from these names. */

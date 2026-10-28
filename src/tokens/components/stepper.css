@@ -1,6 +1,6 @@
 /* Stepper — component tokens.
  * Set any lever (the name without the underscore) on :root or a section.
- * Defaults are Rey's design. Edited by hand; our component (stepper.tsx) reads these levers. */
+ * Defaults are the shipped design. Edited by hand; our component (stepper.tsx) reads these levers. */
 
 [data-slot="stepper-indicator"] {
   /* Fill colour of the current step (and of a done step in the dot size). @ours */

@@ -169,7 +169,7 @@ export function describeValue(type: ValueType, v: string): string {
 export const titleCase = (kebab: string) => kebab.replace(/(^|-)(\w)/g, (_, d, c) => (d ? ' ' : '') + c.toUpperCase())
 export const pascal = (kebab: string) => kebab.replace(/(^|-)(\w)/g, (_, _d, c) => c.toUpperCase())
 
-/** The CSS block an app (or Dean) pastes in after importing the design system. */
+/** The CSS block an app pastes in after importing the design system. */
 export function exportCss(overrides: Overrides) {
   const names = Object.keys(overrides).sort()
   if (!names.length) return ':root {\n  /* No changes yet. */\n}\n'

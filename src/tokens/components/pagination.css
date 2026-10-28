@@ -1,7 +1,7 @@
 /* Pagination — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --pagination-content-gap: … }
- * Defaults are Rey's design. The pagination-link levers are read by our PaginationLink (components/pagination.tsx). */
+ * Defaults are the shipped design. The pagination-link levers are read by our PaginationLink (components/pagination.tsx). */
 
 [data-slot="pagination-content"] {
   /* Gap between items of the content. */

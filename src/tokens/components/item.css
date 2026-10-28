@@ -1,7 +1,7 @@
 /* Item — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --item-group-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/item.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/item.tsx follow from these names. */
 
 [data-slot="item-group"] {
   /* @add has-data-[size=sm]:gap-(--_item-group-sm-gap) has-data-[size=xs]:gap-(--_item-group-xs-gap) */

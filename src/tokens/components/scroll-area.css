@@ -1,7 +1,7 @@
 /* Scroll Area — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --scroll-area-viewport-focus-ring: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/scroll-area.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/scroll-area.tsx follow from these names. */
 
 [data-slot="scroll-area-viewport"] {
   /* @add focus-visible:ring-3 */

@@ -2,7 +2,7 @@
  * Layout: a proofing desk. Top bar; then three columns: what to change (nav),
  * the levers for it (controls), and the live proof (preview). The chrome stays
  * in ink-blue neutrals so the only brand colour on screen is the proof itself;
- * lime marks what Rey has changed, like a highlighter on a proof.
+ * lime marks what has been changed, like a highlighter on a proof.
  * Everything here is scoped under .pg so it never styles the components. */
 
 :root {

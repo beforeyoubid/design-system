@@ -1,7 +1,7 @@
 /* Hover Card — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --hover-card-content-width: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/hover-card.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/hover-card.tsx follow from these names. */
 
 [data-slot="hover-card-content"] {
   /* @remove ring-1 ring-foreground/5 */

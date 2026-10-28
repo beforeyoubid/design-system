@@ -1,6 +1,6 @@
 /* Icon tile — component tokens.
  * Set any lever (the name without the underscore) on :root or a section.
- * Defaults are Rey's design. Edited by hand; our component (icon-tile.tsx) reads these levers. */
+ * Defaults are the shipped design. Edited by hand; our component (icon-tile.tsx) reads these levers. */
 
 [data-slot="icon-tile"] {
   /* Fill colour of the tile (mint variant). @ours */

@@ -1,7 +1,7 @@
 /* Drawer — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --drawer-overlay: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/drawer.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/drawer.tsx follow from these names. */
 
 [data-slot="drawer-overlay"] {
   /* Fill colour of the overlay. */

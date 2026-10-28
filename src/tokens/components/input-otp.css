@@ -1,7 +1,7 @@
 /* Input Otp — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --input-otp-group-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/input-otp.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/input-otp.tsx follow from these names. */
 
 [data-slot="input-otp-group"] {
   /* @remove rounded-4xl has-aria-invalid:border-destructive has-aria-invalid:ring-[3px] has-aria-invalid:ring-destructive/20 */

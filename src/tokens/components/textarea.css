@@ -1,7 +1,7 @@
 /* Textarea — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --textarea-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/textarea.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/textarea.tsx follow from these names. */
 
 [data-slot="textarea"] {
   /* @remove field-sizing-content disabled:opacity-50 aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 md:text-sm */

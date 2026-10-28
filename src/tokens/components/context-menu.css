@@ -1,7 +1,7 @@
 /* Context Menu — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --context-menu-content-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/context-menu.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/context-menu.tsx follow from these names. */
 
 [data-slot="context-menu-content"] {
   /* @remove ring-1 ring-foreground/5 */

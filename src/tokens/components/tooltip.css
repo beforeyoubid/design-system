@@ -1,7 +1,7 @@
 /* Tooltip — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --tooltip-content-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/tooltip.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/tooltip.tsx follow from these names. */
 
 [data-slot="tooltip-content"] {
   /* @add text-body-4 **:data-[slot=kbd]:rounded-sm */

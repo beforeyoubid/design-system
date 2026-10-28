@@ -1,7 +1,7 @@
 /* Field — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --field-set-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/field.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/field.tsx follow from these names. */
 
 [data-slot="field-set"] {
   /* @add has-[>[data-slot=checkbox-group]]:gap-(--_field-set-with-choices-gap) has-[>[data-slot=radio-group]]:gap-(--_field-set-with-choices-gap) */

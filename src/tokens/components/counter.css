@@ -1,6 +1,6 @@
 /* Counter — component tokens.
  * Set any lever (the name without the underscore) on :root or a section.
- * Defaults are Rey's design. Edited by hand; our component (counter.tsx) reads these levers. */
+ * Defaults are the shipped design. Edited by hand; our component (counter.tsx) reads these levers. */
 
 [data-slot="counter-value"] {
   /* Colour of the number and icon (navy variant). @ours */

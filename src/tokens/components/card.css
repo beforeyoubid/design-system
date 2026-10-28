@@ -1,7 +1,7 @@
 /* Card — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --card-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/card.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/card.tsx follow from these names. */
 
 [data-slot="card"] {
   /* @remove ring-1 ring-foreground/10 [--card-spacing:--spacing(6)] data-[size=sm]:[--card-spacing:--spacing(4)] */

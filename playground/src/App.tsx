@@ -143,7 +143,7 @@ function Row({ id, label, hint, type, name, defaultValue, overrides, set, max }:
       <div className="pg-row-text">
         <label htmlFor={id}>{label}</label>
         <p className="pg-row-meta">
-          {hint ?? typeHint[type]} · Rey's default: {describeValue(type, defaultValue)}
+          {hint ?? typeHint[type]} · Default: {describeValue(type, defaultValue)}
         </p>
       </div>
       <div className="pg-row-control">
@@ -348,7 +348,7 @@ function ExportPanel({ css, changed, onClose, onImport, onReset }: { css: string
           <button type="button" className="pg-close" onClick={onClose} aria-label="Close">×</button>
         </header>
         <p>
-          {changed ? `${changed} ${changed === 1 ? 'value' : 'values'} changed from Rey's defaults.` : 'Nothing changed yet.'} Copy this and send it to Dean; an app pastes it after importing the design system.
+          {changed ? `${changed} ${changed === 1 ? 'value' : 'values'} changed from the defaults.` : 'Nothing changed yet.'} An app applies these by pasting them after it imports the design system.
         </p>
         <pre ref={pre} className="pg-css">{css}</pre>
         <div className="pg-sheet-actions">

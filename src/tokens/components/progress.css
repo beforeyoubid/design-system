@@ -1,7 +1,7 @@
 /* Progress — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --progress-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/progress.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/progress.tsx follow from these names. */
 
 [data-slot="progress"] {
   /* Gap between items of the progress. */

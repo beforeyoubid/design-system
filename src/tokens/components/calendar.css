@@ -1,7 +1,7 @@
 /* Calendar — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --calendar-day-selected: … }
- * Our own Calendar (components/calendar.tsx) reads these. Defaults are Rey's design. */
+ * Our own Calendar (components/calendar.tsx) reads these. Defaults are the shipped design. */
 
 [data-slot="calendar-day"] {
   /* Fill of the selected day, and of a range's first and last day. @ours */

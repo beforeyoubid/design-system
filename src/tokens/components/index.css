@@ -4,7 +4,7 @@
 /* Accordion — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --accordion-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/accordion.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/accordion.tsx follow from these names. */
 
 [data-slot="accordion"],
 [class*="(--_accordion-"],
@@ -61,7 +61,7 @@
 /* Alert Dialog — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --alert-dialog-overlay: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/alert-dialog.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/alert-dialog.tsx follow from these names. */
 
 [data-slot="alert-dialog-overlay"],
 [class*="(--_alert-dialog-overlay-"],
@@ -139,7 +139,7 @@
 /* Alert — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --alert-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/alert.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/alert.tsx follow from these names. */
 
 [data-slot="alert"],
 [class*="(--_alert-"],
@@ -193,13 +193,13 @@
 /* Aspect Ratio — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --aspect-ratio-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/aspect-ratio.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/aspect-ratio.tsx follow from these names. */
 
 /* ---- attachment.css ---- */
 /* Attachment — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --attachment-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/attachment.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/attachment.tsx follow from these names. */
 
 [data-slot="attachment"],
 [class*="(--_attachment-"],
@@ -279,7 +279,7 @@
 /* Avatar — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --avatar-size: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/avatar.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/avatar.tsx follow from these names. */
 
 [data-slot="avatar"],
 [class*="(--_avatar-"],
@@ -353,7 +353,7 @@
 /* Badge — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --badge-height: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/badge.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/badge.tsx follow from these names. */
 
 [data-slot="badge"],
 [class*="(--_badge-"],
@@ -499,7 +499,7 @@
 /* Breadcrumb — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --breadcrumb-list-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/breadcrumb.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/breadcrumb.tsx follow from these names. */
 
 [data-slot="breadcrumb-list"],
 [class*="(--_breadcrumb-list-"],
@@ -548,7 +548,7 @@
 /* Button Group — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --button-group-text-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/button-group.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/button-group.tsx follow from these names. */
 
 [data-slot="button-group-text"],
 [class*="(--_button-group-text-"],
@@ -576,7 +576,7 @@
 /* Button — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --button-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/button.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/button.tsx follow from these names. */
 
 [data-slot="button"],
 [class*="(--_button-"],
@@ -761,7 +761,7 @@
 /* Calendar — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --calendar-day-selected: … }
- * Our own Calendar (components/calendar.tsx) reads these. Defaults are Rey's design. */
+ * Our own Calendar (components/calendar.tsx) reads these. Defaults are the shipped design. */
 
 [data-slot="calendar-day"],
 [class*="(--_calendar-day-"],
@@ -835,7 +835,7 @@
 /* Card — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --card-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/card.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/card.tsx follow from these names. */
 
 [data-slot="card"],
 [class*="(--_card-"],
@@ -912,7 +912,7 @@
 /* Carousel — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --carousel-previous-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/carousel.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/carousel.tsx follow from these names. */
 
 [data-slot="carousel-previous"],
 [class*="(--_carousel-previous-"],
@@ -931,7 +931,7 @@
 /* ---- chart-frame.css ---- */
 /* Chart frame — component tokens.
  * Set any lever (the name without the underscore) on :root or a section.
- * Defaults are Rey's design. Edited by hand; our component (chart-frame.tsx) reads these levers. */
+ * Defaults are the shipped design. Edited by hand; our component (chart-frame.tsx) reads these levers. */
 
 [data-slot="chart-frame"],
 [class*="(--_chart-frame-"],
@@ -970,7 +970,7 @@
 /* Chart — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --chart-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/chart.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/chart.tsx follow from these names. */
 
 [data-slot="chart"],
 [class*="(--_chart-"],
@@ -982,7 +982,7 @@
 /* Checkbox — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --checkbox-size: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/checkbox.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/checkbox.tsx follow from these names. */
 
 [data-slot="checkbox"],
 [class*="(--_checkbox-"],
@@ -1055,13 +1055,13 @@
 /* Collapsible — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --collapsible-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/collapsible.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/collapsible.tsx follow from these names. */
 
 /* ---- combobox.css ---- */
 /* Combobox — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --combobox-content-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/combobox.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/combobox.tsx follow from these names. */
 
 [data-slot="combobox-content"],
 [class*="(--_combobox-content-"],
@@ -1196,7 +1196,7 @@
 /* Command — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --command-radius: … }
- * Defaults are Rey's design. Stock wraps the command input in an InputGroup; the wrapper flattens it to Rey's borderless search row. Edited by hand; the class edits in ui/command.tsx follow from these names. */
+ * Defaults are the shipped design. Stock wraps the command input in an InputGroup; the wrapper flattens it to a borderless search row. Edited by hand; the class edits in ui/command.tsx follow from these names. */
 
 [data-slot="command"],
 [class*="(--_command-"],
@@ -1321,7 +1321,7 @@
 /* Context Menu — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --context-menu-content-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/context-menu.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/context-menu.tsx follow from these names. */
 
 [data-slot="context-menu-content"],
 [class*="(--_context-menu-content-"],
@@ -1465,7 +1465,7 @@
 /* ---- counter.css ---- */
 /* Counter — component tokens.
  * Set any lever (the name without the underscore) on :root or a section.
- * Defaults are Rey's design. Edited by hand; our component (counter.tsx) reads these levers. */
+ * Defaults are the shipped design. Edited by hand; our component (counter.tsx) reads these levers. */
 
 [data-slot="counter-value"],
 [class*="(--_counter-value-"],
@@ -1493,7 +1493,7 @@
 /* Dialog — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --dialog-overlay: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/dialog.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/dialog.tsx follow from these names. */
 
 [data-slot="dialog-overlay"],
 [class*="(--_dialog-overlay-"],
@@ -1590,13 +1590,13 @@
 /* Direction — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --direction-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/direction.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/direction.tsx follow from these names. */
 
 /* ---- drawer.css ---- */
 /* Drawer — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --drawer-overlay: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/drawer.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/drawer.tsx follow from these names. */
 
 [data-slot="drawer-overlay"],
 [class*="(--_drawer-overlay-"],
@@ -1677,7 +1677,7 @@
 /* Dropdown Menu — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --dropdown-menu-content-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/dropdown-menu.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/dropdown-menu.tsx follow from these names. */
 
 [data-slot="dropdown-menu-content"],
 [class*="(--_dropdown-menu-content-"],
@@ -1938,7 +1938,7 @@
 /* Empty — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --empty-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/empty.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/empty.tsx follow from these names. */
 
 [data-slot="empty"],
 [class*="(--_empty-"],
@@ -2011,7 +2011,7 @@
 /* Field — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --field-set-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/field.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/field.tsx follow from these names. */
 
 [data-slot="field-set"],
 [class*="(--_field-set-"],
@@ -2120,7 +2120,7 @@
 /* Hover Card — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --hover-card-content-width: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/hover-card.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/hover-card.tsx follow from these names. */
 
 [data-slot="hover-card-content"],
 [class*="(--_hover-card-content-"],
@@ -2148,7 +2148,7 @@
 /* ---- icon-tile.css ---- */
 /* Icon tile — component tokens.
  * Set any lever (the name without the underscore) on :root or a section.
- * Defaults are Rey's design. Edited by hand; our component (icon-tile.tsx) reads these levers. */
+ * Defaults are the shipped design. Edited by hand; our component (icon-tile.tsx) reads these levers. */
 
 [data-slot="icon-tile"],
 [class*="(--_icon-tile-"],
@@ -2191,7 +2191,7 @@
 /* Input Group — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --input-group-min-height: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/input-group.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/input-group.tsx follow from these names. */
 
 [data-slot="input-group"],
 [class*="(--_input-group-"],
@@ -2281,7 +2281,7 @@
 /* Input Otp — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --input-otp-group-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/input-otp.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/input-otp.tsx follow from these names. */
 
 [data-slot="input-otp-group"],
 [class*="(--_input-otp-group-"],
@@ -2333,7 +2333,7 @@
 /* Input — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --input-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/input.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/input.tsx follow from these names. */
 
 [data-slot="input"],
 [class*="(--_input-"],
@@ -2372,7 +2372,7 @@
 /* Item — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --item-group-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/item.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/item.tsx follow from these names. */
 
 [data-slot="item-group"],
 [class*="(--_item-group-"],
@@ -2491,7 +2491,7 @@
 /* Kbd — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --kbd-height: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/kbd.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/kbd.tsx follow from these names. */
 
 [data-slot="kbd"],
 [class*="(--_kbd-"],
@@ -2523,7 +2523,7 @@
 /* Label — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --label-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/label.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/label.tsx follow from these names. */
 
 [data-slot="label"],
 [class*="(--_label-"],
@@ -2541,7 +2541,7 @@
 /* Menubar — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --menubar-height: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/menubar.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/menubar.tsx follow from these names. */
 
 [data-slot="menubar"],
 [class*="(--_menubar-"],
@@ -2732,7 +2732,7 @@
 /* Native Select — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --native-select-height: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/native-select.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/native-select.tsx follow from these names. */
 
 [data-slot="native-select"],
 [class*="(--_native-select-"],
@@ -2793,7 +2793,7 @@
 /* Navigation Menu — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --navigation-menu-list-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/navigation-menu.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/navigation-menu.tsx follow from these names. */
 
 [data-slot="navigation-menu-list"],
 [class*="(--_navigation-menu-list-"],
@@ -2880,7 +2880,7 @@
 /* Pagination — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --pagination-content-gap: … }
- * Defaults are Rey's design. The pagination-link levers are read by our PaginationLink (components/pagination.tsx). */
+ * Defaults are the shipped design. The pagination-link levers are read by our PaginationLink (components/pagination.tsx). */
 
 [data-slot="pagination-content"],
 [class*="(--_pagination-content-"],
@@ -2914,7 +2914,7 @@
 /* ---- pill-card.css ---- */
 /* Pill card — component tokens.
  * Set any lever (the name without the underscore) on :root or a section.
- * Defaults are Rey's design. Edited by hand; our component (pill-card.tsx) reads these levers. */
+ * Defaults are the shipped design. Edited by hand; our component (pill-card.tsx) reads these levers. */
 
 [data-slot="pill-card"],
 [class*="(--_pill-card-"],
@@ -2958,7 +2958,7 @@
 /* Popover — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --popover-content-width: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/popover.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/popover.tsx follow from these names. */
 
 [data-slot="popover-content"],
 [class*="(--_popover-content-"],
@@ -3010,7 +3010,7 @@
 /* Progress — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --progress-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/progress.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/progress.tsx follow from these names. */
 
 [data-slot="progress"],
 [class*="(--_progress-"],
@@ -3057,7 +3057,7 @@
 /* Radio Group — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --radio-group-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/radio-group.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/radio-group.tsx follow from these names. */
 
 [data-slot="radio-group"],
 [class*="(--_radio-group-"],
@@ -3145,7 +3145,7 @@
 /* Resizable — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --resizable-handle-width: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/resizable.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/resizable.tsx follow from these names. */
 
 [data-slot="resizable-handle"],
 [class*="(--_resizable-handle-"],
@@ -3162,7 +3162,7 @@
 /* Scroll Area — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --scroll-area-viewport-focus-ring: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/scroll-area.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/scroll-area.tsx follow from these names. */
 
 [data-slot="scroll-area-viewport"],
 [class*="(--_scroll-area-viewport-"],
@@ -3192,7 +3192,7 @@
 /* Select — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --select-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/select.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/select.tsx follow from these names. */
 
 [data-slot="select-group"],
 [class*="(--_select-group-"],
@@ -3393,7 +3393,7 @@
 /* Separator — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --separator: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/separator.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/separator.tsx follow from these names. */
 
 [data-slot="separator"],
 [class*="(--_separator-"],
@@ -3406,7 +3406,7 @@
 /* Sheet — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --sheet-overlay: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/sheet.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/sheet.tsx follow from these names. */
 
 [data-slot="sheet-overlay"],
 [class*="(--_sheet-overlay-"],
@@ -3467,7 +3467,7 @@
 /* Sidebar — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --sidebar-fill: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/sidebar.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/sidebar.tsx follow from these names. */
 
 [data-slot="sidebar"],
 [class*="(--_sidebar-"],
@@ -3752,7 +3752,7 @@
 /* Skeleton — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --skeleton-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/skeleton.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/skeleton.tsx follow from these names. */
 
 [data-slot="skeleton"],
 [class*="(--_skeleton-"],
@@ -3769,7 +3769,7 @@
 /* Slider — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --slider-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/slider.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/slider.tsx follow from these names. */
 
 [data-slot="slider"],
 [class*="(--_slider-"],
@@ -3824,7 +3824,7 @@
 /* Spinner — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --spinner-size: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/spinner.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/spinner.tsx follow from these names. */
 
 [data-slot="spinner"],
 [class*="(--_spinner-"],
@@ -3839,7 +3839,7 @@
 /* ---- stepper.css ---- */
 /* Stepper — component tokens.
  * Set any lever (the name without the underscore) on :root or a section.
- * Defaults are Rey's design. Edited by hand; our component (stepper.tsx) reads these levers. */
+ * Defaults are the shipped design. Edited by hand; our component (stepper.tsx) reads these levers. */
 
 [data-slot="stepper-indicator"],
 [class*="(--_stepper-indicator-"],
@@ -3897,7 +3897,7 @@
 /* Switch — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --switch-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/switch.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/switch.tsx follow from these names. */
 
 [data-slot="switch"],
 [class*="(--_switch-"],
@@ -3949,7 +3949,7 @@
 /* Table — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --table-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/table.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/table.tsx follow from these names. */
 
 [data-slot="table"],
 [class*="(--_table-"],
@@ -4059,7 +4059,7 @@
 /* Tabs — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --tabs-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/tabs.tsx follow from these names.
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/tabs.tsx follow from these names.
  * The trigger drops stock's active fill and underline: our Tabs draw a sliding thumb instead (components/tabs.tsx). */
 
 [data-slot="tabs"],
@@ -4192,7 +4192,7 @@
 /* Textarea — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --textarea-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/textarea.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/textarea.tsx follow from these names. */
 
 [data-slot="textarea"],
 [class*="(--_textarea-"],
@@ -4229,7 +4229,7 @@
 /* Toast — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --toast-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/toast.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/toast.tsx follow from these names. */
 
 [data-slot="toast-viewport"],
 [class*="(--_toast-viewport-"],
@@ -4334,7 +4334,7 @@
 /* Toggle Group — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --toggle-group-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/toggle-group.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/toggle-group.tsx follow from these names. */
 
 [data-slot="toggle-group"],
 [class*="(--_toggle-group-"],
@@ -4346,7 +4346,7 @@
 /* Toggle — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --toggle-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/toggle.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/toggle.tsx follow from these names. */
 
 [data-slot="toggle"],
 [class*="(--_toggle-"],
@@ -4406,7 +4406,7 @@
 /* Tooltip — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --tooltip-content-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/tooltip.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/tooltip.tsx follow from these names. */
 
 [data-slot="tooltip-content"],
 [class*="(--_tooltip-content-"],

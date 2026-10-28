@@ -1,7 +1,7 @@
 /* Label — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --label-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/label.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/label.tsx follow from these names. */
 
 [data-slot="label"] {
   /* @add text-body-5 */

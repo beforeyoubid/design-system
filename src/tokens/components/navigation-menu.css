@@ -1,7 +1,7 @@
 /* Navigation Menu — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --navigation-menu-list-gap: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/navigation-menu.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/navigation-menu.tsx follow from these names. */
 
 [data-slot="navigation-menu-list"] {
   /* Gap between items of the list. */

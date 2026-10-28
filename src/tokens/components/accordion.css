@@ -1,7 +1,7 @@
 /* Accordion — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --accordion-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/accordion.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/accordion.tsx follow from these names. */
 
 [data-slot="accordion"] {
   /* @remove overflow-hidden rounded-2xl border */

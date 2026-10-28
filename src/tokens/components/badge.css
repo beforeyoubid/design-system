@@ -1,7 +1,7 @@
 /* Badge — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --badge-height: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/badge.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/badge.tsx follow from these names. */
 
 [data-slot="badge"] {
   /* @remove(variant.secondary) [a]:hover:bg-secondary/80 */

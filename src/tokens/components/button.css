@@ -1,7 +1,7 @@
 /* Button — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
  *   :root { --button-radius: … }
- * Defaults are Rey's design. Edited by hand; the class edits in ui/button.tsx follow from these names. */
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/button.tsx follow from these names. */
 
 [data-slot="button"] {
   /* @alias md = size.default */
