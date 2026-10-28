@@ -21,19 +21,20 @@ const RadioGroupContext = React.createContext<{
   size: RadioSize
 }>({ variant: "default", size: "md" })
 
-const radioGroupVariants = cva("grid w-full", {
+const radioGroupVariants = cva("", {
   variants: {
     variant: {
       default: "",
       card: "",
     },
+    // md is the stock radio-group gap
     size: {
-      sm: "gap-2",
-      md: "gap-2.5",
-      lg: "gap-3",
+      sm: "gap-(--_radio-group-sm-gap)",
+      md: "",
+      lg: "gap-(--_radio-group-lg-gap)",
     },
   },
-  compoundVariants: [{ variant: "card", className: "gap-2" }],
+  compoundVariants: [{ variant: "card", className: "gap-(--_radio-group-card-gap)" }],
   defaultVariants: {
     variant: "default",
     size: "md",
@@ -46,7 +47,7 @@ const radioItemFieldVariants = cva(
     variants: {
       variant: {
         default: "",
-        card: "flex-row-reverse justify-between gap-4 rounded-lg border border-dark-45 bg-white transition-colors has-data-checked:border-mint-45 has-data-checked:bg-mint-l4",
+        card: "flex-row-reverse justify-between gap-4 rounded-(--_radio-group-field-card-radius) border border-(--_radio-group-field-card-border) bg-(--_radio-group-field-card) transition-colors has-data-checked:border-(--_radio-group-field-card-checked-border) has-data-checked:bg-(--_radio-group-field-card-checked)",
       },
       size: {
         sm: "gap-2",
@@ -70,15 +71,16 @@ const radioItemFieldVariants = cva(
 const radioControlVariants = cva("", {
   variants: {
     size: {
-      sm: "size-3.5 [&_[data-slot=radio-group-indicator]>span]:size-1.5",
-      md: "size-4 [&_[data-slot=radio-group-indicator]>span]:size-2",
-      lg: "size-5 [&_[data-slot=radio-group-indicator]>span]:size-2.5",
+      // md is the stock radio-group-item size
+      sm: "size-(--_radio-group-item-sm-size) [&_[data-slot=radio-group-indicator]>span]:size-1.5",
+      md: "",
+      lg: "size-(--_radio-group-item-lg-size) [&_[data-slot=radio-group-indicator]>span]:size-2.5",
     },
   },
   defaultVariants: { size: "md" },
 })
 
-const radioLabelVariants = cva("leading-tight text-navy", {
+const radioLabelVariants = cva("leading-tight text-(--_radio-group-label-foreground)", {
   variants: {
     size: {
       sm: "text-caption-1",
@@ -89,7 +91,7 @@ const radioLabelVariants = cva("leading-tight text-navy", {
   defaultVariants: { size: "md" },
 })
 
-const radioDescriptionVariants = cva("text-dark-75", {
+const radioDescriptionVariants = cva("text-(--_radio-group-description-foreground)", {
   variants: {
     size: {
       sm: "text-caption-1",

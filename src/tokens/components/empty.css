@@ -13,6 +13,10 @@
   --_empty-padding-x: var(--empty-padding-x, calc(var(--spacing) * 6));
   /* Vertical padding of the empty. */
   --_empty-padding-y: var(--empty-padding-y, calc(var(--spacing) * 10));
+  /* Border colour of the empty state (outline variant). @ours */
+  --_empty-outline-border: var(--empty-outline-border, var(--border));
+  /* Fill colour of the empty state (muted variant). @ours */
+  --_empty-muted: var(--empty-muted, var(--muted));
 }
 
 [data-slot="empty-header"] {

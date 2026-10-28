@@ -7,13 +7,14 @@ import { Empty as EmptyBase } from "@/components/ui/empty"
 export * from "@/components/ui/empty"
 
 const emptyVariants = cva(
-  "flex w-full min-w-0 flex-1 flex-col items-center justify-center gap-4 rounded-lg px-6 py-10 text-center text-balance",
+  // The layout is the stock empty part (empty levers); variants add a border or fill.
+  "",
   {
     variants: {
       variant: {
         default: "",
-        outline: "border border-dashed border-border",
-        muted: "bg-muted",
+        outline: "border border-dashed border-(--_empty-outline-border)",
+        muted: "bg-(--_empty-muted)",
       },
     },
     defaultVariants: {

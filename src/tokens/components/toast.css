@@ -19,6 +19,22 @@
   --_toast: var(--toast, var(--light-l2));
   /* Text colour of the toast. */
   --_toast-foreground: var(--toast-foreground, var(--navy));
+  /* Fill colour of the toast (success type). @ours */
+  --_toast-success: var(--toast-success, var(--mint-l3));
+  /* Colour of the title, icon and × (success type). @ours */
+  --_toast-success-foreground: var(--toast-success-foreground, var(--mint-60));
+  /* Fill colour of the toast (warning type). @ours */
+  --_toast-warning: var(--toast-warning, var(--warning-l3));
+  /* Colour of the title, icon and × (warning type). @ours */
+  --_toast-warning-foreground: var(--toast-warning-foreground, var(--warning-60));
+  /* Fill colour of the toast (error type). @ours */
+  --_toast-error: var(--toast-error, var(--error-l1));
+  /* Colour of the title, icon and × (error type). @ours */
+  --_toast-error-foreground: var(--toast-error-foreground, var(--error-60));
+  /* Fill colour of the toast (info type). @ours */
+  --_toast-info: var(--toast-info, var(--mint-l4));
+  /* Colour of the title, icon and × (info type). @ours */
+  --_toast-info-foreground: var(--toast-info-foreground, var(--mint-75));
 }
 
 [data-slot="toast-content"] {

@@ -10,20 +10,20 @@ import {
 
 export * from "@/components/ui/accordion"
 
-/** Trigger row: title size, vertical padding and chevron size per `size`. */
-const accordionTriggerVariants = cva(
-  "group/accordion-trigger relative flex cursor-pointer flex-1 items-center justify-between text-start font-semibold text-dark-100 transition-colors outline-none hover:text-mint-45 aria-expanded:text-mint-45 aria-disabled:pointer-events-none aria-disabled:opacity-50",
-  {
-    variants: {
-      size: {
-        sm: "gap-4 py-3 text-body-4 [&_svg]:size-4",
-        md: "gap-6 py-5 text-h5 [&_svg]:size-5",
-        lg: "gap-6 py-6 text-h4 [&_svg]:size-6",
-      },
+/**
+ * Trigger row. md is the stock trigger (accordion-trigger levers); sm and lg
+ * set their own title size, padding and chevron size.
+ */
+const accordionTriggerVariants = cva("", {
+  variants: {
+    size: {
+      sm: "gap-(--_accordion-trigger-sm-gap) py-(--_accordion-trigger-sm-padding-y) text-body-4 [&_svg]:size-4",
+      md: "",
+      lg: "py-(--_accordion-trigger-lg-padding-y) text-h4 [&_svg]:size-6",
     },
-    defaultVariants: { size: "md" },
-  }
-)
+  },
+  defaultVariants: { size: "md" },
+})
 
 /** Panel body: text size and bottom padding per `size`. */
 const accordionContentVariants = cva(

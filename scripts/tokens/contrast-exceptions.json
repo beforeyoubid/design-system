@@ -88,5 +88,23 @@
   "fill": "--_select-item-checkbox-checked",
   "status": "undecided",
   "note": "Multiple-select checkbox: a white tick on mint-45 is 2.80:1, under the 3:1 a graphic needs. It's the same pair as the primary button and the Checkbox component. Options: accept it with those, or use mint-75 for the checked fill."
+ },
+ {
+  "foreground": "--_toast-success-foreground",
+  "fill": "--_toast-success",
+  "status": "undecided",
+  "note": "Success toast: the mint-60 title on the mint-l3 fill is 2.97:1. The icon passes the 3:1 a graphic needs, the title text doesn't. Options: accept it, or use the darker -75 shade for the title and icon."
+ },
+ {
+  "foreground": "--_toast-warning-foreground",
+  "fill": "--_toast-warning",
+  "status": "undecided",
+  "note": "Warning toast: the warning-60 title on the warning-l3 fill is 3.23:1. The icon passes the 3:1 a graphic needs, the title text doesn't. Options: accept it, or use the darker -75 shade for the title and icon."
+ },
+ {
+  "foreground": "--_toast-error-foreground",
+  "fill": "--_toast-error",
+  "status": "undecided",
+  "note": "Error toast: the error-60 title on the error-l1 fill is 3.28:1. The icon passes the 3:1 a graphic needs, the title text doesn't. Options: accept it, or use the darker -75 shade for the title and icon."
  }
 ]

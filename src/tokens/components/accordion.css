@@ -31,6 +31,12 @@
   --_accordion-trigger-gap: var(--accordion-trigger-gap, calc(var(--spacing) * 6));
   /* Vertical padding of the trigger. */
   --_accordion-trigger-padding-y: var(--accordion-trigger-padding-y, calc(var(--spacing) * 5));
+  /* Gap between the title and chevron (sm size). @ours */
+  --_accordion-trigger-sm-gap: var(--accordion-trigger-sm-gap, calc(var(--spacing) * 4));
+  /* Vertical padding of the trigger (sm size). @ours */
+  --_accordion-trigger-sm-padding-y: var(--accordion-trigger-sm-padding-y, calc(var(--spacing) * 3));
+  /* Vertical padding of the trigger (lg size). @ours */
+  --_accordion-trigger-lg-padding-y: var(--accordion-trigger-lg-padding-y, calc(var(--spacing) * 6));
 }
 
 [data-slot="accordion-content"] {

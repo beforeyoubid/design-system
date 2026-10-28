@@ -76,11 +76,12 @@ const TOAST_TIMEOUTS: Record<ToastType, number> = {
 const toastVariants = cva("", {
   variants: {
     type: {
-      success: "bg-mint-l3 text-mint-60",
-      warning: "bg-warning-l3 text-warning-60",
-      error: "bg-error-l1 text-error-60",
-      info: "bg-mint-l4 text-mint-75",
-      default: "bg-light-l2 text-navy",
+      success: "bg-(--_toast-success) text-(--_toast-success-foreground)",
+      warning: "bg-(--_toast-warning) text-(--_toast-warning-foreground)",
+      error: "bg-(--_toast-error) text-(--_toast-error-foreground)",
+      info: "bg-(--_toast-info) text-(--_toast-info-foreground)",
+      // The stock toast fill and text (toast levers)
+      default: "",
     },
   },
   defaultVariants: { type: "default" },
@@ -197,7 +198,7 @@ function ToastIcon({ type }: { type: string | undefined }) {
   return (
     <span
       data-slot="toast-icon"
-      className="flex size-8 shrink-0 items-center justify-center rounded-full border border-current bg-white [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4.5"
+      className="flex size-(--_toast-icon-size) shrink-0 items-center justify-center rounded-(--_toast-icon-radius) border border-current bg-(--_toast-icon) [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4.5"
     >
       <Icon
         className={cn(type === "loading" && "animate-spin")}

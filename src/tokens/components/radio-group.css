@@ -6,6 +6,12 @@
 [data-slot="radio-group"] {
   /* Gap between items of the radio-group. */
   --_radio-group-gap: var(--radio-group-gap, calc(var(--spacing) * 2.5));
+  /* Gap between options (sm size). @ours */
+  --_radio-group-sm-gap: var(--radio-group-sm-gap, calc(var(--spacing) * 2));
+  /* Gap between options (lg size). @ours */
+  --_radio-group-lg-gap: var(--radio-group-lg-gap, calc(var(--spacing) * 3));
+  /* Gap between options (card variant). @ours */
+  --_radio-group-card-gap: var(--radio-group-card-gap, calc(var(--spacing) * 2));
 }
 
 [data-slot="radio-group-item"] {
@@ -19,6 +25,10 @@
   --_radio-group-item: var(--radio-group-item, var(--white));
   /* Width and height of the item. */
   --_radio-group-item-size: var(--radio-group-item-size, calc(var(--spacing) * 4));
+  /* Width and height of the radio (sm size). @ours */
+  --_radio-group-item-sm-size: var(--radio-group-item-sm-size, calc(var(--spacing) * 3.5));
+  /* Width and height of the radio (lg size). @ours */
+  --_radio-group-item-lg-size: var(--radio-group-item-lg-size, calc(var(--spacing) * 5));
   /* Border colour of the item when focused. */
   --_radio-group-item-focus-border: var(--radio-group-item-focus-border, var(--mint-45));
   /* Ring colour of the item when focused. */
@@ -38,4 +48,27 @@
   /* @add [&>span]:bg-(--_radio-group-indicator) */
   /* Fill of the dot in a checked radio. */
   --_radio-group-indicator: var(--radio-group-indicator, var(--mint-45));
+}
+
+[data-slot="radio-group-field"] {
+  /* Fill colour of an option card (card variant). @ours */
+  --_radio-group-field-card: var(--radio-group-field-card, var(--white));
+  /* Border colour of an option card (card variant). @ours */
+  --_radio-group-field-card-border: var(--radio-group-field-card-border, var(--dark-45));
+  /* Corner radius of an option card (card variant). @ours */
+  --_radio-group-field-card-radius: var(--radio-group-field-card-radius, var(--radius-lg));
+  /* Fill colour of the chosen option card (card variant). @ours */
+  --_radio-group-field-card-checked: var(--radio-group-field-card-checked, var(--mint-l4));
+  /* Border colour of the chosen option card (card variant). @ours */
+  --_radio-group-field-card-checked-border: var(--radio-group-field-card-checked-border, var(--mint-45));
+}
+
+[data-slot="radio-group-label"] {
+  /* Text colour of an option's label. @ours */
+  --_radio-group-label-foreground: var(--radio-group-label-foreground, var(--navy));
+}
+
+[data-slot="radio-group-description"] {
+  /* Text colour of an option's description. @ours */
+  --_radio-group-description-foreground: var(--radio-group-description-foreground, var(--dark-75));
 }
