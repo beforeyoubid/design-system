@@ -10,7 +10,7 @@ import {
   AttachmentMedia,
   AttachmentTitle,
 } from '../../components/ui/attachment'
-import { Spinner } from '../../components/ui/spinner'
+import { Spinner } from '../../components/spinner'
 
 type State = 'idle' | 'uploading' | 'processing' | 'error' | 'done'
 

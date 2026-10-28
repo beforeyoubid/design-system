@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Badge } from '../../components/badge'
 import { Button } from '../../components/button'
-import { Spinner } from '../../components/ui/spinner'
+import { Spinner } from '../../components/spinner'
 
 const meta: Meta<typeof Spinner> = {
   title: 'BYB Components/Spinner',
@@ -22,6 +22,16 @@ export const Sizes: Story = {
       <Spinner />
       <Spinner className="size-5" />
       <Spinner className="size-6" />
+    </div>
+  ),
+}
+
+/** `ring` (default) is Rey's loader arc; `dots` is the loader rays. */
+export const Variants: Story = {
+  render: () => (
+    <div className="flex items-center gap-4">
+      <Spinner />
+      <Spinner variant="dots" />
     </div>
   ),
 }

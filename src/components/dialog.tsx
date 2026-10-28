@@ -21,7 +21,10 @@ export * from "@/components/ui/dialog"
  * sits on the left in one row with the title.
  */
 const dialogContentVariants = cva(
-  "group/dialog fixed top-1/2 start-1/2 z-50 flex max-h-11/12 w-11/12 rounded-3xl -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 flex-col gap-4 bg-white p-6 text-body-5 text-dark-90 shadow-2xl duration-100 outline-none data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+  // The look is in the dialog-content levers (stock classes). Here: Rey's close
+  // button (a plain grey ×, not stock's ghost Button), read from the
+  // dialog-close levers.
+  "*:data-[slot=dialog-close]:top-5 *:data-[slot=dialog-close]:end-5 *:data-[slot=dialog-close]:size-8 *:data-[slot=dialog-close]:rounded-full *:data-[slot=dialog-close]:bg-transparent *:data-[slot=dialog-close]:text-(--_dialog-close-foreground) *:data-[slot=dialog-close]:hover:bg-transparent *:data-[slot=dialog-close]:hover:text-(--_dialog-close-hover-foreground) *:data-[slot=dialog-close]:[&_svg]:size-5!",
   {
     variants: {
       size: {

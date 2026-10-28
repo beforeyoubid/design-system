@@ -712,7 +712,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>badge</strong> (28)</summary>
+<summary><strong>badge</strong> (59)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -744,6 +744,37 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--badge-ghost-hover` | Fill colour of the badge (ghost variant) when hovered. | `var(--muted)` |
 | `--badge-ghost-hover-foreground` | Text colour of the badge (ghost variant) when hovered. | `var(--muted-foreground)` |
 | `--badge-link-foreground` | Text colour of the badge (link variant). | `var(--primary)` |
+| `--badge-lime-border` | Border colour of the badge (lime variant). | `var(--lime)` |
+| `--badge-lime` | Fill colour of the badge (lime variant). | `var(--lime)` |
+| `--badge-lime-foreground` | Text colour of the badge (lime variant). | `var(--navy)` |
+| `--badge-success-border` | Border colour of the badge (success variant). | `var(--mint-l1)` |
+| `--badge-success` | Fill colour of the badge (success variant). | `var(--mint-l3)` |
+| `--badge-success-foreground` | Text colour of the badge (success variant). | `var(--mint-75)` |
+| `--badge-warning-border` | Border colour of the badge (warning variant). | `var(--warning-l1)` |
+| `--badge-warning` | Fill colour of the badge (warning variant). | `var(--warning-l3)` |
+| `--badge-warning-foreground` | Text colour of the badge (warning variant). | `var(--warning-75)` |
+| `--badge-electric-blue-border` | Border colour of the badge (electric-blue variant). | `var(--electric-blue-l1)` |
+| `--badge-electric-blue` | Fill colour of the badge (electric-blue variant). | `var(--electric-blue-l1)` |
+| `--badge-electric-blue-foreground` | Text colour of the badge (electric-blue variant). | `var(--electric-blue)` |
+| `--badge-gray-solid` | Fill and border colour of the solid badge (gray variant). | `var(--dark-75)` |
+| `--badge-gray-solid-foreground` | Text colour of the solid badge (gray variant). | `var(--white)` |
+| `--badge-mint-solid` | Fill and border colour of the solid badge (mint variant). | `var(--mint-45)` |
+| `--badge-mint-solid-foreground` | Text colour of the solid badge (mint variant). | `var(--white)` |
+| `--badge-lime-solid` | Fill and border colour of the solid badge (lime variant). | `var(--lime)` |
+| `--badge-lime-solid-foreground` | Text colour of the solid badge (lime variant). | `var(--navy)` |
+| `--badge-success-solid` | Fill and border colour of the solid badge (success variant). | `var(--mint-60)` |
+| `--badge-success-solid-foreground` | Text colour of the solid badge (success variant). | `var(--white)` |
+| `--badge-error-solid` | Fill and border colour of the solid badge (error variant). | `var(--error-75)` |
+| `--badge-error-solid-foreground` | Text colour of the solid badge (error variant). | `var(--white)` |
+| `--badge-warning-solid` | Fill and border colour of the solid badge (warning variant). | `var(--warning-30)` |
+| `--badge-warning-solid-foreground` | Text colour of the solid badge (warning variant). | `var(--navy)` |
+| `--badge-electric-blue-solid` | Fill and border colour of the solid badge (electric-blue variant). | `var(--electric-blue)` |
+| `--badge-electric-blue-solid-foreground` | Text colour of the solid badge (electric-blue variant). | `var(--white)` |
+| `--badge-sm-height` | Height of the small badge. | `calc(var(--spacing) * 4)` |
+| `--badge-sm-padding-x` | Horizontal padding of the small badge. | `calc(var(--spacing) * 1.5)` |
+| `--badge-lg-height` | Height of the large badge. | `calc(var(--spacing) * 7)` |
+| `--badge-lg-gap` | Gap between items of the large badge. | `calc(var(--spacing) * 1.5)` |
+| `--badge-lg-padding-x` | Horizontal padding of the large badge. | `calc(var(--spacing) * 3)` |
 
 </details>
 
@@ -1076,7 +1107,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>dialog</strong> (12)</summary>
+<summary><strong>dialog</strong> (14)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -1092,6 +1123,8 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--dialog-title-font-weight` | Font weight of the title. | `600` |
 | `--dialog-title-foreground` | Text colour of the title. | `var(--navy)` |
 | `--dialog-description-foreground` | Text colour of the description. | `var(--dark-90)` |
+| `--dialog-close-foreground` | Colour of the close (×) button. | `var(--dark-75)` |
+| `--dialog-close-hover-foreground` | Colour of the close button when hovered. | `var(--dark-100)` |
 
 </details>
 
@@ -1833,7 +1866,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>tabs</strong> (17)</summary>
+<summary><strong>tabs</strong> (44)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -1845,6 +1878,10 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--tabs-list-default-padding` | Padding of the list (default variant). | `calc(var(--spacing) * 0.75)` |
 | `--tabs-list-line-gap` | Gap between items of the list (line variant). | `calc(var(--spacing) * 6)` |
 | `--tabs-list-line-border` | Border colour of the list (line variant). | `var(--border)` |
+| `--tabs-list-segmented` | Fill colour of the list (segmented variant). | `var(--light-l2)` |
+| `--tabs-list-segmented-gap` | Gap between items of the list (segmented variant). | `calc(var(--spacing) * 1)` |
+| `--tabs-list-segmented-radius` | Corner radius of the list (segmented variant). | `var(--radius-lg)` |
+| `--tabs-list-segmented-padding` | Padding of the list (segmented variant). | `calc(var(--spacing) * 1)` |
 | `--tabs-trigger-gap` | Gap between items of the trigger. | `calc(var(--spacing) * 1.5)` |
 | `--tabs-trigger-focus-ring` | Ring colour of the trigger when focused. | `var(--navy)` |
 | `--tabs-trigger-disabled-foreground` | Text colour of the trigger when disabled. | `var(--dark-45)` |
@@ -1854,6 +1891,29 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--tabs-trigger-font-weight` | Font weight of the trigger. | `600` |
 | `--tabs-trigger-foreground` | Text colour of the trigger. | `var(--navy)` |
 | `--tabs-trigger-active-foreground` | Text colour of the trigger when active. | `var(--white)` |
+| `--tabs-trigger-line-height` | Height of the trigger (line variant). | `calc(var(--spacing) * 10)` |
+| `--tabs-trigger-line-radius` | Corner radius of the trigger (line variant). | `var(--radius-sm)` |
+| `--tabs-trigger-line-padding-x` | Horizontal padding of the trigger (line variant). | `calc(var(--spacing) * 1)` |
+| `--tabs-trigger-line-foreground` | Text colour of the trigger (line variant). | `var(--dark-100)` |
+| `--tabs-trigger-line-hover-foreground` | Text colour of the trigger (line variant) when hovered. | `var(--dark-75)` |
+| `--tabs-trigger-line-active-foreground` | Text colour of the trigger (line variant) when active. | `var(--navy)` |
+| `--tabs-trigger-line-hover-indicator` | Colour of the bar under a hovered trigger (line variant). | `var(--dark-15)` |
+| `--tabs-trigger-segmented-height` | Height of the trigger (segmented variant). | `calc(var(--spacing) * 8)` |
+| `--tabs-trigger-segmented-radius` | Corner radius of the trigger (segmented variant). | `var(--radius-md)` |
+| `--tabs-trigger-segmented-padding-x` | Horizontal padding of the trigger (segmented variant). | `calc(var(--spacing) * 3)` |
+| `--tabs-trigger-segmented-foreground` | Text colour of the trigger (segmented variant). | `var(--navy)` |
+| `--tabs-trigger-segmented-active-foreground` | Text colour of the trigger (segmented variant) when active. | `var(--white)` |
+| `--tabs-indicator` | Colour of the sliding thumb behind the active tab. | `var(--mint-60)` |
+| `--tabs-indicator-radius` | Corner radius of the sliding thumb. | `var(--radius-full)` |
+| `--tabs-indicator-line` | Colour of the bar under the active tab (line variant). | `var(--mint-60)` |
+| `--tabs-indicator-line-height` | Thickness of the bar under the active tab (line variant). | `calc(var(--spacing) * 0.75)` |
+| `--tabs-indicator-segmented` | Colour of the thumb behind the active segment (segmented variant). | `var(--mint-45)` |
+| `--tabs-indicator-segmented-radius` | Corner radius of the thumb (segmented variant). | `var(--radius-md)` |
+| `--tabs-content-panel` | Fill colour of the content card (panel variant). | `var(--white)` |
+| `--tabs-content-panel-border` | Border colour of the content card (panel variant). | `var(--light-l3)` |
+| `--tabs-content-panel-radius` | Corner radius of the content card (panel variant). | `var(--radius-xl)` |
+| `--tabs-content-panel-padding` | Padding of the content card (panel variant). | `calc(var(--spacing) * 6)` |
+| `--tabs-content-panel-gap` | Gap between items of the content card (panel variant). | `calc(var(--spacing) * 5)` |
 
 </details>
 

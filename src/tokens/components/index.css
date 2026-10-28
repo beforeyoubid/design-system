@@ -384,6 +384,68 @@
   --_badge-ghost-hover-foreground: var(--badge-ghost-hover-foreground, var(--muted-foreground));
   /* Text colour of the badge (link variant). */
   --_badge-link-foreground: var(--badge-link-foreground, var(--primary));
+  /* Border colour of the badge (lime variant). @ours */
+  --_badge-lime-border: var(--badge-lime-border, var(--lime));
+  /* Fill colour of the badge (lime variant). @ours */
+  --_badge-lime: var(--badge-lime, var(--lime));
+  /* Text colour of the badge (lime variant). @ours */
+  --_badge-lime-foreground: var(--badge-lime-foreground, var(--navy));
+  /* Border colour of the badge (success variant). @ours */
+  --_badge-success-border: var(--badge-success-border, var(--mint-l1));
+  /* Fill colour of the badge (success variant). @ours */
+  --_badge-success: var(--badge-success, var(--mint-l3));
+  /* Text colour of the badge (success variant). @ours */
+  --_badge-success-foreground: var(--badge-success-foreground, var(--mint-75));
+  /* Border colour of the badge (warning variant). @ours */
+  --_badge-warning-border: var(--badge-warning-border, var(--warning-l1));
+  /* Fill colour of the badge (warning variant). @ours */
+  --_badge-warning: var(--badge-warning, var(--warning-l3));
+  /* Text colour of the badge (warning variant). @ours */
+  --_badge-warning-foreground: var(--badge-warning-foreground, var(--warning-75));
+  /* Border colour of the badge (electric-blue variant). @ours */
+  --_badge-electric-blue-border: var(--badge-electric-blue-border, var(--electric-blue-l1));
+  /* Fill colour of the badge (electric-blue variant). @ours */
+  --_badge-electric-blue: var(--badge-electric-blue, var(--electric-blue-l1));
+  /* Text colour of the badge (electric-blue variant). @ours */
+  --_badge-electric-blue-foreground: var(--badge-electric-blue-foreground, var(--electric-blue));
+  /* Fill and border colour of the solid badge (gray variant). @ours */
+  --_badge-gray-solid: var(--badge-gray-solid, var(--dark-75));
+  /* Text colour of the solid badge (gray variant). @ours */
+  --_badge-gray-solid-foreground: var(--badge-gray-solid-foreground, var(--white));
+  /* Fill and border colour of the solid badge (mint variant). @ours */
+  --_badge-mint-solid: var(--badge-mint-solid, var(--mint-45));
+  /* Text colour of the solid badge (mint variant). @ours */
+  --_badge-mint-solid-foreground: var(--badge-mint-solid-foreground, var(--white));
+  /* Fill and border colour of the solid badge (lime variant). @ours */
+  --_badge-lime-solid: var(--badge-lime-solid, var(--lime));
+  /* Text colour of the solid badge (lime variant). @ours */
+  --_badge-lime-solid-foreground: var(--badge-lime-solid-foreground, var(--navy));
+  /* Fill and border colour of the solid badge (success variant). @ours */
+  --_badge-success-solid: var(--badge-success-solid, var(--mint-60));
+  /* Text colour of the solid badge (success variant). @ours */
+  --_badge-success-solid-foreground: var(--badge-success-solid-foreground, var(--white));
+  /* Fill and border colour of the solid badge (error variant). @ours */
+  --_badge-error-solid: var(--badge-error-solid, var(--error-75));
+  /* Text colour of the solid badge (error variant). @ours */
+  --_badge-error-solid-foreground: var(--badge-error-solid-foreground, var(--white));
+  /* Fill and border colour of the solid badge (warning variant). @ours */
+  --_badge-warning-solid: var(--badge-warning-solid, var(--warning-30));
+  /* Text colour of the solid badge (warning variant). @ours */
+  --_badge-warning-solid-foreground: var(--badge-warning-solid-foreground, var(--navy));
+  /* Fill and border colour of the solid badge (electric-blue variant). @ours */
+  --_badge-electric-blue-solid: var(--badge-electric-blue-solid, var(--electric-blue));
+  /* Text colour of the solid badge (electric-blue variant). @ours */
+  --_badge-electric-blue-solid-foreground: var(--badge-electric-blue-solid-foreground, var(--white));
+  /* Height of the small badge. @ours */
+  --_badge-sm-height: var(--badge-sm-height, calc(var(--spacing) * 4));
+  /* Horizontal padding of the small badge. @ours */
+  --_badge-sm-padding-x: var(--badge-sm-padding-x, calc(var(--spacing) * 1.5));
+  /* Height of the large badge. @ours */
+  --_badge-lg-height: var(--badge-lg-height, calc(var(--spacing) * 7));
+  /* Gap between items of the large badge. @ours */
+  --_badge-lg-gap: var(--badge-lg-gap, calc(var(--spacing) * 1.5));
+  /* Horizontal padding of the large badge. @ours */
+  --_badge-lg-padding-x: var(--badge-lg-padding-x, calc(var(--spacing) * 3));
 }
 
 /* ---- breadcrumb.css ---- */
@@ -1302,6 +1364,15 @@
   /* @add *:[a]:hover:text-navy text-body-5 */
   /* Text colour of the description. */
   --_dialog-description-foreground: var(--dialog-description-foreground, var(--dark-90));
+}
+
+[data-slot="dialog-close"],
+[class*="(--_dialog-close-"],
+[class*="(--_dialog-close)"] {
+  /* Colour of the close (×) button. @ours */
+  --_dialog-close-foreground: var(--dialog-close-foreground, var(--dark-75));
+  /* Colour of the close button when hovered. @ours */
+  --_dialog-close-hover-foreground: var(--dialog-close-hover-foreground, var(--dark-100));
 }
 
 /* ---- direction.css ---- */
@@ -3393,6 +3464,14 @@
   --_tabs-list-line-gap: var(--tabs-list-line-gap, calc(var(--spacing) * 6));
   /* Border colour of the list (line variant). */
   --_tabs-list-line-border: var(--tabs-list-line-border, var(--border));
+  /* Fill colour of the list (segmented variant). @ours */
+  --_tabs-list-segmented: var(--tabs-list-segmented, var(--light-l2));
+  /* Gap between items of the list (segmented variant). @ours */
+  --_tabs-list-segmented-gap: var(--tabs-list-segmented-gap, calc(var(--spacing) * 1));
+  /* Corner radius of the list (segmented variant). @ours */
+  --_tabs-list-segmented-radius: var(--tabs-list-segmented-radius, var(--radius-lg));
+  /* Padding of the list (segmented variant). @ours */
+  --_tabs-list-segmented-padding: var(--tabs-list-segmented-padding, calc(var(--spacing) * 1));
 }
 
 [data-slot="tabs-trigger"],
@@ -3418,12 +3497,63 @@
   --_tabs-trigger-foreground: var(--tabs-trigger-foreground, var(--navy));
   /* Text colour of the trigger when active. */
   --_tabs-trigger-active-foreground: var(--tabs-trigger-active-foreground, var(--white));
+  /* Height of the trigger (line variant). @ours */
+  --_tabs-trigger-line-height: var(--tabs-trigger-line-height, calc(var(--spacing) * 10));
+  /* Corner radius of the trigger (line variant). @ours */
+  --_tabs-trigger-line-radius: var(--tabs-trigger-line-radius, var(--radius-sm));
+  /* Horizontal padding of the trigger (line variant). @ours */
+  --_tabs-trigger-line-padding-x: var(--tabs-trigger-line-padding-x, calc(var(--spacing) * 1));
+  /* Text colour of the trigger (line variant). @ours */
+  --_tabs-trigger-line-foreground: var(--tabs-trigger-line-foreground, var(--dark-100));
+  /* Text colour of the trigger (line variant) when hovered. @ours */
+  --_tabs-trigger-line-hover-foreground: var(--tabs-trigger-line-hover-foreground, var(--dark-75));
+  /* Text colour of the trigger (line variant) when active. @ours */
+  --_tabs-trigger-line-active-foreground: var(--tabs-trigger-line-active-foreground, var(--navy));
+  /* Colour of the bar under a hovered trigger (line variant). @ours */
+  --_tabs-trigger-line-hover-indicator: var(--tabs-trigger-line-hover-indicator, var(--dark-15));
+  /* Height of the trigger (segmented variant). @ours */
+  --_tabs-trigger-segmented-height: var(--tabs-trigger-segmented-height, calc(var(--spacing) * 8));
+  /* Corner radius of the trigger (segmented variant). @ours */
+  --_tabs-trigger-segmented-radius: var(--tabs-trigger-segmented-radius, var(--radius-md));
+  /* Horizontal padding of the trigger (segmented variant). @ours */
+  --_tabs-trigger-segmented-padding-x: var(--tabs-trigger-segmented-padding-x, calc(var(--spacing) * 3));
+  /* Text colour of the trigger (segmented variant). @ours */
+  --_tabs-trigger-segmented-foreground: var(--tabs-trigger-segmented-foreground, var(--navy));
+  /* Text colour of the trigger (segmented variant) when active. @ours */
+  --_tabs-trigger-segmented-active-foreground: var(--tabs-trigger-segmented-active-foreground, var(--white));
+}
+
+[data-slot="tabs-indicator"],
+[class*="(--_tabs-indicator-"],
+[class*="(--_tabs-indicator)"] {
+  /* Colour of the sliding thumb behind the active tab. @ours */
+  --_tabs-indicator: var(--tabs-indicator, var(--mint-60));
+  /* Corner radius of the sliding thumb. @ours */
+  --_tabs-indicator-radius: var(--tabs-indicator-radius, var(--radius-full));
+  /* Colour of the bar under the active tab (line variant). @ours */
+  --_tabs-indicator-line: var(--tabs-indicator-line, var(--mint-60));
+  /* Thickness of the bar under the active tab (line variant). @ours */
+  --_tabs-indicator-line-height: var(--tabs-indicator-line-height, calc(var(--spacing) * 0.75));
+  /* Colour of the thumb behind the active segment (segmented variant). @ours */
+  --_tabs-indicator-segmented: var(--tabs-indicator-segmented, var(--mint-45));
+  /* Corner radius of the thumb (segmented variant). @ours */
+  --_tabs-indicator-segmented-radius: var(--tabs-indicator-segmented-radius, var(--radius-md));
 }
 
 [data-slot="tabs-content"],
 [class*="(--_tabs-content-"],
 [class*="(--_tabs-content)"] {
   /* @add text-body-5 data-ending-style:hidden data-[activation-direction=right]:animate-tab-in-right data-[activation-direction=left]:animate-tab-in-left motion-reduce:animate-none */
+  /* Fill colour of the content card (panel variant). @ours */
+  --_tabs-content-panel: var(--tabs-content-panel, var(--white));
+  /* Border colour of the content card (panel variant). @ours */
+  --_tabs-content-panel-border: var(--tabs-content-panel-border, var(--light-l3));
+  /* Corner radius of the content card (panel variant). @ours */
+  --_tabs-content-panel-radius: var(--tabs-content-panel-radius, var(--radius-xl));
+  /* Padding of the content card (panel variant). @ours */
+  --_tabs-content-panel-padding: var(--tabs-content-panel-padding, calc(var(--spacing) * 6));
+  /* Gap between items of the content card (panel variant). @ours */
+  --_tabs-content-panel-gap: var(--tabs-content-panel-gap, calc(var(--spacing) * 5));
 }
 
 /* ---- textarea.css ---- */

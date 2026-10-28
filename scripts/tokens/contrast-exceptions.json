@@ -70,5 +70,17 @@
   "fill": "--_dropdown-menu-checkbox-item-indicator",
   "status": "accepted",
   "note": "The indicator only shows when checked, on the checked fill."
+ },
+ {
+  "foreground": "--_badge-mint-solid-foreground",
+  "fill": "--_badge-mint-solid",
+  "status": "undecided",
+  "note": "Solid mint badge: white on mint-45 is 2.80:1, the same pair as the primary button. Options: accept it with the button, or use mint-75 for the solid fill."
+ },
+ {
+  "foreground": "--_badge-success-solid-foreground",
+  "fill": "--_badge-success-solid",
+  "status": "undecided",
+  "note": "Solid success badge: white on mint-60 is 3.36:1. Options: accept it for short status labels, or use mint-75 for the solid fill."
  }
 ]

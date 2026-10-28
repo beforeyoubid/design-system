@@ -116,7 +116,9 @@ const warnings = []
 const pairs = []
 for (const t of parsedTokens) {
   if (t.property !== 'foreground' || t.state === 'disabled') continue
-  const same = (o) => o.slot === t.slot && ['', 'fill'].includes(o.property) && o.variant?.key === t.variant?.key
+  // An @ours variant isn't a cva key; match it by its name instead.
+  const variantOf = (x) => x.variant?.key ?? x.variant?.unresolved
+  const same = (o) => o.slot === t.slot && ['', 'fill'].includes(o.property) && variantOf(o) === variantOf(t)
   const fill =
     parsedTokens.find((o) => same(o) && o.state === t.state) ??
     (t.state ? null : parsedTokens.find((o) => same(o) && !o.state))

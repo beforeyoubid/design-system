@@ -51,3 +51,10 @@
   /* Text colour of the description. */
   --_dialog-description-foreground: var(--dialog-description-foreground, var(--dark-90));
 }
+
+[data-slot="dialog-close"] {
+  /* Colour of the close (×) button. @ours */
+  --_dialog-close-foreground: var(--dialog-close-foreground, var(--dark-75));
+  /* Colour of the close button when hovered. @ours */
+  --_dialog-close-hover-foreground: var(--dialog-close-hover-foreground, var(--dark-100));
+}

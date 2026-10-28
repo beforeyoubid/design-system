@@ -11,20 +11,23 @@ import { BYBSpinner } from "@/components/BYBSpinner"
 
 export * from "@/components/ui/badge"
 
+// The badge part's look comes from the stock levers (badge.css): the md status
+// pill is the stock size, and mint / gray / error are the stock default /
+// secondary / destructive keys. Here: the tones, sizes and solid look stock
+// doesn't have, each reading an @ours lever.
 const badgeVariants = cva(
-  "group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full border border-transparent font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none",
+  "",
   {
     variants: {
       variant: {
-        // BYB status tones (Claude Design "Badge") — tinted fill + border
-        gray: "border-dark-15 bg-light-l2 font-semibold text-dark-75",
-        mint: "border-mint-l1 bg-mint-l2 font-semibold text-mint-90 [a]:hover:bg-mint-l1",
-        lime: "border-lime bg-lime font-semibold text-navy [a]:hover:bg-lime/80",
-        success: "border-mint-l1 bg-mint-l3 font-semibold text-mint-75",
-        error: "border-error-15 bg-error-l1 font-semibold text-error-75",
-        warning: "border-warning-l1 bg-warning-l3 font-semibold text-warning-75",
+        gray: "",
+        mint: "",
+        error: "",
+        lime: "border-(--_badge-lime-border) bg-(--_badge-lime) font-semibold text-(--_badge-lime-foreground) [a]:hover:bg-(--_badge-lime)/80",
+        success: "border-(--_badge-success-border) bg-(--_badge-success) font-semibold text-(--_badge-success-foreground)",
+        warning: "border-(--_badge-warning-border) bg-(--_badge-warning) font-semibold text-(--_badge-warning-foreground)",
         "electric-blue":
-          "border-electric-blue-l1 bg-electric-blue-l1 font-semibold text-electric-blue",
+          "border-(--_badge-electric-blue-border) bg-(--_badge-electric-blue) font-semibold text-(--_badge-electric-blue-foreground)",
       },
       /**
        * `tint` (default): light fill + border, coloured text.
@@ -47,22 +50,22 @@ const badgeVariants = cva(
       },
     },
     compoundVariants: [
-      // Status badges (tint or solid): md is the original 20px pill; lg is 28px / 14px text
-      { filled: false, size: "sm", className: "h-4 px-1.5 text-caption-2 [&>svg]:size-2.5!" },
-      { filled: false, size: "md", className: "h-5 px-2 py-0.5 text-caption-2 [&>svg]:size-3!" },
-      { filled: false, size: "lg", className: "h-7 gap-1.5 px-3 text-body-5 [&>svg]:size-4!" },
-      // Solid status fills (tokens only)
-      { appearance: "solid", variant: "gray", className: "border-dark-75 bg-dark-75 text-white" },
-      { appearance: "solid", variant: "mint", className: "border-mint-45 bg-mint-45 text-white [a]:hover:bg-mint-60" },
-      { appearance: "solid", variant: "lime", className: "border-lime bg-lime text-navy" },
-      { appearance: "solid", variant: "success", className: "border-mint-60 bg-mint-60 text-white" },
-      { appearance: "solid", variant: "error", className: "border-error-75 bg-error-75 text-white" },
-      { appearance: "solid", variant: "warning", className: "border-warning-30 bg-warning-30 text-navy" },
-      { appearance: "solid", variant: "electric-blue", className: "border-electric-blue bg-electric-blue text-white" },
+      // Status badges (tint or solid): md is the stock size; sm and lg are ours
+      { filled: false, size: "sm", className: "h-(--_badge-sm-height) px-(--_badge-sm-padding-x) py-0 [&>svg]:size-2.5!" },
+      { filled: false, size: "lg", className: "h-(--_badge-lg-height) gap-(--_badge-lg-gap) px-(--_badge-lg-padding-x) py-0 text-body-5 [&>svg]:size-4!" },
+      // Solid status fills
+      { appearance: "solid", variant: "gray", className: "border-(--_badge-gray-solid) bg-(--_badge-gray-solid) text-(--_badge-gray-solid-foreground)" },
+      { appearance: "solid", variant: "mint", className: "border-(--_badge-mint-solid) bg-(--_badge-mint-solid) text-(--_badge-mint-solid-foreground)" },
+      { appearance: "solid", variant: "lime", className: "border-(--_badge-lime-solid) bg-(--_badge-lime-solid) text-(--_badge-lime-solid-foreground)" },
+      { appearance: "solid", variant: "success", className: "border-(--_badge-success-solid) bg-(--_badge-success-solid) text-(--_badge-success-solid-foreground)" },
+      { appearance: "solid", variant: "error", className: "border-(--_badge-error-solid) bg-(--_badge-error-solid) text-(--_badge-error-solid-foreground)" },
+      { appearance: "solid", variant: "warning", className: "border-(--_badge-warning-solid) bg-(--_badge-warning-solid) text-(--_badge-warning-solid-foreground)" },
+      { appearance: "solid", variant: "electric-blue", className: "border-(--_badge-electric-blue-solid) bg-(--_badge-electric-blue-solid) text-(--_badge-electric-blue-solid-foreground)" },
+      { appearance: "solid", variant: "mint", className: "[a]:hover:bg-mint-60" },
       // Solid category / product badges: md is the original 24px pill
-      { filled: true, size: "sm", className: "h-5 px-2 text-caption-1 [&>svg]:size-3!" },
-      { filled: true, size: "md", className: "h-6 px-2.5 text-body-5 [&>svg]:size-3.5!" },
-      { filled: true, size: "lg", className: "h-7 px-3 text-body-4 [&>svg]:size-4!" },
+      { filled: true, size: "sm", className: "h-5 px-2 py-0 text-caption-1 [&>svg]:size-3!" },
+      { filled: true, size: "md", className: "h-6 px-2.5 py-0 text-body-5 [&>svg]:size-3.5!" },
+      { filled: true, size: "lg", className: "h-7 px-3 py-0 text-body-4 [&>svg]:size-4!" },
     ],
     defaultVariants: {
       variant: "gray",
@@ -219,8 +222,6 @@ function Badge({
       data-appearance={appearance ?? undefined}
       data-size={size ?? undefined}
       className={cn(
-        // Clears the stock badge's vertical padding; only our md status size sets one.
-        "py-0",
         badgeVariants({ variant, appearance, size, filled }),
         product
           ? badgeProductVariants({ product })
