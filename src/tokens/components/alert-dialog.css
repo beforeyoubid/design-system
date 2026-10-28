@@ -28,8 +28,11 @@
 }
 
 [data-slot="alert-dialog-header"] {
+  /* @add has-data-[slot=alert-dialog-media]:gap-x-(--_alert-dialog-header-with-media-gap) */
   /* Gap between items of the header. */
   --_alert-dialog-header-gap: var(--alert-dialog-header-gap, calc(var(--spacing) * 1.5));
+  /* Gap between the media and the text of a header with media. */
+  --_alert-dialog-header-with-media-gap: var(--alert-dialog-header-with-media-gap, calc(var(--spacing) * 6));
 }
 
 [data-slot="alert-dialog-footer"] {

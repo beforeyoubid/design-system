@@ -8,6 +8,7 @@
   /* @remove(variant.destructive) focus-visible:ring-destructive/20 [a]:hover:bg-destructive/20 */
   /* @add text-caption-2 focus-visible:ring-3 */
   /* @add(variant.default) [a]:hover:bg-mint-l1 */
+  /* @add has-data-[icon=inline-end]:pe-(--_badge-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_badge-with-icon-padding-x) */
   /* Height of the badge. */
   --_badge-height: var(--badge-height, calc(var(--spacing) * 5));
   /* Gap between items of the badge. */
@@ -136,4 +137,6 @@
   --_badge-lg-padding-x: var(--badge-lg-padding-x, calc(var(--spacing) * 3));
   /* Font weight of a category or product badge (solid colour fill). @ours */
   --_badge-filled-font-weight: var(--badge-filled-font-weight, var(--badge-font-weight, 500));
+  /* Padding on the icon side of the badge when it has an icon. */
+  --_badge-with-icon-padding-x: var(--badge-with-icon-padding-x, calc(var(--spacing) * 1.5));
 }

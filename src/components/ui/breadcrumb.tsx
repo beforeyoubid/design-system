@@ -20,7 +20,7 @@ function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
     <ol
       data-slot="breadcrumb-list"
       className={cn(
-        "flex flex-wrap items-center gap-(--_breadcrumb-list-gap) text-body-5 wrap-break-word text-(--_breadcrumb-list-foreground) sm:gap-2.5",
+        "flex flex-wrap items-center gap-(--_breadcrumb-list-gap) text-body-5 wrap-break-word text-(--_breadcrumb-list-foreground) sm:gap-(--_breadcrumb-list-from-sm-gap)",
         className
       )}
       {...props}

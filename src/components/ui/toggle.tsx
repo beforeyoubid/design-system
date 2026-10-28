@@ -12,9 +12,9 @@ const toggleVariants = cva(
       },
       size: {
         default:
-          "h-(--_toggle-md-height) min-w-9 px-(--_toggle-md-padding-x) has-data-[icon=inline-end]:pe-2.5 has-data-[icon=inline-start]:ps-2.5",
-        sm: "h-(--_toggle-sm-height) min-w-8 px-(--_toggle-sm-padding-x) has-data-[icon=inline-end]:pe-2 has-data-[icon=inline-start]:ps-2",
-        lg: "h-(--_toggle-lg-height) min-w-10 px-(--_toggle-lg-padding-x) has-data-[icon=inline-end]:pe-3 has-data-[icon=inline-start]:ps-3",
+          "h-(--_toggle-md-height) min-w-9 px-(--_toggle-md-padding-x) has-data-[icon=inline-end]:pe-(--_toggle-md-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_toggle-md-with-icon-padding-x)",
+        sm: "h-(--_toggle-sm-height) min-w-8 px-(--_toggle-sm-padding-x) has-data-[icon=inline-end]:pe-(--_toggle-sm-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_toggle-sm-with-icon-padding-x)",
+        lg: "h-(--_toggle-lg-height) min-w-10 px-(--_toggle-lg-padding-x) has-data-[icon=inline-end]:pe-(--_toggle-lg-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_toggle-lg-with-icon-padding-x)",
       },
     },
     defaultVariants: {

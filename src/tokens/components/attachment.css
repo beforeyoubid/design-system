@@ -4,6 +4,7 @@
  * Defaults are Rey's design. Edited by hand; the class edits in ui/attachment.tsx follow from these names. */
 
 [data-slot="attachment"] {
+  /* @add(orientation.vertical) has-data-[slot=attachment-content]:w-(--_attachment-vertical-with-content-width) */
   /* Corner radius of the attachment. */
   --_attachment-radius: var(--attachment-radius, var(--radius-2xl));
   /* Fill colour of the attachment. */
@@ -22,9 +23,12 @@
   --_attachment-xs-radius: var(--attachment-xs-radius, var(--attachment-radius, var(--radius-xl)));
   /* Width of the attachment (vertical variant). */
   --_attachment-vertical-width: var(--attachment-vertical-width, calc(var(--spacing) * 24));
+  /* Width of a vertical attachment that shows its title and description. */
+  --_attachment-vertical-with-content-width: var(--attachment-vertical-with-content-width, calc(var(--spacing) * 30));
 }
 
 [data-slot="attachment-media"] {
+  /* @add group-data-[size=sm]/attachment:w-(--_attachment-media-sm-width) group-data-[size=xs]/attachment:w-(--_attachment-media-xs-width) group-data-[size=xs]/attachment:rounded-(--_attachment-media-xs-radius) */
   /* Width of the media. */
   --_attachment-media-width: var(--attachment-media-width, calc(var(--spacing) * 10));
   /* Corner radius of the media. */
@@ -35,6 +39,12 @@
   --_attachment-media-foreground: var(--attachment-media-foreground, var(--foreground));
   /* Opacity of the media (image variant). */
   --_attachment-media-image-opacity: var(--attachment-media-image-opacity, 0.6);
+  /* Width of the media in a small (sm) attachment. */
+  --_attachment-media-sm-width: var(--attachment-media-sm-width, calc(var(--spacing) * 8));
+  /* Width of the media in an extra-small (xs) attachment. */
+  --_attachment-media-xs-width: var(--attachment-media-xs-width, calc(var(--spacing) * 7));
+  /* Corner radius of the media in an extra-small (xs) attachment. */
+  --_attachment-media-xs-radius: var(--attachment-media-xs-radius, var(--radius-lg));
 }
 
 [data-slot="attachment-title"] {

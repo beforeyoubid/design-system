@@ -6,6 +6,9 @@
 [data-slot="toggle"] {
   /* @alias md = size.default */
   /* @add cursor-pointer text-body-5 focus-visible:ring-3 */
+  /* @add(md) has-data-[icon=inline-end]:pe-(--_toggle-md-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_toggle-md-with-icon-padding-x) */
+  /* @add(size.sm) has-data-[icon=inline-end]:pe-(--_toggle-sm-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_toggle-sm-with-icon-padding-x) */
+  /* @add(size.lg) has-data-[icon=inline-end]:pe-(--_toggle-lg-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_toggle-lg-with-icon-padding-x) */
   /* Gap between items of the toggle. */
   --_toggle-gap: var(--toggle-gap, calc(var(--spacing) * 1));
   /* Corner radius of the toggle. */
@@ -44,4 +47,10 @@
   --_toggle-lg-height: var(--toggle-lg-height, calc(var(--spacing) * 10));
   /* Horizontal padding of the toggle (lg size). */
   --_toggle-lg-padding-x: var(--toggle-lg-padding-x, calc(var(--spacing) * 4));
+  /* Padding on the icon side of the toggle (md) when it has an icon. */
+  --_toggle-md-with-icon-padding-x: var(--toggle-md-with-icon-padding-x, calc(var(--spacing) * 2.5));
+  /* Padding on the icon side of the toggle (sm) when it has an icon. */
+  --_toggle-sm-with-icon-padding-x: var(--toggle-sm-with-icon-padding-x, calc(var(--spacing) * 2));
+  /* Padding on the icon side of the toggle (lg) when it has an icon. */
+  --_toggle-lg-with-icon-padding-x: var(--toggle-lg-with-icon-padding-x, calc(var(--spacing) * 3));
 }

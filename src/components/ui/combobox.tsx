@@ -219,7 +219,7 @@ function ComboboxChips({
     <ComboboxPrimitive.Chips
       data-slot="combobox-chips"
       className={cn(
-        "flex min-h-(--_combobox-chips-min-height) flex-wrap items-center gap-(--_combobox-chips-gap) rounded-(--_combobox-chips-radius) border border-(--_combobox-chips-border) bg-(--_combobox-chips) bg-clip-padding px-(--_combobox-chips-padding-x) py-(--_combobox-chips-padding-y) text-sm transition-colors focus-within:border-(--_combobox-chips-focus-border) focus-within:ring-[3px] focus-within:ring-(--_combobox-chips-focus-ring) has-aria-invalid:border-(--_combobox-chips-invalid-border) has-aria-invalid:ring-[3px] has-aria-invalid:ring-(--_combobox-chips-invalid-ring) has-data-[slot=combobox-chip]:px-1.5 dark:has-aria-invalid:border-destructive/50 dark:has-aria-invalid:ring-destructive/40",
+        "flex min-h-(--_combobox-chips-min-height) flex-wrap items-center gap-(--_combobox-chips-gap) rounded-(--_combobox-chips-radius) border border-(--_combobox-chips-border) bg-(--_combobox-chips) bg-clip-padding px-(--_combobox-chips-padding-x) py-(--_combobox-chips-padding-y) text-sm transition-colors focus-within:border-(--_combobox-chips-focus-border) focus-within:ring-[3px] focus-within:ring-(--_combobox-chips-focus-ring) has-aria-invalid:border-(--_combobox-chips-invalid-border) has-aria-invalid:ring-[3px] has-aria-invalid:ring-(--_combobox-chips-invalid-ring) has-data-[slot=combobox-chip]:px-(--_combobox-chips-with-chips-padding-x) dark:has-aria-invalid:border-destructive/50 dark:has-aria-invalid:ring-destructive/40",
         className
       )}
       {...props}
@@ -239,7 +239,7 @@ function ComboboxChip({
     <ComboboxPrimitive.Chip
       data-slot="combobox-chip"
       className={cn(
-        "flex h-[calc(--spacing(5.5))] w-fit items-center justify-center gap-(--_combobox-chip-gap) rounded-(--_combobox-chip-radius) bg-(--_combobox-chip) px-(--_combobox-chip-padding-x) text-xs font-(--_combobox-chip-font-weight) whitespace-nowrap text-(--_combobox-chip-foreground) has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-(--_combobox-chip-disabled-opacity) has-data-[slot=combobox-chip-remove]:pe-0",
+        "flex h-[calc(--spacing(5.5))] w-fit items-center justify-center gap-(--_combobox-chip-gap) rounded-(--_combobox-chip-radius) bg-(--_combobox-chip) px-(--_combobox-chip-padding-x) text-xs font-(--_combobox-chip-font-weight) whitespace-nowrap text-(--_combobox-chip-foreground) has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-(--_combobox-chip-disabled-opacity) has-data-[slot=combobox-chip-remove]:pe-(--_combobox-chip-with-remove-padding-x)",
         className
       )}
       {...props}

@@ -210,6 +210,15 @@ function SemanticRoles({ overrides, set, onOpen, tick }: { overrides: Overrides;
 
 // ---------------------------------------------------------------------------
 const partLabel = (component: string, part: string) => (part === component ? titleCase(component) : titleCase(part.replace(component + '-', '')))
+/** A lever for wider screens names its breakpoint: `from-sm` → "sm". Named, not in px, so it follows the breakpoint if it moves. */
+const breakpointOf = (variant: string | null) => variant?.match(/(?:^|-)from-(sm|md|lg|xl|2xl)$/)?.[1] ?? null
+function variantHeading(variant: string, inPart: ComponentToken[]) {
+  const bp = breakpointOf(variant)
+  if (bp) return <>From <span className="pg-bp" title={`Applies when the window is at the ${bp} breakpoint or wider`}>{bp}</span> up</>
+  const words = titleCase(variant).replace(/ With (\w+)/g, (_, w: string) => ` with ${w.toLowerCase()}`)
+  const sizing = inPart.find((t) => t.variant === variant && ['height', 'padding-x', 'radius', 'size', 'gap', 'width'].includes(t.property)) && !inPart.find((t) => t.variant === variant && t.property === 'fill')
+  return `${words} ${sizing ? 'size' : 'style'}`
+}
 
 function ComponentLevers({ name, overrides, set, query }: { name: string; overrides: Overrides; set: (n: string, v: string | null) => void; query: string }) {
   const comp = manifest.components.find((c) => c.component === name)!
@@ -226,7 +235,7 @@ function ComponentLevers({ name, overrides, set, query }: { name: string; overri
             <h3 className="pg-group">{partLabel(name, part)}</h3>
             {groups.map((g) => (
               <div key={g} className="pg-variant">
-                {g && <h4>{titleCase(g)} {inPart.find((t) => t.variant === g && ['height', 'padding-x', 'radius', 'size', 'gap'].includes(t.property)) && !inPart.find((t) => t.variant === g && t.property === 'fill') ? 'size' : 'style'}</h4>}
+                {g && <h4>{variantHeading(g, inPart)}</h4>}
                 {inPart
                   .filter((t) => (t.variant ?? '') === g)
                   .map((t) => (

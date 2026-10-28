@@ -31,10 +31,13 @@
 
 [data-slot="drawer-header"] {
   /* @remove pb-0 */
+  /* @add md:gap-(--_drawer-header-from-md-gap) */
   /* Gap between items of the header. */
   --_drawer-header-gap: var(--drawer-header-gap, calc(var(--spacing) * 0.5));
   /* Padding of the header. */
   --_drawer-header-padding: var(--drawer-header-padding, calc(var(--spacing) * 4));
+  /* Gap between the title and description from the md breakpoint up. */
+  --_drawer-header-from-md-gap: var(--drawer-header-from-md-gap, calc(var(--spacing) * 1.5));
 }
 
 [data-slot="drawer-footer"] {

@@ -18,7 +18,7 @@ const attachmentVariants = cva(
       },
       orientation: {
         horizontal: "min-w-40 items-center",
-        vertical: "w-(--_attachment-vertical-width) flex-col has-data-[slot=attachment-content]:w-30",
+        vertical: "w-(--_attachment-vertical-width) flex-col has-data-[slot=attachment-content]:w-(--_attachment-vertical-with-content-width)",
       },
     },
   }
@@ -47,7 +47,7 @@ function Attachment({
 }
 
 const attachmentMediaVariants = cva(
-  "relative flex aspect-square w-(--_attachment-media-width) shrink-0 items-center justify-center overflow-hidden rounded-(--_attachment-media-radius) bg-(--_attachment-media) text-(--_attachment-media-foreground) group-data-[orientation=vertical]/attachment:w-full group-data-[size=sm]/attachment:w-8 group-data-[size=xs]/attachment:w-7 group-data-[size=xs]/attachment:rounded-lg group-data-[state=error]/attachment:bg-destructive/10 group-data-[state=error]/attachment:text-destructive group-data-[orientation=vertical]/attachment:*:data-[slot=spinner]:size-6! [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 group-data-[orientation=vertical]/attachment:[&_svg:not([class*='size-'])]:size-6 group-data-[size=xs]/attachment:[&_svg:not([class*='size-'])]:size-3.5",
+  "relative flex aspect-square w-(--_attachment-media-width) shrink-0 items-center justify-center overflow-hidden rounded-(--_attachment-media-radius) bg-(--_attachment-media) text-(--_attachment-media-foreground) group-data-[orientation=vertical]/attachment:w-full group-data-[size=sm]/attachment:w-(--_attachment-media-sm-width) group-data-[size=xs]/attachment:w-(--_attachment-media-xs-width) group-data-[size=xs]/attachment:rounded-(--_attachment-media-xs-radius) group-data-[state=error]/attachment:bg-destructive/10 group-data-[state=error]/attachment:text-destructive group-data-[orientation=vertical]/attachment:*:data-[slot=spinner]:size-6! [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 group-data-[orientation=vertical]/attachment:[&_svg:not([class*='size-'])]:size-6 group-data-[size=xs]/attachment:[&_svg:not([class*='size-'])]:size-3.5",
   {
     variants: {
       variant: {

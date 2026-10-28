@@ -4,8 +4,11 @@
  * Defaults are Rey's design. Edited by hand; the class edits in ui/field.tsx follow from these names. */
 
 [data-slot="field-set"] {
+  /* @add has-[>[data-slot=checkbox-group]]:gap-(--_field-set-with-choices-gap) has-[>[data-slot=radio-group]]:gap-(--_field-set-with-choices-gap) */
   /* Gap between items of the set. */
   --_field-set-gap: var(--field-set-gap, calc(var(--spacing) * 5));
+  /* Gap between items of a field set that holds a checkbox or radio group. */
+  --_field-set-with-choices-gap: var(--field-set-with-choices-gap, calc(var(--spacing) * 3));
 }
 
 [data-slot="field-legend"] {
@@ -17,8 +20,11 @@
 }
 
 [data-slot="field-group"] {
+  /* @add data-[slot=checkbox-group]:gap-(--_field-group-checkbox-group-gap) */
   /* Gap between items of the group. */
   --_field-group-gap: var(--field-group-gap, calc(var(--spacing) * 5));
+  /* Gap between the checkboxes of a field group used as a checkbox group. */
+  --_field-group-checkbox-group-gap: var(--field-group-checkbox-group-gap, calc(var(--spacing) * 3));
 }
 
 [data-slot="field"] {

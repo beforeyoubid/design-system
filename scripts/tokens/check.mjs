@@ -91,7 +91,9 @@ for (const { component, file } of files) {
         continue
       }
       if (!t.ours && !ui) fail(`${where}: no ui file renders data-slot="${rule.slot}" (mark the token @ours if our own component reads it)`)
-      if (!t.ours && p.variant?.unresolved) fail(`${where}: "${p.variant.unresolved}" is not a cva key or @alias on data-slot="${rule.slot}"`)
+      // A lever an @add class reads names its own case (e.g. `with-icon`, `from-sm`); it needn't be a cva key.
+      const readByAdd = rule.add.some((d) => d.classes.some((c) => c.includes(`(${t.name})`)))
+      if (!t.ours && !readByAdd && p.variant?.unresolved) fail(`${where}: "${p.variant.unresolved}" is not a cva key or @alias on data-slot="${rule.slot}"`)
       if (t.ours && !ourSource.includes(t.name)) fail(`${where}: ${t.name} is marked @ours but none of our components reads it`)
       if (!t.description) fail(`${where}: ${t.name} needs a comment saying what it's for`)
       parsedTokens.push({ ...t, ...p, slot: rule.slot, component, where })

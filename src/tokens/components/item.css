@@ -4,8 +4,13 @@
  * Defaults are Rey's design. Edited by hand; the class edits in ui/item.tsx follow from these names. */
 
 [data-slot="item-group"] {
+  /* @add has-data-[size=sm]:gap-(--_item-group-sm-gap) has-data-[size=xs]:gap-(--_item-group-xs-gap) */
   /* Gap between items of the group. */
   --_item-group-gap: var(--item-group-gap, calc(var(--spacing) * 4));
+  /* Gap between small (sm) items. */
+  --_item-group-sm-gap: var(--item-group-sm-gap, calc(var(--spacing) * 2.5));
+  /* Gap between extra-small (xs) items. */
+  --_item-group-xs-gap: var(--item-group-xs-gap, calc(var(--spacing) * 2));
 }
 
 [data-slot="item"] {
@@ -41,17 +46,27 @@
 }
 
 [data-slot="item-media"] {
+  /* @add(variant.image) group-data-[size=sm]/item:size-(--_item-media-image-sm-size) group-data-[size=xs]/item:size-(--_item-media-image-xs-size) group-data-[size=xs]/item:rounded-(--_item-media-image-xs-radius) */
   /* Gap between items of the media. */
   --_item-media-gap: var(--item-media-gap, calc(var(--spacing) * 2));
   /* Width and height of the media (image variant). */
   --_item-media-image-size: var(--item-media-image-size, calc(var(--spacing) * 10));
   /* Corner radius of the media (image variant). */
   --_item-media-image-radius: var(--item-media-image-radius, var(--radius-lg));
+  /* Size of the image in a small (sm) item. */
+  --_item-media-image-sm-size: var(--item-media-image-sm-size, calc(var(--spacing) * 8));
+  /* Size of the image in an extra-small (xs) item. */
+  --_item-media-image-xs-size: var(--item-media-image-xs-size, calc(var(--spacing) * 6));
+  /* Corner radius of the image in an extra-small (xs) item. */
+  --_item-media-image-xs-radius: var(--item-media-image-xs-radius, var(--radius-md));
 }
 
 [data-slot="item-content"] {
+  /* @add group-data-[size=xs]/item:gap-(--_item-content-xs-gap) */
   /* Gap between items of the content. */
   --_item-content-gap: var(--item-content-gap, calc(var(--spacing) * 1));
+  /* Gap between the title and description in an extra-small (xs) item. */
+  --_item-content-xs-gap: var(--item-content-xs-gap, calc(var(--spacing) * 0.5));
 }
 
 [data-slot="item-title"] {

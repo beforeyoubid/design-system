@@ -14,7 +14,7 @@ function Avatar({
       data-slot="avatar"
       data-size={size}
       className={cn(
-        "group/avatar relative flex size-(--_avatar-size) shrink-0 rounded-(--_avatar-radius) select-none after:absolute after:inset-0 after:rounded-full after:border after:border-border after:mix-blend-darken data-[size=lg]:size-10 data-[size=sm]:size-6 dark:after:mix-blend-lighten",
+        "group/avatar relative flex size-(--_avatar-size) shrink-0 rounded-(--_avatar-radius) select-none after:absolute after:inset-0 after:rounded-full after:border after:border-border after:mix-blend-darken data-[size=lg]:size-(--_avatar-lg-size) data-[size=sm]:size-(--_avatar-sm-size) dark:after:mix-blend-lighten",
         className
       )}
       {...props}
@@ -88,7 +88,7 @@ function AvatarGroupCount({
     <div
       data-slot="avatar-group-count"
       className={cn(
-        "relative flex size-(--_avatar-group-count-size) shrink-0 items-center justify-center rounded-(--_avatar-group-count-radius) bg-(--_avatar-group-count) text-body-5 text-(--_avatar-group-count-foreground) ring-2 ring-(--_avatar-group-count-ring) group-has-data-[size=lg]/avatar-group:size-10 group-has-data-[size=sm]/avatar-group:size-6 [&>svg]:size-4 group-has-data-[size=lg]/avatar-group:[&>svg]:size-5 group-has-data-[size=sm]/avatar-group:[&>svg]:size-3",
+        "relative flex size-(--_avatar-group-count-size) shrink-0 items-center justify-center rounded-(--_avatar-group-count-radius) bg-(--_avatar-group-count) text-body-5 text-(--_avatar-group-count-foreground) ring-2 ring-(--_avatar-group-count-ring) group-has-data-[size=lg]/avatar-group:size-(--_avatar-group-count-lg-size) group-has-data-[size=sm]/avatar-group:size-(--_avatar-group-count-sm-size) [&>svg]:size-4 group-has-data-[size=lg]/avatar-group:[&>svg]:size-5 group-has-data-[size=sm]/avatar-group:[&>svg]:size-3",
         className
       )}
       {...props}

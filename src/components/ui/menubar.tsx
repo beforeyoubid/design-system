@@ -95,7 +95,7 @@ function MenubarItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        "group/menubar-item gap-(--_menubar-item-gap) rounded-(--_menubar-item-radius) px-(--_menubar-item-padding-x) py-(--_menubar-item-padding-y) text-body-5 focus:bg-(--_menubar-item-focus) focus:text-(--_menubar-item-focus-foreground) not-data-[variant=destructive]:focus:**:text-accent-foreground data-inset:ps-9.5 data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive dark:data-[variant=destructive]:focus:bg-destructive/20 data-disabled:opacity-(--_menubar-item-disabled-opacity) [&_svg:not([class*='size-'])]:size-4 data-[variant=destructive]:*:[svg]:text-destructive! cursor-pointer",
+        "group/menubar-item gap-(--_menubar-item-gap) rounded-(--_menubar-item-radius) px-(--_menubar-item-padding-x) py-(--_menubar-item-padding-y) text-body-5 focus:bg-(--_menubar-item-focus) focus:text-(--_menubar-item-focus-foreground) not-data-[variant=destructive]:focus:**:text-accent-foreground data-inset:ps-(--_menubar-item-inset-padding-x) data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive dark:data-[variant=destructive]:focus:bg-destructive/20 data-disabled:opacity-(--_menubar-item-disabled-opacity) [&_svg:not([class*='size-'])]:size-4 data-[variant=destructive]:*:[svg]:text-destructive! cursor-pointer",
         className
       )}
       {...props}
@@ -117,7 +117,7 @@ function MenubarCheckboxItem({
       data-slot="menubar-checkbox-item"
       data-inset={inset}
       className={cn(
-        "relative flex cursor-pointer items-center gap-(--_menubar-checkbox-item-gap) rounded-(--_menubar-checkbox-item-radius) py-(--_menubar-checkbox-item-padding-y) pe-3 ps-9.5 text-body-5 outline-hidden select-none focus:bg-(--_menubar-checkbox-item-focus) focus:text-(--_menubar-checkbox-item-focus-foreground) focus:**:text-accent-foreground data-inset:ps-9.5 data-disabled:pointer-events-none data-disabled:opacity-(--_menubar-checkbox-item-disabled-opacity) [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "relative flex cursor-pointer items-center gap-(--_menubar-checkbox-item-gap) rounded-(--_menubar-checkbox-item-radius) py-(--_menubar-checkbox-item-padding-y) pe-3 ps-9.5 text-body-5 outline-hidden select-none focus:bg-(--_menubar-checkbox-item-focus) focus:text-(--_menubar-checkbox-item-focus-foreground) focus:**:text-accent-foreground data-inset:ps-(--_menubar-item-inset-padding-x) data-disabled:pointer-events-none data-disabled:opacity-(--_menubar-checkbox-item-disabled-opacity) [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className
       )}
       checked={checked}
@@ -153,7 +153,7 @@ function MenubarRadioItem({
       data-slot="menubar-radio-item"
       data-inset={inset}
       className={cn(
-        "relative flex cursor-pointer items-center gap-(--_menubar-radio-item-gap) rounded-(--_menubar-radio-item-radius) py-(--_menubar-radio-item-padding-y) pe-3 ps-9.5 text-body-5 outline-hidden select-none focus:bg-(--_menubar-radio-item-focus) focus:text-(--_menubar-radio-item-focus-foreground) focus:**:text-accent-foreground data-inset:ps-9.5 data-disabled:pointer-events-none data-disabled:opacity-(--_menubar-radio-item-disabled-opacity) [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "relative flex cursor-pointer items-center gap-(--_menubar-radio-item-gap) rounded-(--_menubar-radio-item-radius) py-(--_menubar-radio-item-padding-y) pe-3 ps-9.5 text-body-5 outline-hidden select-none focus:bg-(--_menubar-radio-item-focus) focus:text-(--_menubar-radio-item-focus-foreground) focus:**:text-accent-foreground data-inset:ps-(--_menubar-item-inset-padding-x) data-disabled:pointer-events-none data-disabled:opacity-(--_menubar-radio-item-disabled-opacity) [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}
@@ -181,7 +181,7 @@ function MenubarLabel({
       data-slot="menubar-label"
       data-inset={inset}
       className={cn(
-        "px-(--_menubar-label-padding-x) py-(--_menubar-label-padding-y) text-caption-2 text-(--_menubar-label-foreground) data-inset:ps-9.5",
+        "px-(--_menubar-label-padding-x) py-(--_menubar-label-padding-y) text-caption-2 text-(--_menubar-label-foreground) data-inset:ps-(--_menubar-item-inset-padding-x)",
         className
       )}
       {...props}
@@ -236,7 +236,7 @@ function MenubarSubTrigger({
       data-slot="menubar-sub-trigger"
       data-inset={inset}
       className={cn(
-        "gap-(--_menubar-sub-trigger-gap) rounded-(--_menubar-sub-trigger-radius) px-(--_menubar-sub-trigger-padding-x) py-(--_menubar-sub-trigger-padding-y) text-body-5 focus:bg-(--_menubar-sub-trigger-focus) focus:text-(--_menubar-sub-trigger-focus-foreground) data-inset:ps-9.5 data-popup-open:bg-(--_menubar-sub-trigger-open) data-popup-open:text-(--_menubar-sub-trigger-open-foreground) [&_svg:not([class*='size-'])]:size-4 cursor-pointer",
+        "gap-(--_menubar-sub-trigger-gap) rounded-(--_menubar-sub-trigger-radius) px-(--_menubar-sub-trigger-padding-x) py-(--_menubar-sub-trigger-padding-y) text-body-5 focus:bg-(--_menubar-sub-trigger-focus) focus:text-(--_menubar-sub-trigger-focus-foreground) data-inset:ps-(--_menubar-item-inset-padding-x) data-popup-open:bg-(--_menubar-sub-trigger-open) data-popup-open:text-(--_menubar-sub-trigger-open-foreground) [&_svg:not([class*='size-'])]:size-4 cursor-pointer",
         className
       )}
       {...props}

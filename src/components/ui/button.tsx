@@ -20,10 +20,10 @@ const buttonVariants = cva(
       },
       size: {
         default:
-          "h-(--_button-md-height) gap-(--_button-md-gap) px-(--_button-md-padding-x) has-data-[icon=inline-end]:pe-3.5 has-data-[icon=inline-start]:ps-3.5 text-button-sm",
-        xs: "h-(--_button-xs-height) gap-(--_button-xs-gap) px-(--_button-xs-padding-x) text-caption-2 has-data-[icon=inline-end]:pe-2 has-data-[icon=inline-start]:ps-2 [&_svg:not([class*='size-'])]:size-3 rounded-(--_button-xs-radius) py-(--_button-xs-padding-y)",
-        sm: "h-(--_button-sm-height) gap-(--_button-sm-gap) px-(--_button-sm-padding-x) has-data-[icon=inline-end]:pe-3 has-data-[icon=inline-start]:ps-3 rounded-(--_button-sm-radius) text-button-sm",
-        lg: "h-(--_button-lg-height) gap-(--_button-lg-gap) px-(--_button-lg-padding-x) has-data-[icon=inline-end]:pe-4 has-data-[icon=inline-start]:ps-4 text-button-md [&_svg:not([class*='size-'])]:size-4.5",
+          "h-(--_button-md-height) gap-(--_button-md-gap) px-(--_button-md-padding-x) has-data-[icon=inline-end]:pe-(--_button-md-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-md-with-icon-padding-x) text-button-sm",
+        xs: "h-(--_button-xs-height) gap-(--_button-xs-gap) px-(--_button-xs-padding-x) text-caption-2 has-data-[icon=inline-end]:pe-(--_button-xs-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-xs-with-icon-padding-x) [&_svg:not([class*='size-'])]:size-3 rounded-(--_button-xs-radius) py-(--_button-xs-padding-y)",
+        sm: "h-(--_button-sm-height) gap-(--_button-sm-gap) px-(--_button-sm-padding-x) has-data-[icon=inline-end]:pe-(--_button-sm-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-sm-with-icon-padding-x) rounded-(--_button-sm-radius) text-button-sm",
+        lg: "h-(--_button-lg-height) gap-(--_button-lg-gap) px-(--_button-lg-padding-x) has-data-[icon=inline-end]:pe-(--_button-lg-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-lg-with-icon-padding-x) text-button-md [&_svg:not([class*='size-'])]:size-4.5",
         icon: "size-(--_button-icon-size) rounded-(--_button-icon-radius)",
         "icon-xs": "size-(--_button-icon-xs-size) [&_svg:not([class*='size-'])]:size-3 rounded-(--_button-icon-xs-radius)",
         "icon-sm": "size-(--_button-icon-sm-size) rounded-(--_button-icon-sm-radius)",

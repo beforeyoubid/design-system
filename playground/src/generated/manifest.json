@@ -1109,6 +1109,20 @@
      ]
     },
     {
+     "name": "--alert-dialog-header-with-media-gap",
+     "private": "--_alert-dialog-header-with-media-gap",
+     "default": "calc(var(--spacing) * 6)",
+     "description": "Gap between the media and the text of a header with media.",
+     "type": "length",
+     "part": "alert-dialog-header",
+     "variant": "with-media",
+     "state": null,
+     "property": "gap",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
      "name": "--alert-dialog-footer-gap",
      "private": "--_alert-dialog-footer-gap",
      "default": "calc(var(--spacing) * 2)",
@@ -1337,6 +1351,34 @@
      ]
     },
     {
+     "name": "--alert-with-icon-gap",
+     "private": "--_alert-with-icon-gap",
+     "default": "calc(var(--spacing) * 2.5)",
+     "description": "Gap between the icon and the text of an alert with an icon.",
+     "type": "length",
+     "part": "alert",
+     "variant": "with-icon",
+     "state": null,
+     "property": "gap",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--alert-with-action-padding-x",
+     "private": "--_alert-with-action-padding-x",
+     "default": "calc(var(--spacing) * 18)",
+     "description": "Right padding of an alert with an action button (room for the button).",
+     "type": "length",
+     "part": "alert",
+     "variant": "with-action",
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
      "name": "--alert-title-font-weight",
      "private": "--_alert-title-font-weight",
      "default": "500",
@@ -1501,6 +1543,20 @@
      ]
     },
     {
+     "name": "--attachment-vertical-with-content-width",
+     "private": "--_attachment-vertical-with-content-width",
+     "default": "calc(var(--spacing) * 30)",
+     "description": "Width of a vertical attachment that shows its title and description.",
+     "type": "length",
+     "part": "attachment",
+     "variant": "vertical-with-content",
+     "state": null,
+     "property": "width",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
      "name": "--attachment-media-width",
      "private": "--_attachment-media-width",
      "default": "calc(var(--spacing) * 10)",
@@ -1567,6 +1623,48 @@
      "state": null,
      "property": "opacity",
      "reads": []
+    },
+    {
+     "name": "--attachment-media-sm-width",
+     "private": "--_attachment-media-sm-width",
+     "default": "calc(var(--spacing) * 8)",
+     "description": "Width of the media in a small (sm) attachment.",
+     "type": "length",
+     "part": "attachment-media",
+     "variant": "sm",
+     "state": null,
+     "property": "width",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--attachment-media-xs-width",
+     "private": "--_attachment-media-xs-width",
+     "default": "calc(var(--spacing) * 7)",
+     "description": "Width of the media in an extra-small (xs) attachment.",
+     "type": "length",
+     "part": "attachment-media",
+     "variant": "xs",
+     "state": null,
+     "property": "width",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--attachment-media-xs-radius",
+     "private": "--_attachment-media-xs-radius",
+     "default": "var(--radius-lg)",
+     "description": "Corner radius of the media in an extra-small (xs) attachment.",
+     "type": "radius",
+     "part": "attachment-media",
+     "variant": "xs",
+     "state": null,
+     "property": "radius",
+     "reads": [
+      "--radius-lg"
+     ]
     },
     {
      "name": "--attachment-title-font-weight",
@@ -1654,6 +1752,34 @@
      "property": "radius",
      "reads": [
       "--radius-full"
+     ]
+    },
+    {
+     "name": "--avatar-sm-size",
+     "private": "--_avatar-sm-size",
+     "default": "calc(var(--spacing) * 6)",
+     "description": "Size of a small (sm) avatar.",
+     "type": "length",
+     "part": "avatar",
+     "variant": "sm",
+     "state": null,
+     "property": "size",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--avatar-lg-size",
+     "private": "--_avatar-lg-size",
+     "default": "calc(var(--spacing) * 10)",
+     "description": "Size of a large (lg) avatar.",
+     "type": "length",
+     "part": "avatar",
+     "variant": "lg",
+     "state": null,
+     "property": "size",
+     "reads": [
+      "--spacing"
      ]
     },
     {
@@ -1836,6 +1962,34 @@
      "property": "ring",
      "reads": [
       "--background"
+     ]
+    },
+    {
+     "name": "--avatar-group-count-sm-size",
+     "private": "--_avatar-group-count-sm-size",
+     "default": "calc(var(--spacing) * 6)",
+     "description": "Size of the \"+N\" count in a group of small (sm) avatars.",
+     "type": "length",
+     "part": "avatar-group-count",
+     "variant": "sm",
+     "state": null,
+     "property": "size",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--avatar-group-count-lg-size",
+     "private": "--_avatar-group-count-lg-size",
+     "default": "calc(var(--spacing) * 10)",
+     "description": "Size of the \"+N\" count in a group of large (lg) avatars.",
+     "type": "length",
+     "part": "avatar-group-count",
+     "variant": "lg",
+     "state": null,
+     "property": "size",
+     "reads": [
+      "--spacing"
      ]
     }
    ]
@@ -2737,6 +2891,20 @@
      "reads": [
       "--badge-font-weight"
      ]
+    },
+    {
+     "name": "--badge-with-icon-padding-x",
+     "private": "--_badge-with-icon-padding-x",
+     "default": "calc(var(--spacing) * 1.5)",
+     "description": "Padding on the icon side of the badge when it has an icon.",
+     "type": "length",
+     "part": "badge",
+     "variant": "with-icon",
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
+     ]
     }
    ]
   },
@@ -2770,6 +2938,20 @@
      "property": "foreground",
      "reads": [
       "--muted-foreground"
+     ]
+    },
+    {
+     "name": "--breadcrumb-list-from-sm-gap",
+     "private": "--_breadcrumb-list-from-sm-gap",
+     "default": "calc(var(--spacing) * 2.5)",
+     "description": "Gap between crumbs from the sm breakpoint up.",
+     "type": "length",
+     "part": "breadcrumb-list",
+     "variant": "from-sm",
+     "state": null,
+     "property": "gap",
+     "reads": [
+      "--spacing"
      ]
     },
     {
@@ -4008,6 +4190,62 @@
      "reads": [
       "--white"
      ]
+    },
+    {
+     "name": "--button-md-with-icon-padding-x",
+     "private": "--_button-md-with-icon-padding-x",
+     "default": "calc(var(--spacing) * 3.5)",
+     "description": "Padding on the icon side of the button (md) when it has an icon.",
+     "type": "length",
+     "part": "button",
+     "variant": "md-with-icon",
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--button-xs-with-icon-padding-x",
+     "private": "--_button-xs-with-icon-padding-x",
+     "default": "calc(var(--spacing) * 2)",
+     "description": "Padding on the icon side of the button (xs) when it has an icon.",
+     "type": "length",
+     "part": "button",
+     "variant": "xs-with-icon",
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--button-sm-with-icon-padding-x",
+     "private": "--_button-sm-with-icon-padding-x",
+     "default": "calc(var(--spacing) * 3)",
+     "description": "Padding on the icon side of the button (sm) when it has an icon.",
+     "type": "length",
+     "part": "button",
+     "variant": "sm-with-icon",
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--button-lg-with-icon-padding-x",
+     "private": "--_button-lg-with-icon-padding-x",
+     "default": "calc(var(--spacing) * 4)",
+     "description": "Padding on the icon side of the button (lg) when it has an icon.",
+     "type": "length",
+     "part": "button",
+     "variant": "lg-with-icon",
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
+     ]
     }
    ]
   },
@@ -4300,6 +4538,34 @@
      ]
     },
     {
+     "name": "--card-sm-gap",
+     "private": "--_card-sm-gap",
+     "default": "calc(var(--spacing) * 4)",
+     "description": "Gap between sections of a small (sm) card.",
+     "type": "length",
+     "part": "card",
+     "variant": "sm",
+     "state": null,
+     "property": "gap",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--card-sm-padding-y",
+     "private": "--_card-sm-padding-y",
+     "default": "calc(var(--spacing) * 4)",
+     "description": "Vertical padding of a small (sm) card.",
+     "type": "length",
+     "part": "card",
+     "variant": "sm",
+     "state": null,
+     "property": "padding-y",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
      "name": "--card-header-gap",
      "private": "--_card-header-gap",
      "default": "calc(var(--spacing) * 2)",
@@ -4321,6 +4587,20 @@
      "type": "length",
      "part": "card-header",
      "variant": null,
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--card-header-sm-padding-x",
+     "private": "--_card-header-sm-padding-x",
+     "default": "calc(var(--spacing) * 4)",
+     "description": "Horizontal padding of the header in a small (sm) card.",
+     "type": "length",
+     "part": "card-header",
+     "variant": "sm",
      "state": null,
      "property": "padding-x",
      "reads": [
@@ -4368,6 +4648,20 @@
      ]
     },
     {
+     "name": "--card-content-sm-padding-x",
+     "private": "--_card-content-sm-padding-x",
+     "default": "calc(var(--spacing) * 4)",
+     "description": "Horizontal padding of the content in a small (sm) card.",
+     "type": "length",
+     "part": "card-content",
+     "variant": "sm",
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
      "name": "--card-footer-padding-x",
      "private": "--_card-footer-padding-x",
      "default": "calc(var(--spacing) * 6)",
@@ -4375,6 +4669,20 @@
      "type": "length",
      "part": "card-footer",
      "variant": null,
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--card-footer-sm-padding-x",
+     "private": "--_card-footer-sm-padding-x",
+     "default": "calc(var(--spacing) * 4)",
+     "description": "Horizontal padding of the footer in a small (sm) card.",
+     "type": "length",
+     "part": "card-footer",
+     "variant": "sm",
      "state": null,
      "property": "padding-x",
      "reads": [
@@ -5248,6 +5556,20 @@
      ]
     },
     {
+     "name": "--combobox-chips-with-chips-padding-x",
+     "private": "--_combobox-chips-with-chips-padding-x",
+     "default": "calc(var(--spacing) * 1.5)",
+     "description": "Horizontal padding of the chips field once it holds a chip.",
+     "type": "length",
+     "part": "combobox-chips",
+     "variant": "with-chips",
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
      "name": "--combobox-chip-gap",
      "private": "--_combobox-chip-gap",
      "default": "calc(var(--spacing) * 1)",
@@ -5339,6 +5661,18 @@
      "variant": null,
      "state": "disabled",
      "property": "opacity",
+     "reads": []
+    },
+    {
+     "name": "--combobox-chip-with-remove-padding-x",
+     "private": "--_combobox-chip-with-remove-padding-x",
+     "default": "0px",
+     "description": "Right padding of a chip that has a remove (×) button.",
+     "type": "length",
+     "part": "combobox-chip",
+     "variant": "with-remove",
+     "state": null,
+     "property": "padding-x",
      "reads": []
     },
     {
@@ -5970,6 +6304,20 @@
      "state": "disabled",
      "property": "opacity",
      "reads": []
+    },
+    {
+     "name": "--context-menu-item-inset-padding-x",
+     "private": "--_context-menu-item-inset-padding-x",
+     "default": "calc(var(--spacing) * 9.5)",
+     "description": "Left padding of an indented row (inset items, labels and sub-menu triggers).",
+     "type": "length",
+     "part": "context-menu-item",
+     "variant": "inset",
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
+     ]
     },
     {
      "name": "--context-menu-sub-trigger-radius",
@@ -6823,6 +7171,20 @@
      ]
     },
     {
+     "name": "--drawer-header-from-md-gap",
+     "private": "--_drawer-header-from-md-gap",
+     "default": "calc(var(--spacing) * 1.5)",
+     "description": "Gap between the title and description from the md breakpoint up.",
+     "type": "length",
+     "part": "drawer-header",
+     "variant": "from-md",
+     "state": null,
+     "property": "gap",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
      "name": "--drawer-footer-gap",
      "private": "--_drawer-footer-gap",
      "default": "calc(var(--spacing) * 2)",
@@ -7128,6 +7490,62 @@
      "property": "foreground",
      "reads": [
       "--dark-45"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-item-inset-padding-x",
+     "private": "--_dropdown-menu-item-inset-padding-x",
+     "default": "calc(var(--spacing) * 9)",
+     "description": "Left padding of an indented row (inset items, labels and sub-menu triggers).",
+     "type": "length",
+     "part": "dropdown-menu-item",
+     "variant": "inset",
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-item-destructive-foreground",
+     "private": "--_dropdown-menu-item-destructive-foreground",
+     "default": "var(--error-60)",
+     "description": "Text colour of a destructive item (e.g. Delete).",
+     "type": "color",
+     "part": "dropdown-menu-item",
+     "variant": "destructive",
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--error-60"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-item-destructive-highlighted",
+     "private": "--_dropdown-menu-item-destructive-highlighted",
+     "default": "var(--error-l1)",
+     "description": "Fill colour of a destructive item when highlighted.",
+     "type": "color",
+     "part": "dropdown-menu-item",
+     "variant": "destructive",
+     "state": "highlighted",
+     "property": "fill",
+     "reads": [
+      "--error-l1"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-item-destructive-highlighted-foreground",
+     "private": "--_dropdown-menu-item-destructive-highlighted-foreground",
+     "default": "var(--error-75)",
+     "description": "Text colour of a destructive item when highlighted.",
+     "type": "color",
+     "part": "dropdown-menu-item",
+     "variant": "destructive",
+     "state": "highlighted",
+     "property": "foreground",
+     "reads": [
+      "--error-75"
      ]
     },
     {
@@ -8273,6 +8691,20 @@
      ]
     },
     {
+     "name": "--field-set-with-choices-gap",
+     "private": "--_field-set-with-choices-gap",
+     "default": "calc(var(--spacing) * 3)",
+     "description": "Gap between items of a field set that holds a checkbox or radio group.",
+     "type": "length",
+     "part": "field-set",
+     "variant": "with-choices",
+     "state": null,
+     "property": "gap",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
      "name": "--field-legend-font-weight",
      "private": "--_field-legend-font-weight",
      "default": "600",
@@ -8306,6 +8738,20 @@
      "type": "length",
      "part": "field-group",
      "variant": null,
+     "state": null,
+     "property": "gap",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--field-group-checkbox-group-gap",
+     "private": "--_field-group-checkbox-group-gap",
+     "default": "calc(var(--spacing) * 3)",
+     "description": "Gap between the checkboxes of a field group used as a checkbox group.",
+     "type": "length",
+     "part": "field-group",
+     "variant": "checkbox-group",
      "state": null,
      "property": "gap",
      "reads": [
@@ -9553,6 +9999,34 @@
      ]
     },
     {
+     "name": "--item-group-sm-gap",
+     "private": "--_item-group-sm-gap",
+     "default": "calc(var(--spacing) * 2.5)",
+     "description": "Gap between small (sm) items.",
+     "type": "length",
+     "part": "item-group",
+     "variant": "sm",
+     "state": null,
+     "property": "gap",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--item-group-xs-gap",
+     "private": "--_item-group-xs-gap",
+     "default": "calc(var(--spacing) * 2)",
+     "description": "Gap between extra-small (xs) items.",
+     "type": "length",
+     "part": "item-group",
+     "variant": "xs",
+     "state": null,
+     "property": "gap",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
      "name": "--item-radius",
      "private": "--_item-radius",
      "default": "var(--radius-2xl)",
@@ -9791,6 +10265,48 @@
      ]
     },
     {
+     "name": "--item-media-image-sm-size",
+     "private": "--_item-media-image-sm-size",
+     "default": "calc(var(--spacing) * 8)",
+     "description": "Size of the image in a small (sm) item.",
+     "type": "length",
+     "part": "item-media",
+     "variant": "image-sm",
+     "state": null,
+     "property": "size",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--item-media-image-xs-size",
+     "private": "--_item-media-image-xs-size",
+     "default": "calc(var(--spacing) * 6)",
+     "description": "Size of the image in an extra-small (xs) item.",
+     "type": "length",
+     "part": "item-media",
+     "variant": "image-xs",
+     "state": null,
+     "property": "size",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--item-media-image-xs-radius",
+     "private": "--_item-media-image-xs-radius",
+     "default": "var(--radius-md)",
+     "description": "Corner radius of the image in an extra-small (xs) item.",
+     "type": "radius",
+     "part": "item-media",
+     "variant": "image-xs",
+     "state": null,
+     "property": "radius",
+     "reads": [
+      "--radius-md"
+     ]
+    },
+    {
      "name": "--item-content-gap",
      "private": "--_item-content-gap",
      "default": "calc(var(--spacing) * 1)",
@@ -9798,6 +10314,20 @@
      "type": "length",
      "part": "item-content",
      "variant": null,
+     "state": null,
+     "property": "gap",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--item-content-xs-gap",
+     "private": "--_item-content-xs-gap",
+     "default": "calc(var(--spacing) * 0.5)",
+     "description": "Gap between the title and description in an extra-small (xs) item.",
+     "type": "length",
+     "part": "item-content",
+     "variant": "xs",
      "state": null,
      "property": "gap",
      "reads": [
@@ -10383,6 +10913,20 @@
      "reads": []
     },
     {
+     "name": "--menubar-item-inset-padding-x",
+     "private": "--_menubar-item-inset-padding-x",
+     "default": "calc(var(--spacing) * 9.5)",
+     "description": "Left padding of an indented row (inset items, labels and sub-menu triggers).",
+     "type": "length",
+     "part": "menubar-item",
+     "variant": "inset",
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
      "name": "--menubar-checkbox-item-gap",
      "private": "--_menubar-checkbox-item-gap",
      "default": "calc(var(--spacing) * 2.5)",
@@ -10966,6 +11510,20 @@
      "property": "ring",
      "reads": [
       "--destructive"
+     ]
+    },
+    {
+     "name": "--native-select-sm-height",
+     "private": "--_native-select-sm-height",
+     "default": "calc(var(--spacing) * 8)",
+     "description": "Height of a small (sm) native select.",
+     "type": "length",
+     "part": "native-select",
+     "variant": "sm",
+     "state": null,
+     "property": "height",
+     "reads": [
+      "--spacing"
      ]
     },
     {
@@ -12594,6 +13152,20 @@
      "property": "foreground",
      "reads": [
       "--dark-45"
+     ]
+    },
+    {
+     "name": "--select-trigger-sm-height",
+     "private": "--_select-trigger-sm-height",
+     "default": "calc(var(--spacing) * 9)",
+     "description": "Height of a small (sm) trigger.",
+     "type": "length",
+     "part": "select-trigger",
+     "variant": "sm",
+     "state": null,
+     "property": "height",
+     "reads": [
+      "--spacing"
      ]
     },
     {
@@ -15614,6 +16186,20 @@
      ]
     },
     {
+     "name": "--tabs-list-line-vertical-gap",
+     "private": "--_tabs-list-line-vertical-gap",
+     "default": "calc(var(--spacing) * 0.5)",
+     "description": "Gap between the triggers of a vertical line tab list.",
+     "type": "length",
+     "part": "tabs-list",
+     "variant": "line-vertical",
+     "state": null,
+     "property": "gap",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
      "name": "--tabs-trigger-gap",
      "private": "--_tabs-trigger-gap",
      "default": "calc(var(--spacing) * 1.5)",
@@ -16830,6 +17416,48 @@
      "reads": [
       "--spacing"
      ]
+    },
+    {
+     "name": "--toggle-md-with-icon-padding-x",
+     "private": "--_toggle-md-with-icon-padding-x",
+     "default": "calc(var(--spacing) * 2.5)",
+     "description": "Padding on the icon side of the toggle (md) when it has an icon.",
+     "type": "length",
+     "part": "toggle",
+     "variant": "md-with-icon",
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--toggle-sm-with-icon-padding-x",
+     "private": "--_toggle-sm-with-icon-padding-x",
+     "default": "calc(var(--spacing) * 2)",
+     "description": "Padding on the icon side of the toggle (sm) when it has an icon.",
+     "type": "length",
+     "part": "toggle",
+     "variant": "sm-with-icon",
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--toggle-lg-with-icon-padding-x",
+     "private": "--_toggle-lg-with-icon-padding-x",
+     "default": "calc(var(--spacing) * 3)",
+     "description": "Padding on the icon side of the toggle (lg) when it has an icon.",
+     "type": "length",
+     "part": "toggle",
+     "variant": "lg-with-icon",
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
+     ]
     }
    ]
   },
@@ -16919,6 +17547,20 @@
      "property": "foreground",
      "reads": [
       "--white"
+     ]
+    },
+    {
+     "name": "--tooltip-content-with-kbd-padding-x",
+     "private": "--_tooltip-content-with-kbd-padding-x",
+     "default": "calc(var(--spacing) * 1.5)",
+     "description": "Right padding of a tooltip that ends in a keyboard shortcut.",
+     "type": "length",
+     "part": "tooltip-content",
+     "variant": "with-kbd",
+     "state": null,
+     "property": "padding-x",
+     "reads": [
+      "--spacing"
      ]
     }
    ]

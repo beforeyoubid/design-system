@@ -69,6 +69,7 @@ body { background: var(--pg-bg); }
 .pg :where(button):not(.pg-story-stage *) { cursor: pointer; }
 .pg :where(button:disabled):not(.pg-story-stage *) { cursor: default; opacity: .45; }
 .pg :focus-visible:not(.pg-story-stage *) { outline: 2px solid var(--pg-focus); outline-offset: 2px; }
+.pg-bp { display: inline-block; padding: 0 6px; border-radius: 4px; background: var(--pg-ink); color: var(--pg-bg); font-family: var(--pg-code); font-size: 11px; line-height: 18px; text-transform: none; letter-spacing: 0; }
 .pg-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
 /* ---------- top bar ---------- */

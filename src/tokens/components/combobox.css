@@ -60,6 +60,7 @@
 }
 
 [data-slot="combobox-chips"] {
+  /* @add has-data-[slot=combobox-chip]:px-(--_combobox-chips-with-chips-padding-x) */
   /* Minimum height of the chips. */
   --_combobox-chips-min-height: var(--combobox-chips-min-height, calc(var(--spacing) * 9));
   /* Gap between items of the chips. */
@@ -82,9 +83,12 @@
   --_combobox-chips-invalid-border: var(--combobox-chips-invalid-border, var(--destructive));
   /* Ring colour of the chips when invalid. */
   --_combobox-chips-invalid-ring: var(--combobox-chips-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
+  /* Horizontal padding of the chips field once it holds a chip. */
+  --_combobox-chips-with-chips-padding-x: var(--combobox-chips-with-chips-padding-x, calc(var(--spacing) * 1.5));
 }
 
 [data-slot="combobox-chip"] {
+  /* @add has-data-[slot=combobox-chip-remove]:pe-(--_combobox-chip-with-remove-padding-x) */
   /* Gap between items of the chip. */
   --_combobox-chip-gap: var(--combobox-chip-gap, calc(var(--spacing) * 1));
   /* Corner radius of the chip. */
@@ -99,6 +103,8 @@
   --_combobox-chip-foreground: var(--combobox-chip-foreground, var(--foreground));
   /* Opacity of the chip when disabled. */
   --_combobox-chip-disabled-opacity: var(--combobox-chip-disabled-opacity, 0.5);
+  /* Right padding of a chip that has a remove (×) button. */
+  --_combobox-chip-with-remove-padding-x: var(--combobox-chip-with-remove-padding-x, 0px);
 }
 
 [data-slot="combobox-chip-remove"] {

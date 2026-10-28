@@ -50,6 +50,7 @@
 
 [data-slot="menubar-item"] {
   /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_menubar-item-inset-padding-x) */
   /* Gap between items of the item. */
   --_menubar-item-gap: var(--menubar-item-gap, calc(var(--spacing) * 2.5));
   /* Corner radius of the item. */
@@ -64,10 +65,13 @@
   --_menubar-item-focus-foreground: var(--menubar-item-focus-foreground, var(--accent-foreground));
   /* Opacity of the item when disabled. */
   --_menubar-item-disabled-opacity: var(--menubar-item-disabled-opacity, 0.5);
+  /* Left padding of an indented row (inset items, labels and sub-menu triggers). */
+  --_menubar-item-inset-padding-x: var(--menubar-item-inset-padding-x, calc(var(--spacing) * 9.5));
 }
 
 [data-slot="menubar-checkbox-item"] {
   /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_menubar-item-inset-padding-x) */
   /* Gap between items of the checkbox-item. */
   --_menubar-checkbox-item-gap: var(--menubar-checkbox-item-gap, calc(var(--spacing) * 2.5));
   /* Corner radius of the checkbox-item. */
@@ -84,6 +88,7 @@
 
 [data-slot="menubar-radio-item"] {
   /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_menubar-item-inset-padding-x) */
   /* Gap between items of the radio-item. */
   --_menubar-radio-item-gap: var(--menubar-radio-item-gap, calc(var(--spacing) * 2.5));
   /* Corner radius of the radio-item. */
@@ -100,6 +105,7 @@
 
 [data-slot="menubar-label"] {
   /* @add text-caption-2 */
+  /* @add data-inset:ps-(--_menubar-item-inset-padding-x) */
   /* Horizontal padding of the label. */
   --_menubar-label-padding-x: var(--menubar-label-padding-x, calc(var(--spacing) * 3.5));
   /* Vertical padding of the label. */
@@ -124,6 +130,7 @@
 
 [data-slot="menubar-sub-trigger"] {
   /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_menubar-item-inset-padding-x) */
   /* Gap between items of the sub-trigger. */
   --_menubar-sub-trigger-gap: var(--menubar-sub-trigger-gap, calc(var(--spacing) * 2));
   /* Corner radius of the sub-trigger. */

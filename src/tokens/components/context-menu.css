@@ -22,6 +22,7 @@
 
 [data-slot="context-menu-label"] {
   /* @add text-caption-2 */
+  /* @add data-inset:ps-(--_context-menu-item-inset-padding-x) */
   /* Horizontal padding of the label. */
   --_context-menu-label-padding-x: var(--context-menu-label-padding-x, calc(var(--spacing) * 3));
   /* Vertical padding of the label. */
@@ -32,6 +33,7 @@
 
 [data-slot="context-menu-item"] {
   /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_context-menu-item-inset-padding-x) */
   /* Gap between items of the item. */
   --_context-menu-item-gap: var(--context-menu-item-gap, calc(var(--spacing) * 2.5));
   /* Corner radius of the item. */
@@ -46,10 +48,13 @@
   --_context-menu-item-focus-foreground: var(--context-menu-item-focus-foreground, var(--accent-foreground));
   /* Opacity of the item when disabled. */
   --_context-menu-item-disabled-opacity: var(--context-menu-item-disabled-opacity, 0.5);
+  /* Left padding of an indented row (inset items, labels and sub-menu triggers). */
+  --_context-menu-item-inset-padding-x: var(--context-menu-item-inset-padding-x, calc(var(--spacing) * 9.5));
 }
 
 [data-slot="context-menu-sub-trigger"] {
   /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_context-menu-item-inset-padding-x) */
   /* Corner radius of the sub-trigger. */
   --_context-menu-sub-trigger-radius: var(--context-menu-sub-trigger-radius, var(--radius-md));
   /* Horizontal padding of the sub-trigger. */
@@ -73,6 +78,7 @@
 
 [data-slot="context-menu-checkbox-item"] {
   /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_context-menu-item-inset-padding-x) */
   /* Gap between items of the checkbox-item. */
   --_context-menu-checkbox-item-gap: var(--context-menu-checkbox-item-gap, calc(var(--spacing) * 2));
   /* Corner radius of the checkbox-item. */
@@ -89,6 +95,7 @@
 
 [data-slot="context-menu-radio-item"] {
   /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_context-menu-item-inset-padding-x) */
   /* Gap between items of the radio-item. */
   --_context-menu-radio-item-gap: var(--context-menu-radio-item-gap, calc(var(--spacing) * 2));
   /* Corner radius of the radio-item. */

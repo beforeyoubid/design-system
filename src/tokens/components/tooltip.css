@@ -5,6 +5,7 @@
 
 [data-slot="tooltip-content"] {
   /* @add text-body-4 **:data-[slot=kbd]:rounded-sm */
+  /* @add has-data-[slot=kbd]:pe-(--_tooltip-content-with-kbd-padding-x) */
   /* Gap between items of the content. */
   --_tooltip-content-gap: var(--tooltip-content-gap, calc(var(--spacing) * 1.5));
   /* Corner radius of the content. */
@@ -17,4 +18,6 @@
   --_tooltip-content-padding-y: var(--tooltip-content-padding-y, calc(var(--spacing) * 2));
   /* Text colour of the content. */
   --_tooltip-content-foreground: var(--tooltip-content-foreground, var(--white));
+  /* Right padding of a tooltip that ends in a keyboard shortcut. */
+  --_tooltip-content-with-kbd-padding-x: var(--tooltip-content-with-kbd-padding-x, calc(var(--spacing) * 1.5));
 }

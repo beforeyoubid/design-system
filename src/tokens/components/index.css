@@ -94,8 +94,11 @@
 [data-slot="alert-dialog-header"],
 [class*="(--_alert-dialog-header-"],
 [class*="(--_alert-dialog-header)"] {
+  /* @add has-data-[slot=alert-dialog-media]:gap-x-(--_alert-dialog-header-with-media-gap) */
   /* Gap between items of the header. */
   --_alert-dialog-header-gap: var(--alert-dialog-header-gap, calc(var(--spacing) * 1.5));
+  /* Gap between the media and the text of a header with media. */
+  --_alert-dialog-header-with-media-gap: var(--alert-dialog-header-with-media-gap, calc(var(--spacing) * 6));
 }
 
 [data-slot="alert-dialog-footer"],
@@ -144,6 +147,7 @@
   /* @remove(variant.destructive) *:[svg]:text-current */
   /* @add text-body-5 */
   /* @add(variant.destructive) *:data-[slot=alert-description]:text-error-75/90 */
+  /* @add has-[>svg]:gap-x-(--_alert-with-icon-gap) has-data-[slot=alert-action]:pe-(--_alert-with-action-padding-x) */
   /* Gap between items of the alert. */
   --_alert-gap: var(--alert-gap, calc(var(--spacing) * 0.5));
   /* Corner radius of the alert. */
@@ -164,6 +168,10 @@
   --_alert-destructive-border: var(--alert-destructive-border, var(--error-15));
   /* Text colour of the alert (destructive variant). */
   --_alert-destructive-foreground: var(--alert-destructive-foreground, var(--error-75));
+  /* Gap between the icon and the text of an alert with an icon. */
+  --_alert-with-icon-gap: var(--alert-with-icon-gap, calc(var(--spacing) * 2.5));
+  /* Right padding of an alert with an action button (room for the button). */
+  --_alert-with-action-padding-x: var(--alert-with-action-padding-x, calc(var(--spacing) * 18));
 }
 
 [data-slot="alert-title"],
@@ -196,6 +204,7 @@
 [data-slot="attachment"],
 [class*="(--_attachment-"],
 [class*="(--_attachment)"] {
+  /* @add(orientation.vertical) has-data-[slot=attachment-content]:w-(--_attachment-vertical-with-content-width) */
   /* Corner radius of the attachment. */
   --_attachment-radius: var(--attachment-radius, var(--radius-2xl));
   /* Fill colour of the attachment. */
@@ -214,11 +223,14 @@
   --_attachment-xs-radius: var(--attachment-xs-radius, var(--attachment-radius, var(--radius-xl)));
   /* Width of the attachment (vertical variant). */
   --_attachment-vertical-width: var(--attachment-vertical-width, calc(var(--spacing) * 24));
+  /* Width of a vertical attachment that shows its title and description. */
+  --_attachment-vertical-with-content-width: var(--attachment-vertical-with-content-width, calc(var(--spacing) * 30));
 }
 
 [data-slot="attachment-media"],
 [class*="(--_attachment-media-"],
 [class*="(--_attachment-media)"] {
+  /* @add group-data-[size=sm]/attachment:w-(--_attachment-media-sm-width) group-data-[size=xs]/attachment:w-(--_attachment-media-xs-width) group-data-[size=xs]/attachment:rounded-(--_attachment-media-xs-radius) */
   /* Width of the media. */
   --_attachment-media-width: var(--attachment-media-width, calc(var(--spacing) * 10));
   /* Corner radius of the media. */
@@ -229,6 +241,12 @@
   --_attachment-media-foreground: var(--attachment-media-foreground, var(--foreground));
   /* Opacity of the media (image variant). */
   --_attachment-media-image-opacity: var(--attachment-media-image-opacity, 0.6);
+  /* Width of the media in a small (sm) attachment. */
+  --_attachment-media-sm-width: var(--attachment-media-sm-width, calc(var(--spacing) * 8));
+  /* Width of the media in an extra-small (xs) attachment. */
+  --_attachment-media-xs-width: var(--attachment-media-xs-width, calc(var(--spacing) * 7));
+  /* Corner radius of the media in an extra-small (xs) attachment. */
+  --_attachment-media-xs-radius: var(--attachment-media-xs-radius, var(--radius-lg));
 }
 
 [data-slot="attachment-title"],
@@ -266,10 +284,15 @@
 [data-slot="avatar"],
 [class*="(--_avatar-"],
 [class*="(--_avatar)"] {
+  /* @add data-[size=lg]:size-(--_avatar-lg-size) data-[size=sm]:size-(--_avatar-sm-size) */
   /* Width and height of the avatar. */
   --_avatar-size: var(--avatar-size, calc(var(--spacing) * 8));
   /* Corner radius of the avatar. */
   --_avatar-radius: var(--avatar-radius, var(--radius-full));
+  /* Size of a small (sm) avatar. */
+  --_avatar-sm-size: var(--avatar-sm-size, calc(var(--spacing) * 6));
+  /* Size of a large (lg) avatar. */
+  --_avatar-lg-size: var(--avatar-lg-size, calc(var(--spacing) * 10));
 }
 
 [data-slot="avatar-image"],
@@ -309,6 +332,7 @@
 [class*="(--_avatar-group-count-"],
 [class*="(--_avatar-group-count)"] {
   /* @add text-body-5 */
+  /* @add group-has-data-[size=lg]/avatar-group:size-(--_avatar-group-count-lg-size) group-has-data-[size=sm]/avatar-group:size-(--_avatar-group-count-sm-size) */
   /* Width and height of the group-count. */
   --_avatar-group-count-size: var(--avatar-group-count-size, calc(var(--spacing) * 8));
   /* Corner radius of the group-count. */
@@ -319,6 +343,10 @@
   --_avatar-group-count-foreground: var(--avatar-group-count-foreground, var(--muted-foreground));
   /* Ring colour of the group-count. */
   --_avatar-group-count-ring: var(--avatar-group-count-ring, var(--background));
+  /* Size of the "+N" count in a group of small (sm) avatars. */
+  --_avatar-group-count-sm-size: var(--avatar-group-count-sm-size, calc(var(--spacing) * 6));
+  /* Size of the "+N" count in a group of large (lg) avatars. */
+  --_avatar-group-count-lg-size: var(--avatar-group-count-lg-size, calc(var(--spacing) * 10));
 }
 
 /* ---- badge.css ---- */
@@ -334,6 +362,7 @@
   /* @remove(variant.destructive) focus-visible:ring-destructive/20 [a]:hover:bg-destructive/20 */
   /* @add text-caption-2 focus-visible:ring-3 */
   /* @add(variant.default) [a]:hover:bg-mint-l1 */
+  /* @add has-data-[icon=inline-end]:pe-(--_badge-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_badge-with-icon-padding-x) */
   /* Height of the badge. */
   --_badge-height: var(--badge-height, calc(var(--spacing) * 5));
   /* Gap between items of the badge. */
@@ -462,6 +491,8 @@
   --_badge-lg-padding-x: var(--badge-lg-padding-x, calc(var(--spacing) * 3));
   /* Font weight of a category or product badge (solid colour fill). @ours */
   --_badge-filled-font-weight: var(--badge-filled-font-weight, var(--badge-font-weight, 500));
+  /* Padding on the icon side of the badge when it has an icon. */
+  --_badge-with-icon-padding-x: var(--badge-with-icon-padding-x, calc(var(--spacing) * 1.5));
 }
 
 /* ---- breadcrumb.css ---- */
@@ -474,10 +505,13 @@
 [class*="(--_breadcrumb-list-"],
 [class*="(--_breadcrumb-list)"] {
   /* @add text-body-5 */
+  /* @add sm:gap-(--_breadcrumb-list-from-sm-gap) */
   /* Gap between items of the list. */
   --_breadcrumb-list-gap: var(--breadcrumb-list-gap, calc(var(--spacing) * 1.5));
   /* Text colour of the list. */
   --_breadcrumb-list-foreground: var(--breadcrumb-list-foreground, var(--muted-foreground));
+  /* Gap between crumbs from the sm breakpoint up. */
+  --_breadcrumb-list-from-sm-gap: var(--breadcrumb-list-from-sm-gap, calc(var(--spacing) * 2.5));
 }
 
 [data-slot="breadcrumb-item"],
@@ -554,10 +588,10 @@
   /* @add cursor-pointer border-0 uppercase tracking-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed aria-busy:pointer-events-none aria-busy:cursor-progress aria-busy:opacity-70 aria-invalid:ring-3 */
   /* @add(variant.outline) border aria-expanded:ring-3 */
   /* @add(variant.secondary) border */
-  /* @add(md) text-button-sm has-data-[icon=inline-end]:pe-3.5 has-data-[icon=inline-start]:ps-3.5 */
-  /* @add(size.xs) text-caption-2 */
-  /* @add(size.sm) text-button-sm has-data-[icon=inline-end]:pe-3 has-data-[icon=inline-start]:ps-3 */
-  /* @add(size.lg) text-button-md has-data-[icon=inline-end]:pe-4 has-data-[icon=inline-start]:ps-4 [&_svg:not([class*='size-'])]:size-4.5 */
+  /* @add(md) text-button-sm has-data-[icon=inline-end]:pe-(--_button-md-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-md-with-icon-padding-x) */
+  /* @add(size.xs) text-caption-2 has-data-[icon=inline-end]:pe-(--_button-xs-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-xs-with-icon-padding-x) */
+  /* @add(size.sm) text-button-sm has-data-[icon=inline-end]:pe-(--_button-sm-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-sm-with-icon-padding-x) */
+  /* @add(size.lg) text-button-md has-data-[icon=inline-end]:pe-(--_button-lg-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-lg-with-icon-padding-x) [&_svg:not([class*='size-'])]:size-4.5 */
   /* @add(size.icon-lg) [&_svg:not([class*='size-'])]:size-4.5 */
   /* Corner radius of the button. */
   --_button-radius: var(--button-radius, var(--radius-xl));
@@ -713,6 +747,14 @@
   --_button-navy: var(--button-navy, var(--navy));
   /* Text colour of the button (navy variant). @ours */
   --_button-navy-foreground: var(--button-navy-foreground, var(--white));
+  /* Padding on the icon side of the button (md) when it has an icon. */
+  --_button-md-with-icon-padding-x: var(--button-md-with-icon-padding-x, calc(var(--spacing) * 3.5));
+  /* Padding on the icon side of the button (xs) when it has an icon. */
+  --_button-xs-with-icon-padding-x: var(--button-xs-with-icon-padding-x, calc(var(--spacing) * 2));
+  /* Padding on the icon side of the button (sm) when it has an icon. */
+  --_button-sm-with-icon-padding-x: var(--button-sm-with-icon-padding-x, calc(var(--spacing) * 3));
+  /* Padding on the icon side of the button (lg) when it has an icon. */
+  --_button-lg-with-icon-padding-x: var(--button-lg-with-icon-padding-x, calc(var(--spacing) * 4));
 }
 
 /* ---- calendar.css ---- */
@@ -799,7 +841,7 @@
 [class*="(--_card-"],
 [class*="(--_card)"] {
   /* @remove ring-1 ring-foreground/10 [--card-spacing:--spacing(6)] data-[size=sm]:[--card-spacing:--spacing(4)] */
-  /* @add border text-body-5 data-[size=sm]:gap-4 data-[size=sm]:py-4 *:[img:first-child]:rounded-t-lg *:[img:last-child]:rounded-b-lg */
+  /* @add border text-body-5 data-[size=sm]:gap-(--_card-sm-gap) data-[size=sm]:py-(--_card-sm-padding-y) *:[img:first-child]:rounded-t-lg *:[img:last-child]:rounded-b-lg */
   /* Gap between items of the card. */
   --_card-gap: var(--card-gap, calc(var(--spacing) * 6));
   /* Corner radius of the card. */
@@ -812,16 +854,22 @@
   --_card-shadow: var(--card-shadow, 0 1px 2px 0 rgb(0 0 0 / 0.05));
   /* Vertical padding of the card. */
   --_card-padding-y: var(--card-padding-y, calc(var(--spacing) * 6));
+  /* Gap between sections of a small (sm) card. */
+  --_card-sm-gap: var(--card-sm-gap, calc(var(--spacing) * 4));
+  /* Vertical padding of a small (sm) card. */
+  --_card-sm-padding-y: var(--card-sm-padding-y, calc(var(--spacing) * 4));
 }
 
 [data-slot="card-header"],
 [class*="(--_card-header-"],
 [class*="(--_card-header)"] {
-  /* @add rounded-t-lg group-data-[size=sm]/card:px-4 [.border-b]:pb-6 group-data-[size=sm]/card:[.border-b]:pb-4 */
+  /* @add rounded-t-lg group-data-[size=sm]/card:px-(--_card-header-sm-padding-x) [.border-b]:pb-6 group-data-[size=sm]/card:[.border-b]:pb-4 */
   /* Gap between items of the header. */
   --_card-header-gap: var(--card-header-gap, calc(var(--spacing) * 2));
   /* Horizontal padding of the header. */
   --_card-header-padding-x: var(--card-header-padding-x, calc(var(--spacing) * 6));
+  /* Horizontal padding of the header in a small (sm) card. */
+  --_card-header-sm-padding-x: var(--card-header-sm-padding-x, calc(var(--spacing) * 4));
 }
 
 [data-slot="card-title"],
@@ -843,17 +891,21 @@
 [data-slot="card-content"],
 [class*="(--_card-content-"],
 [class*="(--_card-content)"] {
-  /* @add group-data-[size=sm]/card:px-4 */
+  /* @add group-data-[size=sm]/card:px-(--_card-content-sm-padding-x) */
   /* Horizontal padding of the content. */
   --_card-content-padding-x: var(--card-content-padding-x, calc(var(--spacing) * 6));
+  /* Horizontal padding of the content in a small (sm) card. */
+  --_card-content-sm-padding-x: var(--card-content-sm-padding-x, calc(var(--spacing) * 4));
 }
 
 [data-slot="card-footer"],
 [class*="(--_card-footer-"],
 [class*="(--_card-footer)"] {
-  /* @add rounded-b-lg group-data-[size=sm]/card:px-4 [.border-t]:pt-6 group-data-[size=sm]/card:[.border-t]:pt-4 */
+  /* @add rounded-b-lg group-data-[size=sm]/card:px-(--_card-footer-sm-padding-x) [.border-t]:pt-6 group-data-[size=sm]/card:[.border-t]:pt-4 */
   /* Horizontal padding of the footer. */
   --_card-footer-padding-x: var(--card-footer-padding-x, calc(var(--spacing) * 6));
+  /* Horizontal padding of the footer in a small (sm) card. */
+  --_card-footer-sm-padding-x: var(--card-footer-sm-padding-x, calc(var(--spacing) * 4));
 }
 
 /* ---- carousel.css ---- */
@@ -1082,6 +1134,7 @@
 [data-slot="combobox-chips"],
 [class*="(--_combobox-chips-"],
 [class*="(--_combobox-chips)"] {
+  /* @add has-data-[slot=combobox-chip]:px-(--_combobox-chips-with-chips-padding-x) */
   /* Minimum height of the chips. */
   --_combobox-chips-min-height: var(--combobox-chips-min-height, calc(var(--spacing) * 9));
   /* Gap between items of the chips. */
@@ -1104,11 +1157,14 @@
   --_combobox-chips-invalid-border: var(--combobox-chips-invalid-border, var(--destructive));
   /* Ring colour of the chips when invalid. */
   --_combobox-chips-invalid-ring: var(--combobox-chips-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
+  /* Horizontal padding of the chips field once it holds a chip. */
+  --_combobox-chips-with-chips-padding-x: var(--combobox-chips-with-chips-padding-x, calc(var(--spacing) * 1.5));
 }
 
 [data-slot="combobox-chip"],
 [class*="(--_combobox-chip-"],
 [class*="(--_combobox-chip)"] {
+  /* @add has-data-[slot=combobox-chip-remove]:pe-(--_combobox-chip-with-remove-padding-x) */
   /* Gap between items of the chip. */
   --_combobox-chip-gap: var(--combobox-chip-gap, calc(var(--spacing) * 1));
   /* Corner radius of the chip. */
@@ -1123,6 +1179,8 @@
   --_combobox-chip-foreground: var(--combobox-chip-foreground, var(--foreground));
   /* Opacity of the chip when disabled. */
   --_combobox-chip-disabled-opacity: var(--combobox-chip-disabled-opacity, 0.5);
+  /* Right padding of a chip that has a remove (×) button. */
+  --_combobox-chip-with-remove-padding-x: var(--combobox-chip-with-remove-padding-x, 0px);
 }
 
 [data-slot="combobox-chip-remove"],
@@ -1288,6 +1346,7 @@
 [class*="(--_context-menu-label-"],
 [class*="(--_context-menu-label)"] {
   /* @add text-caption-2 */
+  /* @add data-inset:ps-(--_context-menu-item-inset-padding-x) */
   /* Horizontal padding of the label. */
   --_context-menu-label-padding-x: var(--context-menu-label-padding-x, calc(var(--spacing) * 3));
   /* Vertical padding of the label. */
@@ -1300,6 +1359,7 @@
 [class*="(--_context-menu-item-"],
 [class*="(--_context-menu-item)"] {
   /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_context-menu-item-inset-padding-x) */
   /* Gap between items of the item. */
   --_context-menu-item-gap: var(--context-menu-item-gap, calc(var(--spacing) * 2.5));
   /* Corner radius of the item. */
@@ -1314,12 +1374,15 @@
   --_context-menu-item-focus-foreground: var(--context-menu-item-focus-foreground, var(--accent-foreground));
   /* Opacity of the item when disabled. */
   --_context-menu-item-disabled-opacity: var(--context-menu-item-disabled-opacity, 0.5);
+  /* Left padding of an indented row (inset items, labels and sub-menu triggers). */
+  --_context-menu-item-inset-padding-x: var(--context-menu-item-inset-padding-x, calc(var(--spacing) * 9.5));
 }
 
 [data-slot="context-menu-sub-trigger"],
 [class*="(--_context-menu-sub-trigger-"],
 [class*="(--_context-menu-sub-trigger)"] {
   /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_context-menu-item-inset-padding-x) */
   /* Corner radius of the sub-trigger. */
   --_context-menu-sub-trigger-radius: var(--context-menu-sub-trigger-radius, var(--radius-md));
   /* Horizontal padding of the sub-trigger. */
@@ -1347,6 +1410,7 @@
 [class*="(--_context-menu-checkbox-item-"],
 [class*="(--_context-menu-checkbox-item)"] {
   /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_context-menu-item-inset-padding-x) */
   /* Gap between items of the checkbox-item. */
   --_context-menu-checkbox-item-gap: var(--context-menu-checkbox-item-gap, calc(var(--spacing) * 2));
   /* Corner radius of the checkbox-item. */
@@ -1365,6 +1429,7 @@
 [class*="(--_context-menu-radio-item-"],
 [class*="(--_context-menu-radio-item)"] {
   /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_context-menu-item-inset-padding-x) */
   /* Gap between items of the radio-item. */
   --_context-menu-radio-item-gap: var(--context-menu-radio-item-gap, calc(var(--spacing) * 2));
   /* Corner radius of the radio-item. */
@@ -1569,10 +1634,13 @@
 [class*="(--_drawer-header-"],
 [class*="(--_drawer-header)"] {
   /* @remove pb-0 */
+  /* @add md:gap-(--_drawer-header-from-md-gap) */
   /* Gap between items of the header. */
   --_drawer-header-gap: var(--drawer-header-gap, calc(var(--spacing) * 0.5));
   /* Padding of the header. */
   --_drawer-header-padding: var(--drawer-header-padding, calc(var(--spacing) * 4));
+  /* Gap between the title and description from the md breakpoint up. */
+  --_drawer-header-from-md-gap: var(--drawer-header-from-md-gap, calc(var(--spacing) * 1.5));
 }
 
 [data-slot="drawer-footer"],
@@ -1634,7 +1702,7 @@
 [class*="(--_dropdown-menu-label-"],
 [class*="(--_dropdown-menu-label)"] {
   /* @remove py-2.5 */
-  /* @add pt-2 pb-1.5 text-body-5 data-inset:ps-9 */
+  /* @add pt-2 pb-1.5 text-body-5 data-inset:ps-(--_dropdown-menu-item-inset-padding-x) */
   /* Horizontal padding of the label. */
   --_dropdown-menu-label-padding-x: var(--dropdown-menu-label-padding-x, calc(var(--spacing) * 2.5));
   /* Font weight of the label. */
@@ -1647,7 +1715,7 @@
 [class*="(--_dropdown-menu-item-"],
 [class*="(--_dropdown-menu-item)"] {
   /* @remove py-2 focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive data-disabled:opacity-50 data-[variant=destructive]:*:[svg]:text-destructive */
-  /* @add cursor-pointer text-body-5 data-inset:ps-9 data-[variant=destructive]:text-error-60 data-[variant=destructive]:data-highlighted:bg-error-l1 data-[variant=destructive]:data-highlighted:text-error-75 */
+  /* @add cursor-pointer text-body-5 data-inset:ps-(--_dropdown-menu-item-inset-padding-x) data-[variant=destructive]:text-(--_dropdown-menu-item-destructive-foreground) data-[variant=destructive]:data-highlighted:bg-(--_dropdown-menu-item-destructive-highlighted) data-[variant=destructive]:data-highlighted:text-(--_dropdown-menu-item-destructive-highlighted-foreground) */
   /* Height of the item. */
   --_dropdown-menu-item-height: var(--dropdown-menu-item-height, calc(var(--spacing) * 8));
   /* Gap between items of the item. */
@@ -1664,13 +1732,21 @@
   --_dropdown-menu-item-highlighted-foreground: var(--dropdown-menu-item-highlighted-foreground, var(--mint-75));
   /* Text colour of the item when disabled. */
   --_dropdown-menu-item-disabled-foreground: var(--dropdown-menu-item-disabled-foreground, var(--dark-45));
+  /* Left padding of an indented row (inset items, labels and sub-menu triggers). */
+  --_dropdown-menu-item-inset-padding-x: var(--dropdown-menu-item-inset-padding-x, calc(var(--spacing) * 9));
+  /* Text colour of a destructive item (e.g. Delete). */
+  --_dropdown-menu-item-destructive-foreground: var(--dropdown-menu-item-destructive-foreground, var(--error-60));
+  /* Fill colour of a destructive item when highlighted. */
+  --_dropdown-menu-item-destructive-highlighted: var(--dropdown-menu-item-destructive-highlighted, var(--error-l1));
+  /* Text colour of a destructive item when highlighted. */
+  --_dropdown-menu-item-destructive-highlighted-foreground: var(--dropdown-menu-item-destructive-highlighted-foreground, var(--error-75));
 }
 
 [data-slot="dropdown-menu-sub-trigger"],
 [class*="(--_dropdown-menu-sub-trigger-"],
 [class*="(--_dropdown-menu-sub-trigger)"] {
   /* @remove py-2 focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-open:bg-accent data-open:text-accent-foreground */
-  /* @add cursor-pointer text-body-5 data-disabled:pointer-events-none data-inset:ps-9 [&>svg:last-child]:size-3.5 [&>svg:last-child]:text-dark-75 */
+  /* @add cursor-pointer text-body-5 data-disabled:pointer-events-none data-inset:ps-(--_dropdown-menu-item-inset-padding-x) [&>svg:last-child]:size-3.5 [&>svg:last-child]:text-dark-75 */
   /* Height of the sub-trigger. */
   --_dropdown-menu-sub-trigger-height: var(--dropdown-menu-sub-trigger-height, calc(var(--spacing) * 8));
   /* Gap between items of the sub-trigger. */
@@ -1704,7 +1780,7 @@
 [class*="(--_dropdown-menu-checkbox-item-"],
 [class*="(--_dropdown-menu-checkbox-item)"] {
   /* @remove relative flex cursor-default items-center rounded-xl py-2 pe-8 ps-3 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 */
-  /* @add relative flex cursor-pointer items-center text-body-5 outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 group/dropdown-menu-checkbox-item data-inset:ps-9 */
+  /* @add relative flex cursor-pointer items-center text-body-5 outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 group/dropdown-menu-checkbox-item data-inset:ps-(--_dropdown-menu-item-inset-padding-x) */
   /* Minimum height of the checkbox item. */
   --_dropdown-menu-checkbox-item-min-height: var(--dropdown-menu-checkbox-item-min-height, calc(var(--spacing) * 8));
   /* Corner radius of the checkbox item. */
@@ -1744,7 +1820,7 @@
 [class*="(--_dropdown-menu-radio-item-"],
 [class*="(--_dropdown-menu-radio-item)"] {
   /* @remove relative flex cursor-default items-center rounded-xl py-2 pe-8 ps-3 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 */
-  /* @add relative flex cursor-pointer items-center text-body-5 outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-inset:ps-9 */
+  /* @add relative flex cursor-pointer items-center text-body-5 outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-inset:ps-(--_dropdown-menu-item-inset-padding-x) */
   /* Minimum height of the radio item. */
   --_dropdown-menu-radio-item-min-height: var(--dropdown-menu-radio-item-min-height, calc(var(--spacing) * 8));
   /* Corner radius of the radio item. */
@@ -1940,8 +2016,11 @@
 [data-slot="field-set"],
 [class*="(--_field-set-"],
 [class*="(--_field-set)"] {
+  /* @add has-[>[data-slot=checkbox-group]]:gap-(--_field-set-with-choices-gap) has-[>[data-slot=radio-group]]:gap-(--_field-set-with-choices-gap) */
   /* Gap between items of the set. */
   --_field-set-gap: var(--field-set-gap, calc(var(--spacing) * 5));
+  /* Gap between items of a field set that holds a checkbox or radio group. */
+  --_field-set-with-choices-gap: var(--field-set-with-choices-gap, calc(var(--spacing) * 3));
 }
 
 [data-slot="field-legend"],
@@ -1957,8 +2036,11 @@
 [data-slot="field-group"],
 [class*="(--_field-group-"],
 [class*="(--_field-group)"] {
+  /* @add data-[slot=checkbox-group]:gap-(--_field-group-checkbox-group-gap) */
   /* Gap between items of the group. */
   --_field-group-gap: var(--field-group-gap, calc(var(--spacing) * 5));
+  /* Gap between the checkboxes of a field group used as a checkbox group. */
+  --_field-group-checkbox-group-gap: var(--field-group-checkbox-group-gap, calc(var(--spacing) * 3));
 }
 
 [data-slot="field"],
@@ -2295,8 +2377,13 @@
 [data-slot="item-group"],
 [class*="(--_item-group-"],
 [class*="(--_item-group)"] {
+  /* @add has-data-[size=sm]:gap-(--_item-group-sm-gap) has-data-[size=xs]:gap-(--_item-group-xs-gap) */
   /* Gap between items of the group. */
   --_item-group-gap: var(--item-group-gap, calc(var(--spacing) * 4));
+  /* Gap between small (sm) items. */
+  --_item-group-sm-gap: var(--item-group-sm-gap, calc(var(--spacing) * 2.5));
+  /* Gap between extra-small (xs) items. */
+  --_item-group-xs-gap: var(--item-group-xs-gap, calc(var(--spacing) * 2));
 }
 
 [data-slot="item"],
@@ -2336,19 +2423,29 @@
 [data-slot="item-media"],
 [class*="(--_item-media-"],
 [class*="(--_item-media)"] {
+  /* @add(variant.image) group-data-[size=sm]/item:size-(--_item-media-image-sm-size) group-data-[size=xs]/item:size-(--_item-media-image-xs-size) group-data-[size=xs]/item:rounded-(--_item-media-image-xs-radius) */
   /* Gap between items of the media. */
   --_item-media-gap: var(--item-media-gap, calc(var(--spacing) * 2));
   /* Width and height of the media (image variant). */
   --_item-media-image-size: var(--item-media-image-size, calc(var(--spacing) * 10));
   /* Corner radius of the media (image variant). */
   --_item-media-image-radius: var(--item-media-image-radius, var(--radius-lg));
+  /* Size of the image in a small (sm) item. */
+  --_item-media-image-sm-size: var(--item-media-image-sm-size, calc(var(--spacing) * 8));
+  /* Size of the image in an extra-small (xs) item. */
+  --_item-media-image-xs-size: var(--item-media-image-xs-size, calc(var(--spacing) * 6));
+  /* Corner radius of the image in an extra-small (xs) item. */
+  --_item-media-image-xs-radius: var(--item-media-image-xs-radius, var(--radius-md));
 }
 
 [data-slot="item-content"],
 [class*="(--_item-content-"],
 [class*="(--_item-content)"] {
+  /* @add group-data-[size=xs]/item:gap-(--_item-content-xs-gap) */
   /* Gap between items of the content. */
   --_item-content-gap: var(--item-content-gap, calc(var(--spacing) * 1));
+  /* Gap between the title and description in an extra-small (xs) item. */
+  --_item-content-xs-gap: var(--item-content-xs-gap, calc(var(--spacing) * 0.5));
 }
 
 [data-slot="item-title"],
@@ -2501,6 +2598,7 @@
 [class*="(--_menubar-item-"],
 [class*="(--_menubar-item)"] {
   /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_menubar-item-inset-padding-x) */
   /* Gap between items of the item. */
   --_menubar-item-gap: var(--menubar-item-gap, calc(var(--spacing) * 2.5));
   /* Corner radius of the item. */
@@ -2515,12 +2613,15 @@
   --_menubar-item-focus-foreground: var(--menubar-item-focus-foreground, var(--accent-foreground));
   /* Opacity of the item when disabled. */
   --_menubar-item-disabled-opacity: var(--menubar-item-disabled-opacity, 0.5);
+  /* Left padding of an indented row (inset items, labels and sub-menu triggers). */
+  --_menubar-item-inset-padding-x: var(--menubar-item-inset-padding-x, calc(var(--spacing) * 9.5));
 }
 
 [data-slot="menubar-checkbox-item"],
 [class*="(--_menubar-checkbox-item-"],
 [class*="(--_menubar-checkbox-item)"] {
   /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_menubar-item-inset-padding-x) */
   /* Gap between items of the checkbox-item. */
   --_menubar-checkbox-item-gap: var(--menubar-checkbox-item-gap, calc(var(--spacing) * 2.5));
   /* Corner radius of the checkbox-item. */
@@ -2539,6 +2640,7 @@
 [class*="(--_menubar-radio-item-"],
 [class*="(--_menubar-radio-item)"] {
   /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_menubar-item-inset-padding-x) */
   /* Gap between items of the radio-item. */
   --_menubar-radio-item-gap: var(--menubar-radio-item-gap, calc(var(--spacing) * 2.5));
   /* Corner radius of the radio-item. */
@@ -2557,6 +2659,7 @@
 [class*="(--_menubar-label-"],
 [class*="(--_menubar-label)"] {
   /* @add text-caption-2 */
+  /* @add data-inset:ps-(--_menubar-item-inset-padding-x) */
   /* Horizontal padding of the label. */
   --_menubar-label-padding-x: var(--menubar-label-padding-x, calc(var(--spacing) * 3.5));
   /* Vertical padding of the label. */
@@ -2587,6 +2690,7 @@
 [class*="(--_menubar-sub-trigger-"],
 [class*="(--_menubar-sub-trigger)"] {
   /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_menubar-item-inset-padding-x) */
   /* Gap between items of the sub-trigger. */
   --_menubar-sub-trigger-gap: var(--menubar-sub-trigger-gap, calc(var(--spacing) * 2));
   /* Corner radius of the sub-trigger. */
@@ -2633,6 +2737,7 @@
 [data-slot="native-select"],
 [class*="(--_native-select-"],
 [class*="(--_native-select)"] {
+  /* @add data-[size=sm]:h-(--_native-select-sm-height) */
   /* Height of the native-select. */
   --_native-select-height: var(--native-select-height, calc(var(--spacing) * 9));
   /* Corner radius of the native-select. */
@@ -2653,6 +2758,8 @@
   --_native-select-invalid-border: var(--native-select-invalid-border, var(--destructive));
   /* Ring colour of the native-select when invalid. */
   --_native-select-invalid-ring: var(--native-select-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
+  /* Height of a small (sm) native select. */
+  --_native-select-sm-height: var(--native-select-sm-height, calc(var(--spacing) * 8));
 }
 
 [data-slot="native-select-icon"],
@@ -3097,7 +3204,7 @@
 [class*="(--_select-trigger-"],
 [class*="(--_select-trigger)"] {
   /* @remove py-2 disabled:opacity-50 aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 data-[size=default]:h-9 */
-  /* @add group/select-trigger cursor-pointer w-full text-body-5 transition-[color,background-color,border-color,box-shadow] focus-visible:ring-3 data-popup-open:ring-3 data-popup-open:data-placeholder:text-mint-75 aria-invalid:hover:border-error-75 aria-invalid:data-popup-open:border-(--_select-trigger-invalid-border) data-disabled:cursor-not-allowed data-disabled:hover:border-dark-45 data-[size=sm]:h-9 */
+  /* @add group/select-trigger cursor-pointer w-full text-body-5 transition-[color,background-color,border-color,box-shadow] focus-visible:ring-3 data-popup-open:ring-3 data-popup-open:data-placeholder:text-mint-75 aria-invalid:hover:border-error-75 aria-invalid:data-popup-open:border-(--_select-trigger-invalid-border) data-disabled:cursor-not-allowed data-disabled:hover:border-dark-45 data-[size=sm]:h-(--_select-trigger-sm-height) */
   /* Height of the trigger. */
   --_select-trigger-height: var(--select-trigger-height, calc(var(--spacing) * 10));
   /* Gap between items of the trigger. */
@@ -3134,6 +3241,8 @@
   --_select-trigger-disabled: var(--select-trigger-disabled, var(--light-l2));
   /* Text colour of the trigger when disabled. */
   --_select-trigger-disabled-foreground: var(--select-trigger-disabled-foreground, var(--dark-45));
+  /* Height of a small (sm) trigger. */
+  --_select-trigger-sm-height: var(--select-trigger-sm-height, calc(var(--spacing) * 9));
 }
 
 [data-slot="select-icon"],
@@ -3970,6 +4079,7 @@
   /* @add relative group-data-[orientation=vertical]/tabs:h-fit group-data-[orientation=vertical]/tabs:flex-col */
   /* @add(variant.default) self-start border */
   /* @add(variant.line) w-full justify-start border-b group-data-[orientation=vertical]/tabs:w-fit group-data-[orientation=vertical]/tabs:items-stretch group-data-[orientation=vertical]/tabs:gap-0.5 group-data-[orientation=vertical]/tabs:border-b-0 group-data-[orientation=vertical]/tabs:border-s */
+  /* @add(variant.line) group-data-[orientation=vertical]/tabs:gap-(--_tabs-list-line-vertical-gap) */
   /* Gap between items of the list (default variant). */
   --_tabs-list-default-gap: var(--tabs-list-default-gap, calc(var(--spacing) * 0.5));
   /* Corner radius of the list (default variant). */
@@ -3992,6 +4102,8 @@
   --_tabs-list-segmented-radius: var(--tabs-list-segmented-radius, var(--radius-lg));
   /* Padding of the list (segmented variant). @ours */
   --_tabs-list-segmented-padding: var(--tabs-list-segmented-padding, calc(var(--spacing) * 1));
+  /* Gap between the triggers of a vertical line tab list. */
+  --_tabs-list-line-vertical-gap: var(--tabs-list-line-vertical-gap, calc(var(--spacing) * 0.5));
 }
 
 [data-slot="tabs-trigger"],
@@ -4241,6 +4353,9 @@
 [class*="(--_toggle)"] {
   /* @alias md = size.default */
   /* @add cursor-pointer text-body-5 focus-visible:ring-3 */
+  /* @add(md) has-data-[icon=inline-end]:pe-(--_toggle-md-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_toggle-md-with-icon-padding-x) */
+  /* @add(size.sm) has-data-[icon=inline-end]:pe-(--_toggle-sm-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_toggle-sm-with-icon-padding-x) */
+  /* @add(size.lg) has-data-[icon=inline-end]:pe-(--_toggle-lg-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_toggle-lg-with-icon-padding-x) */
   /* Gap between items of the toggle. */
   --_toggle-gap: var(--toggle-gap, calc(var(--spacing) * 1));
   /* Corner radius of the toggle. */
@@ -4279,6 +4394,12 @@
   --_toggle-lg-height: var(--toggle-lg-height, calc(var(--spacing) * 10));
   /* Horizontal padding of the toggle (lg size). */
   --_toggle-lg-padding-x: var(--toggle-lg-padding-x, calc(var(--spacing) * 4));
+  /* Padding on the icon side of the toggle (md) when it has an icon. */
+  --_toggle-md-with-icon-padding-x: var(--toggle-md-with-icon-padding-x, calc(var(--spacing) * 2.5));
+  /* Padding on the icon side of the toggle (sm) when it has an icon. */
+  --_toggle-sm-with-icon-padding-x: var(--toggle-sm-with-icon-padding-x, calc(var(--spacing) * 2));
+  /* Padding on the icon side of the toggle (lg) when it has an icon. */
+  --_toggle-lg-with-icon-padding-x: var(--toggle-lg-with-icon-padding-x, calc(var(--spacing) * 3));
 }
 
 /* ---- tooltip.css ---- */
@@ -4291,6 +4412,7 @@
 [class*="(--_tooltip-content-"],
 [class*="(--_tooltip-content)"] {
   /* @add text-body-4 **:data-[slot=kbd]:rounded-sm */
+  /* @add has-data-[slot=kbd]:pe-(--_tooltip-content-with-kbd-padding-x) */
   /* Gap between items of the content. */
   --_tooltip-content-gap: var(--tooltip-content-gap, calc(var(--spacing) * 1.5));
   /* Corner radius of the content. */
@@ -4303,4 +4425,6 @@
   --_tooltip-content-padding-y: var(--tooltip-content-padding-y, calc(var(--spacing) * 2));
   /* Text colour of the content. */
   --_tooltip-content-foreground: var(--tooltip-content-foreground, var(--white));
+  /* Right padding of a tooltip that ends in a keyboard shortcut. */
+  --_tooltip-content-with-kbd-padding-x: var(--tooltip-content-with-kbd-padding-x, calc(var(--spacing) * 1.5));
 }

@@ -614,7 +614,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>alert-dialog</strong> (15)</summary>
+<summary><strong>alert-dialog</strong> (16)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -627,6 +627,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--alert-dialog-content-foreground` | Text colour of the content. | `var(--popover-foreground)` |
 | `--alert-dialog-content-shadow` | Shadow of the content. | `0 25px 50px -12px rgb(0 0 0 / 0.25)` |
 | `--alert-dialog-header-gap` | Gap between items of the header. | `calc(var(--spacing) * 1.5)` |
+| `--alert-dialog-header-with-media-gap` | Gap between the media and the text of a header with media. | `calc(var(--spacing) * 6)` |
 | `--alert-dialog-footer-gap` | Gap between items of the footer. | `calc(var(--spacing) * 2)` |
 | `--alert-dialog-media-size` | Width and height of the media. | `calc(var(--spacing) * 16)` |
 | `--alert-dialog-media-radius` | Corner radius of the media. | `var(--radius-full)` |
@@ -637,7 +638,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>alert</strong> (12)</summary>
+<summary><strong>alert</strong> (14)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -651,6 +652,8 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--alert-destructive` | Fill colour of the alert (destructive variant). | `var(--error-l1)` |
 | `--alert-destructive-border` | Border colour of the alert (destructive variant). | `var(--error-15)` |
 | `--alert-destructive-foreground` | Text colour of the alert (destructive variant). | `var(--error-75)` |
+| `--alert-with-icon-gap` | Gap between the icon and the text of an alert with an icon. | `calc(var(--spacing) * 2.5)` |
+| `--alert-with-action-padding-x` | Right padding of an alert with an action button (room for the button). | `calc(var(--spacing) * 18)` |
 | `--alert-title-font-weight` | Font weight of the title. | `500` |
 | `--alert-description-foreground` | Text colour of the description. | `var(--muted-foreground)` |
 
@@ -666,7 +669,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>attachment</strong> (18)</summary>
+<summary><strong>attachment</strong> (22)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -679,11 +682,15 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--attachment-xs-gap` | Gap between items of the attachment (xs size). | `calc(var(--spacing) * 1.5)` |
 | `--attachment-xs-radius` | Corner radius of the attachment (xs size). | `var(--attachment-radius, var(--radius-xl))` |
 | `--attachment-vertical-width` | Width of the attachment (vertical variant). | `calc(var(--spacing) * 24)` |
+| `--attachment-vertical-with-content-width` | Width of a vertical attachment that shows its title and description. | `calc(var(--spacing) * 30)` |
 | `--attachment-media-width` | Width of the media. | `calc(var(--spacing) * 10)` |
 | `--attachment-media-radius` | Corner radius of the media. | `var(--radius-xl)` |
 | `--attachment-media` | Fill colour of the media. | `var(--muted)` |
 | `--attachment-media-foreground` | Text colour of the media. | `var(--foreground)` |
 | `--attachment-media-image-opacity` | Opacity of the media (image variant). | `0.6` |
+| `--attachment-media-sm-width` | Width of the media in a small (sm) attachment. | `calc(var(--spacing) * 8)` |
+| `--attachment-media-xs-width` | Width of the media in an extra-small (xs) attachment. | `calc(var(--spacing) * 7)` |
+| `--attachment-media-xs-radius` | Corner radius of the media in an extra-small (xs) attachment. | `var(--radius-lg)` |
 | `--attachment-title-font-weight` | Font weight of the title. | `500` |
 | `--attachment-description-foreground` | Text colour of the description. | `var(--muted-foreground)` |
 | `--attachment-group-gap` | Gap between items of the group. | `calc(var(--spacing) * 3)` |
@@ -692,12 +699,14 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>avatar</strong> (15)</summary>
+<summary><strong>avatar</strong> (19)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
 | `--avatar-size` | Width and height of the avatar. | `calc(var(--spacing) * 8)` |
 | `--avatar-radius` | Corner radius of the avatar. | `var(--radius-full)` |
+| `--avatar-sm-size` | Size of a small (sm) avatar. | `calc(var(--spacing) * 6)` |
+| `--avatar-lg-size` | Size of a large (lg) avatar. | `calc(var(--spacing) * 10)` |
 | `--avatar-image-radius` | Corner radius of the image. | `var(--radius-full)` |
 | `--avatar-fallback-radius` | Corner radius of the fallback. | `var(--radius-full)` |
 | `--avatar-fallback` | Fill colour of the fallback. | `var(--muted)` |
@@ -711,11 +720,13 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--avatar-group-count` | Fill colour of the group-count. | `var(--muted)` |
 | `--avatar-group-count-foreground` | Text colour of the group-count. | `var(--muted-foreground)` |
 | `--avatar-group-count-ring` | Ring colour of the group-count. | `var(--background)` |
+| `--avatar-group-count-sm-size` | Size of the "+N" count in a group of small (sm) avatars. | `calc(var(--spacing) * 6)` |
+| `--avatar-group-count-lg-size` | Size of the "+N" count in a group of large (lg) avatars. | `calc(var(--spacing) * 10)` |
 
 </details>
 
 <details>
-<summary><strong>badge</strong> (64)</summary>
+<summary><strong>badge</strong> (65)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -783,16 +794,18 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--badge-lg-gap` | Gap between items of the large badge. | `calc(var(--spacing) * 1.5)` |
 | `--badge-lg-padding-x` | Horizontal padding of the large badge. | `calc(var(--spacing) * 3)` |
 | `--badge-filled-font-weight` | Font weight of a category or product badge (solid colour fill). | `var(--badge-font-weight, 500)` |
+| `--badge-with-icon-padding-x` | Padding on the icon side of the badge when it has an icon. | `calc(var(--spacing) * 1.5)` |
 
 </details>
 
 <details>
-<summary><strong>breadcrumb</strong> (7)</summary>
+<summary><strong>breadcrumb</strong> (8)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
 | `--breadcrumb-list-gap` | Gap between items of the list. | `calc(var(--spacing) * 1.5)` |
 | `--breadcrumb-list-foreground` | Text colour of the list. | `var(--muted-foreground)` |
+| `--breadcrumb-list-from-sm-gap` | Gap between crumbs from the sm breakpoint up. | `calc(var(--spacing) * 2.5)` |
 | `--breadcrumb-item-gap` | Gap between items of the item. | `calc(var(--spacing) * 1.5)` |
 | `--breadcrumb-link-hover-foreground` | Text colour of the link when hovered. | `var(--foreground)` |
 | `--breadcrumb-page-font-weight` | Font weight of the page. | `500` |
@@ -816,7 +829,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>button</strong> (77)</summary>
+<summary><strong>button</strong> (81)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -897,6 +910,10 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--button-lime-foreground` | Text colour of the button (lime variant). | `var(--navy)` |
 | `--button-navy` | Fill colour of the button (navy variant). | `var(--navy)` |
 | `--button-navy-foreground` | Text colour of the button (navy variant). | `var(--white)` |
+| `--button-md-with-icon-padding-x` | Padding on the icon side of the button (md) when it has an icon. | `calc(var(--spacing) * 3.5)` |
+| `--button-xs-with-icon-padding-x` | Padding on the icon side of the button (xs) when it has an icon. | `calc(var(--spacing) * 2)` |
+| `--button-sm-with-icon-padding-x` | Padding on the icon side of the button (sm) when it has an icon. | `calc(var(--spacing) * 3)` |
+| `--button-lg-with-icon-padding-x` | Padding on the icon side of the button (lg) when it has an icon. | `calc(var(--spacing) * 4)` |
 
 </details>
 
@@ -923,7 +940,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>card</strong> (12)</summary>
+<summary><strong>card</strong> (17)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -933,12 +950,17 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--card-fill` | Fill colour of the card. | `var(--card)` |
 | `--card-shadow` | Shadow of the card. | `0 1px 2px 0 rgb(0 0 0 / 0.05)` |
 | `--card-padding-y` | Vertical padding of the card. | `calc(var(--spacing) * 6)` |
+| `--card-sm-gap` | Gap between sections of a small (sm) card. | `calc(var(--spacing) * 4)` |
+| `--card-sm-padding-y` | Vertical padding of a small (sm) card. | `calc(var(--spacing) * 4)` |
 | `--card-header-gap` | Gap between items of the header. | `calc(var(--spacing) * 2)` |
 | `--card-header-padding-x` | Horizontal padding of the header. | `calc(var(--spacing) * 6)` |
+| `--card-header-sm-padding-x` | Horizontal padding of the header in a small (sm) card. | `calc(var(--spacing) * 4)` |
 | `--card-title-font-weight` | Font weight of the title. | `500` |
 | `--card-description-foreground` | Text colour of the description. | `var(--muted-foreground)` |
 | `--card-content-padding-x` | Horizontal padding of the content. | `calc(var(--spacing) * 6)` |
+| `--card-content-sm-padding-x` | Horizontal padding of the content in a small (sm) card. | `calc(var(--spacing) * 4)` |
 | `--card-footer-padding-x` | Horizontal padding of the footer. | `calc(var(--spacing) * 6)` |
+| `--card-footer-sm-padding-x` | Horizontal padding of the footer in a small (sm) card. | `calc(var(--spacing) * 4)` |
 
 </details>
 
@@ -1015,7 +1037,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>combobox</strong> (39)</summary>
+<summary><strong>combobox</strong> (41)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -1049,6 +1071,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--combobox-chips-focus-ring` | Ring colour of the chips when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
 | `--combobox-chips-invalid-border` | Border colour of the chips when invalid. | `var(--destructive)` |
 | `--combobox-chips-invalid-ring` | Ring colour of the chips when invalid. | `color-mix(in oklab, var(--destructive) 20%, transparent)` |
+| `--combobox-chips-with-chips-padding-x` | Horizontal padding of the chips field once it holds a chip. | `calc(var(--spacing) * 1.5)` |
 | `--combobox-chip-gap` | Gap between items of the chip. | `calc(var(--spacing) * 1)` |
 | `--combobox-chip-radius` | Corner radius of the chip. | `var(--radius-4xl)` |
 | `--combobox-chip` | Fill colour of the chip. | `color-mix(in oklab, var(--muted-foreground) 10%, transparent)` |
@@ -1056,6 +1079,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--combobox-chip-font-weight` | Font weight of the chip. | `500` |
 | `--combobox-chip-foreground` | Text colour of the chip. | `var(--foreground)` |
 | `--combobox-chip-disabled-opacity` | Opacity of the chip when disabled. | `0.5` |
+| `--combobox-chip-with-remove-padding-x` | Right padding of a chip that has a remove (×) button. | `0px` |
 | `--combobox-chip-remove-opacity` | Opacity of the chip-remove. | `0.5` |
 | `--combobox-chip-remove-hover-opacity` | Opacity of the chip-remove when hovered. | `1` |
 
@@ -1097,7 +1121,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>context-menu</strong> (39)</summary>
+<summary><strong>context-menu</strong> (40)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -1117,6 +1141,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--context-menu-item-focus` | Fill colour of the item when focused. | `var(--accent)` |
 | `--context-menu-item-focus-foreground` | Text colour of the item when focused. | `var(--accent-foreground)` |
 | `--context-menu-item-disabled-opacity` | Opacity of the item when disabled. | `0.5` |
+| `--context-menu-item-inset-padding-x` | Left padding of an indented row (inset items, labels and sub-menu triggers). | `calc(var(--spacing) * 9.5)` |
 | `--context-menu-sub-trigger-radius` | Corner radius of the sub-trigger. | `var(--radius-md)` |
 | `--context-menu-sub-trigger-padding-x` | Horizontal padding of the sub-trigger. | `calc(var(--spacing) * 3)` |
 | `--context-menu-sub-trigger-padding-y` | Vertical padding of the sub-trigger. | `calc(var(--spacing) * 2)` |
@@ -1197,7 +1222,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>drawer</strong> (14)</summary>
+<summary><strong>drawer</strong> (15)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -1210,6 +1235,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--drawer-content-min-height` | Minimum height of the content. | `calc(var(--spacing) * 0)` |
 | `--drawer-header-gap` | Gap between items of the header. | `calc(var(--spacing) * 0.5)` |
 | `--drawer-header-padding` | Padding of the header. | `calc(var(--spacing) * 4)` |
+| `--drawer-header-from-md-gap` | Gap between the title and description from the md breakpoint up. | `calc(var(--spacing) * 1.5)` |
 | `--drawer-footer-gap` | Gap between items of the footer. | `calc(var(--spacing) * 2)` |
 | `--drawer-footer-padding` | Padding of the footer. | `calc(var(--spacing) * 4)` |
 | `--drawer-title-font-weight` | Font weight of the title. | `500` |
@@ -1219,7 +1245,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>dropdown-menu</strong> (82)</summary>
+<summary><strong>dropdown-menu</strong> (86)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -1240,6 +1266,10 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--dropdown-menu-item-highlighted` | Fill colour of the item when highlighted. | `var(--mint-l2)` |
 | `--dropdown-menu-item-highlighted-foreground` | Text colour of the item when highlighted. | `var(--mint-75)` |
 | `--dropdown-menu-item-disabled-foreground` | Text colour of the item when disabled. | `var(--dark-45)` |
+| `--dropdown-menu-item-inset-padding-x` | Left padding of an indented row (inset items, labels and sub-menu triggers). | `calc(var(--spacing) * 9)` |
+| `--dropdown-menu-item-destructive-foreground` | Text colour of a destructive item (e.g. Delete). | `var(--error-60)` |
+| `--dropdown-menu-item-destructive-highlighted` | Fill colour of a destructive item when highlighted. | `var(--error-l1)` |
+| `--dropdown-menu-item-destructive-highlighted-foreground` | Text colour of a destructive item when highlighted. | `var(--error-75)` |
 | `--dropdown-menu-sub-trigger-height` | Height of the sub-trigger. | `calc(var(--spacing) * 8)` |
 | `--dropdown-menu-sub-trigger-gap` | Gap between items of the sub-trigger. | `calc(var(--spacing) * 2.5)` |
 | `--dropdown-menu-sub-trigger-radius` | Corner radius of the sub-trigger. | `var(--radius-md)` |
@@ -1332,14 +1362,16 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>field</strong> (18)</summary>
+<summary><strong>field</strong> (20)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
 | `--field-set-gap` | Gap between items of the set. | `calc(var(--spacing) * 5)` |
+| `--field-set-with-choices-gap` | Gap between items of a field set that holds a checkbox or radio group. | `calc(var(--spacing) * 3)` |
 | `--field-legend-font-weight` | Font weight of the legend. | `600` |
 | `--field-legend-foreground` | Text colour of the legend. | `var(--navy)` |
 | `--field-group-gap` | Gap between items of the group. | `calc(var(--spacing) * 5)` |
+| `--field-group-checkbox-group-gap` | Gap between the checkboxes of a field group used as a checkbox group. | `calc(var(--spacing) * 3)` |
 | `--field-gap` | Gap between items of the field. | `calc(var(--spacing) * 1.5)` |
 | `--field-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 1)` |
 | `--field-label-gap` | Gap between items of the label. | `calc(var(--spacing) * 2)` |
@@ -1470,11 +1502,13 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>item</strong> (26)</summary>
+<summary><strong>item</strong> (32)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
 | `--item-group-gap` | Gap between items of the group. | `calc(var(--spacing) * 4)` |
+| `--item-group-sm-gap` | Gap between small (sm) items. | `calc(var(--spacing) * 2.5)` |
+| `--item-group-xs-gap` | Gap between extra-small (xs) items. | `calc(var(--spacing) * 2)` |
 | `--item-radius` | Corner radius of the item. | `var(--radius-2xl)` |
 | `--item-focus-border` | Border colour of the item when focused. | `var(--ring)` |
 | `--item-focus-ring` | Ring colour of the item when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
@@ -1492,7 +1526,11 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--item-media-gap` | Gap between items of the media. | `calc(var(--spacing) * 2)` |
 | `--item-media-image-size` | Width and height of the media (image variant). | `calc(var(--spacing) * 10)` |
 | `--item-media-image-radius` | Corner radius of the media (image variant). | `var(--radius-lg)` |
+| `--item-media-image-sm-size` | Size of the image in a small (sm) item. | `calc(var(--spacing) * 8)` |
+| `--item-media-image-xs-size` | Size of the image in an extra-small (xs) item. | `calc(var(--spacing) * 6)` |
+| `--item-media-image-xs-radius` | Corner radius of the image in an extra-small (xs) item. | `var(--radius-md)` |
 | `--item-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 1)` |
+| `--item-content-xs-gap` | Gap between the title and description in an extra-small (xs) item. | `calc(var(--spacing) * 0.5)` |
 | `--item-title-gap` | Gap between items of the title. | `calc(var(--spacing) * 2)` |
 | `--item-title-font-weight` | Font weight of the title. | `500` |
 | `--item-description-font-weight` | Font weight of the description. | `400` |
@@ -1531,7 +1569,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>menubar</strong> (55)</summary>
+<summary><strong>menubar</strong> (56)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -1558,6 +1596,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--menubar-item-focus` | Fill colour of the item when focused. | `var(--accent)` |
 | `--menubar-item-focus-foreground` | Text colour of the item when focused. | `var(--accent-foreground)` |
 | `--menubar-item-disabled-opacity` | Opacity of the item when disabled. | `0.5` |
+| `--menubar-item-inset-padding-x` | Left padding of an indented row (inset items, labels and sub-menu triggers). | `calc(var(--spacing) * 9.5)` |
 | `--menubar-checkbox-item-gap` | Gap between items of the checkbox-item. | `calc(var(--spacing) * 2.5)` |
 | `--menubar-checkbox-item-radius` | Corner radius of the checkbox-item. | `var(--radius-md)` |
 | `--menubar-checkbox-item-padding-y` | Vertical padding of the checkbox-item. | `calc(var(--spacing) * 2)` |
@@ -1594,7 +1633,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>native-select</strong> (16)</summary>
+<summary><strong>native-select</strong> (17)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -1608,6 +1647,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--native-select-focus-ring` | Ring colour of the native-select when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
 | `--native-select-invalid-border` | Border colour of the native-select when invalid. | `var(--destructive)` |
 | `--native-select-invalid-ring` | Ring colour of the native-select when invalid. | `color-mix(in oklab, var(--destructive) 20%, transparent)` |
+| `--native-select-sm-height` | Height of a small (sm) native select. | `calc(var(--spacing) * 8)` |
 | `--native-select-icon-size` | Width and height of the icon. | `calc(var(--spacing) * 4)` |
 | `--native-select-icon-foreground` | Text colour of the icon. | `var(--muted-foreground)` |
 | `--native-select-option` | Fill colour of the option. | `Canvas` |
@@ -1772,7 +1812,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>select</strong> (62)</summary>
+<summary><strong>select</strong> (63)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -1794,6 +1834,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--select-trigger-invalid-border` | Border colour of the trigger when invalid. | `var(--error-75)` |
 | `--select-trigger-disabled` | Fill colour of the trigger when disabled. | `var(--light-l2)` |
 | `--select-trigger-disabled-foreground` | Text colour of the trigger when disabled. | `var(--dark-45)` |
+| `--select-trigger-sm-height` | Height of a small (sm) trigger. | `calc(var(--spacing) * 9)` |
 | `--select-icon-size` | Width and height of the chevron. | `calc(var(--spacing) * 3.5)` |
 | `--select-icon-foreground` | Colour of the chevron. | `var(--dark-75)` |
 | `--select-icon-open-foreground` | Colour of the chevron while open. | `var(--mint-75)` |
@@ -2071,7 +2112,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>tabs</strong> (44)</summary>
+<summary><strong>tabs</strong> (45)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -2087,6 +2128,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--tabs-list-segmented-gap` | Gap between items of the list (segmented variant). | `calc(var(--spacing) * 1)` |
 | `--tabs-list-segmented-radius` | Corner radius of the list (segmented variant). | `var(--radius-lg)` |
 | `--tabs-list-segmented-padding` | Padding of the list (segmented variant). | `calc(var(--spacing) * 1)` |
+| `--tabs-list-line-vertical-gap` | Gap between the triggers of a vertical line tab list. | `calc(var(--spacing) * 0.5)` |
 | `--tabs-trigger-gap` | Gap between items of the trigger. | `calc(var(--spacing) * 1.5)` |
 | `--tabs-trigger-focus-ring` | Ring colour of the trigger when focused. | `var(--navy)` |
 | `--tabs-trigger-disabled-foreground` | Text colour of the trigger when disabled. | `var(--dark-45)` |
@@ -2183,7 +2225,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>toggle</strong> (19)</summary>
+<summary><strong>toggle</strong> (22)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -2206,11 +2248,14 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--toggle-sm-padding-x` | Horizontal padding of the toggle (sm size). | `calc(var(--spacing) * 3)` |
 | `--toggle-lg-height` | Height of the toggle (lg size). | `calc(var(--spacing) * 10)` |
 | `--toggle-lg-padding-x` | Horizontal padding of the toggle (lg size). | `calc(var(--spacing) * 4)` |
+| `--toggle-md-with-icon-padding-x` | Padding on the icon side of the toggle (md) when it has an icon. | `calc(var(--spacing) * 2.5)` |
+| `--toggle-sm-with-icon-padding-x` | Padding on the icon side of the toggle (sm) when it has an icon. | `calc(var(--spacing) * 2)` |
+| `--toggle-lg-with-icon-padding-x` | Padding on the icon side of the toggle (lg) when it has an icon. | `calc(var(--spacing) * 3)` |
 
 </details>
 
 <details>
-<summary><strong>tooltip</strong> (6)</summary>
+<summary><strong>tooltip</strong> (7)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -2220,6 +2265,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--tooltip-content-padding-x` | Horizontal padding of the content. | `calc(var(--spacing) * 4)` |
 | `--tooltip-content-padding-y` | Vertical padding of the content. | `calc(var(--spacing) * 2)` |
 | `--tooltip-content-foreground` | Text colour of the content. | `var(--white)` |
+| `--tooltip-content-with-kbd-padding-x` | Right padding of a tooltip that ends in a keyboard shortcut. | `calc(var(--spacing) * 1.5)` |
 
 </details>
 

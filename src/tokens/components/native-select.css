@@ -4,6 +4,7 @@
  * Defaults are Rey's design. Edited by hand; the class edits in ui/native-select.tsx follow from these names. */
 
 [data-slot="native-select"] {
+  /* @add data-[size=sm]:h-(--_native-select-sm-height) */
   /* Height of the native-select. */
   --_native-select-height: var(--native-select-height, calc(var(--spacing) * 9));
   /* Corner radius of the native-select. */
@@ -24,6 +25,8 @@
   --_native-select-invalid-border: var(--native-select-invalid-border, var(--destructive));
   /* Ring colour of the native-select when invalid. */
   --_native-select-invalid-ring: var(--native-select-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
+  /* Height of a small (sm) native select. */
+  --_native-select-sm-height: var(--native-select-sm-height, calc(var(--spacing) * 8));
 }
 
 [data-slot="native-select-icon"] {

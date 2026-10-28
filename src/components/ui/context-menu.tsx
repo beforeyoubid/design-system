@@ -77,7 +77,7 @@ function ContextMenuLabel({
       data-slot="context-menu-label"
       data-inset={inset}
       className={cn(
-        "px-(--_context-menu-label-padding-x) py-(--_context-menu-label-padding-y) text-caption-2 text-(--_context-menu-label-foreground) data-inset:ps-9.5",
+        "px-(--_context-menu-label-padding-x) py-(--_context-menu-label-padding-y) text-caption-2 text-(--_context-menu-label-foreground) data-inset:ps-(--_context-menu-item-inset-padding-x)",
         className
       )}
       {...props}
@@ -100,7 +100,7 @@ function ContextMenuItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        "group/context-menu-item relative flex cursor-pointer items-center gap-(--_context-menu-item-gap) rounded-(--_context-menu-item-radius) px-(--_context-menu-item-padding-x) py-(--_context-menu-item-padding-y) text-body-5 outline-hidden select-none focus:bg-(--_context-menu-item-focus) focus:text-(--_context-menu-item-focus-foreground) data-inset:ps-9.5 data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive dark:data-[variant=destructive]:focus:bg-destructive/20 data-disabled:pointer-events-none data-disabled:opacity-(--_context-menu-item-disabled-opacity) [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 focus:*:[svg]:text-accent-foreground data-[variant=destructive]:*:[svg]:text-destructive",
+        "group/context-menu-item relative flex cursor-pointer items-center gap-(--_context-menu-item-gap) rounded-(--_context-menu-item-radius) px-(--_context-menu-item-padding-x) py-(--_context-menu-item-padding-y) text-body-5 outline-hidden select-none focus:bg-(--_context-menu-item-focus) focus:text-(--_context-menu-item-focus-foreground) data-inset:ps-(--_context-menu-item-inset-padding-x) data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive dark:data-[variant=destructive]:focus:bg-destructive/20 data-disabled:pointer-events-none data-disabled:opacity-(--_context-menu-item-disabled-opacity) [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 focus:*:[svg]:text-accent-foreground data-[variant=destructive]:*:[svg]:text-destructive",
         className
       )}
       {...props}
@@ -127,7 +127,7 @@ function ContextMenuSubTrigger({
       data-slot="context-menu-sub-trigger"
       data-inset={inset}
       className={cn(
-        "flex cursor-pointer items-center rounded-(--_context-menu-sub-trigger-radius) px-(--_context-menu-sub-trigger-padding-x) py-(--_context-menu-sub-trigger-padding-y) text-body-5 outline-hidden select-none focus:bg-(--_context-menu-sub-trigger-focus) focus:text-(--_context-menu-sub-trigger-focus-foreground) data-inset:ps-9.5 data-popup-open:bg-(--_context-menu-sub-trigger-open) data-popup-open:text-(--_context-menu-sub-trigger-open-foreground) [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "flex cursor-pointer items-center rounded-(--_context-menu-sub-trigger-radius) px-(--_context-menu-sub-trigger-padding-x) py-(--_context-menu-sub-trigger-padding-y) text-body-5 outline-hidden select-none focus:bg-(--_context-menu-sub-trigger-focus) focus:text-(--_context-menu-sub-trigger-focus-foreground) data-inset:ps-(--_context-menu-item-inset-padding-x) data-popup-open:bg-(--_context-menu-sub-trigger-open) data-popup-open:text-(--_context-menu-sub-trigger-open-foreground) [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}
@@ -165,7 +165,7 @@ function ContextMenuCheckboxItem({
       data-slot="context-menu-checkbox-item"
       data-inset={inset}
       className={cn(
-        "relative flex cursor-pointer items-center gap-(--_context-menu-checkbox-item-gap) rounded-(--_context-menu-checkbox-item-radius) py-(--_context-menu-checkbox-item-padding-y) pe-8 ps-3 text-body-5 outline-hidden select-none focus:bg-(--_context-menu-checkbox-item-focus) focus:text-(--_context-menu-checkbox-item-focus-foreground) data-inset:ps-9.5 data-disabled:pointer-events-none data-disabled:opacity-(--_context-menu-checkbox-item-disabled-opacity) [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "relative flex cursor-pointer items-center gap-(--_context-menu-checkbox-item-gap) rounded-(--_context-menu-checkbox-item-radius) py-(--_context-menu-checkbox-item-padding-y) pe-8 ps-3 text-body-5 outline-hidden select-none focus:bg-(--_context-menu-checkbox-item-focus) focus:text-(--_context-menu-checkbox-item-focus-foreground) data-inset:ps-(--_context-menu-item-inset-padding-x) data-disabled:pointer-events-none data-disabled:opacity-(--_context-menu-checkbox-item-disabled-opacity) [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       checked={checked}
@@ -206,7 +206,7 @@ function ContextMenuRadioItem({
       data-slot="context-menu-radio-item"
       data-inset={inset}
       className={cn(
-        "relative flex cursor-pointer items-center gap-(--_context-menu-radio-item-gap) rounded-(--_context-menu-radio-item-radius) py-(--_context-menu-radio-item-padding-y) pe-8 ps-3 text-body-5 outline-hidden select-none focus:bg-(--_context-menu-radio-item-focus) focus:text-(--_context-menu-radio-item-focus-foreground) data-inset:ps-9.5 data-disabled:pointer-events-none data-disabled:opacity-(--_context-menu-radio-item-disabled-opacity) [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "relative flex cursor-pointer items-center gap-(--_context-menu-radio-item-gap) rounded-(--_context-menu-radio-item-radius) py-(--_context-menu-radio-item-padding-y) pe-8 ps-3 text-body-5 outline-hidden select-none focus:bg-(--_context-menu-radio-item-focus) focus:text-(--_context-menu-radio-item-focus-foreground) data-inset:ps-(--_context-menu-item-inset-padding-x) data-disabled:pointer-events-none data-disabled:opacity-(--_context-menu-radio-item-disabled-opacity) [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}

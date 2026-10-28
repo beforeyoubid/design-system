@@ -12,7 +12,7 @@ function ItemGroup({ className, ...props }: React.ComponentProps<"div">) {
       role="list"
       data-slot="item-group"
       className={cn(
-        "group/item-group flex w-full flex-col gap-(--_item-group-gap) has-data-[size=sm]:gap-2.5 has-data-[size=xs]:gap-2",
+        "group/item-group flex w-full flex-col gap-(--_item-group-gap) has-data-[size=sm]:gap-(--_item-group-sm-gap) has-data-[size=xs]:gap-(--_item-group-xs-gap)",
         className
       )}
       {...props}
@@ -88,7 +88,7 @@ const itemMediaVariants = cva(
         default: "bg-transparent",
         icon: "[&_svg:not([class*='size-'])]:size-4",
         image:
-          "size-(--_item-media-image-size) overflow-hidden rounded-(--_item-media-image-radius) group-data-[size=sm]/item:size-8 group-data-[size=xs]/item:size-6 group-data-[size=xs]/item:rounded-md [&_img]:size-full [&_img]:object-cover",
+          "size-(--_item-media-image-size) overflow-hidden rounded-(--_item-media-image-radius) group-data-[size=sm]/item:size-(--_item-media-image-sm-size) group-data-[size=xs]/item:size-(--_item-media-image-xs-size) group-data-[size=xs]/item:rounded-(--_item-media-image-xs-radius) [&_img]:size-full [&_img]:object-cover",
       },
     },
     defaultVariants: {
@@ -117,7 +117,7 @@ function ItemContent({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="item-content"
       className={cn(
-        "flex flex-1 flex-col gap-(--_item-content-gap) group-data-[size=xs]/item:gap-0.5 [&+[data-slot=item-content]]:flex-none",
+        "flex flex-1 flex-col gap-(--_item-content-gap) group-data-[size=xs]/item:gap-(--_item-content-xs-gap) [&+[data-slot=item-content]]:flex-none",
         className
       )}
       {...props}

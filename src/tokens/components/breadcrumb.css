@@ -5,10 +5,13 @@
 
 [data-slot="breadcrumb-list"] {
   /* @add text-body-5 */
+  /* @add sm:gap-(--_breadcrumb-list-from-sm-gap) */
   /* Gap between items of the list. */
   --_breadcrumb-list-gap: var(--breadcrumb-list-gap, calc(var(--spacing) * 1.5));
   /* Text colour of the list. */
   --_breadcrumb-list-foreground: var(--breadcrumb-list-foreground, var(--muted-foreground));
+  /* Gap between crumbs from the sm breakpoint up. */
+  --_breadcrumb-list-from-sm-gap: var(--breadcrumb-list-from-sm-gap, calc(var(--spacing) * 2.5));
 }
 
 [data-slot="breadcrumb-item"] {

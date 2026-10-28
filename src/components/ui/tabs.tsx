@@ -28,7 +28,7 @@ const tabsListVariants = cva(
     variants: {
       variant: {
         default: "bg-(--_tabs-list-default) gap-(--_tabs-list-default-gap) rounded-(--_tabs-list-default-radius) border-(--_tabs-list-default-border) p-(--_tabs-list-default-padding) self-start border",
-        line: "gap-(--_tabs-list-line-gap) border-(--_tabs-list-line-border) w-full justify-start border-b group-data-[orientation=vertical]/tabs:w-fit group-data-[orientation=vertical]/tabs:items-stretch group-data-[orientation=vertical]/tabs:gap-0.5 group-data-[orientation=vertical]/tabs:border-b-0 group-data-[orientation=vertical]/tabs:border-s",
+        line: "gap-(--_tabs-list-line-gap) border-(--_tabs-list-line-border) w-full justify-start border-b group-data-[orientation=vertical]/tabs:w-fit group-data-[orientation=vertical]/tabs:items-stretch group-data-[orientation=vertical]/tabs:gap-(--_tabs-list-line-vertical-gap) group-data-[orientation=vertical]/tabs:border-b-0 group-data-[orientation=vertical]/tabs:border-s",
       },
     },
     defaultVariants: {

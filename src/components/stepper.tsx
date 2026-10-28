@@ -190,7 +190,7 @@ function Stepper({
           const circle = (
             <span
               data-slot="stepper-indicator"
-              className={stepIndicatorVariants({ size: circleSize, status })}
+              className={cn(stepIndicatorVariants({ size: circleSize, status }))}
             >
               {glyph(step, i, status)}
             </span>

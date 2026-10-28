@@ -22,7 +22,7 @@
 
 [data-slot="dropdown-menu-label"] {
   /* @remove py-2.5 */
-  /* @add pt-2 pb-1.5 text-body-5 data-inset:ps-9 */
+  /* @add pt-2 pb-1.5 text-body-5 data-inset:ps-(--_dropdown-menu-item-inset-padding-x) */
   /* Horizontal padding of the label. */
   --_dropdown-menu-label-padding-x: var(--dropdown-menu-label-padding-x, calc(var(--spacing) * 2.5));
   /* Font weight of the label. */
@@ -33,7 +33,7 @@
 
 [data-slot="dropdown-menu-item"] {
   /* @remove py-2 focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive data-disabled:opacity-50 data-[variant=destructive]:*:[svg]:text-destructive */
-  /* @add cursor-pointer text-body-5 data-inset:ps-9 data-[variant=destructive]:text-error-60 data-[variant=destructive]:data-highlighted:bg-error-l1 data-[variant=destructive]:data-highlighted:text-error-75 */
+  /* @add cursor-pointer text-body-5 data-inset:ps-(--_dropdown-menu-item-inset-padding-x) data-[variant=destructive]:text-(--_dropdown-menu-item-destructive-foreground) data-[variant=destructive]:data-highlighted:bg-(--_dropdown-menu-item-destructive-highlighted) data-[variant=destructive]:data-highlighted:text-(--_dropdown-menu-item-destructive-highlighted-foreground) */
   /* Height of the item. */
   --_dropdown-menu-item-height: var(--dropdown-menu-item-height, calc(var(--spacing) * 8));
   /* Gap between items of the item. */
@@ -50,11 +50,19 @@
   --_dropdown-menu-item-highlighted-foreground: var(--dropdown-menu-item-highlighted-foreground, var(--mint-75));
   /* Text colour of the item when disabled. */
   --_dropdown-menu-item-disabled-foreground: var(--dropdown-menu-item-disabled-foreground, var(--dark-45));
+  /* Left padding of an indented row (inset items, labels and sub-menu triggers). */
+  --_dropdown-menu-item-inset-padding-x: var(--dropdown-menu-item-inset-padding-x, calc(var(--spacing) * 9));
+  /* Text colour of a destructive item (e.g. Delete). */
+  --_dropdown-menu-item-destructive-foreground: var(--dropdown-menu-item-destructive-foreground, var(--error-60));
+  /* Fill colour of a destructive item when highlighted. */
+  --_dropdown-menu-item-destructive-highlighted: var(--dropdown-menu-item-destructive-highlighted, var(--error-l1));
+  /* Text colour of a destructive item when highlighted. */
+  --_dropdown-menu-item-destructive-highlighted-foreground: var(--dropdown-menu-item-destructive-highlighted-foreground, var(--error-75));
 }
 
 [data-slot="dropdown-menu-sub-trigger"] {
   /* @remove py-2 focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-open:bg-accent data-open:text-accent-foreground */
-  /* @add cursor-pointer text-body-5 data-disabled:pointer-events-none data-inset:ps-9 [&>svg:last-child]:size-3.5 [&>svg:last-child]:text-dark-75 */
+  /* @add cursor-pointer text-body-5 data-disabled:pointer-events-none data-inset:ps-(--_dropdown-menu-item-inset-padding-x) [&>svg:last-child]:size-3.5 [&>svg:last-child]:text-dark-75 */
   /* Height of the sub-trigger. */
   --_dropdown-menu-sub-trigger-height: var(--dropdown-menu-sub-trigger-height, calc(var(--spacing) * 8));
   /* Gap between items of the sub-trigger. */
@@ -84,7 +92,7 @@
 
 [data-slot="dropdown-menu-checkbox-item"] {
   /* @remove relative flex cursor-default items-center rounded-xl py-2 pe-8 ps-3 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 */
-  /* @add relative flex cursor-pointer items-center text-body-5 outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 group/dropdown-menu-checkbox-item data-inset:ps-9 */
+  /* @add relative flex cursor-pointer items-center text-body-5 outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 group/dropdown-menu-checkbox-item data-inset:ps-(--_dropdown-menu-item-inset-padding-x) */
   /* Minimum height of the checkbox item. */
   --_dropdown-menu-checkbox-item-min-height: var(--dropdown-menu-checkbox-item-min-height, calc(var(--spacing) * 8));
   /* Corner radius of the checkbox item. */
@@ -120,7 +128,7 @@
 
 [data-slot="dropdown-menu-radio-item"] {
   /* @remove relative flex cursor-default items-center rounded-xl py-2 pe-8 ps-3 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 */
-  /* @add relative flex cursor-pointer items-center text-body-5 outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-inset:ps-9 */
+  /* @add relative flex cursor-pointer items-center text-body-5 outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-inset:ps-(--_dropdown-menu-item-inset-padding-x) */
   /* Minimum height of the radio item. */
   --_dropdown-menu-radio-item-min-height: var(--dropdown-menu-radio-item-min-height, calc(var(--spacing) * 8));
   /* Corner radius of the radio item. */
