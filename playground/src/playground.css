@@ -63,10 +63,12 @@ body { background: var(--pg-bg); }
   grid-template-rows: auto minmax(0, 1fr);
   grid-template-areas: "top top top" "nav controls preview";
 }
-.pg :where(button, input, textarea) { font: inherit; color: inherit; }
-.pg :where(button) { cursor: pointer; }
-.pg :where(button:disabled) { cursor: default; opacity: .45; }
-.pg :focus-visible { outline: 2px solid var(--pg-focus); outline-offset: 2px; }
+/* The playground's own controls only. These rules sit outside Tailwind's layers, so on the
+ * stage they'd beat the components' utilities (every button's text size and colour). */
+.pg :where(button, input, textarea):not(.pg-story-stage *) { font: inherit; color: inherit; }
+.pg :where(button):not(.pg-story-stage *) { cursor: pointer; }
+.pg :where(button:disabled):not(.pg-story-stage *) { cursor: default; opacity: .45; }
+.pg :focus-visible:not(.pg-story-stage *) { outline: 2px solid var(--pg-focus); outline-offset: 2px; }
 .pg-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
 /* ---------- top bar ---------- */
@@ -247,7 +249,7 @@ body { background: var(--pg-bg); }
 /* The stage is BYB's world: light, Plus Jakarta Sans, the components' own tokens. */
 .pg-story-stage {
   padding: 20px; overflow-x: auto; color: var(--foreground); background: var(--pg-canvas);
-  font-family: var(--font-sans); color-scheme: light;
+  font-family: var(--font-sans); font-size: 1rem; line-height: 1.5; color-scheme: light;
 }
 .pg-story-error { color: var(--pg-fail); font-size: 12px; margin: 0; }
 
@@ -288,5 +290,5 @@ body { background: var(--pg-bg); }
   .pg-palette { right: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .pg * { transition: none !important; }
+  .pg *:not(.pg-story-stage *) { transition: none !important; }
 }

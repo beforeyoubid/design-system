@@ -715,7 +715,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>badge</strong> (59)</summary>
+<summary><strong>badge</strong> (64)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -750,15 +750,19 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--badge-lime-border` | Border colour of the badge (lime variant). | `var(--lime)` |
 | `--badge-lime` | Fill colour of the badge (lime variant). | `var(--lime)` |
 | `--badge-lime-foreground` | Text colour of the badge (lime variant). | `var(--navy)` |
+| `--badge-lime-font-weight` | Font weight of the badge (lime variant). | `var(--badge-font-weight, 600)` |
 | `--badge-success-border` | Border colour of the badge (success variant). | `var(--mint-l1)` |
 | `--badge-success` | Fill colour of the badge (success variant). | `var(--mint-l3)` |
 | `--badge-success-foreground` | Text colour of the badge (success variant). | `var(--mint-75)` |
+| `--badge-success-font-weight` | Font weight of the badge (success variant). | `var(--badge-font-weight, 600)` |
 | `--badge-warning-border` | Border colour of the badge (warning variant). | `var(--warning-l1)` |
 | `--badge-warning` | Fill colour of the badge (warning variant). | `var(--warning-l3)` |
 | `--badge-warning-foreground` | Text colour of the badge (warning variant). | `var(--warning-75)` |
+| `--badge-warning-font-weight` | Font weight of the badge (warning variant). | `var(--badge-font-weight, 600)` |
 | `--badge-electric-blue-border` | Border colour of the badge (electric-blue variant). | `var(--electric-blue-l1)` |
 | `--badge-electric-blue` | Fill colour of the badge (electric-blue variant). | `var(--electric-blue-l1)` |
 | `--badge-electric-blue-foreground` | Text colour of the badge (electric-blue variant). | `var(--electric-blue)` |
+| `--badge-electric-blue-font-weight` | Font weight of the badge (electric-blue variant). | `var(--badge-font-weight, 600)` |
 | `--badge-gray-solid` | Fill and border colour of the solid badge (gray variant). | `var(--dark-75)` |
 | `--badge-gray-solid-foreground` | Text colour of the solid badge (gray variant). | `var(--white)` |
 | `--badge-mint-solid` | Fill and border colour of the solid badge (mint variant). | `var(--mint-45)` |
@@ -778,6 +782,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--badge-lg-height` | Height of the large badge. | `calc(var(--spacing) * 7)` |
 | `--badge-lg-gap` | Gap between items of the large badge. | `calc(var(--spacing) * 1.5)` |
 | `--badge-lg-padding-x` | Horizontal padding of the large badge. | `calc(var(--spacing) * 3)` |
+| `--badge-filled-font-weight` | Font weight of a category or product badge (solid colour fill). | `var(--badge-font-weight, 500)` |
 
 </details>
 

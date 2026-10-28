@@ -32,7 +32,6 @@ export function App() {
   const [overrides, setOverrides] = React.useState<Overrides>(load)
   const [view, setView] = React.useState<View>(() => ({ kind: 'component', name: componentNames.includes('button') ? 'button' : componentNames[0] }))
   const [query, setQuery] = React.useState('')
-  const [highlight, setHighlight] = React.useState<string | null>(null)
   const [exportOpen, setExportOpen] = React.useState(false)
   const [tick, setTick] = React.useState(0)
 
@@ -65,7 +64,6 @@ export function App() {
   return (
     <div className="pg">
       <style>{css}</style>
-      {highlight && <style>{`.pg-canvas [data-slot="${highlight}"]{outline:3px solid var(--pg-mark)!important;outline-offset:2px;}`}</style>}
 
       <header className="pg-top">
         <div className="pg-brand">
@@ -112,12 +110,12 @@ export function App() {
         {view.kind === 'global' && <GlobalLook overrides={overrides} set={set} />}
         {view.kind === 'semantic' && <SemanticRoles overrides={overrides} set={set} onOpen={(name) => setView({ kind: 'component', name })} tick={tick} />}
         {view.kind === 'component' && (
-          <ComponentLevers name={view.name} overrides={overrides} set={set} query={q} onHighlight={setHighlight} />
+          <ComponentLevers name={view.name} overrides={overrides} set={set} query={q} />
         )}
       </main>
 
       <section className="pg-preview" aria-label="Live preview">
-        {view.kind === 'component' && <ContrastStrip pairs={pairsFor(view.name)} key={`${view.name}-${tick}`} onHighlight={setHighlight} />}
+        {view.kind === 'component' && <ContrastStrip pairs={pairsFor(view.name)} key={`${view.name}-${tick}`} />}
         <Canvas components={view.kind === 'component' ? [view.name] : view.kind === 'semantic' ? ['button', 'badge', 'dropdown-menu', 'alert', 'input', 'tabs'] : ['button', 'card', 'input', 'select', 'badge', 'tabs']} />
       </section>
 
@@ -127,7 +125,7 @@ export function App() {
 }
 
 // ---------------------------------------------------------------------------
-function Row({ id, label, hint, type, name, defaultValue, overrides, set, onHover, max }: {
+function Row({ id, label, hint, type, name, defaultValue, overrides, set, max }: {
   id: string
   label: string
   hint?: string
@@ -136,13 +134,12 @@ function Row({ id, label, hint, type, name, defaultValue, overrides, set, onHove
   defaultValue: string
   overrides: Overrides
   set: (name: string, v: string | null) => void
-  onHover?: (on: boolean) => void
   max?: number
 }) {
   const changed = name in overrides
   const value = overrides[name] ?? defaultValue
   return (
-    <div className="pg-row" data-changed={changed} onMouseEnter={() => onHover?.(true)} onMouseLeave={() => onHover?.(false)} onFocus={() => onHover?.(true)} onBlur={() => onHover?.(false)}>
+    <div className="pg-row" data-changed={changed}>
       <div className="pg-row-text">
         <label htmlFor={id}>{label}</label>
         <p className="pg-row-meta">
@@ -214,13 +211,13 @@ function SemanticRoles({ overrides, set, onOpen, tick }: { overrides: Overrides;
 // ---------------------------------------------------------------------------
 const partLabel = (component: string, part: string) => (part === component ? titleCase(component) : titleCase(part.replace(component + '-', '')))
 
-function ComponentLevers({ name, overrides, set, query, onHighlight }: { name: string; overrides: Overrides; set: (n: string, v: string | null) => void; query: string; onHighlight: (p: string | null) => void }) {
+function ComponentLevers({ name, overrides, set, query }: { name: string; overrides: Overrides; set: (n: string, v: string | null) => void; query: string }) {
   const comp = manifest.components.find((c) => c.component === name)!
   const tokens = comp.tokens.filter((t) => !query || t.description.toLowerCase().includes(query) || t.name.includes(query) || name.includes(query))
   const parts = [...new Set(tokens.map((t) => t.part))]
   return (
     <>
-      <Intro title={titleCase(name)} text={`${comp.tokens.length} levers. Hover a lever to see the part it changes in the preview.`} />
+      <Intro title={titleCase(name)} text={`${comp.tokens.length} levers.`} />
       {parts.map((part) => {
         const inPart = tokens.filter((t) => t.part === part)
         const groups = [...new Set(inPart.map((t) => t.variant ?? ''))]
@@ -233,7 +230,7 @@ function ComponentLevers({ name, overrides, set, query, onHighlight }: { name: s
                 {inPart
                   .filter((t) => (t.variant ?? '') === g)
                   .map((t) => (
-                    <Row key={t.name} id={t.name} label={t.description.replace(/\.$/, '')} type={t.type} name={t.name} defaultValue={t.default} overrides={overrides} set={set} onHover={(on) => onHighlight(on ? t.part : null)} />
+                    <Row key={t.name} id={t.name} label={t.description.replace(/\.$/, '')} type={t.type} name={t.name} defaultValue={t.default} overrides={overrides} set={set} />
                   ))}
               </div>
             ))}
@@ -257,7 +254,7 @@ function Verdict({ ratio, label }: { ratio: number; label: string }) {
 /** A failing pair already listed in contrast-exceptions.json (the checker's record of it). */
 const knownPair = (p: Pair) => manifest.contrastExceptions.find((e) => e.foreground === p.fg.private && e.fill === p.bg.private)
 
-function ContrastStrip({ pairs, onHighlight }: { pairs: Pair[]; onHighlight: (p: string | null) => void }) {
+function ContrastStrip({ pairs }: { pairs: Pair[] }) {
   if (!pairs.length) return null
   const failing = pairs.filter((p) => p.ratio < 4.5)
   return (
@@ -267,7 +264,7 @@ function ContrastStrip({ pairs, onHighlight }: { pairs: Pair[]; onHighlight: (p:
       </summary>
       <ul>
         {pairs.map((p) => (
-          <li key={p.fg.name} onMouseEnter={() => onHighlight(p.fg.part)} onMouseLeave={() => onHighlight(null)}>
+          <li key={p.fg.name}>
             <span className="pg-pair" style={{ color: p.fgCss, background: p.bgCss }}>Aa</span>
             <span className="pg-pair-text">
               {p.fg.description.replace(/\.$/, '')}

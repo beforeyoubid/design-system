@@ -2277,6 +2277,20 @@
      ]
     },
     {
+     "name": "--badge-lime-font-weight",
+     "private": "--_badge-lime-font-weight",
+     "default": "var(--badge-font-weight, 600)",
+     "description": "Font weight of the badge (lime variant).",
+     "type": "font-weight",
+     "part": "badge",
+     "variant": "lime",
+     "state": null,
+     "property": "font-weight",
+     "reads": [
+      "--badge-font-weight"
+     ]
+    },
+    {
      "name": "--badge-success-border",
      "private": "--_badge-success-border",
      "default": "var(--mint-l1)",
@@ -2316,6 +2330,20 @@
      "property": "foreground",
      "reads": [
       "--mint-75"
+     ]
+    },
+    {
+     "name": "--badge-success-font-weight",
+     "private": "--_badge-success-font-weight",
+     "default": "var(--badge-font-weight, 600)",
+     "description": "Font weight of the badge (success variant).",
+     "type": "font-weight",
+     "part": "badge",
+     "variant": "success",
+     "state": null,
+     "property": "font-weight",
+     "reads": [
+      "--badge-font-weight"
      ]
     },
     {
@@ -2361,6 +2389,20 @@
      ]
     },
     {
+     "name": "--badge-warning-font-weight",
+     "private": "--_badge-warning-font-weight",
+     "default": "var(--badge-font-weight, 600)",
+     "description": "Font weight of the badge (warning variant).",
+     "type": "font-weight",
+     "part": "badge",
+     "variant": "warning",
+     "state": null,
+     "property": "font-weight",
+     "reads": [
+      "--badge-font-weight"
+     ]
+    },
+    {
      "name": "--badge-electric-blue-border",
      "private": "--_badge-electric-blue-border",
      "default": "var(--electric-blue-l1)",
@@ -2400,6 +2442,20 @@
      "property": "foreground",
      "reads": [
       "--electric-blue"
+     ]
+    },
+    {
+     "name": "--badge-electric-blue-font-weight",
+     "private": "--_badge-electric-blue-font-weight",
+     "default": "var(--badge-font-weight, 600)",
+     "description": "Font weight of the badge (electric-blue variant).",
+     "type": "font-weight",
+     "part": "badge",
+     "variant": "electric-blue",
+     "state": null,
+     "property": "font-weight",
+     "reads": [
+      "--badge-font-weight"
      ]
     },
     {
@@ -2666,6 +2722,20 @@
      "property": "padding-x",
      "reads": [
       "--spacing"
+     ]
+    },
+    {
+     "name": "--badge-filled-font-weight",
+     "private": "--_badge-filled-font-weight",
+     "default": "var(--badge-font-weight, 500)",
+     "description": "Font weight of a category or product badge (solid colour fill).",
+     "type": "font-weight",
+     "part": "badge",
+     "variant": "filled",
+     "state": null,
+     "property": "font-weight",
+     "reads": [
+      "--badge-font-weight"
      ]
     }
    ]

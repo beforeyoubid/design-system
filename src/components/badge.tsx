@@ -23,11 +23,11 @@ const badgeVariants = cva(
         gray: "",
         mint: "",
         error: "",
-        lime: "border-(--_badge-lime-border) bg-(--_badge-lime) font-semibold text-(--_badge-lime-foreground) [a]:hover:bg-(--_badge-lime)/80",
-        success: "border-(--_badge-success-border) bg-(--_badge-success) font-semibold text-(--_badge-success-foreground)",
-        warning: "border-(--_badge-warning-border) bg-(--_badge-warning) font-semibold text-(--_badge-warning-foreground)",
+        lime: "border-(--_badge-lime-border) bg-(--_badge-lime) font-(--_badge-lime-font-weight) text-(--_badge-lime-foreground) [a]:hover:bg-(--_badge-lime)/80",
+        success: "border-(--_badge-success-border) bg-(--_badge-success) font-(--_badge-success-font-weight) text-(--_badge-success-foreground)",
+        warning: "border-(--_badge-warning-border) bg-(--_badge-warning) font-(--_badge-warning-font-weight) text-(--_badge-warning-foreground)",
         "electric-blue":
-          "border-(--_badge-electric-blue-border) bg-(--_badge-electric-blue) font-semibold text-(--_badge-electric-blue-foreground)",
+          "border-(--_badge-electric-blue-border) bg-(--_badge-electric-blue) font-(--_badge-electric-blue-font-weight) text-(--_badge-electric-blue-foreground)",
       },
       /**
        * `tint` (default): light fill + border, coloured text.
@@ -36,7 +36,7 @@ const badgeVariants = cva(
        */
       appearance: {
         tint: "",
-        solid: "font-semibold",
+        solid: "",
       },
       size: {
         sm: "",
@@ -45,7 +45,7 @@ const badgeVariants = cva(
       },
       /** Solid category / product fill. Set automatically by `category` and `product`. */
       filled: {
-        true: "border-transparent font-medium text-white",
+        true: "border-transparent font-(--_badge-filled-font-weight) text-white",
         false: "",
       },
     },

@@ -70,24 +70,32 @@
   --_badge-lime: var(--badge-lime, var(--lime));
   /* Text colour of the badge (lime variant). @ours */
   --_badge-lime-foreground: var(--badge-lime-foreground, var(--navy));
+  /* Font weight of the badge (lime variant). @ours */
+  --_badge-lime-font-weight: var(--badge-lime-font-weight, var(--badge-font-weight, 600));
   /* Border colour of the badge (success variant). @ours */
   --_badge-success-border: var(--badge-success-border, var(--mint-l1));
   /* Fill colour of the badge (success variant). @ours */
   --_badge-success: var(--badge-success, var(--mint-l3));
   /* Text colour of the badge (success variant). @ours */
   --_badge-success-foreground: var(--badge-success-foreground, var(--mint-75));
+  /* Font weight of the badge (success variant). @ours */
+  --_badge-success-font-weight: var(--badge-success-font-weight, var(--badge-font-weight, 600));
   /* Border colour of the badge (warning variant). @ours */
   --_badge-warning-border: var(--badge-warning-border, var(--warning-l1));
   /* Fill colour of the badge (warning variant). @ours */
   --_badge-warning: var(--badge-warning, var(--warning-l3));
   /* Text colour of the badge (warning variant). @ours */
   --_badge-warning-foreground: var(--badge-warning-foreground, var(--warning-75));
+  /* Font weight of the badge (warning variant). @ours */
+  --_badge-warning-font-weight: var(--badge-warning-font-weight, var(--badge-font-weight, 600));
   /* Border colour of the badge (electric-blue variant). @ours */
   --_badge-electric-blue-border: var(--badge-electric-blue-border, var(--electric-blue-l1));
   /* Fill colour of the badge (electric-blue variant). @ours */
   --_badge-electric-blue: var(--badge-electric-blue, var(--electric-blue-l1));
   /* Text colour of the badge (electric-blue variant). @ours */
   --_badge-electric-blue-foreground: var(--badge-electric-blue-foreground, var(--electric-blue));
+  /* Font weight of the badge (electric-blue variant). @ours */
+  --_badge-electric-blue-font-weight: var(--badge-electric-blue-font-weight, var(--badge-font-weight, 600));
   /* Fill and border colour of the solid badge (gray variant). @ours */
   --_badge-gray-solid: var(--badge-gray-solid, var(--dark-75));
   /* Text colour of the solid badge (gray variant). @ours */
@@ -126,4 +134,6 @@
   --_badge-lg-gap: var(--badge-lg-gap, calc(var(--spacing) * 1.5));
   /* Horizontal padding of the large badge. @ours */
   --_badge-lg-padding-x: var(--badge-lg-padding-x, calc(var(--spacing) * 3));
+  /* Font weight of a category or product badge (solid colour fill). @ours */
+  --_badge-filled-font-weight: var(--badge-filled-font-weight, var(--badge-font-weight, 500));
 }
