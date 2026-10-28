@@ -1,10 +1,10 @@
-import { clsx, type ClassValue } from 'clsx'
-import { extendTailwindMerge } from 'tailwind-merge'
+import { createCn } from 'cn/config'
 
-// Extend tailwind-merge with every custom design-system token so it correctly
-// classifies our text-color and font-size utilities and never drops one when
-// the other appears in the same class list (e.g. text-mint-75 + text-button-md).
-const twMerge = extendTailwindMerge({
+// shadcn's cn (clsx + tailwind-merge in one), extended with every custom
+// design-system token so it correctly classifies our text-color and font-size
+// utilities and never drops one when the other appears in the same class list
+// (e.g. text-mint-75 + text-button-md).
+export const cn = createCn({
   extend: {
     classGroups: {
       'font-size': [
@@ -78,7 +78,3 @@ const twMerge = extendTailwindMerge({
     },
   },
 })
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
