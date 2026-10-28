@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Button } from '../../components/button'
-import { Popover, PopoverContent, PopoverTrigger } from '../../components/ui/popover'
+import { Popover, PopoverContent, PopoverTrigger } from '../../components/popover'
 import { Label } from '../../components/ui/label'
 import { Input } from '../../components/ui/input'
 

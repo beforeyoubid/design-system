@@ -2292,6 +2292,6 @@ Everything the migrator can change, it changes. What's left is listed here, and 
 | `colors` and `typography` exports removed | In CSS, use the utility class (`bg-mint-45`, `text-body-4`). Outside CSS (Stripe, canvas, `themeColor`), use `generateDesignSystemTokens()` | Yes, each import |
 | `BYBTestimonialCard` and `BYBTestimonialCarousel` removed | Move the component into the app | Yes, each import |
 | `BYBImage` moved out | Copy `src/components/BYBImage.tsx` from design-system 1.x into the app (it's `next/image` with a default `sizes`; only byb-website uses it) | Yes, each import |
-| `InputField` and `SelectField` moved to `@beforeyoubid/form` | The migrator moves the imports; add `"@beforeyoubid/form": "^2.0.0"` to the app's dependencies | Yes, printed after the summary |
+| `InputField` and `SelectField` moved to `@beforeyoubid/form` | The migrator moves the imports; add `"@beforeyoubid/form": "^2.0.0"` to the app's dependencies, and `@import "@beforeyoubid/form/styles.css";` after the design system's `globals.css` so Tailwind scans the form package | Yes, printed after the summary |
 | Parts that render a stock Button take the stock variant keys: `AlertDialogAction`, `AlertDialogCancel`, `CarouselPrevious` / `CarouselNext`, `InputGroupButton`, `SidebarTrigger` | Use the stock key (`default`, `outline`, `secondary`, `ghost`), or render ours: `render={<Button variant="tertiary" />}` | No |
 

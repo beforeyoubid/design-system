@@ -190,7 +190,7 @@ test('moves InputField and SelectField imports to @beforeyoubid/form', () => {
   )
   assert.equal(
     run('import type { InputFieldProps } from "@beforeyoubid/design-system";'),
-    'import { type InputFieldProps } from "@beforeyoubid/form"',
+    'import { type InputFieldProps } from "@beforeyoubid/form";',
   )
   const { changes } = migrateSource("import { InputField } from '@beforeyoubid/design-system'")
   assert.deepEqual(changes, [{ rule: 'InputField → @beforeyoubid/form', line: 1 }])
@@ -199,4 +199,16 @@ test('moves InputField and SelectField imports to @beforeyoubid/form', () => {
 test('flags BYBImage', () => {
   const { reviews } = migrateSource("import { BYBImage } from '@beforeyoubid/design-system'")
   assert.match(reviews[0].message, /BYBImage is no longer exported: moved to byb-website/)
+})
+
+test('leaves an import with nothing to move or rename exactly as written', () => {
+  const source = "import {\n  Button,\n  Badge,\n} from '@beforeyoubid/design-system';\n<Button />"
+  assert.equal(run(source), source)
+})
+
+test('keeps the semicolon when it rewrites an import', () => {
+  assert.equal(
+    run("import { Button, BYBCounter } from '@beforeyoubid/design-system';\n<BYBCounter />"),
+    "import { Button, Counter } from '@beforeyoubid/design-system';\n<Counter />",
+  )
 })

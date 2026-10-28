@@ -93,7 +93,8 @@ for (const [rule, count] of Object.entries(ruleCounts).sort((a, b) => b[1] - a[1
 }
 
 if (Object.keys(ruleCounts).some((rule) => rule.endsWith('→ @beforeyoubid/form'))) {
-  console.log('\nInputField and SelectField now come from @beforeyoubid/form: add "@beforeyoubid/form": "^2.0.0" to the app\'s dependencies.')
+  console.log('\nInputField and SelectField now come from @beforeyoubid/form: add "@beforeyoubid/form": "^2.0.0" to the app\'s dependencies,')
+  console.log('and @import "@beforeyoubid/form/styles.css"; after the design system\'s globals.css.')
 }
 
 if (reviews.length) {

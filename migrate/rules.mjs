@@ -156,6 +156,7 @@ function migrateExports(text, report) {
   result = result.replace(PACKAGE_IMPORT_STATEMENT, (statement, typeOnly = '', list, quote, offset) => {
     const line = lineOf(text, offset)
     const kept = []
+    let changed = false
     for (const raw of list.split(',')) {
       const spec = raw.trim()
       if (!spec) continue
@@ -165,11 +166,13 @@ function migrateExports(text, report) {
         const target = MOVED_EXPORTS[imported]
         ;(moved[target] ??= []).push(`${isType ? 'type ' : ''}${local ? `${imported} as ${local}` : imported}`)
         report.change(`${imported} → ${target}`, line)
+        changed = true
         continue
       }
       const to = EXPORT_RENAMES[imported]
       if (to) {
         report.change(`${imported} → ${to}`, line)
+        changed = true
         // Aliased, or the new name is already taken in this file: keep the old local name.
         const keepLocal = local ?? (new RegExp(`\\b${escape(to)}\\b`).test(text) ? imported : null)
         if (!local && !keepLocal) renamedLocals.push([imported, to])
@@ -178,11 +181,14 @@ function migrateExports(text, report) {
       }
       kept.push(spec)
     }
+    // Nothing moved or renamed: leave the statement as written (line breaks, semicolon).
+    if (!changed) return statement
+    const semi = statement.endsWith(';') ? ';' : ''
     const imports = Object.entries(moved)
-      .map(([pkg, specs]) => `import { ${specs.join(', ')} } from ${quote}${pkg}${quote}`)
+      .map(([pkg, specs]) => `import { ${specs.join(', ')} } from ${quote}${pkg}${quote}${semi}`)
       .join('\n')
     for (const pkg of Object.keys(moved)) delete moved[pkg]
-    const own = kept.length ? `import ${typeOnly}{ ${kept.join(', ')} } from ${quote}@beforeyoubid/design-system${quote}` : ''
+    const own = kept.length ? `import ${typeOnly}{ ${kept.join(', ')} } from ${quote}@beforeyoubid/design-system${quote}${semi}` : ''
     return [own, imports].filter(Boolean).join('\n')
   })
   for (const [from, to] of renamedLocals) {

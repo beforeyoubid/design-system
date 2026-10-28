@@ -4,7 +4,7 @@ import { Clock } from "lucide-react"
 
 import { cn } from "../lib/utils"
 import { Calendar } from "./calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
+import { Popover, PopoverContent, PopoverTrigger } from "./popover"
 
 const controlClasses =
   "h-10 rounded-lg border border-dark-45 bg-white text-body-5 text-dark-100 outline-none transition-all focus-visible:border-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30 disabled:cursor-not-allowed disabled:bg-light-l2"
