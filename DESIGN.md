@@ -599,3 +599,12 @@ npx design-system-migrate --write    # apply
 
 It renames the old type, button, radius and colour classes, swaps `rounded-xl` ↔ `rounded-2xl`, moves `dark-60` text and icons to `dark-75`, and renames Badge, Switch and TabsList variants. Button variants are left alone: every 1.x variant still exists and looks the same. It lists anything with no like-for-like replacement with its file and line. `--map old=new` changes a mapping for one app, e.g. `--map text-xs=text-sm`. Run it only once: a second run would swap the radius classes back.
 
+### Changes the migrator can't make
+
+Everything the migrator can change, it changes. What's left is listed here, and kept up to date with every 2.0 change that can't be automated. Where the dry run can find an occurrence, it lists it with its file and line.
+
+| Change | What to do | Found by the dry run |
+|---|---|---|
+| `colors` and `typography` exports removed | In CSS, use the utility class (`bg-mint-45`, `text-body-4`). Outside CSS (Stripe, canvas, `themeColor`), use `generateDesignSystemTokens()` | Yes, each import |
+| `BYBTestimonialCard` and `BYBTestimonialCarousel` removed | Move the component into the app | Yes, each import |
+
