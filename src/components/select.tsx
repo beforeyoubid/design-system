@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Select as SelectPrimitive } from "@base-ui/react/select"
 import { cva, type VariantProps } from "class-variance-authority"
-import { IconCheck, IconChevronDown } from "@tabler/icons-react"
+import { IconCheck, IconChevronDown, IconX } from "@tabler/icons-react"
 
 import { cn } from "@/lib/utils"
 import { SelectTrigger as StockSelectTrigger } from "@/components/ui/select"
@@ -13,14 +13,31 @@ export * from "@/components/ui/select"
  * ends in an up-down selector. Stock's icon is hidden (it has no slot to hook,
  * only Tabler's class) and ours follows the value. Levers: select-icon in
  * src/tokens/components/select.css.
+ *
+ * Pass `onClear` to show an × beside the chevron that clears the selection
+ * (pass it only while something is selected). The × is a sibling of the
+ * trigger, not inside it, so the trigger and the × are wrapped together.
  */
 function SelectTrigger({
   className,
   children,
+  onClear,
+  clearLabel = "Clear selection",
   ...props
-}: React.ComponentProps<typeof StockSelectTrigger>) {
-  return (
-    <StockSelectTrigger className={cn("[&>.tabler-icon-selector]:hidden", className)} {...props}>
+}: React.ComponentProps<typeof StockSelectTrigger> & {
+  onClear?: () => void
+  /** Accessible name of the × button. */
+  clearLabel?: string
+}) {
+  const trigger = (
+    <StockSelectTrigger
+      className={cn(
+        "[&>.tabler-icon-selector]:hidden",
+        onClear && "*:data-[slot=select-value]:me-7",
+        className
+      )}
+      {...props}
+    >
       {children}
       <SelectPrimitive.Icon
         data-slot="select-icon"
@@ -31,6 +48,54 @@ function SelectTrigger({
         <IconChevronDown className="size-(--_select-icon-size)" />
       </SelectPrimitive.Icon>
     </StockSelectTrigger>
+  )
+  if (!onClear) return trigger
+  return (
+    <div data-slot="select-trigger-wrapper" className="relative w-full">
+      {trigger}
+      <button
+        type="button"
+        data-slot="select-clear"
+        onClick={onClear}
+        aria-label={clearLabel}
+        title={clearLabel}
+        className="absolute end-8 top-1/2 flex size-5 -translate-y-1/2 cursor-pointer items-center justify-center rounded-sm text-(--_select-clear-foreground) transition-colors outline-none hover:text-(--_select-clear-hover-foreground) focus-visible:ring-2 focus-visible:ring-(--_select-clear-focus-ring)"
+      >
+        <IconX className="size-3.5" />
+      </button>
+    </div>
+  )
+}
+
+/** A selected value in a multiple select's field: optional leading content, then the label. */
+function SelectChip({ className, children, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="select-chip"
+      className={cn(
+        "inline-flex h-(--_select-chip-height) min-w-0 shrink items-center gap-1.5 rounded-(--_select-chip-radius) bg-(--_select-chip) px-2 text-caption-1 font-medium text-(--_select-chip-foreground) [&>span:last-child]:truncate",
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </span>
+  )
+}
+
+/** "+N" after the chips that fit. */
+function SelectChipOverflow({ count, className, ...props }: React.ComponentProps<"span"> & { count: number }) {
+  return (
+    <span
+      data-slot="select-chip-overflow"
+      className={cn(
+        "inline-flex h-(--_select-chip-height) shrink-0 items-center rounded-(--_select-chip-radius) bg-(--_select-chip-overflow) px-2 text-caption-1 font-medium text-(--_select-chip-overflow-foreground)",
+        className
+      )}
+      {...props}
+    >
+      +{count}
+    </span>
   )
 }
 
@@ -138,5 +203,5 @@ function SelectFooter({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { SelectFooter, SelectItem, SelectTrigger, selectItemVariants }
+export { SelectChip, SelectChipOverflow, SelectFooter, SelectItem, SelectTrigger, selectItemVariants }
 export type { SelectItemProps }

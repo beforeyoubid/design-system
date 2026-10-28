@@ -1,5 +1,4 @@
 import * as React from "react"
-import { IconX } from "@tabler/icons-react"
 
 import { cn } from "../lib/utils"
 import { productBadges, type ProductBadgeKey } from "../lib/product-badges"
@@ -7,6 +6,8 @@ import { ColorDot } from "./color-dot"
 import { Label } from "./ui/label"
 import {
   Select,
+  SelectChip,
+  SelectChipOverflow,
   SelectContent,
   SelectFooter,
   SelectGroup,
@@ -180,19 +181,12 @@ export function SelectField(props: SelectFieldProps) {
     return (
       <span className="flex min-w-0 items-center gap-1 overflow-hidden">
         {shown.map((v) => (
-          <span
-            key={v}
-            className="inline-flex h-6 min-w-0 shrink items-center gap-1.5 rounded-full bg-mint-l2 px-2 text-caption-1 font-medium text-mint-90"
-          >
+          <SelectChip key={v}>
             {optionFor(v)?.chip}
-            <span className="truncate">{labelFor(v)}</span>
-          </span>
+            <span>{labelFor(v)}</span>
+          </SelectChip>
         ))}
-        {rest > 0 && (
-          <span className="inline-flex h-6 shrink-0 items-center rounded-full bg-light-l2 px-2 text-caption-1 font-medium text-dark-75">
-            +{rest}
-          </span>
-        )}
+        {rest > 0 && <SelectChipOverflow count={rest} />}
       </span>
     )
   }
@@ -270,32 +264,20 @@ export function SelectField(props: SelectFieldProps) {
         disabled={disabled}
         name={name}
       >
-        <div className="relative w-full">
-          <SelectTrigger
-            id={fieldId}
-            aria-describedby={describedById}
-            aria-invalid={hasError || undefined}
-            aria-required={required || undefined}
-            className={cn("w-full", showClear && "*:data-[slot=select-value]:me-7", className)}
-          >
-            {multiple ? (
-              <SelectValue>{renderMultiple}</SelectValue>
-            ) : (
-              <SelectValue placeholder={placeholder}>{renderSingle}</SelectValue>
-            )}
-          </SelectTrigger>
-          {showClear && (
-            <button
-              type="button"
-              onClick={clear}
-              aria-label="Clear selection"
-              title="Clear selection"
-              className="absolute end-8 top-1/2 flex size-5 -translate-y-1/2 cursor-pointer items-center justify-center rounded-sm text-dark-75 transition-colors outline-none hover:text-dark-100 focus-visible:ring-2 focus-visible:ring-mint-45/30"
-            >
-              <IconX className="size-3.5" />
-            </button>
+        <SelectTrigger
+          id={fieldId}
+          aria-describedby={describedById}
+          aria-invalid={hasError || undefined}
+          aria-required={required || undefined}
+          onClear={showClear ? clear : undefined}
+          className={cn("w-full", className)}
+        >
+          {multiple ? (
+            <SelectValue>{renderMultiple}</SelectValue>
+          ) : (
+            <SelectValue placeholder={placeholder}>{renderSingle}</SelectValue>
           )}
-        </div>
+        </SelectTrigger>
         <SelectContent>
           {options.map((entry, i) =>
             isGroup(entry) ? (

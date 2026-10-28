@@ -6805,6 +6805,20 @@
      "reads": [
       "--destructive"
      ]
+    },
+    {
+     "name": "--field-label-required-foreground",
+     "private": "--_field-label-required-foreground",
+     "default": "var(--mint-45)",
+     "description": "Colour of the asterisk on a required field's label.",
+     "type": "color",
+     "part": "field-label-required",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--mint-45"
+     ]
     }
    ]
   },
@@ -10312,6 +10326,132 @@
      "property": "foreground",
      "reads": [
       "--dark-45"
+     ]
+    },
+    {
+     "name": "--select-clear-foreground",
+     "private": "--_select-clear-foreground",
+     "default": "var(--dark-75)",
+     "description": "Colour of the clear (×) button.",
+     "type": "color",
+     "part": "select-clear",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-75"
+     ]
+    },
+    {
+     "name": "--select-clear-hover-foreground",
+     "private": "--_select-clear-hover-foreground",
+     "default": "var(--dark-100)",
+     "description": "Colour of the clear button when hovered.",
+     "type": "color",
+     "part": "select-clear",
+     "variant": null,
+     "state": "hover",
+     "property": "foreground",
+     "reads": [
+      "--dark-100"
+     ]
+    },
+    {
+     "name": "--select-clear-focus-ring",
+     "private": "--_select-clear-focus-ring",
+     "default": "color-mix(in oklab, var(--mint-45) 30%, transparent)",
+     "description": "Ring colour of the clear button when focused.",
+     "type": "color",
+     "part": "select-clear",
+     "variant": null,
+     "state": "focus",
+     "property": "ring",
+     "reads": [
+      "--mint-45"
+     ]
+    },
+    {
+     "name": "--select-chip",
+     "private": "--_select-chip",
+     "default": "var(--mint-l2)",
+     "description": "Fill of a selected value's chip.",
+     "type": "color",
+     "part": "select-chip",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--mint-l2"
+     ]
+    },
+    {
+     "name": "--select-chip-foreground",
+     "private": "--_select-chip-foreground",
+     "default": "var(--mint-90)",
+     "description": "Text colour of a chip.",
+     "type": "color",
+     "part": "select-chip",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--mint-90"
+     ]
+    },
+    {
+     "name": "--select-chip-height",
+     "private": "--_select-chip-height",
+     "default": "calc(var(--spacing) * 6)",
+     "description": "Height of a chip.",
+     "type": "length",
+     "part": "select-chip",
+     "variant": null,
+     "state": null,
+     "property": "height",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--select-chip-radius",
+     "private": "--_select-chip-radius",
+     "default": "var(--radius-full)",
+     "description": "Corner radius of a chip.",
+     "type": "radius",
+     "part": "select-chip",
+     "variant": null,
+     "state": null,
+     "property": "radius",
+     "reads": [
+      "--radius-full"
+     ]
+    },
+    {
+     "name": "--select-chip-overflow",
+     "private": "--_select-chip-overflow",
+     "default": "var(--light-l2)",
+     "description": "Fill of the \"+N\" chip.",
+     "type": "color",
+     "part": "select-chip-overflow",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--light-l2"
+     ]
+    },
+    {
+     "name": "--select-chip-overflow-foreground",
+     "private": "--_select-chip-overflow-foreground",
+     "default": "var(--dark-75)",
+     "description": "Text colour of the \"+N\" chip.",
+     "type": "color",
+     "part": "select-chip-overflow",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-75"
      ]
     },
     {

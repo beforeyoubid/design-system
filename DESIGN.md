@@ -405,7 +405,7 @@ Solid (`appearance="solid"`): gray dark-75 + white · mint mint-45 + white · li
 - Focus: `border-mint-45` + `ring-3 ring-mint-45/30`.
 - Invalid (`aria-invalid`): `border-error-75`, red ring on focus.
 - Disabled: `bg-light-l2 text-dark-45`.
-- `InputField` / `SelectField` add label, hint and error slots. `SelectField` options can be grouped into categories (`{ label, options }`) and take custom content in three slots, each accepting any node: `start` (before the label in the row), `meta` (right side of the row, e.g. a count or `<ColorDot />`) and `chip` (shown before the label once selected, in the chip or the field). `productSelectOptions(keys?, overrides?)` builds product options with their badge-colour dots. On single-select rows a `meta` replaces the trailing check; the mint row fill marks the selection. Once something is selected, an × (`IconX`, `dark-75`, hover `dark-100`, no background) sits beside the chevron and clears the selection (`clearable`, default true). Multi-select lists end with an "N selected · CLEAR" footer; CLEAR is `text-overline` (uppercase) in `mint-75`, hover `mint-90`. `BYBFieldset` groups them. `BYBDatePicker` pairs the trigger with `Calendar` and shows dates as DD/MM/YYYY (`formatDateDMY`); `time` adds a `BYBTimePicker` with matching trigger and scrollable hour / minute columns: 24-hour (no AM/PM), selected value in lime like the calendar's selected day; columns scroll without a visible scrollbar (`no-scrollbar`).
+- `InputField` / `SelectField` add label, hint and error slots. `SelectField` options can be grouped into categories (`{ label, options }`) and take custom content in three slots, each accepting any node: `start` (before the label in the row), `meta` (right side of the row, e.g. a count or `<ColorDot />`) and `chip` (shown before the label once selected, in the chip or the field). `productSelectOptions(keys?, overrides?)` builds product options with their badge-colour dots. On single-select rows a `meta` replaces the trailing check; the mint row fill marks the selection. Once something is selected, an × (`IconX`, `dark-75`, hover `dark-100`, no background) sits beside the chevron and clears the selection (`clearable`, default true). The × and the chips are parts of `Select` itself, so any select can use them: `SelectTrigger onClear={…}` shows the × (pass it only while something is selected), and `SelectChip` / `SelectChipOverflow` ("+N") render selected values in the field. `FieldLabel required` adds the same mint asterisk to a stock Field. Multi-select lists end with an "N selected · CLEAR" footer; CLEAR is `text-overline` (uppercase) in `mint-75`, hover `mint-90`. `BYBFieldset` groups them. `BYBDatePicker` pairs the trigger with `Calendar` and shows dates as DD/MM/YYYY (`formatDateDMY`); `time` adds a `BYBTimePicker` with matching trigger and scrollable hour / minute columns: 24-hour (no AM/PM), selected value in lime like the calendar's selected day; columns scroll without a visible scrollbar (`no-scrollbar`).
 - Resting border `dark-45` on every form control and menu: Input, Textarea, InputGroup, InputOTP, Select trigger (its options panel keeps `light-l3`), DatePicker / TimePicker trigger and panel, DropdownMenu panel, card trigger and card items, Checkbox and Radio boxes, and checkbox / radio choice cards. Select trigger hover `dark-75`. Focus, open, checked and invalid states keep mint-45 / error-75.
 - Checkbox, Radio, Switch: mint-checked; `RadioGroup` sizes `sm` / `md` / `lg`; labels `text-body-5 font-semibold text-navy`, descriptions `text-dark-75`.
 
@@ -1197,7 +1197,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>field</strong> (17)</summary>
+<summary><strong>field</strong> (18)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -1218,6 +1218,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--field-separator-content-foreground` | Text colour of the separator-content. | `var(--muted-foreground)` |
 | `--field-error-font-weight` | Font weight of the error. | `400` |
 | `--field-error-foreground` | Text colour of the error. | `var(--destructive)` |
+| `--field-label-required-foreground` | Colour of the asterisk on a required field's label. | `var(--mint-45)` |
 
 </details>
 
@@ -1575,7 +1576,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>select</strong> (47)</summary>
+<summary><strong>select</strong> (56)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -1601,6 +1602,15 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--select-icon-foreground` | Colour of the chevron. | `var(--dark-75)` |
 | `--select-icon-open-foreground` | Colour of the chevron while open. | `var(--mint-75)` |
 | `--select-icon-disabled-foreground` | Colour of the chevron when disabled. | `var(--dark-45)` |
+| `--select-clear-foreground` | Colour of the clear (×) button. | `var(--dark-75)` |
+| `--select-clear-hover-foreground` | Colour of the clear button when hovered. | `var(--dark-100)` |
+| `--select-clear-focus-ring` | Ring colour of the clear button when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
+| `--select-chip` | Fill of a selected value's chip. | `var(--mint-l2)` |
+| `--select-chip-foreground` | Text colour of a chip. | `var(--mint-90)` |
+| `--select-chip-height` | Height of a chip. | `calc(var(--spacing) * 6)` |
+| `--select-chip-radius` | Corner radius of a chip. | `var(--radius-full)` |
+| `--select-chip-overflow` | Fill of the "+N" chip. | `var(--light-l2)` |
+| `--select-chip-overflow-foreground` | Text colour of the "+N" chip. | `var(--dark-75)` |
 | `--select-content-radius` | Corner radius of the content. | `var(--radius-lg)` |
 | `--select-content-border` | Border colour of the content. | `var(--light-l3)` |
 | `--select-content` | Fill colour of the content. | `var(--white)` |

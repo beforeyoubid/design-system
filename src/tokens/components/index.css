@@ -1701,6 +1701,13 @@
   --_field-error-foreground: var(--field-error-foreground, var(--destructive));
 }
 
+[data-slot="field-label-required"],
+[class*="(--_field-label-required-"],
+[class*="(--_field-label-required)"] {
+  /* Colour of the asterisk on a required field's label. @ours */
+  --_field-label-required-foreground: var(--field-label-required-foreground, var(--mint-45));
+}
+
 /* ---- hover-card.css ---- */
 /* Hover Card — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
@@ -2662,6 +2669,39 @@
   --_select-icon-open-foreground: var(--select-icon-open-foreground, var(--mint-75));
   /* Colour of the chevron when disabled. @ours */
   --_select-icon-disabled-foreground: var(--select-icon-disabled-foreground, var(--dark-45));
+}
+
+[data-slot="select-clear"],
+[class*="(--_select-clear-"],
+[class*="(--_select-clear)"] {
+  /* Colour of the clear (×) button. @ours */
+  --_select-clear-foreground: var(--select-clear-foreground, var(--dark-75));
+  /* Colour of the clear button when hovered. @ours */
+  --_select-clear-hover-foreground: var(--select-clear-hover-foreground, var(--dark-100));
+  /* Ring colour of the clear button when focused. @ours */
+  --_select-clear-focus-ring: var(--select-clear-focus-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
+}
+
+[data-slot="select-chip"],
+[class*="(--_select-chip-"],
+[class*="(--_select-chip)"] {
+  /* Fill of a selected value's chip. @ours */
+  --_select-chip: var(--select-chip, var(--mint-l2));
+  /* Text colour of a chip. @ours */
+  --_select-chip-foreground: var(--select-chip-foreground, var(--mint-90));
+  /* Height of a chip. @ours */
+  --_select-chip-height: var(--select-chip-height, calc(var(--spacing) * 6));
+  /* Corner radius of a chip. @ours */
+  --_select-chip-radius: var(--select-chip-radius, var(--radius-full));
+}
+
+[data-slot="select-chip-overflow"],
+[class*="(--_select-chip-overflow-"],
+[class*="(--_select-chip-overflow)"] {
+  /* Fill of the "+N" chip. @ours */
+  --_select-chip-overflow: var(--select-chip-overflow, var(--light-l2));
+  /* Text colour of the "+N" chip. @ours */
+  --_select-chip-overflow-foreground: var(--select-chip-overflow-foreground, var(--dark-75));
 }
 
 [data-slot="select-content"],

@@ -72,3 +72,8 @@
   /* Text colour of the error. */
   --_field-error-foreground: var(--field-error-foreground, var(--destructive));
 }
+
+[data-slot="field-label-required"] {
+  /* Colour of the asterisk on a required field's label. @ours */
+  --_field-label-required-foreground: var(--field-label-required-foreground, var(--mint-45));
+}

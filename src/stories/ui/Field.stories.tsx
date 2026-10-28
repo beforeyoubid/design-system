@@ -8,7 +8,7 @@ import {
   FieldLegend,
   FieldSeparator,
   FieldSet,
-} from '../../components/ui/field'
+} from '../../components/field'
 import { Input } from '../../components/ui/input'
 
 const meta: Meta<typeof FieldSet> = {
@@ -39,6 +39,20 @@ export const Default: Story = {
           </Field>
         </FieldGroup>
       </FieldSet>
+    </div>
+  ),
+}
+
+/** `required` on the label adds the mint asterisk; `required` on the control is what screen readers announce. */
+export const Required: Story = {
+  render: () => (
+    <div className="w-96">
+      <FieldGroup>
+        <Field>
+          <FieldLabel htmlFor="address" required>Property address</FieldLabel>
+          <Input id="address" required />
+        </Field>
+      </FieldGroup>
     </div>
   ),
 }
