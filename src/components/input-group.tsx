@@ -10,11 +10,11 @@ export * from "@/components/ui/input-group"
 
 /*
  * The variant helpers below are public API. The stock ui file keeps private
- * copies with the same classes; keep the two in step.
+ * copies with the same classes (reading the same levers); keep the two in step.
  */
 
 const inputGroupAddonVariants = cva(
-  "flex h-auto cursor-text items-center justify-center gap-2 text-body-5 text-dark-75 select-none group-data-[disabled=true]/input-group:opacity-50 **:data-[slot=kbd]:rounded-sm **:data-[slot=kbd]:bg-light-l2 **:data-[slot=kbd]:px-1.5 [&>svg:not([class*='size-'])]:size-4",
+  "flex h-auto cursor-text items-center justify-center gap-(--_input-group-addon-gap) text-body-5 text-(--_input-group-addon-foreground) select-none group-data-[disabled=true]/input-group:opacity-50 **:data-[slot=kbd]:rounded-sm **:data-[slot=kbd]:bg-light-l2 **:data-[slot=kbd]:px-1.5 [&>svg:not([class*='size-'])]:size-4",
   {
     variants: {
       align: {
@@ -32,14 +32,14 @@ const inputGroupAddonVariants = cva(
 )
 
 const inputGroupButtonVariants = cva(
-  "text-overline flex items-center gap-1 rounded-md shadow-none",
+  "flex items-center gap-(--_input-group-button-gap) rounded-(--_input-group-button-radius) shadow-none text-overline",
   {
     variants: {
       size: {
-        xs: "h-7 px-2.5 py-0 [&>svg:not([class*='size-'])]:size-3.5",
-        sm: "h-8 px-3 py-0 [&>svg:not([class*='size-'])]:size-4",
-        "icon-xs": "size-7 p-0 has-[>svg]:p-0 [&>svg:not([class*='size-'])]:size-4",
-        "icon-sm": "size-8 p-0 has-[>svg]:p-0 [&>svg:not([class*='size-'])]:size-4",
+        xs: "h-(--_input-group-button-xs-height) px-(--_input-group-button-xs-padding-x) py-0 [&>svg:not([class*='size-'])]:size-3.5",
+        sm: "h-(--_input-group-button-sm-height) px-(--_input-group-button-sm-padding-x) py-0 [&>svg:not([class*='size-'])]:size-4",
+        "icon-xs": "size-(--_input-group-button-icon-xs-size) p-0 has-[>svg]:p-0 [&>svg:not([class*='size-'])]:size-4",
+        "icon-sm": "size-(--_input-group-button-icon-sm-size) p-0 has-[>svg]:p-0 [&>svg:not([class*='size-'])]:size-4",
       },
     },
     defaultVariants: {
