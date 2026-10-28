@@ -1,58 +1,15 @@
-import * as React from "react"
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion"
-import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react"
 
-/** Trigger row: title size, vertical padding and chevron size per `size`. */
-const accordionTriggerVariants = cva(
-  "group/accordion-trigger relative flex cursor-pointer flex-1 items-center justify-between text-start font-semibold text-dark-100 transition-colors outline-none hover:text-mint-45 aria-expanded:text-mint-45 aria-disabled:pointer-events-none aria-disabled:opacity-50",
-  {
-    variants: {
-      size: {
-        sm: "gap-4 py-3 text-body-4 [&_svg]:size-4",
-        md: "gap-6 py-5 text-h5 [&_svg]:size-5",
-        lg: "gap-6 py-6 text-h4 [&_svg]:size-6",
-      },
-    },
-    defaultVariants: { size: "md" },
-  }
-)
-
-/** Panel body: text size and bottom padding per `size`. */
-const accordionContentVariants = cva(
-  "px-4 pt-0 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground",
-  {
-    variants: {
-      size: {
-        sm: "pb-3 text-body-5 [&_p:not(:last-child)]:mb-3",
-        md: "pb-5 text-body-4 [&_p:not(:last-child)]:mb-4",
-        lg: "pb-6 text-body-3 [&_p:not(:last-child)]:mb-4",
-      },
-    },
-    defaultVariants: { size: "md" },
-  }
-)
-
-type AccordionSize = NonNullable<VariantProps<typeof accordionTriggerVariants>["size"]>
-
-const AccordionSizeContext = React.createContext<AccordionSize>("md")
-
-function Accordion({
-  className,
-  size = "md",
-  ...props
-}: AccordionPrimitive.Root.Props & { size?: AccordionSize }) {
+function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {
   return (
-    <AccordionSizeContext.Provider value={size}>
-      <AccordionPrimitive.Root
-        data-slot="accordion"
-        data-size={size}
-        className={cn("flex w-full flex-col", className)}
-        {...props}
-      />
-    </AccordionSizeContext.Provider>
+    <AccordionPrimitive.Root
+      data-slot="accordion"
+      className={cn("flex w-full flex-col", className)}
+      {...props}
+    />
   )
 }
 
@@ -69,15 +26,16 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
 function AccordionTrigger({
   className,
   children,
-  size,
   ...props
-}: AccordionPrimitive.Trigger.Props & { size?: AccordionSize }) {
-  const groupSize = React.useContext(AccordionSizeContext)
+}: AccordionPrimitive.Trigger.Props) {
   return (
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
-        className={cn(accordionTriggerVariants({ size: size ?? groupSize }), className)}
+        className={cn(
+          "group/accordion-trigger relative flex cursor-pointer flex-1 items-center justify-between text-start font-semibold text-dark-100 transition-colors outline-none hover:text-mint-45 aria-expanded:text-mint-45 aria-disabled:pointer-events-none aria-disabled:opacity-50 gap-6 py-5 text-h5 [&_svg]:size-5",
+          className
+        )}
         {...props}
       >
         {children}
@@ -91,29 +49,24 @@ function AccordionTrigger({
 function AccordionContent({
   className,
   children,
-  size,
   ...props
-}: AccordionPrimitive.Panel.Props & { size?: AccordionSize }) {
-  const groupSize = React.useContext(AccordionSizeContext)
+}: AccordionPrimitive.Panel.Props) {
   return (
     <AccordionPrimitive.Panel
       data-slot="accordion-content"
       className="h-(--accordion-panel-height) overflow-hidden text-dark-75 transition-[height] duration-200 ease-out data-starting-style:h-0 data-ending-style:h-0 motion-reduce:transition-none"
       {...props}
     >
-      <div className={cn(accordionContentVariants({ size: size ?? groupSize }), className)}>
+      <div
+        className={cn(
+          "px-4 pt-0 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground pb-5 text-body-4 [&_p:not(:last-child)]:mb-4",
+          className
+        )}
+      >
         {children}
       </div>
     </AccordionPrimitive.Panel>
   )
 }
 
-export {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-  accordionTriggerVariants,
-  accordionContentVariants,
-}
-export type { AccordionSize }
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }

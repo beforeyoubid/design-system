@@ -1,13 +1,13 @@
 import * as React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Button } from '../../components/ui/button'
+import { Button } from '../../components/button'
 import {
   Toaster,
   createToastManager,
   toast,
   type ToastPendingType,
   type ToastType,
-} from '../../components/ui/toast'
+} from '../../components/toast'
 
 const meta: Meta<typeof Toaster> = {
   title: 'BYB Components/Toast',

@@ -46,7 +46,7 @@ function PaginationLink({
 }: PaginationLinkProps) {
   return (
     <Button
-      variant={isActive ? "primary" : "ghost"}
+      variant={isActive ? "default" : "ghost"}
       size={size}
       className={cn(
         "text-body-5 font-medium tracking-normal normal-case",
@@ -76,7 +76,7 @@ function PaginationPrevious({
   return (
     <PaginationLink
       aria-label="Go to previous page"
-      size="md"
+      size="default"
       className={cn("ps-2!", className)}
       {...props}
     >
@@ -94,7 +94,7 @@ function PaginationNext({
   return (
     <PaginationLink
       aria-label="Go to next page"
-      size="md"
+      size="default"
       className={cn("pe-2!", className)}
       {...props}
     >

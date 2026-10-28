@@ -1,7 +1,6 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { BYBIconTile, type BYBIconTileProps } from "@/components/BYBIconTile"
 
 function Card({
   className,
@@ -21,49 +20,14 @@ function Card({
   )
 }
 
-interface CardHeaderProps extends React.ComponentProps<"div"> {
-  /** Lucide icon shown in an `BYBIconTile` above the title, e.g. `<FileText />`. */
-  icon?: React.ReactNode
-  /** Tile colour: `mint` (default), `navy`, `warning`, `error`, `neutral`. */
-  iconTone?: BYBIconTileProps["tone"]
-  /** Tile size: `sm` 32px, `md` 40px (default), `lg` 48px. */
-  iconSize?: BYBIconTileProps["size"]
-  /** Tile shape: `circle` (default) or `square`. */
-  iconShape?: BYBIconTileProps["shape"]
-}
-
-function CardHeader({
-  className,
-  icon,
-  iconTone,
-  iconSize,
-  iconShape,
-  children,
-  ...props
-}: CardHeaderProps) {
+function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-header"
       className={cn(
-        "group/card-header @container/card-header grid auto-rows-min items-start gap-2 rounded-t-lg px-6 has-data-[slot=card-icon]:gap-y-3 group-data-[size=sm]/card:px-4 has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-6 group-data-[size=sm]/card:[.border-b]:pb-4",
+        "group/card-header @container/card-header grid auto-rows-min items-start gap-2 rounded-t-lg px-6 group-data-[size=sm]/card:px-4 has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-6 group-data-[size=sm]/card:[.border-b]:pb-4",
         className
       )}
-      {...props}
-    >
-      {icon && (
-        <CardIcon tone={iconTone} size={iconSize} shape={iconShape} icon={icon} />
-      )}
-      {children}
-    </div>
-  )
-}
-
-/** BYBIconTile sized for a card header. Use directly for custom layouts, or via `CardHeader icon`. */
-function CardIcon({ className, ...props }: BYBIconTileProps) {
-  return (
-    <BYBIconTile
-      data-slot="card-icon"
-      className={cn("col-start-1", className)}
       {...props}
     />
   )
@@ -128,11 +92,9 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
 export {
   Card,
   CardHeader,
-  CardIcon,
   CardFooter,
   CardTitle,
   CardAction,
   CardDescription,
   CardContent,
 }
-export type { CardHeaderProps }

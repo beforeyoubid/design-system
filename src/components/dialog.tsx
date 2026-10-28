@@ -1,0 +1,179 @@
+"use client"
+
+import * as React from "react"
+import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible"
+import { cva, type VariantProps } from "class-variance-authority"
+import { ChevronDown } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+import {
+  DialogContent as DialogContentBase,
+  DialogHeader as DialogHeaderBase,
+} from "@/components/ui/dialog"
+import { BYBIconTile, type BYBIconTileTone } from "@/components/BYBIconTile"
+
+export * from "@/components/ui/dialog"
+
+/**
+ * One layout for every dialog: header, content and actions separated by
+ * spacing (no divider lines); long content scrolls in `DialogBody`, whose edges
+ * fade while there's more to see. Everything is left-aligned; a header `icon`
+ * sits on the left in one row with the title.
+ */
+const dialogContentVariants = cva(
+  "group/dialog fixed top-1/2 start-1/2 z-50 flex max-h-11/12 w-11/12 rounded-3xl -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 flex-col gap-4 bg-white p-6 text-body-5 text-dark-90 shadow-2xl duration-100 outline-none data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+  {
+    variants: {
+      size: {
+        sm: "max-w-96",
+        md: "max-w-110",
+        lg: "max-w-120",
+        xl: "max-w-160",
+      },
+    },
+    defaultVariants: { size: "md" },
+  }
+)
+
+type DialogContentProps = React.ComponentProps<typeof DialogContentBase> &
+  VariantProps<typeof dialogContentVariants>
+
+/** Stock `DialogContent` plus `size` (max width): `sm`, `md` (default), `lg`, `xl`. */
+function DialogContent({ className, size, ...props }: DialogContentProps) {
+  return (
+    <DialogContentBase
+      className={cn(dialogContentVariants({ size }), className)}
+      {...props}
+    />
+  )
+}
+
+interface DialogHeaderProps extends React.ComponentProps<"div"> {
+  /** Lucide icon in an `BYBIconTile` on the left, in one row with the title. */
+  icon?: React.ReactNode
+  /** BYBIconTile colour. Default `mint`; use `error` for destructive confirms. */
+  iconTone?: BYBIconTileTone
+}
+
+/** Stock `DialogHeader` plus an optional icon tile in one row with the title. */
+function DialogHeader({
+  className,
+  icon,
+  iconTone = "mint",
+  children,
+  ...props
+}: DialogHeaderProps) {
+  return (
+    <DialogHeaderBase
+      data-with-icon={icon ? "" : undefined}
+      className={cn(
+        // With an icon: icon + title share the first row; the description and
+        // anything else wrap below at full width.
+        icon &&
+          "flex-row flex-wrap items-center gap-3 pe-0 *:data-[slot=dialog-title]:min-w-0 *:data-[slot=dialog-title]:flex-1 *:data-[slot=dialog-title]:pe-10 *:not-first:not-data-[slot=dialog-title]:basis-full",
+        className
+      )}
+      {...props}
+    >
+      {icon && <BYBIconTile tone={iconTone} size="md" icon={icon} />}
+      {children}
+    </DialogHeaderBase>
+  )
+}
+
+/**
+ * Main content area. Scrolls on its own when content is long; the top / bottom
+ * edges fade only while there is more to scroll to (`scroll-fade-y`).
+ */
+function DialogBody({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="dialog-body"
+      className={cn("-mx-6 min-h-0 flex-1 overflow-y-auto px-6 scroll-fade-y scroll-fade-6", className)}
+      {...props}
+    />
+  )
+}
+
+interface DialogCollapsibleProps
+  extends Omit<CollapsiblePrimitive.Root.Props, "children"> {
+  /**
+   * `view-more`: content first, then a "View more / View less" text toggle.
+   * `dropdown`: a full-width disclosure row with a chevron above the content.
+   */
+  variant?: "view-more" | "dropdown"
+  /** Label for the dropdown row, or the collapsed "View more" text. */
+  label?: React.ReactNode
+  /** Expanded text for `view-more`. Default "View less". */
+  lessLabel?: React.ReactNode
+  /** `view-more` only: always-visible content above the hidden part. */
+  preview?: React.ReactNode
+  children?: React.ReactNode
+  className?: string
+}
+
+/**
+ * Collapsible section inside dialog content: extra details, terms, or a
+ * secondary list that most people don't need to read.
+ */
+function DialogCollapsible({
+  variant = "view-more",
+  label,
+  lessLabel = "View less",
+  preview,
+  children,
+  className,
+  ...props
+}: DialogCollapsibleProps) {
+  const [open, setOpen] = React.useState(props.defaultOpen ?? false)
+  const isOpen = props.open ?? open
+
+  return (
+    <CollapsiblePrimitive.Root
+      data-slot="dialog-collapsible"
+      data-variant={variant}
+      {...props}
+      onOpenChange={(next, details) => {
+        setOpen(next)
+        props.onOpenChange?.(next, details)
+      }}
+      className={cn(
+        "flex flex-col",
+        variant === "dropdown" && "rounded-lg border border-light-l3",
+        className
+      )}
+    >
+      {variant === "dropdown" ? (
+        <>
+          <CollapsiblePrimitive.Trigger className="group/dc flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg px-4 py-3 text-start text-body-5 font-semibold text-navy outline-none hover:text-mint-75 focus-visible:ring-2 focus-visible:ring-mint-45">
+            {label ?? "Details"}
+            <ChevronDown className="size-4 shrink-0 text-dark-75 transition-transform group-data-panel-open/dc:rotate-180" />
+          </CollapsiblePrimitive.Trigger>
+          <CollapsiblePrimitive.Panel className="border-t border-light-l3 px-4 py-3 text-body-5 text-dark-90">
+            {children}
+          </CollapsiblePrimitive.Panel>
+        </>
+      ) : (
+        <>
+          {preview && <div className="text-body-5 text-dark-90">{preview}</div>}
+          <CollapsiblePrimitive.Panel className="text-body-5 text-dark-90">
+            {children}
+          </CollapsiblePrimitive.Panel>
+          <CollapsiblePrimitive.Trigger className="group/dc mt-2 inline-flex w-fit cursor-pointer items-center gap-1 rounded-sm text-body-5 font-semibold text-mint-75 outline-none hover:text-mint-45 focus-visible:ring-2 focus-visible:ring-mint-45">
+            {isOpen ? lessLabel : (label ?? "View more")}
+            <ChevronDown className="size-4 transition-transform group-data-panel-open/dc:rotate-180" />
+          </CollapsiblePrimitive.Trigger>
+        </>
+      )}
+    </CollapsiblePrimitive.Root>
+  )
+}
+
+export {
+  DialogBody,
+  DialogCollapsible,
+  DialogContent,
+  DialogHeader,
+  dialogContentVariants,
+}
+export type { DialogHeaderProps, DialogCollapsibleProps }

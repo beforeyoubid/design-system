@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Badge } from '../../components/ui/badge'
-import { Button } from '../../components/ui/button'
+import { Badge } from '../../components/badge'
+import { Button } from '../../components/button'
 import { Spinner } from '../../components/ui/spinner'
 
 const meta: Meta<typeof Spinner> = {

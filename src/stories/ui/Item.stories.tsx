@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { IconChevronRight, IconFileText } from '@tabler/icons-react'
-import { Button } from '../../components/ui/button'
+import { Button } from '../../components/button'
 import {
   Item,
   ItemActions,

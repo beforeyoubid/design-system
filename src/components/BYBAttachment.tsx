@@ -12,9 +12,9 @@ import {
 } from "@tabler/icons-react"
 
 import { cn } from "../lib/utils"
-import { ConfirmDialog } from "./ui/dialog"
+import { ConfirmDialog } from "./confirm-dialog"
 import { ProgressIndicator, ProgressTrack } from "./ui/progress"
-import { toast } from "./ui/toast"
+import { toast } from "./toast"
 import { BYBSpinner } from "./BYBSpinner"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 

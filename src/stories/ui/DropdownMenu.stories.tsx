@@ -11,9 +11,9 @@ import {
   IconUser,
 } from '@tabler/icons-react'
 import { ArrowUpRight, FileText, Gavel, Home, Link, Send, ShieldCheck } from 'lucide-react'
-import { Button } from '../../components/ui/button'
-import { ConfirmDialog } from '../../components/ui/dialog'
-import { Toaster, toast } from '../../components/ui/toast'
+import { Button } from '../../components/button'
+import { ConfirmDialog } from '../../components/confirm-dialog'
+import { Toaster, toast } from '../../components/toast'
 import { productBadges, type ProductBadgeKey } from '../../lib/product-badges'
 import {
   DropdownMenu,
@@ -35,8 +35,8 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-  ProductSwitcher,
-} from '../../components/ui/dropdown-menu'
+} from '../../components/dropdown-menu'
+import { ProductSwitcher } from '../../components/product-switcher'
 
 const meta: Meta<typeof DropdownMenu> = {
   title: 'BYB Components/DropdownMenu',

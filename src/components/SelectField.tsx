@@ -15,7 +15,7 @@ import {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
-} from "./ui/select"
+} from "./select"
 
 /**
  * One option. `start`, `meta` and `chip` take any node, so new kinds of

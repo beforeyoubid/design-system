@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { CalendarCheck, CircleCheck, Clock, X } from 'lucide-react'
-import { Badge, type BadgeCategory, type BadgeProduct } from '../../components/ui/badge'
+import { Badge, type BadgeCategory, type BadgeProduct } from '../../components/badge'
 
 const meta: Meta<typeof Badge> = {
   title: 'BYB Components/Badge',

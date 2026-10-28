@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { CircleAlert, FileText, Receipt, TriangleAlert, Users } from 'lucide-react'
-import { Card, CardAction, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../../components/ui/card'
-import { Button } from '../../components/ui/button'
+import { Card, CardAction, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../../components/card'
+import { Button } from '../../components/button'
 
 const meta: Meta<typeof Card> = {
   title: 'BYB Components/Card',

@@ -13,11 +13,11 @@ import {
   IconShare,
   IconTrash,
 } from '@tabler/icons-react'
-import { Badge } from '../../components/ui/badge'
-import { Button } from '../../components/ui/button'
-import { Checkbox } from '../../components/ui/checkbox'
-import { ConfirmDialog } from '../../components/ui/dialog'
-import { Toaster, toast } from '../../components/ui/toast'
+import { Badge } from '../../components/badge'
+import { Button } from '../../components/button'
+import { Checkbox } from '../../components/checkbox'
+import { ConfirmDialog } from '../../components/confirm-dialog'
+import { Toaster, toast } from '../../components/toast'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -26,12 +26,12 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '../../components/ui/dropdown-menu'
+} from '../../components/dropdown-menu'
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from '../../components/ui/input-group'
+} from '../../components/input-group'
 import {
   Table,
   TableBody,
@@ -46,14 +46,14 @@ import {
   TableRow,
   TableViewMore,
   type SortDirection,
-} from '../../components/ui/table'
+} from '../../components/table'
 import {
   EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from '../../components/ui/empty'
+} from '../../components/empty'
 
 const meta: Meta<typeof Table> = {
   title: 'BYB Components/Table',

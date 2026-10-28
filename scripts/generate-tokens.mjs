@@ -10,7 +10,7 @@
  * Reads:
  *   - colour primitives in :root   (`--mint-45: oklch(…); /* #00AE95 *\/`)
  *   - product badge aliases        (`--badge-product-bpi: var(--category-01);`)
- *   - text styles in @theme inline (`--text-h1`, `--text-h1--line-height`, …)
+ *   - text styles in :root        (`--text-h1`, `--text-h1--line-height`, …)
  *   - letter-spacing / uppercase   (the `.text-*` rules in utilities.css)
  */
 import fs from 'node:fs'
@@ -84,9 +84,9 @@ for (const [, selectors, body] of utilities.matchAll(/((?:\s*\.text-[\w-]+\s*,?)
 }
 
 const typography = {}
-for (const [, name, fontSize] of themeBlock.matchAll(/^\s*--text-([\w-]+?):\s*([^;]+);/gm)) {
+for (const [, name, fontSize] of rootBlock.matchAll(/^\s*--text-([\w-]+?):\s*([^;]+);/gm)) {
   if (name.includes('--')) continue
-  const prop = (suffix) => themeBlock.match(new RegExp(`^\\s*--text-${name}--${suffix}:\\s*([^;]+);`, 'm'))?.[1].trim()
+  const prop = (suffix) => rootBlock.match(new RegExp(`^\\s*--text-${name}--${suffix}:\\s*([^;]+);`, 'm'))?.[1].trim()
   const rule = textRules[name] ?? {}
   typography[toCamel(name)] = {
     fontSize: fontSize.trim(),

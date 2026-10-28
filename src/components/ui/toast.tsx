@@ -1,13 +1,7 @@
-import * as React from "react"
-import {
-  Toast as ToastPrimitive,
-  type ToastManagerAddOptions,
-  type ToastManagerUpdateOptions,
-  type ToastObject,
-} from "@base-ui/react/toast"
-import { cva } from "class-variance-authority"
-import { cn } from "@/lib/utils"
+"use client"
 
+import * as React from "react"
+import { Toast as ToastPrimitive } from "@base-ui/react/toast"
 import {
   IconX,
   IconCheck,
@@ -17,122 +11,9 @@ import {
   IconLoader2,
 } from "@tabler/icons-react"
 
-/** BYB toast types. Untyped toasts render as `default`. */
-type ToastType = "success" | "info" | "warning" | "error" | "default"
+import { cn } from "@/lib/utils"
 
-/** Colour of an in-flight `loading` toast, set via `data.pendingType`. */
-type ToastPendingType = "info" | "warning" | "error"
-
-interface ToastData {
-  /** `error` red for deleting, `warning` amber for risky changes, `info` light mint (default). */
-  pendingType?: ToastPendingType
-}
-
-/**
- * Auto-dismiss delay per type (ms). `0` = stays until closed.
- * success 5s · warning 8s · error stays · info / default 5s.
- */
-const TOAST_TIMEOUTS: Record<ToastType, number> = {
-  success: 5000,
-  warning: 8000,
-  error: 0,
-  info: 5000,
-  default: 5000,
-}
-
-/** The toast surface: tint fill, type-coloured title / icon / ×. */
-const toastVariants = cva("", {
-  variants: {
-    type: {
-      success: "bg-mint-l3 text-mint-60",
-      warning: "bg-warning-l3 text-warning-60",
-      error: "bg-error-l1 text-error-60",
-      info: "bg-mint-l4 text-mint-75",
-      default: "bg-light-l2 text-navy",
-    },
-  },
-  defaultVariants: { type: "default" },
-})
-
-/** The type a toast is painted with: a `loading` toast takes its `pendingType`. */
-function getToastType(
-  toast: Pick<ToastPrimitive.Root.ToastObject<ToastData>, "type" | "data">
-): ToastType {
-  if (toast.type === "loading") return toast.data?.pendingType ?? "info"
-  return toast.type && toast.type in TOAST_TIMEOUTS
-    ? (toast.type as ToastType)
-    : "default"
-}
-
-type ToastOptions = ToastManagerUpdateOptions<ToastData>
-
-/** Fill in the type's timeout and announcement priority unless the caller set them. */
-function withTypeDefaults<O extends ToastOptions>(options: O): O {
-  const type = getToastType(options)
-  return {
-    ...options,
-    timeout: options.timeout ?? TOAST_TIMEOUTS[type],
-    priority: options.priority ?? (type === "error" ? "high" : "low"),
-  }
-}
-
-type PromiseStage<Value> =
-  | string
-  | ToastOptions
-  | ((value: Value) => string | ToastOptions)
-
-/** A string stage becomes the toast title (Base UI would make it the description). */
-function toStageOptions<Value>(stage: PromiseStage<Value>, value: Value) {
-  const resolved = typeof stage === "function" ? stage(value) : stage
-  return typeof resolved === "string" ? { title: resolved } : resolved
-}
-
-/**
- * Base UI's toast manager with BYB defaults: each type's timeout, and
- * `promise` stages that read as titles. `promise` takes `data.pendingType`
- * on the loading stage for its colour.
- */
-function createToastManager() {
-  const manager = ToastPrimitive.createToastManager<ToastData>()
-  return {
-    ...manager,
-    add: (options: ToastManagerAddOptions<ToastData>) =>
-      manager.add(withTypeDefaults(options)),
-    update: <T extends ToastData = ToastData>(
-      id: string,
-      updates:
-        | ToastManagerUpdateOptions<T>
-        | ((prevToast: ToastObject<T>) => ToastManagerUpdateOptions<T>)
-    ) => {
-      const retype = (next: ToastManagerUpdateOptions<T>) =>
-        next.type ? withTypeDefaults(next) : next
-      manager.update<T>(
-        id,
-        typeof updates === "function"
-          ? (prevToast) => retype(updates(prevToast))
-          : retype(updates)
-      )
-    },
-    promise: <Value,>(
-      promise: Promise<Value>,
-      stages: {
-        loading: string | ToastOptions
-        success: PromiseStage<Value>
-        error: PromiseStage<unknown>
-      }
-    ) =>
-      manager.promise(promise, {
-        loading: toStageOptions(stages.loading, undefined),
-        success: (value: Value) =>
-          withTypeDefaults({ ...toStageOptions(stages.success, value), type: "success" }),
-        error: (error: unknown) =>
-          withTypeDefaults({ ...toStageOptions(stages.error, error), type: "error" }),
-      }),
-  }
-}
-
-/** The app-wide manager `<Toaster />` listens to by default. */
-const toast = createToastManager()
+const toast = ToastPrimitive.createToastManager()
 
 function ToastProvider({ ...props }: ToastPrimitive.Provider.Props) {
   return <ToastPrimitive.Provider {...props} />
@@ -156,16 +37,13 @@ function ToastViewport({ className, ...props }: ToastPrimitive.Viewport.Props) {
   )
 }
 
-function Toast({ className, toast, ...props }: ToastPrimitive.Root.Props) {
-  const type = getToastType(toast)
+function Toast({ className, ...props }: ToastPrimitive.Root.Props) {
   return (
     <ToastPrimitive.Root
       data-slot="toast"
-      data-type={type}
-      toast={toast}
       className={cn(
         "group/toast pointer-events-auto absolute end-0 bottom-0 z-[calc(1000-var(--toast-index))] w-full origin-bottom rounded-2xl font-sans will-change-transform outline-none select-none focus-visible:ring-[3px] focus-visible:ring-ring/50",
-        toastVariants({ type }),
+        "bg-light-l2 text-navy",
         "[--gap:0.75rem] [--height:var(--toast-frontmost-height,var(--toast-height))] [--offset-y:calc(var(--toast-offset-y)*-1+calc(var(--toast-index)*var(--gap)*-1)+var(--toast-swipe-movement-y))] [--peek:0.75rem] [--scale:calc(max(0,1-(var(--toast-index)*0.1)))] [--shrink:calc(1-var(--scale))]",
         "h-(--height) [transform:translateX(var(--toast-swipe-movement-x))_translateY(calc(var(--toast-swipe-movement-y)-(var(--toast-index)*var(--peek))-(var(--shrink)*var(--height))))_scale(var(--scale))] [transition:transform_500ms_cubic-bezier(0.22,1,0.36,1),opacity_500ms,height_150ms]",
         "after:absolute after:top-full after:start-0 after:h-[calc(var(--gap)+1px)] after:w-full after:content-['']",
@@ -267,12 +145,12 @@ const TOAST_ICONS = {
   default: IconBell,
 } as const
 
-/** 32px white circle with a type-coloured border; a spinner while loading. */
+/** 32px white circle with a coloured border; a spinner while loading. */
 function ToastIcon({ type }: { type: string | undefined }) {
   const Icon =
     type === "loading"
       ? IconLoader2
-      : TOAST_ICONS[(type ?? "default") as ToastType] ?? IconBell
+      : TOAST_ICONS[(type ?? "default") as keyof typeof TOAST_ICONS] ?? IconBell
 
   return (
     <span
@@ -288,7 +166,7 @@ function ToastIcon({ type }: { type: string | undefined }) {
 }
 
 function ToastList() {
-  const { toasts, close } = ToastPrimitive.useToastManager<ToastData>()
+  const { toasts, close } = ToastPrimitive.useToastManager()
 
   return toasts.map((toastItem) => (
     <Toast key={toastItem.id} toast={toastItem}>
@@ -315,10 +193,6 @@ function ToastList() {
   ))
 }
 
-/**
- * Mount once in the app root, then fire toasts with `toast.add`,
- * `toast.promise`, `toast.update` and `toast.close`.
- */
 function Toaster({
   children,
   toastManager = toast,
@@ -336,7 +210,8 @@ function Toaster({
   )
 }
 
-const useToastManager = ToastPrimitive.useToastManager<ToastData>
+const createToastManager = ToastPrimitive.createToastManager
+const useToastManager = ToastPrimitive.useToastManager
 
 export {
   Toaster,
@@ -351,8 +226,5 @@ export {
   ToastViewport,
   createToastManager,
   toast,
-  toastVariants,
   useToastManager,
-  TOAST_TIMEOUTS,
 }
-export type { ToastType, ToastPendingType, ToastData }

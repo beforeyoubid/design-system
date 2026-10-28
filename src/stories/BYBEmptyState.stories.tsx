@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { IconFolderOpen } from '@tabler/icons-react'
 import { BYBEmptyState } from '../components/BYBEmptyState'
-import { Button } from '../components/ui/button'
+import { Button } from '../components/button'
 
 const meta: Meta<typeof BYBEmptyState> = {
   title: 'BYB Components/BYBEmptyState',

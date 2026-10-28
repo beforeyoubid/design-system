@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { RadioGroup, RadioGroupItem } from '../../components/ui/radio-group'
+import { RadioGroup, RadioGroupItem } from '../../components/radio-group'
 
 const meta: Meta<typeof RadioGroup> = {
   title: 'BYB Components/RadioGroup',

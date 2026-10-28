@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { IconBuildingCommunity, IconUser } from '@tabler/icons-react'
-import { Button } from '../../components/ui/button'
+import { Button } from '../../components/button'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '../../components/ui/hover-card'
 
 const meta: Meta<typeof HoverCard> = {

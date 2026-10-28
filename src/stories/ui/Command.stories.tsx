@@ -9,7 +9,7 @@ import {
   IconSettings,
   IconUser,
 } from '@tabler/icons-react'
-import { Button } from '../../components/ui/button'
+import { Button } from '../../components/button'
 import {
   Command,
   CommandDialog,

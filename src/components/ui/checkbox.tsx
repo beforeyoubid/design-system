@@ -1,49 +1,12 @@
 "use client"
 
-import * as React from "react"
 import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox"
-import { cva, type VariantProps } from "class-variance-authority"
-
-import { cn } from "@/lib/utils"
 import { IconCheck } from "@tabler/icons-react"
 
-const checkboxFieldVariants = cva(
-  "group/checkbox-field flex cursor-pointer items-start gap-2.5 has-data-disabled:cursor-not-allowed has-data-disabled:opacity-50",
-  {
-    variants: {
-      variant: {
-        default: "",
-        card: "rounded-lg border border-dark-45 bg-white px-4 py-3.5 transition-colors has-data-checked:border-mint-45 has-data-checked:bg-mint-l4",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-)
+import { cn } from "@/lib/utils"
 
-export interface CheckboxProps
-  extends CheckboxPrimitive.Root.Props,
-    VariantProps<typeof checkboxFieldVariants> {
-  /** Optional label. When provided (or `description`), the control is wrapped in a `<label>`. */
-  label?: React.ReactNode
-  /** Optional helper text rendered under the label. */
-  description?: React.ReactNode
-  /** className for the wrapping `<label>` (only used when `label`/`description` is set). */
-  wrapperClassName?: string
-}
-
-function Checkbox({
-  className,
-  label,
-  description,
-  variant,
-  wrapperClassName,
-  ...props
-}: CheckboxProps) {
-  const hasText = label != null || description != null
-
-  const control = (
+function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
+  return (
     <CheckboxPrimitive.Root
       data-slot="checkbox"
       className={cn(
@@ -52,7 +15,6 @@ function Checkbox({
         "data-checked:border-mint-45 data-checked:bg-mint-45",
         "aria-invalid:border-error-75 aria-invalid:ring-3 aria-invalid:ring-error-75/20 aria-invalid:data-checked:border-mint-45",
         "disabled:cursor-not-allowed disabled:opacity-50 data-disabled:cursor-not-allowed data-disabled:opacity-50",
-        hasText && "mt-px data-disabled:opacity-100",
         className
       )}
       {...props}
@@ -65,36 +27,6 @@ function Checkbox({
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   )
-
-  if (!hasText) return control
-
-  return (
-    <label
-      data-slot="checkbox-field"
-      data-variant={variant ?? "default"}
-      className={cn(checkboxFieldVariants({ variant }), wrapperClassName)}
-    >
-      {control}
-      <span className="flex min-w-0 flex-col gap-1">
-        {label != null && (
-          <span
-            data-slot="checkbox-label"
-            className="text-body-5 leading-tight font-semibold text-navy"
-          >
-            {label}
-          </span>
-        )}
-        {description != null && (
-          <span
-            data-slot="checkbox-description"
-            className="text-body-5 text-dark-75"
-          >
-            {description}
-          </span>
-        )}
-      </span>
-    </label>
-  )
 }
 
-export { Checkbox, checkboxFieldVariants }
+export { Checkbox }

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { IconSelector } from '@tabler/icons-react'
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '../../components/ui/collapsible'
-import { Button } from '../../components/ui/button'
+import { Button } from '../../components/button'
 
 const meta: Meta<typeof Collapsible> = {
   title: 'BYB Components/Collapsible',

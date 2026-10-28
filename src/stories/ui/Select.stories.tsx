@@ -9,7 +9,7 @@ import {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
-} from '../../components/ui/select'
+} from '../../components/select'
 import { FileText, ShieldCheck, Waves } from 'lucide-react'
 import { SelectField, productSelectOptions } from '../../components/SelectField'
 import { BYBColorDot } from '../../components/BYBColorDot'

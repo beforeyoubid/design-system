@@ -14,7 +14,7 @@ import {
   InputGroupInput,
   InputGroupText,
   InputGroupTextarea,
-} from '../../components/ui/input-group'
+} from '../../components/input-group'
 import { BYBSpinner } from '../../components/BYBSpinner'
 
 const meta: Meta<typeof InputGroup> = {

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/ui/accordion'
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/accordion'
 
 const meta: Meta<typeof Accordion> = {
   title: 'BYB Components/Accordion',

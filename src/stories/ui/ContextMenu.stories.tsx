@@ -1,8 +1,8 @@
 import * as React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { IconTrash } from '@tabler/icons-react'
-import { ConfirmDialog } from '../../components/ui/dialog'
-import { Toaster, toast } from '../../components/ui/toast'
+import { ConfirmDialog } from '../../components/confirm-dialog'
+import { Toaster, toast } from '../../components/toast'
 import {
   ContextMenu,
   ContextMenuContent,
