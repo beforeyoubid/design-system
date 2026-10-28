@@ -1,0 +1,84 @@
+/* Item — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --item-group-gap: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/item.tsx follow from these names. */
+
+[data-slot="item-group"] {
+  /* Gap between items of the group. */
+  --_item-group-gap: var(--item-group-gap, calc(var(--spacing) * 4));
+}
+
+[data-slot="item"] {
+  /* @alias md = size.default */
+  /* Corner radius of the item. */
+  --_item-radius: var(--item-radius, var(--radius-2xl));
+  /* Border colour of the item when focused. */
+  --_item-focus-border: var(--item-focus-border, var(--ring));
+  /* Ring colour of the item when focused. */
+  --_item-focus-ring: var(--item-focus-ring, color-mix(in oklab, var(--ring) 50%, transparent));
+  /* Border colour of the item (outline variant). */
+  --_item-outline-border: var(--item-outline-border, var(--border));
+  /* Fill colour of the item (muted variant). */
+  --_item-muted: var(--item-muted, color-mix(in oklab, var(--muted) 50%, transparent));
+  /* Gap between items of the item (md size). */
+  --_item-md-gap: var(--item-md-gap, calc(var(--spacing) * 3.5));
+  /* Horizontal padding of the item (md size). */
+  --_item-md-padding-x: var(--item-md-padding-x, calc(var(--spacing) * 4));
+  /* Vertical padding of the item (md size). */
+  --_item-md-padding-y: var(--item-md-padding-y, calc(var(--spacing) * 3.5));
+  /* Gap between items of the item (sm size). */
+  --_item-sm-gap: var(--item-sm-gap, calc(var(--spacing) * 3.5));
+  /* Horizontal padding of the item (sm size). */
+  --_item-sm-padding-x: var(--item-sm-padding-x, calc(var(--spacing) * 3.5));
+  /* Vertical padding of the item (sm size). */
+  --_item-sm-padding-y: var(--item-sm-padding-y, calc(var(--spacing) * 3));
+  /* Gap between items of the item (xs size). */
+  --_item-xs-gap: var(--item-xs-gap, calc(var(--spacing) * 2.5));
+  /* Horizontal padding of the item (xs size). */
+  --_item-xs-padding-x: var(--item-xs-padding-x, calc(var(--spacing) * 3));
+  /* Vertical padding of the item (xs size). */
+  --_item-xs-padding-y: var(--item-xs-padding-y, calc(var(--spacing) * 2.5));
+}
+
+[data-slot="item-media"] {
+  /* Gap between items of the media. */
+  --_item-media-gap: var(--item-media-gap, calc(var(--spacing) * 2));
+  /* Width and height of the media (image variant). */
+  --_item-media-image-size: var(--item-media-image-size, calc(var(--spacing) * 10));
+  /* Corner radius of the media (image variant). */
+  --_item-media-image-radius: var(--item-media-image-radius, var(--radius-lg));
+}
+
+[data-slot="item-content"] {
+  /* Gap between items of the content. */
+  --_item-content-gap: var(--item-content-gap, calc(var(--spacing) * 1));
+}
+
+[data-slot="item-title"] {
+  /* Gap between items of the title. */
+  --_item-title-gap: var(--item-title-gap, calc(var(--spacing) * 2));
+  /* Font weight of the title. */
+  --_item-title-font-weight: var(--item-title-font-weight, 500);
+}
+
+[data-slot="item-description"] {
+  /* Font weight of the description. */
+  --_item-description-font-weight: var(--item-description-font-weight, 400);
+  /* Text colour of the description. */
+  --_item-description-foreground: var(--item-description-foreground, var(--muted-foreground));
+}
+
+[data-slot="item-actions"] {
+  /* Gap between items of the actions. */
+  --_item-actions-gap: var(--item-actions-gap, calc(var(--spacing) * 2));
+}
+
+[data-slot="item-header"] {
+  /* Gap between items of the header. */
+  --_item-header-gap: var(--item-header-gap, calc(var(--spacing) * 2));
+}
+
+[data-slot="item-footer"] {
+  /* Gap between items of the footer. */
+  --_item-footer-gap: var(--item-footer-gap, calc(var(--spacing) * 2));
+}

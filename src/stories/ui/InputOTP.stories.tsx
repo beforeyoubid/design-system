@@ -4,7 +4,7 @@ import {
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from '../../components/ui/input-otp'
+} from '../../components/input-otp'
 
 const meta: Meta<typeof InputOTP> = {
   title: 'BYB Components/InputOTP',

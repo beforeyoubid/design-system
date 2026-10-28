@@ -21,7 +21,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select"
+} from "./select"
 import {
   CHART_GRID_STROKE,
   BYB_CHART_PALETTE,

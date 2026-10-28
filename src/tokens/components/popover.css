@@ -1,0 +1,42 @@
+/* Popover — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --popover-content-width: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/popover.tsx follow from these names. */
+
+[data-slot="popover-content"] {
+  /* @remove ring-1 ring-foreground/5 */
+  /* @add border text-body-5 */
+  /* Width of the content. */
+  --_popover-content-width: var(--popover-content-width, calc(var(--spacing) * 72));
+  /* Gap between items of the content. */
+  --_popover-content-gap: var(--popover-content-gap, calc(var(--spacing) * 4));
+  /* Corner radius of the content. */
+  --_popover-content-radius: var(--popover-content-radius, var(--radius-2xl));
+  /* Border colour of the content. */
+  --_popover-content-border: var(--popover-content-border, var(--border));
+  /* Fill colour of the content. */
+  --_popover-content: var(--popover-content, var(--popover));
+  /* Padding of the content. */
+  --_popover-content-padding: var(--popover-content-padding, calc(var(--spacing) * 4));
+  /* Text colour of the content. */
+  --_popover-content-foreground: var(--popover-content-foreground, var(--popover-foreground));
+  /* Shadow of the content. */
+  --_popover-content-shadow: var(--popover-content-shadow, 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1));
+}
+
+[data-slot="popover-header"] {
+  /* @add text-body-5 */
+  /* Gap between items of the header. */
+  --_popover-header-gap: var(--popover-header-gap, calc(var(--spacing) * 1));
+}
+
+[data-slot="popover-title"] {
+  /* @add text-body-4 */
+  /* Font weight of the title. */
+  --_popover-title-font-weight: var(--popover-title-font-weight, 500);
+}
+
+[data-slot="popover-description"] {
+  /* Text colour of the description. */
+  --_popover-description-foreground: var(--popover-description-foreground, var(--muted-foreground));
+}

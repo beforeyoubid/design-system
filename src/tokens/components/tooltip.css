@@ -1,0 +1,20 @@
+/* Tooltip — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --tooltip-content-gap: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/tooltip.tsx follow from these names. */
+
+[data-slot="tooltip-content"] {
+  /* @add text-body-4 **:data-[slot=kbd]:rounded-sm */
+  /* Gap between items of the content. */
+  --_tooltip-content-gap: var(--tooltip-content-gap, calc(var(--spacing) * 1.5));
+  /* Corner radius of the content. */
+  --_tooltip-content-radius: var(--tooltip-content-radius, var(--radius-xl));
+  /* Fill colour of the content. */
+  --_tooltip-content: var(--tooltip-content, var(--navy));
+  /* Horizontal padding of the content. */
+  --_tooltip-content-padding-x: var(--tooltip-content-padding-x, calc(var(--spacing) * 4));
+  /* Vertical padding of the content. */
+  --_tooltip-content-padding-y: var(--tooltip-content-padding-y, calc(var(--spacing) * 2));
+  /* Text colour of the content. */
+  --_tooltip-content-foreground: var(--tooltip-content-foreground, var(--white));
+}

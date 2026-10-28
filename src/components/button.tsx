@@ -84,7 +84,10 @@ function resolveButtonVariant(
       className: bybButtonVariants({ variant }),
     }
   }
-  return { variant: STOCK_VARIANT[variant], size: stockSize, className: undefined }
+  // Links sit inline with text, so they drop the button padding (stock has no
+  // compound variants; this was one in 1.x).
+  const className = variant === "link" ? "px-1" : undefined
+  return { variant: STOCK_VARIANT[variant], size: stockSize, className }
 }
 
 type ButtonVariantsProps = {

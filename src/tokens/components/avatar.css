@@ -1,0 +1,52 @@
+/* Avatar — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --avatar-size: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/avatar.tsx follow from these names. */
+
+[data-slot="avatar"] {
+  /* Width and height of the avatar. */
+  --_avatar-size: var(--avatar-size, calc(var(--spacing) * 8));
+  /* Corner radius of the avatar. */
+  --_avatar-radius: var(--avatar-radius, var(--radius-full));
+}
+
+[data-slot="avatar-image"] {
+  /* Corner radius of the image. */
+  --_avatar-image-radius: var(--avatar-image-radius, var(--radius-full));
+}
+
+[data-slot="avatar-fallback"] {
+  /* @add text-body-5 group-data-[size=sm]/avatar:text-caption-2 */
+  /* Corner radius of the fallback. */
+  --_avatar-fallback-radius: var(--avatar-fallback-radius, var(--radius-full));
+  /* Fill colour of the fallback. */
+  --_avatar-fallback: var(--avatar-fallback, var(--muted));
+  /* Text colour of the fallback. */
+  --_avatar-fallback-foreground: var(--avatar-fallback-foreground, var(--muted-foreground));
+}
+
+[data-slot="avatar-badge"] {
+  /* @add group-data-[size=sm]/avatar:size-2 group-data-[size=sm]/avatar:[&>svg]:hidden group-data-[size=default]/avatar:size-2.5 group-data-[size=default]/avatar:[&>svg]:size-2 group-data-[size=lg]/avatar:size-3 group-data-[size=lg]/avatar:[&>svg]:size-2 */
+  /* Corner radius of the badge. */
+  --_avatar-badge-radius: var(--avatar-badge-radius, var(--radius-full));
+  /* Fill colour of the badge. */
+  --_avatar-badge: var(--avatar-badge, var(--primary));
+  /* Text colour of the badge. */
+  --_avatar-badge-foreground: var(--avatar-badge-foreground, var(--primary-foreground));
+  /* Ring colour of the badge. */
+  --_avatar-badge-ring: var(--avatar-badge-ring, var(--background));
+}
+
+[data-slot="avatar-group-count"] {
+  /* @add text-body-5 */
+  /* Width and height of the group-count. */
+  --_avatar-group-count-size: var(--avatar-group-count-size, calc(var(--spacing) * 8));
+  /* Corner radius of the group-count. */
+  --_avatar-group-count-radius: var(--avatar-group-count-radius, var(--radius-full));
+  /* Fill colour of the group-count. */
+  --_avatar-group-count: var(--avatar-group-count, var(--muted));
+  /* Text colour of the group-count. */
+  --_avatar-group-count-foreground: var(--avatar-group-count-foreground, var(--muted-foreground));
+  /* Ring colour of the group-count. */
+  --_avatar-group-count-ring: var(--avatar-group-count-ring, var(--background));
+}

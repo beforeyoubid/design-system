@@ -70,9 +70,9 @@ const radioItemFieldVariants = cva(
 const radioControlVariants = cva("", {
   variants: {
     size: {
-      sm: "size-3.5 [&_[data-slot=radio-group-dot]]:size-1.5",
-      md: "size-4 [&_[data-slot=radio-group-dot]]:size-2",
-      lg: "size-5 [&_[data-slot=radio-group-dot]]:size-2.5",
+      sm: "size-3.5 [&_[data-slot=radio-group-indicator]>span]:size-1.5",
+      md: "size-4 [&_[data-slot=radio-group-indicator]>span]:size-2",
+      lg: "size-5 [&_[data-slot=radio-group-indicator]>span]:size-2.5",
     },
   },
   defaultVariants: { size: "md" },

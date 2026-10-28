@@ -1,0 +1,35 @@
+/* Progress — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --progress-gap: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/progress.tsx follow from these names. */
+
+[data-slot="progress"] {
+  /* Gap between items of the progress. */
+  --_progress-gap: var(--progress-gap, calc(var(--spacing) * 3));
+}
+
+[data-slot="progress-track"] {
+  /* Height of the track. */
+  --_progress-track-height: var(--progress-track-height, calc(var(--spacing) * 2));
+  /* Corner radius of the track. */
+  --_progress-track-radius: var(--progress-track-radius, var(--radius-full));
+  /* Fill colour of the track. */
+  --_progress-track: var(--progress-track, var(--dark-15));
+}
+
+[data-slot="progress-indicator"] {
+  /* Fill colour of the indicator. */
+  --_progress-indicator: var(--progress-indicator, var(--primary));
+}
+
+[data-slot="progress-label"] {
+  /* @add text-body-5 */
+  /* Font weight of the label. */
+  --_progress-label-font-weight: var(--progress-label-font-weight, 500);
+}
+
+[data-slot="progress-value"] {
+  /* @add text-body-5 */
+  /* Text colour of the value. */
+  --_progress-value-foreground: var(--progress-value-foreground, var(--muted-foreground));
+}

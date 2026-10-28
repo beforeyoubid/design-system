@@ -1,0 +1,22 @@
+/* Button Group — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --button-group-text-gap: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/button-group.tsx follow from these names. */
+
+[data-slot="button-group-text"] {
+  /* Gap between items of the text. */
+  --_button-group-text-gap: var(--button-group-text-gap, calc(var(--spacing) * 2));
+  /* Corner radius of the text. */
+  --_button-group-text-radius: var(--button-group-text-radius, var(--radius-4xl));
+  /* Fill colour of the text. */
+  --_button-group-text: var(--button-group-text, var(--muted));
+  /* Horizontal padding of the text. */
+  --_button-group-text-padding-x: var(--button-group-text-padding-x, calc(var(--spacing) * 2.5));
+  /* Font weight of the text. */
+  --_button-group-text-font-weight: var(--button-group-text-font-weight, 500);
+}
+
+[data-slot="button-group-separator"] {
+  /* Fill colour of the separator. */
+  --_button-group-separator: var(--button-group-separator, var(--input));
+}

@@ -1,0 +1,35 @@
+/* Input — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --input-radius: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/input.tsx follow from these names. */
+
+[data-slot="input"] {
+  /* @remove disabled:pointer-events-none disabled:opacity-50 aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 md:text-sm */
+  /* @add text-body-5 transition focus-visible:ring-3 aria-invalid:focus-visible:border-error-75 aria-invalid:focus-visible:ring-error-75/20 file:text-body-5 file:text-dark-100 */
+  /* Corner radius of the input. */
+  --_input-radius: var(--input-radius, var(--radius-lg));
+  /* Border colour of the input. */
+  --_input-border: var(--input-border, var(--dark-45));
+  /* Fill colour of the input. */
+  --_input-fill: var(--input-fill, var(--white));
+  /* Horizontal padding of the input. */
+  --_input-padding-x: var(--input-padding-x, calc(var(--spacing) * 3));
+  /* Text colour of the input. */
+  --_input-foreground: var(--input-foreground, var(--dark-100));
+  /* Placeholder text colour of the input. */
+  --_input-placeholder: var(--input-placeholder, var(--dark-90));
+  /* Border colour of the input when focused. */
+  --_input-focus-border: var(--input-focus-border, var(--mint-45));
+  /* Ring colour of the input when focused. */
+  --_input-focus-ring: var(--input-focus-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
+  /* Border colour of the input when invalid. */
+  --_input-invalid-border: var(--input-invalid-border, var(--error-75));
+  /* Fill colour of the input when disabled. */
+  --_input-disabled: var(--input-disabled, var(--light-l2));
+  /* Text colour of the input when disabled. */
+  --_input-disabled-foreground: var(--input-disabled-foreground, var(--dark-45));
+  /* Height of the input. */
+  --_input-height: var(--input-height, calc(var(--spacing) * 10));
+  /* Vertical padding of the input. */
+  --_input-padding-y: var(--input-padding-y, calc(var(--spacing) * 1));
+}

@@ -1,0 +1,22 @@
+/* Scroll Area — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --scroll-area-viewport-focus-ring: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/scroll-area.tsx follow from these names. */
+
+[data-slot="scroll-area-viewport"] {
+  /* @add focus-visible:ring-3 */
+  /* Ring colour of the viewport when focused. */
+  --_scroll-area-viewport-focus-ring: var(--scroll-area-viewport-focus-ring, color-mix(in oklab, var(--ring) 50%, transparent));
+}
+
+[data-slot="scroll-area-scrollbar"] {
+  /* Padding of the scrollbar. */
+  --_scroll-area-scrollbar-padding: var(--scroll-area-scrollbar-padding, 1px);
+}
+
+[data-slot="scroll-area-thumb"] {
+  /* Corner radius of the thumb. */
+  --_scroll-area-thumb-radius: var(--scroll-area-thumb-radius, var(--radius-full));
+  /* Fill colour of the thumb. */
+  --_scroll-area-thumb: var(--scroll-area-thumb, var(--border));
+}

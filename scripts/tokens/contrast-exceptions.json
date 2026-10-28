@@ -1,0 +1,74 @@
+[
+ {
+  "foreground": "--_dropdown-menu-item-highlighted-foreground",
+  "fill": "--_dropdown-menu-item-highlighted",
+  "status": "undecided",
+  "note": "Menu highlight: mint-75 text on a mint-l2 fill is 4.33:1. Options: accept it, darken the text to mint-90 (7.53:1), or keep the paler mint-l3 fill (4.65:1)."
+ },
+ {
+  "foreground": "--_dropdown-menu-sub-trigger-highlighted-foreground",
+  "fill": "--_dropdown-menu-sub-trigger-highlighted",
+  "status": "undecided",
+  "note": "Menu highlight: mint-75 text on a mint-l2 fill is 4.33:1. Options: accept it, darken the text to mint-90 (7.53:1), or keep the paler mint-l3 fill (4.65:1)."
+ },
+ {
+  "foreground": "--_dropdown-menu-sub-trigger-open-foreground",
+  "fill": "--_dropdown-menu-sub-trigger-open",
+  "status": "undecided",
+  "note": "Menu highlight: mint-75 text on a mint-l2 fill is 4.33:1. Options: accept it, darken the text to mint-90 (7.53:1), or keep the paler mint-l3 fill (4.65:1)."
+ },
+ {
+  "foreground": "--_dropdown-menu-radio-item-checked-foreground",
+  "fill": "--_dropdown-menu-radio-item-checked",
+  "status": "undecided",
+  "note": "Menu highlight: mint-75 text on a mint-l2 fill is 4.33:1. Options: accept it, darken the text to mint-90 (7.53:1), or keep the paler mint-l3 fill (4.65:1)."
+ },
+ {
+  "foreground": "--_command-item-selected-foreground",
+  "fill": "--_command-item-selected",
+  "status": "undecided",
+  "note": "Menu highlight: mint-75 text on a mint-l2 fill is 4.33:1. Options: accept it, darken the text to mint-90 (7.53:1), or keep the paler mint-l3 fill (4.65:1)."
+ },
+ {
+  "foreground": "--_select-item-selected-foreground",
+  "fill": "--_select-item-selected",
+  "status": "undecided",
+  "note": "Menu highlight: mint-75 text on a mint-l2 fill is 4.33:1. Options: accept it, darken the text to mint-90 (7.53:1), or keep the paler mint-l3 fill (4.65:1)."
+ },
+ {
+  "foreground": "--_navigation-menu-link-active-foreground",
+  "fill": "--_navigation-menu-link-active",
+  "status": "undecided",
+  "note": "Menu highlight: mint-75 text on a mint-l2 fill is 4.33:1. Options: accept it, darken the text to mint-90 (7.53:1), or keep the paler mint-l3 fill (4.65:1)."
+ },
+ {
+  "foreground": "--_button-default-foreground",
+  "fill": "--_button-default",
+  "status": "undecided",
+  "note": "Primary button: white on mint-45 is 2.80:1. It's the brand button, so a change here changes the brand. Options: accept it for large uppercase text (it passes neither AA nor AA-large), or darken the fill."
+ },
+ {
+  "foreground": "--_avatar-badge-foreground",
+  "fill": "--_avatar-badge",
+  "status": "undecided",
+  "note": "Avatar badge: white on mint-45 is 2.80:1, the same pair as the primary button; decide them together."
+ },
+ {
+  "foreground": "--_button-outline-hover-foreground",
+  "fill": "--_button-outline-hover",
+  "status": "undecided",
+  "note": "Tertiary button on hover: white text on a dark-45 fill is 2.30:1. Options: a darker hover fill (dark-75), or keep dark text on hover."
+ },
+ {
+  "foreground": "--_checkbox-foreground",
+  "fill": "--_checkbox",
+  "status": "accepted",
+  "note": "The checkmark only shows when checked, on the checked fill; the resting fill never has text on it."
+ },
+ {
+  "foreground": "--_dropdown-menu-checkbox-item-indicator-foreground",
+  "fill": "--_dropdown-menu-checkbox-item-indicator",
+  "status": "accepted",
+  "note": "The indicator only shows when checked, on the checked fill."
+ }
+]

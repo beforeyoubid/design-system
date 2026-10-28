@@ -1,0 +1,13 @@
+/* Skeleton — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --skeleton-radius: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/skeleton.tsx follow from these names. */
+
+[data-slot="skeleton"] {
+  /* @remove animate-pulse */
+  /* @add relative isolate overflow-hidden before:absolute before:inset-0 before:-z-10 before:animate-shimmer before:bg-linear-to-r before:from-transparent before:via-white/70 before:to-transparent motion-reduce:before:hidden */
+  /* Corner radius of the skeleton. */
+  --_skeleton-radius: var(--skeleton-radius, var(--radius-2xl));
+  /* Fill colour of the skeleton. */
+  --_skeleton: var(--skeleton, var(--light-l2));
+}

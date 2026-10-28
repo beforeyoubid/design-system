@@ -1,0 +1,34 @@
+/* Breadcrumb — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --breadcrumb-list-gap: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/breadcrumb.tsx follow from these names. */
+
+[data-slot="breadcrumb-list"] {
+  /* @add text-body-5 */
+  /* Gap between items of the list. */
+  --_breadcrumb-list-gap: var(--breadcrumb-list-gap, calc(var(--spacing) * 1.5));
+  /* Text colour of the list. */
+  --_breadcrumb-list-foreground: var(--breadcrumb-list-foreground, var(--muted-foreground));
+}
+
+[data-slot="breadcrumb-item"] {
+  /* Gap between items of the item. */
+  --_breadcrumb-item-gap: var(--breadcrumb-item-gap, calc(var(--spacing) * 1.5));
+}
+
+[data-slot="breadcrumb-link"] {
+  /* Text colour of the link when hovered. */
+  --_breadcrumb-link-hover-foreground: var(--breadcrumb-link-hover-foreground, var(--foreground));
+}
+
+[data-slot="breadcrumb-page"] {
+  /* Font weight of the page. */
+  --_breadcrumb-page-font-weight: var(--breadcrumb-page-font-weight, 500);
+  /* Text colour of the page. */
+  --_breadcrumb-page-foreground: var(--breadcrumb-page-foreground, var(--mint-75));
+}
+
+[data-slot="breadcrumb-ellipsis"] {
+  /* Width and height of the ellipsis. */
+  --_breadcrumb-ellipsis-size: var(--breadcrumb-ellipsis-size, calc(var(--spacing) * 5));
+}

@@ -1,6 +1,6 @@
 import * as React from "react"
-
 import { cn } from "@/lib/utils"
+
 import { Button } from "@/components/ui/button"
 import { IconChevronLeft, IconChevronRight, IconDots } from "@tabler/icons-react"
 
@@ -23,7 +23,7 @@ function PaginationContent({
   return (
     <ul
       data-slot="pagination-content"
-      className={cn("flex items-center gap-1", className)}
+      className={cn("flex items-center gap-(--_pagination-content-gap)", className)}
       {...props}
     />
   )
@@ -46,15 +46,9 @@ function PaginationLink({
 }: PaginationLinkProps) {
   return (
     <Button
-      variant={isActive ? "default" : "ghost"}
+      variant={isActive ? "outline" : "ghost"}
       size={size}
-      className={cn(
-        "text-body-5 font-medium tracking-normal normal-case",
-        isActive
-          ? "bg-lime text-navy shadow-none hover:brightness-95"
-          : "text-dark-90 hover:text-navy",
-        className
-      )}
+      className={cn(className)}
       nativeButton={false}
       render={
         <a
@@ -113,7 +107,7 @@ function PaginationEllipsis({
       aria-hidden
       data-slot="pagination-ellipsis"
       className={cn(
-        "flex size-9 items-center justify-center text-dark-90 [&_svg:not([class*='size-'])]:size-4",
+        "flex size-(--_pagination-ellipsis-size) items-center justify-center [&_svg:not([class*='size-'])]:size-4 text-(--_pagination-ellipsis-foreground)",
         className
       )}
       {...props}

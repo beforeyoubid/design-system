@@ -1,0 +1,41 @@
+/* Radio Group — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --radio-group-gap: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/radio-group.tsx follow from these names. */
+
+[data-slot="radio-group"] {
+  /* Gap between items of the radio-group. */
+  --_radio-group-gap: var(--radio-group-gap, calc(var(--spacing) * 2.5));
+}
+
+[data-slot="radio-group-item"] {
+  /* @remove group-has-[:focus-visible]/field-label:ring-0 group-has-[:focus-visible]/field-label:not-data-checked:border-input aria-invalid:aria-checked:border-primary data-checked:bg-primary data-checked:text-primary-foreground group-has-[:focus-visible]/field-label:data-checked:border-primary */
+  /* @add cursor-pointer data-disabled:cursor-not-allowed items-center justify-center transition-[border-color,box-shadow] [&_[data-slot=radio-group-indicator]>span]:size-2 aria-invalid:data-checked:border-mint-45 data-disabled:cursor-not-allowed data-disabled:opacity-(--_radio-group-item-disabled-opacity) */
+  /* Corner radius of the item. */
+  --_radio-group-item-radius: var(--radio-group-item-radius, var(--radius-full));
+  /* Border colour of the item. */
+  --_radio-group-item-border: var(--radio-group-item-border, var(--dark-45));
+  /* Fill colour of the item. */
+  --_radio-group-item: var(--radio-group-item, var(--white));
+  /* Width and height of the item. */
+  --_radio-group-item-size: var(--radio-group-item-size, calc(var(--spacing) * 4));
+  /* Border colour of the item when focused. */
+  --_radio-group-item-focus-border: var(--radio-group-item-focus-border, var(--mint-45));
+  /* Ring colour of the item when focused. */
+  --_radio-group-item-focus-ring: var(--radio-group-item-focus-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
+  /* Border colour of the item when checked. */
+  --_radio-group-item-checked-border: var(--radio-group-item-checked-border, var(--mint-45));
+  /* Border colour of the item when invalid. */
+  --_radio-group-item-invalid-border: var(--radio-group-item-invalid-border, var(--error-75));
+  /* Ring colour of the item when invalid. */
+  --_radio-group-item-invalid-ring: var(--radio-group-item-invalid-ring, color-mix(in oklab, var(--error-75) 20%, transparent));
+  /* Opacity of the item when disabled. */
+  --_radio-group-item-disabled-opacity: var(--radio-group-item-disabled-opacity, 0.5);
+}
+
+[data-slot="radio-group-indicator"] {
+  /* @remove size-4 */
+  /* @add [&>span]:bg-(--_radio-group-indicator) */
+  /* Fill of the dot in a checked radio. */
+  --_radio-group-indicator: var(--radio-group-indicator, var(--mint-45));
+}

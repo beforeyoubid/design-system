@@ -1,0 +1,241 @@
+/* Sidebar — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --sidebar-fill: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/sidebar.tsx follow from these names. */
+
+[data-slot="sidebar"] {
+  /* Fill colour of the sidebar. */
+  --_sidebar-fill: var(--sidebar-fill, var(--sidebar));
+}
+
+[data-slot="sidebar-gap"] {
+  /* @add group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 */
+}
+
+[data-slot="sidebar-inner"] {
+  /* Fill colour of the inner. */
+  --_sidebar-inner: var(--sidebar-inner, var(--sidebar));
+}
+
+[data-slot="sidebar-rail"] {
+  /* @add after:w-0.5 in-data-[side=left]:cursor-w-resize rtl:in-data-[side=left]:cursor-e-resize in-data-[side=right]:cursor-e-resize rtl:in-data-[side=right]:cursor-w-resize [[data-side=left][data-state=collapsed]_&]:cursor-e-resize rtl:[[data-side=left][data-state=collapsed]_&]:cursor-w-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize rtl:[[data-side=right][data-state=collapsed]_&]:cursor-e-resize group-data-[collapsible=offcanvas]:translate-x-0 rtl:group-data-[collapsible=offcanvas]:-translate-x-0 group-data-[collapsible=offcanvas]:after:start-full hover:group-data-[collapsible=offcanvas]:bg-sidebar [[data-side=left][data-collapsible=offcanvas]_&]:-end-2 [[data-side=right][data-collapsible=offcanvas]_&]:-start-2 */
+  /* Width of the rail. */
+  --_sidebar-rail-width: var(--sidebar-rail-width, calc(var(--spacing) * 4));
+}
+
+[data-slot="sidebar-inset"] {
+  /* @add md:peer-data-[variant=inset]:rounded-2xl */
+  /* Fill colour of the inset. */
+  --_sidebar-inset: var(--sidebar-inset, var(--background));
+}
+
+[data-slot="sidebar-input"] {
+  /* Height of the input. */
+  --_sidebar-input-height: var(--sidebar-input-height, calc(var(--spacing) * 8));
+  /* Fill colour of the input. */
+  --_sidebar-input: var(--sidebar-input, var(--background));
+  /* Shadow of the input. */
+  --_sidebar-input-shadow: var(--sidebar-input-shadow, 0 0 #0000);
+}
+
+[data-slot="sidebar-header"] {
+  /* @add [--radius:var(--radius-2xl)] */
+  /* Gap between items of the header. */
+  --_sidebar-header-gap: var(--sidebar-header-gap, calc(var(--spacing) * 2));
+  /* Padding of the header. */
+  --_sidebar-header-padding: var(--sidebar-header-padding, calc(var(--spacing) * 2));
+}
+
+[data-slot="sidebar-footer"] {
+  /* Gap between items of the footer. */
+  --_sidebar-footer-gap: var(--sidebar-footer-gap, calc(var(--spacing) * 2));
+  /* Padding of the footer. */
+  --_sidebar-footer-padding: var(--sidebar-footer-padding, calc(var(--spacing) * 2));
+}
+
+[data-slot="sidebar-separator"] {
+  /* Fill colour of the separator. */
+  --_sidebar-separator: var(--sidebar-separator, var(--sidebar-border));
+}
+
+[data-slot="sidebar-content"] {
+  /* @add [--radius:var(--radius-2xl)] */
+  /* Minimum height of the content. */
+  --_sidebar-content-min-height: var(--sidebar-content-min-height, calc(var(--spacing) * 0));
+  /* Gap between items of the content. */
+  --_sidebar-content-gap: var(--sidebar-content-gap, calc(var(--spacing) * 2));
+}
+
+[data-slot="sidebar-group"] {
+  /* Padding of the group. */
+  --_sidebar-group-padding: var(--sidebar-group-padding, calc(var(--spacing) * 2));
+}
+
+[data-slot="sidebar-group-label"] {
+  /* @add text-caption-2 */
+  /* Height of the group-label. */
+  --_sidebar-group-label-height: var(--sidebar-group-label-height, calc(var(--spacing) * 8));
+  /* Corner radius of the group-label. */
+  --_sidebar-group-label-radius: var(--sidebar-group-label-radius, var(--radius-md));
+  /* Horizontal padding of the group-label. */
+  --_sidebar-group-label-padding-x: var(--sidebar-group-label-padding-x, calc(var(--spacing) * 3));
+  /* Font weight of the group-label. */
+  --_sidebar-group-label-font-weight: var(--sidebar-group-label-font-weight, 500);
+  /* Text colour of the group-label. */
+  --_sidebar-group-label-foreground: var(--sidebar-group-label-foreground, color-mix(in oklab, var(--sidebar-foreground) 70%, transparent));
+  /* Ring colour of the group-label. */
+  --_sidebar-group-label-ring: var(--sidebar-group-label-ring, var(--sidebar-ring));
+}
+
+[data-slot="sidebar-group-action"] {
+  /* @remove hover:bg-sidebar-accent */
+  /* @add cursor-pointer */
+  /* Width of the group-action. */
+  --_sidebar-group-action-width: var(--sidebar-group-action-width, calc(var(--spacing) * 5));
+  /* Corner radius of the group-action. */
+  --_sidebar-group-action-radius: var(--sidebar-group-action-radius, var(--radius-md));
+  /* Padding of the group-action. */
+  --_sidebar-group-action-padding: var(--sidebar-group-action-padding, calc(var(--spacing) * 0));
+  /* Text colour of the group-action. */
+  --_sidebar-group-action-foreground: var(--sidebar-group-action-foreground, var(--sidebar-foreground));
+  /* Ring colour of the group-action. */
+  --_sidebar-group-action-ring: var(--sidebar-group-action-ring, var(--sidebar-ring));
+  /* Text colour of the group-action when hovered. */
+  --_sidebar-group-action-hover-foreground: var(--sidebar-group-action-hover-foreground, var(--sidebar-accent-foreground));
+}
+
+[data-slot="sidebar-group-content"] {
+  /* @add text-body-5 */
+}
+
+[data-slot="sidebar-menu"] {
+  /* Gap between items of the menu. */
+  --_sidebar-menu-gap: var(--sidebar-menu-gap, calc(var(--spacing) * 1));
+}
+
+[data-slot="sidebar-menu-button"] {
+  /* @alias md = size.default */
+  /* @add cursor-pointer text-body-5 */
+  /* @add(md) text-body-5 */
+  /* @add(size.sm) text-caption-2 */
+  /* @add(size.lg) text-body-5 */
+  /* Gap between items of the menu-button. */
+  --_sidebar-menu-button-gap: var(--sidebar-menu-button-gap, calc(var(--spacing) * 2));
+  /* Corner radius of the menu-button. */
+  --_sidebar-menu-button-radius: var(--sidebar-menu-button-radius, var(--radius-lg));
+  /* Horizontal padding of the menu-button. */
+  --_sidebar-menu-button-padding-x: var(--sidebar-menu-button-padding-x, calc(var(--spacing) * 3));
+  /* Vertical padding of the menu-button. */
+  --_sidebar-menu-button-padding-y: var(--sidebar-menu-button-padding-y, calc(var(--spacing) * 2));
+  /* Ring colour of the menu-button. */
+  --_sidebar-menu-button-ring: var(--sidebar-menu-button-ring, var(--sidebar-ring));
+  /* Fill colour of the menu-button when hovered. */
+  --_sidebar-menu-button-hover: var(--sidebar-menu-button-hover, var(--sidebar-accent));
+  /* Text colour of the menu-button when hovered. */
+  --_sidebar-menu-button-hover-foreground: var(--sidebar-menu-button-hover-foreground, var(--sidebar-accent-foreground));
+  /* Fill colour of the menu-button when active. */
+  --_sidebar-menu-button-active: var(--sidebar-menu-button-active, var(--sidebar-accent));
+  /* Text colour of the menu-button when active. */
+  --_sidebar-menu-button-active-foreground: var(--sidebar-menu-button-active-foreground, var(--sidebar-accent-foreground));
+  /* Opacity of the menu-button when disabled. */
+  --_sidebar-menu-button-disabled-opacity: var(--sidebar-menu-button-disabled-opacity, 0.5);
+  /* Font weight of the menu-button when active. */
+  --_sidebar-menu-button-active-font-weight: var(--sidebar-menu-button-active-font-weight, 500);
+  /* Fill colour of the menu-button (default variant) when hovered. */
+  --_sidebar-menu-button-default-hover: var(--sidebar-menu-button-default-hover, var(--sidebar-menu-button-hover, var(--sidebar-accent)));
+  /* Text colour of the menu-button (default variant) when hovered. */
+  --_sidebar-menu-button-default-hover-foreground: var(--sidebar-menu-button-default-hover-foreground, var(--sidebar-menu-button-hover-foreground, var(--sidebar-accent-foreground)));
+  /* Fill colour of the menu-button (outline variant). */
+  --_sidebar-menu-button-outline: var(--sidebar-menu-button-outline, var(--background));
+  /* Fill colour of the menu-button (outline variant) when hovered. */
+  --_sidebar-menu-button-outline-hover: var(--sidebar-menu-button-outline-hover, var(--sidebar-menu-button-hover, var(--sidebar-accent)));
+  /* Text colour of the menu-button (outline variant) when hovered. */
+  --_sidebar-menu-button-outline-hover-foreground: var(--sidebar-menu-button-outline-hover-foreground, var(--sidebar-menu-button-hover-foreground, var(--sidebar-accent-foreground)));
+  /* Height of the menu-button (md size). */
+  --_sidebar-menu-button-md-height: var(--sidebar-menu-button-md-height, calc(var(--spacing) * 9));
+  /* Height of the menu-button (sm size). */
+  --_sidebar-menu-button-sm-height: var(--sidebar-menu-button-sm-height, calc(var(--spacing) * 8));
+  /* Height of the menu-button (lg size). */
+  --_sidebar-menu-button-lg-height: var(--sidebar-menu-button-lg-height, calc(var(--spacing) * 14));
+  /* Horizontal padding of the menu-button (lg size). */
+  --_sidebar-menu-button-lg-padding-x: var(--sidebar-menu-button-lg-padding-x, var(--sidebar-menu-button-padding-x, calc(var(--spacing) * 3)));
+}
+
+[data-slot="sidebar-menu-action"] {
+  /* @remove hover:bg-sidebar-accent */
+  /* @add cursor-pointer */
+  /* Width of the menu-action. */
+  --_sidebar-menu-action-width: var(--sidebar-menu-action-width, calc(var(--spacing) * 5));
+  /* Corner radius of the menu-action. */
+  --_sidebar-menu-action-radius: var(--sidebar-menu-action-radius, var(--radius-md));
+  /* Padding of the menu-action. */
+  --_sidebar-menu-action-padding: var(--sidebar-menu-action-padding, calc(var(--spacing) * 0));
+  /* Text colour of the menu-action. */
+  --_sidebar-menu-action-foreground: var(--sidebar-menu-action-foreground, var(--sidebar-foreground));
+  /* Ring colour of the menu-action. */
+  --_sidebar-menu-action-ring: var(--sidebar-menu-action-ring, var(--sidebar-ring));
+  /* Text colour of the menu-action when hovered. */
+  --_sidebar-menu-action-hover-foreground: var(--sidebar-menu-action-hover-foreground, var(--sidebar-accent-foreground));
+}
+
+[data-slot="sidebar-menu-badge"] {
+  /* @add text-caption-2 */
+  /* Height of the menu-badge. */
+  --_sidebar-menu-badge-height: var(--sidebar-menu-badge-height, calc(var(--spacing) * 5));
+  /* Corner radius of the menu-badge. */
+  --_sidebar-menu-badge-radius: var(--sidebar-menu-badge-radius, var(--radius-md));
+  /* Horizontal padding of the menu-badge. */
+  --_sidebar-menu-badge-padding-x: var(--sidebar-menu-badge-padding-x, calc(var(--spacing) * 1));
+  /* Font weight of the menu-badge. */
+  --_sidebar-menu-badge-font-weight: var(--sidebar-menu-badge-font-weight, 500);
+  /* Text colour of the menu-badge. */
+  --_sidebar-menu-badge-foreground: var(--sidebar-menu-badge-foreground, var(--sidebar-foreground));
+}
+
+[data-slot="sidebar-menu-skeleton"] {
+  /* Height of the menu-skeleton. */
+  --_sidebar-menu-skeleton-height: var(--sidebar-menu-skeleton-height, calc(var(--spacing) * 8));
+  /* Gap between items of the menu-skeleton. */
+  --_sidebar-menu-skeleton-gap: var(--sidebar-menu-skeleton-gap, calc(var(--spacing) * 2));
+  /* Corner radius of the menu-skeleton. */
+  --_sidebar-menu-skeleton-radius: var(--sidebar-menu-skeleton-radius, var(--radius-md));
+  /* Horizontal padding of the menu-skeleton. */
+  --_sidebar-menu-skeleton-padding-x: var(--sidebar-menu-skeleton-padding-x, calc(var(--spacing) * 2));
+}
+
+[data-slot="sidebar-menu-sub"] {
+  /* Gap between items of the menu-sub. */
+  --_sidebar-menu-sub-gap: var(--sidebar-menu-sub-gap, calc(var(--spacing) * 1));
+  /* Border colour of the menu-sub. */
+  --_sidebar-menu-sub-border: var(--sidebar-menu-sub-border, var(--sidebar-border));
+  /* Horizontal padding of the menu-sub. */
+  --_sidebar-menu-sub-padding-x: var(--sidebar-menu-sub-padding-x, calc(var(--spacing) * 2.5));
+  /* Vertical padding of the menu-sub. */
+  --_sidebar-menu-sub-padding-y: var(--sidebar-menu-sub-padding-y, calc(var(--spacing) * 0.5));
+}
+
+[data-slot="sidebar-menu-sub-button"] {
+  /* @add cursor-pointer data-[size=md]:text-body-5 data-[size=sm]:text-caption-2 */
+  /* Height of the menu-sub-button. */
+  --_sidebar-menu-sub-button-height: var(--sidebar-menu-sub-button-height, calc(var(--spacing) * 7));
+  /* Gap between items of the menu-sub-button. */
+  --_sidebar-menu-sub-button-gap: var(--sidebar-menu-sub-button-gap, calc(var(--spacing) * 2));
+  /* Corner radius of the menu-sub-button. */
+  --_sidebar-menu-sub-button-radius: var(--sidebar-menu-sub-button-radius, var(--radius-md));
+  /* Horizontal padding of the menu-sub-button. */
+  --_sidebar-menu-sub-button-padding-x: var(--sidebar-menu-sub-button-padding-x, calc(var(--spacing) * 2));
+  /* Text colour of the menu-sub-button. */
+  --_sidebar-menu-sub-button-foreground: var(--sidebar-menu-sub-button-foreground, var(--sidebar-foreground));
+  /* Ring colour of the menu-sub-button. */
+  --_sidebar-menu-sub-button-ring: var(--sidebar-menu-sub-button-ring, var(--sidebar-ring));
+  /* Fill colour of the menu-sub-button when hovered. */
+  --_sidebar-menu-sub-button-hover: var(--sidebar-menu-sub-button-hover, var(--sidebar-accent));
+  /* Text colour of the menu-sub-button when hovered. */
+  --_sidebar-menu-sub-button-hover-foreground: var(--sidebar-menu-sub-button-hover-foreground, var(--sidebar-accent-foreground));
+  /* Fill colour of the menu-sub-button when active. */
+  --_sidebar-menu-sub-button-active: var(--sidebar-menu-sub-button-active, var(--sidebar-accent));
+  /* Text colour of the menu-sub-button when active. */
+  --_sidebar-menu-sub-button-active-foreground: var(--sidebar-menu-sub-button-active-foreground, var(--sidebar-accent-foreground));
+  /* Opacity of the menu-sub-button when disabled. */
+  --_sidebar-menu-sub-button-disabled-opacity: var(--sidebar-menu-sub-button-disabled-opacity, 0.5);
+}

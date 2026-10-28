@@ -1,0 +1,12 @@
+/* Spinner — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --spinner-size: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/spinner.tsx follow from these names. */
+
+[data-slot="spinner"] {
+  /* @add shrink-0 data-[icon]:text-current */
+  /* Width and height of the spinner. */
+  --_spinner-size: var(--spinner-size, calc(var(--spacing) * 4));
+  /* Text colour of the spinner. */
+  --_spinner-foreground: var(--spinner-foreground, var(--primary));
+}

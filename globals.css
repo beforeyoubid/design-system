@@ -23,6 +23,8 @@
 @import "tw-animate-css";
 @import "./shadcn.css";
 @import "./utilities.css";
+/* Component tokens: one file per component, each declaring the levers apps can set. */
+@import "./src/tokens/components/index.css";
 
 /* -----------------------------------------------------------------------------
  * Source scanning — when this package is installed under node_modules, Tailwind

@@ -1,0 +1,74 @@
+/* Field — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --field-set-gap: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/field.tsx follow from these names. */
+
+[data-slot="field-set"] {
+  /* Gap between items of the set. */
+  --_field-set-gap: var(--field-set-gap, calc(var(--spacing) * 5));
+}
+
+[data-slot="field-legend"] {
+  /* @add mb-5 leading-tight has-[+[data-slot=field-description]]:mb-2.5 data-[variant=label]:text-body-5 data-[variant=legend]:text-body-4 */
+  /* Font weight of the legend. */
+  --_field-legend-font-weight: var(--field-legend-font-weight, 600);
+  /* Text colour of the legend. */
+  --_field-legend-foreground: var(--field-legend-foreground, var(--navy));
+}
+
+[data-slot="field-group"] {
+  /* Gap between items of the group. */
+  --_field-group-gap: var(--field-group-gap, calc(var(--spacing) * 5));
+}
+
+[data-slot="field"] {
+  /* Gap between items of the field. */
+  --_field-gap: var(--field-gap, calc(var(--spacing) * 1.5));
+}
+
+[data-slot="field-content"] {
+  /* Gap between items of the content. */
+  --_field-content-gap: var(--field-content-gap, calc(var(--spacing) * 1));
+}
+
+[data-slot="field-label"] {
+  /* @remove leading-snug leading-tight */
+  /* @add has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col items-center text-body-5 leading-tight */
+  /* Gap between items of the label. */
+  --_field-label-gap: var(--field-label-gap, calc(var(--spacing) * 2));
+  /* Font weight of the label. */
+  --_field-label-font-weight: var(--field-label-font-weight, 600);
+  /* Text colour of the label. */
+  --_field-label-foreground: var(--field-label-foreground, var(--navy));
+}
+
+[data-slot="field-description"] {
+  /* @add text-body-5 last:mt-0 nth-last-2:-mt-1 [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary */
+  /* Font weight of the description. */
+  --_field-description-font-weight: var(--field-description-font-weight, 400);
+  /* Text colour of the description. */
+  --_field-description-foreground: var(--field-description-foreground, var(--muted-foreground));
+}
+
+[data-slot="field-separator"] {
+  /* @add text-body-5 */
+  /* Height of the separator. */
+  --_field-separator-height: var(--field-separator-height, calc(var(--spacing) * 5));
+}
+
+[data-slot="field-separator-content"] {
+  /* Fill colour of the separator-content. */
+  --_field-separator-content: var(--field-separator-content, var(--background));
+  /* Horizontal padding of the separator-content. */
+  --_field-separator-content-padding-x: var(--field-separator-content-padding-x, calc(var(--spacing) * 2));
+  /* Text colour of the separator-content. */
+  --_field-separator-content-foreground: var(--field-separator-content-foreground, var(--muted-foreground));
+}
+
+[data-slot="field-error"] {
+  /* @add text-body-5 */
+  /* Font weight of the error. */
+  --_field-error-font-weight: var(--field-error-font-weight, 400);
+  /* Text colour of the error. */
+  --_field-error-foreground: var(--field-error-foreground, var(--destructive));
+}

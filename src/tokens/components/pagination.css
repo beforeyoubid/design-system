@@ -1,0 +1,27 @@
+/* Pagination — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --pagination-content-gap: … }
+ * Defaults are Rey's design. The pagination-link levers are read by our PaginationLink (components/pagination.tsx). */
+
+[data-slot="pagination-content"] {
+  /* Gap between items of the content. */
+  --_pagination-content-gap: var(--pagination-content-gap, calc(var(--spacing) * 1));
+}
+
+[data-slot="pagination-ellipsis"] {
+  /* Width and height of the ellipsis. */
+  --_pagination-ellipsis-size: var(--pagination-ellipsis-size, calc(var(--spacing) * 9));
+  /* Text colour of the ellipsis. */
+  --_pagination-ellipsis-foreground: var(--pagination-ellipsis-foreground, var(--dark-90));
+}
+
+[data-slot="pagination-link"] {
+  /* Text colour of a page number. @ours */
+  --_pagination-link-foreground: var(--pagination-link-foreground, var(--dark-90));
+  /* Text colour of a page number when hovered. @ours */
+  --_pagination-link-hover-foreground: var(--pagination-link-hover-foreground, var(--navy));
+  /* Fill of the current page. @ours */
+  --_pagination-link-active: var(--pagination-link-active, var(--lime));
+  /* Text colour of the current page. @ours */
+  --_pagination-link-active-foreground: var(--pagination-link-active-foreground, var(--navy));
+}

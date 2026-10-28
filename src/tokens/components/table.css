@@ -1,0 +1,64 @@
+/* Table — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --table-radius: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/table.tsx follow from these names. */
+
+[data-slot="table"] {
+  /* @add group/table text-body-5 */
+}
+
+[data-slot="table-header"] {
+  /* @add [&_tr]:border-border [&_tr]:hover:bg-transparent */
+}
+
+[data-slot="table-footer"] {
+  /* @add text-body-5 */
+  /* Border colour of the footer. */
+  --_table-footer-border: var(--table-footer-border, var(--border));
+  /* Fill colour of the footer. */
+  --_table-footer: var(--table-footer, var(--light-l1));
+  /* Font weight of the footer. */
+  --_table-footer-font-weight: var(--table-footer-font-weight, 500);
+  /* Text colour of the footer. */
+  --_table-footer-foreground: var(--table-footer-foreground, var(--navy));
+}
+
+[data-slot="table-row"] {
+  /* @add has-aria-expanded:bg-mint-l4 data-[state=selected]:bg-mint-l3 */
+  /* Border colour of the row. */
+  --_table-row-border: var(--table-row-border, var(--border));
+  /* Fill colour of the row when hovered. */
+  --_table-row-hover: var(--table-row-hover, var(--mint-l4));
+}
+
+[data-slot="table-head"] {
+  /* @remove font-medium */
+  /* @add [&:has([role=checkbox])]:w-10 text-overline */
+  /* Horizontal padding of the head. */
+  --_table-head-padding-x: var(--table-head-padding-x, calc(var(--spacing) * 3));
+  /* Border colour of the head. */
+  --_table-head-border: var(--table-head-border, var(--border));
+  /* Height of the head. */
+  --_table-head-height: var(--table-head-height, calc(var(--spacing) * 11));
+  /* Text colour of the head. */
+  --_table-head-foreground: var(--table-head-foreground, var(--dark-100));
+}
+
+[data-slot="table-cell"] {
+  /* @remove p-3 */
+  /* @add [&:has([role=checkbox])]:w-10 */
+  /* Horizontal padding of the cell. */
+  --_table-cell-padding-x: var(--table-cell-padding-x, calc(var(--spacing) * 3));
+  /* Border colour of the cell. */
+  --_table-cell-border: var(--table-cell-border, var(--border));
+  /* Vertical padding of the cell. */
+  --_table-cell-padding-y: var(--table-cell-padding-y, calc(var(--spacing) * 3));
+  /* Text colour of the cell. */
+  --_table-cell-foreground: var(--table-cell-foreground, var(--dark-90));
+}
+
+[data-slot="table-caption"] {
+  /* @add caption-bottom mt-3 text-center text-body-5 */
+  /* Text colour of the caption. */
+  --_table-caption-foreground: var(--table-caption-foreground, var(--muted-foreground));
+}

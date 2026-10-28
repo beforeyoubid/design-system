@@ -1,0 +1,8 @@
+/* Chart — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --chart-radius: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/chart.tsx follow from these names. */
+
+[data-slot="chart"] {
+  /* @add text-caption-2 */
+}

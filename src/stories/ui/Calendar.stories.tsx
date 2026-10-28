@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import type { DateRange } from 'react-day-picker'
 import React from 'react'
-import { Calendar } from '../../components/ui/calendar'
+import { Calendar } from '../../components/calendar'
 
 const meta: Meta<typeof Calendar> = {
   title: 'BYB Components/Calendar',

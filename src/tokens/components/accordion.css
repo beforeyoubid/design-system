@@ -1,0 +1,41 @@
+/* Accordion — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --accordion-radius: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/accordion.tsx follow from these names. */
+
+[data-slot="accordion"] {
+  /* @remove overflow-hidden rounded-2xl border */
+}
+
+[data-slot="accordion-item"] {
+  /* @remove not-last:border-b data-open:bg-muted/50 */
+  /* @add border-b */
+  /* Border colour of the item. */
+  --_accordion-item-border: var(--accordion-item-border, var(--dark-15));
+}
+
+[data-slot="accordion-trigger"] {
+  /* @remove border border-transparent p-4 hover:underline **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground */
+  /* @add cursor-pointer items-center transition-colors text-h5 [&_svg]:size-5 */
+  /* Font weight of the trigger. */
+  --_accordion-trigger-font-weight: var(--accordion-trigger-font-weight, 600);
+  /* Text colour of the trigger. */
+  --_accordion-trigger-foreground: var(--accordion-trigger-foreground, var(--dark-100));
+  /* Text colour of the trigger when hovered. */
+  --_accordion-trigger-hover-foreground: var(--accordion-trigger-hover-foreground, var(--mint-45));
+  /* Text colour of the trigger while open. */
+  --_accordion-trigger-open-foreground: var(--accordion-trigger-open-foreground, var(--mint-45));
+  /* Opacity of the trigger when disabled. */
+  --_accordion-trigger-disabled-opacity: var(--accordion-trigger-disabled-opacity, 0.5);
+  /* Gap between items of the trigger. */
+  --_accordion-trigger-gap: var(--accordion-trigger-gap, calc(var(--spacing) * 6));
+  /* Vertical padding of the trigger. */
+  --_accordion-trigger-padding-y: var(--accordion-trigger-padding-y, calc(var(--spacing) * 5));
+}
+
+[data-slot="accordion-content"] {
+  /* @remove px-4 text-sm data-open:animate-accordion-down data-closed:animate-accordion-up */
+  /* @add h-(--accordion-panel-height) transition-[height] duration-200 ease-out data-starting-style:h-0 data-ending-style:h-0 motion-reduce:transition-none */
+  /* Text colour of the content. */
+  --_accordion-content-foreground: var(--accordion-content-foreground, var(--dark-75));
+}

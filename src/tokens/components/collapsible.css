@@ -1,0 +1,4 @@
+/* Collapsible — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --collapsible-radius: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/collapsible.tsx follow from these names. */

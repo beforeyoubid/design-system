@@ -3,7 +3,7 @@ import { IconCalendar, IconChevronDown } from "@tabler/icons-react"
 import { Clock } from "lucide-react"
 
 import { cn } from "../lib/utils"
-import { Calendar } from "./ui/calendar"
+import { Calendar } from "./calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 
 const controlClasses =

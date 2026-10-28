@@ -22,7 +22,7 @@ type Story = StoryObj<typeof Drawer>
 export const Default: Story = {
   render: () => (
     <Drawer>
-      <DrawerTrigger asChild><Button variant="tertiary">Open drawer</Button></DrawerTrigger>
+      <DrawerTrigger render={<Button variant="tertiary" />}>Open drawer</DrawerTrigger>
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>

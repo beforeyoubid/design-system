@@ -1,0 +1,48 @@
+/* Native Select — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --native-select-height: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/native-select.tsx follow from these names. */
+
+[data-slot="native-select"] {
+  /* Height of the native-select. */
+  --_native-select-height: var(--native-select-height, calc(var(--spacing) * 9));
+  /* Corner radius of the native-select. */
+  --_native-select-radius: var(--native-select-radius, var(--radius-4xl));
+  /* Border colour of the native-select. */
+  --_native-select-border: var(--native-select-border, var(--input));
+  /* Fill colour of the native-select. */
+  --_native-select: var(--native-select, color-mix(in oklab, var(--input) 30%, transparent));
+  /* Vertical padding of the native-select. */
+  --_native-select-padding-y: var(--native-select-padding-y, calc(var(--spacing) * 1));
+  /* Placeholder text colour of the native-select. */
+  --_native-select-placeholder: var(--native-select-placeholder, var(--muted-foreground));
+  /* Border colour of the native-select when focused. */
+  --_native-select-focus-border: var(--native-select-focus-border, var(--ring));
+  /* Ring colour of the native-select when focused. */
+  --_native-select-focus-ring: var(--native-select-focus-ring, color-mix(in oklab, var(--ring) 50%, transparent));
+  /* Border colour of the native-select when invalid. */
+  --_native-select-invalid-border: var(--native-select-invalid-border, var(--destructive));
+  /* Ring colour of the native-select when invalid. */
+  --_native-select-invalid-ring: var(--native-select-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
+}
+
+[data-slot="native-select-icon"] {
+  /* Width and height of the icon. */
+  --_native-select-icon-size: var(--native-select-icon-size, calc(var(--spacing) * 4));
+  /* Text colour of the icon. */
+  --_native-select-icon-foreground: var(--native-select-icon-foreground, var(--muted-foreground));
+}
+
+[data-slot="native-select-option"] {
+  /* Fill colour of the option. */
+  --_native-select-option: var(--native-select-option, Canvas);
+  /* Text colour of the option. */
+  --_native-select-option-foreground: var(--native-select-option-foreground, CanvasText);
+}
+
+[data-slot="native-select-optgroup"] {
+  /* Fill colour of the optgroup. */
+  --_native-select-optgroup: var(--native-select-optgroup, Canvas);
+  /* Text colour of the optgroup. */
+  --_native-select-optgroup-foreground: var(--native-select-optgroup-foreground, CanvasText);
+}

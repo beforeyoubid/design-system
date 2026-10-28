@@ -1,0 +1,41 @@
+/* Alert — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --alert-gap: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/alert.tsx follow from these names. */
+
+[data-slot="alert"] {
+  /* @remove(variant.destructive) *:[svg]:text-current */
+  /* @add text-body-5 */
+  /* @add(variant.destructive) *:data-[slot=alert-description]:text-error-75/90 */
+  /* Gap between items of the alert. */
+  --_alert-gap: var(--alert-gap, calc(var(--spacing) * 0.5));
+  /* Corner radius of the alert. */
+  --_alert-radius: var(--alert-radius, var(--radius-2xl));
+  /* Horizontal padding of the alert. */
+  --_alert-padding-x: var(--alert-padding-x, calc(var(--spacing) * 4));
+  /* Vertical padding of the alert. */
+  --_alert-padding-y: var(--alert-padding-y, calc(var(--spacing) * 3));
+  /* Fill colour of the alert (default variant). */
+  --_alert-default: var(--alert-default, var(--card));
+  /* Border colour of the alert (default variant). */
+  --_alert-default-border: var(--alert-default-border, var(--border));
+  /* Text colour of the alert (default variant). */
+  --_alert-default-foreground: var(--alert-default-foreground, var(--card-foreground));
+  /* Fill colour of the alert (destructive variant). */
+  --_alert-destructive: var(--alert-destructive, var(--error-l1));
+  /* Border colour of the alert (destructive variant). */
+  --_alert-destructive-border: var(--alert-destructive-border, var(--error-15));
+  /* Text colour of the alert (destructive variant). */
+  --_alert-destructive-foreground: var(--alert-destructive-foreground, var(--error-75));
+}
+
+[data-slot="alert-title"] {
+  /* Font weight of the title. */
+  --_alert-title-font-weight: var(--alert-title-font-weight, 500);
+}
+
+[data-slot="alert-description"] {
+  /* @add text-body-5 */
+  /* Text colour of the description. */
+  --_alert-description-foreground: var(--alert-description-foreground, var(--muted-foreground));
+}

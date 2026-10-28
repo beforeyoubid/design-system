@@ -1,0 +1,61 @@
+/* Tabs — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --tabs-gap: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/tabs.tsx follow from these names.
+ * The trigger drops stock's active fill and underline: our Tabs draw a sliding thumb instead (components/tabs.tsx). */
+
+[data-slot="tabs"] {
+  /* @remove data-horizontal:flex-col */
+  /* @add data-[orientation=horizontal]:flex-col */
+  /* Gap between items of the tabs. */
+  --_tabs-gap: var(--tabs-gap, calc(var(--spacing) * 2));
+}
+
+[data-slot="tabs-list"] {
+  /* @remove justify-center rounded-4xl p-[3px] text-muted-foreground group-data-horizontal/tabs:h-9 group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col group-data-vertical/tabs:rounded-2xl data-[variant=line]:rounded-none */
+  /* @remove(variant.line) bg-transparent */
+  /* @add relative group-data-[orientation=vertical]/tabs:h-fit group-data-[orientation=vertical]/tabs:flex-col */
+  /* @add(variant.default) self-start border */
+  /* @add(variant.line) w-full justify-start border-b group-data-[orientation=vertical]/tabs:w-fit group-data-[orientation=vertical]/tabs:items-stretch group-data-[orientation=vertical]/tabs:gap-0.5 group-data-[orientation=vertical]/tabs:border-b-0 group-data-[orientation=vertical]/tabs:border-s */
+  /* Gap between items of the list (default variant). */
+  --_tabs-list-default-gap: var(--tabs-list-default-gap, calc(var(--spacing) * 0.5));
+  /* Corner radius of the list (default variant). */
+  --_tabs-list-default-radius: var(--tabs-list-default-radius, var(--radius-full));
+  /* Border colour of the list (default variant). */
+  --_tabs-list-default-border: var(--tabs-list-default-border, var(--dark-15));
+  /* Fill colour of the list (default variant). */
+  --_tabs-list-default: var(--tabs-list-default, var(--white));
+  /* Padding of the list (default variant). */
+  --_tabs-list-default-padding: var(--tabs-list-default-padding, calc(var(--spacing) * 0.75));
+  /* Gap between items of the list (line variant). */
+  --_tabs-list-line-gap: var(--tabs-list-line-gap, calc(var(--spacing) * 6));
+  /* Border colour of the list (line variant). */
+  --_tabs-list-line-border: var(--tabs-list-line-border, var(--border));
+}
+
+[data-slot="tabs-trigger"] {
+  /* @remove flex-1 border border-transparent py-1 group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start group-data-vertical/tabs:px-2.5 group-data-vertical/tabs:py-1.5 hover:text-foreground focus-visible:border-ring focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-active:bg-background data-active:text-foreground group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-active:bg-transparent after:absolute after:bg-foreground after:opacity-0 after:transition-opacity group-data-horizontal/tabs:after:inset-x-0 group-data-horizontal/tabs:after:bottom-[-5px] group-data-horizontal/tabs:after:h-0.5 group-data-vertical/tabs:after:inset-y-0 group-data-vertical/tabs:after:-end-1 group-data-vertical/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-active:after:opacity-100 */
+  /* @add z-10 cursor-pointer transition-colors duration-300 ease-snappy outline-none focus-visible:ring-2 focus-visible:ring-offset-1 data-active:transition-[color] motion-reduce:data-active:transition-none data-disabled:pointer-events-none data-disabled:cursor-not-allowed motion-reduce:transition-none group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:justify-start text-body-5 tracking-button uppercase not-data-active:hover:text-dark-75 */
+  /* Gap between items of the trigger. */
+  --_tabs-trigger-gap: var(--tabs-trigger-gap, calc(var(--spacing) * 1.5));
+  /* Ring colour of the trigger when focused. */
+  --_tabs-trigger-focus-ring: var(--tabs-trigger-focus-ring, var(--navy));
+  /* Text colour of the trigger when disabled. */
+  --_tabs-trigger-disabled-foreground: var(--tabs-trigger-disabled-foreground, var(--dark-45));
+  /* Height of the trigger. */
+  --_tabs-trigger-height: var(--tabs-trigger-height, calc(var(--spacing) * 7));
+  /* Corner radius of the trigger. */
+  --_tabs-trigger-radius: var(--tabs-trigger-radius, var(--radius-full));
+  /* Horizontal padding of the trigger. */
+  --_tabs-trigger-padding-x: var(--tabs-trigger-padding-x, calc(var(--spacing) * 2.5));
+  /* Font weight of the trigger. */
+  --_tabs-trigger-font-weight: var(--tabs-trigger-font-weight, 600);
+  /* Text colour of the trigger. */
+  --_tabs-trigger-foreground: var(--tabs-trigger-foreground, var(--navy));
+  /* Text colour of the trigger when active. */
+  --_tabs-trigger-active-foreground: var(--tabs-trigger-active-foreground, var(--white));
+}
+
+[data-slot="tabs-content"] {
+  /* @add text-body-5 data-ending-style:hidden data-[activation-direction=right]:animate-tab-in-right data-[activation-direction=left]:animate-tab-in-left motion-reduce:animate-none */
+}

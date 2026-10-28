@@ -1,0 +1,14 @@
+/* Carousel — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --carousel-previous-radius: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/carousel.tsx follow from these names. */
+
+[data-slot="carousel-previous"] {
+  /* Corner radius of the previous. */
+  --_carousel-previous-radius: var(--carousel-previous-radius, var(--radius-full));
+}
+
+[data-slot="carousel-next"] {
+  /* Corner radius of the next. */
+  --_carousel-next-radius: var(--carousel-next-radius, var(--radius-full));
+}

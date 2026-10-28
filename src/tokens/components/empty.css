@@ -1,0 +1,55 @@
+/* Empty — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --empty-gap: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/empty.tsx follow from these names. */
+
+[data-slot="empty"] {
+  /* @remove border-dashed p-12 */
+  /* Gap between items of the empty. */
+  --_empty-gap: var(--empty-gap, calc(var(--spacing) * 4));
+  /* Corner radius of the empty. */
+  --_empty-radius: var(--empty-radius, var(--radius-lg));
+  /* Horizontal padding of the empty. */
+  --_empty-padding-x: var(--empty-padding-x, calc(var(--spacing) * 6));
+  /* Vertical padding of the empty. */
+  --_empty-padding-y: var(--empty-padding-y, calc(var(--spacing) * 10));
+}
+
+[data-slot="empty-header"] {
+  /* Gap between items of the header. */
+  --_empty-header-gap: var(--empty-header-gap, calc(var(--spacing) * 1.5));
+}
+
+[data-slot="empty-icon"] {
+  /* @add mb-2.5 */
+  /* @add(variant.icon) [&_svg:not([class*='size-'])]:size-5 */
+  /* Width and height of the icon (icon variant). */
+  --_empty-icon-icon-size: var(--empty-icon-icon-size, calc(var(--spacing) * 10));
+  /* Corner radius of the icon (icon variant). */
+  --_empty-icon-icon-radius: var(--empty-icon-icon-radius, var(--radius-full));
+  /* Fill colour of the icon (icon variant). */
+  --_empty-icon-icon: var(--empty-icon-icon, var(--accent));
+  /* Text colour of the icon (icon variant). */
+  --_empty-icon-icon-foreground: var(--empty-icon-icon-foreground, var(--mint-75));
+}
+
+[data-slot="empty-title"] {
+  /* @remove tracking-tight */
+  /* @add text-body-4 leading-tight */
+  /* Font weight of the title. */
+  --_empty-title-font-weight: var(--empty-title-font-weight, 600);
+  /* Text colour of the title. */
+  --_empty-title-foreground: var(--empty-title-foreground, var(--navy));
+}
+
+[data-slot="empty-description"] {
+  /* @add text-body-5 leading-normal */
+  /* Text colour of the description. */
+  --_empty-description-foreground: var(--empty-description-foreground, var(--muted-foreground));
+}
+
+[data-slot="empty-content"] {
+  /* @add text-body-5 */
+  /* Gap between items of the content. */
+  --_empty-content-gap: var(--empty-content-gap, calc(var(--spacing) * 4));
+}

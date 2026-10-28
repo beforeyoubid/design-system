@@ -1,0 +1,109 @@
+/* Combobox — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --combobox-content-radius: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/combobox.tsx follow from these names. */
+
+[data-slot="combobox-content"] {
+  /* Corner radius of the content. */
+  --_combobox-content-radius: var(--combobox-content-radius, var(--radius-2xl));
+  /* Fill colour of the content. */
+  --_combobox-content: var(--combobox-content, var(--popover));
+  /* Text colour of the content. */
+  --_combobox-content-foreground: var(--combobox-content-foreground, var(--popover-foreground));
+  /* Shadow of the content. */
+  --_combobox-content-shadow: var(--combobox-content-shadow, 0 25px 50px -12px rgb(0 0 0 / 0.25));
+  /* Ring colour of the content. */
+  --_combobox-content-ring: var(--combobox-content-ring, color-mix(in oklab, var(--foreground) 5%, transparent));
+}
+
+[data-slot="combobox-list"] {
+  /* Padding of the list. */
+  --_combobox-list-padding: var(--combobox-list-padding, calc(var(--spacing) * 1));
+}
+
+[data-slot="combobox-item"] {
+  /* Gap between items of the item. */
+  --_combobox-item-gap: var(--combobox-item-gap, calc(var(--spacing) * 2.5));
+  /* Corner radius of the item. */
+  --_combobox-item-radius: var(--combobox-item-radius, var(--radius-xl));
+  /* Vertical padding of the item. */
+  --_combobox-item-padding-y: var(--combobox-item-padding-y, calc(var(--spacing) * 2));
+  /* Fill colour of the item when highlighted. */
+  --_combobox-item-highlighted: var(--combobox-item-highlighted, var(--accent));
+  /* Text colour of the item when highlighted. */
+  --_combobox-item-highlighted-foreground: var(--combobox-item-highlighted-foreground, var(--accent-foreground));
+  /* Opacity of the item when disabled. */
+  --_combobox-item-disabled-opacity: var(--combobox-item-disabled-opacity, 0.5);
+}
+
+[data-slot="combobox-label"] {
+  /* Horizontal padding of the label. */
+  --_combobox-label-padding-x: var(--combobox-label-padding-x, calc(var(--spacing) * 3.5));
+  /* Vertical padding of the label. */
+  --_combobox-label-padding-y: var(--combobox-label-padding-y, calc(var(--spacing) * 2.5));
+  /* Text colour of the label. */
+  --_combobox-label-foreground: var(--combobox-label-foreground, var(--muted-foreground));
+}
+
+[data-slot="combobox-empty"] {
+  /* Vertical padding of the empty. */
+  --_combobox-empty-padding-y: var(--combobox-empty-padding-y, calc(var(--spacing) * 2));
+  /* Text colour of the empty. */
+  --_combobox-empty-foreground: var(--combobox-empty-foreground, var(--muted-foreground));
+}
+
+[data-slot="combobox-separator"] {
+  /* Height of the separator. */
+  --_combobox-separator-height: var(--combobox-separator-height, 1px);
+  /* Fill colour of the separator. */
+  --_combobox-separator: var(--combobox-separator, color-mix(in oklab, var(--border) 50%, transparent));
+}
+
+[data-slot="combobox-chips"] {
+  /* Minimum height of the chips. */
+  --_combobox-chips-min-height: var(--combobox-chips-min-height, calc(var(--spacing) * 9));
+  /* Gap between items of the chips. */
+  --_combobox-chips-gap: var(--combobox-chips-gap, calc(var(--spacing) * 1.5));
+  /* Corner radius of the chips. */
+  --_combobox-chips-radius: var(--combobox-chips-radius, var(--radius-4xl));
+  /* Border colour of the chips. */
+  --_combobox-chips-border: var(--combobox-chips-border, var(--input));
+  /* Fill colour of the chips. */
+  --_combobox-chips: var(--combobox-chips, color-mix(in oklab, var(--input) 30%, transparent));
+  /* Horizontal padding of the chips. */
+  --_combobox-chips-padding-x: var(--combobox-chips-padding-x, calc(var(--spacing) * 2.5));
+  /* Vertical padding of the chips. */
+  --_combobox-chips-padding-y: var(--combobox-chips-padding-y, calc(var(--spacing) * 1.5));
+  /* Border colour of the chips when focused. */
+  --_combobox-chips-focus-border: var(--combobox-chips-focus-border, var(--ring));
+  /* Ring colour of the chips when focused. */
+  --_combobox-chips-focus-ring: var(--combobox-chips-focus-ring, color-mix(in oklab, var(--ring) 50%, transparent));
+  /* Border colour of the chips when invalid. */
+  --_combobox-chips-invalid-border: var(--combobox-chips-invalid-border, var(--destructive));
+  /* Ring colour of the chips when invalid. */
+  --_combobox-chips-invalid-ring: var(--combobox-chips-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
+}
+
+[data-slot="combobox-chip"] {
+  /* Gap between items of the chip. */
+  --_combobox-chip-gap: var(--combobox-chip-gap, calc(var(--spacing) * 1));
+  /* Corner radius of the chip. */
+  --_combobox-chip-radius: var(--combobox-chip-radius, var(--radius-4xl));
+  /* Fill colour of the chip. */
+  --_combobox-chip: var(--combobox-chip, color-mix(in oklab, var(--muted-foreground) 10%, transparent));
+  /* Horizontal padding of the chip. */
+  --_combobox-chip-padding-x: var(--combobox-chip-padding-x, calc(var(--spacing) * 2));
+  /* Font weight of the chip. */
+  --_combobox-chip-font-weight: var(--combobox-chip-font-weight, 500);
+  /* Text colour of the chip. */
+  --_combobox-chip-foreground: var(--combobox-chip-foreground, var(--foreground));
+  /* Opacity of the chip when disabled. */
+  --_combobox-chip-disabled-opacity: var(--combobox-chip-disabled-opacity, 0.5);
+}
+
+[data-slot="combobox-chip-remove"] {
+  /* Opacity of the chip-remove. */
+  --_combobox-chip-remove-opacity: var(--combobox-chip-remove-opacity, 0.5);
+  /* Opacity of the chip-remove when hovered. */
+  --_combobox-chip-remove-hover-opacity: var(--combobox-chip-remove-hover-opacity, 1);
+}

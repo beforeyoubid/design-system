@@ -23,10 +23,10 @@ function NativeSelect({
       <select
         data-slot="native-select"
         data-size={size}
-        className="h-9 w-full min-w-0 appearance-none rounded-4xl border border-input bg-input/30 py-1 pe-8 ps-3 text-sm transition-colors outline-none select-none selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 data-[size=sm]:h-8 dark:bg-input/30 dark:hover:bg-input/50 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"
+        className="h-(--_native-select-height) w-full min-w-0 appearance-none rounded-(--_native-select-radius) border border-(--_native-select-border) bg-(--_native-select) py-(--_native-select-padding-y) pe-8 ps-3 text-sm transition-colors outline-none select-none selection:bg-primary selection:text-primary-foreground placeholder:text-(--_native-select-placeholder) focus-visible:border-(--_native-select-focus-border) focus-visible:ring-[3px] focus-visible:ring-(--_native-select-focus-ring) disabled:pointer-events-none disabled:cursor-not-allowed aria-invalid:border-(--_native-select-invalid-border) aria-invalid:ring-[3px] aria-invalid:ring-(--_native-select-invalid-ring) data-[size=sm]:h-8 dark:bg-input/30 dark:hover:bg-input/50 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"
         {...props}
       />
-      <IconSelector className="pointer-events-none absolute top-1/2 end-3.5 size-4 -translate-y-1/2 text-muted-foreground select-none" aria-hidden="true" data-slot="native-select-icon" />
+      <IconSelector className="pointer-events-none absolute top-1/2 end-3.5 size-(--_native-select-icon-size) -translate-y-1/2 text-(--_native-select-icon-foreground) select-none" aria-hidden="true" data-slot="native-select-icon" />
     </div>
   )
 }
@@ -38,7 +38,7 @@ function NativeSelectOption({
   return (
     <option
       data-slot="native-select-option"
-      className={cn("bg-[Canvas] text-[CanvasText]", className)}
+      className={cn("bg-(--_native-select-option) text-(--_native-select-option-foreground)", className)}
       {...props}
     />
   )
@@ -51,7 +51,7 @@ function NativeSelectOptGroup({
   return (
     <optgroup
       data-slot="native-select-optgroup"
-      className={cn("bg-[Canvas] text-[CanvasText]", className)}
+      className={cn("bg-(--_native-select-optgroup) text-(--_native-select-optgroup-foreground)", className)}
       {...props}
     />
   )

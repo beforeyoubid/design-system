@@ -1,0 +1,75 @@
+/* Navigation Menu — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --navigation-menu-list-gap: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/navigation-menu.tsx follow from these names. */
+
+[data-slot="navigation-menu-list"] {
+  /* Gap between items of the list. */
+  --_navigation-menu-list-gap: var(--navigation-menu-list-gap, calc(var(--spacing) * 0));
+}
+
+[data-slot="navigation-menu-trigger"] {
+  /* @remove py-2.5 hover:bg-muted focus:bg-muted focus-visible:outline-1 disabled:opacity-50 data-popup-open:hover:bg-muted data-open:bg-muted/50 data-open:hover:bg-muted data-open:focus:bg-muted */
+  /* @add cursor-pointer text-body-5 focus-visible:ring-3 */
+  /* Height of the trigger. */
+  --_navigation-menu-trigger-height: var(--navigation-menu-trigger-height, calc(var(--spacing) * 10));
+  /* Gap between items of the trigger. */
+  --_navigation-menu-trigger-gap: var(--navigation-menu-trigger-gap, calc(var(--spacing) * 1));
+  /* Corner radius of the trigger. */
+  --_navigation-menu-trigger-radius: var(--navigation-menu-trigger-radius, var(--radius-lg));
+  /* Horizontal padding of the trigger. */
+  --_navigation-menu-trigger-padding-x: var(--navigation-menu-trigger-padding-x, calc(var(--spacing) * 3));
+  /* Font weight of the trigger. */
+  --_navigation-menu-trigger-font-weight: var(--navigation-menu-trigger-font-weight, 500);
+  /* Text colour of the trigger. */
+  --_navigation-menu-trigger-foreground: var(--navigation-menu-trigger-foreground, var(--dark-100));
+  /* Text colour of the trigger when hovered. */
+  --_navigation-menu-trigger-hover-foreground: var(--navigation-menu-trigger-hover-foreground, var(--mint-75));
+  /* Ring colour of the trigger when focused. */
+  --_navigation-menu-trigger-focus-ring: var(--navigation-menu-trigger-focus-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
+  /* Text colour of the trigger when disabled. */
+  --_navigation-menu-trigger-disabled-foreground: var(--navigation-menu-trigger-disabled-foreground, var(--dark-45));
+  /* Fill colour of the trigger while open. */
+  --_navigation-menu-trigger-open: var(--navigation-menu-trigger-open, var(--mint-l4));
+  /* Text colour of the trigger while open. */
+  --_navigation-menu-trigger-open-foreground: var(--navigation-menu-trigger-open-foreground, var(--mint-75));
+}
+
+[data-slot="navigation-menu-content"] {
+  /* @remove pe-3 ease-[cubic-bezier(0.22,1,0.36,1)] group-data-[viewport=false]/navigation-menu:ring-1 group-data-[viewport=false]/navigation-menu:ring-foreground/5 */
+  /* @add duration-350 ease-snappy group-data-[viewport=false]/navigation-menu:rounded-lg group-data-[viewport=false]/navigation-menu:border group-data-[viewport=false]/navigation-menu:border-light-l3 group-data-[viewport=false]/navigation-menu:bg-white group-data-[viewport=false]/navigation-menu:text-dark-100 group-data-[viewport=false]/navigation-menu:shadow-md */
+  /* Padding of the content. */
+  --_navigation-menu-content-padding: var(--navigation-menu-content-padding, calc(var(--spacing) * 1));
+}
+
+[data-slot="navigation-menu-link"] {
+  /* @remove p-3 focus-visible:outline-1 in-data-[slot=navigation-menu-content]:rounded-xl data-[active=true]:hover:bg-muted data-[active=true]:focus:bg-muted */
+  /* @add cursor-pointer text-body-5 transition-colors focus-visible:ring-3 */
+  /* Minimum height of the link. */
+  --_navigation-menu-link-min-height: var(--navigation-menu-link-min-height, calc(var(--spacing) * 8));
+  /* Gap between items of the link. */
+  --_navigation-menu-link-gap: var(--navigation-menu-link-gap, calc(var(--spacing) * 2));
+  /* Corner radius of the link. */
+  --_navigation-menu-link-radius: var(--navigation-menu-link-radius, var(--radius-md));
+  /* Horizontal padding of the link. */
+  --_navigation-menu-link-padding-x: var(--navigation-menu-link-padding-x, calc(var(--spacing) * 2));
+  /* Vertical padding of the link. */
+  --_navigation-menu-link-padding-y: var(--navigation-menu-link-padding-y, calc(var(--spacing) * 1.5));
+  /* Text colour of the link. */
+  --_navigation-menu-link-foreground: var(--navigation-menu-link-foreground, var(--dark-100));
+  /* Fill colour of the link when hovered. */
+  --_navigation-menu-link-hover: var(--navigation-menu-link-hover, var(--light-l1));
+  /* Fill colour of the link when focused. */
+  --_navigation-menu-link-focus: var(--navigation-menu-link-focus, var(--light-l1));
+  /* Ring colour of the link when focused. */
+  --_navigation-menu-link-focus-ring: var(--navigation-menu-link-focus-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
+  /* Fill colour of the link when active. */
+  --_navigation-menu-link-active: var(--navigation-menu-link-active, var(--mint-l2));
+  /* Text colour of the link when active. */
+  --_navigation-menu-link-active-foreground: var(--navigation-menu-link-active-foreground, var(--mint-75));
+}
+
+[data-slot="navigation-menu-indicator"] {
+  /* Height of the indicator. */
+  --_navigation-menu-indicator-height: var(--navigation-menu-indicator-height, calc(var(--spacing) * 1.5));
+}

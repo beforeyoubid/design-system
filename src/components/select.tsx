@@ -1,11 +1,38 @@
 import * as React from "react"
 import { Select as SelectPrimitive } from "@base-ui/react/select"
 import { cva, type VariantProps } from "class-variance-authority"
-import { IconCheck } from "@tabler/icons-react"
+import { IconCheck, IconChevronDown } from "@tabler/icons-react"
 
 import { cn } from "@/lib/utils"
+import { SelectTrigger as StockSelectTrigger } from "@/components/ui/select"
 
 export * from "@/components/ui/select"
+
+/**
+ * Rey's trigger ends in a chevron that turns and goes mint while open; stock's
+ * ends in an up-down selector. Stock's icon is hidden (it has no slot to hook,
+ * only Tabler's class) and ours follows the value. Levers: select-icon in
+ * src/tokens/components/select.css.
+ */
+function SelectTrigger({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof StockSelectTrigger>) {
+  return (
+    <StockSelectTrigger className={cn("[&>.tabler-icon-selector]:hidden", className)} {...props}>
+      {children}
+      <SelectPrimitive.Icon
+        data-slot="select-icon"
+        render={
+          <span className="pointer-events-none flex size-(--_select-icon-size) items-center justify-center text-(--_select-icon-foreground) transition-transform group-data-popup-open/select-trigger:rotate-180 group-data-popup-open/select-trigger:text-(--_select-icon-open-foreground) group-data-disabled/select-trigger:text-(--_select-icon-disabled-foreground)" />
+        }
+      >
+        <IconChevronDown className="size-(--_select-icon-size)" />
+      </SelectPrimitive.Icon>
+    </StockSelectTrigger>
+  )
+}
 
 const selectItemVariants = cva(
   "group/select-item relative flex min-h-8 w-full cursor-pointer items-center rounded-md py-1.5 text-body-5 text-dark-100 outline-hidden select-none data-highlighted:bg-light-l1 focus:bg-light-l1 data-disabled:pointer-events-none data-disabled:text-dark-45 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
@@ -111,5 +138,5 @@ function SelectFooter({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { SelectFooter, SelectItem, selectItemVariants }
+export { SelectFooter, SelectItem, SelectTrigger, selectItemVariants }
 export type { SelectItemProps }

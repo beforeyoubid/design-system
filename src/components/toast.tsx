@@ -20,8 +20,8 @@ import {
 import { cn } from "@/lib/utils"
 import {
   Toast as StockToast,
-  ToastAction,
-  ToastClose,
+  ToastAction as StockToastAction,
+  ToastClose as StockToastClose,
   ToastContent,
   ToastDescription,
   ToastPortal,
@@ -32,6 +32,22 @@ import {
 } from "@/components/ui/toast"
 
 export * from "@/components/ui/toast"
+
+// Rey's toast keeps the action as an inline underlined link in the
+// description and the close as a bare icon; stock renders both as Buttons.
+function ToastAction({
+  render = <button type="button" />,
+  ...props
+}: React.ComponentProps<typeof StockToastAction>) {
+  return <StockToastAction render={render} {...props} />
+}
+
+function ToastClose({
+  render = <button type="button" />,
+  ...props
+}: React.ComponentProps<typeof StockToastClose>) {
+  return <StockToastClose render={render} {...props} />
+}
 
 /** BYB toast types. Untyped toasts render as `default`. */
 type ToastType = "success" | "info" | "warning" | "error" | "default"
@@ -245,6 +261,8 @@ const useToastManager = ToastPrimitive.useToastManager<ToastData>
 export {
   Toaster,
   Toast,
+  ToastAction,
+  ToastClose,
   createToastManager,
   toast,
   toastVariants,

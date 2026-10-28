@@ -1,0 +1,58 @@
+/* Attachment — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --attachment-radius: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/attachment.tsx follow from these names. */
+
+[data-slot="attachment"] {
+  /* Corner radius of the attachment. */
+  --_attachment-radius: var(--attachment-radius, var(--radius-2xl));
+  /* Fill colour of the attachment. */
+  --_attachment: var(--attachment, var(--card));
+  /* Text colour of the attachment. */
+  --_attachment-foreground: var(--attachment-foreground, var(--card-foreground));
+  /* Ring colour of the attachment when focused. */
+  --_attachment-focus-ring: var(--attachment-focus-ring, color-mix(in oklab, var(--ring) 50%, transparent));
+  /* Gap between items of the attachment (default size). */
+  --_attachment-default-gap: var(--attachment-default-gap, calc(var(--spacing) * 2));
+  /* Gap between items of the attachment (sm size). */
+  --_attachment-sm-gap: var(--attachment-sm-gap, calc(var(--spacing) * 2.5));
+  /* Gap between items of the attachment (xs size). */
+  --_attachment-xs-gap: var(--attachment-xs-gap, calc(var(--spacing) * 1.5));
+  /* Corner radius of the attachment (xs size). */
+  --_attachment-xs-radius: var(--attachment-xs-radius, var(--attachment-radius, var(--radius-xl)));
+  /* Width of the attachment (vertical variant). */
+  --_attachment-vertical-width: var(--attachment-vertical-width, calc(var(--spacing) * 24));
+}
+
+[data-slot="attachment-media"] {
+  /* Width of the media. */
+  --_attachment-media-width: var(--attachment-media-width, calc(var(--spacing) * 10));
+  /* Corner radius of the media. */
+  --_attachment-media-radius: var(--attachment-media-radius, var(--radius-xl));
+  /* Fill colour of the media. */
+  --_attachment-media: var(--attachment-media, var(--muted));
+  /* Text colour of the media. */
+  --_attachment-media-foreground: var(--attachment-media-foreground, var(--foreground));
+  /* Opacity of the media (image variant). */
+  --_attachment-media-image-opacity: var(--attachment-media-image-opacity, 0.6);
+}
+
+[data-slot="attachment-title"] {
+  /* Font weight of the title. */
+  --_attachment-title-font-weight: var(--attachment-title-font-weight, 500);
+}
+
+[data-slot="attachment-description"] {
+  /* @add max-w-full */
+  /* Text colour of the description. */
+  --_attachment-description-foreground: var(--attachment-description-foreground, var(--muted-foreground));
+}
+
+[data-slot="attachment-group"] {
+  /* @remove scrollbar-none */
+  /* @add no-scrollbar */
+  /* Gap between items of the group. */
+  --_attachment-group-gap: var(--attachment-group-gap, calc(var(--spacing) * 3));
+  /* Vertical padding of the group. */
+  --_attachment-group-padding-y: var(--attachment-group-padding-y, calc(var(--spacing) * 1));
+}

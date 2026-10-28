@@ -1,0 +1,67 @@
+/* Badge — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --badge-height: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/badge.tsx follow from these names. */
+
+[data-slot="badge"] {
+  /* @remove(variant.secondary) [a]:hover:bg-secondary/80 */
+  /* @remove(variant.destructive) focus-visible:ring-destructive/20 [a]:hover:bg-destructive/20 */
+  /* @add text-caption-2 focus-visible:ring-3 */
+  /* @add(variant.default) [a]:hover:bg-mint-l1 */
+  /* Height of the badge. */
+  --_badge-height: var(--badge-height, calc(var(--spacing) * 5));
+  /* Gap between items of the badge. */
+  --_badge-gap: var(--badge-gap, calc(var(--spacing) * 1));
+  /* Corner radius of the badge. */
+  --_badge-radius: var(--badge-radius, var(--radius-full));
+  /* Horizontal padding of the badge. */
+  --_badge-padding-x: var(--badge-padding-x, calc(var(--spacing) * 2));
+  /* Vertical padding of the badge. */
+  --_badge-padding-y: var(--badge-padding-y, calc(var(--spacing) * 0.5));
+  /* Font weight of the badge. */
+  --_badge-font-weight: var(--badge-font-weight, 500);
+  /* Border colour of the badge when focused. */
+  --_badge-focus-border: var(--badge-focus-border, var(--ring));
+  /* Ring colour of the badge when focused. */
+  --_badge-focus-ring: var(--badge-focus-ring, color-mix(in oklab, var(--ring) 50%, transparent));
+  /* Border colour of the badge when invalid. */
+  --_badge-invalid-border: var(--badge-invalid-border, var(--destructive));
+  /* Ring colour of the badge when invalid. */
+  --_badge-invalid-ring: var(--badge-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
+  /* Border colour of the badge (default variant). */
+  --_badge-default-border: var(--badge-default-border, var(--mint-l1));
+  /* Fill colour of the badge (default variant). */
+  --_badge-default: var(--badge-default, var(--mint-l2));
+  /* Font weight of the badge (default variant). */
+  --_badge-default-font-weight: var(--badge-default-font-weight, var(--badge-font-weight, 600));
+  /* Text colour of the badge (default variant). */
+  --_badge-default-foreground: var(--badge-default-foreground, var(--mint-90));
+  /* Border colour of the badge (secondary variant). */
+  --_badge-secondary-border: var(--badge-secondary-border, var(--dark-15));
+  /* Fill colour of the badge (secondary variant). */
+  --_badge-secondary: var(--badge-secondary, var(--light-l2));
+  /* Font weight of the badge (secondary variant). */
+  --_badge-secondary-font-weight: var(--badge-secondary-font-weight, var(--badge-font-weight, 600));
+  /* Text colour of the badge (secondary variant). */
+  --_badge-secondary-foreground: var(--badge-secondary-foreground, var(--dark-75));
+  /* Border colour of the badge (destructive variant). */
+  --_badge-destructive-border: var(--badge-destructive-border, var(--error-15));
+  /* Fill colour of the badge (destructive variant). */
+  --_badge-destructive: var(--badge-destructive, var(--error-l1));
+  /* Font weight of the badge (destructive variant). */
+  --_badge-destructive-font-weight: var(--badge-destructive-font-weight, var(--badge-font-weight, 600));
+  /* Text colour of the badge (destructive variant). */
+  --_badge-destructive-foreground: var(--badge-destructive-foreground, var(--error-75));
+  /* Border colour of the badge (outline variant). */
+  --_badge-outline-border: var(--badge-outline-border, var(--border));
+  /* Fill colour of the badge (outline variant). */
+  --_badge-outline: var(--badge-outline, color-mix(in oklab, var(--input) 30%, transparent));
+  /* Text colour of the badge (outline variant). */
+  --_badge-outline-foreground: var(--badge-outline-foreground, var(--foreground));
+  /* Fill colour of the badge (ghost variant) when hovered. */
+  --_badge-ghost-hover: var(--badge-ghost-hover, var(--muted));
+  /* Text colour of the badge (ghost variant) when hovered. */
+  --_badge-ghost-hover-foreground: var(--badge-ghost-hover-foreground, var(--muted-foreground));
+  /* Text colour of the badge (link variant). */
+  --_badge-link-foreground: var(--badge-link-foreground, var(--primary));
+}

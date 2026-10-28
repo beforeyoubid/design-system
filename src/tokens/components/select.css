@@ -1,0 +1,134 @@
+/* Select — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --select-radius: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/select.tsx follow from these names. */
+
+[data-slot="select-group"] {
+  /* @remove p-1 */
+}
+
+[data-slot="select-trigger"] {
+  /* @remove py-2 disabled:opacity-50 aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 data-[size=default]:h-9 */
+  /* @add group/select-trigger cursor-pointer w-full text-body-5 transition-[color,background-color,border-color,box-shadow] focus-visible:ring-3 data-popup-open:ring-3 data-popup-open:data-placeholder:text-mint-75 aria-invalid:hover:border-error-75 data-disabled:cursor-not-allowed data-disabled:hover:border-dark-45 data-[size=sm]:h-9 */
+  /* Height of the trigger. */
+  --_select-trigger-height: var(--select-trigger-height, calc(var(--spacing) * 10));
+  /* Gap between items of the trigger. */
+  --_select-trigger-gap: var(--select-trigger-gap, calc(var(--spacing) * 2));
+  /* Corner radius of the trigger. */
+  --_select-trigger-radius: var(--select-trigger-radius, var(--radius-lg));
+  /* Border colour of the trigger. */
+  --_select-trigger-border: var(--select-trigger-border, var(--dark-45));
+  /* Fill colour of the trigger. */
+  --_select-trigger: var(--select-trigger, var(--white));
+  /* Horizontal padding of the trigger. */
+  --_select-trigger-padding-x: var(--select-trigger-padding-x, calc(var(--spacing) * 3));
+  /* Text colour of the trigger. */
+  --_select-trigger-foreground: var(--select-trigger-foreground, var(--dark-100));
+  /* Border colour of the trigger when hovered. */
+  --_select-trigger-hover-border: var(--select-trigger-hover-border, var(--dark-75));
+  /* Border colour of the trigger when focused. */
+  --_select-trigger-focus-border: var(--select-trigger-focus-border, var(--mint-45));
+  /* Ring colour of the trigger when focused. */
+  --_select-trigger-focus-ring: var(--select-trigger-focus-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
+  /* Placeholder text colour of the trigger. */
+  --_select-trigger-placeholder: var(--select-trigger-placeholder, var(--dark-90));
+  /* Border colour of the trigger while open. */
+  --_select-trigger-open-border: var(--select-trigger-open-border, var(--mint-45));
+  /* Fill colour of the trigger while open. */
+  --_select-trigger-open: var(--select-trigger-open, var(--mint-l4));
+  /* Text colour of the trigger while open. */
+  --_select-trigger-open-foreground: var(--select-trigger-open-foreground, var(--mint-75));
+  /* Ring colour of the trigger while open. */
+  --_select-trigger-open-ring: var(--select-trigger-open-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
+  /* Border colour of the trigger when invalid. */
+  --_select-trigger-invalid-border: var(--select-trigger-invalid-border, var(--error-75));
+  /* Fill colour of the trigger when disabled. */
+  --_select-trigger-disabled: var(--select-trigger-disabled, var(--light-l2));
+  /* Text colour of the trigger when disabled. */
+  --_select-trigger-disabled-foreground: var(--select-trigger-disabled-foreground, var(--dark-45));
+}
+
+[data-slot="select-icon"] {
+  /* Width and height of the chevron. @ours */
+  --_select-icon-size: var(--select-icon-size, calc(var(--spacing) * 3.5));
+  /* Colour of the chevron. @ours */
+  --_select-icon-foreground: var(--select-icon-foreground, var(--dark-75));
+  /* Colour of the chevron while open. @ours */
+  --_select-icon-open-foreground: var(--select-icon-open-foreground, var(--mint-75));
+  /* Colour of the chevron when disabled. @ours */
+  --_select-icon-disabled-foreground: var(--select-icon-disabled-foreground, var(--dark-45));
+}
+
+[data-slot="select-content"] {
+  /* @remove ring-1 ring-foreground/5 */
+  /* @add max-h-70 border */
+  /* Corner radius of the content. */
+  --_select-content-radius: var(--select-content-radius, var(--radius-lg));
+  /* Border colour of the content. */
+  --_select-content-border: var(--select-content-border, var(--light-l3));
+  /* Fill colour of the content. */
+  --_select-content: var(--select-content, var(--white));
+  /* Padding of the content. */
+  --_select-content-padding: var(--select-content-padding, calc(var(--spacing) * 1));
+  /* Text colour of the content. */
+  --_select-content-foreground: var(--select-content-foreground, var(--dark-100));
+  /* Shadow of the content. */
+  --_select-content-shadow: var(--select-content-shadow, 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1));
+}
+
+[data-slot="select-label"] {
+  /* @remove py-2.5 */
+  /* @add pt-2 pb-1 text-overline */
+  /* Horizontal padding of the label. */
+  --_select-label-padding-x: var(--select-label-padding-x, calc(var(--spacing) * 2));
+  /* Text colour of the label. */
+  --_select-label-foreground: var(--select-label-foreground, var(--dark-90));
+}
+
+[data-slot="select-item"] {
+  /* @remove gap-2.5 focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-disabled:opacity-50 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2 */
+  /* @add group/select-item cursor-pointer ps-2 text-body-5 data-selected:data-highlighted:bg-mint-l2 */
+  /* Minimum height of the item. */
+  --_select-item-min-height: var(--select-item-min-height, calc(var(--spacing) * 8));
+  /* Corner radius of the item. */
+  --_select-item-radius: var(--select-item-radius, var(--radius-md));
+  /* Vertical padding of the item. */
+  --_select-item-padding-y: var(--select-item-padding-y, calc(var(--spacing) * 1.5));
+  /* Text colour of the item. */
+  --_select-item-foreground: var(--select-item-foreground, var(--dark-100));
+  /* Fill colour of the item when highlighted. */
+  --_select-item-highlighted: var(--select-item-highlighted, var(--light-l1));
+  /* Fill colour of the item when focused. */
+  --_select-item-focus: var(--select-item-focus, var(--light-l1));
+  /* Fill colour of the item when selected. */
+  --_select-item-selected: var(--select-item-selected, var(--mint-l2));
+  /* Text colour of the item when selected. */
+  --_select-item-selected-foreground: var(--select-item-selected-foreground, var(--mint-75));
+  /* Text colour of the item when disabled. */
+  --_select-item-disabled-foreground: var(--select-item-disabled-foreground, var(--dark-45));
+}
+
+[data-slot="select-separator"] {
+  /* Height of the separator. */
+  --_select-separator-height: var(--select-separator-height, 1px);
+  /* Fill colour of the separator. */
+  --_select-separator: var(--select-separator, var(--light-l3));
+}
+
+[data-slot="select-scroll-up-button"] {
+  /* Fill colour of the scroll-up-button. */
+  --_select-scroll-up-button: var(--select-scroll-up-button, var(--white));
+  /* Vertical padding of the scroll-up-button. */
+  --_select-scroll-up-button-padding-y: var(--select-scroll-up-button-padding-y, calc(var(--spacing) * 1));
+  /* Text colour of the scroll-up-button. */
+  --_select-scroll-up-button-foreground: var(--select-scroll-up-button-foreground, var(--dark-75));
+}
+
+[data-slot="select-scroll-down-button"] {
+  /* Fill colour of the scroll-down-button. */
+  --_select-scroll-down-button: var(--select-scroll-down-button, var(--white));
+  /* Vertical padding of the scroll-down-button. */
+  --_select-scroll-down-button-padding-y: var(--select-scroll-down-button-padding-y, calc(var(--spacing) * 1));
+  /* Text colour of the scroll-down-button. */
+  --_select-scroll-down-button-foreground: var(--select-scroll-down-button-foreground, var(--dark-75));
+}

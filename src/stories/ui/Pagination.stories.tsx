@@ -7,7 +7,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '../../components/ui/pagination'
+} from '../../components/pagination'
 
 const meta: Meta<typeof Pagination> = {
   title: 'BYB Components/Pagination',

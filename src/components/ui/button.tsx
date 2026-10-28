@@ -1,41 +1,35 @@
 import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
-
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 cursor-pointer items-center justify-center rounded-xl border-0 font-semibold whitespace-nowrap uppercase tracking-button transition-all outline-none select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:cursor-not-allowed aria-busy:pointer-events-none aria-busy:cursor-progress aria-busy:opacity-70 aria-invalid:ring-3 aria-invalid:ring-error-75/20 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button inline-flex shrink-0 items-center justify-center rounded-(--_button-radius) border-0 font-(--_button-font-weight) whitespace-nowrap transition-all outline-none select-none focus-visible:ring-2 focus-visible:ring-(--_button-focus-ring) active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none aria-invalid:ring-3 aria-invalid:ring-(--_button-invalid-ring) dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 cursor-pointer uppercase tracking-button focus-visible:outline-none focus-visible:ring-offset-2 disabled:cursor-not-allowed aria-busy:pointer-events-none aria-busy:cursor-progress aria-busy:opacity-70",
   {
     variants: {
       variant: {
-        default:
-          "bg-primary text-primary-foreground shadow-xs hover:bg-primary/80 aria-expanded:bg-primary/80 disabled:bg-light-l2 disabled:text-dark-45 disabled:shadow-none",
+        default: "bg-(--_button-default) text-(--_button-default-foreground) hover:bg-(--_button-default-hover) shadow-(--_button-default-shadow) aria-expanded:bg-(--_button-default-open) disabled:bg-(--_button-default-disabled) disabled:text-(--_button-default-disabled-foreground) disabled:shadow-(--_button-default-disabled-shadow)",
         outline:
-          "border border-dark-15 bg-white text-dark-90 hover:border-dark-45 hover:bg-dark-45 hover:text-white aria-expanded:border-mint-45 aria-expanded:bg-mint-l4 aria-expanded:text-mint-75 aria-expanded:ring-3 aria-expanded:ring-mint-45/30 disabled:border-light-l2 disabled:bg-light-l2 disabled:text-dark-45",
+          "border-(--_button-outline-border) bg-(--_button-outline) hover:bg-(--_button-outline-hover) hover:text-(--_button-outline-hover-foreground) aria-expanded:bg-(--_button-outline-open) aria-expanded:text-(--_button-outline-open-foreground) text-(--_button-outline-foreground) hover:border-(--_button-outline-hover-border) aria-expanded:border-(--_button-outline-open-border) aria-expanded:ring-(--_button-outline-open-ring) disabled:border-(--_button-outline-disabled-border) disabled:bg-(--_button-outline-disabled) disabled:text-(--_button-outline-disabled-foreground) border aria-expanded:ring-3",
         secondary:
-          "border border-navy bg-white text-navy hover:bg-navy hover:text-white aria-expanded:bg-navy aria-expanded:text-white disabled:border-dark-15 disabled:bg-light-l2 disabled:text-dark-45",
+          "bg-(--_button-secondary) text-(--_button-secondary-foreground) hover:bg-(--_button-secondary-hover) aria-expanded:bg-(--_button-secondary-open) aria-expanded:text-(--_button-secondary-open-foreground) border-(--_button-secondary-border) hover:text-(--_button-secondary-hover-foreground) disabled:border-(--_button-secondary-disabled-border) disabled:bg-(--_button-secondary-disabled) disabled:text-(--_button-secondary-disabled-foreground) border",
         ghost:
-          "text-mint-75 hover:text-mint-45 aria-expanded:text-mint-45 disabled:text-dark-45",
+          "hover:text-(--_button-ghost-hover-foreground) aria-expanded:text-(--_button-ghost-open-foreground) dark:hover:bg-muted/50 text-(--_button-ghost-foreground) disabled:text-(--_button-ghost-disabled-foreground)",
         destructive:
-          "bg-error-75 text-white shadow-xs hover:bg-error-45 focus-visible:ring-error-75 disabled:bg-light-l2 disabled:text-dark-45 disabled:shadow-none",
-        link: "text-mint-75 underline-offset-4 hover:text-mint-45 hover:underline disabled:text-dark-45",
+          "bg-(--_button-destructive) text-(--_button-destructive-foreground) hover:bg-(--_button-destructive-hover) focus-visible:ring-(--_button-destructive-focus-ring) dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40 shadow-(--_button-destructive-shadow) disabled:bg-(--_button-destructive-disabled) disabled:text-(--_button-destructive-disabled-foreground) disabled:shadow-(--_button-destructive-disabled-shadow)",
+        link: "text-(--_button-link-foreground) underline-offset-4 hover:underline hover:text-(--_button-link-hover-foreground) disabled:text-(--_button-link-disabled-foreground)",
       },
       size: {
         default:
-          "h-10 gap-3 px-4 text-button-sm has-data-[icon=inline-end]:pe-3.5 has-data-[icon=inline-start]:ps-3.5",
-        xs: "h-7 gap-1 rounded-md px-3 py-1 text-caption-2 has-data-[icon=inline-end]:pe-2 has-data-[icon=inline-start]:ps-2 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-9 gap-2 rounded-lg px-3.5 text-button-sm has-data-[icon=inline-end]:pe-3 has-data-[icon=inline-start]:ps-3",
-        lg: "h-11 gap-3 px-4.5 text-button-md has-data-[icon=inline-end]:pe-4 has-data-[icon=inline-start]:ps-4 [&_svg:not([class*='size-'])]:size-4.5",
-        icon: "size-10 rounded-full",
-        "icon-xs": "size-7 rounded-full [&_svg:not([class*='size-'])]:size-3",
-        "icon-sm": "size-9 rounded-full",
-        "icon-lg": "size-11 rounded-full [&_svg:not([class*='size-'])]:size-4.5",
+          "h-(--_button-md-height) gap-(--_button-md-gap) px-(--_button-md-padding-x) has-data-[icon=inline-end]:pe-3.5 has-data-[icon=inline-start]:ps-3.5 text-button-sm",
+        xs: "h-(--_button-xs-height) gap-(--_button-xs-gap) px-(--_button-xs-padding-x) text-caption-2 has-data-[icon=inline-end]:pe-2 has-data-[icon=inline-start]:ps-2 [&_svg:not([class*='size-'])]:size-3 rounded-(--_button-xs-radius) py-(--_button-xs-padding-y)",
+        sm: "h-(--_button-sm-height) gap-(--_button-sm-gap) px-(--_button-sm-padding-x) has-data-[icon=inline-end]:pe-3 has-data-[icon=inline-start]:ps-3 rounded-(--_button-sm-radius) text-button-sm",
+        lg: "h-(--_button-lg-height) gap-(--_button-lg-gap) px-(--_button-lg-padding-x) has-data-[icon=inline-end]:pe-4 has-data-[icon=inline-start]:ps-4 text-button-md [&_svg:not([class*='size-'])]:size-4.5",
+        icon: "size-(--_button-icon-size) rounded-(--_button-icon-radius)",
+        "icon-xs": "size-(--_button-icon-xs-size) [&_svg:not([class*='size-'])]:size-3 rounded-(--_button-icon-xs-radius)",
+        "icon-sm": "size-(--_button-icon-sm-size) rounded-(--_button-icon-sm-radius)",
+        "icon-lg": "size-(--_button-icon-lg-size) rounded-(--_button-icon-lg-radius) [&_svg:not([class*='size-'])]:size-4.5",
       },
     },
-    compoundVariants: [
-      // Links sit inline with text — no button padding.
-      { variant: "link", className: "px-1" },
-    ],
     defaultVariants: {
       variant: "default",
       size: "default",

@@ -1,0 +1,134 @@
+/* Dropdown Menu — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --dropdown-menu-content-radius: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/dropdown-menu.tsx follow from these names. */
+
+[data-slot="dropdown-menu-content"] {
+  /* @remove ring-1 ring-foreground/5 */
+  /* @add min-w-55 border text-body-5 */
+  /* Corner radius of the content. */
+  --_dropdown-menu-content-radius: var(--dropdown-menu-content-radius, var(--radius-lg));
+  /* Border colour of the content. */
+  --_dropdown-menu-content-border: var(--dropdown-menu-content-border, var(--dark-45));
+  /* Fill colour of the content. */
+  --_dropdown-menu-content: var(--dropdown-menu-content, var(--white));
+  /* Padding of the content. */
+  --_dropdown-menu-content-padding: var(--dropdown-menu-content-padding, calc(var(--spacing) * 1));
+  /* Text colour of the content. */
+  --_dropdown-menu-content-foreground: var(--dropdown-menu-content-foreground, var(--dark-90));
+  /* Shadow of the content. */
+  --_dropdown-menu-content-shadow: var(--dropdown-menu-content-shadow, 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1));
+}
+
+[data-slot="dropdown-menu-label"] {
+  /* @remove py-2.5 */
+  /* @add pt-2 pb-1.5 text-body-5 data-inset:ps-9 */
+  /* Horizontal padding of the label. */
+  --_dropdown-menu-label-padding-x: var(--dropdown-menu-label-padding-x, calc(var(--spacing) * 2.5));
+  /* Font weight of the label. */
+  --_dropdown-menu-label-font-weight: var(--dropdown-menu-label-font-weight, 600);
+  /* Text colour of the label. */
+  --_dropdown-menu-label-foreground: var(--dropdown-menu-label-foreground, var(--navy));
+}
+
+[data-slot="dropdown-menu-item"] {
+  /* @remove py-2 focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive data-disabled:opacity-50 data-[variant=destructive]:*:[svg]:text-destructive */
+  /* @add cursor-pointer text-body-5 data-inset:ps-9 data-[variant=destructive]:text-error-60 data-[variant=destructive]:data-highlighted:bg-error-l1 data-[variant=destructive]:data-highlighted:text-error-75 */
+  /* Height of the item. */
+  --_dropdown-menu-item-height: var(--dropdown-menu-item-height, calc(var(--spacing) * 8));
+  /* Gap between items of the item. */
+  --_dropdown-menu-item-gap: var(--dropdown-menu-item-gap, calc(var(--spacing) * 2.5));
+  /* Corner radius of the item. */
+  --_dropdown-menu-item-radius: var(--dropdown-menu-item-radius, var(--radius-md));
+  /* Horizontal padding of the item. */
+  --_dropdown-menu-item-padding-x: var(--dropdown-menu-item-padding-x, calc(var(--spacing) * 2.5));
+  /* Text colour of the item. */
+  --_dropdown-menu-item-foreground: var(--dropdown-menu-item-foreground, var(--dark-90));
+  /* Fill colour of the item when highlighted. */
+  --_dropdown-menu-item-highlighted: var(--dropdown-menu-item-highlighted, var(--mint-l2));
+  /* Text colour of the item when highlighted. */
+  --_dropdown-menu-item-highlighted-foreground: var(--dropdown-menu-item-highlighted-foreground, var(--mint-75));
+  /* Text colour of the item when disabled. */
+  --_dropdown-menu-item-disabled-foreground: var(--dropdown-menu-item-disabled-foreground, var(--dark-45));
+}
+
+[data-slot="dropdown-menu-sub-trigger"] {
+  /* @remove py-2 focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-open:bg-accent data-open:text-accent-foreground */
+  /* @add cursor-pointer text-body-5 data-disabled:pointer-events-none data-inset:ps-9 */
+  /* Height of the sub-trigger. */
+  --_dropdown-menu-sub-trigger-height: var(--dropdown-menu-sub-trigger-height, calc(var(--spacing) * 8));
+  /* Gap between items of the sub-trigger. */
+  --_dropdown-menu-sub-trigger-gap: var(--dropdown-menu-sub-trigger-gap, calc(var(--spacing) * 2.5));
+  /* Corner radius of the sub-trigger. */
+  --_dropdown-menu-sub-trigger-radius: var(--dropdown-menu-sub-trigger-radius, var(--radius-md));
+  /* Horizontal padding of the sub-trigger. */
+  --_dropdown-menu-sub-trigger-padding-x: var(--dropdown-menu-sub-trigger-padding-x, calc(var(--spacing) * 2.5));
+  /* Text colour of the sub-trigger. */
+  --_dropdown-menu-sub-trigger-foreground: var(--dropdown-menu-sub-trigger-foreground, var(--dark-90));
+  /* Fill colour of the sub-trigger when highlighted. */
+  --_dropdown-menu-sub-trigger-highlighted: var(--dropdown-menu-sub-trigger-highlighted, var(--mint-l2));
+  /* Text colour of the sub-trigger when highlighted. */
+  --_dropdown-menu-sub-trigger-highlighted-foreground: var(--dropdown-menu-sub-trigger-highlighted-foreground, var(--mint-75));
+  /* Text colour of the sub-trigger when disabled. */
+  --_dropdown-menu-sub-trigger-disabled-foreground: var(--dropdown-menu-sub-trigger-disabled-foreground, var(--dark-45));
+  /* Fill colour of the sub-trigger while open. */
+  --_dropdown-menu-sub-trigger-open: var(--dropdown-menu-sub-trigger-open, var(--mint-l2));
+  /* Text colour of the sub-trigger while open. */
+  --_dropdown-menu-sub-trigger-open-foreground: var(--dropdown-menu-sub-trigger-open-foreground, var(--mint-75));
+}
+
+[data-slot="dropdown-menu-sub-content"] {
+  /* @remove rounded-2xl bg-popover p-1 text-popover-foreground shadow-2xl ring-1 ring-foreground/5 duration-100 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 */
+  /* @add min-w-44 */
+}
+
+[data-slot="dropdown-menu-checkbox-item"] {
+  /* @remove relative flex cursor-default items-center rounded-xl py-2 pe-8 ps-3 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 */
+  /* @add group/dropdown-menu-checkbox-item data-inset:ps-9 */
+  /* Gap between items of the checkbox-item. */
+  --_dropdown-menu-checkbox-item-gap: var(--dropdown-menu-checkbox-item-gap, calc(var(--spacing) * 2.5));
+  /* Horizontal padding of the checkbox-item. */
+  --_dropdown-menu-checkbox-item-padding-x: var(--dropdown-menu-checkbox-item-padding-x, calc(var(--spacing) * 2.5));
+}
+
+[data-slot="dropdown-menu-checkbox-item-indicator"] {
+  /* @remove absolute end-2 */
+  /* @add shrink-0 border transition-colors group-data-checked/dropdown-menu-checkbox-item:border-mint-45 group-data-checked/dropdown-menu-checkbox-item:bg-mint-45 group-data-disabled/dropdown-menu-checkbox-item:opacity-50 */
+  /* Width and height of the checkbox-item-indicator. */
+  --_dropdown-menu-checkbox-item-indicator-size: var(--dropdown-menu-checkbox-item-indicator-size, calc(var(--spacing) * 4));
+  /* Corner radius of the checkbox-item-indicator. */
+  --_dropdown-menu-checkbox-item-indicator-radius: var(--dropdown-menu-checkbox-item-indicator-radius, var(--radius-sm));
+  /* Border colour of the checkbox-item-indicator. */
+  --_dropdown-menu-checkbox-item-indicator-border: var(--dropdown-menu-checkbox-item-indicator-border, var(--dark-45));
+  /* Fill colour of the checkbox-item-indicator. */
+  --_dropdown-menu-checkbox-item-indicator: var(--dropdown-menu-checkbox-item-indicator, var(--white));
+  /* Text colour of the checkbox-item-indicator. */
+  --_dropdown-menu-checkbox-item-indicator-foreground: var(--dropdown-menu-checkbox-item-indicator-foreground, var(--white));
+}
+
+[data-slot="dropdown-menu-radio-item"] {
+  /* @remove relative flex cursor-default items-center rounded-xl py-2 pe-8 ps-3 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 */
+  /* @add data-inset:ps-9 */
+  /* Gap between items of the radio-item. */
+  --_dropdown-menu-radio-item-gap: var(--dropdown-menu-radio-item-gap, calc(var(--spacing) * 2.5));
+  /* Horizontal padding of the radio-item. */
+  --_dropdown-menu-radio-item-padding-x: var(--dropdown-menu-radio-item-padding-x, calc(var(--spacing) * 2.5));
+  /* Fill colour of the radio-item when checked. */
+  --_dropdown-menu-radio-item-checked: var(--dropdown-menu-radio-item-checked, var(--mint-l2));
+  /* Text colour of the radio-item when checked. */
+  --_dropdown-menu-radio-item-checked-foreground: var(--dropdown-menu-radio-item-checked-foreground, var(--mint-75));
+}
+
+[data-slot="dropdown-menu-separator"] {
+  /* Height of the separator. */
+  --_dropdown-menu-separator-height: var(--dropdown-menu-separator-height, 1px);
+  /* Fill colour of the separator. */
+  --_dropdown-menu-separator: var(--dropdown-menu-separator, var(--light-l3));
+}
+
+[data-slot="dropdown-menu-shortcut"] {
+  /* @remove tracking-widest group-focus/dropdown-menu-item:text-accent-foreground */
+  /* @add text-caption-1 */
+  /* Text colour of the shortcut. */
+  --_dropdown-menu-shortcut-foreground: var(--dropdown-menu-shortcut-foreground, var(--dark-75));
+}

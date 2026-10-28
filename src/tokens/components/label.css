@@ -1,0 +1,14 @@
+/* Label — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --label-gap: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/label.tsx follow from these names. */
+
+[data-slot="label"] {
+  /* @add text-body-5 */
+  /* Gap between items of the label. */
+  --_label-gap: var(--label-gap, calc(var(--spacing) * 2));
+  /* Font weight of the label. */
+  --_label-font-weight: var(--label-font-weight, 500);
+  /* Text colour of the label. */
+  --_label-foreground: var(--label-foreground, var(--dark-90));
+}

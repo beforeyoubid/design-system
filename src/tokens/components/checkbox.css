@@ -1,0 +1,38 @@
+/* Checkbox — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section, e.g.
+ *   :root { --checkbox-size: … }
+ * Defaults are Rey's design. Edited by hand; the class edits in ui/checkbox.tsx follow from these names. */
+
+[data-slot="checkbox"] {
+  /* @remove group-has-[:focus-visible]/field-label:ring-0 group-has-[:focus-visible]/field-label:not-data-checked:border-input aria-invalid:aria-checked:border-primary data-checked:text-primary-foreground group-has-[:focus-visible]/field-label:data-checked:border-primary */
+  /* @add cursor-pointer data-disabled:cursor-not-allowed transition-[color,background-color,border-color,box-shadow] focus-visible:ring-3 aria-invalid:ring-3 aria-invalid:data-checked:border-mint-45 data-disabled:cursor-not-allowed data-disabled:opacity-(--_checkbox-disabled-opacity) */
+  /* Width and height of the checkbox. */
+  --_checkbox-size: var(--checkbox-size, calc(var(--spacing) * 4));
+  /* Corner radius of the checkbox. */
+  --_checkbox-radius: var(--checkbox-radius, var(--radius-sm));
+  /* Border colour of the checkbox. */
+  --_checkbox-border: var(--checkbox-border, var(--dark-45));
+  /* Fill colour of the checkbox. */
+  --_checkbox: var(--checkbox, var(--white));
+  /* Text colour of the checkbox. */
+  --_checkbox-foreground: var(--checkbox-foreground, var(--white));
+  /* Border colour of the checkbox when focused. */
+  --_checkbox-focus-border: var(--checkbox-focus-border, var(--mint-45));
+  /* Ring colour of the checkbox when focused. */
+  --_checkbox-focus-ring: var(--checkbox-focus-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
+  /* Border colour of the checkbox when checked. */
+  --_checkbox-checked-border: var(--checkbox-checked-border, var(--mint-45));
+  /* Fill colour of the checkbox when checked. */
+  --_checkbox-checked: var(--checkbox-checked, var(--mint-45));
+  /* Border colour of the checkbox when invalid. */
+  --_checkbox-invalid-border: var(--checkbox-invalid-border, var(--error-75));
+  /* Ring colour of the checkbox when invalid. */
+  --_checkbox-invalid-ring: var(--checkbox-invalid-ring, color-mix(in oklab, var(--error-75) 20%, transparent));
+  /* Opacity of the checkbox when disabled. */
+  --_checkbox-disabled-opacity: var(--checkbox-disabled-opacity, 0.5);
+}
+
+[data-slot="checkbox-indicator"] {
+  /* @remove [&>svg]:size-3.5 */
+  /* @add [&>svg]:size-3 [&>svg]:stroke-3 */
+}

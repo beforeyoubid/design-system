@@ -2,10 +2,10 @@
 
 import * as React from "react"
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
-import { X } from "lucide-react"
-
 import { cn } from "@/lib/utils"
+
 import { Button } from "@/components/ui/button"
+import { IconX } from "@tabler/icons-react"
 
 function Dialog({ ...props }: DialogPrimitive.Root.Props) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />
@@ -31,7 +31,7 @@ function DialogOverlay({
     <DialogPrimitive.Backdrop
       data-slot="dialog-overlay"
       className={cn(
-        "fixed inset-0 isolate z-50 bg-dark-100/50 duration-100 supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0",
+        "fixed inset-0 isolate z-50 bg-(--_dialog-overlay) duration-100 supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0",
         className
       )}
       {...props}
@@ -53,7 +53,7 @@ function DialogContent({
       <DialogPrimitive.Popup
         data-slot="dialog-content"
         className={cn(
-          "group/dialog fixed top-1/2 start-1/2 z-50 flex max-h-11/12 w-11/12 max-w-110 rounded-3xl -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 flex-col gap-4 bg-white p-6 text-body-5 text-dark-90 shadow-2xl duration-100 outline-none data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+          "fixed top-1/2 start-1/2 z-50 flex w-11/12 max-w-110 -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 gap-(--_dialog-content-gap) rounded-(--_dialog-content-radius) bg-(--_dialog-content) p-(--_dialog-content-padding) text-body-5 text-(--_dialog-content-foreground) duration-100 outline-none data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 shadow-(--_dialog-content-shadow) group/dialog max-h-11/12 flex-col",
           className
         )}
         {...props}
@@ -62,10 +62,17 @@ function DialogContent({
         {showCloseButton && (
           <DialogPrimitive.Close
             data-slot="dialog-close"
-            aria-label="Close"
-            className="absolute top-5 end-5 inline-flex size-8 cursor-pointer items-center justify-center rounded-full text-dark-75 transition-colors outline-none hover:text-dark-100 focus-visible:ring-2 focus-visible:ring-navy [&_svg]:size-5"
+            render={
+              <Button
+                variant="ghost"
+                className="absolute top-4 end-4"
+                size="icon-sm"
+              />
+            }
           >
-            <X />
+            <IconX
+            />
+            <span className="sr-only">Close</span>
           </DialogPrimitive.Close>
         )}
       </DialogPrimitive.Popup>
@@ -77,7 +84,7 @@ function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="dialog-header"
-      className={cn("flex flex-col gap-1.5 pe-10 text-start", className)}
+      className={cn("flex flex-col gap-(--_dialog-header-gap) pe-10 text-start", className)}
       {...props}
     />
   )
@@ -95,7 +102,7 @@ function DialogFooter({
     <div
       data-slot="dialog-footer"
       className={cn(
-        "flex flex-wrap justify-end gap-2 pt-2",
+        "flex gap-(--_dialog-footer-gap) flex-wrap justify-end pt-2",
         className
       )}
       {...props}
@@ -114,7 +121,10 @@ function DialogTitle({ className, ...props }: DialogPrimitive.Title.Props) {
   return (
     <DialogPrimitive.Title
       data-slot="dialog-title"
-      className={cn("text-body-3 leading-tight font-semibold text-navy", className)}
+      className={cn(
+        "text-body-3 leading-tight font-(--_dialog-title-font-weight) text-(--_dialog-title-foreground)",
+        className
+      )}
       {...props}
     />
   )
@@ -128,8 +138,7 @@ function DialogDescription({
     <DialogPrimitive.Description
       data-slot="dialog-description"
       className={cn(
-        "*:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-navy",
-        "text-body-5 text-dark-90",
+        "text-body-5 text-(--_dialog-description-foreground) *:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-navy",
         className
       )}
       {...props}
