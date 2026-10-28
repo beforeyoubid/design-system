@@ -7,7 +7,7 @@ import { ChevronDown, Ellipsis, EllipsisVertical, Settings2 } from "lucide-react
 
 import { cn } from "@/lib/utils"
 import { productBadgeByKey, type ProductBadgeKey } from "@/lib/product-badges"
-import { BYBIconTile } from "@/components/BYBIconTile"
+import { IconTile } from "@/components/icon-tile"
 import {
   DropdownMenuGroup as DropdownMenuGroupBase,
   DropdownMenuLabel as DropdownMenuLabelBase,
@@ -160,7 +160,7 @@ function DropdownMenuProductItem({
 
 interface DropdownMenuCardTriggerProps
   extends Omit<MenuPrimitive.Trigger.Props, "title"> {
-  /** Lucide icon for the current selection, shown in a mint BYBIconTile. */
+  /** Lucide icon for the current selection, shown in a mint IconTile. */
   icon?: React.ReactNode
   /** Small uppercase label above the title, e.g. "Inspection type". */
   label?: React.ReactNode
@@ -189,7 +189,7 @@ function DropdownMenuCardTrigger({
       )}
       {...props}
     >
-      {icon && <BYBIconTile tone="mint" size="lg" icon={icon} />}
+      {icon && <IconTile variant="mint" size="lg" icon={icon} />}
       <span className="flex min-w-0 flex-1 flex-col gap-0.5">
         {label && (
           <span className="text-overline text-dark-90">{label}</span>
@@ -246,7 +246,7 @@ function DropdownMenuCardGrid({
 
 interface DropdownMenuCardItemProps
   extends Omit<MenuPrimitive.RadioItem.Props, "title"> {
-  /** Lucide icon, shown in a neutral BYBIconTile. */
+  /** Lucide icon, shown in a neutral IconTile. */
   icon?: React.ReactNode
   /** Background class for the dot, e.g. `bg-badge-product-pest-inspection`. */
   dotClassName?: string
@@ -273,7 +273,7 @@ function DropdownMenuCardItem({
       )}
       {...props}
     >
-      {icon && <BYBIconTile tone="neutral" size="md" icon={icon} />}
+      {icon && <IconTile variant="neutral" size="md" icon={icon} />}
       <span className="flex min-w-0 flex-1 flex-col gap-0.5">
         <span className="flex items-start gap-2">
           {dotClassName && (

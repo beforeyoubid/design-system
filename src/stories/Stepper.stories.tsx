@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { IconFileText, IconHome, IconSignature } from '@tabler/icons-react'
-import { BYBStepper, type BYBStepperStep } from '../components/BYBStepper'
+import { Stepper, type StepperStep } from '../components/stepper'
 
-const STEPS: BYBStepperStep[] = [
+const STEPS: StepperStep[] = [
   { title: 'Property', description: 'Choose an address', icon: <IconHome /> },
   { title: 'Reports', description: 'Pick your reports', icon: <IconFileText /> },
   { title: 'Sign', description: 'Review and sign', icon: <IconSignature /> },
 ]
 
-const meta: Meta<typeof BYBStepper> = {
-  title: 'BYB Components/BYBStepper',
-  component: BYBStepper,
+const meta: Meta<typeof Stepper> = {
+  title: 'BYB Components/Stepper',
+  component: Stepper,
   tags: ['autodocs'],
   argTypes: {
     orientation: { control: 'select', options: ['horizontal', 'vertical', 'responsive'] },
@@ -22,13 +22,13 @@ const meta: Meta<typeof BYBStepper> = {
   args: { steps: STEPS, defaultValue: 1 },
   render: (args) => (
     <div className="w-176 max-w-full">
-      <BYBStepper {...args} />
+      <Stepper {...args} />
     </div>
   ),
 }
 
 export default meta
-type Story = StoryObj<typeof BYBStepper>
+type Story = StoryObj<typeof Stepper>
 
 export const Default: Story = {}
 export const LabelsBottom: Story = { args: { orientation: 'horizontal', labelPlacement: 'bottom' } }
@@ -46,7 +46,7 @@ export const Sizes: Story = {
   render: () => (
     <div className="flex w-176 max-w-full flex-col gap-8">
       {(['sm', 'md', 'lg'] as const).map((size) => (
-        <BYBStepper key={size} steps={STEPS} defaultValue={1} orientation="horizontal" size={size} clickable="all" />
+        <Stepper key={size} steps={STEPS} defaultValue={1} orientation="horizontal" size={size} clickable="all" />
       ))}
     </div>
   ),

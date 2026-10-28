@@ -3,7 +3,7 @@
 import * as React from "react"
 
 import { Button } from "@/components/button"
-import { type BYBIconTileTone } from "@/components/BYBIconTile"
+import { type IconTileVariant } from "@/components/icon-tile"
 import {
   Dialog,
   DialogClose,
@@ -37,10 +37,10 @@ interface ConfirmDialogProps {
   onAction?: () => void
   /** Use the red destructive Button for the action. */
   destructive?: boolean
-  /** Lucide icon in a BYBIconTile left of the title (one row). */
+  /** Lucide icon in a IconTile left of the title (one row). */
   icon?: React.ReactNode
-  /** BYBIconTile colour. Defaults to `error` when `destructive`, else `mint`. */
-  iconTone?: BYBIconTileTone
+  /** IconTile colour. Defaults to `error` when `destructive`, else `mint`. */
+  iconVariant?: IconTileVariant
   size?: React.ComponentProps<typeof DialogContent>["size"]
   className?: string
 }
@@ -64,7 +64,7 @@ function ConfirmDialog({
   onAction,
   destructive = false,
   icon,
-  iconTone,
+  iconVariant,
   size = "lg",
   className,
 }: ConfirmDialogProps) {
@@ -102,7 +102,7 @@ function ConfirmDialog({
       >
         <DialogHeader
           icon={icon}
-          iconTone={iconTone ?? (destructive ? "error" : "mint")}
+          iconVariant={iconVariant ?? (destructive ? "error" : "mint")}
         >
           <DialogTitle>{title}</DialogTitle>
         </DialogHeader>

@@ -6,11 +6,11 @@ import {
   IconUsers,
   IconClock,
 } from '@tabler/icons-react'
-import { BYBCounter } from '../components/BYBCounter'
+import { Counter } from '../components/counter'
 
-const meta: Meta<typeof BYBCounter> = {
-  title: 'BYB Components/BYBCounter',
-  component: BYBCounter,
+const meta: Meta<typeof Counter> = {
+  title: 'BYB Components/Counter',
+  component: Counter,
   tags: ['autodocs'],
   argTypes: {
     variant:           { control: 'select', options: ['navy', 'lime', 'white'] },
@@ -22,7 +22,7 @@ const meta: Meta<typeof BYBCounter> = {
 }
 
 export default meta
-type Story = StoryObj<typeof BYBCounter>
+type Story = StoryObj<typeof Counter>
 
 // ── Variants ──────────────────────────────────────────────────────────────────
 
@@ -44,10 +44,10 @@ export const White: Story = {
 export const WithIcon: Story = {
   render: () => (
     <div className="flex flex-wrap gap-8 p-6">
-      <BYBCounter variant="navy" value="10,000+" label="Reports ordered"         icon={IconFileDescription} />
-      <BYBCounter variant="navy" value="98%"     label="Customer satisfaction"   icon={IconStarFilled} />
-      <BYBCounter variant="navy" value="500+"    label="Certified inspectors"    icon={IconUsers} />
-      <BYBCounter variant="navy" value="15+"     label="Years of experience"     icon={IconClock} />
+      <Counter variant="navy" value="10,000+" label="Reports ordered"         icon={IconFileDescription} />
+      <Counter variant="navy" value="98%"     label="Customer satisfaction"   icon={IconStarFilled} />
+      <Counter variant="navy" value="500+"    label="Certified inspectors"    icon={IconUsers} />
+      <Counter variant="navy" value="15+"     label="Years of experience"     icon={IconClock} />
     </div>
   ),
 }
@@ -55,10 +55,10 @@ export const WithIcon: Story = {
 export const WithIconLime: Story = {
   render: () => (
     <div className="flex flex-wrap gap-8 p-6">
-      <BYBCounter variant="lime" value="10,000+" label="Reports ordered"         icon={IconFileDescription} />
-      <BYBCounter variant="lime" value="98%"     label="Customer satisfaction"   icon={IconStarFilled} />
-      <BYBCounter variant="lime" value="500+"    label="Certified inspectors"    icon={IconUsers} />
-      <BYBCounter variant="lime" value="15+"     label="Years of experience"     icon={IconClock} />
+      <Counter variant="lime" value="10,000+" label="Reports ordered"         icon={IconFileDescription} />
+      <Counter variant="lime" value="98%"     label="Customer satisfaction"   icon={IconStarFilled} />
+      <Counter variant="lime" value="500+"    label="Certified inspectors"    icon={IconUsers} />
+      <Counter variant="lime" value="15+"     label="Years of experience"     icon={IconClock} />
     </div>
   ),
 }
@@ -68,9 +68,9 @@ export const WithIconLime: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-wrap gap-8 p-6">
-      <BYBCounter variant="navy"  value="10,000+" label="Reports ordered"       icon={IconFileDescription} />
-      <BYBCounter variant="lime"  value="98%"     label="Customer satisfaction" icon={IconStarFilled} />
-      <BYBCounter variant="white" value="500+"    label="Certified inspectors"  icon={IconUsers} />
+      <Counter variant="navy"  value="10,000+" label="Reports ordered"       icon={IconFileDescription} />
+      <Counter variant="lime"  value="98%"     label="Customer satisfaction" icon={IconStarFilled} />
+      <Counter variant="white" value="500+"    label="Certified inspectors"  icon={IconUsers} />
     </div>
   ),
 }
@@ -80,10 +80,10 @@ export const AllVariants: Story = {
 export const StatsRow: Story = {
   render: () => (
     <div className="grid grid-cols-2 gap-6 p-6 sm:grid-cols-4">
-      <BYBCounter variant="navy" value="10,000+" label="Reports ordered"       icon={IconFileDescription} />
-      <BYBCounter variant="navy" value="98%"     label="Customer satisfaction" icon={IconStarFilled} />
-      <BYBCounter variant="navy" value="500+"    label="Certified inspectors"  icon={IconUsers} />
-      <BYBCounter variant="navy" value="15+"     label="Years of experience"   icon={IconClock} />
+      <Counter variant="navy" value="10,000+" label="Reports ordered"       icon={IconFileDescription} />
+      <Counter variant="navy" value="98%"     label="Customer satisfaction" icon={IconStarFilled} />
+      <Counter variant="navy" value="500+"    label="Certified inspectors"  icon={IconUsers} />
+      <Counter variant="navy" value="15+"     label="Years of experience"   icon={IconClock} />
     </div>
   ),
 }

@@ -8,11 +8,11 @@ import { cn } from "@/lib/utils"
  * Dialog and the product DropdownMenu so every icon chip in the library looks
  * the same.
  */
-const bybIconTileVariants = cva(
+const iconTileVariants = cva(
   "inline-flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0",
   {
     variants: {
-      tone: {
+      variant: {
         mint: "bg-mint-l3 text-mint-75",
         navy: "bg-navy text-white",
         warning: "bg-warning-l2 text-warning-75",
@@ -30,35 +30,35 @@ const bybIconTileVariants = cva(
         square: "rounded-lg",
       },
     },
-    defaultVariants: { tone: "mint", size: "md", shape: "circle" },
+    defaultVariants: { variant: "mint", size: "md", shape: "circle" },
   }
 )
 
-type BYBIconTileTone = NonNullable<VariantProps<typeof bybIconTileVariants>["tone"]>
+type IconTileVariant = NonNullable<VariantProps<typeof iconTileVariants>["variant"]>
 
-interface BYBIconTileProps
+interface IconTileProps
   extends Omit<React.ComponentProps<"span">, "children">,
-    VariantProps<typeof bybIconTileVariants> {
+    VariantProps<typeof iconTileVariants> {
   /** The icon element, e.g. `<Bug />` from `@beforeyoubid/design-system/icons/lucide`. */
   icon?: React.ReactNode
   children?: React.ReactNode
 }
 
-function BYBIconTile({
+function IconTile({
   icon,
   children,
-  tone,
+  variant,
   size,
   shape,
   className,
   ...props
-}: BYBIconTileProps) {
+}: IconTileProps) {
   return (
     <span
       data-slot="icon-tile"
-      data-tone={tone ?? "mint"}
+      data-variant={variant ?? "mint"}
       aria-hidden={props["aria-label"] ? undefined : true}
-      className={cn(bybIconTileVariants({ tone, size, shape }), className)}
+      className={cn(iconTileVariants({ variant, size, shape }), className)}
       {...props}
     >
       {icon ?? children}
@@ -66,5 +66,5 @@ function BYBIconTile({
   )
 }
 
-export { BYBIconTile, bybIconTileVariants }
-export type { BYBIconTileProps, BYBIconTileTone }
+export { IconTile, iconTileVariants }
+export type { IconTileProps, IconTileVariant }

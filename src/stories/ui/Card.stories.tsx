@@ -43,7 +43,7 @@ export const Minimal: Story = {
 export const WithIcon: Story = {
   render: () => (
     <Card className="w-96">
-      <CardHeader icon={<FileText />} iconTone="mint">
+      <CardHeader icon={<FileText />} iconVariant="mint">
         <CardTitle>Inspection report</CardTitle>
         <CardDescription>Generated 3 hours ago</CardDescription>
         <CardAction>
@@ -60,27 +60,27 @@ export const WithIcon: Story = {
 }
 
 const ICON_CARDS = [
-  { tone: 'mint', icon: <FileText />, title: 'Reports', description: '12 ready to download' },
-  { tone: 'navy', icon: <Users />, title: 'Team', description: '4 members' },
-  { tone: 'lime', icon: <FileText />, title: 'Express report', description: 'Ready in 24 hours' },
-  { tone: 'warning', icon: <TriangleAlert />, title: 'Payment pending', description: 'Card needs verification' },
-  { tone: 'error', icon: <CircleAlert />, title: 'Upload failed', description: '2 files could not be added' },
-  { tone: 'neutral', icon: <Receipt />, title: 'Invoices', description: '3 this month' },
+  { variant: 'mint', icon: <FileText />, title: 'Reports', description: '12 ready to download' },
+  { variant: 'navy', icon: <Users />, title: 'Team', description: '4 members' },
+  { variant: 'lime', icon: <FileText />, title: 'Express report', description: 'Ready in 24 hours' },
+  { variant: 'warning', icon: <TriangleAlert />, title: 'Payment pending', description: 'Card needs verification' },
+  { variant: 'error', icon: <CircleAlert />, title: 'Upload failed', description: '2 files could not be added' },
+  { variant: 'neutral', icon: <Receipt />, title: 'Invoices', description: '3 this month' },
 ] as const
 
 export const IconTones: Story = {
   render: () => (
     <div className="grid w-200 grid-cols-3 gap-4">
-      {ICON_CARDS.map(({ tone, icon, title, description }) => (
-        <Card key={tone} size="sm">
-          <CardHeader icon={icon} iconTone={tone} iconSize="sm">
+      {ICON_CARDS.map(({ variant, icon, title, description }) => (
+        <Card key={variant} size="sm">
+          <CardHeader icon={icon} iconVariant={variant} iconSize="sm">
             <CardTitle>{title}</CardTitle>
             <CardDescription>{description}</CardDescription>
           </CardHeader>
         </Card>
       ))}
       <Card size="sm">
-        <CardHeader icon={<FileText />} iconTone="navy" iconShape="square" iconSize="lg">
+        <CardHeader icon={<FileText />} iconVariant="navy" iconShape="square" iconSize="lg">
           <CardTitle>Square, large</CardTitle>
           <CardDescription>{'iconShape="square" iconSize="lg"'}</CardDescription>
         </CardHeader>

@@ -12,7 +12,7 @@ import {
 } from '../../components/select'
 import { FileText, ShieldCheck, Waves } from 'lucide-react'
 import { SelectField, productSelectOptions } from '../../components/SelectField'
-import { BYBColorDot } from '../../components/BYBColorDot'
+import { ColorDot } from '../../components/color-dot'
 
 const meta: Meta<typeof Select> = {
   title: 'BYB Components/Select',
@@ -402,7 +402,7 @@ export const MultipleWithCustomContent: Story = {
         options={[
           { value: 'report', label: 'PDF report', start: <FileText className="text-dark-75" />, meta: 'Free', chip: <FileText className="size-3.5" /> },
           { value: 'pool', label: 'Pool check', start: <Waves className="text-dark-75" />, meta: '$120', chip: <Waves className="size-3.5" /> },
-          { value: 'warranty', label: 'Warranty review', start: <ShieldCheck className="text-dark-75" />, meta: <BYBColorDot className="bg-warning-45" />, chip: <BYBColorDot className="bg-warning-45" /> },
+          { value: 'warranty', label: 'Warranty review', start: <ShieldCheck className="text-dark-75" />, meta: <ColorDot className="bg-warning-45" />, chip: <ColorDot className="bg-warning-45" /> },
         ]}
       />
     </div>

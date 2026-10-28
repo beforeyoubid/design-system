@@ -1,8 +1,8 @@
 // =============================================================================
 // BYB-opinionated components — domain-specific, no shadcn equivalent
 // =============================================================================
-export { BYBCounter } from './components/BYBCounter'
-export { BYBPillCard } from './components/BYBPillCard'
+export { Counter } from './components/counter'
+export { PillCard } from './components/pill-card'
 export { BYBImage } from './components/BYBImage'
 
 // =============================================================================
@@ -17,10 +17,10 @@ export type { SelectFieldProps, SelectFieldOption, SelectFieldOptionGroup } from
 // =============================================================================
 // BYB components (Rey's design library) — product-specific, no shadcn equivalent
 // =============================================================================
-export * from './components/BYBIconTile'
-export * from './components/BYBColorDot'
-export { BYBStepper, bybStepIndicatorVariants } from './components/BYBStepper'
-export type { BYBStepperProps, BYBStepperStep } from './components/BYBStepper'
+export * from './components/icon-tile'
+export * from './components/color-dot'
+export { Stepper, stepIndicatorVariants } from './components/stepper'
+export type { StepperProps, StepperStep } from './components/stepper'
 
 // =============================================================================
 // BYB components kept for side-by-side review while their stock shadcn
@@ -45,8 +45,8 @@ export { BYBAreaChart } from './components/BYBAreaChart'
 export type { BYBAreaChartProps, BYBAreaChartSeries, BYBAreaChartRange, BYBAreaChartDatum } from './components/BYBAreaChart'
 export { BYBBarChart, bybStatToggleVariants } from './components/BYBBarChart'
 export type { BYBBarChartProps, BYBBarChartSeries, BYBBarChartDatum } from './components/BYBBarChart'
-export { BYBChartFrame, BYBChartLegendList, BYB_CHART_PALETTE } from './components/BYBChartFrame'
-export type { BYBChartFrameProps, BYBChartLegendListProps, BYBChartLegendItem } from './components/BYBChartFrame'
+export { ChartFrame, ChartLegendList, CHART_PALETTE } from './components/chart-frame'
+export type { ChartFrameProps, ChartLegendListProps, ChartLegendItem } from './components/chart-frame'
 
 // =============================================================================
 // shadcn/ui primitives — generated via `npx shadcn add` against base-maia into

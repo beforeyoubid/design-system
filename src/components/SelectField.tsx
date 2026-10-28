@@ -3,7 +3,7 @@ import { IconX } from "@tabler/icons-react"
 
 import { cn } from "../lib/utils"
 import { productBadges, type ProductBadgeKey } from "../lib/product-badges"
-import { BYBColorDot } from "./BYBColorDot"
+import { ColorDot } from "./color-dot"
 import { Label } from "./ui/label"
 import {
   Select,
@@ -27,11 +27,11 @@ export interface SelectFieldOption {
   disabled?: boolean
   /** Leading content in the list row, before the label (e.g. an icon). */
   start?: React.ReactNode
-  /** Right-aligned content in the list row: a count, hint or `<BYBColorDot />`. */
+  /** Right-aligned content in the list row: a count, hint or `<ColorDot />`. */
   meta?: React.ReactNode
   /**
    * Content shown before the label once selected: inside the chip (multiple)
-   * or the field value (single), e.g. the same `<BYBColorDot />`.
+   * or the field value (single), e.g. the same `<ColorDot />`.
    */
   chip?: React.ReactNode
 }
@@ -51,8 +51,8 @@ export function productSelectOptions(
   return list.map((p) => ({
     value: p.key,
     label: p.label,
-    meta: <BYBColorDot className={p.bg} />,
-    chip: <BYBColorDot className={p.bg} />,
+    meta: <ColorDot className={p.bg} />,
+    chip: <ColorDot className={p.bg} />,
     ...overrides[p.key],
   }))
 }

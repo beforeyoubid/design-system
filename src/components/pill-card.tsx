@@ -30,7 +30,7 @@ const iconCircleVariants = cva(
   }
 )
 
-export interface BYBPillCardProps
+export interface PillCardProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof pillCardVariants> {
   heading: string
@@ -39,7 +39,7 @@ export interface BYBPillCardProps
   iconSize?: number
 }
 
-export function BYBPillCard({
+export function PillCard({
   variant,
   heading,
   subheading,
@@ -47,7 +47,7 @@ export function BYBPillCard({
   iconSize = 40,
   className,
   ...props
-}: BYBPillCardProps) {
+}: PillCardProps) {
   return (
     <div className={cn(pillCardVariants({ variant, className }))} {...props}>
       <div className={cn(iconCircleVariants({ variant }))}>

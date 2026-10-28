@@ -4,7 +4,7 @@ import { IconCheck, IconExclamationMark } from "@tabler/icons-react"
 
 import { cn } from "../lib/utils"
 
-const bybStepIndicatorVariants = cva(
+const stepIndicatorVariants = cva(
   "flex shrink-0 items-center justify-center rounded-full leading-none font-semibold transition-all duration-250",
   {
     variants: {
@@ -38,10 +38,10 @@ const stepLabelOffset = cva("", {
 })
 
 type StepStatus = NonNullable<
-  VariantProps<typeof bybStepIndicatorVariants>["status"]
+  VariantProps<typeof stepIndicatorVariants>["status"]
 >
 
-export interface BYBStepperStep {
+export interface StepperStep {
   title?: React.ReactNode
   description?: React.ReactNode
   /** Icon element shown when `indicator="icon"`. */
@@ -51,13 +51,13 @@ export interface BYBStepperStep {
   disabled?: boolean
 }
 
-export interface BYBStepperProps
-  extends Omit<React.ComponentProps<"div">, "onChange" | "defaultValue"> {
-  steps: BYBStepperStep[]
+export interface StepperProps
+  extends Omit<React.ComponentProps<"div">, "defaultValue"> {
+  steps: StepperStep[]
   /** Controlled active step (0-based). Pass `steps.length` to show every step complete. */
   value?: number
   defaultValue?: number
-  onChange?: (index: number) => void
+  onValueChange?: (index: number) => void
   /** `responsive` (default) switches to vertical below `breakpoint` container width. */
   orientation?: "horizontal" | "vertical" | "responsive"
   /** number (default) · icon (step.icon) · dot (12px, no glyph) */
@@ -72,7 +72,7 @@ export interface BYBStepperProps
   breakpoint?: number
 }
 
-function BYBStepperLine({
+function StepperLine({
   on,
   vertical,
   className,
@@ -101,11 +101,11 @@ function BYBStepperLine({
   )
 }
 
-function BYBStepper({
+function Stepper({
   steps,
   value,
   defaultValue = 0,
-  onChange,
+  onValueChange,
   orientation = "responsive",
   indicator = "number",
   labelPlacement = "end",
@@ -114,7 +114,7 @@ function BYBStepper({
   breakpoint = 560,
   className,
   ...props
-}: BYBStepperProps) {
+}: StepperProps) {
   const [internal, setInternal] = React.useState(defaultValue)
   const current = value ?? internal
   const rootRef = React.useRef<HTMLDivElement>(null)
@@ -142,9 +142,9 @@ function BYBStepper({
 
   const go = (i: number) => {
     if (value === undefined) setInternal(i)
-    onChange?.(i)
+    onValueChange?.(i)
   }
-  const statusOf = (step: BYBStepperStep, i: number): StepStatus =>
+  const statusOf = (step: StepperStep, i: number): StepStatus =>
     step.error
       ? "error"
       : i < current
@@ -152,11 +152,11 @@ function BYBStepper({
         : i === current
           ? "active"
           : "upcoming"
-  const canClick = (step: BYBStepperStep, i: number) =>
+  const canClick = (step: StepperStep, i: number) =>
     !step.disabled &&
     i !== current &&
     (clickable === "all" || (clickable === "completed" && i < current))
-  const glyph = (step: BYBStepperStep, i: number, status: StepStatus) =>
+  const glyph = (step: StepperStep, i: number, status: StepStatus) =>
     dot ? null : status === "complete" ? (
       <IconCheck />
     ) : status === "error" ? (
@@ -188,7 +188,7 @@ function BYBStepper({
           const click = canClick(step, i)
           const circle = (
             <span
-              className={bybStepIndicatorVariants({ size: circleSize, status })}
+              className={stepIndicatorVariants({ size: circleSize, status })}
             >
               {glyph(step, i, status)}
             </span>
@@ -246,7 +246,7 @@ function BYBStepper({
                     )}
                   >
                     {circle}
-                    {!last && <BYBStepperLine vertical on={i < current} />}
+                    {!last && <StepperLine vertical on={i < current} />}
                   </span>
                   {label}
                 </button>
@@ -265,12 +265,12 @@ function BYBStepper({
                   )}
                 >
                   <span className="flex w-full items-center">
-                    <BYBStepperLine
+                    <StepperLine
                       on={i <= current}
                       className={cn("flex-1", i === 0 && "invisible")}
                     />
                     <span className="mx-2 flex">{circle}</span>
-                    <BYBStepperLine
+                    <StepperLine
                       on={i < current}
                       className={cn("flex-1", last && "invisible")}
                     />
@@ -300,7 +300,7 @@ function BYBStepper({
                 {label}
               </button>
               {!last && (
-                <BYBStepperLine
+                <StepperLine
                   on={i < current}
                   className={cn("min-w-3 flex-1", dot ? "mx-2" : "mx-5")}
                 />
@@ -313,4 +313,4 @@ function BYBStepper({
   )
 }
 
-export { BYBStepper, bybStepIndicatorVariants }
+export { Stepper, stepIndicatorVariants }

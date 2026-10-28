@@ -59,7 +59,7 @@ export const Confirm: Story = {
     <Dialog>
       <DialogTrigger render={<Button variant="destructive">Delete report</Button>} />
       <DialogContent>
-        <DialogHeader icon={<Trash2 />} iconTone="error">
+        <DialogHeader icon={<Trash2 />} iconVariant="error">
           <DialogTitle>Delete this report?</DialogTitle>
           <DialogDescription>
             This permanently removes the building &amp; pest report for 12 Smith St. This can&apos;t be undone.
@@ -128,7 +128,7 @@ export const Layout: Story = {
       <Dialog>
         <DialogTrigger render={<Button variant="tertiary">With icon</Button>} />
         <DialogContent size="sm">
-          <DialogHeader icon={<CircleCheck />} iconTone="mint">
+          <DialogHeader icon={<CircleCheck />} iconVariant="mint">
             <DialogTitle>Report ordered</DialogTitle>
             <DialogDescription>We&apos;ll email you as soon as your report is ready to download.</DialogDescription>
           </DialogHeader>
@@ -181,7 +181,7 @@ export const Sizes: Story = {
   ),
 }
 
-/** A header icon (BYBIconTile) centres the header and the actions. */
+/** A header icon (IconTile) centres the header and the actions. */
 export const WithIcon: Story = {
   name: 'With icon',
   render: () => (
@@ -195,9 +195,9 @@ export const WithIcon: Story = {
         <Dialog key={tone}>
           <DialogTrigger render={<Button variant="tertiary">{tone}</Button>} />
           <DialogContent>
-            <DialogHeader icon={icon} iconTone={tone}>
+            <DialogHeader icon={icon} iconVariant={tone}>
               <DialogTitle>{title}</DialogTitle>
-              <DialogDescription>Icons come from Lucide and sit on a BYBIconTile in the chosen tone.</DialogDescription>
+              <DialogDescription>Icons come from Lucide and sit on a IconTile in the chosen tone.</DialogDescription>
             </DialogHeader>
             <DialogFooter showCloseButton />
           </DialogContent>

@@ -9,7 +9,7 @@ const modules = import.meta.glob('../../src/stories/**/*.stories.tsx', { eager: 
 
 export interface StoryEntry { id: string; name: string; Story: React.ComponentType }
 
-/** "DropdownMenu.stories.tsx" → "dropdown-menu", "BYBCounter" → "counter", "InputOTP" → "input-otp". */
+/** "DropdownMenu.stories.tsx" → "dropdown-menu", "Counter" → "counter", "InputOTP" → "input-otp". */
 const kebab = (file: string) =>
   file
     .replace(/^.*\//, '')

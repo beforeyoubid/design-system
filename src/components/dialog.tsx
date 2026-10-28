@@ -10,7 +10,7 @@ import {
   DialogContent as DialogContentBase,
   DialogHeader as DialogHeaderBase,
 } from "@/components/ui/dialog"
-import { BYBIconTile, type BYBIconTileTone } from "@/components/BYBIconTile"
+import { IconTile, type IconTileVariant } from "@/components/icon-tile"
 
 export * from "@/components/ui/dialog"
 
@@ -49,17 +49,17 @@ function DialogContent({ className, size, ...props }: DialogContentProps) {
 }
 
 interface DialogHeaderProps extends React.ComponentProps<"div"> {
-  /** Lucide icon in an `BYBIconTile` on the left, in one row with the title. */
+  /** Lucide icon in an `IconTile` on the left, in one row with the title. */
   icon?: React.ReactNode
-  /** BYBIconTile colour. Default `mint`; use `error` for destructive confirms. */
-  iconTone?: BYBIconTileTone
+  /** IconTile colour. Default `mint`; use `error` for destructive confirms. */
+  iconVariant?: IconTileVariant
 }
 
 /** Stock `DialogHeader` plus an optional icon tile in one row with the title. */
 function DialogHeader({
   className,
   icon,
-  iconTone = "mint",
+  iconVariant = "mint",
   children,
   ...props
 }: DialogHeaderProps) {
@@ -75,7 +75,7 @@ function DialogHeader({
       )}
       {...props}
     >
-      {icon && <BYBIconTile tone={iconTone} size="md" icon={icon} />}
+      {icon && <IconTile variant={iconVariant} size="md" icon={icon} />}
       {children}
     </DialogHeaderBase>
   )

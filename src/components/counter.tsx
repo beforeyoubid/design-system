@@ -86,7 +86,7 @@ const counterLabelVariants = cva(
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export interface BYBCounterProps
+export interface CounterProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof counterValueVariants> {
   value: string
@@ -96,7 +96,7 @@ export interface BYBCounterProps
   animationDuration?: number
 }
 
-export function BYBCounter({
+export function Counter({
   variant,
   value,
   label,
@@ -105,7 +105,7 @@ export function BYBCounter({
   animationDuration = 2000,
   className,
   ...props
-}: BYBCounterProps) {
+}: CounterProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [hasStarted, setHasStarted] = useState(false)
   const parsed = parseValue(value)

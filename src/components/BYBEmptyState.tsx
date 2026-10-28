@@ -2,7 +2,7 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "../lib/utils"
-import { BYBIconTile } from "./BYBIconTile"
+import { IconTile } from "./icon-tile"
 
 const bybEmptyStateVariants = cva(
   "flex w-full flex-col items-center gap-4 px-6 py-10 text-center",
@@ -21,7 +21,7 @@ const bybEmptyStateVariants = cva(
 export interface BYBEmptyStateProps
   extends Omit<React.ComponentProps<"div">, "title">,
     VariantProps<typeof bybEmptyStateVariants> {
-  /** Icon element (e.g. `<FolderOpen />`), shown in a 40px mint `BYBIconTile`. */
+  /** Icon element (e.g. `<FolderOpen />`), shown in a 40px mint `IconTile`. */
   icon?: React.ReactNode
   /** Custom visual instead of the icon, e.g. an avatar or avatar group. */
   media?: React.ReactNode
@@ -55,7 +55,7 @@ function BYBEmptyState({
     >
       {media ??
         (icon && (
-          <BYBIconTile tone="mint" size="md" icon={icon} />
+          <IconTile variant="mint" size="md" icon={icon} />
         ))}
       {(title || description) && (
         <div className="flex max-w-sm flex-col gap-1.5">

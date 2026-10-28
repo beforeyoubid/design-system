@@ -21,15 +21,15 @@ import {
 } from "./ui/chart"
 import {
   CHART_GRID_STROKE,
-  BYB_CHART_PALETTE,
+  CHART_PALETTE,
   CHART_TICK,
   CHART_TOOLTIP_CLASS,
-  BYBChartFrame,
-  BYBChartLegendList,
+  ChartFrame,
+  ChartLegendList,
   formatChartCategory,
   formatChartDate,
   type ChartXValue,
-} from "./BYBChartFrame"
+} from "./chart-frame"
 
 export interface BYBBarChartSeries {
   /** Data key for this series' numeric values. */
@@ -128,7 +128,7 @@ function BYBBarChart({
   legend = false,
   labels = "none",
   colorBy = "series",
-  colors = [...BYB_CHART_PALETTE],
+  colors = [...CHART_PALETTE],
   activeIndex: activeIndexProp,
   defaultActiveIndex = null,
   onActiveChange,
@@ -160,7 +160,7 @@ function BYBBarChart({
     () =>
       series.map((s, i) => ({
         ...s,
-        color: s.color ?? BYB_CHART_PALETTE[i % BYB_CHART_PALETTE.length],
+        color: s.color ?? CHART_PALETTE[i % CHART_PALETTE.length],
         negativeColor:
           s.negativeColor ?? NEGATIVE_PALETTE[i % NEGATIVE_PALETTE.length],
       })),
@@ -246,7 +246,7 @@ function BYBBarChart({
   } as const
 
   return (
-    <BYBChartFrame
+    <ChartFrame
       data-slot="bar-chart"
       title={title}
       description={description}
@@ -390,9 +390,9 @@ function BYBBarChart({
         </RechartsBarChart>
       </ChartContainer>
       {legend && (
-        <BYBChartLegendList items={legendItems} />
+        <ChartLegendList items={legendItems} />
       )}
-    </BYBChartFrame>
+    </ChartFrame>
   )
 }
 

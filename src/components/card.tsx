@@ -2,26 +2,26 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 import { CardHeader as CardHeaderBase } from "@/components/ui/card"
-import { BYBIconTile, type BYBIconTileProps } from "@/components/BYBIconTile"
+import { IconTile, type IconTileProps } from "@/components/icon-tile"
 
 export * from "@/components/ui/card"
 
 interface CardHeaderProps extends React.ComponentProps<"div"> {
-  /** Lucide icon shown in an `BYBIconTile` above the title, e.g. `<FileText />`. */
+  /** Lucide icon shown in an `IconTile` above the title, e.g. `<FileText />`. */
   icon?: React.ReactNode
   /** Tile colour: `mint` (default), `navy`, `warning`, `error`, `neutral`. */
-  iconTone?: BYBIconTileProps["tone"]
+  iconVariant?: IconTileProps["variant"]
   /** Tile size: `sm` 32px, `md` 40px (default), `lg` 48px. */
-  iconSize?: BYBIconTileProps["size"]
+  iconSize?: IconTileProps["size"]
   /** Tile shape: `circle` (default) or `square`. */
-  iconShape?: BYBIconTileProps["shape"]
+  iconShape?: IconTileProps["shape"]
 }
 
 /** Stock `CardHeader` plus an optional icon tile above the title. */
 function CardHeader({
   className,
   icon,
-  iconTone,
+  iconVariant,
   iconSize,
   iconShape,
   children,
@@ -33,17 +33,17 @@ function CardHeader({
       {...props}
     >
       {icon && (
-        <CardIcon tone={iconTone} size={iconSize} shape={iconShape} icon={icon} />
+        <CardIcon variant={iconVariant} size={iconSize} shape={iconShape} icon={icon} />
       )}
       {children}
     </CardHeaderBase>
   )
 }
 
-/** BYBIconTile sized for a card header. Use directly for custom layouts, or via `CardHeader icon`. */
-function CardIcon({ className, ...props }: BYBIconTileProps) {
+/** IconTile sized for a card header. Use directly for custom layouts, or via `CardHeader icon`. */
+function CardIcon({ className, ...props }: IconTileProps) {
   return (
-    <BYBIconTile
+    <IconTile
       data-slot="card-icon"
       className={cn("col-start-1", className)}
       {...props}

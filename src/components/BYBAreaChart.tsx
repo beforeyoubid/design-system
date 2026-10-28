@@ -24,15 +24,15 @@ import {
 } from "./select"
 import {
   CHART_GRID_STROKE,
-  BYB_CHART_PALETTE,
+  CHART_PALETTE,
   CHART_TICK,
   CHART_TOOLTIP_CLASS,
-  BYBChartFrame,
-  BYBChartLegendList,
+  ChartFrame,
+  ChartLegendList,
   formatChartCategory,
   formatChartDate,
   type ChartXValue,
-} from "./BYBChartFrame"
+} from "./chart-frame"
 
 export interface BYBAreaChartSeries {
   /** Data key for this series' numeric values. */
@@ -153,7 +153,7 @@ function BYBAreaChart({
     () =>
       series.map((s, i) => ({
         ...s,
-        color: s.color ?? BYB_CHART_PALETTE[i % BYB_CHART_PALETTE.length],
+        color: s.color ?? CHART_PALETTE[i % CHART_PALETTE.length],
       })),
     [series]
   )
@@ -222,7 +222,7 @@ function BYBAreaChart({
   ) : undefined
 
   return (
-    <BYBChartFrame
+    <ChartFrame
       data-slot="area-chart"
       title={title}
       description={description}
@@ -327,12 +327,12 @@ function BYBAreaChart({
         </RechartsAreaChart>
       </ChartContainer>
       {showLegend && (
-        <BYBChartLegendList
+        <ChartLegendList
           items={resolvedSeries}
           useIcons={legendIcons}
         />
       )}
-    </BYBChartFrame>
+    </ChartFrame>
   )
 }
 
