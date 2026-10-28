@@ -929,7 +929,7 @@
      "description": "Gap between the title and chevron (sm size).",
      "type": "length",
      "part": "accordion-trigger",
-     "variant": null,
+     "variant": "sm",
      "state": null,
      "property": "gap",
      "reads": [
@@ -943,7 +943,7 @@
      "description": "Vertical padding of the trigger (sm size).",
      "type": "length",
      "part": "accordion-trigger",
-     "variant": null,
+     "variant": "sm",
      "state": null,
      "property": "padding-y",
      "reads": [
@@ -957,7 +957,7 @@
      "description": "Vertical padding of the trigger (lg size).",
      "type": "length",
      "part": "accordion-trigger",
-     "variant": null,
+     "variant": "lg",
      "state": null,
      "property": "padding-y",
      "reads": [
@@ -2241,7 +2241,7 @@
      "description": "Border colour of the badge (lime variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "lime",
      "state": null,
      "property": "border",
      "reads": [
@@ -2255,7 +2255,7 @@
      "description": "Fill colour of the badge (lime variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "lime",
      "state": null,
      "property": "fill",
      "reads": [
@@ -2269,7 +2269,7 @@
      "description": "Text colour of the badge (lime variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "lime",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -2283,7 +2283,7 @@
      "description": "Border colour of the badge (success variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "success",
      "state": null,
      "property": "border",
      "reads": [
@@ -2297,7 +2297,7 @@
      "description": "Fill colour of the badge (success variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "success",
      "state": null,
      "property": "fill",
      "reads": [
@@ -2311,7 +2311,7 @@
      "description": "Text colour of the badge (success variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "success",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -2325,7 +2325,7 @@
      "description": "Border colour of the badge (warning variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "warning",
      "state": null,
      "property": "border",
      "reads": [
@@ -2339,7 +2339,7 @@
      "description": "Fill colour of the badge (warning variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "warning",
      "state": null,
      "property": "fill",
      "reads": [
@@ -2353,7 +2353,7 @@
      "description": "Text colour of the badge (warning variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "warning",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -2367,7 +2367,7 @@
      "description": "Border colour of the badge (electric-blue variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "electric-blue",
      "state": null,
      "property": "border",
      "reads": [
@@ -2381,7 +2381,7 @@
      "description": "Fill colour of the badge (electric-blue variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "electric-blue",
      "state": null,
      "property": "fill",
      "reads": [
@@ -2395,7 +2395,7 @@
      "description": "Text colour of the badge (electric-blue variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "electric-blue",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -2409,7 +2409,7 @@
      "description": "Fill and border colour of the solid badge (gray variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "gray-solid",
      "state": null,
      "property": "fill",
      "reads": [
@@ -2423,7 +2423,7 @@
      "description": "Text colour of the solid badge (gray variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "gray-solid",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -2437,7 +2437,7 @@
      "description": "Fill and border colour of the solid badge (mint variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "mint-solid",
      "state": null,
      "property": "fill",
      "reads": [
@@ -2451,7 +2451,7 @@
      "description": "Text colour of the solid badge (mint variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "mint-solid",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -2465,7 +2465,7 @@
      "description": "Fill and border colour of the solid badge (lime variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "lime-solid",
      "state": null,
      "property": "fill",
      "reads": [
@@ -2479,7 +2479,7 @@
      "description": "Text colour of the solid badge (lime variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "lime-solid",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -2493,7 +2493,7 @@
      "description": "Fill and border colour of the solid badge (success variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "success-solid",
      "state": null,
      "property": "fill",
      "reads": [
@@ -2507,7 +2507,7 @@
      "description": "Text colour of the solid badge (success variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "success-solid",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -2521,7 +2521,7 @@
      "description": "Fill and border colour of the solid badge (error variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "error-solid",
      "state": null,
      "property": "fill",
      "reads": [
@@ -2535,7 +2535,7 @@
      "description": "Text colour of the solid badge (error variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "error-solid",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -2549,7 +2549,7 @@
      "description": "Fill and border colour of the solid badge (warning variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "warning-solid",
      "state": null,
      "property": "fill",
      "reads": [
@@ -2563,7 +2563,7 @@
      "description": "Text colour of the solid badge (warning variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "warning-solid",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -2577,7 +2577,7 @@
      "description": "Fill and border colour of the solid badge (electric-blue variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "electric-blue-solid",
      "state": null,
      "property": "fill",
      "reads": [
@@ -2591,7 +2591,7 @@
      "description": "Text colour of the solid badge (electric-blue variant).",
      "type": "color",
      "part": "badge",
-     "variant": null,
+     "variant": "electric-blue-solid",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -2605,7 +2605,7 @@
      "description": "Height of the small badge.",
      "type": "length",
      "part": "badge",
-     "variant": null,
+     "variant": "sm",
      "state": null,
      "property": "height",
      "reads": [
@@ -2619,7 +2619,7 @@
      "description": "Horizontal padding of the small badge.",
      "type": "length",
      "part": "badge",
-     "variant": null,
+     "variant": "sm",
      "state": null,
      "property": "padding-x",
      "reads": [
@@ -2633,7 +2633,7 @@
      "description": "Height of the large badge.",
      "type": "length",
      "part": "badge",
-     "variant": null,
+     "variant": "lg",
      "state": null,
      "property": "height",
      "reads": [
@@ -2647,7 +2647,7 @@
      "description": "Gap between items of the large badge.",
      "type": "length",
      "part": "badge",
-     "variant": null,
+     "variant": "lg",
      "state": null,
      "property": "gap",
      "reads": [
@@ -2661,7 +2661,7 @@
      "description": "Horizontal padding of the large badge.",
      "type": "length",
      "part": "badge",
-     "variant": null,
+     "variant": "lg",
      "state": null,
      "property": "padding-x",
      "reads": [
@@ -3890,7 +3890,7 @@
      "description": "Fill colour of the button (lime variant).",
      "type": "color",
      "part": "button",
-     "variant": null,
+     "variant": "lime",
      "state": null,
      "property": "fill",
      "reads": [
@@ -3904,7 +3904,7 @@
      "description": "Text colour of the button (lime variant).",
      "type": "color",
      "part": "button",
-     "variant": null,
+     "variant": "lime",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -3918,7 +3918,7 @@
      "description": "Fill colour of the button (navy variant).",
      "type": "color",
      "part": "button",
-     "variant": null,
+     "variant": "navy",
      "state": null,
      "property": "fill",
      "reads": [
@@ -3932,7 +3932,7 @@
      "description": "Text colour of the button (navy variant).",
      "type": "color",
      "part": "button",
-     "variant": null,
+     "variant": "navy",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -4400,7 +4400,7 @@
      "description": "Text colour of the title and the trend line.",
      "type": "color",
      "part": "chart-frame",
-     "variant": null,
+     "variant": "title",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -4414,7 +4414,7 @@
      "description": "Text colour of the description and the caption.",
      "type": "color",
      "part": "chart-frame",
-     "variant": null,
+     "variant": "description",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -4689,7 +4689,7 @@
      "description": "Fill colour of an option card (card variant).",
      "type": "color",
      "part": "checkbox-field",
-     "variant": null,
+     "variant": "card",
      "state": null,
      "property": "fill",
      "reads": [
@@ -4703,7 +4703,7 @@
      "description": "Border colour of an option card (card variant).",
      "type": "color",
      "part": "checkbox-field",
-     "variant": null,
+     "variant": "card",
      "state": null,
      "property": "border",
      "reads": [
@@ -4717,7 +4717,7 @@
      "description": "Corner radius of an option card (card variant).",
      "type": "radius",
      "part": "checkbox-field",
-     "variant": null,
+     "variant": "card",
      "state": null,
      "property": "radius",
      "reads": [
@@ -4731,7 +4731,7 @@
      "description": "Fill colour of a ticked option card (card variant).",
      "type": "color",
      "part": "checkbox-field",
-     "variant": null,
+     "variant": "card",
      "state": "checked",
      "property": "fill",
      "reads": [
@@ -4745,7 +4745,7 @@
      "description": "Border colour of a ticked option card (card variant).",
      "type": "color",
      "part": "checkbox-field",
-     "variant": null,
+     "variant": "card",
      "state": "checked",
      "property": "border",
      "reads": [
@@ -6228,7 +6228,7 @@
      "description": "Colour of the number and icon (navy variant).",
      "type": "color",
      "part": "counter-value",
-     "variant": null,
+     "variant": "navy",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -6242,7 +6242,7 @@
      "description": "Colour of the number and icon (lime variant, for dark sections).",
      "type": "color",
      "part": "counter-value",
-     "variant": null,
+     "variant": "lime",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -6256,7 +6256,7 @@
      "description": "Colour of the number and icon (white variant, for dark sections).",
      "type": "color",
      "part": "counter-value",
-     "variant": null,
+     "variant": "white",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -6270,7 +6270,7 @@
      "description": "Text colour of the label (navy variant).",
      "type": "color",
      "part": "counter-label",
-     "variant": null,
+     "variant": "navy",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -6284,7 +6284,7 @@
      "description": "Text colour of the label (lime variant).",
      "type": "color",
      "part": "counter-label",
-     "variant": null,
+     "variant": "lime",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -6298,7 +6298,7 @@
      "description": "Text colour of the label (white variant).",
      "type": "color",
      "part": "counter-label",
-     "variant": null,
+     "variant": "white",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -6538,7 +6538,7 @@
      "description": "Text colour of the dropdown row.",
      "type": "color",
      "part": "dialog-collapsible",
-     "variant": null,
+     "variant": "trigger",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -6552,7 +6552,7 @@
      "description": "Text colour of the dropdown row when hovered.",
      "type": "color",
      "part": "dialog-collapsible",
-     "variant": null,
+     "variant": "trigger",
      "state": "hover",
      "property": "foreground",
      "reads": [
@@ -6566,7 +6566,7 @@
      "description": "Chevron colour of the dropdown row.",
      "type": "color",
      "part": "dialog-collapsible",
-     "variant": null,
+     "variant": "icon",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -6580,7 +6580,7 @@
      "description": "Text colour of the \"View more\" toggle.",
      "type": "color",
      "part": "dialog-collapsible",
-     "variant": null,
+     "variant": "toggle",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -6594,7 +6594,7 @@
      "description": "Text colour of the \"View more\" toggle when hovered.",
      "type": "color",
      "part": "dialog-collapsible",
-     "variant": null,
+     "variant": "toggle",
      "state": "hover",
      "property": "foreground",
      "reads": [
@@ -7569,7 +7569,7 @@
      "description": "Icon colour (mint tone).",
      "type": "color",
      "part": "dropdown-menu-icon-trigger",
-     "variant": null,
+     "variant": "mint",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -7583,7 +7583,7 @@
      "description": "Icon colour when hovered or open (mint tone).",
      "type": "color",
      "part": "dropdown-menu-icon-trigger",
-     "variant": null,
+     "variant": "mint",
      "state": "hover",
      "property": "foreground",
      "reads": [
@@ -7597,7 +7597,7 @@
      "description": "Icon colour (dark tone).",
      "type": "color",
      "part": "dropdown-menu-icon-trigger",
-     "variant": null,
+     "variant": "dark",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -7611,7 +7611,7 @@
      "description": "Icon colour when hovered or open (dark tone).",
      "type": "color",
      "part": "dropdown-menu-icon-trigger",
-     "variant": null,
+     "variant": "dark",
      "state": "hover",
      "property": "foreground",
      "reads": [
@@ -7625,7 +7625,7 @@
      "description": "Icon colour (navy tone).",
      "type": "color",
      "part": "dropdown-menu-icon-trigger",
-     "variant": null,
+     "variant": "navy",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -7639,7 +7639,7 @@
      "description": "Icon colour when hovered or open (navy tone).",
      "type": "color",
      "part": "dropdown-menu-icon-trigger",
-     "variant": null,
+     "variant": "navy",
      "state": "hover",
      "property": "foreground",
      "reads": [
@@ -7779,7 +7779,7 @@
      "description": "Chevron colour while open.",
      "type": "color",
      "part": "dropdown-menu-card-trigger",
-     "variant": null,
+     "variant": "open-icon",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -7807,7 +7807,7 @@
      "description": "Text colour of the small label above the title.",
      "type": "color",
      "part": "dropdown-menu-card-trigger",
-     "variant": null,
+     "variant": "label",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -7835,7 +7835,7 @@
      "description": "Colour of the right-hand meta text and the chevron.",
      "type": "color",
      "part": "dropdown-menu-card-trigger",
-     "variant": null,
+     "variant": "meta",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -7961,7 +7961,7 @@
      "description": "Text colour of an option card meta line.",
      "type": "color",
      "part": "dropdown-menu-card-item",
-     "variant": null,
+     "variant": "meta",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -8037,7 +8037,7 @@
      "description": "Border colour of the empty state (outline variant).",
      "type": "color",
      "part": "empty",
-     "variant": null,
+     "variant": "outline",
      "state": null,
      "property": "border",
      "reads": [
@@ -8051,7 +8051,7 @@
      "description": "Fill colour of the empty state (muted variant).",
      "type": "color",
      "part": "empty",
-     "variant": null,
+     "variant": "muted",
      "state": null,
      "property": "fill",
      "reads": [
@@ -8561,7 +8561,7 @@
      "description": "Fill colour of the tile (mint variant).",
      "type": "color",
      "part": "icon-tile",
-     "variant": null,
+     "variant": "mint",
      "state": null,
      "property": "fill",
      "reads": [
@@ -8575,7 +8575,7 @@
      "description": "Icon colour of the tile (mint variant).",
      "type": "color",
      "part": "icon-tile",
-     "variant": null,
+     "variant": "mint",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -8589,7 +8589,7 @@
      "description": "Fill colour of the tile (navy variant).",
      "type": "color",
      "part": "icon-tile",
-     "variant": null,
+     "variant": "navy",
      "state": null,
      "property": "fill",
      "reads": [
@@ -8603,7 +8603,7 @@
      "description": "Icon colour of the tile (navy variant).",
      "type": "color",
      "part": "icon-tile",
-     "variant": null,
+     "variant": "navy",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -8617,7 +8617,7 @@
      "description": "Fill colour of the tile (warning variant).",
      "type": "color",
      "part": "icon-tile",
-     "variant": null,
+     "variant": "warning",
      "state": null,
      "property": "fill",
      "reads": [
@@ -8631,7 +8631,7 @@
      "description": "Icon colour of the tile (warning variant).",
      "type": "color",
      "part": "icon-tile",
-     "variant": null,
+     "variant": "warning",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -8645,7 +8645,7 @@
      "description": "Fill colour of the tile (error variant).",
      "type": "color",
      "part": "icon-tile",
-     "variant": null,
+     "variant": "error",
      "state": null,
      "property": "fill",
      "reads": [
@@ -8659,7 +8659,7 @@
      "description": "Icon colour of the tile (error variant).",
      "type": "color",
      "part": "icon-tile",
-     "variant": null,
+     "variant": "error",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -8673,7 +8673,7 @@
      "description": "Fill colour of the tile (lime variant).",
      "type": "color",
      "part": "icon-tile",
-     "variant": null,
+     "variant": "lime",
      "state": null,
      "property": "fill",
      "reads": [
@@ -8687,7 +8687,7 @@
      "description": "Icon colour of the tile (lime variant).",
      "type": "color",
      "part": "icon-tile",
-     "variant": null,
+     "variant": "lime",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -8701,7 +8701,7 @@
      "description": "Fill colour of the tile (neutral variant).",
      "type": "color",
      "part": "icon-tile",
-     "variant": null,
+     "variant": "neutral",
      "state": null,
      "property": "fill",
      "reads": [
@@ -8715,7 +8715,7 @@
      "description": "Icon colour of the tile (neutral variant).",
      "type": "color",
      "part": "icon-tile",
-     "variant": null,
+     "variant": "neutral",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -8729,7 +8729,7 @@
      "description": "Width and height of the tile (sm size).",
      "type": "length",
      "part": "icon-tile",
-     "variant": null,
+     "variant": "sm",
      "state": null,
      "property": "size",
      "reads": [
@@ -8743,7 +8743,7 @@
      "description": "Width and height of the tile (md size).",
      "type": "length",
      "part": "icon-tile",
-     "variant": null,
+     "variant": "md",
      "state": null,
      "property": "size",
      "reads": [
@@ -8757,7 +8757,7 @@
      "description": "Width and height of the tile (lg size).",
      "type": "length",
      "part": "icon-tile",
-     "variant": null,
+     "variant": "lg",
      "state": null,
      "property": "size",
      "reads": [
@@ -8771,7 +8771,7 @@
      "description": "Corner radius of the tile (square shape).",
      "type": "radius",
      "part": "icon-tile",
-     "variant": null,
+     "variant": "square",
      "state": null,
      "property": "radius",
      "reads": [
@@ -11445,7 +11445,7 @@
      "description": "Fill colour of the card (electric-blue variant).",
      "type": "color",
      "part": "pill-card",
-     "variant": null,
+     "variant": "electric-blue",
      "state": null,
      "property": "fill",
      "reads": [
@@ -11459,7 +11459,7 @@
      "description": "Fill colour of the card (teal variant).",
      "type": "color",
      "part": "pill-card",
-     "variant": null,
+     "variant": "teal",
      "state": null,
      "property": "fill",
      "reads": [
@@ -11473,7 +11473,7 @@
      "description": "Fill colour of the card (lime variant).",
      "type": "color",
      "part": "pill-card",
-     "variant": null,
+     "variant": "lime",
      "state": null,
      "property": "fill",
      "reads": [
@@ -11501,7 +11501,7 @@
      "description": "Icon and ring colour (electric-blue variant).",
      "type": "color",
      "part": "pill-card-icon",
-     "variant": null,
+     "variant": "electric-blue",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -11515,7 +11515,7 @@
      "description": "Icon and ring colour (teal variant).",
      "type": "color",
      "part": "pill-card-icon",
-     "variant": null,
+     "variant": "teal",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -11529,7 +11529,7 @@
      "description": "Icon and ring colour (lime variant).",
      "type": "color",
      "part": "pill-card-icon",
-     "variant": null,
+     "variant": "lime",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -11849,7 +11849,7 @@
      "description": "Gap between options (sm size).",
      "type": "length",
      "part": "radio-group",
-     "variant": null,
+     "variant": "sm",
      "state": null,
      "property": "gap",
      "reads": [
@@ -11863,7 +11863,7 @@
      "description": "Gap between options (lg size).",
      "type": "length",
      "part": "radio-group",
-     "variant": null,
+     "variant": "lg",
      "state": null,
      "property": "gap",
      "reads": [
@@ -11877,7 +11877,7 @@
      "description": "Gap between options (card variant).",
      "type": "length",
      "part": "radio-group",
-     "variant": null,
+     "variant": "card",
      "state": null,
      "property": "gap",
      "reads": [
@@ -11947,7 +11947,7 @@
      "description": "Width and height of the radio (sm size).",
      "type": "length",
      "part": "radio-group-item",
-     "variant": null,
+     "variant": "sm",
      "state": null,
      "property": "size",
      "reads": [
@@ -11961,7 +11961,7 @@
      "description": "Width and height of the radio (lg size).",
      "type": "length",
      "part": "radio-group-item",
-     "variant": null,
+     "variant": "lg",
      "state": null,
      "property": "size",
      "reads": [
@@ -12071,7 +12071,7 @@
      "description": "Fill colour of an option card (card variant).",
      "type": "color",
      "part": "radio-group-field",
-     "variant": null,
+     "variant": "card",
      "state": null,
      "property": "fill",
      "reads": [
@@ -12085,7 +12085,7 @@
      "description": "Border colour of an option card (card variant).",
      "type": "color",
      "part": "radio-group-field",
-     "variant": null,
+     "variant": "card",
      "state": null,
      "property": "border",
      "reads": [
@@ -12099,7 +12099,7 @@
      "description": "Corner radius of an option card (card variant).",
      "type": "radius",
      "part": "radio-group-field",
-     "variant": null,
+     "variant": "card",
      "state": null,
      "property": "radius",
      "reads": [
@@ -12113,7 +12113,7 @@
      "description": "Fill colour of the chosen option card (card variant).",
      "type": "color",
      "part": "radio-group-field",
-     "variant": null,
+     "variant": "card",
      "state": "checked",
      "property": "fill",
      "reads": [
@@ -12127,7 +12127,7 @@
      "description": "Border colour of the chosen option card (card variant).",
      "type": "color",
      "part": "radio-group-field",
-     "variant": null,
+     "variant": "card",
      "state": "checked",
      "property": "border",
      "reads": [
@@ -12951,7 +12951,7 @@
      "description": "Fill colour of the checkbox in a multiple-select row.",
      "type": "color",
      "part": "select-item",
-     "variant": null,
+     "variant": "checkbox",
      "state": null,
      "property": "fill",
      "reads": [
@@ -12965,7 +12965,7 @@
      "description": "Border colour of the checkbox in a multiple-select row.",
      "type": "color",
      "part": "select-item",
-     "variant": null,
+     "variant": "checkbox",
      "state": null,
      "property": "border",
      "reads": [
@@ -12979,7 +12979,7 @@
      "description": "Fill and border colour of the checkbox when its row is selected.",
      "type": "color",
      "part": "select-item",
-     "variant": null,
+     "variant": "checkbox",
      "state": "checked",
      "property": "fill",
      "reads": [
@@ -12993,7 +12993,7 @@
      "description": "Colour of the tick in a selected checkbox.",
      "type": "color",
      "part": "select-item",
-     "variant": null,
+     "variant": "checkbox",
      "state": "checked",
      "property": "foreground",
      "reads": [
@@ -13007,7 +13007,7 @@
      "description": "Colour of the trailing tick on the selected row (single select).",
      "type": "color",
      "part": "select-item",
-     "variant": null,
+     "variant": "check",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -13021,7 +13021,7 @@
      "description": "Text colour of the right-hand label (meta) in a row.",
      "type": "color",
      "part": "select-item",
-     "variant": null,
+     "variant": "meta",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -14684,7 +14684,7 @@
      "description": "Fill colour of a done step.",
      "type": "color",
      "part": "stepper-indicator",
-     "variant": null,
+     "variant": "complete",
      "state": null,
      "property": "fill",
      "reads": [
@@ -14698,7 +14698,7 @@
      "description": "Tick colour of a done step.",
      "type": "color",
      "part": "stepper-indicator",
-     "variant": null,
+     "variant": "complete",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -14712,7 +14712,7 @@
      "description": "Fill colour of a step still to come.",
      "type": "color",
      "part": "stepper-indicator",
-     "variant": null,
+     "variant": "upcoming",
      "state": null,
      "property": "fill",
      "reads": [
@@ -14726,7 +14726,7 @@
      "description": "Border colour of a step still to come.",
      "type": "color",
      "part": "stepper-indicator",
-     "variant": null,
+     "variant": "upcoming",
      "state": null,
      "property": "border",
      "reads": [
@@ -14740,7 +14740,7 @@
      "description": "Number colour of a step still to come.",
      "type": "color",
      "part": "stepper-indicator",
-     "variant": null,
+     "variant": "upcoming",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -14754,7 +14754,7 @@
      "description": "Fill colour of a step with an error.",
      "type": "color",
      "part": "stepper-indicator",
-     "variant": null,
+     "variant": "error",
      "state": null,
      "property": "fill",
      "reads": [
@@ -14768,7 +14768,7 @@
      "description": "Icon colour of a step with an error.",
      "type": "color",
      "part": "stepper-indicator",
-     "variant": null,
+     "variant": "error",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -14782,7 +14782,7 @@
      "description": "Fill colour of a step still to come (dot size).",
      "type": "color",
      "part": "stepper-indicator",
-     "variant": null,
+     "variant": "dot-upcoming",
      "state": null,
      "property": "fill",
      "reads": [
@@ -14810,7 +14810,7 @@
      "description": "Colour of the line once the step before it is done.",
      "type": "color",
      "part": "stepper-connector",
-     "variant": null,
+     "variant": "complete",
      "state": null,
      "property": "fill",
      "reads": [
@@ -14838,7 +14838,7 @@
      "description": "Text colour of a step title with an error.",
      "type": "color",
      "part": "stepper-title",
-     "variant": null,
+     "variant": "error",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -15028,7 +15028,7 @@
      "description": "Fill colour of the header row (card and bordered variants).",
      "type": "color",
      "part": "table-header",
-     "variant": null,
+     "variant": "tinted",
      "state": null,
      "property": "fill",
      "reads": [
@@ -15124,7 +15124,7 @@
      "description": "Fill colour of every other row (striped variant).",
      "type": "color",
      "part": "table-row",
-     "variant": null,
+     "variant": "striped",
      "state": null,
      "property": "fill",
      "reads": [
@@ -15138,7 +15138,7 @@
      "description": "Fill colour of a hovered row (striped variant).",
      "type": "color",
      "part": "table-row",
-     "variant": null,
+     "variant": "striped",
      "state": "hover",
      "property": "fill",
      "reads": [
@@ -15334,7 +15334,7 @@
      "description": "Colour of the sort arrow.",
      "type": "color",
      "part": "table-sort-button",
-     "variant": null,
+     "variant": "icon",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -15494,7 +15494,7 @@
      "description": "Fill colour of the list (segmented variant).",
      "type": "color",
      "part": "tabs-list",
-     "variant": null,
+     "variant": "segmented",
      "state": null,
      "property": "fill",
      "reads": [
@@ -15508,7 +15508,7 @@
      "description": "Gap between items of the list (segmented variant).",
      "type": "length",
      "part": "tabs-list",
-     "variant": null,
+     "variant": "segmented",
      "state": null,
      "property": "gap",
      "reads": [
@@ -15522,7 +15522,7 @@
      "description": "Corner radius of the list (segmented variant).",
      "type": "radius",
      "part": "tabs-list",
-     "variant": null,
+     "variant": "segmented",
      "state": null,
      "property": "radius",
      "reads": [
@@ -15536,7 +15536,7 @@
      "description": "Padding of the list (segmented variant).",
      "type": "length",
      "part": "tabs-list",
-     "variant": null,
+     "variant": "segmented",
      "state": null,
      "property": "padding",
      "reads": [
@@ -15674,7 +15674,7 @@
      "description": "Height of the trigger (line variant).",
      "type": "length",
      "part": "tabs-trigger",
-     "variant": null,
+     "variant": "line",
      "state": null,
      "property": "height",
      "reads": [
@@ -15688,7 +15688,7 @@
      "description": "Corner radius of the trigger (line variant).",
      "type": "radius",
      "part": "tabs-trigger",
-     "variant": null,
+     "variant": "line",
      "state": null,
      "property": "radius",
      "reads": [
@@ -15702,7 +15702,7 @@
      "description": "Horizontal padding of the trigger (line variant).",
      "type": "length",
      "part": "tabs-trigger",
-     "variant": null,
+     "variant": "line",
      "state": null,
      "property": "padding-x",
      "reads": [
@@ -15716,7 +15716,7 @@
      "description": "Text colour of the trigger (line variant).",
      "type": "color",
      "part": "tabs-trigger",
-     "variant": null,
+     "variant": "line",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -15730,7 +15730,7 @@
      "description": "Text colour of the trigger (line variant) when hovered.",
      "type": "color",
      "part": "tabs-trigger",
-     "variant": null,
+     "variant": "line",
      "state": "hover",
      "property": "foreground",
      "reads": [
@@ -15744,7 +15744,7 @@
      "description": "Text colour of the trigger (line variant) when active.",
      "type": "color",
      "part": "tabs-trigger",
-     "variant": null,
+     "variant": "line",
      "state": "active",
      "property": "foreground",
      "reads": [
@@ -15758,7 +15758,7 @@
      "description": "Colour of the bar under a hovered trigger (line variant).",
      "type": "color",
      "part": "tabs-trigger",
-     "variant": null,
+     "variant": "line-hover-indicator",
      "state": null,
      "property": "fill",
      "reads": [
@@ -15772,7 +15772,7 @@
      "description": "Height of the trigger (segmented variant).",
      "type": "length",
      "part": "tabs-trigger",
-     "variant": null,
+     "variant": "segmented",
      "state": null,
      "property": "height",
      "reads": [
@@ -15786,7 +15786,7 @@
      "description": "Corner radius of the trigger (segmented variant).",
      "type": "radius",
      "part": "tabs-trigger",
-     "variant": null,
+     "variant": "segmented",
      "state": null,
      "property": "radius",
      "reads": [
@@ -15800,7 +15800,7 @@
      "description": "Horizontal padding of the trigger (segmented variant).",
      "type": "length",
      "part": "tabs-trigger",
-     "variant": null,
+     "variant": "segmented",
      "state": null,
      "property": "padding-x",
      "reads": [
@@ -15814,7 +15814,7 @@
      "description": "Text colour of the trigger (segmented variant).",
      "type": "color",
      "part": "tabs-trigger",
-     "variant": null,
+     "variant": "segmented",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -15828,7 +15828,7 @@
      "description": "Text colour of the trigger (segmented variant) when active.",
      "type": "color",
      "part": "tabs-trigger",
-     "variant": null,
+     "variant": "segmented",
      "state": "active",
      "property": "foreground",
      "reads": [
@@ -15870,7 +15870,7 @@
      "description": "Colour of the bar under the active tab (line variant).",
      "type": "color",
      "part": "tabs-indicator",
-     "variant": null,
+     "variant": "line",
      "state": null,
      "property": "fill",
      "reads": [
@@ -15884,7 +15884,7 @@
      "description": "Thickness of the bar under the active tab (line variant).",
      "type": "length",
      "part": "tabs-indicator",
-     "variant": null,
+     "variant": "line",
      "state": null,
      "property": "height",
      "reads": [
@@ -15898,7 +15898,7 @@
      "description": "Colour of the thumb behind the active segment (segmented variant).",
      "type": "color",
      "part": "tabs-indicator",
-     "variant": null,
+     "variant": "segmented",
      "state": null,
      "property": "fill",
      "reads": [
@@ -15912,7 +15912,7 @@
      "description": "Corner radius of the thumb (segmented variant).",
      "type": "radius",
      "part": "tabs-indicator",
-     "variant": null,
+     "variant": "segmented",
      "state": null,
      "property": "radius",
      "reads": [
@@ -15926,7 +15926,7 @@
      "description": "Fill colour of the content card (panel variant).",
      "type": "color",
      "part": "tabs-content",
-     "variant": null,
+     "variant": "panel",
      "state": null,
      "property": "fill",
      "reads": [
@@ -15940,7 +15940,7 @@
      "description": "Border colour of the content card (panel variant).",
      "type": "color",
      "part": "tabs-content",
-     "variant": null,
+     "variant": "panel",
      "state": null,
      "property": "border",
      "reads": [
@@ -15954,7 +15954,7 @@
      "description": "Corner radius of the content card (panel variant).",
      "type": "radius",
      "part": "tabs-content",
-     "variant": null,
+     "variant": "panel",
      "state": null,
      "property": "radius",
      "reads": [
@@ -15968,7 +15968,7 @@
      "description": "Padding of the content card (panel variant).",
      "type": "length",
      "part": "tabs-content",
-     "variant": null,
+     "variant": "panel",
      "state": null,
      "property": "padding",
      "reads": [
@@ -15982,7 +15982,7 @@
      "description": "Gap between items of the content card (panel variant).",
      "type": "length",
      "part": "tabs-content",
-     "variant": null,
+     "variant": "panel",
      "state": null,
      "property": "gap",
      "reads": [
@@ -16232,7 +16232,7 @@
      "description": "Fill colour of the toast (success type).",
      "type": "color",
      "part": "toast",
-     "variant": null,
+     "variant": "success",
      "state": null,
      "property": "fill",
      "reads": [
@@ -16246,7 +16246,7 @@
      "description": "Colour of the title, icon and × (success type).",
      "type": "color",
      "part": "toast",
-     "variant": null,
+     "variant": "success",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -16260,7 +16260,7 @@
      "description": "Fill colour of the toast (warning type).",
      "type": "color",
      "part": "toast",
-     "variant": null,
+     "variant": "warning",
      "state": null,
      "property": "fill",
      "reads": [
@@ -16274,7 +16274,7 @@
      "description": "Colour of the title, icon and × (warning type).",
      "type": "color",
      "part": "toast",
-     "variant": null,
+     "variant": "warning",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -16288,7 +16288,7 @@
      "description": "Fill colour of the toast (error type).",
      "type": "color",
      "part": "toast",
-     "variant": null,
+     "variant": "error",
      "state": null,
      "property": "fill",
      "reads": [
@@ -16302,7 +16302,7 @@
      "description": "Colour of the title, icon and × (error type).",
      "type": "color",
      "part": "toast",
-     "variant": null,
+     "variant": "error",
      "state": null,
      "property": "foreground",
      "reads": [
@@ -16316,7 +16316,7 @@
      "description": "Fill colour of the toast (info type).",
      "type": "color",
      "part": "toast",
-     "variant": null,
+     "variant": "info",
      "state": null,
      "property": "fill",
      "reads": [
@@ -16330,7 +16330,7 @@
      "description": "Colour of the title, icon and × (info type).",
      "type": "color",
      "part": "toast",
-     "variant": null,
+     "variant": "info",
      "state": null,
      "property": "foreground",
      "reads": [

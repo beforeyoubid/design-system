@@ -59,7 +59,8 @@ const components = files.map(({ component, file }) => {
         description: t.description,
         type: valueType(p.property),
         part: rule.slot,
-        variant: p.variant?.key ?? null,
+        // An @ours variant isn't a cva key; it keeps its name.
+        variant: p.variant?.key ?? p.variant?.unresolved ?? null,
         state: p.state,
         property: p.property || 'fill',
         reads: refs(t.fallback),
