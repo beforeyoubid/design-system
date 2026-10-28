@@ -15,7 +15,7 @@ const checkboxFieldVariants = cva(
     variants: {
       variant: {
         default: "",
-        card: "rounded-lg border border-dark-45 bg-white px-4 py-3.5 transition-colors has-data-checked:border-mint-45 has-data-checked:bg-mint-l4",
+        card: "rounded-(--_checkbox-field-card-radius) border border-(--_checkbox-field-card-border) bg-(--_checkbox-field-card) px-4 py-3.5 transition-colors has-data-checked:border-(--_checkbox-field-card-checked-border) has-data-checked:bg-(--_checkbox-field-card-checked)",
       },
     },
     defaultVariants: {
@@ -65,7 +65,7 @@ function Checkbox({
         {label != null && (
           <span
             data-slot="checkbox-label"
-            className="text-body-5 leading-tight font-semibold text-navy"
+            className="text-body-5 leading-tight font-semibold text-(--_checkbox-label-foreground)"
           >
             {label}
           </span>
@@ -73,7 +73,7 @@ function Checkbox({
         {description != null && (
           <span
             data-slot="checkbox-description"
-            className="text-body-5 text-dark-75"
+            className="text-body-5 text-(--_checkbox-description-foreground)"
           >
             {description}
           </span>

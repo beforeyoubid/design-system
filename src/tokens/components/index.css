@@ -695,6 +695,14 @@
   --_button-icon-lg-size: var(--button-icon-lg-size, calc(var(--spacing) * 11));
   /* Corner radius of the button (icon-lg size). */
   --_button-icon-lg-radius: var(--button-icon-lg-radius, var(--button-radius, var(--radius-full)));
+  /* Fill colour of the button (lime variant). @ours */
+  --_button-lime: var(--button-lime, var(--lime));
+  /* Text colour of the button (lime variant). @ours */
+  --_button-lime-foreground: var(--button-lime-foreground, var(--navy));
+  /* Fill colour of the button (navy variant). @ours */
+  --_button-navy: var(--button-navy, var(--navy));
+  /* Text colour of the button (navy variant). @ours */
+  --_button-navy-foreground: var(--button-navy-foreground, var(--white));
 }
 
 /* ---- calendar.css ---- */
@@ -858,6 +866,44 @@
   --_carousel-next-radius: var(--carousel-next-radius, var(--radius-full));
 }
 
+/* ---- chart-frame.css ---- */
+/* Chart frame — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section.
+ * Defaults are Rey's design. Edited by hand; our component (chart-frame.tsx) reads these levers. */
+
+[data-slot="chart-frame"],
+[class*="(--_chart-frame-"],
+[class*="(--_chart-frame)"] {
+  /* Fill colour of the chart card. @ours */
+  --_chart-frame: var(--chart-frame, var(--white));
+  /* Border colour of the chart card. @ours */
+  --_chart-frame-border: var(--chart-frame-border, var(--light-l3));
+  /* Corner radius of the chart card. @ours */
+  --_chart-frame-radius: var(--chart-frame-radius, var(--radius-lg));
+  /* Text colour of the title and the trend line. @ours */
+  --_chart-frame-title-foreground: var(--chart-frame-title-foreground, var(--navy));
+  /* Text colour of the description and the caption. @ours */
+  --_chart-frame-description-foreground: var(--chart-frame-description-foreground, var(--dark-75));
+}
+
+[data-slot="chart-frame-legend"],
+[class*="(--_chart-frame-legend-"],
+[class*="(--_chart-frame-legend)"] {
+  /* Text and icon colour of the legend. @ours */
+  --_chart-frame-legend-foreground: var(--chart-frame-legend-foreground, var(--dark-75));
+}
+
+[data-slot="chart-frame-tooltip"],
+[class*="(--_chart-frame-tooltip-"],
+[class*="(--_chart-frame-tooltip)"] {
+  /* Fill colour of the chart tooltip. @ours */
+  --_chart-frame-tooltip: var(--chart-frame-tooltip, var(--white));
+  /* Border colour of the chart tooltip. @ours */
+  --_chart-frame-tooltip-border: var(--chart-frame-tooltip-border, var(--light-l3));
+  /* Text colour of the chart tooltip. @ours */
+  --_chart-frame-tooltip-foreground: var(--chart-frame-tooltip-foreground, var(--dark-90));
+}
+
 /* ---- chart.css ---- */
 /* Chart — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
@@ -912,6 +958,35 @@
 [class*="(--_checkbox-indicator)"] {
   /* @remove [&>svg]:size-3.5 */
   /* @add [&>svg]:size-3 [&>svg]:stroke-3 */
+}
+
+[data-slot="checkbox-label"],
+[class*="(--_checkbox-label-"],
+[class*="(--_checkbox-label)"] {
+  /* Text colour of the label beside the control. @ours */
+  --_checkbox-label-foreground: var(--checkbox-label-foreground, var(--navy));
+}
+
+[data-slot="checkbox-description"],
+[class*="(--_checkbox-description-"],
+[class*="(--_checkbox-description)"] {
+  /* Text colour of the description under the label. @ours */
+  --_checkbox-description-foreground: var(--checkbox-description-foreground, var(--dark-75));
+}
+
+[data-slot="checkbox-field"],
+[class*="(--_checkbox-field-"],
+[class*="(--_checkbox-field)"] {
+  /* Fill colour of an option card (card variant). @ours */
+  --_checkbox-field-card: var(--checkbox-field-card, var(--white));
+  /* Border colour of an option card (card variant). @ours */
+  --_checkbox-field-card-border: var(--checkbox-field-card-border, var(--dark-45));
+  /* Corner radius of an option card (card variant). @ours */
+  --_checkbox-field-card-radius: var(--checkbox-field-card-radius, var(--radius-lg));
+  /* Fill colour of a ticked option card (card variant). @ours */
+  --_checkbox-field-card-checked: var(--checkbox-field-card-checked, var(--mint-l4));
+  /* Border colour of a ticked option card (card variant). @ours */
+  --_checkbox-field-card-checked-border: var(--checkbox-field-card-checked-border, var(--mint-45));
 }
 
 /* ---- collapsible.css ---- */
@@ -1167,6 +1242,13 @@
   --_command-shortcut-foreground: var(--command-shortcut-foreground, var(--dark-75));
 }
 
+[data-slot="command-dialog"],
+[class*="(--_command-dialog-"],
+[class*="(--_command-dialog)"] {
+  /* Corner radius of the command palette dialog. @ours */
+  --_command-dialog-radius: var(--command-dialog-radius, var(--radius-lg));
+}
+
 /* ---- context-menu.css ---- */
 /* Context Menu — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
@@ -1305,6 +1387,33 @@
   --_context-menu-shortcut-foreground: var(--context-menu-shortcut-foreground, var(--muted-foreground));
 }
 
+/* ---- counter.css ---- */
+/* Counter — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section.
+ * Defaults are Rey's design. Edited by hand; our component (counter.tsx) reads these levers. */
+
+[data-slot="counter-value"],
+[class*="(--_counter-value-"],
+[class*="(--_counter-value)"] {
+  /* Colour of the number and icon (navy variant). @ours */
+  --_counter-value-navy-foreground: var(--counter-value-navy-foreground, var(--navy));
+  /* Colour of the number and icon (lime variant, for dark sections). @ours */
+  --_counter-value-lime-foreground: var(--counter-value-lime-foreground, var(--lime));
+  /* Colour of the number and icon (white variant, for dark sections). @ours */
+  --_counter-value-white-foreground: var(--counter-value-white-foreground, var(--white));
+}
+
+[data-slot="counter-label"],
+[class*="(--_counter-label-"],
+[class*="(--_counter-label)"] {
+  /* Text colour of the label (navy variant). @ours */
+  --_counter-label-navy-foreground: var(--counter-label-navy-foreground, var(--dark-75));
+  /* Text colour of the label (lime variant). @ours */
+  --_counter-label-lime-foreground: var(--counter-label-lime-foreground, var(--dark-75));
+  /* Text colour of the label (white variant). @ours */
+  --_counter-label-white-foreground: var(--counter-label-white-foreground, var(--white));
+}
+
 /* ---- dialog.css ---- */
 /* Dialog — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
@@ -1381,6 +1490,27 @@
   --_dialog-close-hover-foreground: var(--dialog-close-hover-foreground, var(--dark-100));
 }
 
+[data-slot="dialog-collapsible"],
+[class*="(--_dialog-collapsible-"],
+[class*="(--_dialog-collapsible)"] {
+  /* Border colour of the dropdown collapsible. @ours */
+  --_dialog-collapsible-border: var(--dialog-collapsible-border, var(--light-l3));
+  /* Text colour of the collapsible content. @ours */
+  --_dialog-collapsible-foreground: var(--dialog-collapsible-foreground, var(--dark-90));
+  /* Text colour of the dropdown row. @ours */
+  --_dialog-collapsible-trigger-foreground: var(--dialog-collapsible-trigger-foreground, var(--navy));
+  /* Text colour of the dropdown row when hovered. @ours */
+  --_dialog-collapsible-trigger-hover-foreground: var(--dialog-collapsible-trigger-hover-foreground, var(--mint-75));
+  /* Chevron colour of the dropdown row. @ours */
+  --_dialog-collapsible-icon-foreground: var(--dialog-collapsible-icon-foreground, var(--dark-75));
+  /* Text colour of the "View more" toggle. @ours */
+  --_dialog-collapsible-toggle-foreground: var(--dialog-collapsible-toggle-foreground, var(--mint-75));
+  /* Text colour of the "View more" toggle when hovered. @ours */
+  --_dialog-collapsible-toggle-hover-foreground: var(--dialog-collapsible-toggle-hover-foreground, var(--mint-45));
+  /* Focus ring of the collapsible toggles. @ours */
+  --_dialog-collapsible-focus-ring: var(--dialog-collapsible-focus-ring, var(--mint-45));
+}
+
 /* ---- direction.css ---- */
 /* Direction — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
@@ -1397,19 +1527,21 @@
 [class*="(--_drawer-overlay-"],
 [class*="(--_drawer-overlay)"] {
   /* Fill colour of the overlay. */
-  --_drawer-overlay: var(--drawer-overlay, color-mix(in oklab, #000 80%, transparent));
+  --_drawer-overlay: var(--drawer-overlay, color-mix(in oklab, var(--dark-100) 50%, transparent));
 }
 
 [data-slot="drawer-popup"],
 [class*="(--_drawer-popup-"],
 [class*="(--_drawer-popup)"] {
+  /* @remove text-sm */
+  /* @add text-body-5 */
   /* @add data-nested-drawer-open:overflow-hidden data-nested-drawer-open:brightness-95 after:pointer-events-none after:absolute after:bg-(--drawer-bleed-background,var(--color-popover)) data-[swipe-axis=x]:after:inset-y-0 data-[swipe-axis=x]:after:w-(--bleed) data-[swipe-axis=y]:after:inset-x-0 data-[swipe-axis=y]:after:h-(--bleed) data-[swipe-direction=down]:after:top-full data-[swipe-direction=left]:after:end-full data-[swipe-direction=right]:after:start-full data-[swipe-direction=up]:after:bottom-full [--drawer-content-height:var(--drawer-height,auto)] data-[swipe-axis=x]:[--drawer-content-width:75%] data-[swipe-axis=y]:[--drawer-content-max-height:calc(100dvh-6rem)] data-[swipe-axis=y]:data-snap-points:[--drawer-content-height:100dvh] data-[swipe-axis=x]:sm:[--drawer-content-width:24rem] [--bleed:3rem] [--peek:1rem] [--stack-height:var(--drawer-frontmost-height,var(--drawer-height,0px))] [--stack-peek-offset:max(0px,calc((var(--nested-drawers)-var(--stack-progress))*var(--peek)))] [--stack-progress:clamp(0,var(--drawer-swipe-progress),1)] [--stack-scale-base:max(0,calc(1-(var(--nested-drawers)*var(--stack-step))))] [--stack-scale:clamp(0,calc(var(--stack-scale-base)+(var(--stack-step)*var(--stack-progress))),1)] [--stack-shrink:calc(1-var(--stack-scale))] [--stack-step:0.05] data-ending-style:transform-(--closed-transform) data-ending-style:opacity-[0.9999] data-ending-style:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-nested-drawer-swiping:duration-0 data-ending-style:data-nested-drawer-swiping:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-starting-style:transform-(--closed-transform) data-swiping:duration-0 data-ending-style:data-swiping:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-[swipe-axis=y]:inset-x-0 data-[swipe-axis=y]:data-nested-drawer-open:h-(--stack-height) data-[swipe-axis=x]:inset-y-0 data-[swipe-axis=x]:flex-row data-[swipe-direction=down]:bottom-0 data-[swipe-direction=down]:origin-bottom data-[swipe-direction=down]:[--closed-transform:translate3d(0,calc(100%+var(--drawer-inset,0px)+2px),0)] data-[swipe-direction=down]:[--translate-y:calc(var(--drawer-snap-point-offset,0px)+var(--drawer-swipe-movement-y)-var(--stack-peek-offset)-(var(--stack-shrink)*var(--stack-height)))] data-[swipe-direction=up]:top-0 data-[swipe-direction=up]:origin-top data-[swipe-direction=up]:[--closed-transform:translate3d(0,calc(-100%-var(--drawer-inset,0px)-2px),0)] data-[swipe-direction=up]:[--translate-y:calc(var(--drawer-snap-point-offset,0px)+var(--drawer-swipe-movement-y)+var(--stack-peek-offset)+(var(--stack-shrink)*var(--stack-height)))] data-[swipe-direction=left]:start-0 data-[swipe-direction=left]:origin-start data-[swipe-direction=left]:[--closed-transform:translate3d(calc(-100%-var(--drawer-inset,0px)-2px),0,0)] data-[swipe-direction=left]:[--translate-x:calc(var(--drawer-swipe-movement-x)+var(--stack-peek-offset)+(var(--stack-shrink)*100%))] data-[swipe-direction=right]:end-0 data-[swipe-direction=right]:origin-end data-[swipe-direction=right]:[--closed-transform:translate3d(calc(100%+var(--drawer-inset,0px)+2px),0,0)] data-[swipe-direction=right]:[--translate-x:calc(var(--drawer-swipe-movement-x)-var(--stack-peek-offset)-(var(--stack-shrink)*100%))] */
   /* Minimum height of the popup. */
   --_drawer-popup-min-height: var(--drawer-popup-min-height, calc(var(--spacing) * 0));
   /* Corner radius of the popup. */
-  --_drawer-popup-radius: var(--drawer-popup-radius, var(--radius-4xl));
+  --_drawer-popup-radius: var(--drawer-popup-radius, var(--radius-2xl));
   /* Border colour of the popup. */
-  --_drawer-popup-border: var(--drawer-popup-border, var(--popover));
+  --_drawer-popup-border: var(--drawer-popup-border, var(--border));
   /* Fill colour of the popup. */
   --_drawer-popup: var(--drawer-popup, var(--popover));
   /* Text colour of the popup. */
@@ -1426,6 +1558,7 @@
 [data-slot="drawer-header"],
 [class*="(--_drawer-header-"],
 [class*="(--_drawer-header)"] {
+  /* @remove pb-0 */
   /* Gap between items of the header. */
   --_drawer-header-gap: var(--drawer-header-gap, calc(var(--spacing) * 0.5));
   /* Padding of the header. */
@@ -1435,6 +1568,7 @@
 [data-slot="drawer-footer"],
 [class*="(--_drawer-footer-"],
 [class*="(--_drawer-footer)"] {
+  /* @remove pt-0 */
   /* Gap between items of the footer. */
   --_drawer-footer-gap: var(--drawer-footer-gap, calc(var(--spacing) * 2));
   /* Padding of the footer. */
@@ -1444,6 +1578,8 @@
 [data-slot="drawer-title"],
 [class*="(--_drawer-title-"],
 [class*="(--_drawer-title)"] {
+  /* @remove text-base */
+  /* @add text-body-4 */
   /* Font weight of the title. */
   --_drawer-title-font-weight: var(--drawer-title-font-weight, 500);
   /* Text colour of the title. */
@@ -1453,6 +1589,8 @@
 [data-slot="drawer-description"],
 [class*="(--_drawer-description-"],
 [class*="(--_drawer-description)"] {
+  /* @remove text-sm */
+  /* @add text-body-5 */
   /* Text colour of the description. */
   --_drawer-description-foreground: var(--drawer-description-foreground, var(--muted-foreground));
 }
@@ -1522,7 +1660,7 @@
 [class*="(--_dropdown-menu-sub-trigger-"],
 [class*="(--_dropdown-menu-sub-trigger)"] {
   /* @remove py-2 focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-open:bg-accent data-open:text-accent-foreground */
-  /* @add cursor-pointer text-body-5 data-disabled:pointer-events-none data-inset:ps-9 */
+  /* @add cursor-pointer text-body-5 data-disabled:pointer-events-none data-inset:ps-9 [&>svg:last-child]:size-3.5 [&>svg:last-child]:text-dark-75 */
   /* Height of the sub-trigger. */
   --_dropdown-menu-sub-trigger-height: var(--dropdown-menu-sub-trigger-height, calc(var(--spacing) * 8));
   /* Gap between items of the sub-trigger. */
@@ -1556,7 +1694,19 @@
 [class*="(--_dropdown-menu-checkbox-item-"],
 [class*="(--_dropdown-menu-checkbox-item)"] {
   /* @remove relative flex cursor-default items-center rounded-xl py-2 pe-8 ps-3 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 */
-  /* @add group/dropdown-menu-checkbox-item data-inset:ps-9 */
+  /* @add relative flex cursor-pointer items-center text-body-5 outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 group/dropdown-menu-checkbox-item data-inset:ps-9 */
+  /* Minimum height of the checkbox item. */
+  --_dropdown-menu-checkbox-item-min-height: var(--dropdown-menu-checkbox-item-min-height, calc(var(--spacing) * 8));
+  /* Corner radius of the checkbox item. */
+  --_dropdown-menu-checkbox-item-radius: var(--dropdown-menu-checkbox-item-radius, var(--radius-md));
+  /* Vertical padding of the checkbox item. */
+  --_dropdown-menu-checkbox-item-padding-y: var(--dropdown-menu-checkbox-item-padding-y, calc(var(--spacing) * 1.5));
+  /* Text colour of the checkbox item. */
+  --_dropdown-menu-checkbox-item-foreground: var(--dropdown-menu-checkbox-item-foreground, var(--dark-100));
+  /* Fill colour of the checkbox item when highlighted. */
+  --_dropdown-menu-checkbox-item-highlighted: var(--dropdown-menu-checkbox-item-highlighted, var(--light-l1));
+  /* Text colour of the checkbox item when disabled. */
+  --_dropdown-menu-checkbox-item-disabled-foreground: var(--dropdown-menu-checkbox-item-disabled-foreground, var(--dark-45));
   /* Gap between items of the checkbox-item. */
   --_dropdown-menu-checkbox-item-gap: var(--dropdown-menu-checkbox-item-gap, calc(var(--spacing) * 2.5));
   /* Horizontal padding of the checkbox-item. */
@@ -1584,7 +1734,19 @@
 [class*="(--_dropdown-menu-radio-item-"],
 [class*="(--_dropdown-menu-radio-item)"] {
   /* @remove relative flex cursor-default items-center rounded-xl py-2 pe-8 ps-3 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 */
-  /* @add data-inset:ps-9 */
+  /* @add relative flex cursor-pointer items-center text-body-5 outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-inset:ps-9 */
+  /* Minimum height of the radio item. */
+  --_dropdown-menu-radio-item-min-height: var(--dropdown-menu-radio-item-min-height, calc(var(--spacing) * 8));
+  /* Corner radius of the radio item. */
+  --_dropdown-menu-radio-item-radius: var(--dropdown-menu-radio-item-radius, var(--radius-md));
+  /* Vertical padding of the radio item. */
+  --_dropdown-menu-radio-item-padding-y: var(--dropdown-menu-radio-item-padding-y, calc(var(--spacing) * 1.5));
+  /* Text colour of the radio item. */
+  --_dropdown-menu-radio-item-foreground: var(--dropdown-menu-radio-item-foreground, var(--dark-100));
+  /* Fill colour of the radio item when highlighted. */
+  --_dropdown-menu-radio-item-highlighted: var(--dropdown-menu-radio-item-highlighted, var(--light-l1));
+  /* Text colour of the radio item when disabled. */
+  --_dropdown-menu-radio-item-disabled-foreground: var(--dropdown-menu-radio-item-disabled-foreground, var(--dark-45));
   /* Gap between items of the radio-item. */
   --_dropdown-menu-radio-item-gap: var(--dropdown-menu-radio-item-gap, calc(var(--spacing) * 2.5));
   /* Horizontal padding of the radio-item. */
@@ -1611,6 +1773,79 @@
   /* @add text-caption-1 */
   /* Text colour of the shortcut. */
   --_dropdown-menu-shortcut-foreground: var(--dropdown-menu-shortcut-foreground, var(--dark-75));
+}
+
+[data-slot="dropdown-menu-icon-trigger"],
+[class*="(--_dropdown-menu-icon-trigger-"],
+[class*="(--_dropdown-menu-icon-trigger)"] {
+  /* Icon colour (mint tone). @ours */
+  --_dropdown-menu-icon-trigger-mint-foreground: var(--dropdown-menu-icon-trigger-mint-foreground, var(--mint-75));
+  /* Icon colour when hovered or open (mint tone). @ours */
+  --_dropdown-menu-icon-trigger-mint-hover-foreground: var(--dropdown-menu-icon-trigger-mint-hover-foreground, var(--mint-45));
+  /* Icon colour (dark tone). @ours */
+  --_dropdown-menu-icon-trigger-dark-foreground: var(--dropdown-menu-icon-trigger-dark-foreground, var(--dark-75));
+  /* Icon colour when hovered or open (dark tone). @ours */
+  --_dropdown-menu-icon-trigger-dark-hover-foreground: var(--dropdown-menu-icon-trigger-dark-hover-foreground, var(--dark-100));
+  /* Icon colour (navy tone). @ours */
+  --_dropdown-menu-icon-trigger-navy-foreground: var(--dropdown-menu-icon-trigger-navy-foreground, var(--navy));
+  /* Icon colour when hovered or open (navy tone). @ours */
+  --_dropdown-menu-icon-trigger-navy-hover-foreground: var(--dropdown-menu-icon-trigger-navy-hover-foreground, var(--dark-75));
+  /* Focus ring of the icon trigger. @ours */
+  --_dropdown-menu-icon-trigger-focus-ring: var(--dropdown-menu-icon-trigger-focus-ring, var(--mint-45));
+  /* Icon colour when disabled. @ours */
+  --_dropdown-menu-icon-trigger-disabled-foreground: var(--dropdown-menu-icon-trigger-disabled-foreground, var(--dark-45));
+}
+
+[data-slot="dropdown-menu-card-trigger"],
+[class*="(--_dropdown-menu-card-trigger-"],
+[class*="(--_dropdown-menu-card-trigger)"] {
+  /* Fill colour of the card trigger. @ours */
+  --_dropdown-menu-card-trigger: var(--dropdown-menu-card-trigger, var(--white));
+  /* Border colour of the card trigger. @ours */
+  --_dropdown-menu-card-trigger-border: var(--dropdown-menu-card-trigger-border, var(--dark-45));
+  /* Corner radius of the card trigger. @ours */
+  --_dropdown-menu-card-trigger-radius: var(--dropdown-menu-card-trigger-radius, var(--radius-lg));
+  /* Border colour of the card trigger when hovered. @ours */
+  --_dropdown-menu-card-trigger-hover-border: var(--dropdown-menu-card-trigger-hover-border, var(--mint-30));
+  /* Fill colour of the card trigger while open. @ours */
+  --_dropdown-menu-card-trigger-open: var(--dropdown-menu-card-trigger-open, var(--mint-l4));
+  /* Border colour of the card trigger while open or focused. @ours */
+  --_dropdown-menu-card-trigger-open-border: var(--dropdown-menu-card-trigger-open-border, var(--mint-45));
+  /* Ring colour of the card trigger while open or focused. @ours */
+  --_dropdown-menu-card-trigger-open-ring: var(--dropdown-menu-card-trigger-open-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
+  /* Chevron colour while open. @ours */
+  --_dropdown-menu-card-trigger-open-icon-foreground: var(--dropdown-menu-card-trigger-open-icon-foreground, var(--mint-75));
+  /* Fill colour of the card trigger when disabled. @ours */
+  --_dropdown-menu-card-trigger-disabled: var(--dropdown-menu-card-trigger-disabled, var(--light-l2));
+  /* Text colour of the small label above the title. @ours */
+  --_dropdown-menu-card-trigger-label-foreground: var(--dropdown-menu-card-trigger-label-foreground, var(--dark-90));
+  /* Text colour of the title. @ours */
+  --_dropdown-menu-card-trigger-foreground: var(--dropdown-menu-card-trigger-foreground, var(--dark-100));
+  /* Colour of the right-hand meta text and the chevron. @ours */
+  --_dropdown-menu-card-trigger-meta-foreground: var(--dropdown-menu-card-trigger-meta-foreground, var(--dark-75));
+}
+
+[data-slot="dropdown-menu-card-item"],
+[class*="(--_dropdown-menu-card-item-"],
+[class*="(--_dropdown-menu-card-item)"] {
+  /* Fill colour of an option card. @ours */
+  --_dropdown-menu-card-item: var(--dropdown-menu-card-item, var(--white));
+  /* Border colour of an option card. @ours */
+  --_dropdown-menu-card-item-border: var(--dropdown-menu-card-item-border, var(--dark-45));
+  /* Corner radius of an option card. @ours */
+  --_dropdown-menu-card-item-radius: var(--dropdown-menu-card-item-radius, var(--radius-lg));
+  /* Fill colour of an option card when highlighted. @ours */
+  --_dropdown-menu-card-item-highlighted: var(--dropdown-menu-card-item-highlighted, var(--light-l1));
+  /* Border colour of an option card when highlighted. @ours */
+  --_dropdown-menu-card-item-highlighted-border: var(--dropdown-menu-card-item-highlighted-border, var(--dark-75));
+  /* Fill colour of the chosen option card. @ours */
+  --_dropdown-menu-card-item-checked: var(--dropdown-menu-card-item-checked, var(--mint-l3));
+  /* Border colour of the chosen option card. @ours */
+  --_dropdown-menu-card-item-checked-border: var(--dropdown-menu-card-item-checked-border, var(--mint-45));
+  /* Text colour of an option card title. @ours */
+  --_dropdown-menu-card-item-foreground: var(--dropdown-menu-card-item-foreground, var(--dark-100));
+  /* Text colour of an option card meta line. @ours */
+  --_dropdown-menu-card-item-meta-foreground: var(--dropdown-menu-card-item-meta-foreground, var(--dark-75));
 }
 
 /* ---- empty.css ---- */
@@ -1816,6 +2051,48 @@
   --_hover-card-content-foreground: var(--hover-card-content-foreground, var(--dark-90));
   /* Shadow of the content. */
   --_hover-card-content-shadow: var(--hover-card-content-shadow, 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1));
+}
+
+/* ---- icon-tile.css ---- */
+/* Icon tile — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section.
+ * Defaults are Rey's design. Edited by hand; our component (icon-tile.tsx) reads these levers. */
+
+[data-slot="icon-tile"],
+[class*="(--_icon-tile-"],
+[class*="(--_icon-tile)"] {
+  /* Fill colour of the tile (mint variant). @ours */
+  --_icon-tile-mint: var(--icon-tile-mint, var(--mint-l3));
+  /* Icon colour of the tile (mint variant). @ours */
+  --_icon-tile-mint-foreground: var(--icon-tile-mint-foreground, var(--mint-75));
+  /* Fill colour of the tile (navy variant). @ours */
+  --_icon-tile-navy: var(--icon-tile-navy, var(--navy));
+  /* Icon colour of the tile (navy variant). @ours */
+  --_icon-tile-navy-foreground: var(--icon-tile-navy-foreground, var(--white));
+  /* Fill colour of the tile (warning variant). @ours */
+  --_icon-tile-warning: var(--icon-tile-warning, var(--warning-l2));
+  /* Icon colour of the tile (warning variant). @ours */
+  --_icon-tile-warning-foreground: var(--icon-tile-warning-foreground, var(--warning-75));
+  /* Fill colour of the tile (error variant). @ours */
+  --_icon-tile-error: var(--icon-tile-error, var(--error-l1));
+  /* Icon colour of the tile (error variant). @ours */
+  --_icon-tile-error-foreground: var(--icon-tile-error-foreground, var(--error-75));
+  /* Fill colour of the tile (lime variant). @ours */
+  --_icon-tile-lime: var(--icon-tile-lime, var(--lime));
+  /* Icon colour of the tile (lime variant). @ours */
+  --_icon-tile-lime-foreground: var(--icon-tile-lime-foreground, var(--navy));
+  /* Fill colour of the tile (neutral variant). @ours */
+  --_icon-tile-neutral: var(--icon-tile-neutral, var(--light-l2));
+  /* Icon colour of the tile (neutral variant). @ours */
+  --_icon-tile-neutral-foreground: var(--icon-tile-neutral-foreground, var(--navy));
+  /* Width and height of the tile (sm size). @ours */
+  --_icon-tile-sm-size: var(--icon-tile-sm-size, calc(var(--spacing) * 8));
+  /* Width and height of the tile (md size). @ours */
+  --_icon-tile-md-size: var(--icon-tile-md-size, calc(var(--spacing) * 10));
+  /* Width and height of the tile (lg size). @ours */
+  --_icon-tile-lg-size: var(--icon-tile-lg-size, calc(var(--spacing) * 12));
+  /* Corner radius of the tile (square shape). @ours */
+  --_icon-tile-square-radius: var(--icon-tile-square-radius, var(--radius-lg));
 }
 
 /* ---- input-group.css ---- */
@@ -2515,6 +2792,49 @@
   --_pagination-link-active: var(--pagination-link-active, var(--lime));
   /* Text colour of the current page. @ours */
   --_pagination-link-active-foreground: var(--pagination-link-active-foreground, var(--navy));
+}
+
+/* ---- pill-card.css ---- */
+/* Pill card — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section.
+ * Defaults are Rey's design. Edited by hand; our component (pill-card.tsx) reads these levers. */
+
+[data-slot="pill-card"],
+[class*="(--_pill-card-"],
+[class*="(--_pill-card)"] {
+  /* Fill colour of the card (electric-blue variant). @ours */
+  --_pill-card-electric-blue: var(--pill-card-electric-blue, var(--electric-blue-l1));
+  /* Fill colour of the card (teal variant). @ours */
+  --_pill-card-teal: var(--pill-card-teal, var(--teal-l1));
+  /* Fill colour of the card (lime variant). @ours */
+  --_pill-card-lime: var(--pill-card-lime, var(--lime-l1));
+}
+
+[data-slot="pill-card-icon"],
+[class*="(--_pill-card-icon-"],
+[class*="(--_pill-card-icon)"] {
+  /* Fill colour of the icon circle. @ours */
+  --_pill-card-icon: var(--pill-card-icon, var(--white));
+  /* Icon and ring colour (electric-blue variant). @ours */
+  --_pill-card-icon-electric-blue-foreground: var(--pill-card-icon-electric-blue-foreground, var(--electric-blue));
+  /* Icon and ring colour (teal variant). @ours */
+  --_pill-card-icon-teal-foreground: var(--pill-card-icon-teal-foreground, var(--teal));
+  /* Icon and ring colour (lime variant). @ours */
+  --_pill-card-icon-lime-foreground: var(--pill-card-icon-lime-foreground, var(--lime));
+}
+
+[data-slot="pill-card-heading"],
+[class*="(--_pill-card-heading-"],
+[class*="(--_pill-card-heading)"] {
+  /* Text colour of the heading. @ours */
+  --_pill-card-heading-foreground: var(--pill-card-heading-foreground, var(--navy));
+}
+
+[data-slot="pill-card-subheading"],
+[class*="(--_pill-card-subheading-"],
+[class*="(--_pill-card-subheading)"] {
+  /* Text colour of the subheading. @ours */
+  --_pill-card-subheading-foreground: var(--pill-card-subheading-foreground, var(--dark-75));
 }
 
 /* ---- popover.css ---- */
@@ -3397,6 +3717,63 @@
   --_spinner-foreground: var(--spinner-foreground, var(--primary));
 }
 
+/* ---- stepper.css ---- */
+/* Stepper — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section.
+ * Defaults are Rey's design. Edited by hand; our component (stepper.tsx) reads these levers. */
+
+[data-slot="stepper-indicator"],
+[class*="(--_stepper-indicator-"],
+[class*="(--_stepper-indicator)"] {
+  /* Fill colour of the current step (and of a done step in the dot size). @ours */
+  --_stepper-indicator-active: var(--stepper-indicator-active, var(--mint-60));
+  /* Number colour of the current step. @ours */
+  --_stepper-indicator-active-foreground: var(--stepper-indicator-active-foreground, var(--white));
+  /* Ring colour around the current step. @ours */
+  --_stepper-indicator-active-ring: var(--stepper-indicator-active-ring, var(--mint-45));
+  /* Fill colour of a done step. @ours */
+  --_stepper-indicator-complete: var(--stepper-indicator-complete, var(--mint-l2));
+  /* Tick colour of a done step. @ours */
+  --_stepper-indicator-complete-foreground: var(--stepper-indicator-complete-foreground, var(--mint-75));
+  /* Fill colour of a step still to come. @ours */
+  --_stepper-indicator-upcoming: var(--stepper-indicator-upcoming, var(--white));
+  /* Border colour of a step still to come. @ours */
+  --_stepper-indicator-upcoming-border: var(--stepper-indicator-upcoming-border, var(--navy));
+  /* Number colour of a step still to come. @ours */
+  --_stepper-indicator-upcoming-foreground: var(--stepper-indicator-upcoming-foreground, var(--navy));
+  /* Fill colour of a step with an error. @ours */
+  --_stepper-indicator-error: var(--stepper-indicator-error, var(--error-75));
+  /* Icon colour of a step with an error. @ours */
+  --_stepper-indicator-error-foreground: var(--stepper-indicator-error-foreground, var(--white));
+  /* Fill colour of a step still to come (dot size). @ours */
+  --_stepper-indicator-dot-upcoming: var(--stepper-indicator-dot-upcoming, var(--dark-15));
+}
+
+[data-slot="stepper-connector"],
+[class*="(--_stepper-connector-"],
+[class*="(--_stepper-connector)"] {
+  /* Colour of the line between steps. @ours */
+  --_stepper-connector: var(--stepper-connector, var(--light-l3));
+  /* Colour of the line once the step before it is done. @ours */
+  --_stepper-connector-complete: var(--stepper-connector-complete, var(--mint-60));
+}
+
+[data-slot="stepper-title"],
+[class*="(--_stepper-title-"],
+[class*="(--_stepper-title)"] {
+  /* Text colour of a step title. @ours */
+  --_stepper-title-foreground: var(--stepper-title-foreground, var(--navy));
+  /* Text colour of a step title with an error. @ours */
+  --_stepper-title-error-foreground: var(--stepper-title-error-foreground, var(--error-75));
+}
+
+[data-slot="stepper-description"],
+[class*="(--_stepper-description-"],
+[class*="(--_stepper-description)"] {
+  /* Text colour of a step description. @ours */
+  --_stepper-description-foreground: var(--stepper-description-foreground, var(--dark-90));
+}
+
 /* ---- switch.css ---- */
 /* Switch — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
@@ -3435,6 +3812,20 @@
   --_switch-thumb-shadow: var(--switch-thumb-shadow, 0 1px 2px 0 rgb(0 0 0 / 0.05));
 }
 
+[data-slot="switch-label"],
+[class*="(--_switch-label-"],
+[class*="(--_switch-label)"] {
+  /* Text colour of the label beside the control. @ours */
+  --_switch-label-foreground: var(--switch-label-foreground, var(--navy));
+}
+
+[data-slot="switch-description"],
+[class*="(--_switch-description-"],
+[class*="(--_switch-description)"] {
+  /* Text colour of the description under the label. @ours */
+  --_switch-description-foreground: var(--switch-description-foreground, var(--dark-75));
+}
+
 /* ---- table.css ---- */
 /* Table — component tokens.
  * Set any lever (the name without the underscore) on :root or a section, e.g.
@@ -3451,6 +3842,8 @@
 [class*="(--_table-header-"],
 [class*="(--_table-header)"] {
   /* @add [&_tr]:border-border [&_tr]:hover:bg-transparent */
+  /* Fill colour of the header row (card and bordered variants). @ours */
+  --_table-header-tinted: var(--table-header-tinted, var(--light-l1));
 }
 
 [data-slot="table-footer"],
@@ -3475,6 +3868,12 @@
   --_table-row-border: var(--table-row-border, var(--border));
   /* Fill colour of the row when hovered. */
   --_table-row-hover: var(--table-row-hover, var(--mint-l4));
+  /* Fill colour of every other row (striped variant). @ours */
+  --_table-row-striped: var(--table-row-striped, var(--light-l1));
+  /* Fill colour of a hovered row (striped variant). @ours */
+  --_table-row-striped-hover: var(--table-row-striped-hover, var(--mint-l4));
+  /* Fill colour of an expanded row. @ours */
+  --_table-row-open: var(--table-row-open, var(--mint-l4));
 }
 
 [data-slot="table-head"],
@@ -3513,6 +3912,28 @@
   /* @add caption-bottom mt-3 text-center text-body-5 */
   /* Text colour of the caption. */
   --_table-caption-foreground: var(--table-caption-foreground, var(--muted-foreground));
+}
+
+[data-slot="table-sort-button"],
+[class*="(--_table-sort-button-"],
+[class*="(--_table-sort-button)"] {
+  /* Text colour of a sortable column heading. @ours */
+  --_table-sort-button-foreground: var(--table-sort-button-foreground, var(--dark-100));
+  /* Text colour of a sortable column heading when hovered. @ours */
+  --_table-sort-button-hover-foreground: var(--table-sort-button-hover-foreground, var(--navy));
+  /* Focus ring of a sortable column heading. @ours */
+  --_table-sort-button-focus-ring: var(--table-sort-button-focus-ring, var(--mint-45));
+  /* Colour of the sort arrow. @ours */
+  --_table-sort-button-icon-foreground: var(--table-sort-button-icon-foreground, var(--dark-75));
+}
+
+[data-slot="table-detail-row"],
+[class*="(--_table-detail-row-"],
+[class*="(--_table-detail-row)"] {
+  /* Fill colour of the detail row under an expanded row. @ours */
+  --_table-detail-row: var(--table-detail-row, var(--mint-l4));
+  /* Text colour of the detail row. @ours */
+  --_table-detail-row-foreground: var(--table-detail-row-foreground, var(--dark-90));
 }
 
 /* ---- tabs.css ---- */

@@ -142,27 +142,27 @@ function DialogCollapsible({
       }}
       className={cn(
         "flex flex-col",
-        variant === "dropdown" && "rounded-lg border border-light-l3",
+        variant === "dropdown" && "rounded-lg border border-(--_dialog-collapsible-border)",
         className
       )}
     >
       {variant === "dropdown" ? (
         <>
-          <CollapsiblePrimitive.Trigger className="group/dc flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg px-4 py-3 text-start text-body-5 font-semibold text-navy outline-none hover:text-mint-75 focus-visible:ring-2 focus-visible:ring-mint-45">
+          <CollapsiblePrimitive.Trigger className="group/dc flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg px-4 py-3 text-start text-body-5 font-semibold text-(--_dialog-collapsible-trigger-foreground) outline-none hover:text-(--_dialog-collapsible-trigger-hover-foreground) focus-visible:ring-2 focus-visible:ring-(--_dialog-collapsible-focus-ring)">
             {label ?? "Details"}
-            <ChevronDown className="size-4 shrink-0 text-dark-75 transition-transform group-data-panel-open/dc:rotate-180" />
+            <ChevronDown className="size-4 shrink-0 text-(--_dialog-collapsible-icon-foreground) transition-transform group-data-panel-open/dc:rotate-180" />
           </CollapsiblePrimitive.Trigger>
-          <CollapsiblePrimitive.Panel className="border-t border-light-l3 px-4 py-3 text-body-5 text-dark-90">
+          <CollapsiblePrimitive.Panel className="border-t border-(--_dialog-collapsible-border) px-4 py-3 text-body-5 text-(--_dialog-collapsible-foreground)">
             {children}
           </CollapsiblePrimitive.Panel>
         </>
       ) : (
         <>
-          {preview && <div className="text-body-5 text-dark-90">{preview}</div>}
-          <CollapsiblePrimitive.Panel className="text-body-5 text-dark-90">
+          {preview && <div className="text-body-5 text-(--_dialog-collapsible-foreground)">{preview}</div>}
+          <CollapsiblePrimitive.Panel className="text-body-5 text-(--_dialog-collapsible-foreground)">
             {children}
           </CollapsiblePrimitive.Panel>
-          <CollapsiblePrimitive.Trigger className="group/dc mt-2 inline-flex w-fit cursor-pointer items-center gap-1 rounded-sm text-body-5 font-semibold text-mint-75 outline-none hover:text-mint-45 focus-visible:ring-2 focus-visible:ring-mint-45">
+          <CollapsiblePrimitive.Trigger className="group/dc mt-2 inline-flex w-fit cursor-pointer items-center gap-1 rounded-sm text-body-5 font-semibold text-(--_dialog-collapsible-toggle-foreground) outline-none hover:text-(--_dialog-collapsible-toggle-hover-foreground) focus-visible:ring-2 focus-visible:ring-(--_dialog-collapsible-focus-ring)">
             {isOpen ? lessLabel : (label ?? "View more")}
             <ChevronDown className="size-4 transition-transform group-data-panel-open/dc:rotate-180" />
           </CollapsiblePrimitive.Trigger>

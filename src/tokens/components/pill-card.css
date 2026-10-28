@@ -1,0 +1,33 @@
+/* Pill card — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section.
+ * Defaults are Rey's design. Edited by hand; our component (pill-card.tsx) reads these levers. */
+
+[data-slot="pill-card"] {
+  /* Fill colour of the card (electric-blue variant). @ours */
+  --_pill-card-electric-blue: var(--pill-card-electric-blue, var(--electric-blue-l1));
+  /* Fill colour of the card (teal variant). @ours */
+  --_pill-card-teal: var(--pill-card-teal, var(--teal-l1));
+  /* Fill colour of the card (lime variant). @ours */
+  --_pill-card-lime: var(--pill-card-lime, var(--lime-l1));
+}
+
+[data-slot="pill-card-icon"] {
+  /* Fill colour of the icon circle. @ours */
+  --_pill-card-icon: var(--pill-card-icon, var(--white));
+  /* Icon and ring colour (electric-blue variant). @ours */
+  --_pill-card-icon-electric-blue-foreground: var(--pill-card-icon-electric-blue-foreground, var(--electric-blue));
+  /* Icon and ring colour (teal variant). @ours */
+  --_pill-card-icon-teal-foreground: var(--pill-card-icon-teal-foreground, var(--teal));
+  /* Icon and ring colour (lime variant). @ours */
+  --_pill-card-icon-lime-foreground: var(--pill-card-icon-lime-foreground, var(--lime));
+}
+
+[data-slot="pill-card-heading"] {
+  /* Text colour of the heading. @ours */
+  --_pill-card-heading-foreground: var(--pill-card-heading-foreground, var(--navy));
+}
+
+[data-slot="pill-card-subheading"] {
+  /* Text colour of the subheading. @ours */
+  --_pill-card-subheading-foreground: var(--pill-card-subheading-foreground, var(--dark-75));
+}

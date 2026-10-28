@@ -16,15 +16,15 @@ const stepIndicatorVariants = cva(
       },
       status: {
         active:
-          "bg-mint-60 text-white ring-2 ring-mint-45 ring-offset-2 ring-offset-white",
-        complete: "bg-mint-l2 text-mint-75",
-        upcoming: "border-2 border-navy bg-white text-navy",
-        error: "bg-error-75 text-white",
+          "bg-(--_stepper-indicator-active) text-(--_stepper-indicator-active-foreground) ring-2 ring-(--_stepper-indicator-active-ring) ring-offset-2 ring-offset-(--_stepper-indicator-upcoming)",
+        complete: "bg-(--_stepper-indicator-complete) text-(--_stepper-indicator-complete-foreground)",
+        upcoming: "border-2 border-(--_stepper-indicator-upcoming-border) bg-(--_stepper-indicator-upcoming) text-(--_stepper-indicator-upcoming-foreground)",
+        error: "bg-(--_stepper-indicator-error) text-(--_stepper-indicator-error-foreground)",
       },
     },
     compoundVariants: [
-      { size: "dot", status: "complete", className: "bg-mint-60" },
-      { size: "dot", status: "upcoming", className: "border-0 bg-dark-15" },
+      { size: "dot", status: "complete", className: "bg-(--_stepper-indicator-active)" },
+      { size: "dot", status: "upcoming", className: "border-0 bg-(--_stepper-indicator-dot-upcoming)" },
     ],
     defaultVariants: { size: "md", status: "upcoming" },
   }
@@ -84,15 +84,16 @@ function StepperLine({
   return (
     <span
       aria-hidden="true"
+      data-slot="stepper-connector"
       className={cn(
-        "relative overflow-hidden rounded-sm bg-light-l3",
+        "relative overflow-hidden rounded-sm bg-(--_stepper-connector)",
         vertical ? "my-1.5 min-h-4 w-0.5 flex-1" : "h-0.5",
         className
       )}
     >
       <span
         className={cn(
-          "absolute inset-0 bg-mint-60 transition-transform duration-300 ease-out",
+          "absolute inset-0 bg-(--_stepper-connector-complete) transition-transform duration-300 ease-out",
           vertical ? "origin-top" : "origin-left",
           !on && (vertical ? "scale-y-0" : "scale-x-0")
         )}
@@ -188,6 +189,7 @@ function Stepper({
           const click = canClick(step, i)
           const circle = (
             <span
+              data-slot="stepper-indicator"
               className={stepIndicatorVariants({ size: circleSize, status })}
             >
               {glyph(step, i, status)}
@@ -203,17 +205,18 @@ function Stepper({
             >
               {step.title && (
                 <span
+                  data-slot="stepper-title"
                   className={cn(
                     "leading-tight font-semibold",
                     size === "sm" ? "text-body-5" : "text-body-4",
-                    status === "error" ? "text-error-75" : "text-navy"
+                    status === "error" ? "text-(--_stepper-title-error-foreground)" : "text-(--_stepper-title-foreground)"
                   )}
                 >
                   {step.title}
                 </span>
               )}
               {step.description && (
-                <span className="text-body-5 text-dark-90">
+                <span data-slot="stepper-description" className="text-body-5 text-(--_stepper-description-foreground)">
                   {step.description}
                 </span>
               )}

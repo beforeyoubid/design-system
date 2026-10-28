@@ -3882,6 +3882,62 @@
       "--button-radius",
       "--radius-full"
      ]
+    },
+    {
+     "name": "--button-lime",
+     "private": "--_button-lime",
+     "default": "var(--lime)",
+     "description": "Fill colour of the button (lime variant).",
+     "type": "color",
+     "part": "button",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--lime"
+     ]
+    },
+    {
+     "name": "--button-lime-foreground",
+     "private": "--_button-lime-foreground",
+     "default": "var(--navy)",
+     "description": "Text colour of the button (lime variant).",
+     "type": "color",
+     "part": "button",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--navy"
+     ]
+    },
+    {
+     "name": "--button-navy",
+     "private": "--_button-navy",
+     "default": "var(--navy)",
+     "description": "Fill colour of the button (navy variant).",
+     "type": "color",
+     "part": "button",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--navy"
+     ]
+    },
+    {
+     "name": "--button-navy-foreground",
+     "private": "--_button-navy-foreground",
+     "default": "var(--white)",
+     "description": "Text colour of the button (navy variant).",
+     "type": "color",
+     "part": "button",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--white"
+     ]
     }
    ]
   },
@@ -4292,6 +4348,138 @@
    ]
   },
   {
+   "component": "chart-frame",
+   "description": "Chart frame — component tokens.\nSet any lever (the name without the underscore) on :root or a section.\nDefaults are Rey's design. Edited by hand; our component (chart-frame.tsx) reads these levers.",
+   "tokens": [
+    {
+     "name": "--chart-frame",
+     "private": "--_chart-frame",
+     "default": "var(--white)",
+     "description": "Fill colour of the chart card.",
+     "type": "color",
+     "part": "chart-frame",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--white"
+     ]
+    },
+    {
+     "name": "--chart-frame-border",
+     "private": "--_chart-frame-border",
+     "default": "var(--light-l3)",
+     "description": "Border colour of the chart card.",
+     "type": "color",
+     "part": "chart-frame",
+     "variant": null,
+     "state": null,
+     "property": "border",
+     "reads": [
+      "--light-l3"
+     ]
+    },
+    {
+     "name": "--chart-frame-radius",
+     "private": "--_chart-frame-radius",
+     "default": "var(--radius-lg)",
+     "description": "Corner radius of the chart card.",
+     "type": "radius",
+     "part": "chart-frame",
+     "variant": null,
+     "state": null,
+     "property": "radius",
+     "reads": [
+      "--radius-lg"
+     ]
+    },
+    {
+     "name": "--chart-frame-title-foreground",
+     "private": "--_chart-frame-title-foreground",
+     "default": "var(--navy)",
+     "description": "Text colour of the title and the trend line.",
+     "type": "color",
+     "part": "chart-frame",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--navy"
+     ]
+    },
+    {
+     "name": "--chart-frame-description-foreground",
+     "private": "--_chart-frame-description-foreground",
+     "default": "var(--dark-75)",
+     "description": "Text colour of the description and the caption.",
+     "type": "color",
+     "part": "chart-frame",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-75"
+     ]
+    },
+    {
+     "name": "--chart-frame-legend-foreground",
+     "private": "--_chart-frame-legend-foreground",
+     "default": "var(--dark-75)",
+     "description": "Text and icon colour of the legend.",
+     "type": "color",
+     "part": "chart-frame-legend",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-75"
+     ]
+    },
+    {
+     "name": "--chart-frame-tooltip",
+     "private": "--_chart-frame-tooltip",
+     "default": "var(--white)",
+     "description": "Fill colour of the chart tooltip.",
+     "type": "color",
+     "part": "chart-frame-tooltip",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--white"
+     ]
+    },
+    {
+     "name": "--chart-frame-tooltip-border",
+     "private": "--_chart-frame-tooltip-border",
+     "default": "var(--light-l3)",
+     "description": "Border colour of the chart tooltip.",
+     "type": "color",
+     "part": "chart-frame-tooltip",
+     "variant": null,
+     "state": null,
+     "property": "border",
+     "reads": [
+      "--light-l3"
+     ]
+    },
+    {
+     "name": "--chart-frame-tooltip-foreground",
+     "private": "--_chart-frame-tooltip-foreground",
+     "default": "var(--dark-90)",
+     "description": "Text colour of the chart tooltip.",
+     "type": "color",
+     "part": "chart-frame-tooltip",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-90"
+     ]
+    }
+   ]
+  },
+  {
    "component": "chart",
    "description": "Chart — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --chart-radius: … }\nDefaults are Rey's design. Edited by hand; the class edits in ui/chart.tsx follow from these names.",
    "tokens": []
@@ -4465,6 +4653,104 @@
      "state": "disabled",
      "property": "opacity",
      "reads": []
+    },
+    {
+     "name": "--checkbox-label-foreground",
+     "private": "--_checkbox-label-foreground",
+     "default": "var(--navy)",
+     "description": "Text colour of the label beside the control.",
+     "type": "color",
+     "part": "checkbox-label",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--navy"
+     ]
+    },
+    {
+     "name": "--checkbox-description-foreground",
+     "private": "--_checkbox-description-foreground",
+     "default": "var(--dark-75)",
+     "description": "Text colour of the description under the label.",
+     "type": "color",
+     "part": "checkbox-description",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-75"
+     ]
+    },
+    {
+     "name": "--checkbox-field-card",
+     "private": "--_checkbox-field-card",
+     "default": "var(--white)",
+     "description": "Fill colour of an option card (card variant).",
+     "type": "color",
+     "part": "checkbox-field",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--white"
+     ]
+    },
+    {
+     "name": "--checkbox-field-card-border",
+     "private": "--_checkbox-field-card-border",
+     "default": "var(--dark-45)",
+     "description": "Border colour of an option card (card variant).",
+     "type": "color",
+     "part": "checkbox-field",
+     "variant": null,
+     "state": null,
+     "property": "border",
+     "reads": [
+      "--dark-45"
+     ]
+    },
+    {
+     "name": "--checkbox-field-card-radius",
+     "private": "--_checkbox-field-card-radius",
+     "default": "var(--radius-lg)",
+     "description": "Corner radius of an option card (card variant).",
+     "type": "radius",
+     "part": "checkbox-field",
+     "variant": null,
+     "state": null,
+     "property": "radius",
+     "reads": [
+      "--radius-lg"
+     ]
+    },
+    {
+     "name": "--checkbox-field-card-checked",
+     "private": "--_checkbox-field-card-checked",
+     "default": "var(--mint-l4)",
+     "description": "Fill colour of a ticked option card (card variant).",
+     "type": "color",
+     "part": "checkbox-field",
+     "variant": null,
+     "state": "checked",
+     "property": "fill",
+     "reads": [
+      "--mint-l4"
+     ]
+    },
+    {
+     "name": "--checkbox-field-card-checked-border",
+     "private": "--_checkbox-field-card-checked-border",
+     "default": "var(--mint-45)",
+     "description": "Border colour of a ticked option card (card variant).",
+     "type": "color",
+     "part": "checkbox-field",
+     "variant": null,
+     "state": "checked",
+     "property": "border",
+     "reads": [
+      "--mint-45"
+     ]
     }
    ]
   },
@@ -5374,6 +5660,20 @@
      "reads": [
       "--dark-75"
      ]
+    },
+    {
+     "name": "--command-dialog-radius",
+     "private": "--_command-dialog-radius",
+     "default": "var(--radius-lg)",
+     "description": "Corner radius of the command palette dialog.",
+     "type": "radius",
+     "part": "command-dialog",
+     "variant": null,
+     "state": null,
+     "property": "radius",
+     "reads": [
+      "--radius-lg"
+     ]
     }
    ]
   },
@@ -5918,6 +6218,96 @@
    ]
   },
   {
+   "component": "counter",
+   "description": "Counter — component tokens.\nSet any lever (the name without the underscore) on :root or a section.\nDefaults are Rey's design. Edited by hand; our component (counter.tsx) reads these levers.",
+   "tokens": [
+    {
+     "name": "--counter-value-navy-foreground",
+     "private": "--_counter-value-navy-foreground",
+     "default": "var(--navy)",
+     "description": "Colour of the number and icon (navy variant).",
+     "type": "color",
+     "part": "counter-value",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--navy"
+     ]
+    },
+    {
+     "name": "--counter-value-lime-foreground",
+     "private": "--_counter-value-lime-foreground",
+     "default": "var(--lime)",
+     "description": "Colour of the number and icon (lime variant, for dark sections).",
+     "type": "color",
+     "part": "counter-value",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--lime"
+     ]
+    },
+    {
+     "name": "--counter-value-white-foreground",
+     "private": "--_counter-value-white-foreground",
+     "default": "var(--white)",
+     "description": "Colour of the number and icon (white variant, for dark sections).",
+     "type": "color",
+     "part": "counter-value",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--white"
+     ]
+    },
+    {
+     "name": "--counter-label-navy-foreground",
+     "private": "--_counter-label-navy-foreground",
+     "default": "var(--dark-75)",
+     "description": "Text colour of the label (navy variant).",
+     "type": "color",
+     "part": "counter-label",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-75"
+     ]
+    },
+    {
+     "name": "--counter-label-lime-foreground",
+     "private": "--_counter-label-lime-foreground",
+     "default": "var(--dark-75)",
+     "description": "Text colour of the label (lime variant).",
+     "type": "color",
+     "part": "counter-label",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-75"
+     ]
+    },
+    {
+     "name": "--counter-label-white-foreground",
+     "private": "--_counter-label-white-foreground",
+     "default": "var(--white)",
+     "description": "Text colour of the label (white variant).",
+     "type": "color",
+     "part": "counter-label",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--white"
+     ]
+    }
+   ]
+  },
+  {
    "component": "dialog",
    "description": "Dialog — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --dialog-overlay: … }\nDefaults are Rey's design. Edited by hand; the class edits in ui/dialog.tsx follow from these names.",
    "tokens": [
@@ -6112,6 +6502,118 @@
      "reads": [
       "--dark-100"
      ]
+    },
+    {
+     "name": "--dialog-collapsible-border",
+     "private": "--_dialog-collapsible-border",
+     "default": "var(--light-l3)",
+     "description": "Border colour of the dropdown collapsible.",
+     "type": "color",
+     "part": "dialog-collapsible",
+     "variant": null,
+     "state": null,
+     "property": "border",
+     "reads": [
+      "--light-l3"
+     ]
+    },
+    {
+     "name": "--dialog-collapsible-foreground",
+     "private": "--_dialog-collapsible-foreground",
+     "default": "var(--dark-90)",
+     "description": "Text colour of the collapsible content.",
+     "type": "color",
+     "part": "dialog-collapsible",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-90"
+     ]
+    },
+    {
+     "name": "--dialog-collapsible-trigger-foreground",
+     "private": "--_dialog-collapsible-trigger-foreground",
+     "default": "var(--navy)",
+     "description": "Text colour of the dropdown row.",
+     "type": "color",
+     "part": "dialog-collapsible",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--navy"
+     ]
+    },
+    {
+     "name": "--dialog-collapsible-trigger-hover-foreground",
+     "private": "--_dialog-collapsible-trigger-hover-foreground",
+     "default": "var(--mint-75)",
+     "description": "Text colour of the dropdown row when hovered.",
+     "type": "color",
+     "part": "dialog-collapsible",
+     "variant": null,
+     "state": "hover",
+     "property": "foreground",
+     "reads": [
+      "--mint-75"
+     ]
+    },
+    {
+     "name": "--dialog-collapsible-icon-foreground",
+     "private": "--_dialog-collapsible-icon-foreground",
+     "default": "var(--dark-75)",
+     "description": "Chevron colour of the dropdown row.",
+     "type": "color",
+     "part": "dialog-collapsible",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-75"
+     ]
+    },
+    {
+     "name": "--dialog-collapsible-toggle-foreground",
+     "private": "--_dialog-collapsible-toggle-foreground",
+     "default": "var(--mint-75)",
+     "description": "Text colour of the \"View more\" toggle.",
+     "type": "color",
+     "part": "dialog-collapsible",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--mint-75"
+     ]
+    },
+    {
+     "name": "--dialog-collapsible-toggle-hover-foreground",
+     "private": "--_dialog-collapsible-toggle-hover-foreground",
+     "default": "var(--mint-45)",
+     "description": "Text colour of the \"View more\" toggle when hovered.",
+     "type": "color",
+     "part": "dialog-collapsible",
+     "variant": null,
+     "state": "hover",
+     "property": "foreground",
+     "reads": [
+      "--mint-45"
+     ]
+    },
+    {
+     "name": "--dialog-collapsible-focus-ring",
+     "private": "--_dialog-collapsible-focus-ring",
+     "default": "var(--mint-45)",
+     "description": "Focus ring of the collapsible toggles.",
+     "type": "color",
+     "part": "dialog-collapsible",
+     "variant": null,
+     "state": "focus",
+     "property": "ring",
+     "reads": [
+      "--mint-45"
+     ]
     }
    ]
   },
@@ -6127,14 +6629,16 @@
     {
      "name": "--drawer-overlay",
      "private": "--_drawer-overlay",
-     "default": "color-mix(in oklab, #000 80%, transparent)",
+     "default": "color-mix(in oklab, var(--dark-100) 50%, transparent)",
      "description": "Fill colour of the overlay.",
      "type": "color",
      "part": "drawer-overlay",
      "variant": null,
      "state": null,
      "property": "fill",
-     "reads": []
+     "reads": [
+      "--dark-100"
+     ]
     },
     {
      "name": "--drawer-popup-min-height",
@@ -6153,7 +6657,7 @@
     {
      "name": "--drawer-popup-radius",
      "private": "--_drawer-popup-radius",
-     "default": "var(--radius-4xl)",
+     "default": "var(--radius-2xl)",
      "description": "Corner radius of the popup.",
      "type": "radius",
      "part": "drawer-popup",
@@ -6161,13 +6665,13 @@
      "state": null,
      "property": "radius",
      "reads": [
-      "--radius-4xl"
+      "--radius-2xl"
      ]
     },
     {
      "name": "--drawer-popup-border",
      "private": "--_drawer-popup-border",
-     "default": "var(--popover)",
+     "default": "var(--border)",
      "description": "Border colour of the popup.",
      "type": "color",
      "part": "drawer-popup",
@@ -6175,7 +6679,7 @@
      "state": null,
      "property": "border",
      "reads": [
-      "--popover"
+      "--border"
      ]
     },
     {
@@ -6697,6 +7201,90 @@
      ]
     },
     {
+     "name": "--dropdown-menu-checkbox-item-min-height",
+     "private": "--_dropdown-menu-checkbox-item-min-height",
+     "default": "calc(var(--spacing) * 8)",
+     "description": "Minimum height of the checkbox item.",
+     "type": "length",
+     "part": "dropdown-menu-checkbox-item",
+     "variant": null,
+     "state": null,
+     "property": "min-height",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-checkbox-item-radius",
+     "private": "--_dropdown-menu-checkbox-item-radius",
+     "default": "var(--radius-md)",
+     "description": "Corner radius of the checkbox item.",
+     "type": "radius",
+     "part": "dropdown-menu-checkbox-item",
+     "variant": null,
+     "state": null,
+     "property": "radius",
+     "reads": [
+      "--radius-md"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-checkbox-item-padding-y",
+     "private": "--_dropdown-menu-checkbox-item-padding-y",
+     "default": "calc(var(--spacing) * 1.5)",
+     "description": "Vertical padding of the checkbox item.",
+     "type": "length",
+     "part": "dropdown-menu-checkbox-item",
+     "variant": null,
+     "state": null,
+     "property": "padding-y",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-checkbox-item-foreground",
+     "private": "--_dropdown-menu-checkbox-item-foreground",
+     "default": "var(--dark-100)",
+     "description": "Text colour of the checkbox item.",
+     "type": "color",
+     "part": "dropdown-menu-checkbox-item",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-100"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-checkbox-item-highlighted",
+     "private": "--_dropdown-menu-checkbox-item-highlighted",
+     "default": "var(--light-l1)",
+     "description": "Fill colour of the checkbox item when highlighted.",
+     "type": "color",
+     "part": "dropdown-menu-checkbox-item",
+     "variant": null,
+     "state": "highlighted",
+     "property": "fill",
+     "reads": [
+      "--light-l1"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-checkbox-item-disabled-foreground",
+     "private": "--_dropdown-menu-checkbox-item-disabled-foreground",
+     "default": "var(--dark-45)",
+     "description": "Text colour of the checkbox item when disabled.",
+     "type": "color",
+     "part": "dropdown-menu-checkbox-item",
+     "variant": null,
+     "state": "disabled",
+     "property": "foreground",
+     "reads": [
+      "--dark-45"
+     ]
+    },
+    {
      "name": "--dropdown-menu-checkbox-item-gap",
      "private": "--_dropdown-menu-checkbox-item-gap",
      "default": "calc(var(--spacing) * 2.5)",
@@ -6795,6 +7383,90 @@
      ]
     },
     {
+     "name": "--dropdown-menu-radio-item-min-height",
+     "private": "--_dropdown-menu-radio-item-min-height",
+     "default": "calc(var(--spacing) * 8)",
+     "description": "Minimum height of the radio item.",
+     "type": "length",
+     "part": "dropdown-menu-radio-item",
+     "variant": null,
+     "state": null,
+     "property": "min-height",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-radio-item-radius",
+     "private": "--_dropdown-menu-radio-item-radius",
+     "default": "var(--radius-md)",
+     "description": "Corner radius of the radio item.",
+     "type": "radius",
+     "part": "dropdown-menu-radio-item",
+     "variant": null,
+     "state": null,
+     "property": "radius",
+     "reads": [
+      "--radius-md"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-radio-item-padding-y",
+     "private": "--_dropdown-menu-radio-item-padding-y",
+     "default": "calc(var(--spacing) * 1.5)",
+     "description": "Vertical padding of the radio item.",
+     "type": "length",
+     "part": "dropdown-menu-radio-item",
+     "variant": null,
+     "state": null,
+     "property": "padding-y",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-radio-item-foreground",
+     "private": "--_dropdown-menu-radio-item-foreground",
+     "default": "var(--dark-100)",
+     "description": "Text colour of the radio item.",
+     "type": "color",
+     "part": "dropdown-menu-radio-item",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-100"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-radio-item-highlighted",
+     "private": "--_dropdown-menu-radio-item-highlighted",
+     "default": "var(--light-l1)",
+     "description": "Fill colour of the radio item when highlighted.",
+     "type": "color",
+     "part": "dropdown-menu-radio-item",
+     "variant": null,
+     "state": "highlighted",
+     "property": "fill",
+     "reads": [
+      "--light-l1"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-radio-item-disabled-foreground",
+     "private": "--_dropdown-menu-radio-item-disabled-foreground",
+     "default": "var(--dark-45)",
+     "description": "Text colour of the radio item when disabled.",
+     "type": "color",
+     "part": "dropdown-menu-radio-item",
+     "variant": null,
+     "state": "disabled",
+     "property": "foreground",
+     "reads": [
+      "--dark-45"
+     ]
+    },
+    {
      "name": "--dropdown-menu-radio-item-gap",
      "private": "--_dropdown-menu-radio-item-gap",
      "default": "calc(var(--spacing) * 2.5)",
@@ -6883,6 +7555,412 @@
      "description": "Text colour of the shortcut.",
      "type": "color",
      "part": "dropdown-menu-shortcut",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-75"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-icon-trigger-mint-foreground",
+     "private": "--_dropdown-menu-icon-trigger-mint-foreground",
+     "default": "var(--mint-75)",
+     "description": "Icon colour (mint tone).",
+     "type": "color",
+     "part": "dropdown-menu-icon-trigger",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--mint-75"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-icon-trigger-mint-hover-foreground",
+     "private": "--_dropdown-menu-icon-trigger-mint-hover-foreground",
+     "default": "var(--mint-45)",
+     "description": "Icon colour when hovered or open (mint tone).",
+     "type": "color",
+     "part": "dropdown-menu-icon-trigger",
+     "variant": null,
+     "state": "hover",
+     "property": "foreground",
+     "reads": [
+      "--mint-45"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-icon-trigger-dark-foreground",
+     "private": "--_dropdown-menu-icon-trigger-dark-foreground",
+     "default": "var(--dark-75)",
+     "description": "Icon colour (dark tone).",
+     "type": "color",
+     "part": "dropdown-menu-icon-trigger",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-75"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-icon-trigger-dark-hover-foreground",
+     "private": "--_dropdown-menu-icon-trigger-dark-hover-foreground",
+     "default": "var(--dark-100)",
+     "description": "Icon colour when hovered or open (dark tone).",
+     "type": "color",
+     "part": "dropdown-menu-icon-trigger",
+     "variant": null,
+     "state": "hover",
+     "property": "foreground",
+     "reads": [
+      "--dark-100"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-icon-trigger-navy-foreground",
+     "private": "--_dropdown-menu-icon-trigger-navy-foreground",
+     "default": "var(--navy)",
+     "description": "Icon colour (navy tone).",
+     "type": "color",
+     "part": "dropdown-menu-icon-trigger",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--navy"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-icon-trigger-navy-hover-foreground",
+     "private": "--_dropdown-menu-icon-trigger-navy-hover-foreground",
+     "default": "var(--dark-75)",
+     "description": "Icon colour when hovered or open (navy tone).",
+     "type": "color",
+     "part": "dropdown-menu-icon-trigger",
+     "variant": null,
+     "state": "hover",
+     "property": "foreground",
+     "reads": [
+      "--dark-75"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-icon-trigger-focus-ring",
+     "private": "--_dropdown-menu-icon-trigger-focus-ring",
+     "default": "var(--mint-45)",
+     "description": "Focus ring of the icon trigger.",
+     "type": "color",
+     "part": "dropdown-menu-icon-trigger",
+     "variant": null,
+     "state": "focus",
+     "property": "ring",
+     "reads": [
+      "--mint-45"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-icon-trigger-disabled-foreground",
+     "private": "--_dropdown-menu-icon-trigger-disabled-foreground",
+     "default": "var(--dark-45)",
+     "description": "Icon colour when disabled.",
+     "type": "color",
+     "part": "dropdown-menu-icon-trigger",
+     "variant": null,
+     "state": "disabled",
+     "property": "foreground",
+     "reads": [
+      "--dark-45"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-trigger",
+     "private": "--_dropdown-menu-card-trigger",
+     "default": "var(--white)",
+     "description": "Fill colour of the card trigger.",
+     "type": "color",
+     "part": "dropdown-menu-card-trigger",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--white"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-trigger-border",
+     "private": "--_dropdown-menu-card-trigger-border",
+     "default": "var(--dark-45)",
+     "description": "Border colour of the card trigger.",
+     "type": "color",
+     "part": "dropdown-menu-card-trigger",
+     "variant": null,
+     "state": null,
+     "property": "border",
+     "reads": [
+      "--dark-45"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-trigger-radius",
+     "private": "--_dropdown-menu-card-trigger-radius",
+     "default": "var(--radius-lg)",
+     "description": "Corner radius of the card trigger.",
+     "type": "radius",
+     "part": "dropdown-menu-card-trigger",
+     "variant": null,
+     "state": null,
+     "property": "radius",
+     "reads": [
+      "--radius-lg"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-trigger-hover-border",
+     "private": "--_dropdown-menu-card-trigger-hover-border",
+     "default": "var(--mint-30)",
+     "description": "Border colour of the card trigger when hovered.",
+     "type": "color",
+     "part": "dropdown-menu-card-trigger",
+     "variant": null,
+     "state": "hover",
+     "property": "border",
+     "reads": [
+      "--mint-30"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-trigger-open",
+     "private": "--_dropdown-menu-card-trigger-open",
+     "default": "var(--mint-l4)",
+     "description": "Fill colour of the card trigger while open.",
+     "type": "color",
+     "part": "dropdown-menu-card-trigger",
+     "variant": null,
+     "state": "open",
+     "property": "fill",
+     "reads": [
+      "--mint-l4"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-trigger-open-border",
+     "private": "--_dropdown-menu-card-trigger-open-border",
+     "default": "var(--mint-45)",
+     "description": "Border colour of the card trigger while open or focused.",
+     "type": "color",
+     "part": "dropdown-menu-card-trigger",
+     "variant": null,
+     "state": "open",
+     "property": "border",
+     "reads": [
+      "--mint-45"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-trigger-open-ring",
+     "private": "--_dropdown-menu-card-trigger-open-ring",
+     "default": "color-mix(in oklab, var(--mint-45) 30%, transparent)",
+     "description": "Ring colour of the card trigger while open or focused.",
+     "type": "color",
+     "part": "dropdown-menu-card-trigger",
+     "variant": null,
+     "state": "open",
+     "property": "ring",
+     "reads": [
+      "--mint-45"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-trigger-open-icon-foreground",
+     "private": "--_dropdown-menu-card-trigger-open-icon-foreground",
+     "default": "var(--mint-75)",
+     "description": "Chevron colour while open.",
+     "type": "color",
+     "part": "dropdown-menu-card-trigger",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--mint-75"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-trigger-disabled",
+     "private": "--_dropdown-menu-card-trigger-disabled",
+     "default": "var(--light-l2)",
+     "description": "Fill colour of the card trigger when disabled.",
+     "type": "color",
+     "part": "dropdown-menu-card-trigger",
+     "variant": null,
+     "state": "disabled",
+     "property": "fill",
+     "reads": [
+      "--light-l2"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-trigger-label-foreground",
+     "private": "--_dropdown-menu-card-trigger-label-foreground",
+     "default": "var(--dark-90)",
+     "description": "Text colour of the small label above the title.",
+     "type": "color",
+     "part": "dropdown-menu-card-trigger",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-90"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-trigger-foreground",
+     "private": "--_dropdown-menu-card-trigger-foreground",
+     "default": "var(--dark-100)",
+     "description": "Text colour of the title.",
+     "type": "color",
+     "part": "dropdown-menu-card-trigger",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-100"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-trigger-meta-foreground",
+     "private": "--_dropdown-menu-card-trigger-meta-foreground",
+     "default": "var(--dark-75)",
+     "description": "Colour of the right-hand meta text and the chevron.",
+     "type": "color",
+     "part": "dropdown-menu-card-trigger",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-75"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-item",
+     "private": "--_dropdown-menu-card-item",
+     "default": "var(--white)",
+     "description": "Fill colour of an option card.",
+     "type": "color",
+     "part": "dropdown-menu-card-item",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--white"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-item-border",
+     "private": "--_dropdown-menu-card-item-border",
+     "default": "var(--dark-45)",
+     "description": "Border colour of an option card.",
+     "type": "color",
+     "part": "dropdown-menu-card-item",
+     "variant": null,
+     "state": null,
+     "property": "border",
+     "reads": [
+      "--dark-45"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-item-radius",
+     "private": "--_dropdown-menu-card-item-radius",
+     "default": "var(--radius-lg)",
+     "description": "Corner radius of an option card.",
+     "type": "radius",
+     "part": "dropdown-menu-card-item",
+     "variant": null,
+     "state": null,
+     "property": "radius",
+     "reads": [
+      "--radius-lg"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-item-highlighted",
+     "private": "--_dropdown-menu-card-item-highlighted",
+     "default": "var(--light-l1)",
+     "description": "Fill colour of an option card when highlighted.",
+     "type": "color",
+     "part": "dropdown-menu-card-item",
+     "variant": null,
+     "state": "highlighted",
+     "property": "fill",
+     "reads": [
+      "--light-l1"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-item-highlighted-border",
+     "private": "--_dropdown-menu-card-item-highlighted-border",
+     "default": "var(--dark-75)",
+     "description": "Border colour of an option card when highlighted.",
+     "type": "color",
+     "part": "dropdown-menu-card-item",
+     "variant": null,
+     "state": "highlighted",
+     "property": "border",
+     "reads": [
+      "--dark-75"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-item-checked",
+     "private": "--_dropdown-menu-card-item-checked",
+     "default": "var(--mint-l3)",
+     "description": "Fill colour of the chosen option card.",
+     "type": "color",
+     "part": "dropdown-menu-card-item",
+     "variant": null,
+     "state": "checked",
+     "property": "fill",
+     "reads": [
+      "--mint-l3"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-item-checked-border",
+     "private": "--_dropdown-menu-card-item-checked-border",
+     "default": "var(--mint-45)",
+     "description": "Border colour of the chosen option card.",
+     "type": "color",
+     "part": "dropdown-menu-card-item",
+     "variant": null,
+     "state": "checked",
+     "property": "border",
+     "reads": [
+      "--mint-45"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-item-foreground",
+     "private": "--_dropdown-menu-card-item-foreground",
+     "default": "var(--dark-100)",
+     "description": "Text colour of an option card title.",
+     "type": "color",
+     "part": "dropdown-menu-card-item",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-100"
+     ]
+    },
+    {
+     "name": "--dropdown-menu-card-item-meta-foreground",
+     "private": "--_dropdown-menu-card-item-meta-foreground",
+     "default": "var(--dark-75)",
+     "description": "Text colour of an option card meta line.",
+     "type": "color",
+     "part": "dropdown-menu-card-item",
      "variant": null,
      "state": null,
      "property": "foreground",
@@ -7469,6 +8547,236 @@
      "state": null,
      "property": "shadow",
      "reads": []
+    }
+   ]
+  },
+  {
+   "component": "icon-tile",
+   "description": "Icon tile — component tokens.\nSet any lever (the name without the underscore) on :root or a section.\nDefaults are Rey's design. Edited by hand; our component (icon-tile.tsx) reads these levers.",
+   "tokens": [
+    {
+     "name": "--icon-tile-mint",
+     "private": "--_icon-tile-mint",
+     "default": "var(--mint-l3)",
+     "description": "Fill colour of the tile (mint variant).",
+     "type": "color",
+     "part": "icon-tile",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--mint-l3"
+     ]
+    },
+    {
+     "name": "--icon-tile-mint-foreground",
+     "private": "--_icon-tile-mint-foreground",
+     "default": "var(--mint-75)",
+     "description": "Icon colour of the tile (mint variant).",
+     "type": "color",
+     "part": "icon-tile",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--mint-75"
+     ]
+    },
+    {
+     "name": "--icon-tile-navy",
+     "private": "--_icon-tile-navy",
+     "default": "var(--navy)",
+     "description": "Fill colour of the tile (navy variant).",
+     "type": "color",
+     "part": "icon-tile",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--navy"
+     ]
+    },
+    {
+     "name": "--icon-tile-navy-foreground",
+     "private": "--_icon-tile-navy-foreground",
+     "default": "var(--white)",
+     "description": "Icon colour of the tile (navy variant).",
+     "type": "color",
+     "part": "icon-tile",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--white"
+     ]
+    },
+    {
+     "name": "--icon-tile-warning",
+     "private": "--_icon-tile-warning",
+     "default": "var(--warning-l2)",
+     "description": "Fill colour of the tile (warning variant).",
+     "type": "color",
+     "part": "icon-tile",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--warning-l2"
+     ]
+    },
+    {
+     "name": "--icon-tile-warning-foreground",
+     "private": "--_icon-tile-warning-foreground",
+     "default": "var(--warning-75)",
+     "description": "Icon colour of the tile (warning variant).",
+     "type": "color",
+     "part": "icon-tile",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--warning-75"
+     ]
+    },
+    {
+     "name": "--icon-tile-error",
+     "private": "--_icon-tile-error",
+     "default": "var(--error-l1)",
+     "description": "Fill colour of the tile (error variant).",
+     "type": "color",
+     "part": "icon-tile",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--error-l1"
+     ]
+    },
+    {
+     "name": "--icon-tile-error-foreground",
+     "private": "--_icon-tile-error-foreground",
+     "default": "var(--error-75)",
+     "description": "Icon colour of the tile (error variant).",
+     "type": "color",
+     "part": "icon-tile",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--error-75"
+     ]
+    },
+    {
+     "name": "--icon-tile-lime",
+     "private": "--_icon-tile-lime",
+     "default": "var(--lime)",
+     "description": "Fill colour of the tile (lime variant).",
+     "type": "color",
+     "part": "icon-tile",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--lime"
+     ]
+    },
+    {
+     "name": "--icon-tile-lime-foreground",
+     "private": "--_icon-tile-lime-foreground",
+     "default": "var(--navy)",
+     "description": "Icon colour of the tile (lime variant).",
+     "type": "color",
+     "part": "icon-tile",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--navy"
+     ]
+    },
+    {
+     "name": "--icon-tile-neutral",
+     "private": "--_icon-tile-neutral",
+     "default": "var(--light-l2)",
+     "description": "Fill colour of the tile (neutral variant).",
+     "type": "color",
+     "part": "icon-tile",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--light-l2"
+     ]
+    },
+    {
+     "name": "--icon-tile-neutral-foreground",
+     "private": "--_icon-tile-neutral-foreground",
+     "default": "var(--navy)",
+     "description": "Icon colour of the tile (neutral variant).",
+     "type": "color",
+     "part": "icon-tile",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--navy"
+     ]
+    },
+    {
+     "name": "--icon-tile-sm-size",
+     "private": "--_icon-tile-sm-size",
+     "default": "calc(var(--spacing) * 8)",
+     "description": "Width and height of the tile (sm size).",
+     "type": "length",
+     "part": "icon-tile",
+     "variant": null,
+     "state": null,
+     "property": "size",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--icon-tile-md-size",
+     "private": "--_icon-tile-md-size",
+     "default": "calc(var(--spacing) * 10)",
+     "description": "Width and height of the tile (md size).",
+     "type": "length",
+     "part": "icon-tile",
+     "variant": null,
+     "state": null,
+     "property": "size",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--icon-tile-lg-size",
+     "private": "--_icon-tile-lg-size",
+     "default": "calc(var(--spacing) * 12)",
+     "description": "Width and height of the tile (lg size).",
+     "type": "length",
+     "part": "icon-tile",
+     "variant": null,
+     "state": null,
+     "property": "size",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--icon-tile-square-radius",
+     "private": "--_icon-tile-square-radius",
+     "default": "var(--radius-lg)",
+     "description": "Corner radius of the tile (square shape).",
+     "type": "radius",
+     "part": "icon-tile",
+     "variant": null,
+     "state": null,
+     "property": "radius",
+     "reads": [
+      "--radius-lg"
+     ]
     }
    ]
   },
@@ -10122,6 +11430,138 @@
      "property": "foreground",
      "reads": [
       "--navy"
+     ]
+    }
+   ]
+  },
+  {
+   "component": "pill-card",
+   "description": "Pill card — component tokens.\nSet any lever (the name without the underscore) on :root or a section.\nDefaults are Rey's design. Edited by hand; our component (pill-card.tsx) reads these levers.",
+   "tokens": [
+    {
+     "name": "--pill-card-electric-blue",
+     "private": "--_pill-card-electric-blue",
+     "default": "var(--electric-blue-l1)",
+     "description": "Fill colour of the card (electric-blue variant).",
+     "type": "color",
+     "part": "pill-card",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--electric-blue-l1"
+     ]
+    },
+    {
+     "name": "--pill-card-teal",
+     "private": "--_pill-card-teal",
+     "default": "var(--teal-l1)",
+     "description": "Fill colour of the card (teal variant).",
+     "type": "color",
+     "part": "pill-card",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--teal-l1"
+     ]
+    },
+    {
+     "name": "--pill-card-lime",
+     "private": "--_pill-card-lime",
+     "default": "var(--lime-l1)",
+     "description": "Fill colour of the card (lime variant).",
+     "type": "color",
+     "part": "pill-card",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--lime-l1"
+     ]
+    },
+    {
+     "name": "--pill-card-icon",
+     "private": "--_pill-card-icon",
+     "default": "var(--white)",
+     "description": "Fill colour of the icon circle.",
+     "type": "color",
+     "part": "pill-card-icon",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--white"
+     ]
+    },
+    {
+     "name": "--pill-card-icon-electric-blue-foreground",
+     "private": "--_pill-card-icon-electric-blue-foreground",
+     "default": "var(--electric-blue)",
+     "description": "Icon and ring colour (electric-blue variant).",
+     "type": "color",
+     "part": "pill-card-icon",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--electric-blue"
+     ]
+    },
+    {
+     "name": "--pill-card-icon-teal-foreground",
+     "private": "--_pill-card-icon-teal-foreground",
+     "default": "var(--teal)",
+     "description": "Icon and ring colour (teal variant).",
+     "type": "color",
+     "part": "pill-card-icon",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--teal"
+     ]
+    },
+    {
+     "name": "--pill-card-icon-lime-foreground",
+     "private": "--_pill-card-icon-lime-foreground",
+     "default": "var(--lime)",
+     "description": "Icon and ring colour (lime variant).",
+     "type": "color",
+     "part": "pill-card-icon",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--lime"
+     ]
+    },
+    {
+     "name": "--pill-card-heading-foreground",
+     "private": "--_pill-card-heading-foreground",
+     "default": "var(--navy)",
+     "description": "Text colour of the heading.",
+     "type": "color",
+     "part": "pill-card-heading",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--navy"
+     ]
+    },
+    {
+     "name": "--pill-card-subheading-foreground",
+     "private": "--_pill-card-subheading-foreground",
+     "default": "var(--dark-75)",
+     "description": "Text colour of the subheading.",
+     "type": "color",
+     "part": "pill-card-subheading",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-75"
      ]
     }
    ]
@@ -13192,6 +14632,236 @@
    ]
   },
   {
+   "component": "stepper",
+   "description": "Stepper — component tokens.\nSet any lever (the name without the underscore) on :root or a section.\nDefaults are Rey's design. Edited by hand; our component (stepper.tsx) reads these levers.",
+   "tokens": [
+    {
+     "name": "--stepper-indicator-active",
+     "private": "--_stepper-indicator-active",
+     "default": "var(--mint-60)",
+     "description": "Fill colour of the current step (and of a done step in the dot size).",
+     "type": "color",
+     "part": "stepper-indicator",
+     "variant": null,
+     "state": "active",
+     "property": "fill",
+     "reads": [
+      "--mint-60"
+     ]
+    },
+    {
+     "name": "--stepper-indicator-active-foreground",
+     "private": "--_stepper-indicator-active-foreground",
+     "default": "var(--white)",
+     "description": "Number colour of the current step.",
+     "type": "color",
+     "part": "stepper-indicator",
+     "variant": null,
+     "state": "active",
+     "property": "foreground",
+     "reads": [
+      "--white"
+     ]
+    },
+    {
+     "name": "--stepper-indicator-active-ring",
+     "private": "--_stepper-indicator-active-ring",
+     "default": "var(--mint-45)",
+     "description": "Ring colour around the current step.",
+     "type": "color",
+     "part": "stepper-indicator",
+     "variant": null,
+     "state": "active",
+     "property": "ring",
+     "reads": [
+      "--mint-45"
+     ]
+    },
+    {
+     "name": "--stepper-indicator-complete",
+     "private": "--_stepper-indicator-complete",
+     "default": "var(--mint-l2)",
+     "description": "Fill colour of a done step.",
+     "type": "color",
+     "part": "stepper-indicator",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--mint-l2"
+     ]
+    },
+    {
+     "name": "--stepper-indicator-complete-foreground",
+     "private": "--_stepper-indicator-complete-foreground",
+     "default": "var(--mint-75)",
+     "description": "Tick colour of a done step.",
+     "type": "color",
+     "part": "stepper-indicator",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--mint-75"
+     ]
+    },
+    {
+     "name": "--stepper-indicator-upcoming",
+     "private": "--_stepper-indicator-upcoming",
+     "default": "var(--white)",
+     "description": "Fill colour of a step still to come.",
+     "type": "color",
+     "part": "stepper-indicator",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--white"
+     ]
+    },
+    {
+     "name": "--stepper-indicator-upcoming-border",
+     "private": "--_stepper-indicator-upcoming-border",
+     "default": "var(--navy)",
+     "description": "Border colour of a step still to come.",
+     "type": "color",
+     "part": "stepper-indicator",
+     "variant": null,
+     "state": null,
+     "property": "border",
+     "reads": [
+      "--navy"
+     ]
+    },
+    {
+     "name": "--stepper-indicator-upcoming-foreground",
+     "private": "--_stepper-indicator-upcoming-foreground",
+     "default": "var(--navy)",
+     "description": "Number colour of a step still to come.",
+     "type": "color",
+     "part": "stepper-indicator",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--navy"
+     ]
+    },
+    {
+     "name": "--stepper-indicator-error",
+     "private": "--_stepper-indicator-error",
+     "default": "var(--error-75)",
+     "description": "Fill colour of a step with an error.",
+     "type": "color",
+     "part": "stepper-indicator",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--error-75"
+     ]
+    },
+    {
+     "name": "--stepper-indicator-error-foreground",
+     "private": "--_stepper-indicator-error-foreground",
+     "default": "var(--white)",
+     "description": "Icon colour of a step with an error.",
+     "type": "color",
+     "part": "stepper-indicator",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--white"
+     ]
+    },
+    {
+     "name": "--stepper-indicator-dot-upcoming",
+     "private": "--_stepper-indicator-dot-upcoming",
+     "default": "var(--dark-15)",
+     "description": "Fill colour of a step still to come (dot size).",
+     "type": "color",
+     "part": "stepper-indicator",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--dark-15"
+     ]
+    },
+    {
+     "name": "--stepper-connector",
+     "private": "--_stepper-connector",
+     "default": "var(--light-l3)",
+     "description": "Colour of the line between steps.",
+     "type": "color",
+     "part": "stepper-connector",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--light-l3"
+     ]
+    },
+    {
+     "name": "--stepper-connector-complete",
+     "private": "--_stepper-connector-complete",
+     "default": "var(--mint-60)",
+     "description": "Colour of the line once the step before it is done.",
+     "type": "color",
+     "part": "stepper-connector",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--mint-60"
+     ]
+    },
+    {
+     "name": "--stepper-title-foreground",
+     "private": "--_stepper-title-foreground",
+     "default": "var(--navy)",
+     "description": "Text colour of a step title.",
+     "type": "color",
+     "part": "stepper-title",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--navy"
+     ]
+    },
+    {
+     "name": "--stepper-title-error-foreground",
+     "private": "--_stepper-title-error-foreground",
+     "default": "var(--error-75)",
+     "description": "Text colour of a step title with an error.",
+     "type": "color",
+     "part": "stepper-title",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--error-75"
+     ]
+    },
+    {
+     "name": "--stepper-description-foreground",
+     "private": "--_stepper-description-foreground",
+     "default": "var(--dark-90)",
+     "description": "Text colour of a step description.",
+     "type": "color",
+     "part": "stepper-description",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-90"
+     ]
+    }
+   ]
+  },
+  {
    "component": "switch",
    "description": "Switch — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --switch-radius: … }\nDefaults are Rey's design. Edited by hand; the class edits in ui/switch.tsx follow from these names.",
    "tokens": [
@@ -13316,6 +14986,34 @@
      "state": null,
      "property": "shadow",
      "reads": []
+    },
+    {
+     "name": "--switch-label-foreground",
+     "private": "--_switch-label-foreground",
+     "default": "var(--navy)",
+     "description": "Text colour of the label beside the control.",
+     "type": "color",
+     "part": "switch-label",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--navy"
+     ]
+    },
+    {
+     "name": "--switch-description-foreground",
+     "private": "--_switch-description-foreground",
+     "default": "var(--dark-75)",
+     "description": "Text colour of the description under the label.",
+     "type": "color",
+     "part": "switch-description",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-75"
+     ]
     }
    ]
   },
@@ -13323,6 +15021,20 @@
    "component": "table",
    "description": "Table — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --table-radius: … }\nDefaults are Rey's design. Edited by hand; the class edits in ui/table.tsx follow from these names.",
    "tokens": [
+    {
+     "name": "--table-header-tinted",
+     "private": "--_table-header-tinted",
+     "default": "var(--light-l1)",
+     "description": "Fill colour of the header row (card and bordered variants).",
+     "type": "color",
+     "part": "table-header",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--light-l1"
+     ]
+    },
     {
      "name": "--table-footer-border",
      "private": "--_table-footer-border",
@@ -13400,6 +15112,48 @@
      "part": "table-row",
      "variant": null,
      "state": "hover",
+     "property": "fill",
+     "reads": [
+      "--mint-l4"
+     ]
+    },
+    {
+     "name": "--table-row-striped",
+     "private": "--_table-row-striped",
+     "default": "var(--light-l1)",
+     "description": "Fill colour of every other row (striped variant).",
+     "type": "color",
+     "part": "table-row",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--light-l1"
+     ]
+    },
+    {
+     "name": "--table-row-striped-hover",
+     "private": "--_table-row-striped-hover",
+     "default": "var(--mint-l4)",
+     "description": "Fill colour of a hovered row (striped variant).",
+     "type": "color",
+     "part": "table-row",
+     "variant": null,
+     "state": "hover",
+     "property": "fill",
+     "reads": [
+      "--mint-l4"
+     ]
+    },
+    {
+     "name": "--table-row-open",
+     "private": "--_table-row-open",
+     "default": "var(--mint-l4)",
+     "description": "Fill colour of an expanded row.",
+     "type": "color",
+     "part": "table-row",
+     "variant": null,
+     "state": "open",
      "property": "fill",
      "reads": [
       "--mint-l4"
@@ -13529,6 +15283,90 @@
      "property": "foreground",
      "reads": [
       "--muted-foreground"
+     ]
+    },
+    {
+     "name": "--table-sort-button-foreground",
+     "private": "--_table-sort-button-foreground",
+     "default": "var(--dark-100)",
+     "description": "Text colour of a sortable column heading.",
+     "type": "color",
+     "part": "table-sort-button",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-100"
+     ]
+    },
+    {
+     "name": "--table-sort-button-hover-foreground",
+     "private": "--_table-sort-button-hover-foreground",
+     "default": "var(--navy)",
+     "description": "Text colour of a sortable column heading when hovered.",
+     "type": "color",
+     "part": "table-sort-button",
+     "variant": null,
+     "state": "hover",
+     "property": "foreground",
+     "reads": [
+      "--navy"
+     ]
+    },
+    {
+     "name": "--table-sort-button-focus-ring",
+     "private": "--_table-sort-button-focus-ring",
+     "default": "var(--mint-45)",
+     "description": "Focus ring of a sortable column heading.",
+     "type": "color",
+     "part": "table-sort-button",
+     "variant": null,
+     "state": "focus",
+     "property": "ring",
+     "reads": [
+      "--mint-45"
+     ]
+    },
+    {
+     "name": "--table-sort-button-icon-foreground",
+     "private": "--_table-sort-button-icon-foreground",
+     "default": "var(--dark-75)",
+     "description": "Colour of the sort arrow.",
+     "type": "color",
+     "part": "table-sort-button",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-75"
+     ]
+    },
+    {
+     "name": "--table-detail-row",
+     "private": "--_table-detail-row",
+     "default": "var(--mint-l4)",
+     "description": "Fill colour of the detail row under an expanded row.",
+     "type": "color",
+     "part": "table-detail-row",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--mint-l4"
+     ]
+    },
+    {
+     "name": "--table-detail-row-foreground",
+     "private": "--_table-detail-row-foreground",
+     "default": "var(--dark-90)",
+     "description": "Text colour of the detail row.",
+     "type": "color",
+     "part": "table-detail-row",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-90"
      ]
     }
    ]
@@ -15207,6 +17045,18 @@
    "fill": "--_toast-error",
    "status": "undecided",
    "note": "Error toast: the error-60 title on the error-l1 fill is 3.28:1. The icon passes the 3:1 a graphic needs, the title text doesn't. Options: accept it, or use the darker -75 shade for the title and icon."
+  },
+  {
+   "foreground": "--_stepper-indicator-active-foreground",
+   "fill": "--_stepper-indicator-active",
+   "status": "undecided",
+   "note": "Current step: the white step number on mint-60 is 3.36:1. Options: accept it, or use mint-75 for the current step's fill."
+  },
+  {
+   "foreground": "--_stepper-indicator-complete-foreground",
+   "fill": "--_stepper-indicator-complete",
+   "status": "accepted",
+   "note": "A done step shows only a tick icon, which needs 3:1 as a graphic; mint-75 on mint-l2 is 4.33:1."
   }
  ]
 }

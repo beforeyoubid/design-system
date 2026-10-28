@@ -20,7 +20,7 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from '../../components/ui/command'
+} from '../../components/command'
 
 const meta: Meta<typeof Command> = {
   title: 'BYB Components/Command',

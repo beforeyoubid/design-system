@@ -122,7 +122,7 @@ function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
   return (
     <TableHeaderBase
       className={cn(
-        "group-data-[variant=bordered]/table:bg-light-l1 group-data-[variant=card]/table:bg-light-l1",
+        "group-data-[variant=bordered]/table:bg-(--_table-header-tinted) group-data-[variant=card]/table:bg-(--_table-header-tinted)",
         className
       )}
       {...props}
@@ -135,7 +135,7 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
   return (
     <TableRowBase
       className={cn(
-        "group-data-[variant=striped]/table:border-0 group-data-[variant=striped]/table:even:bg-light-l1 group-data-[variant=striped]/table:hover:bg-mint-l4",
+        "group-data-[variant=striped]/table:border-0 group-data-[variant=striped]/table:even:bg-(--_table-row-striped) group-data-[variant=striped]/table:hover:bg-(--_table-row-striped-hover)",
         className
       )}
       {...props}
@@ -193,12 +193,12 @@ function TableHead({
           type="button"
           onClick={onSort}
           data-slot="table-sort-button"
-          className="-mx-1 inline-flex cursor-pointer items-center gap-1 rounded-sm px-1 text-overline text-dark-100 uppercase outline-none hover:text-navy focus-visible:ring-2 focus-visible:ring-mint-45"
+          className="-mx-1 inline-flex cursor-pointer items-center gap-1 rounded-sm px-1 text-overline text-(--_table-sort-button-foreground) uppercase outline-none hover:text-(--_table-sort-button-hover-foreground) focus-visible:ring-2 focus-visible:ring-(--_table-sort-button-focus-ring)"
         >
           {children}
           <SortIcon
             aria-hidden
-            className={cn("size-3.5 shrink-0 text-dark-75", !sortDirection && "opacity-70")}
+            className={cn("size-3.5 shrink-0 text-(--_table-sort-button-icon-foreground)", !sortDirection && "opacity-70")}
           />
         </button>
       ) : (
@@ -305,7 +305,7 @@ function TableExpandableRow({
       <TableRow
         data-slot="table-expandable-row"
         data-state={open ? "open" : "closed"}
-        className={cn("cursor-pointer", open && "border-b-0 bg-mint-l4", className)}
+        className={cn("cursor-pointer", open && "border-b-0 bg-(--_table-row-open)", className)}
         onClick={(event) => {
           onClick?.(event)
           const target = event.target as HTMLElement
@@ -325,11 +325,11 @@ function TableExpandableRow({
         <tr
           id={detailId}
           data-slot="table-detail-row"
-          className="border-b border-border bg-mint-l4"
+          className="border-b border-border bg-(--_table-detail-row)"
         >
           <td
             colSpan={colSpan}
-            className="px-3 pt-1 pb-4 text-body-5 whitespace-normal text-dark-90"
+            className="px-3 pt-1 pb-4 text-body-5 whitespace-normal text-(--_table-detail-row-foreground)"
           >
             {detail}
           </td>

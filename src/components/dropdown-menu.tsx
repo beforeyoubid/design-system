@@ -65,13 +65,13 @@ type DropdownMenuIconName = keyof typeof DROPDOWN_ICONS
 
 /** Bare icon trigger: no fill or border; hover and open only change the colour. */
 const dropdownMenuIconTriggerVariants = cva(
-  "inline-flex shrink-0 cursor-pointer items-center justify-center rounded-md transition-colors outline-none focus-visible:ring-2 focus-visible:ring-mint-45 disabled:pointer-events-none disabled:text-dark-45",
+  "inline-flex shrink-0 cursor-pointer items-center justify-center rounded-md transition-colors outline-none focus-visible:ring-2 focus-visible:ring-(--_dropdown-menu-icon-trigger-focus-ring) disabled:pointer-events-none disabled:text-(--_dropdown-menu-icon-trigger-disabled-foreground)",
   {
     variants: {
       tone: {
-        mint: "text-mint-75 hover:text-mint-45 data-popup-open:text-mint-45",
-        dark: "text-dark-75 hover:text-dark-100 data-popup-open:text-dark-100",
-        navy: "text-navy hover:text-dark-75 data-popup-open:text-dark-75",
+        mint: "text-(--_dropdown-menu-icon-trigger-mint-foreground) hover:text-(--_dropdown-menu-icon-trigger-mint-hover-foreground) data-popup-open:text-(--_dropdown-menu-icon-trigger-mint-hover-foreground)",
+        dark: "text-(--_dropdown-menu-icon-trigger-dark-foreground) hover:text-(--_dropdown-menu-icon-trigger-dark-hover-foreground) data-popup-open:text-(--_dropdown-menu-icon-trigger-dark-hover-foreground)",
+        navy: "text-(--_dropdown-menu-icon-trigger-navy-foreground) hover:text-(--_dropdown-menu-icon-trigger-navy-hover-foreground) data-popup-open:text-(--_dropdown-menu-icon-trigger-navy-hover-foreground)",
       },
       size: {
         sm: "size-6 [&_svg]:size-4",
@@ -184,7 +184,7 @@ function DropdownMenuCardTrigger({
     <MenuPrimitive.Trigger
       data-slot="dropdown-menu-card-trigger"
       className={cn(
-        "group/card-trigger flex w-full cursor-pointer items-center gap-4 rounded-lg border border-dark-45 bg-white p-3 pe-4 text-start outline-none transition-[background-color,border-color,box-shadow] hover:border-mint-30 focus-visible:border-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30 data-popup-open:border-mint-45 data-popup-open:bg-mint-l4 data-popup-open:ring-3 data-popup-open:ring-mint-45/30 disabled:cursor-not-allowed disabled:bg-light-l2",
+        "group/card-trigger flex w-full cursor-pointer items-center gap-4 rounded-(--_dropdown-menu-card-trigger-radius) border border-(--_dropdown-menu-card-trigger-border) bg-(--_dropdown-menu-card-trigger) p-3 pe-4 text-start outline-none transition-[background-color,border-color,box-shadow] hover:border-(--_dropdown-menu-card-trigger-hover-border) focus-visible:border-(--_dropdown-menu-card-trigger-open-border) focus-visible:ring-3 focus-visible:ring-(--_dropdown-menu-card-trigger-open-ring) data-popup-open:border-(--_dropdown-menu-card-trigger-open-border) data-popup-open:bg-(--_dropdown-menu-card-trigger-open) data-popup-open:ring-3 data-popup-open:ring-(--_dropdown-menu-card-trigger-open-ring) disabled:cursor-not-allowed disabled:bg-(--_dropdown-menu-card-trigger-disabled)",
         className
       )}
       {...props}
@@ -192,7 +192,7 @@ function DropdownMenuCardTrigger({
       {icon && <IconTile variant="mint" size="lg" icon={icon} />}
       <span className="flex min-w-0 flex-1 flex-col gap-0.5">
         {label && (
-          <span className="text-overline text-dark-90">{label}</span>
+          <span className="text-overline text-(--_dropdown-menu-card-trigger-label-foreground)">{label}</span>
         )}
         <span className="flex min-w-0 items-center gap-2">
           {dotClassName && (
@@ -201,17 +201,17 @@ function DropdownMenuCardTrigger({
               className={cn("size-2 shrink-0 rounded-full", dotClassName)}
             />
           )}
-          <span className="truncate text-body-3 font-semibold text-dark-100">
+          <span className="truncate text-body-3 font-semibold text-(--_dropdown-menu-card-trigger-foreground)">
             {title}
           </span>
         </span>
       </span>
       {meta && (
-        <span className="shrink-0 text-body-5 text-dark-75">{meta}</span>
+        <span className="shrink-0 text-body-5 text-(--_dropdown-menu-card-trigger-meta-foreground)">{meta}</span>
       )}
       <ChevronDown
         aria-hidden="true"
-        className="size-4 shrink-0 text-dark-75 transition-transform group-data-popup-open/card-trigger:rotate-180 group-data-popup-open/card-trigger:text-mint-75"
+        className="size-4 shrink-0 text-(--_dropdown-menu-card-trigger-meta-foreground) transition-transform group-data-popup-open/card-trigger:rotate-180 group-data-popup-open/card-trigger:text-(--_dropdown-menu-card-trigger-open-icon-foreground)"
       />
     </MenuPrimitive.Trigger>
   )
@@ -268,7 +268,7 @@ function DropdownMenuCardItem({
     <MenuPrimitive.RadioItem
       data-slot="dropdown-menu-card-item"
       className={cn(
-        "flex min-h-18 cursor-pointer items-center gap-3 rounded-lg border border-dark-45 bg-white p-3 text-start outline-hidden transition-colors select-none data-highlighted:border-dark-75 data-highlighted:bg-light-l1 data-checked:border-mint-45 data-checked:bg-mint-l3 data-disabled:pointer-events-none data-disabled:opacity-50",
+        "flex min-h-18 cursor-pointer items-center gap-3 rounded-(--_dropdown-menu-card-item-radius) border border-(--_dropdown-menu-card-item-border) bg-(--_dropdown-menu-card-item) p-3 text-start outline-hidden transition-colors select-none data-highlighted:border-(--_dropdown-menu-card-item-highlighted-border) data-highlighted:bg-(--_dropdown-menu-card-item-highlighted) data-checked:border-(--_dropdown-menu-card-item-checked-border) data-checked:bg-(--_dropdown-menu-card-item-checked) data-disabled:pointer-events-none data-disabled:opacity-50",
         className
       )}
       {...props}
@@ -282,12 +282,12 @@ function DropdownMenuCardItem({
               className={cn("mt-2 size-2 shrink-0 rounded-full", dotClassName)}
             />
           )}
-          <span className="text-body-4 font-medium text-dark-100">{title}</span>
+          <span className="text-body-4 font-medium text-(--_dropdown-menu-card-item-foreground)">{title}</span>
         </span>
         {meta && (
           <span
             className={cn(
-              "text-body-5 text-dark-75",
+              "text-body-5 text-(--_dropdown-menu-card-item-meta-foreground)",
               dotClassName && "ps-4"
             )}
           >

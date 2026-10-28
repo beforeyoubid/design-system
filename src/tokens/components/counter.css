@@ -1,0 +1,21 @@
+/* Counter — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section.
+ * Defaults are Rey's design. Edited by hand; our component (counter.tsx) reads these levers. */
+
+[data-slot="counter-value"] {
+  /* Colour of the number and icon (navy variant). @ours */
+  --_counter-value-navy-foreground: var(--counter-value-navy-foreground, var(--navy));
+  /* Colour of the number and icon (lime variant, for dark sections). @ours */
+  --_counter-value-lime-foreground: var(--counter-value-lime-foreground, var(--lime));
+  /* Colour of the number and icon (white variant, for dark sections). @ours */
+  --_counter-value-white-foreground: var(--counter-value-white-foreground, var(--white));
+}
+
+[data-slot="counter-label"] {
+  /* Text colour of the label (navy variant). @ours */
+  --_counter-label-navy-foreground: var(--counter-label-navy-foreground, var(--dark-75));
+  /* Text colour of the label (lime variant). @ours */
+  --_counter-label-lime-foreground: var(--counter-label-lime-foreground, var(--dark-75));
+  /* Text colour of the label (white variant). @ours */
+  --_counter-label-white-foreground: var(--counter-label-white-foreground, var(--white));
+}

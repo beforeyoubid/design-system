@@ -30,3 +30,13 @@
   /* Shadow of the thumb. */
   --_switch-thumb-shadow: var(--switch-thumb-shadow, 0 1px 2px 0 rgb(0 0 0 / 0.05));
 }
+
+[data-slot="switch-label"] {
+  /* Text colour of the label beside the control. @ours */
+  --_switch-label-foreground: var(--switch-label-foreground, var(--navy));
+}
+
+[data-slot="switch-description"] {
+  /* Text colour of the description under the label. @ours */
+  --_switch-description-foreground: var(--switch-description-foreground, var(--dark-75));
+}

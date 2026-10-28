@@ -25,7 +25,7 @@ export const CHART_GRID_STROKE = "var(--light-l3)"
 
 /** Shared tooltip surface: white, light-l3 border, rounded-md, shadow-md, caption text. */
 export const CHART_TOOLTIP_CLASS =
-  "rounded-md border-light-l3 bg-white text-caption-1 text-dark-90 shadow-md"
+  "rounded-md border-(--_chart-frame-tooltip-border) bg-(--_chart-frame-tooltip) text-caption-1 text-(--_chart-frame-tooltip-foreground) shadow-md"
 
 export type ChartXValue = string | number | Date
 
@@ -68,7 +68,7 @@ function ChartLegendList({
     <ul
       data-slot="chart-legend"
       className={cn(
-        "flex flex-wrap items-center justify-center gap-4 text-caption-1 text-dark-75",
+        "flex flex-wrap items-center justify-center gap-4 text-caption-1 text-(--_chart-frame-legend-foreground)",
         className
       )}
       {...props}
@@ -76,7 +76,7 @@ function ChartLegendList({
       {items.map(({ key, label, color, icon: ItemIcon }) => (
         <li key={key} className="flex items-center gap-1.5">
           {useIcons && ItemIcon ? (
-            <ItemIcon className="size-3.5 text-dark-75" />
+            <ItemIcon className="size-3.5 text-(--_chart-frame-legend-foreground)" />
           ) : (
             <svg
               aria-hidden
@@ -130,7 +130,7 @@ function ChartFrame({
     <div
       data-slot="chart-frame"
       className={cn(
-        "flex flex-col gap-4 rounded-lg border border-light-l3 bg-white p-5 shadow-xs",
+        "flex flex-col gap-4 rounded-(--_chart-frame-radius) border border-(--_chart-frame-border) bg-(--_chart-frame) p-5 shadow-xs",
         className
       )}
       {...props}
@@ -140,12 +140,12 @@ function ChartFrame({
           {(title || description) && (
             <div className="flex min-w-0 flex-col gap-1">
               {title && (
-                <div className="text-body-4 font-semibold text-navy">
+                <div className="text-body-4 font-semibold text-(--_chart-frame-title-foreground)">
                   {title}
                 </div>
               )}
               {description && (
-                <div className="text-body-5 text-dark-75">{description}</div>
+                <div className="text-body-5 text-(--_chart-frame-description-foreground)">{description}</div>
               )}
             </div>
           )}
@@ -156,13 +156,13 @@ function ChartFrame({
       {hasFooter && (
         <div className="flex flex-col gap-1">
           {trend && (
-            <div className="flex items-center gap-2 text-body-5 font-medium text-navy">
+            <div className="flex items-center gap-2 text-body-5 font-medium text-(--_chart-frame-title-foreground)">
               {trend}
               <IconTrendingUp className="size-4" />
             </div>
           )}
           {caption && (
-            <div className="text-body-5 text-dark-75">{caption}</div>
+            <div className="text-body-5 text-(--_chart-frame-description-foreground)">{caption}</div>
           )}
         </div>
       )}

@@ -96,3 +96,8 @@
   /* Text colour of the shortcut. */
   --_command-shortcut-foreground: var(--command-shortcut-foreground, var(--dark-75));
 }
+
+[data-slot="command-dialog"] {
+  /* Corner radius of the command palette dialog. @ours */
+  --_command-dialog-radius: var(--command-dialog-radius, var(--radius-lg));
+}

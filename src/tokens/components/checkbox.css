@@ -36,3 +36,26 @@
   /* @remove [&>svg]:size-3.5 */
   /* @add [&>svg]:size-3 [&>svg]:stroke-3 */
 }
+
+[data-slot="checkbox-label"] {
+  /* Text colour of the label beside the control. @ours */
+  --_checkbox-label-foreground: var(--checkbox-label-foreground, var(--navy));
+}
+
+[data-slot="checkbox-description"] {
+  /* Text colour of the description under the label. @ours */
+  --_checkbox-description-foreground: var(--checkbox-description-foreground, var(--dark-75));
+}
+
+[data-slot="checkbox-field"] {
+  /* Fill colour of an option card (card variant). @ours */
+  --_checkbox-field-card: var(--checkbox-field-card, var(--white));
+  /* Border colour of an option card (card variant). @ours */
+  --_checkbox-field-card-border: var(--checkbox-field-card-border, var(--dark-45));
+  /* Corner radius of an option card (card variant). @ours */
+  --_checkbox-field-card-radius: var(--checkbox-field-card-radius, var(--radius-lg));
+  /* Fill colour of a ticked option card (card variant). @ours */
+  --_checkbox-field-card-checked: var(--checkbox-field-card-checked, var(--mint-l4));
+  /* Border colour of a ticked option card (card variant). @ours */
+  --_checkbox-field-card-checked-border: var(--checkbox-field-card-checked-border, var(--mint-45));
+}

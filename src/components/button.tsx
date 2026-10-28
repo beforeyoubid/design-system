@@ -29,9 +29,9 @@ const bybButtonVariants = cva("", {
   variants: {
     variant: {
       outline:
-        "border border-border bg-border/30 hover:bg-border/50 hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground disabled:bg-light-l2 disabled:text-dark-45",
-      lime: "bg-lime text-navy hover:opacity-90 disabled:bg-light-l2 disabled:text-dark-45",
-      navy: "bg-navy text-white hover:opacity-90 disabled:bg-light-l2 disabled:text-dark-45",
+        "border border-border bg-border/30 hover:bg-border/50 hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground disabled:bg-(--_button-default-disabled) disabled:text-(--_button-default-disabled-foreground)",
+      lime: "bg-(--_button-lime) text-(--_button-lime-foreground) hover:opacity-90 disabled:bg-(--_button-default-disabled) disabled:text-(--_button-default-disabled-foreground)",
+      navy: "bg-(--_button-navy) text-(--_button-navy-foreground) hover:opacity-90 disabled:bg-(--_button-default-disabled) disabled:text-(--_button-default-disabled-foreground)",
     },
   },
 })

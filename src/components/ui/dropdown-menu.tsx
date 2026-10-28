@@ -110,7 +110,7 @@ function DropdownMenuSubTrigger({
       data-slot="dropdown-menu-sub-trigger"
       data-inset={inset}
       className={cn(
-        "flex cursor-pointer items-center gap-(--_dropdown-menu-sub-trigger-gap) rounded-(--_dropdown-menu-sub-trigger-radius) px-(--_dropdown-menu-sub-trigger-padding-x) text-body-5 outline-hidden select-none data-inset:ps-9 data-popup-open:bg-(--_dropdown-menu-sub-trigger-open) data-popup-open:text-(--_dropdown-menu-sub-trigger-open-foreground) [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 h-(--_dropdown-menu-sub-trigger-height) text-(--_dropdown-menu-sub-trigger-foreground) data-highlighted:bg-(--_dropdown-menu-sub-trigger-highlighted) data-highlighted:text-(--_dropdown-menu-sub-trigger-highlighted-foreground) data-disabled:text-(--_dropdown-menu-sub-trigger-disabled-foreground) data-disabled:pointer-events-none",
+        "flex cursor-pointer items-center gap-(--_dropdown-menu-sub-trigger-gap) rounded-(--_dropdown-menu-sub-trigger-radius) px-(--_dropdown-menu-sub-trigger-padding-x) text-body-5 outline-hidden select-none data-inset:ps-9 data-popup-open:bg-(--_dropdown-menu-sub-trigger-open) data-popup-open:text-(--_dropdown-menu-sub-trigger-open-foreground) [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 h-(--_dropdown-menu-sub-trigger-height) text-(--_dropdown-menu-sub-trigger-foreground) data-highlighted:bg-(--_dropdown-menu-sub-trigger-highlighted) data-highlighted:text-(--_dropdown-menu-sub-trigger-highlighted-foreground) data-disabled:text-(--_dropdown-menu-sub-trigger-disabled-foreground) data-disabled:pointer-events-none [&>svg:last-child]:size-3.5 [&>svg:last-child]:text-dark-75",
         className
       )}
       {...props}
@@ -156,7 +156,7 @@ function DropdownMenuCheckboxItem({
       data-slot="dropdown-menu-checkbox-item"
       data-inset={inset}
       className={cn(
-        "gap-(--_dropdown-menu-checkbox-item-gap) data-inset:ps-9 px-(--_dropdown-menu-checkbox-item-padding-x) group/dropdown-menu-checkbox-item",
+        "gap-(--_dropdown-menu-checkbox-item-gap) data-inset:ps-9 px-(--_dropdown-menu-checkbox-item-padding-x) group/dropdown-menu-checkbox-item min-h-(--_dropdown-menu-checkbox-item-min-height) rounded-(--_dropdown-menu-checkbox-item-radius) py-(--_dropdown-menu-checkbox-item-padding-y) text-(--_dropdown-menu-checkbox-item-foreground) data-highlighted:bg-(--_dropdown-menu-checkbox-item-highlighted) data-disabled:text-(--_dropdown-menu-checkbox-item-disabled-foreground) cursor-pointer text-body-5 relative flex items-center outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       checked={checked}
@@ -198,7 +198,7 @@ function DropdownMenuRadioItem({
       data-slot="dropdown-menu-radio-item"
       data-inset={inset}
       className={cn(
-        "gap-(--_dropdown-menu-radio-item-gap) data-inset:ps-9 px-(--_dropdown-menu-radio-item-padding-x) data-checked:bg-(--_dropdown-menu-radio-item-checked) data-checked:text-(--_dropdown-menu-radio-item-checked-foreground)",
+        "gap-(--_dropdown-menu-radio-item-gap) data-inset:ps-9 px-(--_dropdown-menu-radio-item-padding-x) data-checked:bg-(--_dropdown-menu-radio-item-checked) data-checked:text-(--_dropdown-menu-radio-item-checked-foreground) min-h-(--_dropdown-menu-radio-item-min-height) rounded-(--_dropdown-menu-radio-item-radius) py-(--_dropdown-menu-radio-item-padding-y) text-(--_dropdown-menu-radio-item-foreground) data-highlighted:bg-(--_dropdown-menu-radio-item-highlighted) data-disabled:text-(--_dropdown-menu-radio-item-disabled-foreground) cursor-pointer text-body-5 relative flex items-center outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}

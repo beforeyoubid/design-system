@@ -9,6 +9,8 @@
 
 [data-slot="table-header"] {
   /* @add [&_tr]:border-border [&_tr]:hover:bg-transparent */
+  /* Fill colour of the header row (card and bordered variants). @ours */
+  --_table-header-tinted: var(--table-header-tinted, var(--light-l1));
 }
 
 [data-slot="table-footer"] {
@@ -29,6 +31,12 @@
   --_table-row-border: var(--table-row-border, var(--border));
   /* Fill colour of the row when hovered. */
   --_table-row-hover: var(--table-row-hover, var(--mint-l4));
+  /* Fill colour of every other row (striped variant). @ours */
+  --_table-row-striped: var(--table-row-striped, var(--light-l1));
+  /* Fill colour of a hovered row (striped variant). @ours */
+  --_table-row-striped-hover: var(--table-row-striped-hover, var(--mint-l4));
+  /* Fill colour of an expanded row. @ours */
+  --_table-row-open: var(--table-row-open, var(--mint-l4));
 }
 
 [data-slot="table-head"] {
@@ -61,4 +69,22 @@
   /* @add caption-bottom mt-3 text-center text-body-5 */
   /* Text colour of the caption. */
   --_table-caption-foreground: var(--table-caption-foreground, var(--muted-foreground));
+}
+
+[data-slot="table-sort-button"] {
+  /* Text colour of a sortable column heading. @ours */
+  --_table-sort-button-foreground: var(--table-sort-button-foreground, var(--dark-100));
+  /* Text colour of a sortable column heading when hovered. @ours */
+  --_table-sort-button-hover-foreground: var(--table-sort-button-hover-foreground, var(--navy));
+  /* Focus ring of a sortable column heading. @ours */
+  --_table-sort-button-focus-ring: var(--table-sort-button-focus-ring, var(--mint-45));
+  /* Colour of the sort arrow. @ours */
+  --_table-sort-button-icon-foreground: var(--table-sort-button-icon-foreground, var(--dark-75));
+}
+
+[data-slot="table-detail-row"] {
+  /* Fill colour of the detail row under an expanded row. @ours */
+  --_table-detail-row: var(--table-detail-row, var(--mint-l4));
+  /* Text colour of the detail row. @ours */
+  --_table-detail-row-foreground: var(--table-detail-row-foreground, var(--dark-90));
 }

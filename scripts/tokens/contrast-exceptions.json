@@ -106,5 +106,17 @@
   "fill": "--_toast-error",
   "status": "undecided",
   "note": "Error toast: the error-60 title on the error-l1 fill is 3.28:1. The icon passes the 3:1 a graphic needs, the title text doesn't. Options: accept it, or use the darker -75 shade for the title and icon."
+ },
+ {
+  "foreground": "--_stepper-indicator-active-foreground",
+  "fill": "--_stepper-indicator-active",
+  "status": "undecided",
+  "note": "Current step: the white step number on mint-60 is 3.36:1. Options: accept it, or use mint-75 for the current step's fill."
+ },
+ {
+  "foreground": "--_stepper-indicator-complete-foreground",
+  "fill": "--_stepper-indicator-complete",
+  "status": "accepted",
+  "note": "A done step shows only a tick icon, which needs 3:1 as a graphic; mint-75 on mint-l2 is 4.33:1."
  }
 ]

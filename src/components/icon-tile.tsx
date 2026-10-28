@@ -13,21 +13,21 @@ const iconTileVariants = cva(
   {
     variants: {
       variant: {
-        mint: "bg-mint-l3 text-mint-75",
-        navy: "bg-navy text-white",
-        warning: "bg-warning-l2 text-warning-75",
-        error: "bg-error-l1 text-error-75",
-        lime: "bg-lime text-navy",
-        neutral: "bg-light-l2 text-navy",
+        mint: "bg-(--_icon-tile-mint) text-(--_icon-tile-mint-foreground)",
+        navy: "bg-(--_icon-tile-navy) text-(--_icon-tile-navy-foreground)",
+        warning: "bg-(--_icon-tile-warning) text-(--_icon-tile-warning-foreground)",
+        error: "bg-(--_icon-tile-error) text-(--_icon-tile-error-foreground)",
+        lime: "bg-(--_icon-tile-lime) text-(--_icon-tile-lime-foreground)",
+        neutral: "bg-(--_icon-tile-neutral) text-(--_icon-tile-neutral-foreground)",
       },
       size: {
-        sm: "size-8 [&_svg:not([class*='size-'])]:size-4",
-        md: "size-10 [&_svg:not([class*='size-'])]:size-5",
-        lg: "size-12 [&_svg:not([class*='size-'])]:size-6",
+        sm: "size-(--_icon-tile-sm-size) [&_svg:not([class*='size-'])]:size-4",
+        md: "size-(--_icon-tile-md-size) [&_svg:not([class*='size-'])]:size-5",
+        lg: "size-(--_icon-tile-lg-size) [&_svg:not([class*='size-'])]:size-6",
       },
       shape: {
         circle: "rounded-full",
-        square: "rounded-lg",
+        square: "rounded-(--_icon-tile-square-radius)",
       },
     },
     defaultVariants: { variant: "mint", size: "md", shape: "circle" },

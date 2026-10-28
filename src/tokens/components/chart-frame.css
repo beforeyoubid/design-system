@@ -1,0 +1,30 @@
+/* Chart frame — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section.
+ * Defaults are Rey's design. Edited by hand; our component (chart-frame.tsx) reads these levers. */
+
+[data-slot="chart-frame"] {
+  /* Fill colour of the chart card. @ours */
+  --_chart-frame: var(--chart-frame, var(--white));
+  /* Border colour of the chart card. @ours */
+  --_chart-frame-border: var(--chart-frame-border, var(--light-l3));
+  /* Corner radius of the chart card. @ours */
+  --_chart-frame-radius: var(--chart-frame-radius, var(--radius-lg));
+  /* Text colour of the title and the trend line. @ours */
+  --_chart-frame-title-foreground: var(--chart-frame-title-foreground, var(--navy));
+  /* Text colour of the description and the caption. @ours */
+  --_chart-frame-description-foreground: var(--chart-frame-description-foreground, var(--dark-75));
+}
+
+[data-slot="chart-frame-legend"] {
+  /* Text and icon colour of the legend. @ours */
+  --_chart-frame-legend-foreground: var(--chart-frame-legend-foreground, var(--dark-75));
+}
+
+[data-slot="chart-frame-tooltip"] {
+  /* Fill colour of the chart tooltip. @ours */
+  --_chart-frame-tooltip: var(--chart-frame-tooltip, var(--white));
+  /* Border colour of the chart tooltip. @ours */
+  --_chart-frame-tooltip-border: var(--chart-frame-tooltip-border, var(--light-l3));
+  /* Text colour of the chart tooltip. @ours */
+  --_chart-frame-tooltip-foreground: var(--chart-frame-tooltip-foreground, var(--dark-90));
+}

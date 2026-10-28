@@ -58,3 +58,22 @@
   /* Colour of the close button when hovered. @ours */
   --_dialog-close-hover-foreground: var(--dialog-close-hover-foreground, var(--dark-100));
 }
+
+[data-slot="dialog-collapsible"] {
+  /* Border colour of the dropdown collapsible. @ours */
+  --_dialog-collapsible-border: var(--dialog-collapsible-border, var(--light-l3));
+  /* Text colour of the collapsible content. @ours */
+  --_dialog-collapsible-foreground: var(--dialog-collapsible-foreground, var(--dark-90));
+  /* Text colour of the dropdown row. @ours */
+  --_dialog-collapsible-trigger-foreground: var(--dialog-collapsible-trigger-foreground, var(--navy));
+  /* Text colour of the dropdown row when hovered. @ours */
+  --_dialog-collapsible-trigger-hover-foreground: var(--dialog-collapsible-trigger-hover-foreground, var(--mint-75));
+  /* Chevron colour of the dropdown row. @ours */
+  --_dialog-collapsible-icon-foreground: var(--dialog-collapsible-icon-foreground, var(--dark-75));
+  /* Text colour of the "View more" toggle. @ours */
+  --_dialog-collapsible-toggle-foreground: var(--dialog-collapsible-toggle-foreground, var(--mint-75));
+  /* Text colour of the "View more" toggle when hovered. @ours */
+  --_dialog-collapsible-toggle-hover-foreground: var(--dialog-collapsible-toggle-hover-foreground, var(--mint-45));
+  /* Focus ring of the collapsible toggles. @ours */
+  --_dialog-collapsible-focus-ring: var(--dialog-collapsible-focus-ring, var(--mint-45));
+}

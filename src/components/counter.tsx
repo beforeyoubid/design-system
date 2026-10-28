@@ -61,9 +61,9 @@ const counterValueVariants = cva(
   {
     variants: {
       variant: {
-        navy:  'text-navy',
-        lime:  'text-lime',
-        white: 'text-white',
+        navy:  'text-(--_counter-value-navy-foreground)',
+        lime:  'text-(--_counter-value-lime-foreground)',
+        white: 'text-(--_counter-value-white-foreground)',
       },
     },
     defaultVariants: { variant: 'navy' },
@@ -75,9 +75,9 @@ const counterLabelVariants = cva(
   {
     variants: {
       variant: {
-        navy:  'text-dark-75',
-        lime:  'text-dark-75',
-        white: 'text-white',
+        navy:  'text-(--_counter-label-navy-foreground)',
+        lime:  'text-(--_counter-label-lime-foreground)',
+        white: 'text-(--_counter-label-white-foreground)',
       },
     },
     defaultVariants: { variant: 'navy' },
@@ -126,6 +126,7 @@ export function Counter({
   return (
     <div
       ref={ref}
+      data-slot="counter"
       className={cn('flex flex-col items-center gap-2 py-6 px-8', className)}
       {...props}
     >
@@ -136,8 +137,8 @@ export function Counter({
           className={cn(counterValueVariants({ variant }))}
         />
       )}
-      <span className={cn(counterValueVariants({ variant }))}>{displayed}</span>
-      <span className={cn(counterLabelVariants({ variant }))}>{label}</span>
+      <span data-slot="counter-value" className={cn(counterValueVariants({ variant }))}>{displayed}</span>
+      <span data-slot="counter-label" className={cn(counterLabelVariants({ variant }))}>{label}</span>
     </div>
   )
 }

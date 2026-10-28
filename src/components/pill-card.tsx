@@ -7,9 +7,9 @@ const pillCardVariants = cva(
   {
     variants: {
       variant: {
-        'electric-blue': 'bg-electric-blue-l1',
-        teal:   'bg-teal-l1',
-        lime:   'bg-lime-l1',
+        'electric-blue': 'bg-(--_pill-card-electric-blue)',
+        teal:   'bg-(--_pill-card-teal)',
+        lime:   'bg-(--_pill-card-lime)',
       },
     },
     defaultVariants: { variant: 'electric-blue' },
@@ -17,13 +17,13 @@ const pillCardVariants = cva(
 )
 
 const iconCircleVariants = cva(
-  'shrink-0 w-24 h-24 rounded-full bg-white flex items-center justify-center border-2',
+  'shrink-0 w-24 h-24 rounded-full bg-(--_pill-card-icon) flex items-center justify-center border-2',
   {
     variants: {
       variant: {
-        'electric-blue': 'border-electric-blue text-electric-blue',
-        teal:   'border-teal text-teal',
-        lime:   'border-lime text-lime',
+        'electric-blue': 'border-(--_pill-card-icon-electric-blue-foreground) text-(--_pill-card-icon-electric-blue-foreground)',
+        teal:   'border-(--_pill-card-icon-teal-foreground) text-(--_pill-card-icon-teal-foreground)',
+        lime:   'border-(--_pill-card-icon-lime-foreground) text-(--_pill-card-icon-lime-foreground)',
       },
     },
     defaultVariants: { variant: 'electric-blue' },
@@ -49,13 +49,13 @@ export function PillCard({
   ...props
 }: PillCardProps) {
   return (
-    <div className={cn(pillCardVariants({ variant, className }))} {...props}>
-      <div className={cn(iconCircleVariants({ variant }))}>
+    <div data-slot="pill-card" className={cn(pillCardVariants({ variant, className }))} {...props}>
+      <div data-slot="pill-card-icon" className={cn(iconCircleVariants({ variant }))}>
         {Icon && <Icon size={iconSize} strokeWidth={1.5} aria-hidden="true" />}
       </div>
       <div className="flex flex-col gap-1.5">
-        <h3 className="text-h4 font-semibold text-navy">{heading}</h3>
-        <p className="text-body-5 text-dark-75">{subheading}</p>
+        <h3 data-slot="pill-card-heading" className="text-h4 font-semibold text-(--_pill-card-heading-foreground)">{heading}</h3>
+        <p data-slot="pill-card-subheading" className="text-body-5 text-(--_pill-card-subheading-foreground)">{subheading}</p>
       </div>
     </div>
   )

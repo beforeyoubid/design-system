@@ -162,4 +162,12 @@
   --_button-icon-lg-size: var(--button-icon-lg-size, calc(var(--spacing) * 11));
   /* Corner radius of the button (icon-lg size). */
   --_button-icon-lg-radius: var(--button-icon-lg-radius, var(--button-radius, var(--radius-full)));
+  /* Fill colour of the button (lime variant). @ours */
+  --_button-lime: var(--button-lime, var(--lime));
+  /* Text colour of the button (lime variant). @ours */
+  --_button-lime-foreground: var(--button-lime-foreground, var(--navy));
+  /* Fill colour of the button (navy variant). @ours */
+  --_button-navy: var(--button-navy, var(--navy));
+  /* Text colour of the button (navy variant). @ours */
+  --_button-navy-foreground: var(--button-navy-foreground, var(--white));
 }

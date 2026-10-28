@@ -8,7 +8,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from '../../components/ui/drawer'
+} from '../../components/drawer'
 
 const meta: Meta<typeof Drawer> = {
   title: 'BYB Components/Drawer',

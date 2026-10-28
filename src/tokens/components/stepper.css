@@ -1,0 +1,47 @@
+/* Stepper — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section.
+ * Defaults are Rey's design. Edited by hand; our component (stepper.tsx) reads these levers. */
+
+[data-slot="stepper-indicator"] {
+  /* Fill colour of the current step (and of a done step in the dot size). @ours */
+  --_stepper-indicator-active: var(--stepper-indicator-active, var(--mint-60));
+  /* Number colour of the current step. @ours */
+  --_stepper-indicator-active-foreground: var(--stepper-indicator-active-foreground, var(--white));
+  /* Ring colour around the current step. @ours */
+  --_stepper-indicator-active-ring: var(--stepper-indicator-active-ring, var(--mint-45));
+  /* Fill colour of a done step. @ours */
+  --_stepper-indicator-complete: var(--stepper-indicator-complete, var(--mint-l2));
+  /* Tick colour of a done step. @ours */
+  --_stepper-indicator-complete-foreground: var(--stepper-indicator-complete-foreground, var(--mint-75));
+  /* Fill colour of a step still to come. @ours */
+  --_stepper-indicator-upcoming: var(--stepper-indicator-upcoming, var(--white));
+  /* Border colour of a step still to come. @ours */
+  --_stepper-indicator-upcoming-border: var(--stepper-indicator-upcoming-border, var(--navy));
+  /* Number colour of a step still to come. @ours */
+  --_stepper-indicator-upcoming-foreground: var(--stepper-indicator-upcoming-foreground, var(--navy));
+  /* Fill colour of a step with an error. @ours */
+  --_stepper-indicator-error: var(--stepper-indicator-error, var(--error-75));
+  /* Icon colour of a step with an error. @ours */
+  --_stepper-indicator-error-foreground: var(--stepper-indicator-error-foreground, var(--white));
+  /* Fill colour of a step still to come (dot size). @ours */
+  --_stepper-indicator-dot-upcoming: var(--stepper-indicator-dot-upcoming, var(--dark-15));
+}
+
+[data-slot="stepper-connector"] {
+  /* Colour of the line between steps. @ours */
+  --_stepper-connector: var(--stepper-connector, var(--light-l3));
+  /* Colour of the line once the step before it is done. @ours */
+  --_stepper-connector-complete: var(--stepper-connector-complete, var(--mint-60));
+}
+
+[data-slot="stepper-title"] {
+  /* Text colour of a step title. @ours */
+  --_stepper-title-foreground: var(--stepper-title-foreground, var(--navy));
+  /* Text colour of a step title with an error. @ours */
+  --_stepper-title-error-foreground: var(--stepper-title-error-foreground, var(--error-75));
+}
+
+[data-slot="stepper-description"] {
+  /* Text colour of a step description. @ours */
+  --_stepper-description-foreground: var(--stepper-description-foreground, var(--dark-90));
+}

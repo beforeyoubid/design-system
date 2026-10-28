@@ -811,7 +811,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>button</strong> (73)</summary>
+<summary><strong>button</strong> (77)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -888,6 +888,10 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--button-icon-sm-radius` | Corner radius of the button (icon-sm size). | `var(--button-radius, var(--radius-full))` |
 | `--button-icon-lg-size` | Width and height of the button (icon-lg size). | `calc(var(--spacing) * 11)` |
 | `--button-icon-lg-radius` | Corner radius of the button (icon-lg size). | `var(--button-radius, var(--radius-full))` |
+| `--button-lime` | Fill colour of the button (lime variant). | `var(--lime)` |
+| `--button-lime-foreground` | Text colour of the button (lime variant). | `var(--navy)` |
+| `--button-navy` | Fill colour of the button (navy variant). | `var(--navy)` |
+| `--button-navy-foreground` | Text colour of the button (navy variant). | `var(--white)` |
 
 </details>
 
@@ -944,6 +948,23 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
+<summary><strong>chart-frame</strong> (9)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--chart-frame` | Fill colour of the chart card. | `var(--white)` |
+| `--chart-frame-border` | Border colour of the chart card. | `var(--light-l3)` |
+| `--chart-frame-radius` | Corner radius of the chart card. | `var(--radius-lg)` |
+| `--chart-frame-title-foreground` | Text colour of the title and the trend line. | `var(--navy)` |
+| `--chart-frame-description-foreground` | Text colour of the description and the caption. | `var(--dark-75)` |
+| `--chart-frame-legend-foreground` | Text and icon colour of the legend. | `var(--dark-75)` |
+| `--chart-frame-tooltip` | Fill colour of the chart tooltip. | `var(--white)` |
+| `--chart-frame-tooltip-border` | Border colour of the chart tooltip. | `var(--light-l3)` |
+| `--chart-frame-tooltip-foreground` | Text colour of the chart tooltip. | `var(--dark-90)` |
+
+</details>
+
+<details>
 <summary><strong>chart</strong> (0)</summary>
 
 | Lever | What it changes | Default |
@@ -953,7 +974,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>checkbox</strong> (12)</summary>
+<summary><strong>checkbox</strong> (19)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -969,6 +990,13 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--checkbox-invalid-border` | Border colour of the checkbox when invalid. | `var(--error-75)` |
 | `--checkbox-invalid-ring` | Ring colour of the checkbox when invalid. | `color-mix(in oklab, var(--error-75) 20%, transparent)` |
 | `--checkbox-disabled-opacity` | Opacity of the checkbox when disabled. | `0.5` |
+| `--checkbox-label-foreground` | Text colour of the label beside the control. | `var(--navy)` |
+| `--checkbox-description-foreground` | Text colour of the description under the label. | `var(--dark-75)` |
+| `--checkbox-field-card` | Fill colour of an option card (card variant). | `var(--white)` |
+| `--checkbox-field-card-border` | Border colour of an option card (card variant). | `var(--dark-45)` |
+| `--checkbox-field-card-radius` | Corner radius of an option card (card variant). | `var(--radius-lg)` |
+| `--checkbox-field-card-checked` | Fill colour of a ticked option card (card variant). | `var(--mint-l4)` |
+| `--checkbox-field-card-checked-border` | Border colour of a ticked option card (card variant). | `var(--mint-45)` |
 
 </details>
 
@@ -1029,7 +1057,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>command</strong> (26)</summary>
+<summary><strong>command</strong> (27)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -1059,6 +1087,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--command-item-selected` | Fill colour of the item when selected. | `var(--mint-l2)` |
 | `--command-item-selected-foreground` | Text colour of the item when selected. | `var(--mint-75)` |
 | `--command-shortcut-foreground` | Text colour of the shortcut. | `var(--dark-75)` |
+| `--command-dialog-radius` | Corner radius of the command palette dialog. | `var(--radius-lg)` |
 
 </details>
 
@@ -1110,7 +1139,21 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>dialog</strong> (14)</summary>
+<summary><strong>counter</strong> (6)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--counter-value-navy-foreground` | Colour of the number and icon (navy variant). | `var(--navy)` |
+| `--counter-value-lime-foreground` | Colour of the number and icon (lime variant, for dark sections). | `var(--lime)` |
+| `--counter-value-white-foreground` | Colour of the number and icon (white variant, for dark sections). | `var(--white)` |
+| `--counter-label-navy-foreground` | Text colour of the label (navy variant). | `var(--dark-75)` |
+| `--counter-label-lime-foreground` | Text colour of the label (lime variant). | `var(--dark-75)` |
+| `--counter-label-white-foreground` | Text colour of the label (white variant). | `var(--white)` |
+
+</details>
+
+<details>
+<summary><strong>dialog</strong> (22)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -1128,6 +1171,14 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--dialog-description-foreground` | Text colour of the description. | `var(--dark-90)` |
 | `--dialog-close-foreground` | Colour of the close (×) button. | `var(--dark-75)` |
 | `--dialog-close-hover-foreground` | Colour of the close button when hovered. | `var(--dark-100)` |
+| `--dialog-collapsible-border` | Border colour of the dropdown collapsible. | `var(--light-l3)` |
+| `--dialog-collapsible-foreground` | Text colour of the collapsible content. | `var(--dark-90)` |
+| `--dialog-collapsible-trigger-foreground` | Text colour of the dropdown row. | `var(--navy)` |
+| `--dialog-collapsible-trigger-hover-foreground` | Text colour of the dropdown row when hovered. | `var(--mint-75)` |
+| `--dialog-collapsible-icon-foreground` | Chevron colour of the dropdown row. | `var(--dark-75)` |
+| `--dialog-collapsible-toggle-foreground` | Text colour of the "View more" toggle. | `var(--mint-75)` |
+| `--dialog-collapsible-toggle-hover-foreground` | Text colour of the "View more" toggle when hovered. | `var(--mint-45)` |
+| `--dialog-collapsible-focus-ring` | Focus ring of the collapsible toggles. | `var(--mint-45)` |
 
 </details>
 
@@ -1145,10 +1196,10 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 
 | Lever | What it changes | Default |
 |---|---|---|
-| `--drawer-overlay` | Fill colour of the overlay. | `color-mix(in oklab, #000 80%, transparent)` |
+| `--drawer-overlay` | Fill colour of the overlay. | `color-mix(in oklab, var(--dark-100) 50%, transparent)` |
 | `--drawer-popup-min-height` | Minimum height of the popup. | `calc(var(--spacing) * 0)` |
-| `--drawer-popup-radius` | Corner radius of the popup. | `var(--radius-4xl)` |
-| `--drawer-popup-border` | Border colour of the popup. | `var(--popover)` |
+| `--drawer-popup-radius` | Corner radius of the popup. | `var(--radius-2xl)` |
+| `--drawer-popup-border` | Border colour of the popup. | `var(--border)` |
 | `--drawer-popup` | Fill colour of the popup. | `var(--popover)` |
 | `--drawer-popup-foreground` | Text colour of the popup. | `var(--popover-foreground)` |
 | `--drawer-content-min-height` | Minimum height of the content. | `calc(var(--spacing) * 0)` |
@@ -1163,7 +1214,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>dropdown-menu</strong> (41)</summary>
+<summary><strong>dropdown-menu</strong> (82)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -1194,6 +1245,12 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--dropdown-menu-sub-trigger-disabled-foreground` | Text colour of the sub-trigger when disabled. | `var(--dark-45)` |
 | `--dropdown-menu-sub-trigger-open` | Fill colour of the sub-trigger while open. | `var(--mint-l2)` |
 | `--dropdown-menu-sub-trigger-open-foreground` | Text colour of the sub-trigger while open. | `var(--mint-75)` |
+| `--dropdown-menu-checkbox-item-min-height` | Minimum height of the checkbox item. | `calc(var(--spacing) * 8)` |
+| `--dropdown-menu-checkbox-item-radius` | Corner radius of the checkbox item. | `var(--radius-md)` |
+| `--dropdown-menu-checkbox-item-padding-y` | Vertical padding of the checkbox item. | `calc(var(--spacing) * 1.5)` |
+| `--dropdown-menu-checkbox-item-foreground` | Text colour of the checkbox item. | `var(--dark-100)` |
+| `--dropdown-menu-checkbox-item-highlighted` | Fill colour of the checkbox item when highlighted. | `var(--light-l1)` |
+| `--dropdown-menu-checkbox-item-disabled-foreground` | Text colour of the checkbox item when disabled. | `var(--dark-45)` |
 | `--dropdown-menu-checkbox-item-gap` | Gap between items of the checkbox-item. | `calc(var(--spacing) * 2.5)` |
 | `--dropdown-menu-checkbox-item-padding-x` | Horizontal padding of the checkbox-item. | `calc(var(--spacing) * 2.5)` |
 | `--dropdown-menu-checkbox-item-indicator-size` | Width and height of the checkbox-item-indicator. | `calc(var(--spacing) * 4)` |
@@ -1201,6 +1258,12 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--dropdown-menu-checkbox-item-indicator-border` | Border colour of the checkbox-item-indicator. | `var(--dark-45)` |
 | `--dropdown-menu-checkbox-item-indicator` | Fill colour of the checkbox-item-indicator. | `var(--white)` |
 | `--dropdown-menu-checkbox-item-indicator-foreground` | Text colour of the checkbox-item-indicator. | `var(--white)` |
+| `--dropdown-menu-radio-item-min-height` | Minimum height of the radio item. | `calc(var(--spacing) * 8)` |
+| `--dropdown-menu-radio-item-radius` | Corner radius of the radio item. | `var(--radius-md)` |
+| `--dropdown-menu-radio-item-padding-y` | Vertical padding of the radio item. | `calc(var(--spacing) * 1.5)` |
+| `--dropdown-menu-radio-item-foreground` | Text colour of the radio item. | `var(--dark-100)` |
+| `--dropdown-menu-radio-item-highlighted` | Fill colour of the radio item when highlighted. | `var(--light-l1)` |
+| `--dropdown-menu-radio-item-disabled-foreground` | Text colour of the radio item when disabled. | `var(--dark-45)` |
 | `--dropdown-menu-radio-item-gap` | Gap between items of the radio-item. | `calc(var(--spacing) * 2.5)` |
 | `--dropdown-menu-radio-item-padding-x` | Horizontal padding of the radio-item. | `calc(var(--spacing) * 2.5)` |
 | `--dropdown-menu-radio-item-checked` | Fill colour of the radio-item when checked. | `var(--mint-l2)` |
@@ -1208,6 +1271,35 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--dropdown-menu-separator-height` | Height of the separator. | `1px` |
 | `--dropdown-menu-separator` | Fill colour of the separator. | `var(--light-l3)` |
 | `--dropdown-menu-shortcut-foreground` | Text colour of the shortcut. | `var(--dark-75)` |
+| `--dropdown-menu-icon-trigger-mint-foreground` | Icon colour (mint tone). | `var(--mint-75)` |
+| `--dropdown-menu-icon-trigger-mint-hover-foreground` | Icon colour when hovered or open (mint tone). | `var(--mint-45)` |
+| `--dropdown-menu-icon-trigger-dark-foreground` | Icon colour (dark tone). | `var(--dark-75)` |
+| `--dropdown-menu-icon-trigger-dark-hover-foreground` | Icon colour when hovered or open (dark tone). | `var(--dark-100)` |
+| `--dropdown-menu-icon-trigger-navy-foreground` | Icon colour (navy tone). | `var(--navy)` |
+| `--dropdown-menu-icon-trigger-navy-hover-foreground` | Icon colour when hovered or open (navy tone). | `var(--dark-75)` |
+| `--dropdown-menu-icon-trigger-focus-ring` | Focus ring of the icon trigger. | `var(--mint-45)` |
+| `--dropdown-menu-icon-trigger-disabled-foreground` | Icon colour when disabled. | `var(--dark-45)` |
+| `--dropdown-menu-card-trigger` | Fill colour of the card trigger. | `var(--white)` |
+| `--dropdown-menu-card-trigger-border` | Border colour of the card trigger. | `var(--dark-45)` |
+| `--dropdown-menu-card-trigger-radius` | Corner radius of the card trigger. | `var(--radius-lg)` |
+| `--dropdown-menu-card-trigger-hover-border` | Border colour of the card trigger when hovered. | `var(--mint-30)` |
+| `--dropdown-menu-card-trigger-open` | Fill colour of the card trigger while open. | `var(--mint-l4)` |
+| `--dropdown-menu-card-trigger-open-border` | Border colour of the card trigger while open or focused. | `var(--mint-45)` |
+| `--dropdown-menu-card-trigger-open-ring` | Ring colour of the card trigger while open or focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
+| `--dropdown-menu-card-trigger-open-icon-foreground` | Chevron colour while open. | `var(--mint-75)` |
+| `--dropdown-menu-card-trigger-disabled` | Fill colour of the card trigger when disabled. | `var(--light-l2)` |
+| `--dropdown-menu-card-trigger-label-foreground` | Text colour of the small label above the title. | `var(--dark-90)` |
+| `--dropdown-menu-card-trigger-foreground` | Text colour of the title. | `var(--dark-100)` |
+| `--dropdown-menu-card-trigger-meta-foreground` | Colour of the right-hand meta text and the chevron. | `var(--dark-75)` |
+| `--dropdown-menu-card-item` | Fill colour of an option card. | `var(--white)` |
+| `--dropdown-menu-card-item-border` | Border colour of an option card. | `var(--dark-45)` |
+| `--dropdown-menu-card-item-radius` | Corner radius of an option card. | `var(--radius-lg)` |
+| `--dropdown-menu-card-item-highlighted` | Fill colour of an option card when highlighted. | `var(--light-l1)` |
+| `--dropdown-menu-card-item-highlighted-border` | Border colour of an option card when highlighted. | `var(--dark-75)` |
+| `--dropdown-menu-card-item-checked` | Fill colour of the chosen option card. | `var(--mint-l3)` |
+| `--dropdown-menu-card-item-checked-border` | Border colour of the chosen option card. | `var(--mint-45)` |
+| `--dropdown-menu-card-item-foreground` | Text colour of an option card title. | `var(--dark-100)` |
+| `--dropdown-menu-card-item-meta-foreground` | Text colour of an option card meta line. | `var(--dark-75)` |
 
 </details>
 
@@ -1273,6 +1365,30 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--hover-card-content-padding` | Padding of the content. | `calc(var(--spacing) * 4)` |
 | `--hover-card-content-foreground` | Text colour of the content. | `var(--dark-90)` |
 | `--hover-card-content-shadow` | Shadow of the content. | `0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)` |
+
+</details>
+
+<details>
+<summary><strong>icon-tile</strong> (16)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--icon-tile-mint` | Fill colour of the tile (mint variant). | `var(--mint-l3)` |
+| `--icon-tile-mint-foreground` | Icon colour of the tile (mint variant). | `var(--mint-75)` |
+| `--icon-tile-navy` | Fill colour of the tile (navy variant). | `var(--navy)` |
+| `--icon-tile-navy-foreground` | Icon colour of the tile (navy variant). | `var(--white)` |
+| `--icon-tile-warning` | Fill colour of the tile (warning variant). | `var(--warning-l2)` |
+| `--icon-tile-warning-foreground` | Icon colour of the tile (warning variant). | `var(--warning-75)` |
+| `--icon-tile-error` | Fill colour of the tile (error variant). | `var(--error-l1)` |
+| `--icon-tile-error-foreground` | Icon colour of the tile (error variant). | `var(--error-75)` |
+| `--icon-tile-lime` | Fill colour of the tile (lime variant). | `var(--lime)` |
+| `--icon-tile-lime-foreground` | Icon colour of the tile (lime variant). | `var(--navy)` |
+| `--icon-tile-neutral` | Fill colour of the tile (neutral variant). | `var(--light-l2)` |
+| `--icon-tile-neutral-foreground` | Icon colour of the tile (neutral variant). | `var(--navy)` |
+| `--icon-tile-sm-size` | Width and height of the tile (sm size). | `calc(var(--spacing) * 8)` |
+| `--icon-tile-md-size` | Width and height of the tile (md size). | `calc(var(--spacing) * 10)` |
+| `--icon-tile-lg-size` | Width and height of the tile (lg size). | `calc(var(--spacing) * 12)` |
+| `--icon-tile-square-radius` | Corner radius of the tile (square shape). | `var(--radius-lg)` |
 
 </details>
 
@@ -1541,6 +1657,23 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--pagination-link-hover-foreground` | Text colour of a page number when hovered. | `var(--navy)` |
 | `--pagination-link-active` | Fill of the current page. | `var(--lime)` |
 | `--pagination-link-active-foreground` | Text colour of the current page. | `var(--navy)` |
+
+</details>
+
+<details>
+<summary><strong>pill-card</strong> (9)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--pill-card-electric-blue` | Fill colour of the card (electric-blue variant). | `var(--electric-blue-l1)` |
+| `--pill-card-teal` | Fill colour of the card (teal variant). | `var(--teal-l1)` |
+| `--pill-card-lime` | Fill colour of the card (lime variant). | `var(--lime-l1)` |
+| `--pill-card-icon` | Fill colour of the icon circle. | `var(--white)` |
+| `--pill-card-icon-electric-blue-foreground` | Icon and ring colour (electric-blue variant). | `var(--electric-blue)` |
+| `--pill-card-icon-teal-foreground` | Icon and ring colour (teal variant). | `var(--teal)` |
+| `--pill-card-icon-lime-foreground` | Icon and ring colour (lime variant). | `var(--lime)` |
+| `--pill-card-heading-foreground` | Text colour of the heading. | `var(--navy)` |
+| `--pill-card-subheading-foreground` | Text colour of the subheading. | `var(--dark-75)` |
 
 </details>
 
@@ -1857,7 +1990,31 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>switch</strong> (9)</summary>
+<summary><strong>stepper</strong> (16)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--stepper-indicator-active` | Fill colour of the current step (and of a done step in the dot size). | `var(--mint-60)` |
+| `--stepper-indicator-active-foreground` | Number colour of the current step. | `var(--white)` |
+| `--stepper-indicator-active-ring` | Ring colour around the current step. | `var(--mint-45)` |
+| `--stepper-indicator-complete` | Fill colour of a done step. | `var(--mint-l2)` |
+| `--stepper-indicator-complete-foreground` | Tick colour of a done step. | `var(--mint-75)` |
+| `--stepper-indicator-upcoming` | Fill colour of a step still to come. | `var(--white)` |
+| `--stepper-indicator-upcoming-border` | Border colour of a step still to come. | `var(--navy)` |
+| `--stepper-indicator-upcoming-foreground` | Number colour of a step still to come. | `var(--navy)` |
+| `--stepper-indicator-error` | Fill colour of a step with an error. | `var(--error-75)` |
+| `--stepper-indicator-error-foreground` | Icon colour of a step with an error. | `var(--white)` |
+| `--stepper-indicator-dot-upcoming` | Fill colour of a step still to come (dot size). | `var(--dark-15)` |
+| `--stepper-connector` | Colour of the line between steps. | `var(--light-l3)` |
+| `--stepper-connector-complete` | Colour of the line once the step before it is done. | `var(--mint-60)` |
+| `--stepper-title-foreground` | Text colour of a step title. | `var(--navy)` |
+| `--stepper-title-error-foreground` | Text colour of a step title with an error. | `var(--error-75)` |
+| `--stepper-description-foreground` | Text colour of a step description. | `var(--dark-90)` |
+
+</details>
+
+<details>
+<summary><strong>switch</strong> (11)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -1870,20 +2027,26 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--switch-thumb-radius` | Corner radius of the thumb. | `var(--radius-full)` |
 | `--switch-thumb` | Fill colour of the thumb. | `var(--white)` |
 | `--switch-thumb-shadow` | Shadow of the thumb. | `0 1px 2px 0 rgb(0 0 0 / 0.05)` |
+| `--switch-label-foreground` | Text colour of the label beside the control. | `var(--navy)` |
+| `--switch-description-foreground` | Text colour of the description under the label. | `var(--dark-75)` |
 
 </details>
 
 <details>
-<summary><strong>table</strong> (15)</summary>
+<summary><strong>table</strong> (25)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
+| `--table-header-tinted` | Fill colour of the header row (card and bordered variants). | `var(--light-l1)` |
 | `--table-footer-border` | Border colour of the footer. | `var(--border)` |
 | `--table-footer` | Fill colour of the footer. | `var(--light-l1)` |
 | `--table-footer-font-weight` | Font weight of the footer. | `500` |
 | `--table-footer-foreground` | Text colour of the footer. | `var(--navy)` |
 | `--table-row-border` | Border colour of the row. | `var(--border)` |
 | `--table-row-hover` | Fill colour of the row when hovered. | `var(--mint-l4)` |
+| `--table-row-striped` | Fill colour of every other row (striped variant). | `var(--light-l1)` |
+| `--table-row-striped-hover` | Fill colour of a hovered row (striped variant). | `var(--mint-l4)` |
+| `--table-row-open` | Fill colour of an expanded row. | `var(--mint-l4)` |
 | `--table-head-padding-x` | Horizontal padding of the head. | `calc(var(--spacing) * 3)` |
 | `--table-head-border` | Border colour of the head. | `var(--border)` |
 | `--table-head-height` | Height of the head. | `calc(var(--spacing) * 11)` |
@@ -1893,6 +2056,12 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--table-cell-padding-y` | Vertical padding of the cell. | `calc(var(--spacing) * 3)` |
 | `--table-cell-foreground` | Text colour of the cell. | `var(--dark-90)` |
 | `--table-caption-foreground` | Text colour of the caption. | `var(--muted-foreground)` |
+| `--table-sort-button-foreground` | Text colour of a sortable column heading. | `var(--dark-100)` |
+| `--table-sort-button-hover-foreground` | Text colour of a sortable column heading when hovered. | `var(--navy)` |
+| `--table-sort-button-focus-ring` | Focus ring of a sortable column heading. | `var(--mint-45)` |
+| `--table-sort-button-icon-foreground` | Colour of the sort arrow. | `var(--dark-75)` |
+| `--table-detail-row` | Fill colour of the detail row under an expanded row. | `var(--mint-l4)` |
+| `--table-detail-row-foreground` | Text colour of the detail row. | `var(--dark-90)` |
 
 </details>
 
