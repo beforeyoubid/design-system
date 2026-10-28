@@ -19,10 +19,11 @@
 8. [Motion](#motion)
 9. [Iconography](#iconography)
 10. [Components](#components)
-11. [Accessibility](#accessibility)
-12. [Rules for designers and engineers](#rules-for-designers-and-engineers)
-13. [Tokens in JS](#tokens-in-js)
-14. [Upgrading from 1.1.x](#upgrading-from-11x)
+11. [Component tokens (levers)](#component-tokens-levers)
+12. [Accessibility](#accessibility)
+13. [Rules for designers and engineers](#rules-for-designers-and-engineers)
+14. [Tokens in JS](#tokens-in-js)
+15. [Upgrading from 1.1.x](#upgrading-from-11x)
 
 ---
 
@@ -536,6 +537,1411 @@ Every toast has a × so it can be closed early. Override per toast with `timeout
 
 `BYBAreaChart`, `BYBBarChart`, `BYBChartFrame` (with `BYBChartLegendList`, `BYB_CHART_PALETTE`), `Chart` · `Avatar` · `BYBAttachment` / `BYBFileUploadCard` (drag-and-drop upload with status: `uploading` · `completed` · `error` · `uploaded`. `uploaded` is an already-attached file, the default for `defaultFiles`: 36px mint-l3 file icon, name `text-body-4 font-semibold text-dark-90` (file names are dark-90 on every card), "4 MB · Uploaded 12 Oct 2026" in `text-caption-1 text-dark-75`, then icon-only download (`mint-75`, hover `mint-90`) and delete (trash, `error-75`, hover `error-90`) with "Download" / "Delete" tooltips; download shows when the file has a `url` or `onDownload` is set. Deleting a file first opens a destructive `ConfirmDialog` ("Delete this file?", trash `BYBIconTile`, Cancel / Delete; `confirmDelete`, default true); confirming fires a `success` toast ("File deleted") with the file name and an Undo action that puts it back in place (`deleteToast`, default true); cancelling an upload shows no toast) · `BYBImage` · `BYBPillCard` · `BYBCounter` · `Toggle` / `ToggleGroup` · `Slider` · `InputOTP` · `Calendar` · `Label`.
 
+## Component tokens (levers)
+
+Tokens come in three layers. Each layer reads the one above it, so a change at the top flows down.
+
+| Layer | What it is | Examples | Where it lives |
+|---|---|---|---|
+| Brand | The raw palette, type scale and radius scale | `--mint-45`, `--navy`, `--text-body-4`, `--radius-lg` | `globals.css` `:root` |
+| Semantic | Roles that shadcn components read | `--primary`, `--muted-foreground`, `--border`, `--ring` | `globals.css` `:root` and `.dark` |
+| Component | One look of one part of one component: a **lever** | `--button-default`, `--input-radius`, `--tabs-trigger-active-foreground` | `src/tokens/components/<component>.css` |
+
+A **part** is one element of a component, named by its `data-slot` (`select-trigger`, `dialog-content`). A lever's name says which part, which variant, which state and which property it sets:
+
+```
+--<part>[-<variant>][-<state>][-<property>]
+
+--button-default                    fill of the primary button
+--button-default-hover              its fill when hovered
+--button-outline-border             border colour of the tertiary (stock outline) button
+--input-radius                      corner radius of every input
+--dropdown-menu-item-highlighted-foreground   text colour of the highlighted menu item
+```
+
+No property means the fill. Properties: `foreground` (text and icon colour), `border`, `ring`, `radius`, `height`, `min-height`, `width`, `size`, `padding`, `padding-x`, `padding-y`, `gap`, `shadow`, `font-weight`, `opacity`, `tracking`. States: `hover`, `focus`, `active`, `pressed`, `open`, `selected`, `highlighted`, `checked`, `disabled`, `invalid`, `placeholder`. A variant's lever falls back to the component's own lever where there is one (`--button-sm-radius` → `--button-radius`). Variants keep the stock key in lever names: our `primary` button is `default`, `tertiary` is `outline`.
+
+**Pull a lever** by setting it on `:root`, or on any element to change one section only:
+
+```css
+:root {
+  --button-default: var(--navy);
+  --input-radius: var(--radius-md);
+}
+.checkout { --card-padding-y: calc(var(--spacing) * 8); }
+```
+
+Every default is Rey's design, so an app that sets nothing gets the designed look. Don't edit the component files to change a look; pull its lever. If no lever exists for what you need, add one (below).
+
+**The playground** (`pnpm playground`, or the published "BYB Design Levers" page) lists every brand, semantic and component token with a picker that only offers values of the right type (palette colours for colours, the radius scale for radii, and so on), shows every affected component live from the Storybook stories, checks contrast as you go, and exports the changes as a `:root` block to paste into an app.
+
+**How the levers reach the components.** The shadcn components in `src/components/ui/` are the CLI's own files. `pnpm tokens:apply` edits their class strings so each designed value reads its lever (`h-9` → `h-(--_input-height)`). The private name (`--_input-height`) is declared on the part and falls back to the public lever, then to the default. Components that change how stock behaves or is built, not just how it looks, are our own files in `src/components/` and export over the stock ones (Button, Calendar, Pagination, Tabs, Toast, …).
+
+To update the shadcn components:
+
+```bash
+npx shadcn@latest add <components> --overwrite   # the CLI's latest files
+pnpm tokens:apply                                # re-applies every lever
+pnpm tokens:build                                # index.css, playground manifest, the table below
+pnpm check-component-tokens                      # names, missing levers, contrast
+```
+
+Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-exceptions.json` as `undecided` (Rey to decide) or `accepted` (with the reason). `check-component-tokens --strict` fails while any are undecided.
+
+### Every lever
+
+<!-- component-tokens:start -->
+<!-- Generated by scripts/tokens/build.mjs from src/tokens/components/*.css; don't edit. -->
+
+<details>
+<summary><strong>accordion</strong> (9)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--accordion-item-border` | Border colour of the item. | `var(--dark-15)` |
+| `--accordion-trigger-font-weight` | Font weight of the trigger. | `600` |
+| `--accordion-trigger-foreground` | Text colour of the trigger. | `var(--dark-100)` |
+| `--accordion-trigger-hover-foreground` | Text colour of the trigger when hovered. | `var(--mint-45)` |
+| `--accordion-trigger-open-foreground` | Text colour of the trigger while open. | `var(--mint-45)` |
+| `--accordion-trigger-disabled-opacity` | Opacity of the trigger when disabled. | `0.5` |
+| `--accordion-trigger-gap` | Gap between items of the trigger. | `calc(var(--spacing) * 6)` |
+| `--accordion-trigger-padding-y` | Vertical padding of the trigger. | `calc(var(--spacing) * 5)` |
+| `--accordion-content-foreground` | Text colour of the content. | `var(--dark-75)` |
+
+</details>
+
+<details>
+<summary><strong>alert-dialog</strong> (15)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--alert-dialog-overlay` | Fill colour of the overlay. | `color-mix(in oklab, var(--dark-100) 50%, transparent)` |
+| `--alert-dialog-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 6)` |
+| `--alert-dialog-content-radius` | Corner radius of the content. | `var(--radius-2xl)` |
+| `--alert-dialog-content-border` | Border colour of the content. | `var(--border)` |
+| `--alert-dialog-content` | Fill colour of the content. | `var(--popover)` |
+| `--alert-dialog-content-padding` | Padding of the content. | `calc(var(--spacing) * 6)` |
+| `--alert-dialog-content-foreground` | Text colour of the content. | `var(--popover-foreground)` |
+| `--alert-dialog-content-shadow` | Shadow of the content. | `0 25px 50px -12px rgb(0 0 0 / 0.25)` |
+| `--alert-dialog-header-gap` | Gap between items of the header. | `calc(var(--spacing) * 1.5)` |
+| `--alert-dialog-footer-gap` | Gap between items of the footer. | `calc(var(--spacing) * 2)` |
+| `--alert-dialog-media-size` | Width and height of the media. | `calc(var(--spacing) * 16)` |
+| `--alert-dialog-media-radius` | Corner radius of the media. | `var(--radius-full)` |
+| `--alert-dialog-media` | Fill colour of the media. | `var(--muted)` |
+| `--alert-dialog-title-font-weight` | Font weight of the title. | `500` |
+| `--alert-dialog-description-foreground` | Text colour of the description. | `var(--muted-foreground)` |
+
+</details>
+
+<details>
+<summary><strong>alert</strong> (12)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--alert-gap` | Gap between items of the alert. | `calc(var(--spacing) * 0.5)` |
+| `--alert-radius` | Corner radius of the alert. | `var(--radius-2xl)` |
+| `--alert-padding-x` | Horizontal padding of the alert. | `calc(var(--spacing) * 4)` |
+| `--alert-padding-y` | Vertical padding of the alert. | `calc(var(--spacing) * 3)` |
+| `--alert-default` | Fill colour of the alert (default variant). | `var(--card)` |
+| `--alert-default-border` | Border colour of the alert (default variant). | `var(--border)` |
+| `--alert-default-foreground` | Text colour of the alert (default variant). | `var(--card-foreground)` |
+| `--alert-destructive` | Fill colour of the alert (destructive variant). | `var(--error-l1)` |
+| `--alert-destructive-border` | Border colour of the alert (destructive variant). | `var(--error-15)` |
+| `--alert-destructive-foreground` | Text colour of the alert (destructive variant). | `var(--error-75)` |
+| `--alert-title-font-weight` | Font weight of the title. | `500` |
+| `--alert-description-foreground` | Text colour of the description. | `var(--muted-foreground)` |
+
+</details>
+
+<details>
+<summary><strong>aspect-ratio</strong> (0)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+
+
+</details>
+
+<details>
+<summary><strong>attachment</strong> (18)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--attachment-radius` | Corner radius of the attachment. | `var(--radius-2xl)` |
+| `--attachment` | Fill colour of the attachment. | `var(--card)` |
+| `--attachment-foreground` | Text colour of the attachment. | `var(--card-foreground)` |
+| `--attachment-focus-ring` | Ring colour of the attachment when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
+| `--attachment-default-gap` | Gap between items of the attachment (default size). | `calc(var(--spacing) * 2)` |
+| `--attachment-sm-gap` | Gap between items of the attachment (sm size). | `calc(var(--spacing) * 2.5)` |
+| `--attachment-xs-gap` | Gap between items of the attachment (xs size). | `calc(var(--spacing) * 1.5)` |
+| `--attachment-xs-radius` | Corner radius of the attachment (xs size). | `var(--attachment-radius, var(--radius-xl))` |
+| `--attachment-vertical-width` | Width of the attachment (vertical variant). | `calc(var(--spacing) * 24)` |
+| `--attachment-media-width` | Width of the media. | `calc(var(--spacing) * 10)` |
+| `--attachment-media-radius` | Corner radius of the media. | `var(--radius-xl)` |
+| `--attachment-media` | Fill colour of the media. | `var(--muted)` |
+| `--attachment-media-foreground` | Text colour of the media. | `var(--foreground)` |
+| `--attachment-media-image-opacity` | Opacity of the media (image variant). | `0.6` |
+| `--attachment-title-font-weight` | Font weight of the title. | `500` |
+| `--attachment-description-foreground` | Text colour of the description. | `var(--muted-foreground)` |
+| `--attachment-group-gap` | Gap between items of the group. | `calc(var(--spacing) * 3)` |
+| `--attachment-group-padding-y` | Vertical padding of the group. | `calc(var(--spacing) * 1)` |
+
+</details>
+
+<details>
+<summary><strong>avatar</strong> (15)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--avatar-size` | Width and height of the avatar. | `calc(var(--spacing) * 8)` |
+| `--avatar-radius` | Corner radius of the avatar. | `var(--radius-full)` |
+| `--avatar-image-radius` | Corner radius of the image. | `var(--radius-full)` |
+| `--avatar-fallback-radius` | Corner radius of the fallback. | `var(--radius-full)` |
+| `--avatar-fallback` | Fill colour of the fallback. | `var(--muted)` |
+| `--avatar-fallback-foreground` | Text colour of the fallback. | `var(--muted-foreground)` |
+| `--avatar-badge-radius` | Corner radius of the badge. | `var(--radius-full)` |
+| `--avatar-badge` | Fill colour of the badge. | `var(--primary)` |
+| `--avatar-badge-foreground` | Text colour of the badge. | `var(--primary-foreground)` |
+| `--avatar-badge-ring` | Ring colour of the badge. | `var(--background)` |
+| `--avatar-group-count-size` | Width and height of the group-count. | `calc(var(--spacing) * 8)` |
+| `--avatar-group-count-radius` | Corner radius of the group-count. | `var(--radius-full)` |
+| `--avatar-group-count` | Fill colour of the group-count. | `var(--muted)` |
+| `--avatar-group-count-foreground` | Text colour of the group-count. | `var(--muted-foreground)` |
+| `--avatar-group-count-ring` | Ring colour of the group-count. | `var(--background)` |
+
+</details>
+
+<details>
+<summary><strong>badge</strong> (28)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--badge-height` | Height of the badge. | `calc(var(--spacing) * 5)` |
+| `--badge-gap` | Gap between items of the badge. | `calc(var(--spacing) * 1)` |
+| `--badge-radius` | Corner radius of the badge. | `var(--radius-full)` |
+| `--badge-padding-x` | Horizontal padding of the badge. | `calc(var(--spacing) * 2)` |
+| `--badge-padding-y` | Vertical padding of the badge. | `calc(var(--spacing) * 0.5)` |
+| `--badge-font-weight` | Font weight of the badge. | `500` |
+| `--badge-focus-border` | Border colour of the badge when focused. | `var(--ring)` |
+| `--badge-focus-ring` | Ring colour of the badge when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
+| `--badge-invalid-border` | Border colour of the badge when invalid. | `var(--destructive)` |
+| `--badge-invalid-ring` | Ring colour of the badge when invalid. | `color-mix(in oklab, var(--destructive) 20%, transparent)` |
+| `--badge-default-border` | Border colour of the badge (default variant). | `var(--mint-l1)` |
+| `--badge-default` | Fill colour of the badge (default variant). | `var(--mint-l2)` |
+| `--badge-default-font-weight` | Font weight of the badge (default variant). | `var(--badge-font-weight, 600)` |
+| `--badge-default-foreground` | Text colour of the badge (default variant). | `var(--mint-90)` |
+| `--badge-secondary-border` | Border colour of the badge (secondary variant). | `var(--dark-15)` |
+| `--badge-secondary` | Fill colour of the badge (secondary variant). | `var(--light-l2)` |
+| `--badge-secondary-font-weight` | Font weight of the badge (secondary variant). | `var(--badge-font-weight, 600)` |
+| `--badge-secondary-foreground` | Text colour of the badge (secondary variant). | `var(--dark-75)` |
+| `--badge-destructive-border` | Border colour of the badge (destructive variant). | `var(--error-15)` |
+| `--badge-destructive` | Fill colour of the badge (destructive variant). | `var(--error-l1)` |
+| `--badge-destructive-font-weight` | Font weight of the badge (destructive variant). | `var(--badge-font-weight, 600)` |
+| `--badge-destructive-foreground` | Text colour of the badge (destructive variant). | `var(--error-75)` |
+| `--badge-outline-border` | Border colour of the badge (outline variant). | `var(--border)` |
+| `--badge-outline` | Fill colour of the badge (outline variant). | `color-mix(in oklab, var(--input) 30%, transparent)` |
+| `--badge-outline-foreground` | Text colour of the badge (outline variant). | `var(--foreground)` |
+| `--badge-ghost-hover` | Fill colour of the badge (ghost variant) when hovered. | `var(--muted)` |
+| `--badge-ghost-hover-foreground` | Text colour of the badge (ghost variant) when hovered. | `var(--muted-foreground)` |
+| `--badge-link-foreground` | Text colour of the badge (link variant). | `var(--primary)` |
+
+</details>
+
+<details>
+<summary><strong>breadcrumb</strong> (7)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--breadcrumb-list-gap` | Gap between items of the list. | `calc(var(--spacing) * 1.5)` |
+| `--breadcrumb-list-foreground` | Text colour of the list. | `var(--muted-foreground)` |
+| `--breadcrumb-item-gap` | Gap between items of the item. | `calc(var(--spacing) * 1.5)` |
+| `--breadcrumb-link-hover-foreground` | Text colour of the link when hovered. | `var(--foreground)` |
+| `--breadcrumb-page-font-weight` | Font weight of the page. | `500` |
+| `--breadcrumb-page-foreground` | Text colour of the page. | `var(--mint-75)` |
+| `--breadcrumb-ellipsis-size` | Width and height of the ellipsis. | `calc(var(--spacing) * 5)` |
+
+</details>
+
+<details>
+<summary><strong>button-group</strong> (6)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--button-group-text-gap` | Gap between items of the text. | `calc(var(--spacing) * 2)` |
+| `--button-group-text-radius` | Corner radius of the text. | `var(--radius-4xl)` |
+| `--button-group-text` | Fill colour of the text. | `var(--muted)` |
+| `--button-group-text-padding-x` | Horizontal padding of the text. | `calc(var(--spacing) * 2.5)` |
+| `--button-group-text-font-weight` | Font weight of the text. | `500` |
+| `--button-group-separator` | Fill colour of the separator. | `var(--input)` |
+
+</details>
+
+<details>
+<summary><strong>button</strong> (73)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--button-radius` | Corner radius of the button. | `var(--radius-xl)` |
+| `--button-font-weight` | Font weight of the button. | `600` |
+| `--button-focus-ring` | Ring colour of the button when focused. | `var(--navy)` |
+| `--button-invalid-ring` | Ring colour of the button when invalid. | `color-mix(in oklab, var(--error-75) 20%, transparent)` |
+| `--button-default` | Fill colour of the button (default variant). | `var(--primary)` |
+| `--button-default-foreground` | Text colour of the button (default variant). | `var(--primary-foreground)` |
+| `--button-default-shadow` | Shadow of the button (default variant). | `0 1px 2px 0 rgb(0 0 0 / 0.05)` |
+| `--button-default-hover` | Fill colour of the button (default variant) when hovered. | `color-mix(in oklab, var(--primary) 80%, transparent)` |
+| `--button-default-open` | Fill colour of the button (default variant) while open. | `color-mix(in oklab, var(--primary) 80%, transparent)` |
+| `--button-default-disabled` | Fill colour of the button (default variant) when disabled. | `var(--light-l2)` |
+| `--button-default-disabled-foreground` | Text colour of the button (default variant) when disabled. | `var(--dark-45)` |
+| `--button-default-disabled-shadow` | Shadow of the button (default variant) when disabled. | `0 0 #0000` |
+| `--button-outline-border` | Border colour of the button (outline variant). | `var(--dark-15)` |
+| `--button-outline` | Fill colour of the button (outline variant). | `var(--white)` |
+| `--button-outline-foreground` | Text colour of the button (outline variant). | `var(--dark-90)` |
+| `--button-outline-hover-border` | Border colour of the button (outline variant) when hovered. | `var(--dark-45)` |
+| `--button-outline-hover` | Fill colour of the button (outline variant) when hovered. | `var(--dark-45)` |
+| `--button-outline-hover-foreground` | Text colour of the button (outline variant) when hovered. | `var(--white)` |
+| `--button-outline-open-border` | Border colour of the button (outline variant) while open. | `var(--mint-45)` |
+| `--button-outline-open` | Fill colour of the button (outline variant) while open. | `var(--mint-l4)` |
+| `--button-outline-open-foreground` | Text colour of the button (outline variant) while open. | `var(--mint-75)` |
+| `--button-outline-open-ring` | Ring colour of the button (outline variant) while open. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
+| `--button-outline-disabled-border` | Border colour of the button (outline variant) when disabled. | `var(--light-l2)` |
+| `--button-outline-disabled` | Fill colour of the button (outline variant) when disabled. | `var(--light-l2)` |
+| `--button-outline-disabled-foreground` | Text colour of the button (outline variant) when disabled. | `var(--dark-45)` |
+| `--button-secondary-border` | Border colour of the button (secondary variant). | `var(--navy)` |
+| `--button-secondary` | Fill colour of the button (secondary variant). | `var(--white)` |
+| `--button-secondary-foreground` | Text colour of the button (secondary variant). | `var(--navy)` |
+| `--button-secondary-hover` | Fill colour of the button (secondary variant) when hovered. | `var(--navy)` |
+| `--button-secondary-hover-foreground` | Text colour of the button (secondary variant) when hovered. | `var(--white)` |
+| `--button-secondary-open` | Fill colour of the button (secondary variant) while open. | `var(--navy)` |
+| `--button-secondary-open-foreground` | Text colour of the button (secondary variant) while open. | `var(--white)` |
+| `--button-secondary-disabled-border` | Border colour of the button (secondary variant) when disabled. | `var(--dark-15)` |
+| `--button-secondary-disabled` | Fill colour of the button (secondary variant) when disabled. | `var(--light-l2)` |
+| `--button-secondary-disabled-foreground` | Text colour of the button (secondary variant) when disabled. | `var(--dark-45)` |
+| `--button-ghost-foreground` | Text colour of the button (ghost variant). | `var(--mint-75)` |
+| `--button-ghost-hover-foreground` | Text colour of the button (ghost variant) when hovered. | `var(--mint-45)` |
+| `--button-ghost-open-foreground` | Text colour of the button (ghost variant) while open. | `var(--mint-45)` |
+| `--button-ghost-disabled-foreground` | Text colour of the button (ghost variant) when disabled. | `var(--dark-45)` |
+| `--button-destructive` | Fill colour of the button (destructive variant). | `var(--error-75)` |
+| `--button-destructive-foreground` | Text colour of the button (destructive variant). | `var(--white)` |
+| `--button-destructive-shadow` | Shadow of the button (destructive variant). | `0 1px 2px 0 rgb(0 0 0 / 0.05)` |
+| `--button-destructive-hover` | Fill colour of the button (destructive variant) when hovered. | `var(--error-45)` |
+| `--button-destructive-focus-ring` | Ring colour of the button (destructive variant) when focused. | `var(--button-focus-ring, var(--error-75))` |
+| `--button-destructive-disabled` | Fill colour of the button (destructive variant) when disabled. | `var(--light-l2)` |
+| `--button-destructive-disabled-foreground` | Text colour of the button (destructive variant) when disabled. | `var(--dark-45)` |
+| `--button-destructive-disabled-shadow` | Shadow of the button (destructive variant) when disabled. | `0 0 #0000` |
+| `--button-link-foreground` | Text colour of the button (link variant). | `var(--mint-75)` |
+| `--button-link-hover-foreground` | Text colour of the button (link variant) when hovered. | `var(--mint-45)` |
+| `--button-link-disabled-foreground` | Text colour of the button (link variant) when disabled. | `var(--dark-45)` |
+| `--button-md-height` | Height of the button (md size). | `calc(var(--spacing) * 10)` |
+| `--button-md-gap` | Gap between items of the button (md size). | `calc(var(--spacing) * 3)` |
+| `--button-md-padding-x` | Horizontal padding of the button (md size). | `calc(var(--spacing) * 4)` |
+| `--button-xs-height` | Height of the button (xs size). | `calc(var(--spacing) * 7)` |
+| `--button-xs-gap` | Gap between items of the button (xs size). | `calc(var(--spacing) * 1)` |
+| `--button-xs-radius` | Corner radius of the button (xs size). | `var(--button-radius, var(--radius-md))` |
+| `--button-xs-padding-x` | Horizontal padding of the button (xs size). | `calc(var(--spacing) * 3)` |
+| `--button-xs-padding-y` | Vertical padding of the button (xs size). | `calc(var(--spacing) * 1)` |
+| `--button-sm-height` | Height of the button (sm size). | `calc(var(--spacing) * 9)` |
+| `--button-sm-gap` | Gap between items of the button (sm size). | `calc(var(--spacing) * 2)` |
+| `--button-sm-radius` | Corner radius of the button (sm size). | `var(--button-radius, var(--radius-lg))` |
+| `--button-sm-padding-x` | Horizontal padding of the button (sm size). | `calc(var(--spacing) * 3.5)` |
+| `--button-lg-height` | Height of the button (lg size). | `calc(var(--spacing) * 11)` |
+| `--button-lg-gap` | Gap between items of the button (lg size). | `calc(var(--spacing) * 3)` |
+| `--button-lg-padding-x` | Horizontal padding of the button (lg size). | `calc(var(--spacing) * 4.5)` |
+| `--button-icon-size` | Width and height of the button (icon size). | `calc(var(--spacing) * 10)` |
+| `--button-icon-radius` | Corner radius of the button (icon size). | `var(--button-radius, var(--radius-full))` |
+| `--button-icon-xs-size` | Width and height of the button (icon-xs size). | `calc(var(--spacing) * 7)` |
+| `--button-icon-xs-radius` | Corner radius of the button (icon-xs size). | `var(--button-radius, var(--radius-full))` |
+| `--button-icon-sm-size` | Width and height of the button (icon-sm size). | `calc(var(--spacing) * 9)` |
+| `--button-icon-sm-radius` | Corner radius of the button (icon-sm size). | `var(--button-radius, var(--radius-full))` |
+| `--button-icon-lg-size` | Width and height of the button (icon-lg size). | `calc(var(--spacing) * 11)` |
+| `--button-icon-lg-radius` | Corner radius of the button (icon-lg size). | `var(--button-radius, var(--radius-full))` |
+
+</details>
+
+<details>
+<summary><strong>calendar</strong> (14)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--calendar-day-selected` | Fill of the selected day, and of a range's first and last day. | `var(--lime)` |
+| `--calendar-day-selected-foreground` | Text colour of the selected day. | `var(--navy)` |
+| `--calendar-day-foreground` | Text colour of a day. | `var(--dark-90)` |
+| `--calendar-day-hover` | Fill of a day when hovered. | `var(--light-l2)` |
+| `--calendar-day-radius` | Corner radius of a day, today and the ends of a range. | `var(--radius-full)` |
+| `--calendar-range` | Fill behind the days inside a range. | `var(--light-l2)` |
+| `--calendar-today` | Fill of today. | `var(--light-l2)` |
+| `--calendar-today-foreground` | Text colour of today. | `var(--dark-90)` |
+| `--calendar-outside-foreground` | Text colour of days from the previous and next month. | `var(--dark-45)` |
+| `--calendar-disabled-foreground` | Text colour of days that can't be picked. | `var(--dark-45)` |
+| `--calendar-caption-foreground` | Text colour of the month and year. | `var(--navy)` |
+| `--calendar-weekday-foreground` | Text colour of the weekday names. | `var(--dark-75)` |
+| `--calendar-nav-foreground` | Colour of the previous and next month arrows. | `var(--dark-75)` |
+| `--calendar-nav-hover-foreground` | Colour of the month arrows when hovered. | `var(--navy)` |
+
+</details>
+
+<details>
+<summary><strong>card</strong> (12)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--card-gap` | Gap between items of the card. | `calc(var(--spacing) * 6)` |
+| `--card-radius` | Corner radius of the card. | `var(--radius-lg)` |
+| `--card-border` | Border colour of the card. | `var(--border)` |
+| `--card-fill` | Fill colour of the card. | `var(--card)` |
+| `--card-shadow` | Shadow of the card. | `0 1px 2px 0 rgb(0 0 0 / 0.05)` |
+| `--card-padding-y` | Vertical padding of the card. | `calc(var(--spacing) * 6)` |
+| `--card-header-gap` | Gap between items of the header. | `calc(var(--spacing) * 2)` |
+| `--card-header-padding-x` | Horizontal padding of the header. | `calc(var(--spacing) * 6)` |
+| `--card-title-font-weight` | Font weight of the title. | `500` |
+| `--card-description-foreground` | Text colour of the description. | `var(--muted-foreground)` |
+| `--card-content-padding-x` | Horizontal padding of the content. | `calc(var(--spacing) * 6)` |
+| `--card-footer-padding-x` | Horizontal padding of the footer. | `calc(var(--spacing) * 6)` |
+
+</details>
+
+<details>
+<summary><strong>carousel</strong> (2)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--carousel-previous-radius` | Corner radius of the previous. | `var(--radius-full)` |
+| `--carousel-next-radius` | Corner radius of the next. | `var(--radius-full)` |
+
+</details>
+
+<details>
+<summary><strong>chart</strong> (0)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+
+
+</details>
+
+<details>
+<summary><strong>checkbox</strong> (12)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--checkbox-size` | Width and height of the checkbox. | `calc(var(--spacing) * 4)` |
+| `--checkbox-radius` | Corner radius of the checkbox. | `var(--radius-sm)` |
+| `--checkbox-border` | Border colour of the checkbox. | `var(--dark-45)` |
+| `--checkbox` | Fill colour of the checkbox. | `var(--white)` |
+| `--checkbox-foreground` | Text colour of the checkbox. | `var(--white)` |
+| `--checkbox-focus-border` | Border colour of the checkbox when focused. | `var(--mint-45)` |
+| `--checkbox-focus-ring` | Ring colour of the checkbox when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
+| `--checkbox-checked-border` | Border colour of the checkbox when checked. | `var(--mint-45)` |
+| `--checkbox-checked` | Fill colour of the checkbox when checked. | `var(--mint-45)` |
+| `--checkbox-invalid-border` | Border colour of the checkbox when invalid. | `var(--error-75)` |
+| `--checkbox-invalid-ring` | Ring colour of the checkbox when invalid. | `color-mix(in oklab, var(--error-75) 20%, transparent)` |
+| `--checkbox-disabled-opacity` | Opacity of the checkbox when disabled. | `0.5` |
+
+</details>
+
+<details>
+<summary><strong>collapsible</strong> (0)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+
+
+</details>
+
+<details>
+<summary><strong>combobox</strong> (39)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--combobox-content-radius` | Corner radius of the content. | `var(--radius-2xl)` |
+| `--combobox-content` | Fill colour of the content. | `var(--popover)` |
+| `--combobox-content-foreground` | Text colour of the content. | `var(--popover-foreground)` |
+| `--combobox-content-shadow` | Shadow of the content. | `0 25px 50px -12px rgb(0 0 0 / 0.25)` |
+| `--combobox-content-ring` | Ring colour of the content. | `color-mix(in oklab, var(--foreground) 5%, transparent)` |
+| `--combobox-list-padding` | Padding of the list. | `calc(var(--spacing) * 1)` |
+| `--combobox-item-gap` | Gap between items of the item. | `calc(var(--spacing) * 2.5)` |
+| `--combobox-item-radius` | Corner radius of the item. | `var(--radius-xl)` |
+| `--combobox-item-padding-y` | Vertical padding of the item. | `calc(var(--spacing) * 2)` |
+| `--combobox-item-highlighted` | Fill colour of the item when highlighted. | `var(--accent)` |
+| `--combobox-item-highlighted-foreground` | Text colour of the item when highlighted. | `var(--accent-foreground)` |
+| `--combobox-item-disabled-opacity` | Opacity of the item when disabled. | `0.5` |
+| `--combobox-label-padding-x` | Horizontal padding of the label. | `calc(var(--spacing) * 3.5)` |
+| `--combobox-label-padding-y` | Vertical padding of the label. | `calc(var(--spacing) * 2.5)` |
+| `--combobox-label-foreground` | Text colour of the label. | `var(--muted-foreground)` |
+| `--combobox-empty-padding-y` | Vertical padding of the empty. | `calc(var(--spacing) * 2)` |
+| `--combobox-empty-foreground` | Text colour of the empty. | `var(--muted-foreground)` |
+| `--combobox-separator-height` | Height of the separator. | `1px` |
+| `--combobox-separator` | Fill colour of the separator. | `color-mix(in oklab, var(--border) 50%, transparent)` |
+| `--combobox-chips-min-height` | Minimum height of the chips. | `calc(var(--spacing) * 9)` |
+| `--combobox-chips-gap` | Gap between items of the chips. | `calc(var(--spacing) * 1.5)` |
+| `--combobox-chips-radius` | Corner radius of the chips. | `var(--radius-4xl)` |
+| `--combobox-chips-border` | Border colour of the chips. | `var(--input)` |
+| `--combobox-chips` | Fill colour of the chips. | `color-mix(in oklab, var(--input) 30%, transparent)` |
+| `--combobox-chips-padding-x` | Horizontal padding of the chips. | `calc(var(--spacing) * 2.5)` |
+| `--combobox-chips-padding-y` | Vertical padding of the chips. | `calc(var(--spacing) * 1.5)` |
+| `--combobox-chips-focus-border` | Border colour of the chips when focused. | `var(--ring)` |
+| `--combobox-chips-focus-ring` | Ring colour of the chips when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
+| `--combobox-chips-invalid-border` | Border colour of the chips when invalid. | `var(--destructive)` |
+| `--combobox-chips-invalid-ring` | Ring colour of the chips when invalid. | `color-mix(in oklab, var(--destructive) 20%, transparent)` |
+| `--combobox-chip-gap` | Gap between items of the chip. | `calc(var(--spacing) * 1)` |
+| `--combobox-chip-radius` | Corner radius of the chip. | `var(--radius-4xl)` |
+| `--combobox-chip` | Fill colour of the chip. | `color-mix(in oklab, var(--muted-foreground) 10%, transparent)` |
+| `--combobox-chip-padding-x` | Horizontal padding of the chip. | `calc(var(--spacing) * 2)` |
+| `--combobox-chip-font-weight` | Font weight of the chip. | `500` |
+| `--combobox-chip-foreground` | Text colour of the chip. | `var(--foreground)` |
+| `--combobox-chip-disabled-opacity` | Opacity of the chip when disabled. | `0.5` |
+| `--combobox-chip-remove-opacity` | Opacity of the chip-remove. | `0.5` |
+| `--combobox-chip-remove-hover-opacity` | Opacity of the chip-remove when hovered. | `1` |
+
+</details>
+
+<details>
+<summary><strong>command</strong> (26)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--command-radius` | Corner radius of the command. | `var(--radius-lg)` |
+| `--command-border` | Border colour of the command. | `var(--light-l3)` |
+| `--command` | Fill colour of the command. | `var(--white)` |
+| `--command-foreground` | Text colour of the command. | `var(--dark-90)` |
+| `--command-shadow` | Shadow of the command. | `0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)` |
+| `--command-input-wrapper-height` | Height of the input-wrapper. | `calc(var(--spacing) * 11)` |
+| `--command-input-wrapper-gap` | Gap between items of the input-wrapper. | `calc(var(--spacing) * 2)` |
+| `--command-input-wrapper-border` | Border colour of the input-wrapper. | `var(--light-l3)` |
+| `--command-input-wrapper-padding-x` | Horizontal padding of the input-wrapper. | `calc(var(--spacing) * 3)` |
+| `--command-input-foreground` | Text colour of the input. | `var(--dark-100)` |
+| `--command-input-placeholder` | Placeholder text colour of the input. | `var(--dark-90)` |
+| `--command-input-disabled-foreground` | Text colour of the input when disabled. | `var(--dark-45)` |
+| `--command-list-padding` | Padding of the list. | `calc(var(--spacing) * 1)` |
+| `--command-empty-padding-y` | Vertical padding of the empty. | `calc(var(--spacing) * 6)` |
+| `--command-empty-foreground` | Text colour of the empty. | `var(--dark-75)` |
+| `--command-group-foreground` | Text colour of the group. | `var(--dark-90)` |
+| `--command-separator-height` | Height of the separator. | `1px` |
+| `--command-separator` | Fill colour of the separator. | `var(--light-l3)` |
+| `--command-item-height` | Height of the item. | `calc(var(--spacing) * 8)` |
+| `--command-item-gap` | Gap between items of the item. | `calc(var(--spacing) * 2.5)` |
+| `--command-item-radius` | Corner radius of the item. | `var(--radius-md)` |
+| `--command-item-padding-x` | Horizontal padding of the item. | `calc(var(--spacing) * 2)` |
+| `--command-item-foreground` | Text colour of the item. | `var(--dark-90)` |
+| `--command-item-selected` | Fill colour of the item when selected. | `var(--mint-l2)` |
+| `--command-item-selected-foreground` | Text colour of the item when selected. | `var(--mint-75)` |
+| `--command-shortcut-foreground` | Text colour of the shortcut. | `var(--dark-75)` |
+
+</details>
+
+<details>
+<summary><strong>context-menu</strong> (39)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--context-menu-content-radius` | Corner radius of the content. | `var(--radius-lg)` |
+| `--context-menu-content-border` | Border colour of the content. | `var(--border)` |
+| `--context-menu-content` | Fill colour of the content. | `var(--popover)` |
+| `--context-menu-content-padding` | Padding of the content. | `calc(var(--spacing) * 1)` |
+| `--context-menu-content-foreground` | Text colour of the content. | `var(--popover-foreground)` |
+| `--context-menu-content-shadow` | Shadow of the content. | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` |
+| `--context-menu-label-padding-x` | Horizontal padding of the label. | `calc(var(--spacing) * 3)` |
+| `--context-menu-label-padding-y` | Vertical padding of the label. | `calc(var(--spacing) * 2.5)` |
+| `--context-menu-label-foreground` | Text colour of the label. | `var(--muted-foreground)` |
+| `--context-menu-item-gap` | Gap between items of the item. | `calc(var(--spacing) * 2.5)` |
+| `--context-menu-item-radius` | Corner radius of the item. | `var(--radius-md)` |
+| `--context-menu-item-padding-x` | Horizontal padding of the item. | `calc(var(--spacing) * 3)` |
+| `--context-menu-item-padding-y` | Vertical padding of the item. | `calc(var(--spacing) * 2)` |
+| `--context-menu-item-focus` | Fill colour of the item when focused. | `var(--accent)` |
+| `--context-menu-item-focus-foreground` | Text colour of the item when focused. | `var(--accent-foreground)` |
+| `--context-menu-item-disabled-opacity` | Opacity of the item when disabled. | `0.5` |
+| `--context-menu-sub-trigger-radius` | Corner radius of the sub-trigger. | `var(--radius-md)` |
+| `--context-menu-sub-trigger-padding-x` | Horizontal padding of the sub-trigger. | `calc(var(--spacing) * 3)` |
+| `--context-menu-sub-trigger-padding-y` | Vertical padding of the sub-trigger. | `calc(var(--spacing) * 2)` |
+| `--context-menu-sub-trigger-focus` | Fill colour of the sub-trigger when focused. | `var(--accent)` |
+| `--context-menu-sub-trigger-focus-foreground` | Text colour of the sub-trigger when focused. | `var(--accent-foreground)` |
+| `--context-menu-sub-trigger-open` | Fill colour of the sub-trigger while open. | `var(--accent)` |
+| `--context-menu-sub-trigger-open-foreground` | Text colour of the sub-trigger while open. | `var(--accent-foreground)` |
+| `--context-menu-sub-content-shadow` | Shadow of the sub-content. | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` |
+| `--context-menu-checkbox-item-gap` | Gap between items of the checkbox-item. | `calc(var(--spacing) * 2)` |
+| `--context-menu-checkbox-item-radius` | Corner radius of the checkbox-item. | `var(--radius-md)` |
+| `--context-menu-checkbox-item-padding-y` | Vertical padding of the checkbox-item. | `calc(var(--spacing) * 2)` |
+| `--context-menu-checkbox-item-focus` | Fill colour of the checkbox-item when focused. | `var(--accent)` |
+| `--context-menu-checkbox-item-focus-foreground` | Text colour of the checkbox-item when focused. | `var(--accent-foreground)` |
+| `--context-menu-checkbox-item-disabled-opacity` | Opacity of the checkbox-item when disabled. | `0.5` |
+| `--context-menu-radio-item-gap` | Gap between items of the radio-item. | `calc(var(--spacing) * 2)` |
+| `--context-menu-radio-item-radius` | Corner radius of the radio-item. | `var(--radius-md)` |
+| `--context-menu-radio-item-padding-y` | Vertical padding of the radio-item. | `calc(var(--spacing) * 2)` |
+| `--context-menu-radio-item-focus` | Fill colour of the radio-item when focused. | `var(--accent)` |
+| `--context-menu-radio-item-focus-foreground` | Text colour of the radio-item when focused. | `var(--accent-foreground)` |
+| `--context-menu-radio-item-disabled-opacity` | Opacity of the radio-item when disabled. | `0.5` |
+| `--context-menu-separator-height` | Height of the separator. | `1px` |
+| `--context-menu-separator` | Fill colour of the separator. | `color-mix(in oklab, var(--border) 50%, transparent)` |
+| `--context-menu-shortcut-foreground` | Text colour of the shortcut. | `var(--muted-foreground)` |
+
+</details>
+
+<details>
+<summary><strong>dialog</strong> (12)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--dialog-overlay` | Fill colour of the overlay. | `color-mix(in oklab, var(--dark-100) 50%, transparent)` |
+| `--dialog-content-radius` | Corner radius of the content. | `var(--radius-3xl)` |
+| `--dialog-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 4)` |
+| `--dialog-content` | Fill colour of the content. | `var(--white)` |
+| `--dialog-content-padding` | Padding of the content. | `calc(var(--spacing) * 6)` |
+| `--dialog-content-foreground` | Text colour of the content. | `var(--dark-90)` |
+| `--dialog-content-shadow` | Shadow of the content. | `0 25px 50px -12px rgb(0 0 0 / 0.25)` |
+| `--dialog-header-gap` | Gap between items of the header. | `calc(var(--spacing) * 1.5)` |
+| `--dialog-footer-gap` | Gap between items of the footer. | `calc(var(--spacing) * 2)` |
+| `--dialog-title-font-weight` | Font weight of the title. | `600` |
+| `--dialog-title-foreground` | Text colour of the title. | `var(--navy)` |
+| `--dialog-description-foreground` | Text colour of the description. | `var(--dark-90)` |
+
+</details>
+
+<details>
+<summary><strong>direction</strong> (0)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+
+
+</details>
+
+<details>
+<summary><strong>drawer</strong> (14)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--drawer-overlay` | Fill colour of the overlay. | `color-mix(in oklab, #000 80%, transparent)` |
+| `--drawer-popup-min-height` | Minimum height of the popup. | `calc(var(--spacing) * 0)` |
+| `--drawer-popup-radius` | Corner radius of the popup. | `var(--radius-4xl)` |
+| `--drawer-popup-border` | Border colour of the popup. | `var(--popover)` |
+| `--drawer-popup` | Fill colour of the popup. | `var(--popover)` |
+| `--drawer-popup-foreground` | Text colour of the popup. | `var(--popover-foreground)` |
+| `--drawer-content-min-height` | Minimum height of the content. | `calc(var(--spacing) * 0)` |
+| `--drawer-header-gap` | Gap between items of the header. | `calc(var(--spacing) * 0.5)` |
+| `--drawer-header-padding` | Padding of the header. | `calc(var(--spacing) * 4)` |
+| `--drawer-footer-gap` | Gap between items of the footer. | `calc(var(--spacing) * 2)` |
+| `--drawer-footer-padding` | Padding of the footer. | `calc(var(--spacing) * 4)` |
+| `--drawer-title-font-weight` | Font weight of the title. | `500` |
+| `--drawer-title-foreground` | Text colour of the title. | `var(--foreground)` |
+| `--drawer-description-foreground` | Text colour of the description. | `var(--muted-foreground)` |
+
+</details>
+
+<details>
+<summary><strong>dropdown-menu</strong> (41)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--dropdown-menu-content-radius` | Corner radius of the content. | `var(--radius-lg)` |
+| `--dropdown-menu-content-border` | Border colour of the content. | `var(--dark-45)` |
+| `--dropdown-menu-content` | Fill colour of the content. | `var(--white)` |
+| `--dropdown-menu-content-padding` | Padding of the content. | `calc(var(--spacing) * 1)` |
+| `--dropdown-menu-content-foreground` | Text colour of the content. | `var(--dark-90)` |
+| `--dropdown-menu-content-shadow` | Shadow of the content. | `0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)` |
+| `--dropdown-menu-label-padding-x` | Horizontal padding of the label. | `calc(var(--spacing) * 2.5)` |
+| `--dropdown-menu-label-font-weight` | Font weight of the label. | `600` |
+| `--dropdown-menu-label-foreground` | Text colour of the label. | `var(--navy)` |
+| `--dropdown-menu-item-height` | Height of the item. | `calc(var(--spacing) * 8)` |
+| `--dropdown-menu-item-gap` | Gap between items of the item. | `calc(var(--spacing) * 2.5)` |
+| `--dropdown-menu-item-radius` | Corner radius of the item. | `var(--radius-md)` |
+| `--dropdown-menu-item-padding-x` | Horizontal padding of the item. | `calc(var(--spacing) * 2.5)` |
+| `--dropdown-menu-item-foreground` | Text colour of the item. | `var(--dark-90)` |
+| `--dropdown-menu-item-highlighted` | Fill colour of the item when highlighted. | `var(--mint-l2)` |
+| `--dropdown-menu-item-highlighted-foreground` | Text colour of the item when highlighted. | `var(--mint-75)` |
+| `--dropdown-menu-item-disabled-foreground` | Text colour of the item when disabled. | `var(--dark-45)` |
+| `--dropdown-menu-sub-trigger-height` | Height of the sub-trigger. | `calc(var(--spacing) * 8)` |
+| `--dropdown-menu-sub-trigger-gap` | Gap between items of the sub-trigger. | `calc(var(--spacing) * 2.5)` |
+| `--dropdown-menu-sub-trigger-radius` | Corner radius of the sub-trigger. | `var(--radius-md)` |
+| `--dropdown-menu-sub-trigger-padding-x` | Horizontal padding of the sub-trigger. | `calc(var(--spacing) * 2.5)` |
+| `--dropdown-menu-sub-trigger-foreground` | Text colour of the sub-trigger. | `var(--dark-90)` |
+| `--dropdown-menu-sub-trigger-highlighted` | Fill colour of the sub-trigger when highlighted. | `var(--mint-l2)` |
+| `--dropdown-menu-sub-trigger-highlighted-foreground` | Text colour of the sub-trigger when highlighted. | `var(--mint-75)` |
+| `--dropdown-menu-sub-trigger-disabled-foreground` | Text colour of the sub-trigger when disabled. | `var(--dark-45)` |
+| `--dropdown-menu-sub-trigger-open` | Fill colour of the sub-trigger while open. | `var(--mint-l2)` |
+| `--dropdown-menu-sub-trigger-open-foreground` | Text colour of the sub-trigger while open. | `var(--mint-75)` |
+| `--dropdown-menu-checkbox-item-gap` | Gap between items of the checkbox-item. | `calc(var(--spacing) * 2.5)` |
+| `--dropdown-menu-checkbox-item-padding-x` | Horizontal padding of the checkbox-item. | `calc(var(--spacing) * 2.5)` |
+| `--dropdown-menu-checkbox-item-indicator-size` | Width and height of the checkbox-item-indicator. | `calc(var(--spacing) * 4)` |
+| `--dropdown-menu-checkbox-item-indicator-radius` | Corner radius of the checkbox-item-indicator. | `var(--radius-sm)` |
+| `--dropdown-menu-checkbox-item-indicator-border` | Border colour of the checkbox-item-indicator. | `var(--dark-45)` |
+| `--dropdown-menu-checkbox-item-indicator` | Fill colour of the checkbox-item-indicator. | `var(--white)` |
+| `--dropdown-menu-checkbox-item-indicator-foreground` | Text colour of the checkbox-item-indicator. | `var(--white)` |
+| `--dropdown-menu-radio-item-gap` | Gap between items of the radio-item. | `calc(var(--spacing) * 2.5)` |
+| `--dropdown-menu-radio-item-padding-x` | Horizontal padding of the radio-item. | `calc(var(--spacing) * 2.5)` |
+| `--dropdown-menu-radio-item-checked` | Fill colour of the radio-item when checked. | `var(--mint-l2)` |
+| `--dropdown-menu-radio-item-checked-foreground` | Text colour of the radio-item when checked. | `var(--mint-75)` |
+| `--dropdown-menu-separator-height` | Height of the separator. | `1px` |
+| `--dropdown-menu-separator` | Fill colour of the separator. | `var(--light-l3)` |
+| `--dropdown-menu-shortcut-foreground` | Text colour of the shortcut. | `var(--dark-75)` |
+
+</details>
+
+<details>
+<summary><strong>empty</strong> (13)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--empty-gap` | Gap between items of the empty. | `calc(var(--spacing) * 4)` |
+| `--empty-radius` | Corner radius of the empty. | `var(--radius-lg)` |
+| `--empty-padding-x` | Horizontal padding of the empty. | `calc(var(--spacing) * 6)` |
+| `--empty-padding-y` | Vertical padding of the empty. | `calc(var(--spacing) * 10)` |
+| `--empty-header-gap` | Gap between items of the header. | `calc(var(--spacing) * 1.5)` |
+| `--empty-icon-icon-size` | Width and height of the icon (icon variant). | `calc(var(--spacing) * 10)` |
+| `--empty-icon-icon-radius` | Corner radius of the icon (icon variant). | `var(--radius-full)` |
+| `--empty-icon-icon` | Fill colour of the icon (icon variant). | `var(--accent)` |
+| `--empty-icon-icon-foreground` | Text colour of the icon (icon variant). | `var(--mint-75)` |
+| `--empty-title-font-weight` | Font weight of the title. | `600` |
+| `--empty-title-foreground` | Text colour of the title. | `var(--navy)` |
+| `--empty-description-foreground` | Text colour of the description. | `var(--muted-foreground)` |
+| `--empty-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 4)` |
+
+</details>
+
+<details>
+<summary><strong>field</strong> (17)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--field-set-gap` | Gap between items of the set. | `calc(var(--spacing) * 5)` |
+| `--field-legend-font-weight` | Font weight of the legend. | `600` |
+| `--field-legend-foreground` | Text colour of the legend. | `var(--navy)` |
+| `--field-group-gap` | Gap between items of the group. | `calc(var(--spacing) * 5)` |
+| `--field-gap` | Gap between items of the field. | `calc(var(--spacing) * 1.5)` |
+| `--field-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 1)` |
+| `--field-label-gap` | Gap between items of the label. | `calc(var(--spacing) * 2)` |
+| `--field-label-font-weight` | Font weight of the label. | `600` |
+| `--field-label-foreground` | Text colour of the label. | `var(--navy)` |
+| `--field-description-font-weight` | Font weight of the description. | `400` |
+| `--field-description-foreground` | Text colour of the description. | `var(--muted-foreground)` |
+| `--field-separator-height` | Height of the separator. | `calc(var(--spacing) * 5)` |
+| `--field-separator-content` | Fill colour of the separator-content. | `var(--background)` |
+| `--field-separator-content-padding-x` | Horizontal padding of the separator-content. | `calc(var(--spacing) * 2)` |
+| `--field-separator-content-foreground` | Text colour of the separator-content. | `var(--muted-foreground)` |
+| `--field-error-font-weight` | Font weight of the error. | `400` |
+| `--field-error-foreground` | Text colour of the error. | `var(--destructive)` |
+
+</details>
+
+<details>
+<summary><strong>hover-card</strong> (8)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--hover-card-content-width` | Width of the content. | `calc(var(--spacing) * 75)` |
+| `--hover-card-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 3)` |
+| `--hover-card-content-radius` | Corner radius of the content. | `var(--radius-lg)` |
+| `--hover-card-content-border` | Border colour of the content. | `var(--light-l3)` |
+| `--hover-card-content` | Fill colour of the content. | `var(--white)` |
+| `--hover-card-content-padding` | Padding of the content. | `calc(var(--spacing) * 4)` |
+| `--hover-card-content-foreground` | Text colour of the content. | `var(--dark-90)` |
+| `--hover-card-content-shadow` | Shadow of the content. | `0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)` |
+
+</details>
+
+<details>
+<summary><strong>input-group</strong> (14)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--input-group-min-height` | Minimum height of the input-group. | `calc(var(--spacing) * 10)` |
+| `--input-group-gap` | Gap between items of the input-group. | `calc(var(--spacing) * 2)` |
+| `--input-group-radius` | Corner radius of the input-group. | `var(--radius-lg)` |
+| `--input-group-border` | Border colour of the input-group. | `var(--dark-45)` |
+| `--input-group` | Fill colour of the input-group. | `var(--white)` |
+| `--input-group-padding-x` | Horizontal padding of the input-group. | `calc(var(--spacing) * 3)` |
+| `--input-group-focus-border` | Border colour of the input-group when focused. | `var(--mint-45)` |
+| `--input-group-focus-ring` | Ring colour of the input-group when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
+| `--input-group-addon-gap` | Gap between items of the addon. | `calc(var(--spacing) * 2)` |
+| `--input-group-addon-foreground` | Text colour of the addon. | `var(--dark-75)` |
+| `--input-group-control-min-height` | Minimum height of the control. | `calc(var(--spacing) * 9)` |
+| `--input-group-control-radius` | Corner radius of the control. | `0` |
+| `--input-group-control-padding-x` | Horizontal padding of the control. | `calc(var(--spacing) * 0)` |
+| `--input-group-control-shadow` | Shadow of the control. | `0 0 #0000` |
+
+</details>
+
+<details>
+<summary><strong>input-otp</strong> (13)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--input-otp-group-gap` | Gap between items of the group. | `calc(var(--spacing) * 0.5)` |
+| `--input-otp-slot-size` | Width and height of the slot. | `calc(var(--spacing) * 8)` |
+| `--input-otp-slot-radius` | Corner radius of the slot. | `var(--radius-md)` |
+| `--input-otp-slot-border` | Border colour of the slot. | `var(--dark-45)` |
+| `--input-otp-slot` | Fill colour of the slot. | `var(--white)` |
+| `--input-otp-slot-font-weight` | Font weight of the slot. | `500` |
+| `--input-otp-slot-foreground` | Text colour of the slot. | `var(--dark-100)` |
+| `--input-otp-slot-active-border` | Border colour of the slot when active. | `var(--mint-45)` |
+| `--input-otp-slot-active-foreground` | Text colour of the slot when active. | `var(--navy)` |
+| `--input-otp-slot-active-ring` | Ring colour of the slot when active. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
+| `--input-otp-slot-invalid-border` | Border colour of the slot when invalid. | `var(--error-75)` |
+| `--input-otp-separator-padding-x` | Horizontal padding of the separator. | `calc(var(--spacing) * 1)` |
+| `--input-otp-separator-foreground` | Text colour of the separator. | `var(--dark-75)` |
+
+</details>
+
+<details>
+<summary><strong>input</strong> (13)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--input-radius` | Corner radius of the input. | `var(--radius-lg)` |
+| `--input-border` | Border colour of the input. | `var(--dark-45)` |
+| `--input-fill` | Fill colour of the input. | `var(--white)` |
+| `--input-padding-x` | Horizontal padding of the input. | `calc(var(--spacing) * 3)` |
+| `--input-foreground` | Text colour of the input. | `var(--dark-100)` |
+| `--input-placeholder` | Placeholder text colour of the input. | `var(--dark-90)` |
+| `--input-focus-border` | Border colour of the input when focused. | `var(--mint-45)` |
+| `--input-focus-ring` | Ring colour of the input when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
+| `--input-invalid-border` | Border colour of the input when invalid. | `var(--error-75)` |
+| `--input-disabled` | Fill colour of the input when disabled. | `var(--light-l2)` |
+| `--input-disabled-foreground` | Text colour of the input when disabled. | `var(--dark-45)` |
+| `--input-height` | Height of the input. | `calc(var(--spacing) * 10)` |
+| `--input-padding-y` | Vertical padding of the input. | `calc(var(--spacing) * 1)` |
+
+</details>
+
+<details>
+<summary><strong>item</strong> (26)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--item-group-gap` | Gap between items of the group. | `calc(var(--spacing) * 4)` |
+| `--item-radius` | Corner radius of the item. | `var(--radius-2xl)` |
+| `--item-focus-border` | Border colour of the item when focused. | `var(--ring)` |
+| `--item-focus-ring` | Ring colour of the item when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
+| `--item-outline-border` | Border colour of the item (outline variant). | `var(--border)` |
+| `--item-muted` | Fill colour of the item (muted variant). | `color-mix(in oklab, var(--muted) 50%, transparent)` |
+| `--item-md-gap` | Gap between items of the item (md size). | `calc(var(--spacing) * 3.5)` |
+| `--item-md-padding-x` | Horizontal padding of the item (md size). | `calc(var(--spacing) * 4)` |
+| `--item-md-padding-y` | Vertical padding of the item (md size). | `calc(var(--spacing) * 3.5)` |
+| `--item-sm-gap` | Gap between items of the item (sm size). | `calc(var(--spacing) * 3.5)` |
+| `--item-sm-padding-x` | Horizontal padding of the item (sm size). | `calc(var(--spacing) * 3.5)` |
+| `--item-sm-padding-y` | Vertical padding of the item (sm size). | `calc(var(--spacing) * 3)` |
+| `--item-xs-gap` | Gap between items of the item (xs size). | `calc(var(--spacing) * 2.5)` |
+| `--item-xs-padding-x` | Horizontal padding of the item (xs size). | `calc(var(--spacing) * 3)` |
+| `--item-xs-padding-y` | Vertical padding of the item (xs size). | `calc(var(--spacing) * 2.5)` |
+| `--item-media-gap` | Gap between items of the media. | `calc(var(--spacing) * 2)` |
+| `--item-media-image-size` | Width and height of the media (image variant). | `calc(var(--spacing) * 10)` |
+| `--item-media-image-radius` | Corner radius of the media (image variant). | `var(--radius-lg)` |
+| `--item-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 1)` |
+| `--item-title-gap` | Gap between items of the title. | `calc(var(--spacing) * 2)` |
+| `--item-title-font-weight` | Font weight of the title. | `500` |
+| `--item-description-font-weight` | Font weight of the description. | `400` |
+| `--item-description-foreground` | Text colour of the description. | `var(--muted-foreground)` |
+| `--item-actions-gap` | Gap between items of the actions. | `calc(var(--spacing) * 2)` |
+| `--item-header-gap` | Gap between items of the header. | `calc(var(--spacing) * 2)` |
+| `--item-footer-gap` | Gap between items of the footer. | `calc(var(--spacing) * 2)` |
+
+</details>
+
+<details>
+<summary><strong>kbd</strong> (8)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--kbd-height` | Height of the kbd. | `calc(var(--spacing) * 5)` |
+| `--kbd-gap` | Gap between items of the kbd. | `calc(var(--spacing) * 1)` |
+| `--kbd-radius` | Corner radius of the kbd. | `var(--radius-sm)` |
+| `--kbd` | Fill colour of the kbd. | `var(--muted)` |
+| `--kbd-padding-x` | Horizontal padding of the kbd. | `calc(var(--spacing) * 1)` |
+| `--kbd-font-weight` | Font weight of the kbd. | `500` |
+| `--kbd-foreground` | Text colour of the kbd. | `var(--muted-foreground)` |
+| `--kbd-group-gap` | Gap between items of the group. | `calc(var(--spacing) * 1)` |
+
+</details>
+
+<details>
+<summary><strong>label</strong> (3)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--label-gap` | Gap between items of the label. | `calc(var(--spacing) * 2)` |
+| `--label-font-weight` | Font weight of the label. | `500` |
+| `--label-foreground` | Text colour of the label. | `var(--dark-90)` |
+
+</details>
+
+<details>
+<summary><strong>menubar</strong> (55)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--menubar-height` | Height of the menubar. | `calc(var(--spacing) * 9)` |
+| `--menubar-radius` | Corner radius of the menubar. | `var(--radius-md)` |
+| `--menubar-border` | Border colour of the menubar. | `var(--border)` |
+| `--menubar-padding` | Padding of the menubar. | `calc(var(--spacing) * 1)` |
+| `--menubar-trigger-radius` | Corner radius of the trigger. | `var(--radius-sm)` |
+| `--menubar-trigger-padding-x` | Horizontal padding of the trigger. | `calc(var(--spacing) * 2)` |
+| `--menubar-trigger-padding-y` | Vertical padding of the trigger. | `calc(var(--spacing) * 0.75)` |
+| `--menubar-trigger-font-weight` | Font weight of the trigger. | `500` |
+| `--menubar-trigger-hover-foreground` | Text colour of the trigger when hovered. | `var(--mint-75)` |
+| `--menubar-trigger-open` | Fill colour of the trigger while open. | `var(--muted)` |
+| `--menubar-content-radius` | Corner radius of the content. | `var(--radius-lg)` |
+| `--menubar-content-border` | Border colour of the content. | `var(--border)` |
+| `--menubar-content` | Fill colour of the content. | `var(--popover)` |
+| `--menubar-content-padding` | Padding of the content. | `calc(var(--spacing) * 1)` |
+| `--menubar-content-foreground` | Text colour of the content. | `var(--popover-foreground)` |
+| `--menubar-content-shadow` | Shadow of the content. | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` |
+| `--menubar-item-gap` | Gap between items of the item. | `calc(var(--spacing) * 2.5)` |
+| `--menubar-item-radius` | Corner radius of the item. | `var(--radius-md)` |
+| `--menubar-item-padding-x` | Horizontal padding of the item. | `calc(var(--spacing) * 3)` |
+| `--menubar-item-padding-y` | Vertical padding of the item. | `calc(var(--spacing) * 2)` |
+| `--menubar-item-focus` | Fill colour of the item when focused. | `var(--accent)` |
+| `--menubar-item-focus-foreground` | Text colour of the item when focused. | `var(--accent-foreground)` |
+| `--menubar-item-disabled-opacity` | Opacity of the item when disabled. | `0.5` |
+| `--menubar-checkbox-item-gap` | Gap between items of the checkbox-item. | `calc(var(--spacing) * 2.5)` |
+| `--menubar-checkbox-item-radius` | Corner radius of the checkbox-item. | `var(--radius-md)` |
+| `--menubar-checkbox-item-padding-y` | Vertical padding of the checkbox-item. | `calc(var(--spacing) * 2)` |
+| `--menubar-checkbox-item-focus` | Fill colour of the checkbox-item when focused. | `var(--accent)` |
+| `--menubar-checkbox-item-focus-foreground` | Text colour of the checkbox-item when focused. | `var(--accent-foreground)` |
+| `--menubar-checkbox-item-disabled-opacity` | Opacity of the checkbox-item when disabled. | `0.5` |
+| `--menubar-radio-item-gap` | Gap between items of the radio-item. | `calc(var(--spacing) * 2.5)` |
+| `--menubar-radio-item-radius` | Corner radius of the radio-item. | `var(--radius-md)` |
+| `--menubar-radio-item-padding-y` | Vertical padding of the radio-item. | `calc(var(--spacing) * 2)` |
+| `--menubar-radio-item-focus` | Fill colour of the radio-item when focused. | `var(--accent)` |
+| `--menubar-radio-item-focus-foreground` | Text colour of the radio-item when focused. | `var(--accent-foreground)` |
+| `--menubar-radio-item-disabled-opacity` | Opacity of the radio-item when disabled. | `0.5` |
+| `--menubar-label-padding-x` | Horizontal padding of the label. | `calc(var(--spacing) * 3.5)` |
+| `--menubar-label-padding-y` | Vertical padding of the label. | `calc(var(--spacing) * 2.5)` |
+| `--menubar-label-foreground` | Text colour of the label. | `var(--muted-foreground)` |
+| `--menubar-separator-height` | Height of the separator. | `1px` |
+| `--menubar-separator` | Fill colour of the separator. | `color-mix(in oklab, var(--border) 50%, transparent)` |
+| `--menubar-shortcut-foreground` | Text colour of the shortcut. | `var(--muted-foreground)` |
+| `--menubar-sub-trigger-gap` | Gap between items of the sub-trigger. | `calc(var(--spacing) * 2)` |
+| `--menubar-sub-trigger-radius` | Corner radius of the sub-trigger. | `var(--radius-md)` |
+| `--menubar-sub-trigger-padding-x` | Horizontal padding of the sub-trigger. | `calc(var(--spacing) * 3)` |
+| `--menubar-sub-trigger-padding-y` | Vertical padding of the sub-trigger. | `calc(var(--spacing) * 2)` |
+| `--menubar-sub-trigger-focus` | Fill colour of the sub-trigger when focused. | `var(--accent)` |
+| `--menubar-sub-trigger-focus-foreground` | Text colour of the sub-trigger when focused. | `var(--accent-foreground)` |
+| `--menubar-sub-trigger-open` | Fill colour of the sub-trigger while open. | `var(--accent)` |
+| `--menubar-sub-trigger-open-foreground` | Text colour of the sub-trigger while open. | `var(--accent-foreground)` |
+| `--menubar-sub-content-radius` | Corner radius of the sub-content. | `var(--radius-lg)` |
+| `--menubar-sub-content-border` | Border colour of the sub-content. | `var(--border)` |
+| `--menubar-sub-content` | Fill colour of the sub-content. | `var(--popover)` |
+| `--menubar-sub-content-padding` | Padding of the sub-content. | `calc(var(--spacing) * 1)` |
+| `--menubar-sub-content-foreground` | Text colour of the sub-content. | `var(--popover-foreground)` |
+| `--menubar-sub-content-shadow` | Shadow of the sub-content. | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` |
+
+</details>
+
+<details>
+<summary><strong>native-select</strong> (16)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--native-select-height` | Height of the native-select. | `calc(var(--spacing) * 9)` |
+| `--native-select-radius` | Corner radius of the native-select. | `var(--radius-4xl)` |
+| `--native-select-border` | Border colour of the native-select. | `var(--input)` |
+| `--native-select` | Fill colour of the native-select. | `color-mix(in oklab, var(--input) 30%, transparent)` |
+| `--native-select-padding-y` | Vertical padding of the native-select. | `calc(var(--spacing) * 1)` |
+| `--native-select-placeholder` | Placeholder text colour of the native-select. | `var(--muted-foreground)` |
+| `--native-select-focus-border` | Border colour of the native-select when focused. | `var(--ring)` |
+| `--native-select-focus-ring` | Ring colour of the native-select when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
+| `--native-select-invalid-border` | Border colour of the native-select when invalid. | `var(--destructive)` |
+| `--native-select-invalid-ring` | Ring colour of the native-select when invalid. | `color-mix(in oklab, var(--destructive) 20%, transparent)` |
+| `--native-select-icon-size` | Width and height of the icon. | `calc(var(--spacing) * 4)` |
+| `--native-select-icon-foreground` | Text colour of the icon. | `var(--muted-foreground)` |
+| `--native-select-option` | Fill colour of the option. | `Canvas` |
+| `--native-select-option-foreground` | Text colour of the option. | `CanvasText` |
+| `--native-select-optgroup` | Fill colour of the optgroup. | `Canvas` |
+| `--native-select-optgroup-foreground` | Text colour of the optgroup. | `CanvasText` |
+
+</details>
+
+<details>
+<summary><strong>navigation-menu</strong> (25)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--navigation-menu-list-gap` | Gap between items of the list. | `calc(var(--spacing) * 0)` |
+| `--navigation-menu-trigger-height` | Height of the trigger. | `calc(var(--spacing) * 10)` |
+| `--navigation-menu-trigger-gap` | Gap between items of the trigger. | `calc(var(--spacing) * 1)` |
+| `--navigation-menu-trigger-radius` | Corner radius of the trigger. | `var(--radius-lg)` |
+| `--navigation-menu-trigger-padding-x` | Horizontal padding of the trigger. | `calc(var(--spacing) * 3)` |
+| `--navigation-menu-trigger-font-weight` | Font weight of the trigger. | `500` |
+| `--navigation-menu-trigger-foreground` | Text colour of the trigger. | `var(--dark-100)` |
+| `--navigation-menu-trigger-hover-foreground` | Text colour of the trigger when hovered. | `var(--mint-75)` |
+| `--navigation-menu-trigger-focus-ring` | Ring colour of the trigger when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
+| `--navigation-menu-trigger-disabled-foreground` | Text colour of the trigger when disabled. | `var(--dark-45)` |
+| `--navigation-menu-trigger-open` | Fill colour of the trigger while open. | `var(--mint-l4)` |
+| `--navigation-menu-trigger-open-foreground` | Text colour of the trigger while open. | `var(--mint-75)` |
+| `--navigation-menu-content-padding` | Padding of the content. | `calc(var(--spacing) * 1)` |
+| `--navigation-menu-link-min-height` | Minimum height of the link. | `calc(var(--spacing) * 8)` |
+| `--navigation-menu-link-gap` | Gap between items of the link. | `calc(var(--spacing) * 2)` |
+| `--navigation-menu-link-radius` | Corner radius of the link. | `var(--radius-md)` |
+| `--navigation-menu-link-padding-x` | Horizontal padding of the link. | `calc(var(--spacing) * 2)` |
+| `--navigation-menu-link-padding-y` | Vertical padding of the link. | `calc(var(--spacing) * 1.5)` |
+| `--navigation-menu-link-foreground` | Text colour of the link. | `var(--dark-100)` |
+| `--navigation-menu-link-hover` | Fill colour of the link when hovered. | `var(--light-l1)` |
+| `--navigation-menu-link-focus` | Fill colour of the link when focused. | `var(--light-l1)` |
+| `--navigation-menu-link-focus-ring` | Ring colour of the link when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
+| `--navigation-menu-link-active` | Fill colour of the link when active. | `var(--mint-l2)` |
+| `--navigation-menu-link-active-foreground` | Text colour of the link when active. | `var(--mint-75)` |
+| `--navigation-menu-indicator-height` | Height of the indicator. | `calc(var(--spacing) * 1.5)` |
+
+</details>
+
+<details>
+<summary><strong>pagination</strong> (7)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--pagination-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 1)` |
+| `--pagination-ellipsis-size` | Width and height of the ellipsis. | `calc(var(--spacing) * 9)` |
+| `--pagination-ellipsis-foreground` | Text colour of the ellipsis. | `var(--dark-90)` |
+| `--pagination-link-foreground` | Text colour of a page number. | `var(--dark-90)` |
+| `--pagination-link-hover-foreground` | Text colour of a page number when hovered. | `var(--navy)` |
+| `--pagination-link-active` | Fill of the current page. | `var(--lime)` |
+| `--pagination-link-active-foreground` | Text colour of the current page. | `var(--navy)` |
+
+</details>
+
+<details>
+<summary><strong>popover</strong> (11)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--popover-content-width` | Width of the content. | `calc(var(--spacing) * 72)` |
+| `--popover-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 4)` |
+| `--popover-content-radius` | Corner radius of the content. | `var(--radius-2xl)` |
+| `--popover-content-border` | Border colour of the content. | `var(--border)` |
+| `--popover-content` | Fill colour of the content. | `var(--popover)` |
+| `--popover-content-padding` | Padding of the content. | `calc(var(--spacing) * 4)` |
+| `--popover-content-foreground` | Text colour of the content. | `var(--popover-foreground)` |
+| `--popover-content-shadow` | Shadow of the content. | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` |
+| `--popover-header-gap` | Gap between items of the header. | `calc(var(--spacing) * 1)` |
+| `--popover-title-font-weight` | Font weight of the title. | `500` |
+| `--popover-description-foreground` | Text colour of the description. | `var(--muted-foreground)` |
+
+</details>
+
+<details>
+<summary><strong>progress</strong> (7)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--progress-gap` | Gap between items of the progress. | `calc(var(--spacing) * 3)` |
+| `--progress-track-height` | Height of the track. | `calc(var(--spacing) * 2)` |
+| `--progress-track-radius` | Corner radius of the track. | `var(--radius-full)` |
+| `--progress-track` | Fill colour of the track. | `var(--dark-15)` |
+| `--progress-indicator` | Fill colour of the indicator. | `var(--primary)` |
+| `--progress-label-font-weight` | Font weight of the label. | `500` |
+| `--progress-value-foreground` | Text colour of the value. | `var(--muted-foreground)` |
+
+</details>
+
+<details>
+<summary><strong>radio-group</strong> (12)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--radio-group-gap` | Gap between items of the radio-group. | `calc(var(--spacing) * 2.5)` |
+| `--radio-group-item-radius` | Corner radius of the item. | `var(--radius-full)` |
+| `--radio-group-item-border` | Border colour of the item. | `var(--dark-45)` |
+| `--radio-group-item` | Fill colour of the item. | `var(--white)` |
+| `--radio-group-item-size` | Width and height of the item. | `calc(var(--spacing) * 4)` |
+| `--radio-group-item-focus-border` | Border colour of the item when focused. | `var(--mint-45)` |
+| `--radio-group-item-focus-ring` | Ring colour of the item when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
+| `--radio-group-item-checked-border` | Border colour of the item when checked. | `var(--mint-45)` |
+| `--radio-group-item-invalid-border` | Border colour of the item when invalid. | `var(--error-75)` |
+| `--radio-group-item-invalid-ring` | Ring colour of the item when invalid. | `color-mix(in oklab, var(--error-75) 20%, transparent)` |
+| `--radio-group-item-disabled-opacity` | Opacity of the item when disabled. | `0.5` |
+| `--radio-group-indicator` | Fill of the dot in a checked radio. | `var(--mint-45)` |
+
+</details>
+
+<details>
+<summary><strong>resizable</strong> (3)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--resizable-handle-width` | Width of the handle. | `1px` |
+| `--resizable-handle` | Fill colour of the handle. | `var(--border)` |
+| `--resizable-handle-focus-ring` | Ring colour of the handle when focused. | `var(--ring)` |
+
+</details>
+
+<details>
+<summary><strong>scroll-area</strong> (4)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--scroll-area-viewport-focus-ring` | Ring colour of the viewport when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
+| `--scroll-area-scrollbar-padding` | Padding of the scrollbar. | `1px` |
+| `--scroll-area-thumb-radius` | Corner radius of the thumb. | `var(--radius-full)` |
+| `--scroll-area-thumb` | Fill colour of the thumb. | `var(--border)` |
+
+</details>
+
+<details>
+<summary><strong>select</strong> (47)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--select-trigger-height` | Height of the trigger. | `calc(var(--spacing) * 10)` |
+| `--select-trigger-gap` | Gap between items of the trigger. | `calc(var(--spacing) * 2)` |
+| `--select-trigger-radius` | Corner radius of the trigger. | `var(--radius-lg)` |
+| `--select-trigger-border` | Border colour of the trigger. | `var(--dark-45)` |
+| `--select-trigger` | Fill colour of the trigger. | `var(--white)` |
+| `--select-trigger-padding-x` | Horizontal padding of the trigger. | `calc(var(--spacing) * 3)` |
+| `--select-trigger-foreground` | Text colour of the trigger. | `var(--dark-100)` |
+| `--select-trigger-hover-border` | Border colour of the trigger when hovered. | `var(--dark-75)` |
+| `--select-trigger-focus-border` | Border colour of the trigger when focused. | `var(--mint-45)` |
+| `--select-trigger-focus-ring` | Ring colour of the trigger when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
+| `--select-trigger-placeholder` | Placeholder text colour of the trigger. | `var(--dark-90)` |
+| `--select-trigger-open-border` | Border colour of the trigger while open. | `var(--mint-45)` |
+| `--select-trigger-open` | Fill colour of the trigger while open. | `var(--mint-l4)` |
+| `--select-trigger-open-foreground` | Text colour of the trigger while open. | `var(--mint-75)` |
+| `--select-trigger-open-ring` | Ring colour of the trigger while open. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
+| `--select-trigger-invalid-border` | Border colour of the trigger when invalid. | `var(--error-75)` |
+| `--select-trigger-disabled` | Fill colour of the trigger when disabled. | `var(--light-l2)` |
+| `--select-trigger-disabled-foreground` | Text colour of the trigger when disabled. | `var(--dark-45)` |
+| `--select-icon-size` | Width and height of the chevron. | `calc(var(--spacing) * 3.5)` |
+| `--select-icon-foreground` | Colour of the chevron. | `var(--dark-75)` |
+| `--select-icon-open-foreground` | Colour of the chevron while open. | `var(--mint-75)` |
+| `--select-icon-disabled-foreground` | Colour of the chevron when disabled. | `var(--dark-45)` |
+| `--select-content-radius` | Corner radius of the content. | `var(--radius-lg)` |
+| `--select-content-border` | Border colour of the content. | `var(--light-l3)` |
+| `--select-content` | Fill colour of the content. | `var(--white)` |
+| `--select-content-padding` | Padding of the content. | `calc(var(--spacing) * 1)` |
+| `--select-content-foreground` | Text colour of the content. | `var(--dark-100)` |
+| `--select-content-shadow` | Shadow of the content. | `0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)` |
+| `--select-label-padding-x` | Horizontal padding of the label. | `calc(var(--spacing) * 2)` |
+| `--select-label-foreground` | Text colour of the label. | `var(--dark-90)` |
+| `--select-item-min-height` | Minimum height of the item. | `calc(var(--spacing) * 8)` |
+| `--select-item-radius` | Corner radius of the item. | `var(--radius-md)` |
+| `--select-item-padding-y` | Vertical padding of the item. | `calc(var(--spacing) * 1.5)` |
+| `--select-item-foreground` | Text colour of the item. | `var(--dark-100)` |
+| `--select-item-highlighted` | Fill colour of the item when highlighted. | `var(--light-l1)` |
+| `--select-item-focus` | Fill colour of the item when focused. | `var(--light-l1)` |
+| `--select-item-selected` | Fill colour of the item when selected. | `var(--mint-l2)` |
+| `--select-item-selected-foreground` | Text colour of the item when selected. | `var(--mint-75)` |
+| `--select-item-disabled-foreground` | Text colour of the item when disabled. | `var(--dark-45)` |
+| `--select-separator-height` | Height of the separator. | `1px` |
+| `--select-separator` | Fill colour of the separator. | `var(--light-l3)` |
+| `--select-scroll-up-button` | Fill colour of the scroll-up-button. | `var(--white)` |
+| `--select-scroll-up-button-padding-y` | Vertical padding of the scroll-up-button. | `calc(var(--spacing) * 1)` |
+| `--select-scroll-up-button-foreground` | Text colour of the scroll-up-button. | `var(--dark-75)` |
+| `--select-scroll-down-button` | Fill colour of the scroll-down-button. | `var(--white)` |
+| `--select-scroll-down-button-padding-y` | Vertical padding of the scroll-down-button. | `calc(var(--spacing) * 1)` |
+| `--select-scroll-down-button-foreground` | Text colour of the scroll-down-button. | `var(--dark-75)` |
+
+</details>
+
+<details>
+<summary><strong>separator</strong> (1)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--separator` | Fill colour of the separator. | `var(--border)` |
+
+</details>
+
+<details>
+<summary><strong>sheet</strong> (11)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--sheet-overlay` | Fill colour of the overlay. | `color-mix(in oklab, var(--dark-100) 50%, transparent)` |
+| `--sheet-content` | Fill colour of the content. | `var(--popover)` |
+| `--sheet-content-foreground` | Text colour of the content. | `var(--popover-foreground)` |
+| `--sheet-content-shadow` | Shadow of the content. | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` |
+| `--sheet-header-gap` | Gap between items of the header. | `calc(var(--spacing) * 1.5)` |
+| `--sheet-header-padding` | Padding of the header. | `calc(var(--spacing) * 6)` |
+| `--sheet-footer-gap` | Gap between items of the footer. | `calc(var(--spacing) * 2)` |
+| `--sheet-footer-padding` | Padding of the footer. | `calc(var(--spacing) * 6)` |
+| `--sheet-title-font-weight` | Font weight of the title. | `500` |
+| `--sheet-title-foreground` | Text colour of the title. | `var(--foreground)` |
+| `--sheet-description-foreground` | Text colour of the description. | `var(--muted-foreground)` |
+
+</details>
+
+<details>
+<summary><strong>sidebar</strong> (78)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--sidebar-fill` | Fill colour of the sidebar. | `var(--sidebar)` |
+| `--sidebar-inner` | Fill colour of the inner. | `var(--sidebar)` |
+| `--sidebar-rail-width` | Width of the rail. | `calc(var(--spacing) * 4)` |
+| `--sidebar-inset` | Fill colour of the inset. | `var(--background)` |
+| `--sidebar-input-height` | Height of the input. | `calc(var(--spacing) * 8)` |
+| `--sidebar-input` | Fill colour of the input. | `var(--background)` |
+| `--sidebar-input-shadow` | Shadow of the input. | `0 0 #0000` |
+| `--sidebar-header-gap` | Gap between items of the header. | `calc(var(--spacing) * 2)` |
+| `--sidebar-header-padding` | Padding of the header. | `calc(var(--spacing) * 2)` |
+| `--sidebar-footer-gap` | Gap between items of the footer. | `calc(var(--spacing) * 2)` |
+| `--sidebar-footer-padding` | Padding of the footer. | `calc(var(--spacing) * 2)` |
+| `--sidebar-separator` | Fill colour of the separator. | `var(--sidebar-border)` |
+| `--sidebar-content-min-height` | Minimum height of the content. | `calc(var(--spacing) * 0)` |
+| `--sidebar-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 2)` |
+| `--sidebar-group-padding` | Padding of the group. | `calc(var(--spacing) * 2)` |
+| `--sidebar-group-label-height` | Height of the group-label. | `calc(var(--spacing) * 8)` |
+| `--sidebar-group-label-radius` | Corner radius of the group-label. | `var(--radius-md)` |
+| `--sidebar-group-label-padding-x` | Horizontal padding of the group-label. | `calc(var(--spacing) * 3)` |
+| `--sidebar-group-label-font-weight` | Font weight of the group-label. | `500` |
+| `--sidebar-group-label-foreground` | Text colour of the group-label. | `color-mix(in oklab, var(--sidebar-foreground) 70%, transparent)` |
+| `--sidebar-group-label-ring` | Ring colour of the group-label. | `var(--sidebar-ring)` |
+| `--sidebar-group-action-width` | Width of the group-action. | `calc(var(--spacing) * 5)` |
+| `--sidebar-group-action-radius` | Corner radius of the group-action. | `var(--radius-md)` |
+| `--sidebar-group-action-padding` | Padding of the group-action. | `calc(var(--spacing) * 0)` |
+| `--sidebar-group-action-foreground` | Text colour of the group-action. | `var(--sidebar-foreground)` |
+| `--sidebar-group-action-ring` | Ring colour of the group-action. | `var(--sidebar-ring)` |
+| `--sidebar-group-action-hover-foreground` | Text colour of the group-action when hovered. | `var(--sidebar-accent-foreground)` |
+| `--sidebar-menu-gap` | Gap between items of the menu. | `calc(var(--spacing) * 1)` |
+| `--sidebar-menu-button-gap` | Gap between items of the menu-button. | `calc(var(--spacing) * 2)` |
+| `--sidebar-menu-button-radius` | Corner radius of the menu-button. | `var(--radius-lg)` |
+| `--sidebar-menu-button-padding-x` | Horizontal padding of the menu-button. | `calc(var(--spacing) * 3)` |
+| `--sidebar-menu-button-padding-y` | Vertical padding of the menu-button. | `calc(var(--spacing) * 2)` |
+| `--sidebar-menu-button-ring` | Ring colour of the menu-button. | `var(--sidebar-ring)` |
+| `--sidebar-menu-button-hover` | Fill colour of the menu-button when hovered. | `var(--sidebar-accent)` |
+| `--sidebar-menu-button-hover-foreground` | Text colour of the menu-button when hovered. | `var(--sidebar-accent-foreground)` |
+| `--sidebar-menu-button-active` | Fill colour of the menu-button when active. | `var(--sidebar-accent)` |
+| `--sidebar-menu-button-active-foreground` | Text colour of the menu-button when active. | `var(--sidebar-accent-foreground)` |
+| `--sidebar-menu-button-disabled-opacity` | Opacity of the menu-button when disabled. | `0.5` |
+| `--sidebar-menu-button-active-font-weight` | Font weight of the menu-button when active. | `500` |
+| `--sidebar-menu-button-default-hover` | Fill colour of the menu-button (default variant) when hovered. | `var(--sidebar-menu-button-hover, var(--sidebar-accent))` |
+| `--sidebar-menu-button-default-hover-foreground` | Text colour of the menu-button (default variant) when hovered. | `var(--sidebar-menu-button-hover-foreground, var(--sidebar-accent-foreground))` |
+| `--sidebar-menu-button-outline` | Fill colour of the menu-button (outline variant). | `var(--background)` |
+| `--sidebar-menu-button-outline-hover` | Fill colour of the menu-button (outline variant) when hovered. | `var(--sidebar-menu-button-hover, var(--sidebar-accent))` |
+| `--sidebar-menu-button-outline-hover-foreground` | Text colour of the menu-button (outline variant) when hovered. | `var(--sidebar-menu-button-hover-foreground, var(--sidebar-accent-foreground))` |
+| `--sidebar-menu-button-md-height` | Height of the menu-button (md size). | `calc(var(--spacing) * 9)` |
+| `--sidebar-menu-button-sm-height` | Height of the menu-button (sm size). | `calc(var(--spacing) * 8)` |
+| `--sidebar-menu-button-lg-height` | Height of the menu-button (lg size). | `calc(var(--spacing) * 14)` |
+| `--sidebar-menu-button-lg-padding-x` | Horizontal padding of the menu-button (lg size). | `var(--sidebar-menu-button-padding-x, calc(var(--spacing) * 3))` |
+| `--sidebar-menu-action-width` | Width of the menu-action. | `calc(var(--spacing) * 5)` |
+| `--sidebar-menu-action-radius` | Corner radius of the menu-action. | `var(--radius-md)` |
+| `--sidebar-menu-action-padding` | Padding of the menu-action. | `calc(var(--spacing) * 0)` |
+| `--sidebar-menu-action-foreground` | Text colour of the menu-action. | `var(--sidebar-foreground)` |
+| `--sidebar-menu-action-ring` | Ring colour of the menu-action. | `var(--sidebar-ring)` |
+| `--sidebar-menu-action-hover-foreground` | Text colour of the menu-action when hovered. | `var(--sidebar-accent-foreground)` |
+| `--sidebar-menu-badge-height` | Height of the menu-badge. | `calc(var(--spacing) * 5)` |
+| `--sidebar-menu-badge-radius` | Corner radius of the menu-badge. | `var(--radius-md)` |
+| `--sidebar-menu-badge-padding-x` | Horizontal padding of the menu-badge. | `calc(var(--spacing) * 1)` |
+| `--sidebar-menu-badge-font-weight` | Font weight of the menu-badge. | `500` |
+| `--sidebar-menu-badge-foreground` | Text colour of the menu-badge. | `var(--sidebar-foreground)` |
+| `--sidebar-menu-skeleton-height` | Height of the menu-skeleton. | `calc(var(--spacing) * 8)` |
+| `--sidebar-menu-skeleton-gap` | Gap between items of the menu-skeleton. | `calc(var(--spacing) * 2)` |
+| `--sidebar-menu-skeleton-radius` | Corner radius of the menu-skeleton. | `var(--radius-md)` |
+| `--sidebar-menu-skeleton-padding-x` | Horizontal padding of the menu-skeleton. | `calc(var(--spacing) * 2)` |
+| `--sidebar-menu-sub-gap` | Gap between items of the menu-sub. | `calc(var(--spacing) * 1)` |
+| `--sidebar-menu-sub-border` | Border colour of the menu-sub. | `var(--sidebar-border)` |
+| `--sidebar-menu-sub-padding-x` | Horizontal padding of the menu-sub. | `calc(var(--spacing) * 2.5)` |
+| `--sidebar-menu-sub-padding-y` | Vertical padding of the menu-sub. | `calc(var(--spacing) * 0.5)` |
+| `--sidebar-menu-sub-button-height` | Height of the menu-sub-button. | `calc(var(--spacing) * 7)` |
+| `--sidebar-menu-sub-button-gap` | Gap between items of the menu-sub-button. | `calc(var(--spacing) * 2)` |
+| `--sidebar-menu-sub-button-radius` | Corner radius of the menu-sub-button. | `var(--radius-md)` |
+| `--sidebar-menu-sub-button-padding-x` | Horizontal padding of the menu-sub-button. | `calc(var(--spacing) * 2)` |
+| `--sidebar-menu-sub-button-foreground` | Text colour of the menu-sub-button. | `var(--sidebar-foreground)` |
+| `--sidebar-menu-sub-button-ring` | Ring colour of the menu-sub-button. | `var(--sidebar-ring)` |
+| `--sidebar-menu-sub-button-hover` | Fill colour of the menu-sub-button when hovered. | `var(--sidebar-accent)` |
+| `--sidebar-menu-sub-button-hover-foreground` | Text colour of the menu-sub-button when hovered. | `var(--sidebar-accent-foreground)` |
+| `--sidebar-menu-sub-button-active` | Fill colour of the menu-sub-button when active. | `var(--sidebar-accent)` |
+| `--sidebar-menu-sub-button-active-foreground` | Text colour of the menu-sub-button when active. | `var(--sidebar-accent-foreground)` |
+| `--sidebar-menu-sub-button-disabled-opacity` | Opacity of the menu-sub-button when disabled. | `0.5` |
+
+</details>
+
+<details>
+<summary><strong>skeleton</strong> (2)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--skeleton-radius` | Corner radius of the skeleton. | `var(--radius-2xl)` |
+| `--skeleton` | Fill colour of the skeleton. | `var(--light-l2)` |
+
+</details>
+
+<details>
+<summary><strong>slider</strong> (11)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--slider-track-height` | Height of the track. | `calc(var(--spacing) * 2)` |
+| `--slider-track-radius` | Corner radius of the track. | `var(--radius-full)` |
+| `--slider-track` | Fill colour of the track. | `var(--dark-15)` |
+| `--slider-range` | Fill colour of the range. | `var(--primary)` |
+| `--slider-thumb-size` | Width and height of the thumb. | `calc(var(--spacing) * 5)` |
+| `--slider-thumb-radius` | Corner radius of the thumb. | `var(--radius-full)` |
+| `--slider-thumb-border` | Border colour of the thumb. | `var(--primary)` |
+| `--slider-thumb` | Fill colour of the thumb. | `var(--white)` |
+| `--slider-thumb-shadow` | Shadow of the thumb. | `0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)` |
+| `--slider-thumb-ring` | Ring colour of the thumb. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
+| `--slider-thumb-disabled-opacity` | Opacity of the thumb when disabled. | `0.5` |
+
+</details>
+
+<details>
+<summary><strong>spinner</strong> (2)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--spinner-size` | Width and height of the spinner. | `calc(var(--spacing) * 4)` |
+| `--spinner-foreground` | Text colour of the spinner. | `var(--primary)` |
+
+</details>
+
+<details>
+<summary><strong>switch</strong> (9)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--switch-radius` | Corner radius of the switch. | `var(--radius-full)` |
+| `--switch-padding` | Padding of the switch. | `calc(var(--spacing) * 0.5)` |
+| `--switch-checked` | Fill colour of the switch when checked. | `var(--mint-45)` |
+| `--switch-focus-ring` | Ring colour of the switch when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
+| `--switch-invalid-ring` | Ring colour of the switch when invalid. | `color-mix(in oklab, var(--error-75) 20%, transparent)` |
+| `--switch-disabled-opacity` | Opacity of the switch when disabled. | `0.5` |
+| `--switch-thumb-radius` | Corner radius of the thumb. | `var(--radius-full)` |
+| `--switch-thumb` | Fill colour of the thumb. | `var(--white)` |
+| `--switch-thumb-shadow` | Shadow of the thumb. | `0 1px 2px 0 rgb(0 0 0 / 0.05)` |
+
+</details>
+
+<details>
+<summary><strong>table</strong> (15)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--table-footer-border` | Border colour of the footer. | `var(--border)` |
+| `--table-footer` | Fill colour of the footer. | `var(--light-l1)` |
+| `--table-footer-font-weight` | Font weight of the footer. | `500` |
+| `--table-footer-foreground` | Text colour of the footer. | `var(--navy)` |
+| `--table-row-border` | Border colour of the row. | `var(--border)` |
+| `--table-row-hover` | Fill colour of the row when hovered. | `var(--mint-l4)` |
+| `--table-head-padding-x` | Horizontal padding of the head. | `calc(var(--spacing) * 3)` |
+| `--table-head-border` | Border colour of the head. | `var(--border)` |
+| `--table-head-height` | Height of the head. | `calc(var(--spacing) * 11)` |
+| `--table-head-foreground` | Text colour of the head. | `var(--dark-100)` |
+| `--table-cell-padding-x` | Horizontal padding of the cell. | `calc(var(--spacing) * 3)` |
+| `--table-cell-border` | Border colour of the cell. | `var(--border)` |
+| `--table-cell-padding-y` | Vertical padding of the cell. | `calc(var(--spacing) * 3)` |
+| `--table-cell-foreground` | Text colour of the cell. | `var(--dark-90)` |
+| `--table-caption-foreground` | Text colour of the caption. | `var(--muted-foreground)` |
+
+</details>
+
+<details>
+<summary><strong>tabs</strong> (17)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--tabs-gap` | Gap between items of the tabs. | `calc(var(--spacing) * 2)` |
+| `--tabs-list-default-gap` | Gap between items of the list (default variant). | `calc(var(--spacing) * 0.5)` |
+| `--tabs-list-default-radius` | Corner radius of the list (default variant). | `var(--radius-full)` |
+| `--tabs-list-default-border` | Border colour of the list (default variant). | `var(--dark-15)` |
+| `--tabs-list-default` | Fill colour of the list (default variant). | `var(--white)` |
+| `--tabs-list-default-padding` | Padding of the list (default variant). | `calc(var(--spacing) * 0.75)` |
+| `--tabs-list-line-gap` | Gap between items of the list (line variant). | `calc(var(--spacing) * 6)` |
+| `--tabs-list-line-border` | Border colour of the list (line variant). | `var(--border)` |
+| `--tabs-trigger-gap` | Gap between items of the trigger. | `calc(var(--spacing) * 1.5)` |
+| `--tabs-trigger-focus-ring` | Ring colour of the trigger when focused. | `var(--navy)` |
+| `--tabs-trigger-disabled-foreground` | Text colour of the trigger when disabled. | `var(--dark-45)` |
+| `--tabs-trigger-height` | Height of the trigger. | `calc(var(--spacing) * 7)` |
+| `--tabs-trigger-radius` | Corner radius of the trigger. | `var(--radius-full)` |
+| `--tabs-trigger-padding-x` | Horizontal padding of the trigger. | `calc(var(--spacing) * 2.5)` |
+| `--tabs-trigger-font-weight` | Font weight of the trigger. | `600` |
+| `--tabs-trigger-foreground` | Text colour of the trigger. | `var(--navy)` |
+| `--tabs-trigger-active-foreground` | Text colour of the trigger when active. | `var(--white)` |
+
+</details>
+
+<details>
+<summary><strong>textarea</strong> (12)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--textarea-radius` | Corner radius of the textarea. | `var(--radius-lg)` |
+| `--textarea-border` | Border colour of the textarea. | `var(--dark-45)` |
+| `--textarea` | Fill colour of the textarea. | `var(--white)` |
+| `--textarea-padding-x` | Horizontal padding of the textarea. | `calc(var(--spacing) * 3)` |
+| `--textarea-foreground` | Text colour of the textarea. | `var(--dark-100)` |
+| `--textarea-placeholder` | Placeholder text colour of the textarea. | `var(--dark-90)` |
+| `--textarea-focus-border` | Border colour of the textarea when focused. | `var(--mint-45)` |
+| `--textarea-focus-ring` | Ring colour of the textarea when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
+| `--textarea-invalid-border` | Border colour of the textarea when invalid. | `var(--error-75)` |
+| `--textarea-disabled` | Fill colour of the textarea when disabled. | `var(--light-l2)` |
+| `--textarea-disabled-foreground` | Text colour of the textarea when disabled. | `var(--dark-45)` |
+| `--textarea-padding-y` | Vertical padding of the textarea. | `calc(var(--spacing) * 2.5)` |
+
+</details>
+
+<details>
+<summary><strong>toast</strong> (15)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--toast-radius` | Corner radius of the toast. | `var(--radius-2xl)` |
+| `--toast-focus-ring` | Ring colour of the toast when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
+| `--toast` | Fill colour of the toast. | `var(--light-l2)` |
+| `--toast-foreground` | Text colour of the toast. | `var(--navy)` |
+| `--toast-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 2)` |
+| `--toast-content-padding-x` | Horizontal padding of the content. | `calc(var(--spacing) * 2)` |
+| `--toast-content-padding-y` | Vertical padding of the content. | `calc(var(--spacing) * 3)` |
+| `--toast-title-font-weight` | Font weight of the title. | `600` |
+| `--toast-description-foreground` | Text colour of the description. | `var(--dark-90)` |
+| `--toast-action-font-weight` | Font weight of the action. | `600` |
+| `--toast-close-padding` | Padding of the close. | `calc(var(--spacing) * 1)` |
+| `--toast-close-hover-foreground` | Text colour of the close when hovered. | `var(--navy)` |
+| `--toast-icon-size` | Width and height of the icon. | `calc(var(--spacing) * 8)` |
+| `--toast-icon-radius` | Corner radius of the icon. | `var(--radius-full)` |
+| `--toast-icon` | Fill colour of the icon. | `var(--white)` |
+
+</details>
+
+<details>
+<summary><strong>toggle-group</strong> (0)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+
+
+</details>
+
+<details>
+<summary><strong>toggle</strong> (19)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--toggle-gap` | Gap between items of the toggle. | `calc(var(--spacing) * 1)` |
+| `--toggle-radius` | Corner radius of the toggle. | `var(--radius-md)` |
+| `--toggle-font-weight` | Font weight of the toggle. | `500` |
+| `--toggle-hover` | Fill colour of the toggle when hovered. | `var(--muted)` |
+| `--toggle-hover-foreground` | Text colour of the toggle when hovered. | `var(--foreground)` |
+| `--toggle-focus-border` | Border colour of the toggle when focused. | `var(--ring)` |
+| `--toggle-focus-ring` | Ring colour of the toggle when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
+| `--toggle-disabled-opacity` | Opacity of the toggle when disabled. | `0.5` |
+| `--toggle-invalid-border` | Border colour of the toggle when invalid. | `var(--destructive)` |
+| `--toggle-invalid-ring` | Ring colour of the toggle when invalid. | `color-mix(in oklab, var(--destructive) 20%, transparent)` |
+| `--toggle-pressed` | Fill colour of the toggle when pressed. | `var(--muted)` |
+| `--toggle-outline-border` | Border colour of the toggle (outline variant). | `var(--input)` |
+| `--toggle-outline-hover` | Fill colour of the toggle (outline variant) when hovered. | `var(--toggle-hover, var(--muted))` |
+| `--toggle-md-height` | Height of the toggle (md size). | `calc(var(--spacing) * 9)` |
+| `--toggle-md-padding-x` | Horizontal padding of the toggle (md size). | `calc(var(--spacing) * 3)` |
+| `--toggle-sm-height` | Height of the toggle (sm size). | `calc(var(--spacing) * 8)` |
+| `--toggle-sm-padding-x` | Horizontal padding of the toggle (sm size). | `calc(var(--spacing) * 3)` |
+| `--toggle-lg-height` | Height of the toggle (lg size). | `calc(var(--spacing) * 10)` |
+| `--toggle-lg-padding-x` | Horizontal padding of the toggle (lg size). | `calc(var(--spacing) * 4)` |
+
+</details>
+
+<details>
+<summary><strong>tooltip</strong> (6)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--tooltip-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 1.5)` |
+| `--tooltip-content-radius` | Corner radius of the content. | `var(--radius-xl)` |
+| `--tooltip-content` | Fill colour of the content. | `var(--navy)` |
+| `--tooltip-content-padding-x` | Horizontal padding of the content. | `calc(var(--spacing) * 4)` |
+| `--tooltip-content-padding-y` | Vertical padding of the content. | `calc(var(--spacing) * 2)` |
+| `--tooltip-content-foreground` | Text colour of the content. | `var(--white)` |
+
+</details>
+
+<!-- component-tokens:end -->
+
 ---
 
 ## Accessibility
@@ -597,7 +2003,7 @@ npx design-system-migrate            # dry run: what would change, and what need
 npx design-system-migrate --write    # apply
 ```
 
-It renames the old type, button, radius and colour classes, swaps `rounded-xl` ↔ `rounded-2xl`, moves `dark-60` text and icons to `dark-75`, and renames Badge, Switch and TabsList variants. Button variants are left alone: every 1.x variant still exists and looks the same. It lists anything with no like-for-like replacement with its file and line. `--map old=new` changes a mapping for one app, e.g. `--map text-xs=text-sm`. Run it only once: a second run would swap the radius classes back.
+It renames the old type, button, radius and colour classes, swaps `rounded-xl` ↔ `rounded-2xl`, moves `dark-60` text and icons to `dark-75`, renames Badge, Switch and TabsList variants and `BYBCounter` / `BYBPillCard` (now `Counter` / `PillCard`), and moves `InputField` / `SelectField` imports to `@beforeyoubid/form`. Button variants are left alone: every 1.x variant still exists and looks the same. It lists anything with no like-for-like replacement with its file and line. `--map old=new` changes a mapping for one app, e.g. `--map text-xs=text-sm`. Run it only once: a second run would swap the radius classes back.
 
 ### Changes the migrator can't make
 
@@ -607,4 +2013,7 @@ Everything the migrator can change, it changes. What's left is listed here, and 
 |---|---|---|
 | `colors` and `typography` exports removed | In CSS, use the utility class (`bg-mint-45`, `text-body-4`). Outside CSS (Stripe, canvas, `themeColor`), use `generateDesignSystemTokens()` | Yes, each import |
 | `BYBTestimonialCard` and `BYBTestimonialCarousel` removed | Move the component into the app | Yes, each import |
+| `BYBImage` moved out | Copy `src/components/BYBImage.tsx` from design-system 1.x into the app (it's `next/image` with a default `sizes`; only byb-website uses it) | Yes, each import |
+| `InputField` and `SelectField` moved to `@beforeyoubid/form` | The migrator moves the imports; add `"@beforeyoubid/form": "^2.0.0"` to the app's dependencies | Yes, printed after the summary |
+| Parts that render a stock Button take the stock variant keys: `AlertDialogAction`, `AlertDialogCancel`, `CarouselPrevious` / `CarouselNext`, `InputGroupButton`, `SidebarTrigger` | Use the stock key (`default`, `outline`, `secondary`, `ghost`), or render ours: `render={<Button variant="tertiary" />}` | No |
 
