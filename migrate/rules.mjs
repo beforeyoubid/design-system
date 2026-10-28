@@ -130,6 +130,65 @@ export const REMOVED_EXPORTS = {
   BYBTestimonialCarousel: 'removed from the design system',
   BYBTestimonialCardProps: 'removed from the design system',
   Testimonial: 'removed from the design system',
+  BYBImage: 'moved to byb-website (it is next/image with a default `sizes`): copy src/components/BYBImage.tsx from design-system 1.x into the app',
+}
+
+/** Exports renamed in 2.0. The import and every use in the file change. */
+export const EXPORT_RENAMES = {
+  BYBCounter: 'Counter',
+  BYBPillCard: 'PillCard',
+}
+
+/** Exports that moved to another package. The name stays; the import moves. */
+export const MOVED_EXPORTS = Object.fromEntries(
+  ['InputField', 'InputFieldProps', 'SelectField', 'SelectFieldProps', 'SelectFieldOption', 'SelectFieldOptionGroup', 'productSelectOptions'].map(
+    (name) => [name, '@beforeyoubid/form'],
+  ),
+)
+
+const PACKAGE_IMPORT_STATEMENT = /import\s+(type\s+)?\{([^}]*)\}\s*from\s*(['"])@beforeyoubid\/design-system\3;?/g
+
+/** Renames and moves exports in the package's import statements (and renamed names through the file). */
+function migrateExports(text, report) {
+  let result = text
+  const renamedLocals = []
+  const moved = {} // package → specifiers
+  result = result.replace(PACKAGE_IMPORT_STATEMENT, (statement, typeOnly = '', list, quote, offset) => {
+    const line = lineOf(text, offset)
+    const kept = []
+    for (const raw of list.split(',')) {
+      const spec = raw.trim()
+      if (!spec) continue
+      const isType = typeOnly || /^type\s/.test(spec)
+      const [imported, local] = spec.replace(/^type\s+/, '').split(/\s+as\s+/).map((s) => s.trim())
+      if (MOVED_EXPORTS[imported]) {
+        const target = MOVED_EXPORTS[imported]
+        ;(moved[target] ??= []).push(`${isType ? 'type ' : ''}${local ? `${imported} as ${local}` : imported}`)
+        report.change(`${imported} → ${target}`, line)
+        continue
+      }
+      const to = EXPORT_RENAMES[imported]
+      if (to) {
+        report.change(`${imported} → ${to}`, line)
+        // Aliased, or the new name is already taken in this file: keep the old local name.
+        const keepLocal = local ?? (new RegExp(`\\b${escape(to)}\\b`).test(text) ? imported : null)
+        if (!local && !keepLocal) renamedLocals.push([imported, to])
+        kept.push(`${spec.startsWith('type ') ? 'type ' : ''}${to}${keepLocal ? ` as ${keepLocal}` : ''}`)
+        continue
+      }
+      kept.push(spec)
+    }
+    const imports = Object.entries(moved)
+      .map(([pkg, specs]) => `import { ${specs.join(', ')} } from ${quote}${pkg}${quote}`)
+      .join('\n')
+    for (const pkg of Object.keys(moved)) delete moved[pkg]
+    const own = kept.length ? `import ${typeOnly}{ ${kept.join(', ')} } from ${quote}@beforeyoubid/design-system${quote}` : ''
+    return [own, imports].filter(Boolean).join('\n')
+  })
+  for (const [from, to] of renamedLocals) {
+    result = result.replace(new RegExp(`(?<![\\w$.])${escape(from)}(?![\\w$])`, 'g'), to)
+  }
+  return result
 }
 
 const PACKAGE_IMPORT = /import\s+(?:type\s+)?\{([^}]*)\}\s*from\s*['"]@beforeyoubid\/design-system['"]/g
@@ -310,6 +369,7 @@ export function migrateSource(text, options = {}) {
 
   result = migrateProps(result, report)
   reportRemovedExports(result, report)
+  result = migrateExports(result, report)
 
   return { text: result, changes, reviews }
 }

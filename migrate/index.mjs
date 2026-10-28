@@ -92,6 +92,10 @@ for (const [rule, count] of Object.entries(ruleCounts).sort((a, b) => b[1] - a[1
   console.log(`  ${String(count).padStart(5)}  ${rule}`)
 }
 
+if (Object.keys(ruleCounts).some((rule) => rule.endsWith('→ @beforeyoubid/form'))) {
+  console.log('\nInputField and SelectField now come from @beforeyoubid/form: add "@beforeyoubid/form": "^2.0.0" to the app\'s dependencies.')
+}
+
 if (reviews.length) {
   console.log(`\nNeeds a person to decide (${reviews.length}):`)
   for (const { file, line, message } of reviews) console.log(`  ${file}:${line}  ${message}`)

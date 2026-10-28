@@ -164,3 +164,39 @@ test('reports the line of each change', () => {
     [2, 3],
   )
 })
+
+test('renames BYBCounter and BYBPillCard through the file', () => {
+  const out = run(
+    "import { BYBCounter, BYBPillCard, cn } from '@beforeyoubid/design-system'\n<BYBCounter value={1} />\n<BYBPillCard>x</BYBPillCard>",
+  )
+  assert.equal(out, "import { Counter, PillCard, cn } from '@beforeyoubid/design-system'\n<Counter value={1} />\n<PillCard>x</PillCard>")
+})
+
+test('keeps the local name when the import is aliased or the new name is taken', () => {
+  assert.equal(
+    run("import { BYBCounter as Count } from '@beforeyoubid/design-system'\n<Count />"),
+    "import { Counter as Count } from '@beforeyoubid/design-system'\n<Count />",
+  )
+  assert.equal(
+    run("import { BYBCounter } from '@beforeyoubid/design-system'\nimport { Counter } from './Counter'\n<BYBCounter />"),
+    "import { Counter as BYBCounter } from '@beforeyoubid/design-system'\nimport { Counter } from './Counter'\n<BYBCounter />",
+  )
+})
+
+test('moves InputField and SelectField imports to @beforeyoubid/form', () => {
+  assert.equal(
+    run("import { Button, InputField, SelectField, type SelectFieldOption } from '@beforeyoubid/design-system'"),
+    "import { Button } from '@beforeyoubid/design-system'\nimport { InputField, SelectField, type SelectFieldOption } from '@beforeyoubid/form'",
+  )
+  assert.equal(
+    run('import type { InputFieldProps } from "@beforeyoubid/design-system";'),
+    'import { type InputFieldProps } from "@beforeyoubid/form"',
+  )
+  const { changes } = migrateSource("import { InputField } from '@beforeyoubid/design-system'")
+  assert.deepEqual(changes, [{ rule: 'InputField → @beforeyoubid/form', line: 1 }])
+})
+
+test('flags BYBImage', () => {
+  const { reviews } = migrateSource("import { BYBImage } from '@beforeyoubid/design-system'")
+  assert.match(reviews[0].message, /BYBImage is no longer exported: moved to byb-website/)
+})
