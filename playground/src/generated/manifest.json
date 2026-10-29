@@ -799,7 +799,6 @@
     "attachment",
     "badge",
     "calendar",
-    "combobox",
     "field",
     "item",
     "native-select",
@@ -5738,7 +5737,7 @@
     {
      "name": "--combobox-chips-min-height",
      "private": "--_combobox-chips-min-height",
-     "default": "calc(var(--spacing) * 9)",
+     "default": "calc(var(--spacing) * 10)",
      "description": "Minimum height of the chips.",
      "type": "length",
      "part": "combobox-chips",
@@ -5766,7 +5765,7 @@
     {
      "name": "--combobox-chips-radius",
      "private": "--_combobox-chips-radius",
-     "default": "var(--radius-4xl)",
+     "default": "var(--radius-lg)",
      "description": "Corner radius of the chips.",
      "type": "radius",
      "part": "combobox-chips",
@@ -5774,13 +5773,13 @@
      "state": null,
      "property": "radius",
      "reads": [
-      "--radius-4xl"
+      "--radius-lg"
      ]
     },
     {
      "name": "--combobox-chips-border",
      "private": "--_combobox-chips-border",
-     "default": "var(--input)",
+     "default": "var(--dark-45)",
      "description": "Border colour of the chips.",
      "type": "color",
      "part": "combobox-chips",
@@ -5788,13 +5787,13 @@
      "state": null,
      "property": "border",
      "reads": [
-      "--input"
+      "--dark-45"
      ]
     },
     {
      "name": "--combobox-chips",
      "private": "--_combobox-chips",
-     "default": "color-mix(in oklab, var(--input) 30%, transparent)",
+     "default": "var(--white)",
      "description": "Fill colour of the chips.",
      "type": "color",
      "part": "combobox-chips",
@@ -5802,13 +5801,13 @@
      "state": null,
      "property": "fill",
      "reads": [
-      "--input"
+      "--white"
      ]
     },
     {
      "name": "--combobox-chips-padding-x",
      "private": "--_combobox-chips-padding-x",
-     "default": "calc(var(--spacing) * 2.5)",
+     "default": "calc(var(--spacing) * 3)",
      "description": "Horizontal padding of the chips.",
      "type": "length",
      "part": "combobox-chips",
@@ -5836,7 +5835,7 @@
     {
      "name": "--combobox-chips-focus-border",
      "private": "--_combobox-chips-focus-border",
-     "default": "var(--ring)",
+     "default": "var(--mint-45)",
      "description": "Border colour of the chips when focused.",
      "type": "color",
      "part": "combobox-chips",
@@ -5844,13 +5843,13 @@
      "state": "focus",
      "property": "border",
      "reads": [
-      "--ring"
+      "--mint-45"
      ]
     },
     {
      "name": "--combobox-chips-focus-ring",
      "private": "--_combobox-chips-focus-ring",
-     "default": "color-mix(in oklab, var(--ring) 50%, transparent)",
+     "default": "color-mix(in oklab, var(--mint-45) 30%, transparent)",
      "description": "Ring colour of the chips when focused.",
      "type": "color",
      "part": "combobox-chips",
@@ -5858,7 +5857,7 @@
      "state": "focus",
      "property": "ring",
      "reads": [
-      "--ring"
+      "--mint-45"
      ]
     },
     {

@@ -62,23 +62,23 @@
 [data-slot="combobox-chips"] {
   /* @add has-data-[slot=combobox-chip]:px-(--_combobox-chips-with-chips-padding-x) */
   /* Minimum height of the chips. */
-  --_combobox-chips-min-height: var(--combobox-chips-min-height, calc(var(--spacing) * 9));
+  --_combobox-chips-min-height: var(--combobox-chips-min-height, calc(var(--spacing) * 10));
   /* Gap between items of the chips. */
   --_combobox-chips-gap: var(--combobox-chips-gap, calc(var(--spacing) * 1.5));
   /* Corner radius of the chips. */
-  --_combobox-chips-radius: var(--combobox-chips-radius, var(--radius-4xl));
+  --_combobox-chips-radius: var(--combobox-chips-radius, var(--radius-lg));
   /* Border colour of the chips. */
-  --_combobox-chips-border: var(--combobox-chips-border, var(--input));
+  --_combobox-chips-border: var(--combobox-chips-border, var(--dark-45));
   /* Fill colour of the chips. */
-  --_combobox-chips: var(--combobox-chips, color-mix(in oklab, var(--input) 30%, transparent));
+  --_combobox-chips: var(--combobox-chips, var(--white));
   /* Horizontal padding of the chips. */
-  --_combobox-chips-padding-x: var(--combobox-chips-padding-x, calc(var(--spacing) * 2.5));
+  --_combobox-chips-padding-x: var(--combobox-chips-padding-x, calc(var(--spacing) * 3));
   /* Vertical padding of the chips. */
   --_combobox-chips-padding-y: var(--combobox-chips-padding-y, calc(var(--spacing) * 1.5));
   /* Border colour of the chips when focused. */
-  --_combobox-chips-focus-border: var(--combobox-chips-focus-border, var(--ring));
+  --_combobox-chips-focus-border: var(--combobox-chips-focus-border, var(--mint-45));
   /* Ring colour of the chips when focused. */
-  --_combobox-chips-focus-ring: var(--combobox-chips-focus-ring, color-mix(in oklab, var(--ring) 50%, transparent));
+  --_combobox-chips-focus-ring: var(--combobox-chips-focus-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
   /* Border colour of the chips when invalid. */
   --_combobox-chips-invalid-border: var(--combobox-chips-invalid-border, var(--destructive));
   /* Ring colour of the chips when invalid. */

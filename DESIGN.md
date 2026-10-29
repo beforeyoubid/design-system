@@ -1115,15 +1115,15 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--combobox-empty-foreground` | Text colour of the empty. | `var(--muted-foreground)` |
 | `--combobox-separator-height` | Height of the separator. | `1px` |
 | `--combobox-separator` | Fill colour of the separator. | `color-mix(in oklab, var(--border) 50%, transparent)` |
-| `--combobox-chips-min-height` | Minimum height of the chips. | `calc(var(--spacing) * 9)` |
+| `--combobox-chips-min-height` | Minimum height of the chips. | `calc(var(--spacing) * 10)` |
 | `--combobox-chips-gap` | Gap between items of the chips. | `calc(var(--spacing) * 1.5)` |
-| `--combobox-chips-radius` | Corner radius of the chips. | `var(--radius-4xl)` |
-| `--combobox-chips-border` | Border colour of the chips. | `var(--input)` |
-| `--combobox-chips` | Fill colour of the chips. | `color-mix(in oklab, var(--input) 30%, transparent)` |
-| `--combobox-chips-padding-x` | Horizontal padding of the chips. | `calc(var(--spacing) * 2.5)` |
+| `--combobox-chips-radius` | Corner radius of the chips. | `var(--radius-lg)` |
+| `--combobox-chips-border` | Border colour of the chips. | `var(--dark-45)` |
+| `--combobox-chips` | Fill colour of the chips. | `var(--white)` |
+| `--combobox-chips-padding-x` | Horizontal padding of the chips. | `calc(var(--spacing) * 3)` |
 | `--combobox-chips-padding-y` | Vertical padding of the chips. | `calc(var(--spacing) * 1.5)` |
-| `--combobox-chips-focus-border` | Border colour of the chips when focused. | `var(--ring)` |
-| `--combobox-chips-focus-ring` | Ring colour of the chips when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
+| `--combobox-chips-focus-border` | Border colour of the chips when focused. | `var(--mint-45)` |
+| `--combobox-chips-focus-ring` | Ring colour of the chips when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
 | `--combobox-chips-invalid-border` | Border colour of the chips when invalid. | `var(--destructive)` |
 | `--combobox-chips-invalid-ring` | Ring colour of the chips when invalid. | `color-mix(in oklab, var(--destructive) 20%, transparent)` |
 | `--combobox-chips-with-chips-padding-x` | Horizontal padding of the chips field once it holds a chip. | `calc(var(--spacing) * 1.5)` |
