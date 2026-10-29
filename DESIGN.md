@@ -1421,7 +1421,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--field-separator-content-padding-x` | Horizontal padding of the separator-content. | `calc(var(--spacing) * 2)` |
 | `--field-separator-content-foreground` | Text colour of the separator-content. | `var(--muted-foreground)` |
 | `--field-error-font-weight` | Font weight of the error. | `400` |
-| `--field-error-foreground` | Text colour of the error. | `var(--destructive)` |
+| `--field-error-foreground` | Text colour of the error. | `var(--error-75)` |
 | `--field-label-required-foreground` | Colour of the asterisk on a required field's label. | `var(--mint-45)` |
 
 </details>

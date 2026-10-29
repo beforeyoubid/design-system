@@ -76,7 +76,7 @@
   /* Font weight of the error. */
   --_field-error-font-weight: var(--field-error-font-weight, 400);
   /* Text colour of the error. */
-  --_field-error-foreground: var(--field-error-foreground, var(--destructive));
+  --_field-error-foreground: var(--field-error-foreground, var(--error-75));
 }
 
 [data-slot="field-label-required"] {

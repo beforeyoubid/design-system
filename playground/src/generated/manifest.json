@@ -9210,7 +9210,7 @@
     {
      "name": "--field-error-foreground",
      "private": "--_field-error-foreground",
-     "default": "var(--destructive)",
+     "default": "var(--error-75)",
      "description": "Text colour of the error.",
      "type": "color",
      "part": "field-error",
@@ -9218,7 +9218,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--destructive"
+      "--error-75"
      ]
     },
     {
