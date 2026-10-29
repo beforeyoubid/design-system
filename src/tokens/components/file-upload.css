@@ -1,0 +1,19 @@
+/* File Upload — component tokens.
+ * Set any lever (the name without the underscore) on :root or a section.
+ * Defaults are the shipped design. Edited by hand; our component (file-upload.tsx) reads these levers.
+ * The drop zone and the file cards have their own levers: file-drop-zone.css and attachment.css. */
+
+[data-slot="file-upload"] {
+  /* Gap between the drop zone, its message and the list of files. @ours */
+  --_file-upload-gap: var(--file-upload-gap, calc(var(--spacing) * 2));
+}
+
+[data-slot="file-upload-list"] {
+  /* Gap between the file cards. @ours */
+  --_file-upload-list-gap: var(--file-upload-list-gap, calc(var(--spacing) * 2));
+}
+
+[data-slot="file-upload-message"] {
+  /* Colour of the message when a picked file isn't accepted (wrong type or too large). @ours */
+  --_file-upload-message-foreground: var(--file-upload-message-foreground, var(--error-75));
+}

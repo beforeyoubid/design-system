@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { IconDownload, IconFileText, IconTrash, IconX } from '@tabler/icons-react'
+import { IconAlertCircle, IconCircleCheck, IconDownload, IconFileText, IconTrash, IconX } from '@tabler/icons-react'
 import {
   Attachment,
   AttachmentAction,
@@ -8,8 +8,11 @@ import {
   AttachmentDescription,
   AttachmentGroup,
   AttachmentMedia,
+  AttachmentError,
+  AttachmentProgress,
+  AttachmentStatus,
   AttachmentTitle,
-} from '../../components/ui/attachment'
+} from '../../components/attachment'
 import { Spinner } from '../../components/spinner'
 
 type State = 'idle' | 'uploading' | 'processing' | 'error' | 'done'
@@ -93,6 +96,68 @@ export const VerticalGroup: Story = {
         <File orientation="vertical" state="error" />
         <File orientation="vertical" />
       </AttachmentGroup>
+    </div>
+  ),
+}
+
+/**
+ * Our Attachment adds `status` (uploading, completed, error, uploaded) and three
+ * parts: AttachmentStatus, AttachmentProgress and AttachmentError. FileUpload
+ * draws its cards like this.
+ */
+export const UploadStatuses: Story = {
+  render: () => (
+    <div className="flex w-112 flex-col gap-2">
+      <Attachment status="uploading" className="w-full">
+        <AttachmentMedia><IconFileText /></AttachmentMedia>
+        <AttachmentContent>
+          <AttachmentTitle>Building report.pdf</AttachmentTitle>
+          <AttachmentDescription>
+            2 MB / 4 MB · <AttachmentStatus><Spinner variant="dots" aria-hidden />Uploading</AttachmentStatus>
+          </AttachmentDescription>
+        </AttachmentContent>
+        <AttachmentActions>
+          <AttachmentAction aria-label="Cancel upload"><IconX /></AttachmentAction>
+        </AttachmentActions>
+        <AttachmentProgress value={45} aria-label="Uploading Building report.pdf" />
+      </Attachment>
+      <Attachment status="completed" className="w-full">
+        <AttachmentMedia><IconFileText /></AttachmentMedia>
+        <AttachmentContent>
+          <AttachmentTitle>Pest report.pdf</AttachmentTitle>
+          <AttachmentDescription>
+            2 MB · <AttachmentStatus><IconCircleCheck />Completed</AttachmentStatus>
+          </AttachmentDescription>
+        </AttachmentContent>
+        <AttachmentActions>
+          <AttachmentAction aria-label="Download"><IconDownload /></AttachmentAction>
+          <AttachmentAction aria-label="Delete"><IconTrash /></AttachmentAction>
+        </AttachmentActions>
+      </Attachment>
+      <Attachment status="error" className="w-full">
+        <AttachmentMedia><IconFileText /></AttachmentMedia>
+        <AttachmentContent>
+          <AttachmentTitle>Strata report.pdf</AttachmentTitle>
+          <AttachmentDescription>
+            3 MB · <AttachmentStatus><IconAlertCircle />Failed</AttachmentStatus>
+          </AttachmentDescription>
+        </AttachmentContent>
+        <AttachmentActions>
+          <AttachmentAction aria-label="Delete"><IconTrash /></AttachmentAction>
+        </AttachmentActions>
+        <AttachmentError onRetry={() => {}}>Upload failed. Please try again.</AttachmentError>
+      </Attachment>
+      <Attachment status="uploaded" className="w-full">
+        <AttachmentMedia><IconFileText /></AttachmentMedia>
+        <AttachmentContent>
+          <AttachmentTitle>Contract of sale.pdf</AttachmentTitle>
+          <AttachmentDescription>4 MB · Uploaded 12 Oct 2026</AttachmentDescription>
+        </AttachmentContent>
+        <AttachmentActions>
+          <AttachmentAction aria-label="Download"><IconDownload /></AttachmentAction>
+          <AttachmentAction aria-label="Delete"><IconTrash /></AttachmentAction>
+        </AttachmentActions>
+      </Attachment>
     </div>
   ),
 }

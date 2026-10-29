@@ -537,6 +537,17 @@ Every toast has a × so it can be closed early. Override per toast with `timeout
 
 `BYBAreaChart`, `BYBBarChart`, `ChartFrame` (with `ChartLegendList`, `CHART_PALETTE`), `Chart` · `Avatar` · `BYBAttachment` / `BYBFileUploadCard` (drag-and-drop upload with status: `uploading` · `completed` · `error` · `uploaded`. `uploaded` is an already-attached file, the default for `defaultFiles`: 36px mint-l3 file icon, name `text-body-4 font-semibold text-dark-90` (file names are dark-90 on every card), "4 MB · Uploaded 12 Oct 2026" in `text-caption-1 text-dark-75`, then icon-only download (`mint-75`, hover `mint-90`) and delete (trash, `error-75`, hover `error-90`) with "Download" / "Delete" tooltips; download shows when the file has a `url` or `onDownload` is set. Deleting a file first opens a destructive `ConfirmDialog` ("Delete this file?", trash `IconTile`, Cancel / Delete; `confirmDelete`, default true); confirming fires a `success` toast ("File deleted") with the file name and an Undo action that puts it back in place (`deleteToast`, default true); cancelling an upload shows no toast) · `BYBImage` · `PillCard` · `Counter` · `Toggle` / `ToggleGroup` · `Slider` · `InputOTP` · `Calendar` · `Label`.
 
+### File upload
+
+`FileUpload` is the file field: a `FileDropZone`, a hidden file input, and an `Attachment` card per file. `BYBAttachment` stays until the side-by-side check, then goes.
+
+- **Without `uploadOptions`** it behaves like `<input type="file">`. The value is `File[]`, `name` puts the files in a plain form submit or `FormData`, and `required` uses the browser's check. The ref is the file input's, so react-hook-form's `register` works.
+- **With `uploadOptions`** each file uploads as soon as it's picked. `presign(file)` returns a presigned S3 PUT URL (the app's own "prepare upload" mutation). FileUpload PUTs the file there with `Content-Type: file.type`, showing progress, cancel and Retry (Retry asks for a new URL). The value is what `onUploadFinished(file, url)` returns, or the URL minus its query string without it: `TValue | null` for one file, `TValue[]` with `multiple`. The value only changes once an upload finishes.
+- One file: its card takes the drop zone's place. `accept` and `maxSize` refuse a file with a message under the zone. `confirmDelete` and `deleteToast` (both off by default) ask before deleting and offer Undo.
+- Labels, hints and errors come from `Field`, `FieldLabel htmlFor`, `FieldDescription` and `FieldError`, as for every input. Set `aria-invalid` for the error look.
+
+Our `Attachment` adds `status` (`uploading` · `completed` · `error` · `uploaded`) and three parts: `AttachmentStatus` (the coloured label in the description), `AttachmentProgress` (a full-width bar) and `AttachmentError` (the message, with Retry when `onRetry` is set).
+
 ## Component tokens (levers)
 
 Tokens come in three layers. Each layer reads the one above it, so a change at the top flows down.
@@ -669,7 +680,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>attachment</strong> (22)</summary>
+<summary><strong>attachment</strong> (33)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -695,6 +706,17 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--attachment-description-foreground` | Text colour of the description. | `var(--muted-foreground)` |
 | `--attachment-group-gap` | Gap between items of the group. | `calc(var(--spacing) * 3)` |
 | `--attachment-group-padding-y` | Vertical padding of the group. | `calc(var(--spacing) * 1)` |
+| `--attachment-status-gap` | Gap between the status icon and its label. | `calc(var(--spacing) * 1)` |
+| `--attachment-status-foreground` | Colour of the status label while uploading. | `var(--dark-75)` |
+| `--attachment-status-completed-foreground` | Colour of the status label once an upload completes. | `var(--mint-60)` |
+| `--attachment-status-error-foreground` | Colour of the status label when an upload fails. | `var(--error-75)` |
+| `--attachment-progress-height` | Height of the upload progress bar. | `calc(var(--spacing) * 1.5)` |
+| `--attachment-progress-radius` | Corner radius of the upload progress bar. | `var(--radius-full)` |
+| `--attachment-progress` | Colour of the progress bar's track. | `var(--mint-l2)` |
+| `--attachment-progress-indicator` | Colour of the uploaded part of the progress bar. | `var(--mint-60)` |
+| `--attachment-error-foreground` | Colour of the error message under a failed upload. | `var(--error-75)` |
+| `--attachment-retry-foreground` | Colour of the Retry link. | `var(--error-75)` |
+| `--attachment-retry-font-weight` | Font weight of the Retry link. | `600` |
 
 </details>
 
@@ -1386,6 +1408,45 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--field-error-font-weight` | Font weight of the error. | `400` |
 | `--field-error-foreground` | Text colour of the error. | `var(--destructive)` |
 | `--field-label-required-foreground` | Colour of the asterisk on a required field's label. | `var(--mint-45)` |
+
+</details>
+
+<details>
+<summary><strong>file-drop-zone</strong> (20)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--file-drop-zone-min-height` | Minimum height of the drop zone. | `calc(var(--spacing) * 26)` |
+| `--file-drop-zone-gap` | Gap between the icon and the text. | `calc(var(--spacing) * 2.5)` |
+| `--file-drop-zone-padding` | Padding inside the drop zone. | `calc(var(--spacing) * 4)` |
+| `--file-drop-zone-radius` | Corner radius of the drop zone. | `var(--radius-lg)` |
+| `--file-drop-zone` | Fill colour of the drop zone. | `var(--white)` |
+| `--file-drop-zone-foreground` | Text colour of the drop zone. | `var(--dark-90)` |
+| `--file-drop-zone-border` | Dashed border colour of the drop zone. | `var(--dark-15)` |
+| `--file-drop-zone-hover` | Fill colour on hover, focus and while a file is dragged over. | `var(--mint-l3)` |
+| `--file-drop-zone-hover-foreground` | Text colour on hover, focus and while a file is dragged over. | `var(--mint-75)` |
+| `--file-drop-zone-hover-border` | Border colour on hover, focus and while a file is dragged over. | `var(--mint-45)` |
+| `--file-drop-zone-focus-ring` | Focus ring colour. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
+| `--file-drop-zone-invalid` | Fill colour in the error state. | `var(--error-l1)` |
+| `--file-drop-zone-invalid-border` | Border colour in the error state. | `var(--error-75)` |
+| `--file-drop-zone-invalid-focus-ring` | Focus ring colour in the error state. | `color-mix(in oklab, var(--error-75) 20%, transparent)` |
+| `--file-drop-zone-disabled` | Fill colour when disabled. | `var(--light-l1)` |
+| `--file-drop-zone-disabled-foreground` | Text and icon colour when disabled. | `var(--dark-45)` |
+| `--file-drop-zone-icon-foreground` | Colour of the upload icon. | `var(--mint-60)` |
+| `--file-drop-zone-icon-hover-foreground` | Colour of the upload icon on hover and while a file is dragged over. | `var(--mint-75)` |
+| `--file-drop-zone-browse-foreground` | Colour of the word "browse". | `var(--mint-75)` |
+| `--file-drop-zone-browse-font-weight` | Font weight of the word "browse". | `600` |
+
+</details>
+
+<details>
+<summary><strong>file-upload</strong> (3)</summary>
+
+| Lever | What it changes | Default |
+|---|---|---|
+| `--file-upload-gap` | Gap between the drop zone, its message and the list of files. | `calc(var(--spacing) * 2)` |
+| `--file-upload-list-gap` | Gap between the file cards. | `calc(var(--spacing) * 2)` |
+| `--file-upload-message-foreground` | Colour of the message when a picked file isn't accepted (wrong type or too large). | `var(--error-75)` |
 
 </details>
 

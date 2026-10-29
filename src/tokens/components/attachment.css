@@ -66,3 +66,40 @@
   /* Vertical padding of the group. */
   --_attachment-group-padding-y: var(--attachment-group-padding-y, calc(var(--spacing) * 1));
 }
+
+[data-slot="attachment-status"] {
+  /* Gap between the status icon and its label. @ours */
+  --_attachment-status-gap: var(--attachment-status-gap, calc(var(--spacing) * 1));
+  /* Colour of the status label while uploading. @ours */
+  --_attachment-status-foreground: var(--attachment-status-foreground, var(--dark-75));
+  /* Colour of the status label once an upload completes. @ours */
+  --_attachment-status-completed-foreground: var(--attachment-status-completed-foreground, var(--mint-60));
+  /* Colour of the status label when an upload fails. @ours */
+  --_attachment-status-error-foreground: var(--attachment-status-error-foreground, var(--error-75));
+}
+
+[data-slot="attachment-progress"] {
+  /* Height of the upload progress bar. @ours */
+  --_attachment-progress-height: var(--attachment-progress-height, calc(var(--spacing) * 1.5));
+  /* Corner radius of the upload progress bar. @ours */
+  --_attachment-progress-radius: var(--attachment-progress-radius, var(--radius-full));
+  /* Colour of the progress bar's track. @ours */
+  --_attachment-progress: var(--attachment-progress, var(--mint-l2));
+}
+
+[data-slot="attachment-progress-indicator"] {
+  /* Colour of the uploaded part of the progress bar. @ours */
+  --_attachment-progress-indicator: var(--attachment-progress-indicator, var(--mint-60));
+}
+
+[data-slot="attachment-error"] {
+  /* Colour of the error message under a failed upload. @ours */
+  --_attachment-error-foreground: var(--attachment-error-foreground, var(--error-75));
+}
+
+[data-slot="attachment-retry"] {
+  /* Colour of the Retry link. @ours */
+  --_attachment-retry-foreground: var(--attachment-retry-foreground, var(--error-75));
+  /* Font weight of the Retry link. @ours */
+  --_attachment-retry-font-weight: var(--attachment-retry-font-weight, 600);
+}

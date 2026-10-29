@@ -1719,6 +1719,158 @@
      "reads": [
       "--spacing"
      ]
+    },
+    {
+     "name": "--attachment-status-gap",
+     "private": "--_attachment-status-gap",
+     "default": "calc(var(--spacing) * 1)",
+     "description": "Gap between the status icon and its label.",
+     "type": "length",
+     "part": "attachment-status",
+     "variant": null,
+     "state": null,
+     "property": "gap",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--attachment-status-foreground",
+     "private": "--_attachment-status-foreground",
+     "default": "var(--dark-75)",
+     "description": "Colour of the status label while uploading.",
+     "type": "color",
+     "part": "attachment-status",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-75"
+     ]
+    },
+    {
+     "name": "--attachment-status-completed-foreground",
+     "private": "--_attachment-status-completed-foreground",
+     "default": "var(--mint-60)",
+     "description": "Colour of the status label once an upload completes.",
+     "type": "color",
+     "part": "attachment-status",
+     "variant": "completed",
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--mint-60"
+     ]
+    },
+    {
+     "name": "--attachment-status-error-foreground",
+     "private": "--_attachment-status-error-foreground",
+     "default": "var(--error-75)",
+     "description": "Colour of the status label when an upload fails.",
+     "type": "color",
+     "part": "attachment-status",
+     "variant": "error",
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--error-75"
+     ]
+    },
+    {
+     "name": "--attachment-progress-height",
+     "private": "--_attachment-progress-height",
+     "default": "calc(var(--spacing) * 1.5)",
+     "description": "Height of the upload progress bar.",
+     "type": "length",
+     "part": "attachment-progress",
+     "variant": null,
+     "state": null,
+     "property": "height",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--attachment-progress-radius",
+     "private": "--_attachment-progress-radius",
+     "default": "var(--radius-full)",
+     "description": "Corner radius of the upload progress bar.",
+     "type": "radius",
+     "part": "attachment-progress",
+     "variant": null,
+     "state": null,
+     "property": "radius",
+     "reads": [
+      "--radius-full"
+     ]
+    },
+    {
+     "name": "--attachment-progress",
+     "private": "--_attachment-progress",
+     "default": "var(--mint-l2)",
+     "description": "Colour of the progress bar's track.",
+     "type": "color",
+     "part": "attachment-progress",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--mint-l2"
+     ]
+    },
+    {
+     "name": "--attachment-progress-indicator",
+     "private": "--_attachment-progress-indicator",
+     "default": "var(--mint-60)",
+     "description": "Colour of the uploaded part of the progress bar.",
+     "type": "color",
+     "part": "attachment-progress-indicator",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--mint-60"
+     ]
+    },
+    {
+     "name": "--attachment-error-foreground",
+     "private": "--_attachment-error-foreground",
+     "default": "var(--error-75)",
+     "description": "Colour of the error message under a failed upload.",
+     "type": "color",
+     "part": "attachment-error",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--error-75"
+     ]
+    },
+    {
+     "name": "--attachment-retry-foreground",
+     "private": "--_attachment-retry-foreground",
+     "default": "var(--error-75)",
+     "description": "Colour of the Retry link.",
+     "type": "color",
+     "part": "attachment-retry",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--error-75"
+     ]
+    },
+    {
+     "name": "--attachment-retry-font-weight",
+     "private": "--_attachment-retry-font-weight",
+     "default": "600",
+     "description": "Font weight of the Retry link.",
+     "type": "font-weight",
+     "part": "attachment-retry",
+     "variant": null,
+     "state": null,
+     "property": "font-weight",
+     "reads": []
     }
    ]
   },
@@ -8946,6 +9098,338 @@
      "property": "foreground",
      "reads": [
       "--mint-45"
+     ]
+    }
+   ]
+  },
+  {
+   "component": "file-drop-zone",
+   "description": "File Drop Zone — component tokens.\nSet any lever (the name without the underscore) on :root or a section.\nDefaults are the shipped design. Edited by hand; our component (file-drop-zone.tsx) reads these levers.",
+   "tokens": [
+    {
+     "name": "--file-drop-zone-min-height",
+     "private": "--_file-drop-zone-min-height",
+     "default": "calc(var(--spacing) * 26)",
+     "description": "Minimum height of the drop zone.",
+     "type": "length",
+     "part": "file-drop-zone",
+     "variant": null,
+     "state": null,
+     "property": "min-height",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--file-drop-zone-gap",
+     "private": "--_file-drop-zone-gap",
+     "default": "calc(var(--spacing) * 2.5)",
+     "description": "Gap between the icon and the text.",
+     "type": "length",
+     "part": "file-drop-zone",
+     "variant": null,
+     "state": null,
+     "property": "gap",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--file-drop-zone-padding",
+     "private": "--_file-drop-zone-padding",
+     "default": "calc(var(--spacing) * 4)",
+     "description": "Padding inside the drop zone.",
+     "type": "length",
+     "part": "file-drop-zone",
+     "variant": null,
+     "state": null,
+     "property": "padding",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--file-drop-zone-radius",
+     "private": "--_file-drop-zone-radius",
+     "default": "var(--radius-lg)",
+     "description": "Corner radius of the drop zone.",
+     "type": "radius",
+     "part": "file-drop-zone",
+     "variant": null,
+     "state": null,
+     "property": "radius",
+     "reads": [
+      "--radius-lg"
+     ]
+    },
+    {
+     "name": "--file-drop-zone",
+     "private": "--_file-drop-zone",
+     "default": "var(--white)",
+     "description": "Fill colour of the drop zone.",
+     "type": "color",
+     "part": "file-drop-zone",
+     "variant": null,
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--white"
+     ]
+    },
+    {
+     "name": "--file-drop-zone-foreground",
+     "private": "--_file-drop-zone-foreground",
+     "default": "var(--dark-90)",
+     "description": "Text colour of the drop zone.",
+     "type": "color",
+     "part": "file-drop-zone",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-90"
+     ]
+    },
+    {
+     "name": "--file-drop-zone-border",
+     "private": "--_file-drop-zone-border",
+     "default": "var(--dark-15)",
+     "description": "Dashed border colour of the drop zone.",
+     "type": "color",
+     "part": "file-drop-zone",
+     "variant": null,
+     "state": null,
+     "property": "border",
+     "reads": [
+      "--dark-15"
+     ]
+    },
+    {
+     "name": "--file-drop-zone-hover",
+     "private": "--_file-drop-zone-hover",
+     "default": "var(--mint-l3)",
+     "description": "Fill colour on hover, focus and while a file is dragged over.",
+     "type": "color",
+     "part": "file-drop-zone",
+     "variant": null,
+     "state": "hover",
+     "property": "fill",
+     "reads": [
+      "--mint-l3"
+     ]
+    },
+    {
+     "name": "--file-drop-zone-hover-foreground",
+     "private": "--_file-drop-zone-hover-foreground",
+     "default": "var(--mint-75)",
+     "description": "Text colour on hover, focus and while a file is dragged over.",
+     "type": "color",
+     "part": "file-drop-zone",
+     "variant": null,
+     "state": "hover",
+     "property": "foreground",
+     "reads": [
+      "--mint-75"
+     ]
+    },
+    {
+     "name": "--file-drop-zone-hover-border",
+     "private": "--_file-drop-zone-hover-border",
+     "default": "var(--mint-45)",
+     "description": "Border colour on hover, focus and while a file is dragged over.",
+     "type": "color",
+     "part": "file-drop-zone",
+     "variant": null,
+     "state": "hover",
+     "property": "border",
+     "reads": [
+      "--mint-45"
+     ]
+    },
+    {
+     "name": "--file-drop-zone-focus-ring",
+     "private": "--_file-drop-zone-focus-ring",
+     "default": "color-mix(in oklab, var(--mint-45) 30%, transparent)",
+     "description": "Focus ring colour.",
+     "type": "color",
+     "part": "file-drop-zone",
+     "variant": null,
+     "state": "focus",
+     "property": "ring",
+     "reads": [
+      "--mint-45"
+     ]
+    },
+    {
+     "name": "--file-drop-zone-invalid",
+     "private": "--_file-drop-zone-invalid",
+     "default": "var(--error-l1)",
+     "description": "Fill colour in the error state.",
+     "type": "color",
+     "part": "file-drop-zone",
+     "variant": null,
+     "state": "invalid",
+     "property": "fill",
+     "reads": [
+      "--error-l1"
+     ]
+    },
+    {
+     "name": "--file-drop-zone-invalid-border",
+     "private": "--_file-drop-zone-invalid-border",
+     "default": "var(--error-75)",
+     "description": "Border colour in the error state.",
+     "type": "color",
+     "part": "file-drop-zone",
+     "variant": null,
+     "state": "invalid",
+     "property": "border",
+     "reads": [
+      "--error-75"
+     ]
+    },
+    {
+     "name": "--file-drop-zone-invalid-focus-ring",
+     "private": "--_file-drop-zone-invalid-focus-ring",
+     "default": "color-mix(in oklab, var(--error-75) 20%, transparent)",
+     "description": "Focus ring colour in the error state.",
+     "type": "color",
+     "part": "file-drop-zone",
+     "variant": "invalid",
+     "state": "focus",
+     "property": "ring",
+     "reads": [
+      "--error-75"
+     ]
+    },
+    {
+     "name": "--file-drop-zone-disabled",
+     "private": "--_file-drop-zone-disabled",
+     "default": "var(--light-l1)",
+     "description": "Fill colour when disabled.",
+     "type": "color",
+     "part": "file-drop-zone",
+     "variant": null,
+     "state": "disabled",
+     "property": "fill",
+     "reads": [
+      "--light-l1"
+     ]
+    },
+    {
+     "name": "--file-drop-zone-disabled-foreground",
+     "private": "--_file-drop-zone-disabled-foreground",
+     "default": "var(--dark-45)",
+     "description": "Text and icon colour when disabled.",
+     "type": "color",
+     "part": "file-drop-zone",
+     "variant": null,
+     "state": "disabled",
+     "property": "foreground",
+     "reads": [
+      "--dark-45"
+     ]
+    },
+    {
+     "name": "--file-drop-zone-icon-foreground",
+     "private": "--_file-drop-zone-icon-foreground",
+     "default": "var(--mint-60)",
+     "description": "Colour of the upload icon.",
+     "type": "color",
+     "part": "file-drop-zone-icon",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--mint-60"
+     ]
+    },
+    {
+     "name": "--file-drop-zone-icon-hover-foreground",
+     "private": "--_file-drop-zone-icon-hover-foreground",
+     "default": "var(--mint-75)",
+     "description": "Colour of the upload icon on hover and while a file is dragged over.",
+     "type": "color",
+     "part": "file-drop-zone-icon",
+     "variant": null,
+     "state": "hover",
+     "property": "foreground",
+     "reads": [
+      "--mint-75"
+     ]
+    },
+    {
+     "name": "--file-drop-zone-browse-foreground",
+     "private": "--_file-drop-zone-browse-foreground",
+     "default": "var(--mint-75)",
+     "description": "Colour of the word \"browse\".",
+     "type": "color",
+     "part": "file-drop-zone-browse",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--mint-75"
+     ]
+    },
+    {
+     "name": "--file-drop-zone-browse-font-weight",
+     "private": "--_file-drop-zone-browse-font-weight",
+     "default": "600",
+     "description": "Font weight of the word \"browse\".",
+     "type": "font-weight",
+     "part": "file-drop-zone-browse",
+     "variant": null,
+     "state": null,
+     "property": "font-weight",
+     "reads": []
+    }
+   ]
+  },
+  {
+   "component": "file-upload",
+   "description": "File Upload — component tokens.\nSet any lever (the name without the underscore) on :root or a section.\nDefaults are the shipped design. Edited by hand; our component (file-upload.tsx) reads these levers.\nThe drop zone and the file cards have their own levers: file-drop-zone.css and attachment.css.",
+   "tokens": [
+    {
+     "name": "--file-upload-gap",
+     "private": "--_file-upload-gap",
+     "default": "calc(var(--spacing) * 2)",
+     "description": "Gap between the drop zone, its message and the list of files.",
+     "type": "length",
+     "part": "file-upload",
+     "variant": null,
+     "state": null,
+     "property": "gap",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--file-upload-list-gap",
+     "private": "--_file-upload-list-gap",
+     "default": "calc(var(--spacing) * 2)",
+     "description": "Gap between the file cards.",
+     "type": "length",
+     "part": "file-upload-list",
+     "variant": null,
+     "state": null,
+     "property": "gap",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--file-upload-message-foreground",
+     "private": "--_file-upload-message-foreground",
+     "default": "var(--error-75)",
+     "description": "Colour of the message when a picked file isn't accepted (wrong type or too large).",
+     "type": "color",
+     "part": "file-upload-message",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--error-75"
      ]
     }
    ]
