@@ -201,7 +201,10 @@ function ToastIcon({ type }: { type: string | undefined }) {
       className="flex size-(--_toast-icon-size) shrink-0 items-center justify-center rounded-(--_toast-icon-radius) border border-current bg-(--_toast-icon) [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4.5"
     >
       <Icon
-        className={cn(type === "loading" && "animate-spin")}
+        // IconInfoSmall draws its glyph at half the height of the others (7 of 24 units, against the
+        // 12–14 of the ! and ×), so it renders larger to match them, with a thinner stroke to keep the same weight.
+        className={cn(type === "loading" && "animate-spin", type === "info" && "size-8")}
+        stroke={type === "info" ? 1.2 : 2}
         aria-hidden="true"
       />
     </span>
