@@ -2228,20 +2228,6 @@
      ]
     },
     {
-     "name": "--avatar-group-count-size",
-     "private": "--_avatar-group-count-size",
-     "default": "calc(var(--spacing) * 8)",
-     "description": "Width and height of the group-count.",
-     "type": "length",
-     "part": "avatar-group-count",
-     "variant": null,
-     "state": null,
-     "property": "size",
-     "reads": [
-      "--spacing"
-     ]
-    },
-    {
      "name": "--avatar-group-count-radius",
      "private": "--_avatar-group-count-radius",
      "default": "var(--radius-full)",
@@ -2295,34 +2281,6 @@
      "property": "ring",
      "reads": [
       "--background"
-     ]
-    },
-    {
-     "name": "--avatar-group-count-sm-size",
-     "private": "--_avatar-group-count-sm-size",
-     "default": "calc(var(--spacing) * 6)",
-     "description": "Size of the \"+N\" count in a group of small (sm) avatars.",
-     "type": "length",
-     "part": "avatar-group-count",
-     "variant": "sm",
-     "state": null,
-     "property": "size",
-     "reads": [
-      "--spacing"
-     ]
-    },
-    {
-     "name": "--avatar-group-count-lg-size",
-     "private": "--_avatar-group-count-lg-size",
-     "default": "calc(var(--spacing) * 10)",
-     "description": "Size of the \"+N\" count in a group of large (lg) avatars.",
-     "type": "length",
-     "part": "avatar-group-count",
-     "variant": "lg",
-     "state": null,
-     "property": "size",
-     "reads": [
-      "--spacing"
      ]
     }
    ]

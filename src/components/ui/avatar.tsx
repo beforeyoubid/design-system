@@ -88,7 +88,7 @@ function AvatarGroupCount({
     <div
       data-slot="avatar-group-count"
       className={cn(
-        "relative flex size-(--_avatar-group-count-size) shrink-0 items-center justify-center rounded-(--_avatar-group-count-radius) bg-(--_avatar-group-count) text-body-5 text-(--_avatar-group-count-foreground) ring-2 ring-(--_avatar-group-count-ring) group-has-data-[size=lg]/avatar-group:size-(--_avatar-group-count-lg-size) group-has-data-[size=sm]/avatar-group:size-(--_avatar-group-count-sm-size) [&>svg]:size-4 group-has-data-[size=lg]/avatar-group:[&>svg]:size-5 group-has-data-[size=sm]/avatar-group:[&>svg]:size-3",
+        "relative flex shrink-0 items-center justify-center rounded-(--_avatar-group-count-radius) bg-(--_avatar-group-count) text-body-5 text-(--_avatar-group-count-foreground) ring-2 ring-(--_avatar-group-count-ring) [&>svg]:size-4 group-has-data-[size=lg]/avatar-group:[&>svg]:size-5 group-has-data-[size=sm]/avatar-group:[&>svg]:size-3 size-(--_avatar-size) group-has-data-[size=lg]/avatar-group:size-(--_avatar-lg-size) group-has-data-[size=sm]/avatar-group:size-(--_avatar-sm-size)",
         className
       )}
       {...props}

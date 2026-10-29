@@ -751,7 +751,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>avatar</strong> (22)</summary>
+<summary><strong>avatar</strong> (19)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -770,13 +770,10 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--avatar-badge-size` | Width and height of the status dot on a default avatar. | `calc(var(--spacing) * 2.5)` |
 | `--avatar-badge-sm-size` | Width and height of the status dot on a small avatar. | `calc(var(--spacing) * 2)` |
 | `--avatar-badge-lg-size` | Width and height of the status dot on a large avatar. | `calc(var(--spacing) * 3)` |
-| `--avatar-group-count-size` | Width and height of the group-count. | `calc(var(--spacing) * 8)` |
 | `--avatar-group-count-radius` | Corner radius of the group-count. | `var(--radius-full)` |
 | `--avatar-group-count` | Fill colour of the group-count. | `var(--muted)` |
 | `--avatar-group-count-foreground` | Text colour of the group-count. | `var(--muted-foreground)` |
 | `--avatar-group-count-ring` | Ring colour of the group-count. | `var(--background)` |
-| `--avatar-group-count-sm-size` | Size of the "+N" count in a group of small (sm) avatars. | `calc(var(--spacing) * 6)` |
-| `--avatar-group-count-lg-size` | Size of the "+N" count in a group of large (lg) avatars. | `calc(var(--spacing) * 10)` |
 
 </details>
 
