@@ -541,7 +541,7 @@ Every toast has a × so it can be closed early. Override per toast with `timeout
 
 ### Data and media
 
-`BYBAreaChart`, `BYBBarChart`, `ChartFrame` (with `ChartLegendList`, `CHART_PALETTE`), `Chart` · `Avatar` · `FileUpload` (see File upload) · `PillCard` · `Counter` · `Toggle` / `ToggleGroup` · `Slider` · `InputOTP` · `Calendar` · `Label`.
+`BYBAreaChart`, `BYBBarChart`, `ChartFrame` (with `ChartLegendList`, `CHART_PALETTE`), `Chart` · `Avatar` · `FileUpload` (see File upload) · `Counter` · `Toggle` / `ToggleGroup` · `Slider` · `InputOTP` · `Calendar` · `Label`.
 
 ### File upload
 
@@ -1815,23 +1815,6 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>pill-card</strong> (9)</summary>
-
-| Lever | What it changes | Default |
-|---|---|---|
-| `--pill-card-electric-blue` | Fill colour of the card (electric-blue variant). | `var(--electric-blue-l1)` |
-| `--pill-card-teal` | Fill colour of the card (teal variant). | `var(--teal-l1)` |
-| `--pill-card-lime` | Fill colour of the card (lime variant). | `var(--lime-l1)` |
-| `--pill-card-icon` | Fill colour of the icon circle. | `var(--white)` |
-| `--pill-card-icon-electric-blue-foreground` | Icon and ring colour (electric-blue variant). | `var(--electric-blue)` |
-| `--pill-card-icon-teal-foreground` | Icon and ring colour (teal variant). | `var(--teal)` |
-| `--pill-card-icon-lime-foreground` | Icon and ring colour (lime variant). | `var(--lime)` |
-| `--pill-card-heading-foreground` | Text colour of the heading. | `var(--navy)` |
-| `--pill-card-subheading-foreground` | Text colour of the subheading. | `var(--dark-75)` |
-
-</details>
-
-<details>
 <summary><strong>popover</strong> (11)</summary>
 
 | Lever | What it changes | Default |
@@ -2446,7 +2429,7 @@ npx design-system-migrate            # dry run: what would change, and what need
 npx design-system-migrate --write    # apply
 ```
 
-It renames the old type, button, radius and colour classes, swaps `rounded-xl` ↔ `rounded-2xl`, moves `dark-60` text and icons to `dark-75`, turns `primary-foreground` classes and `var(--primary-foreground)` reads into `white` (the token is navy now), renames Badge, Switch and TabsList variants and `BYBCounter` / `BYBPillCard` / `BYBTimePicker` / `BYBSpinner` / `BYBFileUploadCard` (now `Counter` / `PillCard` / `TimePicker` / `Spinner` / `FileUploadCard`), and moves `InputField` / `SelectField` imports to `@beforeyoubid/form`. For `@beforeyoubid/form` 1.x apps it adds `clearable` to `SearchField` / `RatingField` and `revealable` to `PasswordField` where they relied on the old default (on), and drops `clearable={false}` / `revealable={false}`. It lists each standalone `TimeField` whose `onChange` or `step` / `min` / `max` needs moving: TimeField is now the `TimePicker`, and `onValueChange` gets the time string. Button variants are left alone: every 1.x variant still exists and looks the same. It lists anything with no like-for-like replacement with its file and line. `--map old=new` changes a mapping for one app, e.g. `--map text-xs=text-sm`. Run it only once: a second run would swap the radius classes back.
+It renames the old type, button, radius and colour classes, swaps `rounded-xl` ↔ `rounded-2xl`, moves `dark-60` text and icons to `dark-75`, turns `primary-foreground` classes and `var(--primary-foreground)` reads into `white` (the token is navy now), renames Badge, Switch and TabsList variants and `BYBCounter` / `BYBTimePicker` / `BYBSpinner` / `BYBFileUploadCard` (now `Counter` / `TimePicker` / `Spinner` / `FileUploadCard`), and moves `InputField` / `SelectField` imports to `@beforeyoubid/form`. For `@beforeyoubid/form` 1.x apps it adds `clearable` to `SearchField` / `RatingField` and `revealable` to `PasswordField` where they relied on the old default (on), and drops `clearable={false}` / `revealable={false}`. It lists each standalone `TimeField` whose `onChange` or `step` / `min` / `max` needs moving: TimeField is now the `TimePicker`, and `onValueChange` gets the time string. Button variants are left alone: every 1.x variant still exists and looks the same. It lists anything with no like-for-like replacement with its file and line. `--map old=new` changes a mapping for one app, e.g. `--map text-xs=text-sm`. Run it only once: a second run would swap the radius classes back.
 
 ### Changes the migrator can't make
 

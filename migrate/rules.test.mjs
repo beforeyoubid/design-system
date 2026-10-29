@@ -181,11 +181,14 @@ test('reports the line of each change', () => {
   )
 })
 
-test('renames BYBCounter and BYBPillCard through the file', () => {
-  const out = run(
-    "import { BYBCounter, BYBPillCard, cn } from '@beforeyoubid/design-system'\n<BYBCounter value={1} />\n<BYBPillCard>x</BYBPillCard>",
-  )
-  assert.equal(out, "import { Counter, PillCard, cn } from '@beforeyoubid/design-system'\n<Counter value={1} />\n<PillCard>x</PillCard>")
+test('renames BYBCounter through the file', () => {
+  const out = run("import { BYBCounter, cn } from '@beforeyoubid/design-system'\n<BYBCounter value={1} />")
+  assert.equal(out, "import { Counter, cn } from '@beforeyoubid/design-system'\n<Counter value={1} />")
+})
+
+test('flags BYBPillCard as removed', () => {
+  const { reviews } = migrateSource("import { BYBPillCard } from '@beforeyoubid/design-system'\n<BYBPillCard />")
+  assert.match(reviews[0].message, /^BYBPillCard is no longer exported: removed/)
 })
 
 test('renames BYBTimePicker and its props type', () => {

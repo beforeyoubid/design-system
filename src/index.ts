@@ -2,7 +2,6 @@
 // BYB-opinionated components — domain-specific, no shadcn equivalent
 // =============================================================================
 export { Counter } from './components/counter'
-export { PillCard } from './components/pill-card'
 
 // =============================================================================
 // BYB components (the BYB design library) — product-specific, no shadcn equivalent

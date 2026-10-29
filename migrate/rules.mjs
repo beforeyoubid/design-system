@@ -144,6 +144,7 @@ export const REMOVED_EXPORTS = {
   colors: 'use generateDesignSystemTokens().colors in a non-CSS context, or a utility class (bg-mint-45)',
   typography: 'use generateDesignSystemTokens().typography in a non-CSS context, or a text-* class',
   BYBTestimonialCard: 'removed from the design system',
+  BYBPillCard: 'removed from the design system: no app used it; copy src/components/BYBPillCard.tsx from design-system 1.x into the app if you need it',
   BYBTestimonialCarousel: 'removed from the design system',
   BYBTestimonialCardProps: 'removed from the design system',
   Testimonial: 'removed from the design system',
@@ -168,7 +169,6 @@ export const REMOVED_EXPORTS = {
 /** Exports renamed in 2.0. The import and every use in the file change. */
 export const EXPORT_RENAMES = {
   BYBCounter: 'Counter',
-  BYBPillCard: 'PillCard',
   BYBTimePicker: 'TimePicker',
   BYBTimePickerProps: 'TimePickerProps',
   BYBSpinner: 'Spinner',
