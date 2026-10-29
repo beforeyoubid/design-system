@@ -408,7 +408,7 @@ Solid (`appearance="solid"`): gray dark-75 + white · mint mint-45 + white · li
 - Yes/no props are off by default and named for the behaviour they add (`clearable`, `multiple`, `overlapping`), so turning one on is passing it.
 - Focus: `border-mint-45` + `ring-3 ring-mint-45/30`.
 - Invalid (`aria-invalid`): `border-destructive`, red ring on focus.
-- Disabled: `bg-light-l2 text-dark-45`. Only the control greys out; its label and hint stay at full strength (`--field-label-disabled-opacity`, default 1).
+- Disabled: `bg-light-l2 text-dark-45`. Its label dims to 50% with it (`--field-label-disabled-opacity`), and so does a file upload's hint.
 - Label, hint and error come from `Field`, `FieldLabel`, `FieldDescription` and `FieldError`; `FieldLabel required` adds a mint asterisk. Groups of fields use `FieldSet` with `FieldLegend` and a `FieldGroup`, with a `FieldSeparator` between sections. Apps build forms with `@beforeyoubid/form`, whose `InputField`, `SelectField` and `DateField` compose these parts.
 - `Select` rows take `meta` (right side of the row, e.g. a count or `<ColorDot />`); on single-select rows a `meta` replaces the trailing check and the mint row fill marks the selection. `SelectTrigger onClear={…}` shows an × beside the chevron (`IconX`, `dark-75`, hover `dark-100`, no background; pass it only while something is selected), and `SelectChip` / `SelectChipOverflow` ("+N") render selected values in the field. Multi-select lists end with an "N selected · CLEAR" footer (`SelectFooter`); CLEAR is `text-overline` (uppercase) in `mint-75`, hover `mint-90`.
 - `TimePicker` has a 40px trigger and scrollable hour / minute columns: 24-hour (no AM/PM), selected value in lime like the calendar's selected day; columns scroll without a visible scrollbar (`no-scrollbar`). `formatDateDMY` shows a date as DD/MM/YYYY.
@@ -1432,7 +1432,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--field-label-gap` | Gap between items of the label. | `calc(var(--spacing) * 2)` |
 | `--field-label-font-weight` | Font weight of the label. | `600` |
 | `--field-label-foreground` | Text colour of the label. | `var(--navy)` |
-| `--field-label-disabled-opacity` | Opacity of the label when its field is disabled. 1 keeps it at full strength; only the control greys out. | `1` |
+| `--field-label-disabled-opacity` | Opacity of the label when its field is disabled. Dimmed: at full strength the greyed form read as live. | `0.5` |
 | `--field-description-font-weight` | Font weight of the description. | `400` |
 | `--field-description-foreground` | Text colour of the description. | `var(--muted-foreground)` |
 | `--field-separator-height` | Height of the separator. | `calc(var(--spacing) * 5)` |

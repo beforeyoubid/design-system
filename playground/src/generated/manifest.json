@@ -9162,8 +9162,8 @@
     {
      "name": "--field-label-disabled-opacity",
      "private": "--_field-label-disabled-opacity",
-     "default": "1",
-     "description": "Opacity of the label when its field is disabled. 1 keeps it at full strength; only the control greys out.",
+     "default": "0.5",
+     "description": "Opacity of the label when its field is disabled. Dimmed: at full strength the greyed form read as live.",
      "type": "opacity",
      "part": "field-label",
      "variant": null,
