@@ -219,3 +219,41 @@ test('keeps the semicolon when it rewrites an import', () => {
     "import { Button, Counter } from '@beforeyoubid/design-system';\n<Counter />",
   )
 })
+
+test('renames BYBSpinner and flags the props Spinner lacks', () => {
+  const { text, reviews } = migrateSource(
+    "import { BYBSpinner } from '@beforeyoubid/design-system'\n<BYBSpinner size=\"lg\" color=\"navy\" label=\"Saving\" />",
+  )
+  assert.equal(text, "import { Spinner } from '@beforeyoubid/design-system'\n<Spinner size=\"lg\" color=\"navy\" label=\"Saving\" />")
+  assert.deepEqual(
+    reviews.map((r) => r.message.split(':')[0]),
+    ['BYBSpinner size', 'BYBSpinner color', 'BYBSpinner label'],
+  )
+  assert.match(reviews[0].message, /lg size-5/)
+})
+
+test('renames BYBFileUploadCard and flags its renamed props', () => {
+  const { text, reviews } = migrateSource(
+    "import { BYBFileUploadCard } from '@beforeyoubid/design-system'\n<BYBFileUploadCard name=\"a.pdf\" downloadHref={url} onRemove={remove} />",
+  )
+  assert.match(text, /^import \{ FileUploadCard \} from '@beforeyoubid\/design-system'\n<FileUploadCard name/)
+  assert.deepEqual(
+    reviews.map((r) => r.message),
+    ['BYBFileUploadCard onRemove: renamed onDelete', 'BYBFileUploadCard downloadHref: renamed url'],
+  )
+})
+
+test('flags the BYB components replaced by stock parts, with a recipe', () => {
+  const { reviews } = migrateSource(
+    "import { BYBEmptyState, BYBFieldset, BYBAttachment, BYBDatePicker } from '@beforeyoubid/design-system'",
+  )
+  assert.deepEqual(
+    reviews.map((r) => r.message.match(/^(\w+) is no longer exported: use (\w+)/).slice(1)),
+    [
+      ['BYBEmptyState', 'Empty'],
+      ['BYBFieldset', 'FieldSet'],
+      ['BYBAttachment', 'FileUpload'],
+      ['BYBDatePicker', 'DateField'],
+    ],
+  )
+})

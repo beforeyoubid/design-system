@@ -120,6 +120,16 @@ export const PROP_REVIEW = {
     },
     dot: 'the status dot was removed',
   },
+  BYBSpinner: {
+    size: 'Spinner has no size prop: use a class, sm size-3, md size-4 (the default), lg size-5, xl size-6',
+    color: 'Spinner has no color prop: mint is the default; use text-lime, text-navy or text-current',
+    label: 'Spinner has no label prop: use aria-label',
+  },
+  BYBFileUploadCard: {
+    onRemove: 'renamed onDelete',
+    downloadHref: 'renamed url',
+    onDownload: 'removed: pass the file URL as url and the download button links to it',
+  },
 }
 
 /** Exported by 1.1.x and gone now. */
@@ -131,6 +141,21 @@ export const REMOVED_EXPORTS = {
   BYBTestimonialCardProps: 'removed from the design system',
   Testimonial: 'removed from the design system',
   BYBImage: 'moved to byb-website (it is next/image with a default `sizes`): copy src/components/BYBImage.tsx from design-system 1.x into the app',
+  bybSpinnerVariants: 'use Spinner with a size-* and text-* class',
+  BYBSpinnerProps: 'use React.ComponentProps<typeof Spinner>',
+  BYBEmptyState: 'use Empty: EmptyHeader holds EmptyMedia variant="icon" (the icon), EmptyTitle and EmptyDescription; EmptyContent holds the actions and footer. Variants: plain → default, dashed → outline, muted → muted',
+  BYBEmptyStateProps: 'use Empty: EmptyHeader holds EmptyMedia variant="icon" (the icon), EmptyTitle and EmptyDescription; EmptyContent holds the actions and footer. Variants: plain → default, dashed → outline, muted → muted',
+  bybEmptyStateVariants: 'use Empty: EmptyHeader holds EmptyMedia variant="icon" (the icon), EmptyTitle and EmptyDescription; EmptyContent holds the actions and footer. Variants: plain → default, dashed → outline, muted → muted',
+  BYBFieldset: 'use FieldSet with FieldLegend, FieldDescription and a FieldGroup of Fields; for `divided`, put a FieldSeparator between the FieldSets',
+  BYBFieldsetProps: 'use FieldSet with FieldLegend, FieldDescription and a FieldGroup of Fields; for `divided`, put a FieldSeparator between the FieldSets',
+  BYBAttachment: 'use FileUpload: it uploads each file to a presigned S3 URL itself (uploadOptions={{ presign }}) and the value is the file URL; label, hint and error go on a Field or the FileUploadField in @beforeyoubid/form. See DESIGN.md "File upload"',
+  BYBAttachmentProps: 'use FileUpload: it uploads each file to a presigned S3 URL itself (uploadOptions={{ presign }}) and the value is the file URL; label, hint and error go on a Field or the FileUploadField in @beforeyoubid/form. See DESIGN.md "File upload"',
+  BYBAttachmentFile: 'use FileUpload: it uploads each file to a presigned S3 URL itself (uploadOptions={{ presign }}) and the value is the file URL; label, hint and error go on a Field or the FileUploadField in @beforeyoubid/form. See DESIGN.md "File upload"',
+  BYBAttachmentStatus: 'use AttachmentUploadStatus',
+  BYBAttachmentUploadHandlers: 'use FileUpload: it uploads each file to a presigned S3 URL itself (uploadOptions={{ presign }}) and the value is the file URL; label, hint and error go on a Field or the FileUploadField in @beforeyoubid/form. See DESIGN.md "File upload"',
+  bybDropZoneVariants: 'use FileDropZone',
+  BYBDatePicker: 'use DateField from @beforeyoubid/form (description → hint), or Popover + Calendar + TimePicker',
+  BYBDatePickerProps: 'use DateField from @beforeyoubid/form (description → hint), or Popover + Calendar + TimePicker',
 }
 
 /** Exports renamed in 2.0. The import and every use in the file change. */
@@ -139,6 +164,9 @@ export const EXPORT_RENAMES = {
   BYBPillCard: 'PillCard',
   BYBTimePicker: 'TimePicker',
   BYBTimePickerProps: 'TimePickerProps',
+  BYBSpinner: 'Spinner',
+  BYBFileUploadCard: 'FileUploadCard',
+  BYBFileUploadCardProps: 'FileUploadCardProps',
 }
 
 /** Exports that moved to another package. The name stays; the import moves. */

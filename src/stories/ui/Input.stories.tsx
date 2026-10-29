@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Input } from '../../components/ui/input'
-import { InputField } from '../../components/InputField'
+import { Field, FieldDescription, FieldError, FieldLabel } from '../../components/field'
+import { Textarea } from '../../components/ui/textarea'
 
 const meta: Meta<typeof Input> = {
   title: 'BYB Components/Input',
@@ -31,80 +32,65 @@ export const DisabledControl: Story = {
   render: () => <Input className="w-72" disabled placeholder="Disabled" />,
 }
 
-// ── InputField (label + control + hint / error) ────────────────────────────
+// ── In a Field (label + control + hint / error) ────────────────────────────
+// Forms in apps use @beforeyoubid/form's InputField, which builds this.
 
 export const WithLabel: Story = {
   render: () => (
-    <div className="w-80">
-      <InputField label="Email" type="email" placeholder="you@example.com" />
-    </div>
+    <Field className="w-80">
+      <FieldLabel htmlFor="input-email">Email</FieldLabel>
+      <Input id="input-email" type="email" placeholder="you@example.com" />
+    </Field>
   ),
 }
 
 export const WithHint: Story = {
   render: () => (
-    <div className="w-80">
-      <InputField
-        label="Phone"
-        placeholder="0400 000 000"
-        hint="We'll only call about your inspection."
-      />
-    </div>
+    <Field className="w-80">
+      <FieldLabel htmlFor="input-phone">Phone</FieldLabel>
+      <Input id="input-phone" placeholder="0400 000 000" aria-describedby="input-phone-hint" />
+      <FieldDescription id="input-phone-hint">We&apos;ll only call about your inspection.</FieldDescription>
+    </Field>
   ),
 }
 
 export const WithError: Story = {
   render: () => (
-    <div className="w-80">
-      <InputField
-        label="Email"
-        defaultValue="not-an-email"
-        hint="Hidden while there's an error."
-        error="Enter a valid email address."
-      />
-    </div>
+    <Field data-invalid className="w-80">
+      <FieldLabel htmlFor="input-bad-email">Email</FieldLabel>
+      <Input id="input-bad-email" defaultValue="not-an-email" aria-invalid aria-describedby="input-bad-email-error" />
+      <FieldError id="input-bad-email-error">Enter a valid email address.</FieldError>
+    </Field>
   ),
 }
 
 export const Required: Story = {
   render: () => (
-    <div className="w-80">
-      <InputField label="Email" placeholder="you@example.com" required />
-    </div>
+    <Field className="w-80">
+      <FieldLabel htmlFor="input-required" required>
+        Email
+      </FieldLabel>
+      <Input id="input-required" placeholder="you@example.com" required />
+    </Field>
   ),
 }
 
 export const Multiline: Story = {
   render: () => (
-    <div className="flex w-80 flex-col gap-6">
-      <InputField
-        multiline
-        label="Notes for the inspector"
-        placeholder="Anything we should know?"
-        hint="Optional, max 500 characters."
-      />
-      <InputField
-        multiline
-        rows={5}
-        required
-        label="Message"
-        defaultValue="Too short"
-        error="Please write at least 20 characters."
-      />
-    </div>
+    <Field className="w-80">
+      <FieldLabel htmlFor="input-notes">Notes for the inspector</FieldLabel>
+      <Textarea id="input-notes" placeholder="Anything we should know?" aria-describedby="input-notes-hint" />
+      <FieldDescription id="input-notes-hint">Optional, max 500 characters.</FieldDescription>
+    </Field>
   ),
 }
 
 export const Disabled: Story = {
   render: () => (
-    <div className="flex w-80 flex-col gap-6">
-      <InputField label="Email" placeholder="you@example.com" disabled />
-      <InputField
-        label="Email"
-        defaultValue="hello@beforeyoubuy.com.au"
-        hint="Contact support to change your email."
-        disabled
-      />
-    </div>
+    <Field data-disabled className="w-80">
+      <FieldLabel htmlFor="input-disabled">Email</FieldLabel>
+      <Input id="input-disabled" defaultValue="hello@beforeyoubuy.com.au" disabled aria-describedby="input-disabled-hint" />
+      <FieldDescription id="input-disabled-hint">Contact support to change your email.</FieldDescription>
+    </Field>
   ),
 }

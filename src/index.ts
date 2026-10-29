@@ -3,16 +3,6 @@
 // =============================================================================
 export { Counter } from './components/counter'
 export { PillCard } from './components/pill-card'
-export { BYBImage } from './components/BYBImage'
-
-// =============================================================================
-// Form composites — thin wrappers around ui/input and ui/select that add
-// label/hint/error slots.
-// =============================================================================
-export { InputField } from './components/InputField'
-export type { InputFieldProps } from './components/InputField'
-export { SelectField, productSelectOptions } from './components/SelectField'
-export type { SelectFieldProps, SelectFieldOption, SelectFieldOptionGroup } from './components/SelectField'
 
 // =============================================================================
 // BYB components (the BYB design library) — product-specific, no shadcn equivalent
@@ -23,25 +13,14 @@ export { Stepper, stepIndicatorVariants } from './components/stepper'
 export type { StepperProps, StepperStep } from './components/stepper'
 
 // =============================================================================
-// BYB components kept for side-by-side review while their stock shadcn
-// replacements are styled to match. Removed once the replacements are signed off.
+// Date and time
 // =============================================================================
-export * from './components/BYBSpinner'
-export { BYBEmptyState, bybEmptyStateVariants } from './components/BYBEmptyState'
-export type { BYBEmptyStateProps } from './components/BYBEmptyState'
-export { BYBFieldset } from './components/BYBFieldset'
-export type { BYBFieldsetProps } from './components/BYBFieldset'
-export { BYBDatePicker, formatDateDMY } from './components/BYBDatePicker'
-export type { BYBDatePickerProps } from './components/BYBDatePicker'
 export { TimePicker, type TimePickerProps } from './components/time-picker'
-export { BYBAttachment, BYBFileUploadCard, bybDropZoneVariants } from './components/BYBAttachment'
-export type {
-  BYBAttachmentProps,
-  BYBAttachmentFile,
-  BYBAttachmentStatus,
-  BYBAttachmentUploadHandlers,
-  BYBFileUploadCardProps,
-} from './components/BYBAttachment'
+export { formatDateDMY } from './lib/format-date'
+
+// =============================================================================
+// Charts
+// =============================================================================
 export { BYBAreaChart } from './components/BYBAreaChart'
 export type { BYBAreaChartProps, BYBAreaChartSeries, BYBAreaChartRange, BYBAreaChartDatum } from './components/BYBAreaChart'
 export { BYBBarChart, bybStatToggleVariants } from './components/BYBBarChart'

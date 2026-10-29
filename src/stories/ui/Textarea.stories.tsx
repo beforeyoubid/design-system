@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Textarea } from '../../components/ui/textarea'
-import { InputField } from '../../components/InputField'
+import { Field, FieldDescription, FieldError, FieldLabel } from '../../components/field'
 
 const meta: Meta<typeof Textarea> = {
   title: 'BYB Components/Textarea',
@@ -17,17 +17,23 @@ export const Default: Story = {
 
 export const WithLabel: Story = {
   render: () => (
-    <div className="w-72">
-      <InputField multiline rows={4} label="Message" hint="We usually reply within a day." placeholder="Tell us what's on your mind" />
-    </div>
+    <Field className="w-72">
+      <FieldLabel htmlFor="textarea-message">Message</FieldLabel>
+      <Textarea id="textarea-message" rows={4} placeholder="Tell us what's on your mind" aria-describedby="textarea-message-hint" />
+      <FieldDescription id="textarea-message-hint">We usually reply within a day.</FieldDescription>
+    </Field>
   ),
 }
 
 export const Invalid: Story = {
   render: () => (
-    <div className="w-72">
-      <InputField multiline label="Message" required error="Message is required." />
-    </div>
+    <Field data-invalid className="w-72">
+      <FieldLabel htmlFor="textarea-required" required>
+        Message
+      </FieldLabel>
+      <Textarea id="textarea-required" required aria-invalid aria-describedby="textarea-required-error" />
+      <FieldError id="textarea-required-error">Message is required.</FieldError>
+    </Field>
   ),
 }
 
