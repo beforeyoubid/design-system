@@ -431,6 +431,34 @@ function migrateDefaultsTurnedOff(text, report) {
   return result
 }
 
+/** Props of another package's components that changed with no like-for-like rewrite. */
+export const PACKAGE_PROP_REVIEW = {
+  '@beforeyoubid/form': {
+    TimeField: {
+      onChange: 'TimeField is the design system TimePicker now: use onValueChange, which gets the "HH:mm" string, not an event',
+      step: 'TimeField has no step: use minuteStep (minutes), and withSeconds for a seconds column',
+      min: 'TimeField has no min: check the time in the form validator',
+      max: 'TimeField has no max: check the time in the form validator',
+    },
+  },
+}
+
+function reviewPackageProps(text, report) {
+  for (const [pkg, components] of Object.entries(PACKAGE_PROP_REVIEW)) {
+    for (const [local, component] of Object.entries(readImports(text, pkg))) {
+      if (!components[component]) continue
+      for (const tag of text.matchAll(new RegExp(`<${escape(local)}(?=[\\s/>])`, 'g'))) {
+        const end = findTagEnd(text, tag.index)
+        if (end === -1) continue
+        const source = text.slice(tag.index, end)
+        for (const [prop, message] of Object.entries(components[component])) {
+          if (new RegExp(`\\s${prop}(?=[\\s=/>]|$)`).test(source)) report.review(`${component} ${prop}: ${message}`, lineOf(text, tag.index))
+        }
+      }
+    }
+  }
+}
+
 function reportRemovedExports(text, report) {
   const locals = readPackageImports(text)
   for (const [, imported] of Object.entries(locals)) {
@@ -472,6 +500,7 @@ export function migrateSource(text, options = {}) {
 
   result = migrateProps(result, report)
   result = migrateDefaultsTurnedOff(result, report)
+  reviewPackageProps(result, report)
   reportRemovedExports(result, report)
   result = migrateExports(result, report)
 

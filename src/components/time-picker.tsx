@@ -5,7 +5,7 @@ import { cn } from "../lib/utils"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
 
 const controlClasses =
-  "h-10 rounded-lg border border-dark-45 bg-white text-body-5 text-dark-100 outline-none transition-all focus-visible:border-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30 disabled:cursor-not-allowed disabled:bg-light-l2"
+  "h-10 rounded-lg border border-dark-45 bg-white text-body-5 text-dark-100 outline-none transition-all focus-visible:border-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30 disabled:cursor-not-allowed disabled:bg-light-l2 aria-invalid:border-destructive aria-invalid:focus-visible:ring-destructive/20"
 
 /** Popover trigger shared by the date and time pickers (mint when open). */
 const triggerClasses = cn(
@@ -66,7 +66,14 @@ export interface TimePickerProps {
   onOpenChange?: (open: boolean) => void
   /** Classes for the trigger. It fills its container; the layout around it sets the width. */
   className?: string
+  /** The trigger's id, for a `FieldLabel htmlFor`. */
+  id?: string
+  onBlur?: React.FocusEventHandler<HTMLButtonElement>
+  /** Defaults to "Time" when the picker has no `id` for a label to point at. */
   "aria-label"?: string
+  "aria-describedby"?: string
+  "aria-invalid"?: boolean
+  "aria-required"?: boolean
 }
 
 function TimeColumn({
@@ -157,7 +164,12 @@ function TimePicker({
   open: openProp,
   onOpenChange,
   className,
-  "aria-label": ariaLabel = "Time",
+  id,
+  onBlur,
+  "aria-label": ariaLabel,
+  "aria-describedby": ariaDescribedBy,
+  "aria-invalid": ariaInvalid,
+  "aria-required": ariaRequired,
 }: TimePickerProps) {
   const [open, setOpen] = useControllableOpen(openProp, onOpenChange)
   const { hour, minute, second } = parseTime(value)
@@ -180,8 +192,13 @@ function TimePicker({
   return (
     <Popover open={open} onOpenChange={(next) => setOpen(next)}>
       <PopoverTrigger
+        id={id}
         disabled={disabled}
-        aria-label={ariaLabel}
+        onBlur={onBlur}
+        aria-label={ariaLabel ?? (id ? undefined : "Time")}
+        aria-describedby={ariaDescribedBy}
+        aria-invalid={ariaInvalid}
+        aria-required={ariaRequired}
         data-slot="time-picker"
         className={cn(triggerClasses, "w-full tabular-nums", className)}
       >

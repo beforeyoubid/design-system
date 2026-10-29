@@ -1,6 +1,7 @@
 import * as React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { TimePicker } from '../components/time-picker'
+import { Field, FieldError, FieldLabel } from '../components/field'
 
 const meta: Meta<typeof TimePicker> = {
   title: 'BYB Components/TimePicker',
@@ -24,6 +25,20 @@ export const Default: Story = {
         <TimePicker value={stepped} onChange={setStepped} minuteStep={15} />
         <TimePicker value="08:00" disabled />
       </div>
+    )
+  },
+}
+
+/** In a Field: the label points at the trigger, and `aria-invalid` gives the error look. */
+export const InAField: Story = {
+  render: function Render() {
+    const [time, setTime] = React.useState('')
+    return (
+      <Field data-invalid className="h-96 w-48">
+        <FieldLabel htmlFor="tp-start">Start time</FieldLabel>
+        <TimePicker id="tp-start" value={time} onChange={setTime} aria-invalid aria-describedby="tp-start-error" />
+        <FieldError id="tp-start-error">Choose a start time.</FieldError>
+      </Field>
     )
   },
 }

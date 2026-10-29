@@ -288,3 +288,14 @@ test('leaves a field from another package alone, and flags one with spread props
   assert.equal(text, "import { PasswordField } from '@beforeyoubid/form'\n<PasswordField {...props} />")
   assert.match(reviews[0].message, /^PasswordField revealable: off by default now/)
 })
+
+test('flags a form TimeField that still takes an event or native time props', () => {
+  const { text, reviews } = migrateSource(
+    "import { TimeField } from '@beforeyoubid/form'\n<TimeField label=\"Start\" value={t} onChange={(e) => setT(e.target.value)} step={900} />\n<field.TimeField label=\"End\" />",
+  )
+  assert.match(text, /onChange=\{\(e\) => setT\(e\.target\.value\)\}/)
+  assert.deepEqual(
+    reviews.map((r) => r.message.split(':')[0]),
+    ['TimeField onChange', 'TimeField step'],
+  )
+})
