@@ -11,7 +11,6 @@ import {
 import { cn } from "@/lib/utils"
 import {
   Attachment,
-  AttachmentAction,
   AttachmentActions,
   AttachmentContent,
   AttachmentDescription,
@@ -26,6 +25,7 @@ import { ConfirmDialog } from "@/components/confirm-dialog"
 import { FileDropZone } from "@/components/file-drop-zone"
 import { Spinner } from "@/components/spinner"
 import { toast } from "@/components/toast"
+import { buttonVariants } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 
 /**
@@ -62,7 +62,7 @@ export interface FileUploadFileInfo {
   url?: string
 }
 
-interface FileUploadBaseProps {
+export interface FileUploadBaseProps {
   /** Put on the drop zone, so a FieldLabel's htmlFor points at it. */
   id?: string
   name?: string
@@ -91,7 +91,7 @@ interface FileUploadBaseProps {
 type FromUpload<T> = [T][T extends unknown ? 0 : never]
 
 /** No `uploadOptions`: the files stay in the browser and the value is `File[]`, like a file input. */
-interface FileUploadLocalProps {
+export interface FileUploadLocalProps {
   uploadOptions?: undefined
   multiple?: boolean
   value?: File[]
@@ -101,7 +101,7 @@ interface FileUploadLocalProps {
 }
 
 /** With `uploadOptions` and one file: each file uploads as it's picked, and the value is what the upload returned. */
-interface FileUploadSingleProps<TValue> {
+export interface FileUploadSingleProps<TValue> {
   uploadOptions: FileUploadOptions<TValue>
   multiple?: false
   value?: FromUpload<TValue> | null
@@ -111,7 +111,7 @@ interface FileUploadSingleProps<TValue> {
   describe?: (value: FromUpload<TValue>) => FileUploadFileInfo
 }
 
-interface FileUploadMultipleProps<TValue> {
+export interface FileUploadMultipleProps<TValue> {
   uploadOptions: FileUploadOptions<TValue>
   multiple: true
   value?: FromUpload<TValue>[]
@@ -212,15 +212,15 @@ function CardAction({
   onClick?: () => void
   children: React.ReactNode
 }) {
-  const action = (
-    <AttachmentAction
-      aria-label={label}
-      onClick={onClick}
-      {...(href ? { nativeButton: false, render: <a href={href} download /> } : {})}
-    >
-      {children}
-    </AttachmentAction>
-  )
+  // Native elements with AttachmentAction's look, so the tooltip can anchor to them on React 18 too.
+  const props = {
+    "data-slot": "attachment-action",
+    "aria-label": label,
+    onClick,
+    className: buttonVariants({ variant: "ghost", size: "icon-xs" }),
+    children,
+  }
+  const action = href ? <a href={href} download {...props} /> : <button type="button" {...props} />
   if (!tooltip) return action
   return (
     <Tooltip>
