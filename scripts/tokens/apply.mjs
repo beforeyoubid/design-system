@@ -22,6 +22,8 @@ import {
   parseTokenFile,
   parseTokenName,
   removeClass,
+  sameGroup,
+  splitVariant,
   tokenFiles,
   uiDir,
 } from './lib.mjs'
@@ -86,6 +88,25 @@ for (const { component, file } of tokenFiles()) {
         if (next !== lit.text) sources.set(uiFile, src.slice(0, lit.start) + next + src.slice(lit.end))
       }
     }
+    // Every plain string in the part's cn() call applies, and a later one wins in cn.
+    // Once a lever class is in place, drop the classes in the part's other strings that
+    // set the same property under the same condition, or they'd override the lever.
+    const dropConflicts = (keep) => (s) => {
+      const list = s.split(/\s+/).filter(Boolean)
+      const kept = list.filter((c) => {
+        if (keep.includes(c)) return true
+        const [pc, bc] = splitVariant(c)
+        return !keep.some((k) => {
+          const [pk, bk] = splitVariant(k)
+          return pk === pc && sameGroup(bc, bk)
+        })
+      })
+      return kept.length === list.length ? s : kept.join(' ')
+    }
+    const leverClassesIn = (variant, name) => {
+      const { lit } = literalFor(sources.get(uiFile), null, variant)
+      return lit ? lit.text.split(/\s+/).filter((c) => c.includes(`(${name})`)) : []
+    }
     const keysFor = () => {
       const { slots, cvas } = findSites(sources.get(uiFile), uiFile)
       const c = slots.get(rule.slot)?.cva
@@ -114,9 +135,14 @@ for (const { component, file } of tokenFiles()) {
         continue
       }
       edit(t.name, parsed.variant, (s) => applyToken(s, { name: t.name, part: rule.slot, hints: rule.add.flatMap((d) => d.classes), ...parsed }))
+      if (!parsed.variant) {
+        const keep = leverClassesIn(null, t.name)
+        if (keep.length) editEveryBase(`${t.name} (other strings)`, dropConflicts(keep))
+      }
     }
     for (const d of rule.add) {
       edit(`@add ${d.site}`, siteVariant(d.site), (s) => d.classes.reduce(addClass, s))
+      if (d.site === 'base') editEveryBase(`@add ${d.site} (other strings)`, dropConflicts(d.classes))
     }
   }
 }
