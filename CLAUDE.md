@@ -210,6 +210,8 @@ This tells bundlers that JS exports are side-effect-free (free to tree-shake) bu
 - For complex components needing accessibility primitives (Dialog, Combobox, Tooltip), use `@base-ui/react`
 - **No inline styles.** No `style={{}}` props unless absolutely unavoidable
 - **No MUI imports.** This package is MUI-free by design
+- **Inputs fill their container** (`w-full`). Don't give a control a fixed width; the layout around it sets the width.
+- **Boolean props default to `false`** and are named for what they add (`clearable`, not `hideClear`), so turning one on is passing it. Never ship a boolean that callers turn off with `={false}`.
 
 ### Component tokens (levers) and the shadcn CLI
 

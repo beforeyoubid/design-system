@@ -257,3 +257,34 @@ test('flags the BYB components replaced by stock parts, with a recipe', () => {
     ],
   )
 })
+
+test('turns on the form props whose default went off, where a use relied on it', () => {
+  const { text, changes } = migrateSource(
+    [
+      "import { SearchField, RatingField as Stars, PasswordField } from '@beforeyoubid/form'",
+      '<SearchField label="Search" />',
+      '<Stars label="Rating" clearable={false} />',
+      '<PasswordField label="Password" revealable />',
+      '<field.SearchField label="Query"></field.SearchField>',
+    ].join('\n'),
+  )
+  assert.equal(
+    text,
+    [
+      "import { SearchField, RatingField as Stars, PasswordField } from '@beforeyoubid/form'",
+      '<SearchField clearable label="Search" />',
+      '<Stars label="Rating" />',
+      '<PasswordField label="Password" revealable />',
+      '<field.SearchField clearable label="Query"></field.SearchField>',
+    ].join('\n'),
+  )
+  assert.equal(changes.length, 3)
+})
+
+test('leaves a field from another package alone, and flags one with spread props', () => {
+  const source = "import { SearchField } from './search'\n<SearchField />"
+  assert.equal(run(source), source)
+  const { text, reviews } = migrateSource("import { PasswordField } from '@beforeyoubid/form'\n<PasswordField {...props} />")
+  assert.equal(text, "import { PasswordField } from '@beforeyoubid/form'\n<PasswordField {...props} />")
+  assert.match(reviews[0].message, /^PasswordField revealable: off by default now/)
+})

@@ -10,6 +10,8 @@ const meta: Meta<typeof NativeSelect> = {
   component: NativeSelect,
   tags: ['autodocs'],
   argTypes: { size: { control: 'select', options: ['default', 'sm'] } },
+  // It fills its container; the wrapper sets the width.
+  decorators: [(Story) => <div className="w-72"><Story /></div>],
   render: (args) => (
     <NativeSelect {...args}>
       <NativeSelectOption value="">Select a state</NativeSelectOption>

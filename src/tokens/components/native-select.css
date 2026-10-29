@@ -3,6 +3,12 @@
  *   :root { --native-select-height: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/native-select.tsx follow from these names. */
 
+[data-slot="native-select-wrapper"] {
+  /* Fills its container, like every input; the layout around it sets the width. */
+  /* @remove w-fit */
+  /* @add w-full */
+}
+
 [data-slot="native-select"] {
   /* @add data-[size=sm]:h-(--_native-select-sm-height) */
   /* Height of the native-select. */

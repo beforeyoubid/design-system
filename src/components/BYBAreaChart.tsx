@@ -64,8 +64,8 @@ export interface BYBAreaChartProps
   series: BYBAreaChartSeries[]
   /** `natural` = smooth monotone curve (default), `linear`, or `step`. */
   curve?: "natural" | "linear" | "step"
-  /** Stack series on top of each other. Default `true`. */
-  stacked?: boolean
+  /** Draw each series from zero, overlapping, instead of stacking them. */
+  overlapping?: boolean
   /** Normalise the stack to 100%. */
   expand?: boolean
   /** Show a legend under the chart. */
@@ -127,7 +127,7 @@ function BYBAreaChart({
   xKey: xKeyProp,
   series,
   curve = "natural",
-  stacked = true,
+  overlapping = false,
   expand = false,
   legend = false,
   legendIcons = false,
@@ -184,7 +184,7 @@ function BYBAreaChart({
     return rows.filter((row) => (row[xKey] as number) >= start)
   }, [data, interactive, xKey, range, ranges])
 
-  const isStacked = stacked || expand
+  const isStacked = !overlapping || expand
 
   const yTicks = React.useMemo(() => {
     if (!yAxis) return undefined

@@ -64,7 +64,7 @@ export interface TimePickerProps {
   disabled?: boolean
   open?: boolean
   onOpenChange?: (open: boolean) => void
-  /** Classes for the trigger. Default width `w-32`. */
+  /** Classes for the trigger. It fills its container; the layout around it sets the width. */
   className?: string
   "aria-label"?: string
 }
@@ -183,7 +183,7 @@ function TimePicker({
         disabled={disabled}
         aria-label={ariaLabel}
         data-slot="time-picker"
-        className={cn(triggerClasses, "w-32 tabular-nums", className)}
+        className={cn(triggerClasses, "w-full tabular-nums", className)}
       >
         <TriggerText text={text} placeholder={placeholder} />
         <Clock className="size-4 shrink-0 text-dark-75 group-data-popup-open:text-mint-75" />

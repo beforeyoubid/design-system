@@ -364,6 +364,73 @@ function migrateProps(text, report) {
   return result
 }
 
+/**
+ * Yes/no props that were on by default in 1.x and are off in 2.0, by package and component. Where
+ * a use relied on the old default, the migrator adds the prop; `prop={false}` is dropped.
+ * Bound fields (`<field.SearchField>`) count too.
+ */
+export const DEFAULTS_TURNED_OFF = {
+  '@beforeyoubid/form': {
+    SearchField: ['clearable'],
+    RatingField: ['clearable'],
+    PasswordField: ['revealable'],
+  },
+}
+
+/** Local names imported from `pkg`: { Search: 'SearchField' } */
+function readImports(text, pkg) {
+  const locals = {}
+  const pattern = new RegExp(`import\\s+(?:type\\s+)?\\{([^}]*)\\}\\s*from\\s*['"]${escape(pkg)}['"]`, 'g')
+  for (const [, list] of text.matchAll(pattern)) {
+    for (const raw of list.split(',')) {
+      const spec = raw.replace(/^\s*type\s+/, '').trim()
+      if (!spec) continue
+      const [imported, local = imported] = spec.split(/\s+as\s+/).map((s) => s.trim())
+      locals[local] = imported
+    }
+  }
+  return locals
+}
+
+function migrateDefaultsTurnedOff(text, report) {
+  const edits = []
+  for (const [pkg, components] of Object.entries(DEFAULTS_TURNED_OFF)) {
+    const tags = Object.entries(readImports(text, pkg)).filter(([, imported]) => components[imported])
+    // Bound fields: <field.SearchField>, whatever the field variable is called.
+    for (const name of Object.keys(components)) tags.push([`[\\w$]+\\.${name}`, name, true])
+    for (const [local, component, isPattern] of tags) {
+      const tagPattern = new RegExp(`<(${isPattern ? local : escape(local)})(?=[\\s/>])`, 'g')
+      for (const tag of text.matchAll(tagPattern)) {
+        const end = findTagEnd(text, tag.index)
+        if (end === -1) continue
+        const source = text.slice(tag.index, end)
+        const line = lineOf(text, tag.index)
+        let updated = source
+        for (const prop of components[component]) {
+          const off = new RegExp(`\\s+${prop}=\\{\\s*false\\s*\\}`)
+          if (off.test(updated)) {
+            updated = updated.replace(off, '')
+            report.change(`${component} ${prop}={false} → removed (off by default now)`, line)
+          } else if (new RegExp(`\\s${prop}(?=[\\s=/>]|$)`).test(updated)) {
+            continue
+          } else if (/\{\s*\.\.\./.test(updated)) {
+            report.review(`${component} ${prop}: off by default now; check whether the spread props set it, and pass ${prop} to keep it on`, line)
+          } else {
+            updated = updated.replace(tag[0], `${tag[0]} ${prop}`)
+            report.change(`${component} → ${prop} added (it was on by default)`, line)
+          }
+        }
+        if (updated !== source) edits.push([tag.index, end, updated])
+      }
+    }
+  }
+  let result = text
+  for (const [start, end, replacement] of edits.sort((a, b) => b[0] - a[0])) {
+    result = result.slice(0, start) + replacement + result.slice(end)
+  }
+  return result
+}
+
 function reportRemovedExports(text, report) {
   const locals = readPackageImports(text)
   for (const [, imported] of Object.entries(locals)) {
@@ -404,6 +471,7 @@ export function migrateSource(text, options = {}) {
   })
 
   result = migrateProps(result, report)
+  result = migrateDefaultsTurnedOff(result, report)
   reportRemovedExports(result, report)
   result = migrateExports(result, report)
 

@@ -402,6 +402,8 @@ Solid (`appearance="solid"`): gray dark-75 + white · mint mint-45 + white · li
 ### Form controls (Input, Textarea, InputGroup, Select)
 
 - 40px tall, `rounded-lg`, `border-dark-45`, white fill, `text-body-5 text-dark-100`, placeholder `dark-90`.
+- Every input fills its container: Input, Textarea, InputGroup, Select, NativeSelect, Combobox, TimePicker and FileUpload are `w-full`. The layout around them (a grid column, a `max-w-*` wrapper) sets the width. InputOTP is the exception: its digit boxes are a fixed size.
+- Yes/no props are off by default and named for the behaviour they add (`clearable`, `multiple`, `overlapping`), so turning one on is passing it.
 - Focus: `border-mint-45` + `ring-3 ring-mint-45/30`.
 - Invalid (`aria-invalid`): `border-error-75`, red ring on focus.
 - Disabled: `bg-light-l2 text-dark-45`.
@@ -2416,7 +2418,7 @@ npx design-system-migrate            # dry run: what would change, and what need
 npx design-system-migrate --write    # apply
 ```
 
-It renames the old type, button, radius and colour classes, swaps `rounded-xl` ↔ `rounded-2xl`, moves `dark-60` text and icons to `dark-75`, renames Badge, Switch and TabsList variants and `BYBCounter` / `BYBPillCard` / `BYBTimePicker` / `BYBSpinner` / `BYBFileUploadCard` (now `Counter` / `PillCard` / `TimePicker` / `Spinner` / `FileUploadCard`), and moves `InputField` / `SelectField` imports to `@beforeyoubid/form`. Button variants are left alone: every 1.x variant still exists and looks the same. It lists anything with no like-for-like replacement with its file and line. `--map old=new` changes a mapping for one app, e.g. `--map text-xs=text-sm`. Run it only once: a second run would swap the radius classes back.
+It renames the old type, button, radius and colour classes, swaps `rounded-xl` ↔ `rounded-2xl`, moves `dark-60` text and icons to `dark-75`, renames Badge, Switch and TabsList variants and `BYBCounter` / `BYBPillCard` / `BYBTimePicker` / `BYBSpinner` / `BYBFileUploadCard` (now `Counter` / `PillCard` / `TimePicker` / `Spinner` / `FileUploadCard`), and moves `InputField` / `SelectField` imports to `@beforeyoubid/form`. For `@beforeyoubid/form` 1.x apps it adds `clearable` to `SearchField` / `RatingField` and `revealable` to `PasswordField` where they relied on the old default (on), and drops `clearable={false}` / `revealable={false}`. Button variants are left alone: every 1.x variant still exists and looks the same. It lists anything with no like-for-like replacement with its file and line. `--map old=new` changes a mapping for one app, e.g. `--map text-xs=text-sm`. Run it only once: a second run would swap the radius classes back.
 
 ### Changes the migrator can't make
 

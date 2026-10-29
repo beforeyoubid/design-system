@@ -11,7 +11,7 @@ import {
   ComboboxList,
   ComboboxValue,
   useComboboxAnchor,
-} from '../../components/ui/combobox'
+} from '../../components/combobox'
 
 const reports = [
   'Building & pest report',

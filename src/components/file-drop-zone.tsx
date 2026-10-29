@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 export interface FileDropZoneProps extends Omit<React.ComponentProps<"button">, "onDrop"> {
   /** Files dropped on the zone. Clicks call `onClick` as usual; FileUpload opens its file input there. */
   onFilesDropped?: (files: File[]) => void
-  /** "Drop files or browse"; false for "Drop a file or browse". */
+  /** "Drop files or browse"; without it, "Drop a file or browse". */
   multiple?: boolean
 }
 
@@ -20,7 +20,7 @@ function FileDropZone({
   className,
   children,
   disabled,
-  multiple = true,
+  multiple = false,
   onFilesDropped,
   ...props
 }: FileDropZoneProps) {

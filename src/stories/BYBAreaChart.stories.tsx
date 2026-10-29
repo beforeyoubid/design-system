@@ -67,7 +67,7 @@ export const Step: Story = {
 
 export const Stacked: Story = {}
 
-export const Unstacked: Story = { args: { stacked: false } }
+export const Overlapping: Story = { args: { overlapping: true } }
 
 export const Expanded: Story = {
   args: {

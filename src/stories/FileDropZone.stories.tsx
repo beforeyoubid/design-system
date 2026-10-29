@@ -17,6 +17,6 @@ export default meta
 type Story = StoryObj<typeof FileDropZone>
 
 export const Default: Story = {}
-export const OneFile: Story = { args: { multiple: false } }
+export const Multiple: Story = { args: { multiple: true } }
 export const Invalid: Story = { args: { 'aria-invalid': true } }
 export const Disabled: Story = { args: { disabled: true } }
