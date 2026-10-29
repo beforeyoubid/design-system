@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 export * from "@/components/ui/spinner"
 
 /**
- * Rey's Spinner is the loader-2 arc (`ring`, default); stock's is the loader
+ * The BYB Spinner is the loader-2 arc (`ring`, default); stock's is the loader
  * rays, kept as `dots`. Both read the spinner levers. Inside a control, placed
  * with data-icon, it takes the control's text colour.
  */

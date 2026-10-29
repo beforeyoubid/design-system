@@ -15,7 +15,7 @@ Read this before adding or modifying any component or token.
 | `components.json` | shadcn CLI config — wire for `npx shadcn add <component>`. |
 | `src/components/` | Our components: BYB composites (`InputField`, `Stepper`, `BYBAreaChart`, …) and wrappers that export over a stock component (`button.tsx`, `tabs.tsx`, `calendar.tsx`, …). One file per component. |
 | `src/components/ui/` | The shadcn CLI's files, with class strings edited by `pnpm tokens:apply` to read the levers. **Don't hand-edit**: change a token file, or move the change into a wrapper in `src/components/`. |
-| `src/tokens/components/` | Component tokens (levers): one CSS file per component, defaults are Rey's design. `index.css` is generated from them. |
+| `src/tokens/components/` | Component tokens (levers): one CSS file per component, defaults are the BYB design. `index.css` is generated from them. |
 | `scripts/tokens/` | `apply.mjs` (token files → ui class strings), `build.mjs` (index.css, playground manifest, DESIGN.md levers table), `check.mjs` (names, missing levers, contrast), `contrast-exceptions.json`. |
 | `playground/` | The levers playground (Vite + React): every token with a typed picker, the real stories live, contrast, `:root` export. `pnpm playground`; `pnpm playground:build` writes one self-contained `playground/dist/levers.html`. |
 | `src/tokens.ts` | `generateDesignSystemTokens({ overrides })` — tokens for non-CSS contexts (Stripe, canvas). Reads `src/generated/default-tokens.ts`. |

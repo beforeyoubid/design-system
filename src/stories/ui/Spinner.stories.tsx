@@ -26,7 +26,7 @@ export const Sizes: Story = {
   ),
 }
 
-/** `ring` (default) is Rey's loader arc; `dots` is the loader rays. */
+/** `ring` (default) is the BYB loader arc; `dots` is the loader rays. */
 export const Variants: Story = {
   render: () => (
     <div className="flex items-center gap-4">

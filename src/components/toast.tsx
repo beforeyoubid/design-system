@@ -33,7 +33,7 @@ import {
 
 export * from "@/components/ui/toast"
 
-// Rey's toast keeps the action as an inline underlined link in the
+// The BYB toast keeps the action as an inline underlined link in the
 // description and the close as a bare icon; stock renders both as Buttons.
 function ToastAction({
   render = <button type="button" />,

@@ -21,7 +21,7 @@ export * from "@/components/ui/dialog"
  * sits on the left in one row with the title.
  */
 const dialogContentVariants = cva(
-  // The look is in the dialog-content levers (stock classes). Here: Rey's close
+  // The look is in the dialog-content levers (stock classes). Here: the BYB close
   // button (a plain grey ×, not stock's ghost Button), read from the
   // dialog-close levers.
   "*:data-[slot=dialog-close]:top-5 *:data-[slot=dialog-close]:end-5 *:data-[slot=dialog-close]:size-8 *:data-[slot=dialog-close]:rounded-full *:data-[slot=dialog-close]:bg-transparent *:data-[slot=dialog-close]:text-(--_dialog-close-foreground) *:data-[slot=dialog-close]:hover:bg-transparent *:data-[slot=dialog-close]:hover:text-(--_dialog-close-hover-foreground) *:data-[slot=dialog-close]:[&_svg]:size-5!",

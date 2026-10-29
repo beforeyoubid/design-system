@@ -11,7 +11,7 @@
  *     (scripts/tokens/registry-names.json; refresh with --update-registry);
  *   - a foreground token and the fill it sits on are under WCAG AA (4.5:1) and the
  *     pair isn't listed in scripts/tokens/contrast-exceptions.json. A listed pair is
- *     "accepted" (a decided exception) or "undecided" (a warning until Rey decides;
+ *     "accepted" (a decided exception) or "undecided" (a warning until it's decided;
  *     --strict fails on it, for the release gate).
  */
 import fs from 'node:fs'

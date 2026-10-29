@@ -571,7 +571,7 @@ No property means the fill. Properties: `foreground` (text and icon colour), `bo
 .checkout { --card-padding-y: calc(var(--spacing) * 8); }
 ```
 
-Every default is Rey's design, so an app that sets nothing gets the designed look. Don't edit the component files to change a look; pull its lever. If no lever exists for what you need, add one (below).
+Every default is the BYB design, so an app that sets nothing gets the designed look. Don't edit the component files to change a look; pull its lever. If no lever exists for what you need, add one (below).
 
 **The playground** (`pnpm playground`, or the published "BYB Design Levers" page) lists every brand, semantic and component token with a picker that only offers values of the right type (palette colours for colours, the radius scale for radii, and so on), shows every affected component live from the Storybook stories, checks contrast as you go, and exports the changes as a `:root` block to paste into an app.
 
@@ -586,7 +586,7 @@ pnpm tokens:build                                # index.css, playground manifes
 pnpm check-component-tokens                      # names, missing levers, contrast
 ```
 
-Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-exceptions.json` as `undecided` (Rey to decide) or `accepted` (with the reason). `check-component-tokens --strict` fails while any are undecided.
+Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-exceptions.json` as `undecided` (a design call still to make) or `accepted` (with the reason). `check-component-tokens --strict` fails while any are undecided.
 
 ### Every lever
 

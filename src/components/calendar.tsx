@@ -1,6 +1,6 @@
 "use client"
 
-// BYB Calendar: the stock component with Rey's look (lime selected day, light
+// BYB Calendar: the stock component with the BYB look (lime selected day, light
 // range, quiet navigation). Kept as our own component because the look lives in
 // the classNames map and the day button, which the CLI rewrites wholesale.
 // Levers: src/tokens/components/calendar.css.

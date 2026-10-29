@@ -3,7 +3,7 @@
  * the checks and the generated docs.
  *
  * A token file (src/tokens/components/<component>.css) declares, per part, a
- * private token that reads a public lever with Rey's value as the fallback:
+ * private token that reads a public lever with the designed value as the fallback:
  *
  *   [data-slot="input"] {
  *     \/* Corner radius. *\/

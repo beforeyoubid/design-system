@@ -7,7 +7,7 @@ import { InputOTP as StockInputOTP } from "@/components/ui/input-otp"
 
 export * from "@/components/ui/input-otp"
 
-// Rey's slots style themselves from the container's state (invalid, disabled)
+// The BYB slots style themselves from the container's state (invalid, disabled)
 // through the group/input-otp name, and the container stays at full opacity
 // when disabled: the slots turn grey instead. Stock's container class isn't a
 // data-slot class string, so it's set here.

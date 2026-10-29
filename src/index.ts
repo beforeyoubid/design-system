@@ -15,7 +15,7 @@ export { SelectField, productSelectOptions } from './components/SelectField'
 export type { SelectFieldProps, SelectFieldOption, SelectFieldOptionGroup } from './components/SelectField'
 
 // =============================================================================
-// BYB components (Rey's design library) — product-specific, no shadcn equivalent
+// BYB components (the BYB design library) — product-specific, no shadcn equivalent
 // =============================================================================
 export * from './components/icon-tile'
 export * from './components/color-dot'

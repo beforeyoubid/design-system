@@ -9,7 +9,7 @@
  *   1. rewrites the CLI's `import { cn } from "cn"` to our helper (`@/lib/utils`);
  *   2. applies the class edits each token file implies: every lever token replaces
  *      the class that sets the same property in the same state on its part, and the
- *      @add / @remove directives restore Rey's classes that aren't levers.
+ *      @add / @remove directives restore the design's classes that aren't levers.
  *
  * Running it twice changes nothing.
  */
