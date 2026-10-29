@@ -42,18 +42,6 @@
   "note": "Menu highlight: mint-75 text on a mint-l2 fill is 4.33:1. Options: accept it, darken the text to mint-90 (7.53:1), or keep the paler mint-l3 fill (4.65:1)."
  },
  {
-  "foreground": "--_button-default-foreground",
-  "fill": "--_button-default",
-  "status": "undecided",
-  "note": "Primary button: white on mint-45 is 2.80:1. It's the brand button, so a change here changes the brand. Options: accept it for large uppercase text (it passes neither AA nor AA-large), or darken the fill."
- },
- {
-  "foreground": "--_avatar-badge-foreground",
-  "fill": "--_avatar-badge",
-  "status": "undecided",
-  "note": "Avatar badge: white on mint-45 is 2.80:1, the same pair as the primary button; decide them together."
- },
- {
   "foreground": "--_button-outline-hover-foreground",
   "fill": "--_button-outline-hover",
   "status": "undecided",

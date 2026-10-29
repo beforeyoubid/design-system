@@ -168,7 +168,7 @@ No separate tokens; use opacity modifiers.
 |---|---|---|
 | `background` / `foreground` | white / dark-100 | dark-100 / light-l1 |
 | `card`, `popover` | white | dark-90 |
-| `primary` / `-foreground` | mint-45 / white | mint-30 / dark-100 |
+| `primary` / `-foreground` | mint-45 / navy | mint-30 / dark-100 |
 | `secondary` | light-l2 | dark-90 |
 | `muted` / `-foreground` | light-l1 / dark-75 | dark-90 / dark-45 |
 | `accent` / `-foreground` | mint-l3 / mint-90 | mint-90 / mint-l2 |
@@ -353,7 +353,7 @@ Base: semibold, UPPERCASE, 0.04em tracking, focus ring `ring-2 ring-navy ring-of
 
 | Variant | Default | Hover | Use |
 |---|---|---|---|
-| `primary` | `bg-primary` (mint-45) `text-white shadow-xs` | `bg-primary/80` | **Main CTA**, one per view |
+| `primary` | `bg-primary` (mint-45) `text-primary-foreground` (navy) `shadow-xs` | `bg-primary/80` | **Main CTA**, one per view |
 | `secondary` | `bg-white border-navy text-navy` | `bg-navy text-white` | Secondary action |
 | `tertiary` | `bg-white border-dark-15 text-dark-90` | `bg-dark-45 text-white` | Neutral / cancel |
 | `ghost` | `text-mint-75` | `text-mint-45` | Low emphasis |
@@ -2442,7 +2442,7 @@ npx design-system-migrate            # dry run: what would change, and what need
 npx design-system-migrate --write    # apply
 ```
 
-It renames the old type, button, radius and colour classes, swaps `rounded-xl` ↔ `rounded-2xl`, moves `dark-60` text and icons to `dark-75`, renames Badge, Switch and TabsList variants and `BYBCounter` / `BYBPillCard` / `BYBTimePicker` / `BYBSpinner` / `BYBFileUploadCard` (now `Counter` / `PillCard` / `TimePicker` / `Spinner` / `FileUploadCard`), and moves `InputField` / `SelectField` imports to `@beforeyoubid/form`. For `@beforeyoubid/form` 1.x apps it adds `clearable` to `SearchField` / `RatingField` and `revealable` to `PasswordField` where they relied on the old default (on), and drops `clearable={false}` / `revealable={false}`. It lists each standalone `TimeField` whose `onChange` or `step` / `min` / `max` needs moving: TimeField is now the `TimePicker`, and `onValueChange` gets the time string. Button variants are left alone: every 1.x variant still exists and looks the same. It lists anything with no like-for-like replacement with its file and line. `--map old=new` changes a mapping for one app, e.g. `--map text-xs=text-sm`. Run it only once: a second run would swap the radius classes back.
+It renames the old type, button, radius and colour classes, swaps `rounded-xl` ↔ `rounded-2xl`, moves `dark-60` text and icons to `dark-75`, turns `primary-foreground` classes and `var(--primary-foreground)` reads into `white` (the token is navy now), renames Badge, Switch and TabsList variants and `BYBCounter` / `BYBPillCard` / `BYBTimePicker` / `BYBSpinner` / `BYBFileUploadCard` (now `Counter` / `PillCard` / `TimePicker` / `Spinner` / `FileUploadCard`), and moves `InputField` / `SelectField` imports to `@beforeyoubid/form`. For `@beforeyoubid/form` 1.x apps it adds `clearable` to `SearchField` / `RatingField` and `revealable` to `PasswordField` where they relied on the old default (on), and drops `clearable={false}` / `revealable={false}`. It lists each standalone `TimeField` whose `onChange` or `step` / `min` / `max` needs moving: TimeField is now the `TimePicker`, and `onValueChange` gets the time string. Button variants are left alone: every 1.x variant still exists and looks the same. It lists anything with no like-for-like replacement with its file and line. `--map old=new` changes a mapping for one app, e.g. `--map text-xs=text-sm`. Run it only once: a second run would swap the radius classes back.
 
 ### Changes the migrator can't make
 

@@ -69,6 +69,7 @@ function buildClassPattern(renames) {
     `(?<radius>rounded(?:-${RADIUS_SIDES})?-(?:2xl|xl|btn))`,
     `(?<cobalt>${COLOUR_UTILITIES}-cobalt(?:-l1)?)`,
     `(?<grey>(?:text|fill|stroke)-dark-60)`,
+    `(?<primaryForeground>${COLOUR_UTILITIES}-primary-foreground)`,
   ].join('|')
   return new RegExp(`${TOKEN_START}${VARIANTS}(!?)(?:${core})${TOKEN_END}`, 'g')
 }
@@ -90,11 +91,17 @@ function renameClass(match, variants, important, groups, renames) {
     const shade = /(^|:)placeholder:$/.test(variants) ? 'dark-90' : 'dark-75'
     return { to: prefix(groups.grey.replace('dark-60', shade)), rule: 'dark-60 text and icons → dark-75 (placeholders → dark-90)' }
   }
+  if (groups.primaryForeground) {
+    // --primary-foreground is navy now (white on mint-45 failed AA); app uses keep the white they had
+    return { to: prefix(groups.primaryForeground.replace('primary-foreground', 'white')), rule: 'primary-foreground → white' }
+  }
   return { to: match, rule: null }
 }
 
 // CSS custom properties: var(--cobalt), --color-cobalt-l1, …
 const CSS_VAR_PATTERN = /(?<![\w-])--(color-)?cobalt(-l1)?(?![\w-])/g
+// Reads of the primary foreground, var(--primary-foreground) or var(--color-primary-foreground), not its definition
+const PRIMARY_FOREGROUND_VAR = /var\(\s*--(?:color-)?primary-foreground\s*([,)])/g
 
 // ---------------------------------------------------------------------------
 // Component props. Only applied to components imported from the package.
@@ -496,6 +503,11 @@ export function migrateSource(text, options = {}) {
   result = result.replace(CSS_VAR_PATTERN, (match, color = '', tint = '', offset) => {
     report.change('cobalt → electric-blue', lineOf(text, offset))
     return `--${color}electric-blue${tint}`
+  })
+
+  result = result.replace(PRIMARY_FOREGROUND_VAR, (match, close, offset) => {
+    report.change('primary-foreground → white', lineOf(text, offset))
+    return `var(--white${close}`
   })
 
   result = migrateProps(result, report)

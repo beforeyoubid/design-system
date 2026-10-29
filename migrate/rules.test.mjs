@@ -45,6 +45,22 @@ test('moves dark-60 text and icons to dark-75 and placeholders to dark-90; leave
   )
 })
 
+test('moves primary-foreground classes and var() reads to white, keeping variants and opacity', () => {
+  assert.equal(
+    run('text-primary-foreground hover:bg-primary-foreground/80 !fill-primary-foreground data-[on]:border-primary-foreground'),
+    'text-white hover:bg-white/80 !fill-white data-[on]:border-white',
+  )
+  assert.equal(
+    run('color: var(--primary-foreground); fill: var(--color-primary-foreground, #fff);'),
+    'color: var(--white); fill: var(--white, #fff);',
+  )
+})
+
+test('leaves the primary-foreground definition and longer names alone', () => {
+  const text = '--primary-foreground: var(--navy); text-sidebar-primary-foreground text-primary-foreground-muted bg-primary'
+  assert.equal(run(text), text)
+})
+
 test('text-xs keeps its 10px by default and can be remapped per app', () => {
   assert.equal(run('text-xs'), 'text-caption-2')
   assert.equal(run('text-xs md:text-xs', { classRenames: { 'text-xs': 'text-sm' } }), 'text-sm md:text-sm')
