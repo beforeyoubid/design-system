@@ -7,7 +7,7 @@ import {
   Button as StockButton,
   buttonVariants as stockButtonVariants,
 } from "@/components/ui/button"
-import { BYBSpinner } from "@/components/BYBSpinner"
+import { Spinner } from "@/components/spinner"
 
 export * from "@/components/ui/button"
 
@@ -116,7 +116,7 @@ function buttonVariants({
 export interface ButtonProps extends ButtonPrimitive.Props {
   variant?: ButtonVariant | null
   size?: ButtonSize | null
-  /** Shows a BYBSpinner before the label, dims to 70% and blocks clicks (aria-busy). */
+  /** Shows a Spinner before the label, dims to 70% and blocks clicks (aria-busy). */
   loading?: boolean
   /** Icon element, e.g. `<IconArrowUpRight />`. Hidden while `loading`. */
   icon?: React.ReactNode
@@ -154,11 +154,7 @@ function Button({
       {...props}
     >
       {loading && (
-        <BYBSpinner
-          color="current"
-          size={size === "sm" || size === "xs" ? "md" : "lg"}
-          label="Loading"
-        />
+        <Spinner className={cn("text-current", size === "sm" || size === "xs" ? "size-4" : "size-5")} />
       )}
       {iconPosition === "left" && iconNode}
       {children}

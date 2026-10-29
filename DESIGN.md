@@ -463,7 +463,7 @@ Headers use `text-overline text-dark-100`; sortable headers (`sortable`, `sortDi
 | `Alert` | `default`, `info` (mint-l4), `success`, `warning`, `destructive`; `rounded-2xl`, tint fill + `-15` border + `-75` text |
 | `Toaster` + `toast` (Base UI) | See **Toasts** below |
 | `Empty` (shadcn) | `default`, `outline` (dashed border), `muted`; `EmptyMedia variant="icon"` mint circle, navy `EmptyTitle`, `EmptyContent` for actions |
-| `Progress`, `BYBSpinner` | Loading states |
+| `Progress`, `Spinner` | Loading states |
 | `Skeleton` | `light-l2` fill with a white shimmer sweep (`animate-shimmer`); static when reduced motion is on |
 
 ### Toasts

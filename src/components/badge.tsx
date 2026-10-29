@@ -7,7 +7,7 @@ import {
   Badge as StockBadge,
   type badgeVariants as stockBadgeVariants,
 } from "@/components/ui/badge"
-import { BYBSpinner } from "@/components/BYBSpinner"
+import { Spinner } from "@/components/spinner"
 
 export * from "@/components/ui/badge"
 
@@ -174,7 +174,7 @@ const STOCK_VARIANT: Partial<Record<BadgeVariant, StockBadgeVariant>> = {
 
 export type BadgeProps = useRender.ComponentProps<"span"> &
   VariantProps<typeof badgeVariants> & {
-    /** Show a small BYBSpinner in the tone's text colour before the label (e.g. "Syncing"). */
+    /** Show a small Spinner in the tone's text colour before the label (e.g. "Syncing"). */
     spinner?: boolean
     /** Icon element, e.g. `<Clock />` from Lucide. Sized by `size` (16px on `lg`). */
     icon?: React.ReactNode
@@ -209,7 +209,7 @@ function Badge({
     : icon
   const prefix =
     !filled && spinner ? (
-      <BYBSpinner size="sm" color="current" label="Loading" />
+      <Spinner className="size-3 text-current" />
     ) : iconPosition === "left" ? (
       iconNode
     ) : null
