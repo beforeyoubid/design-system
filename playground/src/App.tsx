@@ -119,7 +119,7 @@ export function App() {
         {view.kind === 'global' && <GlobalLook overrides={overrides} set={set} />}
         {view.kind === 'semantic' && <SemanticRoles overrides={overrides} set={set} onOpen={(name) => setView({ kind: 'component', name })} tick={tick} />}
         {view.kind === 'component' && (
-          <ComponentLevers name={view.name} overrides={overrides} set={set} query={q} />
+          <ComponentLevers name={view.name} overrides={overrides} set={set} query={q} tick={tick} />
         )}
       </main>
 
@@ -134,7 +134,7 @@ export function App() {
 }
 
 // ---------------------------------------------------------------------------
-function Row({ id, label, hint, type, name, defaultValue, overrides, set, max }: {
+function Row({ id, label, hint, type, name, defaultValue, overrides, set, max, warning }: {
   id: string
   label: string
   hint?: string
@@ -144,13 +144,18 @@ function Row({ id, label, hint, type, name, defaultValue, overrides, set, max }:
   overrides: Overrides
   set: (name: string, v: string | null) => void
   max?: number
+  /** Why this lever needs attention, e.g. its text fails WCAG AA on its fill. */
+  warning?: string
 }) {
   const changed = name in overrides
   const value = overrides[name] ?? defaultValue
   return (
     <div className="pg-row" data-changed={changed}>
       <div className="pg-row-text">
-        <label htmlFor={id}>{label}</label>
+        <div className="pg-row-title">
+          <label htmlFor={id}>{label}</label>
+          {warning && <WarnIcon label={warning} />}
+        </div>
         <p className="pg-row-meta">
           {hint ?? typeHint[type]} · Default: {describeValue(type, defaultValue)}
         </p>
@@ -196,7 +201,17 @@ function SemanticRoles({ overrides, set, onOpen, tick }: { overrides: Overrides;
         const pair = pairs.find((p) => p.fg === s.name)
         return (
           <div key={s.name} className="pg-role">
-            <Row id={`s${s.name}`} label={prettyVar(s.name)} hint="Colour role" type="color" name={s.name} defaultValue={s.value} overrides={overrides} set={set} />
+            <Row
+              id={`s${s.name}`}
+              label={prettyVar(s.name)}
+              hint="Colour role"
+              type="color"
+              name={s.name}
+              defaultValue={s.value}
+              overrides={overrides}
+              set={set}
+              warning={pair && pair.ratio < 4.5 ? `Fails WCAG AA: ${pair.ratio.toFixed(2)}:1 on ${prettyVar(pair.bg)}` : undefined}
+            />
             <div className="pg-role-meta">
               {pair && <Verdict ratio={pair.ratio} label={`on ${prettyVar(pair.bg)}`} />}
               {s.usedBy.length > 0 && (
@@ -229,8 +244,10 @@ function variantHeading(variant: string, inPart: ComponentToken[]) {
   return `${words} ${sizing ? 'size' : 'style'}`
 }
 
-function ComponentLevers({ name, overrides, set, query }: { name: string; overrides: Overrides; set: (n: string, v: string | null) => void; query: string }) {
+function ComponentLevers({ name, overrides, set, query, tick }: { name: string; overrides: Overrides; set: (n: string, v: string | null) => void; query: string; tick: number }) {
   const comp = manifest.components.find((c) => c.component === name)!
+  // Text levers whose pair fails AA, recomputed when the overrides change.
+  const failing = React.useMemo(() => new Map(pairsFor(name).filter((p) => p.ratio < 4.5).map((p) => [p.fg.name, p])), [name, tick])
   const tokens = comp.tokens.filter((t) => !query || t.description.toLowerCase().includes(query) || t.name.includes(query) || name.includes(query))
   const parts = [...new Set(tokens.map((t) => t.part))]
   return (
@@ -248,7 +265,17 @@ function ComponentLevers({ name, overrides, set, query }: { name: string; overri
                 {inPart
                   .filter((t) => (t.variant ?? '') === g)
                   .map((t) => (
-                    <Row key={t.name} id={t.name} label={t.description.replace(/\.$/, '')} type={t.type} name={t.name} defaultValue={t.default} overrides={overrides} set={set} />
+                    <Row
+                      key={t.name}
+                      id={t.name}
+                      label={t.description.replace(/\.$/, '')}
+                      type={t.type}
+                      name={t.name}
+                      defaultValue={t.default}
+                      overrides={overrides}
+                      set={set}
+                      warning={failing.has(t.name) ? `Fails WCAG AA: ${failing.get(t.name)!.ratio.toFixed(2)}:1 on ${failing.get(t.name)!.bg.description.replace(/\.$/, '').toLowerCase()}` : undefined}
+                    />
                   ))}
               </div>
             ))}
@@ -272,7 +299,10 @@ function Verdict({ ratio, label }: { ratio: number; label: string }) {
 /** Warning triangle beside a section whose text pairs fail WCAG AA. */
 function ContrastFlag({ count }: { count: number }) {
   if (!count) return null
-  const label = `${count} text ${count === 1 ? 'pair fails' : 'pairs fail'} WCAG AA`
+  return <WarnIcon label={`${count} text ${count === 1 ? 'pair fails' : 'pairs fail'} WCAG AA`} />
+}
+
+function WarnIcon({ label }: { label: string }) {
   return (
     <span className="pg-warn" role="img" aria-label={label} title={label}>
       <svg viewBox="0 0 16 16" aria-hidden="true">

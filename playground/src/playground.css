@@ -132,6 +132,7 @@ body { background: var(--pg-bg); }
 }
 .pg-nav-title, .pg-nav-flags { display: inline-flex; align-items: center; gap: 6px; }
 .pg-warn { display: inline-flex; color: var(--pg-fail); }
+.pg-row-title { display: flex; align-items: center; gap: 6px; }
 .pg-warn svg { width: 14px; height: 14px; }
 .pg-empty { color: var(--pg-ink-soft); padding: 8px 10px; }
 
