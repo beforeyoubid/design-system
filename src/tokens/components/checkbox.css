@@ -25,9 +25,9 @@
   /* Fill colour of the checkbox when checked. */
   --_checkbox-checked: var(--checkbox-checked, var(--mint-45));
   /* Border colour of the checkbox when invalid. */
-  --_checkbox-invalid-border: var(--checkbox-invalid-border, var(--error-75));
+  --_checkbox-invalid-border: var(--checkbox-invalid-border, var(--destructive));
   /* Ring colour of the checkbox when invalid. */
-  --_checkbox-invalid-ring: var(--checkbox-invalid-ring, color-mix(in oklab, var(--error-75) 20%, transparent));
+  --_checkbox-invalid-ring: var(--checkbox-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
   /* Opacity of the checkbox when disabled. */
   --_checkbox-disabled-opacity: var(--checkbox-disabled-opacity, 0.5);
 }

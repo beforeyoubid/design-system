@@ -5,7 +5,7 @@
 
 [data-slot="textarea"] {
   /* @remove field-sizing-content disabled:opacity-50 aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 md:text-sm */
-  /* @add min-w-0 text-body-5 transition focus-visible:ring-3 aria-invalid:focus-visible:border-error-75 aria-invalid:focus-visible:ring-error-75/20 min-h-auto resize-y */
+  /* @add min-w-0 text-body-5 transition focus-visible:ring-3 aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-destructive/20 min-h-auto resize-y */
   /* Corner radius of the textarea. */
   --_textarea-radius: var(--textarea-radius, var(--radius-lg));
   /* Border colour of the textarea. */
@@ -23,7 +23,7 @@
   /* Ring colour of the textarea when focused. */
   --_textarea-focus-ring: var(--textarea-focus-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
   /* Border colour of the textarea when invalid. */
-  --_textarea-invalid-border: var(--textarea-invalid-border, var(--error-75));
+  --_textarea-invalid-border: var(--textarea-invalid-border, var(--destructive));
   /* Fill colour of the textarea when disabled. */
   --_textarea-disabled: var(--textarea-disabled, var(--light-l2));
   /* Text colour of the textarea when disabled. */

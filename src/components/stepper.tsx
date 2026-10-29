@@ -46,7 +46,7 @@ export interface StepperStep {
   description?: React.ReactNode
   /** Icon element shown when `indicator="icon"`. */
   icon?: React.ReactNode
-  /** Show the error indicator (error-75 circle, exclamation mark). */
+  /** Show the error indicator (destructive circle, exclamation mark). */
   error?: boolean
   disabled?: boolean
 }

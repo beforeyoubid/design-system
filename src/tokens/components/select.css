@@ -9,7 +9,7 @@
 
 [data-slot="select-trigger"] {
   /* @remove py-2 disabled:opacity-50 aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 data-[size=default]:h-9 */
-  /* @add group/select-trigger cursor-pointer w-full text-body-5 transition-[color,background-color,border-color,box-shadow] focus-visible:ring-3 data-popup-open:ring-3 data-popup-open:data-placeholder:text-mint-75 aria-invalid:hover:border-error-75 aria-invalid:data-popup-open:border-(--_select-trigger-invalid-border) data-disabled:cursor-not-allowed data-disabled:hover:border-dark-45 data-[size=sm]:h-(--_select-trigger-sm-height) */
+  /* @add group/select-trigger cursor-pointer w-full text-body-5 transition-[color,background-color,border-color,box-shadow] focus-visible:ring-3 data-popup-open:ring-3 data-popup-open:data-placeholder:text-mint-75 aria-invalid:hover:border-destructive aria-invalid:data-popup-open:border-(--_select-trigger-invalid-border) data-disabled:cursor-not-allowed data-disabled:hover:border-dark-45 data-[size=sm]:h-(--_select-trigger-sm-height) */
   /* Height of the trigger. */
   --_select-trigger-height: var(--select-trigger-height, calc(var(--spacing) * 10));
   /* Gap between items of the trigger. */
@@ -41,7 +41,7 @@
   /* Ring colour of the trigger while open. */
   --_select-trigger-open-ring: var(--select-trigger-open-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
   /* Border colour of the trigger when invalid. */
-  --_select-trigger-invalid-border: var(--select-trigger-invalid-border, var(--error-75));
+  --_select-trigger-invalid-border: var(--select-trigger-invalid-border, var(--destructive));
   /* Fill colour of the trigger when disabled. */
   --_select-trigger-disabled: var(--select-trigger-disabled, var(--light-l2));
   /* Text colour of the trigger when disabled. */

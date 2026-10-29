@@ -36,9 +36,9 @@
   /* Border colour of the item when checked. */
   --_radio-group-item-checked-border: var(--radio-group-item-checked-border, var(--mint-45));
   /* Border colour of the item when invalid. */
-  --_radio-group-item-invalid-border: var(--radio-group-item-invalid-border, var(--error-75));
+  --_radio-group-item-invalid-border: var(--radio-group-item-invalid-border, var(--destructive));
   /* Ring colour of the item when invalid. */
-  --_radio-group-item-invalid-ring: var(--radio-group-item-invalid-ring, color-mix(in oklab, var(--error-75) 20%, transparent));
+  --_radio-group-item-invalid-ring: var(--radio-group-item-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
   /* Opacity of the item when disabled. */
   --_radio-group-item-disabled-opacity: var(--radio-group-item-disabled-opacity, 0.5);
 }

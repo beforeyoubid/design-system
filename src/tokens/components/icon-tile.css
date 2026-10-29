@@ -18,7 +18,7 @@
   /* Fill colour of the tile (error variant). @ours */
   --_icon-tile-error: var(--icon-tile-error, var(--error-l1));
   /* Icon colour of the tile (error variant). @ours */
-  --_icon-tile-error-foreground: var(--icon-tile-error-foreground, var(--error-75));
+  --_icon-tile-error-foreground: var(--icon-tile-error-foreground, var(--destructive));
   /* Fill colour of the tile (lime variant). @ours */
   --_icon-tile-lime: var(--icon-tile-lime, var(--lime));
   /* Icon colour of the tile (lime variant). @ours */

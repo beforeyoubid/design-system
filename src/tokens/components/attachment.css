@@ -17,7 +17,7 @@
   /* Shadow of the attachment. */
   --_attachment-shadow: var(--attachment-shadow, 0 1px 2px 0 rgb(0 0 0 / 0.05));
   /* Border colour of a failed upload. */
-  --_attachment-error-border: var(--attachment-error-border, var(--error-75));
+  --_attachment-error-border: var(--attachment-error-border, var(--destructive));
   /* Ring colour of the attachment when focused. */
   --_attachment-focus-ring: var(--attachment-focus-ring, color-mix(in oklab, var(--ring) 50%, transparent));
   /* Gap between items of the attachment (default size). */
@@ -102,7 +102,7 @@
   /* Colour of the status label once an upload completes. @ours */
   --_attachment-status-completed-foreground: var(--attachment-status-completed-foreground, var(--mint-60));
   /* Colour of the status label when an upload fails. @ours */
-  --_attachment-status-error-foreground: var(--attachment-status-error-foreground, var(--error-75));
+  --_attachment-status-error-foreground: var(--attachment-status-error-foreground, var(--destructive));
 }
 
 [data-slot="attachment-progress"] {
@@ -121,12 +121,12 @@
 
 [data-slot="attachment-error"] {
   /* Colour of the error message under a failed upload. @ours */
-  --_attachment-error-foreground: var(--attachment-error-foreground, var(--error-75));
+  --_attachment-error-foreground: var(--attachment-error-foreground, var(--destructive));
 }
 
 [data-slot="attachment-retry"] {
   /* Colour of the Retry link. @ours */
-  --_attachment-retry-foreground: var(--attachment-retry-foreground, var(--error-75));
+  --_attachment-retry-foreground: var(--attachment-retry-foreground, var(--destructive));
   /* Font weight of the Retry link. @ours */
   --_attachment-retry-font-weight: var(--attachment-retry-font-weight, 600);
 }

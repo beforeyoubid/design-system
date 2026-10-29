@@ -11,7 +11,7 @@
 
 [data-slot="input-otp-slot"] {
   /* @remove border-y border-e first:rounded-s-4xl first:border-s last:rounded-e-4xl data-[active=true]:aria-invalid:border-destructive */
-  /* @add border text-body-5 transition data-[active=true]:ring-3 group-has-aria-invalid/input-otp:border-error-75 data-[active=true]:aria-invalid:ring-error-75/20 group-has-aria-invalid/input-otp:data-[active=true]:ring-error-75/20 group-has-disabled/input-otp:bg-light-l2 group-has-disabled/input-otp:text-dark-45 */
+  /* @add border text-body-5 transition data-[active=true]:ring-3 group-has-aria-invalid/input-otp:border-destructive data-[active=true]:aria-invalid:ring-destructive/20 group-has-aria-invalid/input-otp:data-[active=true]:ring-destructive/20 group-has-disabled/input-otp:bg-light-l2 group-has-disabled/input-otp:text-dark-45 */
   /* Width and height of the slot. */
   --_input-otp-slot-size: var(--input-otp-slot-size, calc(var(--spacing) * 8));
   /* Corner radius of the slot. */
@@ -31,7 +31,7 @@
   /* Ring colour of the slot when active. */
   --_input-otp-slot-active-ring: var(--input-otp-slot-active-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
   /* Border colour of the slot when invalid. */
-  --_input-otp-slot-invalid-border: var(--input-otp-slot-invalid-border, var(--error-75));
+  --_input-otp-slot-invalid-border: var(--input-otp-slot-invalid-border, var(--destructive));
 }
 
 [data-slot="input-otp-separator"] {

@@ -5,7 +5,7 @@
 
 [data-slot="input"] {
   /* @remove disabled:pointer-events-none disabled:opacity-50 aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 md:text-sm */
-  /* @add text-body-5 transition focus-visible:ring-3 aria-invalid:focus-visible:border-error-75 aria-invalid:focus-visible:ring-error-75/20 file:text-body-5 file:text-dark-100 */
+  /* @add text-body-5 transition focus-visible:ring-3 aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-destructive/20 file:text-body-5 file:text-dark-100 */
   /* Corner radius of the input. */
   --_input-radius: var(--input-radius, var(--radius-lg));
   /* Border colour of the input. */
@@ -23,7 +23,7 @@
   /* Ring colour of the input when focused. */
   --_input-focus-ring: var(--input-focus-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
   /* Border colour of the input when invalid. */
-  --_input-invalid-border: var(--input-invalid-border, var(--error-75));
+  --_input-invalid-border: var(--input-invalid-border, var(--destructive));
   /* Fill colour of the input when disabled. */
   --_input-disabled: var(--input-disabled, var(--light-l2));
   /* Text colour of the input when disabled. */

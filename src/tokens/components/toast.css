@@ -30,7 +30,7 @@
   /* Fill colour of the toast (error type). @ours */
   --_toast-error: var(--toast-error, var(--error-l1));
   /* Colour of the title, icon and × (error type). @ours */
-  --_toast-error-foreground: var(--toast-error-foreground, var(--error-60));
+  --_toast-error-foreground: var(--toast-error-foreground, var(--destructive));
   /* Fill colour of the toast (info type). @ours */
   --_toast-info: var(--toast-info, var(--mint-l4));
   /* Colour of the title, icon and × (info type). @ours */

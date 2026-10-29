@@ -172,13 +172,15 @@ No separate tokens; use opacity modifiers.
 | `secondary` | light-l2 | dark-90 |
 | `muted` / `-foreground` | light-l1 / dark-75 | dark-90 / dark-45 |
 | `accent` / `-foreground` | mint-l3 / mint-90 | mint-90 / mint-l2 |
-| `destructive` | error-60 | error-45 |
+| `destructive` | error-75 | error-45 |
 | `success` | success-45 | success-30 |
 | `warning` | warning-45 | warning-30 |
 | `border` | dark-15 | dark-90 |
 | `input` | dark-45 | dark-90 |
 | `ring` | mint-45 | mint-30 |
 | `sidebar-*` | light-l1 surface, mint-45 primary, mint-l3 accent | dark-90 surface, mint-30 primary |
+
+Every error and destructive colour reads `destructive`: error text, invalid borders and rings, destructive buttons, menu items, badges, alerts and toasts. Use `text-destructive`, `border-destructive` and so on rather than `error-75`, so the error red changes in one place.
 
 Dark mode is turned on by the app with `<html class="dark">`; semantic tokens flip automatically.
 
@@ -355,7 +357,7 @@ Base: semibold, UPPERCASE, 0.04em tracking, focus ring `ring-2 ring-navy ring-of
 | `secondary` | `bg-white border-navy text-navy` | `bg-navy text-white` | Secondary action |
 | `tertiary` | `bg-white border-dark-15 text-dark-90` | `bg-dark-45 text-white` | Neutral / cancel |
 | `ghost` | `text-mint-75` | `text-mint-45` | Low emphasis |
-| `destructive` | `bg-error-75 text-white` | `bg-error-45` | Delete, irreversible |
+| `destructive` | `bg-destructive text-white` | `bg-error-45` | Delete, irreversible |
 | `link` | `text-mint-75` | underline | Inline action |
 
 Use `primary`, `secondary` and `tertiary` where they fit. These 1.x variants stay so existing screens don't change, and are there when a design needs them:
@@ -405,7 +407,7 @@ Solid (`appearance="solid"`): gray dark-75 + white · mint mint-45 + white · li
 - Every input fills its container: Input, Textarea, InputGroup, Select, NativeSelect, Combobox, TimePicker and FileUpload are `w-full`. The layout around them (a grid column, a `max-w-*` wrapper) sets the width. InputOTP is the exception: its digit boxes are a fixed size.
 - Yes/no props are off by default and named for the behaviour they add (`clearable`, `multiple`, `overlapping`), so turning one on is passing it.
 - Focus: `border-mint-45` + `ring-3 ring-mint-45/30`.
-- Invalid (`aria-invalid`): `border-error-75`, red ring on focus.
+- Invalid (`aria-invalid`): `border-destructive`, red ring on focus.
 - Disabled: `bg-light-l2 text-dark-45`. Only the control greys out; its label and hint stay at full strength (`--field-label-disabled-opacity`, default 1).
 - Label, hint and error come from `Field`, `FieldLabel`, `FieldDescription` and `FieldError`; `FieldLabel required` adds a mint asterisk. Groups of fields use `FieldSet` with `FieldLegend` and a `FieldGroup`, with a `FieldSeparator` between sections. Apps build forms with `@beforeyoubid/form`, whose `InputField`, `SelectField` and `DateField` compose these parts.
 - `Select` rows take `meta` (right side of the row, e.g. a count or `<ColorDot />`); on single-select rows a `meta` replaces the trailing check and the mint row fill marks the selection. `SelectTrigger onClear={…}` shows an × beside the chevron (`IconX`, `dark-75`, hover `dark-100`, no background; pass it only while something is selected), and `SelectChip` / `SelectChipOverflow` ("+N") render selected values in the field. Multi-select lists end with an "N selected · CLEAR" footer (`SelectFooter`); CLEAR is `text-overline` (uppercase) in `mint-75`, hover `mint-90`.
@@ -488,7 +490,7 @@ toast.add({
 | `success` | `mint-l3` | `mint-60`, check | A completed action: "Inspection booked" |
 | `info` | `mint-l4` | `mint-75`, "i" | Neutral updates: "Report is being prepared" |
 | `warning` | `warning-l3` | `warning-60`, exclamation mark | Needs attention but nothing failed: "Please check your conditions" |
-| `error` | `error-l1` | `error-60`, × | Something failed or is blocked: "You are not verified" |
+| `error` | `error-l1` | `destructive`, × | Something failed or is blocked: "You are not verified" |
 | none (default) | `light-l2` | `navy`, bell | General notices that aren't success, warning or error: "Settings saved" |
 
 Anatomy (the original BYB Toast): flat, 20px radius (`rounded-2xl`), 8px / 12px padding; 32px white circle with a type-coloured border holding the Tabler icon; title `text-body-5` semibold in the type colour; description `text-body-5 text-dark-90`; optional action as an underlined text link in the type colour, right after the description ("Undo"). Clicking the action closes the toast unless its `onClick` calls `event.preventDefault()`. × top-right in the type colour.
@@ -667,7 +669,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--alert-default-foreground` | Text colour of the alert (default variant). | `var(--card-foreground)` |
 | `--alert-destructive` | Fill colour of the alert (destructive variant). | `var(--error-l1)` |
 | `--alert-destructive-border` | Border colour of the alert (destructive variant). | `var(--error-15)` |
-| `--alert-destructive-foreground` | Text colour of the alert (destructive variant). | `var(--error-75)` |
+| `--alert-destructive-foreground` | Text colour of the alert (destructive variant). | `var(--destructive)` |
 | `--alert-with-icon-gap` | Gap between the icon and the text of an alert with an icon. | `calc(var(--spacing) * 2.5)` |
 | `--alert-with-action-padding-x` | Right padding of an alert with an action button (room for the button). | `calc(var(--spacing) * 18)` |
 | `--alert-title-font-weight` | Font weight of the title. | `500` |
@@ -693,7 +695,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--attachment` | Fill colour of the attachment. | `var(--card)` |
 | `--attachment-foreground` | Text colour of the attachment. | `var(--card-foreground)` |
 | `--attachment-shadow` | Shadow of the attachment. | `0 1px 2px 0 rgb(0 0 0 / 0.05)` |
-| `--attachment-error-border` | Border colour of a failed upload. | `var(--error-75)` |
+| `--attachment-error-border` | Border colour of a failed upload. | `var(--destructive)` |
 | `--attachment-focus-ring` | Ring colour of the attachment when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
 | `--attachment-default-gap` | Gap between items of the attachment (default size). | `calc(var(--spacing) * 4)` |
 | `--attachment-default-padding` | Padding of the attachment (default size). | `calc(var(--spacing) * 4)` |
@@ -724,13 +726,13 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--attachment-status-gap` | Gap between the status icon and its label. | `calc(var(--spacing) * 1)` |
 | `--attachment-status-foreground` | Colour of the status label while uploading. | `var(--dark-75)` |
 | `--attachment-status-completed-foreground` | Colour of the status label once an upload completes. | `var(--mint-60)` |
-| `--attachment-status-error-foreground` | Colour of the status label when an upload fails. | `var(--error-75)` |
+| `--attachment-status-error-foreground` | Colour of the status label when an upload fails. | `var(--destructive)` |
 | `--attachment-progress-height` | Height of the upload progress bar. | `calc(var(--spacing) * 1.5)` |
 | `--attachment-progress-radius` | Corner radius of the upload progress bar. | `var(--radius-full)` |
 | `--attachment-progress` | Colour of the progress bar's track. | `var(--mint-l2)` |
 | `--attachment-progress-indicator` | Colour of the uploaded part of the progress bar. | `var(--mint-60)` |
-| `--attachment-error-foreground` | Colour of the error message under a failed upload. | `var(--error-75)` |
-| `--attachment-retry-foreground` | Colour of the Retry link. | `var(--error-75)` |
+| `--attachment-error-foreground` | Colour of the error message under a failed upload. | `var(--destructive)` |
+| `--attachment-retry-foreground` | Colour of the Retry link. | `var(--destructive)` |
 | `--attachment-retry-font-weight` | Font weight of the Retry link. | `600` |
 
 </details>
@@ -788,7 +790,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--badge-destructive-border` | Border colour of the badge (destructive variant). | `var(--error-15)` |
 | `--badge-destructive` | Fill colour of the badge (destructive variant). | `var(--error-l1)` |
 | `--badge-destructive-font-weight` | Font weight of the badge (destructive variant). | `var(--badge-font-weight, 600)` |
-| `--badge-destructive-foreground` | Text colour of the badge (destructive variant). | `var(--error-75)` |
+| `--badge-destructive-foreground` | Text colour of the badge (destructive variant). | `var(--destructive)` |
 | `--badge-outline-border` | Border colour of the badge (outline variant). | `var(--border)` |
 | `--badge-outline` | Fill colour of the badge (outline variant). | `color-mix(in oklab, var(--input) 30%, transparent)` |
 | `--badge-outline-foreground` | Text colour of the badge (outline variant). | `var(--foreground)` |
@@ -819,7 +821,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--badge-lime-solid-foreground` | Text colour of the solid badge (lime variant). | `var(--navy)` |
 | `--badge-success-solid` | Fill and border colour of the solid badge (success variant). | `var(--mint-60)` |
 | `--badge-success-solid-foreground` | Text colour of the solid badge (success variant). | `var(--white)` |
-| `--badge-error-solid` | Fill and border colour of the solid badge (error variant). | `var(--error-75)` |
+| `--badge-error-solid` | Fill and border colour of the solid badge (error variant). | `var(--destructive)` |
 | `--badge-error-solid-foreground` | Text colour of the solid badge (error variant). | `var(--white)` |
 | `--badge-warning-solid` | Fill and border colour of the solid badge (warning variant). | `var(--warning-30)` |
 | `--badge-warning-solid-foreground` | Text colour of the solid badge (warning variant). | `var(--navy)` |
@@ -873,7 +875,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--button-radius` | Corner radius of the button. | `var(--radius-xl)` |
 | `--button-font-weight` | Font weight of the button. | `600` |
 | `--button-focus-ring` | Ring colour of the button when focused. | `var(--navy)` |
-| `--button-invalid-ring` | Ring colour of the button when invalid. | `color-mix(in oklab, var(--error-75) 20%, transparent)` |
+| `--button-invalid-ring` | Ring colour of the button when invalid. | `color-mix(in oklab, var(--destructive) 20%, transparent)` |
 | `--button-default` | Fill colour of the button (default variant). | `var(--primary)` |
 | `--button-default-foreground` | Text colour of the button (default variant). | `var(--primary-foreground)` |
 | `--button-default-shadow` | Shadow of the button (default variant). | `0 1px 2px 0 rgb(0 0 0 / 0.05)` |
@@ -909,11 +911,11 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--button-ghost-hover-foreground` | Text colour of the button (ghost variant) when hovered. | `var(--mint-45)` |
 | `--button-ghost-open-foreground` | Text colour of the button (ghost variant) while open. | `var(--mint-45)` |
 | `--button-ghost-disabled-foreground` | Text colour of the button (ghost variant) when disabled. | `var(--dark-45)` |
-| `--button-destructive` | Fill colour of the button (destructive variant). | `var(--error-75)` |
+| `--button-destructive` | Fill colour of the button (destructive variant). | `var(--destructive)` |
 | `--button-destructive-foreground` | Text colour of the button (destructive variant). | `var(--white)` |
 | `--button-destructive-shadow` | Shadow of the button (destructive variant). | `0 1px 2px 0 rgb(0 0 0 / 0.05)` |
 | `--button-destructive-hover` | Fill colour of the button (destructive variant) when hovered. | `var(--error-45)` |
-| `--button-destructive-focus-ring` | Ring colour of the button (destructive variant) when focused. | `var(--button-focus-ring, var(--error-75))` |
+| `--button-destructive-focus-ring` | Ring colour of the button (destructive variant) when focused. | `var(--button-focus-ring, var(--destructive))` |
 | `--button-destructive-disabled` | Fill colour of the button (destructive variant) when disabled. | `var(--light-l2)` |
 | `--button-destructive-disabled-foreground` | Text colour of the button (destructive variant) when disabled. | `var(--dark-45)` |
 | `--button-destructive-disabled-shadow` | Shadow of the button (destructive variant) when disabled. | `0 0 #0000` |
@@ -1051,8 +1053,8 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--checkbox-focus-ring` | Ring colour of the checkbox when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
 | `--checkbox-checked-border` | Border colour of the checkbox when checked. | `var(--mint-45)` |
 | `--checkbox-checked` | Fill colour of the checkbox when checked. | `var(--mint-45)` |
-| `--checkbox-invalid-border` | Border colour of the checkbox when invalid. | `var(--error-75)` |
-| `--checkbox-invalid-ring` | Ring colour of the checkbox when invalid. | `color-mix(in oklab, var(--error-75) 20%, transparent)` |
+| `--checkbox-invalid-border` | Border colour of the checkbox when invalid. | `var(--destructive)` |
+| `--checkbox-invalid-ring` | Ring colour of the checkbox when invalid. | `color-mix(in oklab, var(--destructive) 20%, transparent)` |
 | `--checkbox-disabled-opacity` | Opacity of the checkbox when disabled. | `0.5` |
 | `--checkbox-label-foreground` | Text colour of the label beside the control. | `var(--navy)` |
 | `--checkbox-description-foreground` | Text colour of the description under the label. | `var(--dark-75)` |
@@ -1304,9 +1306,9 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--dropdown-menu-item-highlighted-foreground` | Text colour of the item when highlighted. | `var(--mint-75)` |
 | `--dropdown-menu-item-disabled-foreground` | Text colour of the item when disabled. | `var(--dark-45)` |
 | `--dropdown-menu-item-inset-padding-x` | Left padding of an indented row (inset items, labels and sub-menu triggers). | `calc(var(--spacing) * 9)` |
-| `--dropdown-menu-item-destructive-foreground` | Text colour of a destructive item (e.g. Delete). | `var(--error-60)` |
+| `--dropdown-menu-item-destructive-foreground` | Text colour of a destructive item (e.g. Delete). | `var(--destructive)` |
 | `--dropdown-menu-item-destructive-highlighted` | Fill colour of a destructive item when highlighted. | `var(--error-l1)` |
-| `--dropdown-menu-item-destructive-highlighted-foreground` | Text colour of a destructive item when highlighted. | `var(--error-75)` |
+| `--dropdown-menu-item-destructive-highlighted-foreground` | Text colour of a destructive item when highlighted. | `var(--destructive)` |
 | `--dropdown-menu-sub-trigger-height` | Height of the sub-trigger. | `calc(var(--spacing) * 8)` |
 | `--dropdown-menu-sub-trigger-gap` | Gap between items of the sub-trigger. | `calc(var(--spacing) * 2.5)` |
 | `--dropdown-menu-sub-trigger-radius` | Corner radius of the sub-trigger. | `var(--radius-md)` |
@@ -1422,7 +1424,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--field-separator-content-padding-x` | Horizontal padding of the separator-content. | `calc(var(--spacing) * 2)` |
 | `--field-separator-content-foreground` | Text colour of the separator-content. | `var(--muted-foreground)` |
 | `--field-error-font-weight` | Font weight of the error. | `400` |
-| `--field-error-foreground` | Text colour of the error. | `var(--error-75)` |
+| `--field-error-foreground` | Text colour of the error. | `var(--destructive)` |
 | `--field-label-required-foreground` | Colour of the asterisk on a required field's label. | `var(--mint-45)` |
 
 </details>
@@ -1444,8 +1446,8 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--file-drop-zone-hover-border` | Border colour on hover, focus and while a file is dragged over. | `var(--mint-45)` |
 | `--file-drop-zone-focus-ring` | Focus ring colour. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
 | `--file-drop-zone-invalid` | Fill colour in the error state. | `var(--error-l1)` |
-| `--file-drop-zone-invalid-border` | Border colour in the error state. | `var(--error-75)` |
-| `--file-drop-zone-invalid-focus-ring` | Focus ring colour in the error state. | `color-mix(in oklab, var(--error-75) 20%, transparent)` |
+| `--file-drop-zone-invalid-border` | Border colour in the error state. | `var(--destructive)` |
+| `--file-drop-zone-invalid-focus-ring` | Focus ring colour in the error state. | `color-mix(in oklab, var(--destructive) 20%, transparent)` |
 | `--file-drop-zone-disabled` | Fill colour when disabled. | `var(--light-l1)` |
 | `--file-drop-zone-disabled-foreground` | Text and icon colour when disabled. | `var(--dark-45)` |
 | `--file-drop-zone-icon-foreground` | Colour of the upload icon. | `var(--mint-60)` |
@@ -1462,14 +1464,14 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 |---|---|---|
 | `--file-upload-gap` | Gap between the drop zone, its message and the list of files. | `calc(var(--spacing) * 2)` |
 | `--file-upload-list-gap` | Gap between the file cards. | `calc(var(--spacing) * 2)` |
-| `--file-upload-message-foreground` | Colour of the message when a picked file isn't accepted (wrong type or too large). | `var(--error-75)` |
+| `--file-upload-message-foreground` | Colour of the message when a picked file isn't accepted (wrong type or too large). | `var(--destructive)` |
 | `--file-upload-action-size` | Width and height of a file card's download, delete and cancel buttons. | `calc(var(--spacing) * 8)` |
 | `--file-upload-action-icon-size` | Icon size of a file card's buttons. | `calc(var(--spacing) * 5)` |
 | `--file-upload-action-sm-icon-size` | Icon size of the buttons on a compact (sm) card: an upload in progress, completed or failed. | `calc(var(--spacing) * 4)` |
 | `--file-upload-action-focus-ring` | Focus ring colour of a file card's buttons. | `var(--mint-45)` |
 | `--file-upload-action-download-foreground` | Colour of the download button. | `var(--mint-75)` |
 | `--file-upload-action-download-hover-foreground` | Colour of the download button on hover. | `var(--mint-90)` |
-| `--file-upload-action-delete-foreground` | Colour of the delete button. | `var(--error-75)` |
+| `--file-upload-action-delete-foreground` | Colour of the delete button. | `var(--destructive)` |
 | `--file-upload-action-delete-hover-foreground` | Colour of the delete button on hover. | `var(--error-90)` |
 | `--file-upload-action-cancel-foreground` | Colour of the cancel (×) button. | `var(--dark-75)` |
 | `--file-upload-action-cancel-hover-foreground` | Colour of the cancel (×) button on hover. | `var(--dark-100)` |
@@ -1504,7 +1506,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--icon-tile-warning` | Fill colour of the tile (warning variant). | `var(--warning-l2)` |
 | `--icon-tile-warning-foreground` | Icon colour of the tile (warning variant). | `var(--warning-75)` |
 | `--icon-tile-error` | Fill colour of the tile (error variant). | `var(--error-l1)` |
-| `--icon-tile-error-foreground` | Icon colour of the tile (error variant). | `var(--error-75)` |
+| `--icon-tile-error-foreground` | Icon colour of the tile (error variant). | `var(--destructive)` |
 | `--icon-tile-lime` | Fill colour of the tile (lime variant). | `var(--lime)` |
 | `--icon-tile-lime-foreground` | Icon colour of the tile (lime variant). | `var(--navy)` |
 | `--icon-tile-neutral` | Fill colour of the tile (neutral variant). | `var(--light-l2)` |
@@ -1561,7 +1563,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--input-otp-slot-active-border` | Border colour of the slot when active. | `var(--mint-45)` |
 | `--input-otp-slot-active-foreground` | Text colour of the slot when active. | `var(--navy)` |
 | `--input-otp-slot-active-ring` | Ring colour of the slot when active. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
-| `--input-otp-slot-invalid-border` | Border colour of the slot when invalid. | `var(--error-75)` |
+| `--input-otp-slot-invalid-border` | Border colour of the slot when invalid. | `var(--destructive)` |
 | `--input-otp-separator-padding-x` | Horizontal padding of the separator. | `calc(var(--spacing) * 1)` |
 | `--input-otp-separator-foreground` | Text colour of the separator. | `var(--dark-75)` |
 
@@ -1580,7 +1582,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--input-placeholder` | Placeholder text colour of the input. | `var(--dark-90)` |
 | `--input-focus-border` | Border colour of the input when focused. | `var(--mint-45)` |
 | `--input-focus-ring` | Ring colour of the input when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
-| `--input-invalid-border` | Border colour of the input when invalid. | `var(--error-75)` |
+| `--input-invalid-border` | Border colour of the input when invalid. | `var(--destructive)` |
 | `--input-disabled` | Fill colour of the input when disabled. | `var(--light-l2)` |
 | `--input-disabled-foreground` | Text colour of the input when disabled. | `var(--dark-45)` |
 | `--input-height` | Height of the input. | `calc(var(--spacing) * 10)` |
@@ -1861,8 +1863,8 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--radio-group-item-focus-border` | Border colour of the item when focused. | `var(--mint-45)` |
 | `--radio-group-item-focus-ring` | Ring colour of the item when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
 | `--radio-group-item-checked-border` | Border colour of the item when checked. | `var(--mint-45)` |
-| `--radio-group-item-invalid-border` | Border colour of the item when invalid. | `var(--error-75)` |
-| `--radio-group-item-invalid-ring` | Ring colour of the item when invalid. | `color-mix(in oklab, var(--error-75) 20%, transparent)` |
+| `--radio-group-item-invalid-border` | Border colour of the item when invalid. | `var(--destructive)` |
+| `--radio-group-item-invalid-ring` | Ring colour of the item when invalid. | `color-mix(in oklab, var(--destructive) 20%, transparent)` |
 | `--radio-group-item-disabled-opacity` | Opacity of the item when disabled. | `0.5` |
 | `--radio-group-indicator` | Fill of the dot in a checked radio. | `var(--mint-45)` |
 | `--radio-group-field-card` | Fill colour of an option card (card variant). | `var(--white)` |
@@ -1918,7 +1920,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--select-trigger-open` | Fill colour of the trigger while open. | `var(--mint-l4)` |
 | `--select-trigger-open-foreground` | Text colour of the trigger while open. | `var(--mint-75)` |
 | `--select-trigger-open-ring` | Ring colour of the trigger while open. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
-| `--select-trigger-invalid-border` | Border colour of the trigger when invalid. | `var(--error-75)` |
+| `--select-trigger-invalid-border` | Border colour of the trigger when invalid. | `var(--destructive)` |
 | `--select-trigger-disabled` | Fill colour of the trigger when disabled. | `var(--light-l2)` |
 | `--select-trigger-disabled-foreground` | Text colour of the trigger when disabled. | `var(--dark-45)` |
 | `--select-trigger-sm-height` | Height of a small (sm) trigger. | `calc(var(--spacing) * 9)` |
@@ -2135,13 +2137,13 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--stepper-indicator-upcoming` | Fill colour of a step still to come. | `var(--white)` |
 | `--stepper-indicator-upcoming-border` | Border colour of a step still to come. | `var(--navy)` |
 | `--stepper-indicator-upcoming-foreground` | Number colour of a step still to come. | `var(--navy)` |
-| `--stepper-indicator-error` | Fill colour of a step with an error. | `var(--error-75)` |
+| `--stepper-indicator-error` | Fill colour of a step with an error. | `var(--destructive)` |
 | `--stepper-indicator-error-foreground` | Icon colour of a step with an error. | `var(--white)` |
 | `--stepper-indicator-dot-upcoming` | Fill colour of a step still to come (dot size). | `var(--dark-15)` |
 | `--stepper-connector` | Colour of the line between steps. | `var(--light-l3)` |
 | `--stepper-connector-complete` | Colour of the line once the step before it is done. | `var(--mint-60)` |
 | `--stepper-title-foreground` | Text colour of a step title. | `var(--navy)` |
-| `--stepper-title-error-foreground` | Text colour of a step title with an error. | `var(--error-75)` |
+| `--stepper-title-error-foreground` | Text colour of a step title with an error. | `var(--destructive)` |
 | `--stepper-description-foreground` | Text colour of a step description. | `var(--dark-90)` |
 
 </details>
@@ -2155,7 +2157,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--switch-padding` | Padding of the switch. | `calc(var(--spacing) * 0.5)` |
 | `--switch-checked` | Fill colour of the switch when checked. | `var(--mint-45)` |
 | `--switch-focus-ring` | Ring colour of the switch when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
-| `--switch-invalid-ring` | Ring colour of the switch when invalid. | `color-mix(in oklab, var(--error-75) 20%, transparent)` |
+| `--switch-invalid-ring` | Ring colour of the switch when invalid. | `color-mix(in oklab, var(--destructive) 20%, transparent)` |
 | `--switch-disabled-opacity` | Opacity of the switch when disabled. | `0.5` |
 | `--switch-thumb-radius` | Corner radius of the thumb. | `var(--radius-full)` |
 | `--switch-thumb` | Fill colour of the thumb. | `var(--white)` |
@@ -2264,7 +2266,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--textarea-placeholder` | Placeholder text colour of the textarea. | `var(--dark-90)` |
 | `--textarea-focus-border` | Border colour of the textarea when focused. | `var(--mint-45)` |
 | `--textarea-focus-ring` | Ring colour of the textarea when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
-| `--textarea-invalid-border` | Border colour of the textarea when invalid. | `var(--error-75)` |
+| `--textarea-invalid-border` | Border colour of the textarea when invalid. | `var(--destructive)` |
 | `--textarea-disabled` | Fill colour of the textarea when disabled. | `var(--light-l2)` |
 | `--textarea-disabled-foreground` | Text colour of the textarea when disabled. | `var(--dark-45)` |
 | `--textarea-padding-y` | Vertical padding of the textarea. | `calc(var(--spacing) * 2.5)` |
@@ -2285,7 +2287,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--toast-warning` | Fill colour of the toast (warning type). | `var(--warning-l3)` |
 | `--toast-warning-foreground` | Colour of the title, icon and × (warning type). | `var(--warning-60)` |
 | `--toast-error` | Fill colour of the toast (error type). | `var(--error-l1)` |
-| `--toast-error-foreground` | Colour of the title, icon and × (error type). | `var(--error-60)` |
+| `--toast-error-foreground` | Colour of the title, icon and × (error type). | `var(--destructive)` |
 | `--toast-info` | Fill colour of the toast (info type). | `var(--mint-l4)` |
 | `--toast-info-foreground` | Colour of the title, icon and × (info type). | `var(--mint-75)` |
 | `--toast-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 2)` |

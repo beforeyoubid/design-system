@@ -23,7 +23,7 @@
   /* Ring colour of the button when focused. */
   --_button-focus-ring: var(--button-focus-ring, var(--navy));
   /* Ring colour of the button when invalid. */
-  --_button-invalid-ring: var(--button-invalid-ring, color-mix(in oklab, var(--error-75) 20%, transparent));
+  --_button-invalid-ring: var(--button-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
   /* Fill colour of the button (default variant). */
   --_button-default: var(--button-default, var(--primary));
   /* Text colour of the button (default variant). */
@@ -95,7 +95,7 @@
   /* Text colour of the button (ghost variant) when disabled. */
   --_button-ghost-disabled-foreground: var(--button-ghost-disabled-foreground, var(--dark-45));
   /* Fill colour of the button (destructive variant). */
-  --_button-destructive: var(--button-destructive, var(--error-75));
+  --_button-destructive: var(--button-destructive, var(--destructive));
   /* Text colour of the button (destructive variant). */
   --_button-destructive-foreground: var(--button-destructive-foreground, var(--white));
   /* Shadow of the button (destructive variant). */
@@ -103,7 +103,7 @@
   /* Fill colour of the button (destructive variant) when hovered. */
   --_button-destructive-hover: var(--button-destructive-hover, var(--error-45));
   /* Ring colour of the button (destructive variant) when focused. */
-  --_button-destructive-focus-ring: var(--button-destructive-focus-ring, var(--button-focus-ring, var(--error-75)));
+  --_button-destructive-focus-ring: var(--button-destructive-focus-ring, var(--button-focus-ring, var(--destructive)));
   /* Fill colour of the button (destructive variant) when disabled. */
   --_button-destructive-disabled: var(--button-destructive-disabled, var(--light-l2));
   /* Text colour of the button (destructive variant) when disabled. */

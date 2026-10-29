@@ -28,9 +28,9 @@
   /* Fill colour in the error state. @ours */
   --_file-drop-zone-invalid: var(--file-drop-zone-invalid, var(--error-l1));
   /* Border colour in the error state. @ours */
-  --_file-drop-zone-invalid-border: var(--file-drop-zone-invalid-border, var(--error-75));
+  --_file-drop-zone-invalid-border: var(--file-drop-zone-invalid-border, var(--destructive));
   /* Focus ring colour in the error state. @ours */
-  --_file-drop-zone-invalid-focus-ring: var(--file-drop-zone-invalid-focus-ring, color-mix(in oklab, var(--error-75) 20%, transparent));
+  --_file-drop-zone-invalid-focus-ring: var(--file-drop-zone-invalid-focus-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
   /* Fill colour when disabled. @ours */
   --_file-drop-zone-disabled: var(--file-drop-zone-disabled, var(--light-l1));
   /* Text and icon colour when disabled. @ours */

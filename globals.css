@@ -322,7 +322,7 @@
   --accent:            var(--mint-l3);
   --accent-foreground: var(--mint-90);
 
-  --destructive:            var(--error-60);
+  --destructive:            var(--error-75);
   --destructive-foreground: var(--white);
 
   /* shadcn doesn't ship these by default — common project extensions */

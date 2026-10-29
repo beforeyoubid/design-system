@@ -53,11 +53,11 @@
   /* Left padding of an indented row (inset items, labels and sub-menu triggers). */
   --_dropdown-menu-item-inset-padding-x: var(--dropdown-menu-item-inset-padding-x, calc(var(--spacing) * 9));
   /* Text colour of a destructive item (e.g. Delete). */
-  --_dropdown-menu-item-destructive-foreground: var(--dropdown-menu-item-destructive-foreground, var(--error-60));
+  --_dropdown-menu-item-destructive-foreground: var(--dropdown-menu-item-destructive-foreground, var(--destructive));
   /* Fill colour of a destructive item when highlighted. */
   --_dropdown-menu-item-destructive-highlighted: var(--dropdown-menu-item-destructive-highlighted, var(--error-l1));
   /* Text colour of a destructive item when highlighted. */
-  --_dropdown-menu-item-destructive-highlighted-foreground: var(--dropdown-menu-item-destructive-highlighted-foreground, var(--error-75));
+  --_dropdown-menu-item-destructive-highlighted-foreground: var(--dropdown-menu-item-destructive-highlighted-foreground, var(--destructive));
 }
 
 [data-slot="dropdown-menu-sub-trigger"] {

@@ -6,7 +6,7 @@
 [data-slot="alert"] {
   /* @remove(variant.destructive) *:[svg]:text-current */
   /* @add text-body-5 */
-  /* @add(variant.destructive) *:data-[slot=alert-description]:text-error-75/90 */
+  /* @add(variant.destructive) *:data-[slot=alert-description]:text-destructive/90 */
   /* @add has-[>svg]:gap-x-(--_alert-with-icon-gap) has-data-[slot=alert-action]:pe-(--_alert-with-action-padding-x) */
   /* Gap between items of the alert. */
   --_alert-gap: var(--alert-gap, calc(var(--spacing) * 0.5));
@@ -27,7 +27,7 @@
   /* Border colour of the alert (destructive variant). */
   --_alert-destructive-border: var(--alert-destructive-border, var(--error-15));
   /* Text colour of the alert (destructive variant). */
-  --_alert-destructive-foreground: var(--alert-destructive-foreground, var(--error-75));
+  --_alert-destructive-foreground: var(--alert-destructive-foreground, var(--destructive));
   /* Gap between the icon and the text of an alert with an icon. */
   --_alert-with-icon-gap: var(--alert-with-icon-gap, calc(var(--spacing) * 2.5));
   /* Right padding of an alert with an action button (room for the button). */

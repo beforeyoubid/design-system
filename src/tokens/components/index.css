@@ -146,7 +146,7 @@
 [class*="(--_alert)"] {
   /* @remove(variant.destructive) *:[svg]:text-current */
   /* @add text-body-5 */
-  /* @add(variant.destructive) *:data-[slot=alert-description]:text-error-75/90 */
+  /* @add(variant.destructive) *:data-[slot=alert-description]:text-destructive/90 */
   /* @add has-[>svg]:gap-x-(--_alert-with-icon-gap) has-data-[slot=alert-action]:pe-(--_alert-with-action-padding-x) */
   /* Gap between items of the alert. */
   --_alert-gap: var(--alert-gap, calc(var(--spacing) * 0.5));
@@ -167,7 +167,7 @@
   /* Border colour of the alert (destructive variant). */
   --_alert-destructive-border: var(--alert-destructive-border, var(--error-15));
   /* Text colour of the alert (destructive variant). */
-  --_alert-destructive-foreground: var(--alert-destructive-foreground, var(--error-75));
+  --_alert-destructive-foreground: var(--alert-destructive-foreground, var(--destructive));
   /* Gap between the icon and the text of an alert with an icon. */
   --_alert-with-icon-gap: var(--alert-with-icon-gap, calc(var(--spacing) * 2.5));
   /* Right padding of an alert with an action button (room for the button). */
@@ -217,7 +217,7 @@
   /* Shadow of the attachment. */
   --_attachment-shadow: var(--attachment-shadow, 0 1px 2px 0 rgb(0 0 0 / 0.05));
   /* Border colour of a failed upload. */
-  --_attachment-error-border: var(--attachment-error-border, var(--error-75));
+  --_attachment-error-border: var(--attachment-error-border, var(--destructive));
   /* Ring colour of the attachment when focused. */
   --_attachment-focus-ring: var(--attachment-focus-ring, color-mix(in oklab, var(--ring) 50%, transparent));
   /* Gap between items of the attachment (default size). */
@@ -312,7 +312,7 @@
   /* Colour of the status label once an upload completes. @ours */
   --_attachment-status-completed-foreground: var(--attachment-status-completed-foreground, var(--mint-60));
   /* Colour of the status label when an upload fails. @ours */
-  --_attachment-status-error-foreground: var(--attachment-status-error-foreground, var(--error-75));
+  --_attachment-status-error-foreground: var(--attachment-status-error-foreground, var(--destructive));
 }
 
 [data-slot="attachment-progress"],
@@ -337,14 +337,14 @@
 [class*="(--_attachment-error-"],
 [class*="(--_attachment-error)"] {
   /* Colour of the error message under a failed upload. @ours */
-  --_attachment-error-foreground: var(--attachment-error-foreground, var(--error-75));
+  --_attachment-error-foreground: var(--attachment-error-foreground, var(--destructive));
 }
 
 [data-slot="attachment-retry"],
 [class*="(--_attachment-retry-"],
 [class*="(--_attachment-retry)"] {
   /* Colour of the Retry link. @ours */
-  --_attachment-retry-foreground: var(--attachment-retry-foreground, var(--error-75));
+  --_attachment-retry-foreground: var(--attachment-retry-foreground, var(--destructive));
   /* Font weight of the Retry link. @ours */
   --_attachment-retry-font-weight: var(--attachment-retry-font-weight, 600);
 }
@@ -480,7 +480,7 @@
   /* Font weight of the badge (destructive variant). */
   --_badge-destructive-font-weight: var(--badge-destructive-font-weight, var(--badge-font-weight, 600));
   /* Text colour of the badge (destructive variant). */
-  --_badge-destructive-foreground: var(--badge-destructive-foreground, var(--error-75));
+  --_badge-destructive-foreground: var(--badge-destructive-foreground, var(--destructive));
   /* Border colour of the badge (outline variant). */
   --_badge-outline-border: var(--badge-outline-border, var(--border));
   /* Fill colour of the badge (outline variant). */
@@ -542,7 +542,7 @@
   /* Text colour of the solid badge (success variant). @ours */
   --_badge-success-solid-foreground: var(--badge-success-solid-foreground, var(--white));
   /* Fill and border colour of the solid badge (error variant). @ours */
-  --_badge-error-solid: var(--badge-error-solid, var(--error-75));
+  --_badge-error-solid: var(--badge-error-solid, var(--destructive));
   /* Text colour of the solid badge (error variant). @ours */
   --_badge-error-solid-foreground: var(--badge-error-solid-foreground, var(--white));
   /* Fill and border colour of the solid badge (warning variant). @ours */
@@ -674,7 +674,7 @@
   /* Ring colour of the button when focused. */
   --_button-focus-ring: var(--button-focus-ring, var(--navy));
   /* Ring colour of the button when invalid. */
-  --_button-invalid-ring: var(--button-invalid-ring, color-mix(in oklab, var(--error-75) 20%, transparent));
+  --_button-invalid-ring: var(--button-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
   /* Fill colour of the button (default variant). */
   --_button-default: var(--button-default, var(--primary));
   /* Text colour of the button (default variant). */
@@ -746,7 +746,7 @@
   /* Text colour of the button (ghost variant) when disabled. */
   --_button-ghost-disabled-foreground: var(--button-ghost-disabled-foreground, var(--dark-45));
   /* Fill colour of the button (destructive variant). */
-  --_button-destructive: var(--button-destructive, var(--error-75));
+  --_button-destructive: var(--button-destructive, var(--destructive));
   /* Text colour of the button (destructive variant). */
   --_button-destructive-foreground: var(--button-destructive-foreground, var(--white));
   /* Shadow of the button (destructive variant). */
@@ -754,7 +754,7 @@
   /* Fill colour of the button (destructive variant) when hovered. */
   --_button-destructive-hover: var(--button-destructive-hover, var(--error-45));
   /* Ring colour of the button (destructive variant) when focused. */
-  --_button-destructive-focus-ring: var(--button-destructive-focus-ring, var(--button-focus-ring, var(--error-75)));
+  --_button-destructive-focus-ring: var(--button-destructive-focus-ring, var(--button-focus-ring, var(--destructive)));
   /* Fill colour of the button (destructive variant) when disabled. */
   --_button-destructive-disabled: var(--button-destructive-disabled, var(--light-l2));
   /* Text colour of the button (destructive variant) when disabled. */
@@ -1082,9 +1082,9 @@
   /* Fill colour of the checkbox when checked. */
   --_checkbox-checked: var(--checkbox-checked, var(--mint-45));
   /* Border colour of the checkbox when invalid. */
-  --_checkbox-invalid-border: var(--checkbox-invalid-border, var(--error-75));
+  --_checkbox-invalid-border: var(--checkbox-invalid-border, var(--destructive));
   /* Ring colour of the checkbox when invalid. */
-  --_checkbox-invalid-ring: var(--checkbox-invalid-ring, color-mix(in oklab, var(--error-75) 20%, transparent));
+  --_checkbox-invalid-ring: var(--checkbox-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
   /* Opacity of the checkbox when disabled. */
   --_checkbox-disabled-opacity: var(--checkbox-disabled-opacity, 0.5);
 }
@@ -1809,11 +1809,11 @@
   /* Left padding of an indented row (inset items, labels and sub-menu triggers). */
   --_dropdown-menu-item-inset-padding-x: var(--dropdown-menu-item-inset-padding-x, calc(var(--spacing) * 9));
   /* Text colour of a destructive item (e.g. Delete). */
-  --_dropdown-menu-item-destructive-foreground: var(--dropdown-menu-item-destructive-foreground, var(--error-60));
+  --_dropdown-menu-item-destructive-foreground: var(--dropdown-menu-item-destructive-foreground, var(--destructive));
   /* Fill colour of a destructive item when highlighted. */
   --_dropdown-menu-item-destructive-highlighted: var(--dropdown-menu-item-destructive-highlighted, var(--error-l1));
   /* Text colour of a destructive item when highlighted. */
-  --_dropdown-menu-item-destructive-highlighted-foreground: var(--dropdown-menu-item-destructive-highlighted-foreground, var(--error-75));
+  --_dropdown-menu-item-destructive-highlighted-foreground: var(--dropdown-menu-item-destructive-highlighted-foreground, var(--destructive));
 }
 
 [data-slot="dropdown-menu-sub-trigger"],
@@ -2184,7 +2184,7 @@
   /* Font weight of the error. */
   --_field-error-font-weight: var(--field-error-font-weight, 400);
   /* Text colour of the error. */
-  --_field-error-foreground: var(--field-error-foreground, var(--error-75));
+  --_field-error-foreground: var(--field-error-foreground, var(--destructive));
 }
 
 [data-slot="field-label-required"],
@@ -2227,9 +2227,9 @@
   /* Fill colour in the error state. @ours */
   --_file-drop-zone-invalid: var(--file-drop-zone-invalid, var(--error-l1));
   /* Border colour in the error state. @ours */
-  --_file-drop-zone-invalid-border: var(--file-drop-zone-invalid-border, var(--error-75));
+  --_file-drop-zone-invalid-border: var(--file-drop-zone-invalid-border, var(--destructive));
   /* Focus ring colour in the error state. @ours */
-  --_file-drop-zone-invalid-focus-ring: var(--file-drop-zone-invalid-focus-ring, color-mix(in oklab, var(--error-75) 20%, transparent));
+  --_file-drop-zone-invalid-focus-ring: var(--file-drop-zone-invalid-focus-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
   /* Fill colour when disabled. @ours */
   --_file-drop-zone-disabled: var(--file-drop-zone-disabled, var(--light-l1));
   /* Text and icon colour when disabled. @ours */
@@ -2278,7 +2278,7 @@
 [class*="(--_file-upload-message-"],
 [class*="(--_file-upload-message)"] {
   /* Colour of the message when a picked file isn't accepted (wrong type or too large). @ours */
-  --_file-upload-message-foreground: var(--file-upload-message-foreground, var(--error-75));
+  --_file-upload-message-foreground: var(--file-upload-message-foreground, var(--destructive));
 }
 
 [data-slot="file-upload-action"],
@@ -2297,7 +2297,7 @@
   /* Colour of the download button on hover. @ours */
   --_file-upload-action-download-hover-foreground: var(--file-upload-action-download-hover-foreground, var(--mint-90));
   /* Colour of the delete button. @ours */
-  --_file-upload-action-delete-foreground: var(--file-upload-action-delete-foreground, var(--error-75));
+  --_file-upload-action-delete-foreground: var(--file-upload-action-delete-foreground, var(--destructive));
   /* Colour of the delete button on hover. @ours */
   --_file-upload-action-delete-hover-foreground: var(--file-upload-action-delete-hover-foreground, var(--error-90));
   /* Colour of the cancel (×) button. @ours */
@@ -2358,7 +2358,7 @@
   /* Fill colour of the tile (error variant). @ours */
   --_icon-tile-error: var(--icon-tile-error, var(--error-l1));
   /* Icon colour of the tile (error variant). @ours */
-  --_icon-tile-error-foreground: var(--icon-tile-error-foreground, var(--error-75));
+  --_icon-tile-error-foreground: var(--icon-tile-error-foreground, var(--destructive));
   /* Fill colour of the tile (lime variant). @ours */
   --_icon-tile-lime: var(--icon-tile-lime, var(--lime));
   /* Icon colour of the tile (lime variant). @ours */
@@ -2387,7 +2387,7 @@
 [class*="(--_input-group-"],
 [class*="(--_input-group)"] {
   /* @remove h-9 has-data-[align=block-end]:rounded-2xl has-data-[align=block-start]:rounded-2xl has-[[data-slot=input-group-control]:focus-visible]:border-ring has-[[data-slot=input-group-control]:focus-visible]:ring-[3px] has-[[data-slot=input-group-control]:focus-visible]:ring-ring/50 has-[[data-slot][aria-invalid=true]]:border-destructive has-[[data-slot][aria-invalid=true]]:ring-[3px] has-[[data-slot][aria-invalid=true]]:ring-destructive/20 has-[textarea]:rounded-xl has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-start]]:h-auto has-[>textarea]:h-auto has-[>[data-align=block-end]]:[&>input]:pt-3 has-[>[data-align=block-start]]:[&>input]:pb-3 has-[>[data-align=inline-end]]:[&>input]:pe-1.5 has-[>[data-align=inline-start]]:[&>input]:ps-1.5 */
-  /* @add transition focus-within:ring-3 has-[[data-slot=input-group-control][aria-invalid=true]]:border-error-75 has-[[data-slot=input-group-control][aria-invalid=true]]:focus-within:ring-error-75/20 has-[[data-slot=input-group-control]:disabled]:cursor-not-allowed has-[[data-slot=input-group-control]:disabled]:bg-light-l2 has-[[data-slot=input-group-control]:disabled]:opacity-70 data-[disabled=true]:bg-light-l2 data-[disabled=true]:opacity-70 in-data-[slot=combobox-content]:focus-within:border-dark-45 has-[>textarea]:items-stretch [&>textarea]:px-0 [&>textarea]:py-2.5 */
+  /* @add transition focus-within:ring-3 has-[[data-slot=input-group-control][aria-invalid=true]]:border-destructive has-[[data-slot=input-group-control][aria-invalid=true]]:focus-within:ring-destructive/20 has-[[data-slot=input-group-control]:disabled]:cursor-not-allowed has-[[data-slot=input-group-control]:disabled]:bg-light-l2 has-[[data-slot=input-group-control]:disabled]:opacity-70 data-[disabled=true]:bg-light-l2 data-[disabled=true]:opacity-70 in-data-[slot=combobox-content]:focus-within:border-dark-45 has-[>textarea]:items-stretch [&>textarea]:px-0 [&>textarea]:py-2.5 */
   /* Minimum height of the input-group. */
   --_input-group-min-height: var(--input-group-min-height, calc(var(--spacing) * 10));
   /* Gap between items of the input-group. */
@@ -2485,7 +2485,7 @@
 [class*="(--_input-otp-slot-"],
 [class*="(--_input-otp-slot)"] {
   /* @remove border-y border-e first:rounded-s-4xl first:border-s last:rounded-e-4xl data-[active=true]:aria-invalid:border-destructive */
-  /* @add border text-body-5 transition data-[active=true]:ring-3 group-has-aria-invalid/input-otp:border-error-75 data-[active=true]:aria-invalid:ring-error-75/20 group-has-aria-invalid/input-otp:data-[active=true]:ring-error-75/20 group-has-disabled/input-otp:bg-light-l2 group-has-disabled/input-otp:text-dark-45 */
+  /* @add border text-body-5 transition data-[active=true]:ring-3 group-has-aria-invalid/input-otp:border-destructive data-[active=true]:aria-invalid:ring-destructive/20 group-has-aria-invalid/input-otp:data-[active=true]:ring-destructive/20 group-has-disabled/input-otp:bg-light-l2 group-has-disabled/input-otp:text-dark-45 */
   /* Width and height of the slot. */
   --_input-otp-slot-size: var(--input-otp-slot-size, calc(var(--spacing) * 8));
   /* Corner radius of the slot. */
@@ -2505,7 +2505,7 @@
   /* Ring colour of the slot when active. */
   --_input-otp-slot-active-ring: var(--input-otp-slot-active-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
   /* Border colour of the slot when invalid. */
-  --_input-otp-slot-invalid-border: var(--input-otp-slot-invalid-border, var(--error-75));
+  --_input-otp-slot-invalid-border: var(--input-otp-slot-invalid-border, var(--destructive));
 }
 
 [data-slot="input-otp-separator"],
@@ -2529,7 +2529,7 @@
 [class*="(--_input-"],
 [class*="(--_input)"] {
   /* @remove disabled:pointer-events-none disabled:opacity-50 aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 md:text-sm */
-  /* @add text-body-5 transition focus-visible:ring-3 aria-invalid:focus-visible:border-error-75 aria-invalid:focus-visible:ring-error-75/20 file:text-body-5 file:text-dark-100 */
+  /* @add text-body-5 transition focus-visible:ring-3 aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-destructive/20 file:text-body-5 file:text-dark-100 */
   /* Corner radius of the input. */
   --_input-radius: var(--input-radius, var(--radius-lg));
   /* Border colour of the input. */
@@ -2547,7 +2547,7 @@
   /* Ring colour of the input when focused. */
   --_input-focus-ring: var(--input-focus-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
   /* Border colour of the input when invalid. */
-  --_input-invalid-border: var(--input-invalid-border, var(--error-75));
+  --_input-invalid-border: var(--input-invalid-border, var(--destructive));
   /* Fill colour of the input when disabled. */
   --_input-disabled: var(--input-disabled, var(--light-l2));
   /* Text colour of the input when disabled. */
@@ -3294,9 +3294,9 @@
   /* Border colour of the item when checked. */
   --_radio-group-item-checked-border: var(--radio-group-item-checked-border, var(--mint-45));
   /* Border colour of the item when invalid. */
-  --_radio-group-item-invalid-border: var(--radio-group-item-invalid-border, var(--error-75));
+  --_radio-group-item-invalid-border: var(--radio-group-item-invalid-border, var(--destructive));
   /* Ring colour of the item when invalid. */
-  --_radio-group-item-invalid-ring: var(--radio-group-item-invalid-ring, color-mix(in oklab, var(--error-75) 20%, transparent));
+  --_radio-group-item-invalid-ring: var(--radio-group-item-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
   /* Opacity of the item when disabled. */
   --_radio-group-item-disabled-opacity: var(--radio-group-item-disabled-opacity, 0.5);
 }
@@ -3402,7 +3402,7 @@
 [class*="(--_select-trigger-"],
 [class*="(--_select-trigger)"] {
   /* @remove py-2 disabled:opacity-50 aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 data-[size=default]:h-9 */
-  /* @add group/select-trigger cursor-pointer w-full text-body-5 transition-[color,background-color,border-color,box-shadow] focus-visible:ring-3 data-popup-open:ring-3 data-popup-open:data-placeholder:text-mint-75 aria-invalid:hover:border-error-75 aria-invalid:data-popup-open:border-(--_select-trigger-invalid-border) data-disabled:cursor-not-allowed data-disabled:hover:border-dark-45 data-[size=sm]:h-(--_select-trigger-sm-height) */
+  /* @add group/select-trigger cursor-pointer w-full text-body-5 transition-[color,background-color,border-color,box-shadow] focus-visible:ring-3 data-popup-open:ring-3 data-popup-open:data-placeholder:text-mint-75 aria-invalid:hover:border-destructive aria-invalid:data-popup-open:border-(--_select-trigger-invalid-border) data-disabled:cursor-not-allowed data-disabled:hover:border-dark-45 data-[size=sm]:h-(--_select-trigger-sm-height) */
   /* Height of the trigger. */
   --_select-trigger-height: var(--select-trigger-height, calc(var(--spacing) * 10));
   /* Gap between items of the trigger. */
@@ -3434,7 +3434,7 @@
   /* Ring colour of the trigger while open. */
   --_select-trigger-open-ring: var(--select-trigger-open-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
   /* Border colour of the trigger when invalid. */
-  --_select-trigger-invalid-border: var(--select-trigger-invalid-border, var(--error-75));
+  --_select-trigger-invalid-border: var(--select-trigger-invalid-border, var(--destructive));
   /* Fill colour of the trigger when disabled. */
   --_select-trigger-disabled: var(--select-trigger-disabled, var(--light-l2));
   /* Text colour of the trigger when disabled. */
@@ -4059,7 +4059,7 @@
   /* Number colour of a step still to come. @ours */
   --_stepper-indicator-upcoming-foreground: var(--stepper-indicator-upcoming-foreground, var(--navy));
   /* Fill colour of a step with an error. @ours */
-  --_stepper-indicator-error: var(--stepper-indicator-error, var(--error-75));
+  --_stepper-indicator-error: var(--stepper-indicator-error, var(--destructive));
   /* Icon colour of a step with an error. @ours */
   --_stepper-indicator-error-foreground: var(--stepper-indicator-error-foreground, var(--white));
   /* Fill colour of a step still to come (dot size). @ours */
@@ -4081,7 +4081,7 @@
   /* Text colour of a step title. @ours */
   --_stepper-title-foreground: var(--stepper-title-foreground, var(--navy));
   /* Text colour of a step title with an error. @ours */
-  --_stepper-title-error-foreground: var(--stepper-title-error-foreground, var(--error-75));
+  --_stepper-title-error-foreground: var(--stepper-title-error-foreground, var(--destructive));
 }
 
 [data-slot="stepper-description"],
@@ -4111,7 +4111,7 @@
   /* Ring colour of the switch when focused. */
   --_switch-focus-ring: var(--switch-focus-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
   /* Ring colour of the switch when invalid. */
-  --_switch-invalid-ring: var(--switch-invalid-ring, color-mix(in oklab, var(--error-75) 20%, transparent));
+  --_switch-invalid-ring: var(--switch-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
   /* Opacity of the switch when disabled. */
   --_switch-disabled-opacity: var(--switch-disabled-opacity, 0.5);
 }
@@ -4396,7 +4396,7 @@
 [class*="(--_textarea-"],
 [class*="(--_textarea)"] {
   /* @remove field-sizing-content disabled:opacity-50 aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 md:text-sm */
-  /* @add min-w-0 text-body-5 transition focus-visible:ring-3 aria-invalid:focus-visible:border-error-75 aria-invalid:focus-visible:ring-error-75/20 min-h-auto resize-y */
+  /* @add min-w-0 text-body-5 transition focus-visible:ring-3 aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-destructive/20 min-h-auto resize-y */
   /* Corner radius of the textarea. */
   --_textarea-radius: var(--textarea-radius, var(--radius-lg));
   /* Border colour of the textarea. */
@@ -4414,7 +4414,7 @@
   /* Ring colour of the textarea when focused. */
   --_textarea-focus-ring: var(--textarea-focus-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
   /* Border colour of the textarea when invalid. */
-  --_textarea-invalid-border: var(--textarea-invalid-border, var(--error-75));
+  --_textarea-invalid-border: var(--textarea-invalid-border, var(--destructive));
   /* Fill colour of the textarea when disabled. */
   --_textarea-disabled: var(--textarea-disabled, var(--light-l2));
   /* Text colour of the textarea when disabled. */
@@ -4460,7 +4460,7 @@
   /* Fill colour of the toast (error type). @ours */
   --_toast-error: var(--toast-error, var(--error-l1));
   /* Colour of the title, icon and × (error type). @ours */
-  --_toast-error-foreground: var(--toast-error-foreground, var(--error-60));
+  --_toast-error-foreground: var(--toast-error-foreground, var(--destructive));
   /* Fill colour of the toast (info type). @ours */
   --_toast-info: var(--toast-info, var(--mint-l4));
   /* Colour of the title, icon and × (info type). @ours */

@@ -688,9 +688,11 @@
   },
   {
    "name": "--destructive",
-   "value": "var(--error-60)",
-   "hex": "#E5584D",
+   "value": "var(--error-75)",
+   "hex": "#BF271C",
    "usedBy": [
+    "alert",
+    "attachment",
     "badge",
     "button",
     "checkbox",
@@ -698,6 +700,9 @@
     "context-menu",
     "dropdown-menu",
     "field",
+    "file-drop-zone",
+    "file-upload",
+    "icon-tile",
     "input",
     "input-group",
     "input-otp",
@@ -705,6 +710,7 @@
     "native-select",
     "radio-group",
     "select",
+    "stepper",
     "switch",
     "textarea",
     "toast",
@@ -1336,7 +1342,7 @@
     {
      "name": "--alert-destructive-foreground",
      "private": "--_alert-destructive-foreground",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Text colour of the alert (destructive variant).",
      "type": "color",
      "part": "alert",
@@ -1344,7 +1350,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -1469,7 +1475,7 @@
     {
      "name": "--attachment-error-border",
      "private": "--_attachment-error-border",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Border colour of a failed upload.",
      "type": "color",
      "part": "attachment",
@@ -1477,7 +1483,7 @@
      "state": null,
      "property": "border",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -1900,7 +1906,7 @@
     {
      "name": "--attachment-status-error-foreground",
      "private": "--_attachment-status-error-foreground",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Colour of the status label when an upload fails.",
      "type": "color",
      "part": "attachment-status",
@@ -1908,7 +1914,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -1970,7 +1976,7 @@
     {
      "name": "--attachment-error-foreground",
      "private": "--_attachment-error-foreground",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Colour of the error message under a failed upload.",
      "type": "color",
      "part": "attachment-error",
@@ -1978,13 +1984,13 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
      "name": "--attachment-retry-foreground",
      "private": "--_attachment-retry-foreground",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Colour of the Retry link.",
      "type": "color",
      "part": "attachment-retry",
@@ -1992,7 +1998,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -2580,7 +2586,7 @@
     {
      "name": "--badge-destructive-foreground",
      "private": "--_badge-destructive-foreground",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Text colour of the badge (destructive variant).",
      "type": "color",
      "part": "badge",
@@ -2588,7 +2594,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -3014,7 +3020,7 @@
     {
      "name": "--badge-error-solid",
      "private": "--_badge-error-solid",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Fill and border colour of the solid badge (error variant).",
      "type": "color",
      "part": "badge",
@@ -3022,7 +3028,7 @@
      "state": null,
      "property": "fill",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -3446,7 +3452,7 @@
     {
      "name": "--button-invalid-ring",
      "private": "--_button-invalid-ring",
-     "default": "color-mix(in oklab, var(--error-75) 20%, transparent)",
+     "default": "color-mix(in oklab, var(--destructive) 20%, transparent)",
      "description": "Ring colour of the button when invalid.",
      "type": "color",
      "part": "button",
@@ -3454,7 +3460,7 @@
      "state": "invalid",
      "property": "ring",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -3946,7 +3952,7 @@
     {
      "name": "--button-destructive",
      "private": "--_button-destructive",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Fill colour of the button (destructive variant).",
      "type": "color",
      "part": "button",
@@ -3954,7 +3960,7 @@
      "state": null,
      "property": "fill",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -4000,7 +4006,7 @@
     {
      "name": "--button-destructive-focus-ring",
      "private": "--_button-destructive-focus-ring",
-     "default": "var(--button-focus-ring, var(--error-75))",
+     "default": "var(--button-focus-ring, var(--destructive))",
      "description": "Ring colour of the button (destructive variant) when focused.",
      "type": "color",
      "part": "button",
@@ -4009,7 +4015,7 @@
      "property": "ring",
      "reads": [
       "--button-focus-ring",
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -5282,7 +5288,7 @@
     {
      "name": "--checkbox-invalid-border",
      "private": "--_checkbox-invalid-border",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Border colour of the checkbox when invalid.",
      "type": "color",
      "part": "checkbox",
@@ -5290,13 +5296,13 @@
      "state": "invalid",
      "property": "border",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
      "name": "--checkbox-invalid-ring",
      "private": "--_checkbox-invalid-ring",
-     "default": "color-mix(in oklab, var(--error-75) 20%, transparent)",
+     "default": "color-mix(in oklab, var(--destructive) 20%, transparent)",
      "description": "Ring colour of the checkbox when invalid.",
      "type": "color",
      "part": "checkbox",
@@ -5304,7 +5310,7 @@
      "state": "invalid",
      "property": "ring",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -7796,7 +7802,7 @@
     {
      "name": "--dropdown-menu-item-destructive-foreground",
      "private": "--_dropdown-menu-item-destructive-foreground",
-     "default": "var(--error-60)",
+     "default": "var(--destructive)",
      "description": "Text colour of a destructive item (e.g. Delete).",
      "type": "color",
      "part": "dropdown-menu-item",
@@ -7804,7 +7810,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--error-60"
+      "--destructive"
      ]
     },
     {
@@ -7824,7 +7830,7 @@
     {
      "name": "--dropdown-menu-item-destructive-highlighted-foreground",
      "private": "--_dropdown-menu-item-destructive-highlighted-foreground",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Text colour of a destructive item when highlighted.",
      "type": "color",
      "part": "dropdown-menu-item",
@@ -7832,7 +7838,7 @@
      "state": "highlighted",
      "property": "foreground",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -9222,7 +9228,7 @@
     {
      "name": "--field-error-foreground",
      "private": "--_field-error-foreground",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Text colour of the error.",
      "type": "color",
      "part": "field-error",
@@ -9230,7 +9236,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -9424,7 +9430,7 @@
     {
      "name": "--file-drop-zone-invalid-border",
      "private": "--_file-drop-zone-invalid-border",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Border colour in the error state.",
      "type": "color",
      "part": "file-drop-zone",
@@ -9432,13 +9438,13 @@
      "state": "invalid",
      "property": "border",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
      "name": "--file-drop-zone-invalid-focus-ring",
      "private": "--_file-drop-zone-invalid-focus-ring",
-     "default": "color-mix(in oklab, var(--error-75) 20%, transparent)",
+     "default": "color-mix(in oklab, var(--destructive) 20%, transparent)",
      "description": "Focus ring colour in the error state.",
      "type": "color",
      "part": "file-drop-zone",
@@ -9446,7 +9452,7 @@
      "state": "focus",
      "property": "ring",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -9568,7 +9574,7 @@
     {
      "name": "--file-upload-message-foreground",
      "private": "--_file-upload-message-foreground",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Colour of the message when a picked file isn't accepted (wrong type or too large).",
      "type": "color",
      "part": "file-upload-message",
@@ -9576,7 +9582,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -9666,7 +9672,7 @@
     {
      "name": "--file-upload-action-delete-foreground",
      "private": "--_file-upload-action-delete-foreground",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Colour of the delete button.",
      "type": "color",
      "part": "file-upload-action",
@@ -9674,7 +9680,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -9942,7 +9948,7 @@
     {
      "name": "--icon-tile-error-foreground",
      "private": "--_icon-tile-error-foreground",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Icon colour of the tile (error variant).",
      "type": "color",
      "part": "icon-tile",
@@ -9950,7 +9956,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -10522,7 +10528,7 @@
     {
      "name": "--input-otp-slot-invalid-border",
      "private": "--_input-otp-slot-invalid-border",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Border colour of the slot when invalid.",
      "type": "color",
      "part": "input-otp-slot",
@@ -10530,7 +10536,7 @@
      "state": "invalid",
      "property": "border",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -10682,7 +10688,7 @@
     {
      "name": "--input-invalid-border",
      "private": "--_input-invalid-border",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Border colour of the input when invalid.",
      "type": "color",
      "part": "input",
@@ -10690,7 +10696,7 @@
      "state": "invalid",
      "property": "border",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -13412,7 +13418,7 @@
     {
      "name": "--radio-group-item-invalid-border",
      "private": "--_radio-group-item-invalid-border",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Border colour of the item when invalid.",
      "type": "color",
      "part": "radio-group-item",
@@ -13420,13 +13426,13 @@
      "state": "invalid",
      "property": "border",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
      "name": "--radio-group-item-invalid-ring",
      "private": "--_radio-group-item-invalid-ring",
-     "default": "color-mix(in oklab, var(--error-75) 20%, transparent)",
+     "default": "color-mix(in oklab, var(--destructive) 20%, transparent)",
      "description": "Ring colour of the item when invalid.",
      "type": "color",
      "part": "radio-group-item",
@@ -13434,7 +13440,7 @@
      "state": "invalid",
      "property": "ring",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -13886,7 +13892,7 @@
     {
      "name": "--select-trigger-invalid-border",
      "private": "--_select-trigger-invalid-border",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Border colour of the trigger when invalid.",
      "type": "color",
      "part": "select-trigger",
@@ -13894,7 +13900,7 @@
      "state": "invalid",
      "property": "border",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -16163,7 +16169,7 @@
     {
      "name": "--stepper-indicator-error",
      "private": "--_stepper-indicator-error",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Fill colour of a step with an error.",
      "type": "color",
      "part": "stepper-indicator",
@@ -16171,7 +16177,7 @@
      "state": null,
      "property": "fill",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -16247,7 +16253,7 @@
     {
      "name": "--stepper-title-error-foreground",
      "private": "--_stepper-title-error-foreground",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Text colour of a step title with an error.",
      "type": "color",
      "part": "stepper-title",
@@ -16255,7 +16261,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -16337,7 +16343,7 @@
     {
      "name": "--switch-invalid-ring",
      "private": "--_switch-invalid-ring",
-     "default": "color-mix(in oklab, var(--error-75) 20%, transparent)",
+     "default": "color-mix(in oklab, var(--destructive) 20%, transparent)",
      "description": "Ring colour of the switch when invalid.",
      "type": "color",
      "part": "switch",
@@ -16345,7 +16351,7 @@
      "state": "invalid",
      "property": "ring",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -17537,7 +17543,7 @@
     {
      "name": "--textarea-invalid-border",
      "private": "--_textarea-invalid-border",
-     "default": "var(--error-75)",
+     "default": "var(--destructive)",
      "description": "Border colour of the textarea when invalid.",
      "type": "color",
      "part": "textarea",
@@ -17545,7 +17551,7 @@
      "state": "invalid",
      "property": "border",
      "reads": [
-      "--error-75"
+      "--destructive"
      ]
     },
     {
@@ -17725,7 +17731,7 @@
     {
      "name": "--toast-error-foreground",
      "private": "--_toast-error-foreground",
-     "default": "var(--error-60)",
+     "default": "var(--destructive)",
      "description": "Colour of the title, icon and × (error type).",
      "type": "color",
      "part": "toast",
@@ -17733,7 +17739,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--error-60"
+      "--destructive"
      ]
     },
     {
@@ -18522,12 +18528,6 @@
    "fill": "--_toast-warning",
    "status": "undecided",
    "note": "Warning toast: the warning-60 title on the warning-l3 fill is 3.23:1. The icon passes the 3:1 a graphic needs, the title text doesn't. Options: accept it, or use the darker -75 shade for the title and icon."
-  },
-  {
-   "foreground": "--_toast-error-foreground",
-   "fill": "--_toast-error",
-   "status": "undecided",
-   "note": "Error toast: the error-60 title on the error-l1 fill is 3.28:1. The icon passes the 3:1 a graphic needs, the title text doesn't. Options: accept it, or use the darker -75 shade for the title and icon."
   },
   {
    "foreground": "--_stepper-indicator-active-foreground",

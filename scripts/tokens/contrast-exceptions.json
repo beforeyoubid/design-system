@@ -102,12 +102,6 @@
   "note": "Warning toast: the warning-60 title on the warning-l3 fill is 3.23:1. The icon passes the 3:1 a graphic needs, the title text doesn't. Options: accept it, or use the darker -75 shade for the title and icon."
  },
  {
-  "foreground": "--_toast-error-foreground",
-  "fill": "--_toast-error",
-  "status": "undecided",
-  "note": "Error toast: the error-60 title on the error-l1 fill is 3.28:1. The icon passes the 3:1 a graphic needs, the title text doesn't. Options: accept it, or use the darker -75 shade for the title and icon."
- },
- {
   "foreground": "--_stepper-indicator-active-foreground",
   "fill": "--_stepper-indicator-active",
   "status": "undecided",

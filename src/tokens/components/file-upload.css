@@ -15,7 +15,7 @@
 
 [data-slot="file-upload-message"] {
   /* Colour of the message when a picked file isn't accepted (wrong type or too large). @ours */
-  --_file-upload-message-foreground: var(--file-upload-message-foreground, var(--error-75));
+  --_file-upload-message-foreground: var(--file-upload-message-foreground, var(--destructive));
 }
 
 [data-slot="file-upload-action"] {
@@ -32,7 +32,7 @@
   /* Colour of the download button on hover. @ours */
   --_file-upload-action-download-hover-foreground: var(--file-upload-action-download-hover-foreground, var(--mint-90));
   /* Colour of the delete button. @ours */
-  --_file-upload-action-delete-foreground: var(--file-upload-action-delete-foreground, var(--error-75));
+  --_file-upload-action-delete-foreground: var(--file-upload-action-delete-foreground, var(--destructive));
   /* Colour of the delete button on hover. @ours */
   --_file-upload-action-delete-hover-foreground: var(--file-upload-action-delete-hover-foreground, var(--error-90));
   /* Colour of the cancel (×) button. @ours */

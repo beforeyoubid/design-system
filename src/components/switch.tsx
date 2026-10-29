@@ -10,7 +10,7 @@ import { Switch as StockSwitch } from "@/components/ui/switch"
 export * from "@/components/ui/switch"
 
 const switchVariants = cva(
-  "peer group/switch relative inline-flex shrink-0 cursor-pointer items-center rounded-full p-0.5 transition-colors outline-none after:absolute after:-inset-x-3 after:-inset-y-2 data-unchecked:bg-dark-30 data-checked:bg-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30 aria-invalid:ring-3 aria-invalid:ring-error-75/20 data-disabled:cursor-not-allowed data-disabled:opacity-50",
+  "peer group/switch relative inline-flex shrink-0 cursor-pointer items-center rounded-full p-0.5 transition-colors outline-none after:absolute after:-inset-x-3 after:-inset-y-2 data-unchecked:bg-dark-30 data-checked:bg-mint-45 focus-visible:ring-3 focus-visible:ring-mint-45/30 aria-invalid:ring-3 aria-invalid:ring-destructive/20 data-disabled:cursor-not-allowed data-disabled:opacity-50",
   {
     variants: {
       // sm 28×16 · md 36×20 (design default) · lg 44×24

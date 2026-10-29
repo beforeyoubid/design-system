@@ -79,7 +79,7 @@ export const Invalid: Story = {
       <InputOTP id="otp-err" maxLength={6} defaultValue="123456" aria-invalid>
         <ThreeThree />
       </InputOTP>
-      <span role="alert" className="text-body-5 text-error-75">That code is incorrect. Try again.</span>
+      <span role="alert" className="text-body-5 text-destructive">That code is incorrect. Try again.</span>
     </div>
   ),
 }

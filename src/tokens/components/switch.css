@@ -15,7 +15,7 @@
   /* Ring colour of the switch when focused. */
   --_switch-focus-ring: var(--switch-focus-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
   /* Ring colour of the switch when invalid. */
-  --_switch-invalid-ring: var(--switch-invalid-ring, color-mix(in oklab, var(--error-75) 20%, transparent));
+  --_switch-invalid-ring: var(--switch-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
   /* Opacity of the switch when disabled. */
   --_switch-disabled-opacity: var(--switch-disabled-opacity, 0.5);
 }

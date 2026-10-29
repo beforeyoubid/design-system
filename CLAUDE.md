@@ -53,6 +53,7 @@ import { House } from '@beforeyoubid/design-system/icons/lucide'
 ## Token rules
 
 - **Never hard-code a hex value.** Use a token utility (`bg-mint-45`, `text-navy`, `border-dark-15`).
+- **Error and destructive colours use the `destructive` token** (`text-destructive`, `border-destructive`, `var(--destructive)`), never `error-75` directly, so the error red changes in one place.
 - **Never use arbitrary Tailwind values** (`text-[#090034]`). If a token is missing, add it to `globals.css` and run `pnpm check-tokens`.
 - **Token naming mirrors Figma 1:1.** When in doubt, check the Figma library or `globals.css`.
 
