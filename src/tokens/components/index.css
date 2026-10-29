@@ -2142,6 +2142,10 @@
   --_field-label-font-weight: var(--field-label-font-weight, 600);
   /* Text colour of the label. */
   --_field-label-foreground: var(--field-label-foreground, var(--navy));
+  /* @remove group-data-[disabled=true]/field:opacity-50 */
+  /* @add group-data-[disabled=true]/field:opacity-(--_field-label-disabled-opacity) */
+  /* Opacity of the label when its field is disabled. 1 keeps it at full strength; only the control greys out. */
+  --_field-label-disabled-opacity: var(--field-label-disabled-opacity, 1);
 }
 
 [data-slot="field-description"],

@@ -9114,6 +9114,18 @@
      ]
     },
     {
+     "name": "--field-label-disabled-opacity",
+     "private": "--_field-label-disabled-opacity",
+     "default": "1",
+     "description": "Opacity of the label when its field is disabled. 1 keeps it at full strength; only the control greys out.",
+     "type": "opacity",
+     "part": "field-label",
+     "variant": null,
+     "state": "disabled",
+     "property": "opacity",
+     "reads": []
+    },
+    {
      "name": "--field-description-font-weight",
      "private": "--_field-description-font-weight",
      "default": "400",

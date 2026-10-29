@@ -585,7 +585,7 @@ function FileUploadImpl<TValue = string>(
             {invalid}
           </p>
         ) : (
-          <FieldDescription id={hintId} className={cn("nth-last-2:mt-0", disabled && "opacity-50")}>
+          <FieldDescription id={hintId} className="nth-last-2:mt-0">
             {hint}
           </FieldDescription>
         ))}
