@@ -130,6 +130,9 @@ body { background: var(--pg-bg); }
   font-size: 11px; font-weight: 600; min-width: 18px; padding: 0 5px; border-radius: 4px;
   text-align: center; background: var(--pg-mark); color: var(--pg-mark-ink); font-variant-numeric: tabular-nums;
 }
+.pg-nav-title, .pg-nav-flags { display: inline-flex; align-items: center; gap: 6px; }
+.pg-warn { display: inline-flex; color: var(--pg-fail); }
+.pg-warn svg { width: 14px; height: 14px; }
 .pg-empty { color: var(--pg-ink-soft); padding: 8px 10px; }
 
 /* ---------- controls ---------- */

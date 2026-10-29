@@ -55,6 +55,9 @@ export function App() {
 
   const css = React.useMemo(() => exportCss(overrides), [overrides])
   const changed = Object.keys(overrides).length
+  // Failing pairs per section, recomputed whenever the overrides (and so the computed colours) change.
+  const failingIn = React.useMemo(() => new Map(componentNames.map((c) => [c, pairsFor(c).filter((p) => p.ratio < 4.5).length])), [tick])
+  const failingRoles = React.useMemo(() => semanticPairs().filter((p) => p.ratio < 4.5).length, [tick])
   const changedIn = (component: string) => manifest.components.find((c) => c.component === component)!.tokens.filter((t) => t.name in overrides).length
 
   const q = query.trim().toLowerCase()
@@ -86,7 +89,10 @@ export function App() {
           <small>Corners, spacing and type sizes everywhere</small>
         </button>
         <button type="button" className="pg-nav-item" aria-current={view.kind === 'semantic'} onClick={() => setView({ kind: 'semantic' })}>
-          Colour roles
+          <span className="pg-nav-title">
+            Colour roles
+            <ContrastFlag count={failingRoles} />
+          </span>
           <small>Primary, accent, destructive… shared by many components</small>
         </button>
         <p className="pg-nav-heading">Components</p>
@@ -97,7 +103,10 @@ export function App() {
               <li key={c.component}>
                 <button type="button" className="pg-nav-comp" aria-current={view.kind === 'component' && view.name === c.component} onClick={() => setView({ kind: 'component', name: c.component })}>
                   <span>{titleCase(c.component)}</span>
-                  {n > 0 && <span className="pg-mini-count">{n}</span>}
+                  <span className="pg-nav-flags">
+                    <ContrastFlag count={failingIn.get(c.component) ?? 0} />
+                    {n > 0 && <span className="pg-mini-count">{n}</span>}
+                  </span>
                 </button>
               </li>
             )
@@ -256,6 +265,21 @@ function Verdict({ ratio, label }: { ratio: number; label: string }) {
   return (
     <span className="pg-verdict" data-pass={pass} title="WCAG AA needs 4.5:1 for body-size text">
       {pass ? 'Passes AA' : 'Fails AA'} · {ratio.toFixed(2)}:1 {label}
+    </span>
+  )
+}
+
+/** Warning triangle beside a section whose text pairs fail WCAG AA. */
+function ContrastFlag({ count }: { count: number }) {
+  if (!count) return null
+  const label = `${count} text ${count === 1 ? 'pair fails' : 'pairs fail'} WCAG AA`
+  return (
+    <span className="pg-warn" role="img" aria-label={label} title={label}>
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M8 1.75 15 14.25H1L8 1.75Z" fill="currentColor" />
+        <path d="M8 6v4" stroke="var(--pg-panel)" strokeWidth="1.6" strokeLinecap="round" />
+        <circle cx="8" cy="12.1" r="0.9" fill="var(--pg-panel)" />
+      </svg>
     </span>
   )
 }
