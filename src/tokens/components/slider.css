@@ -28,6 +28,9 @@
 
 [data-slot="slider-thumb"] {
   /* @add cursor-pointer border-2 */
+  /* Base UI marks a disabled thumb with data-disabled, never :disabled, so stock's disabled:opacity-50
+     never applied; the slider dims as a whole through its control's data-disabled:opacity-50. */
+  /* @remove disabled:opacity-50 disabled:opacity-(--_slider-thumb-disabled-opacity) */
   /* Width and height of the thumb. */
   --_slider-thumb-size: var(--slider-thumb-size, calc(var(--spacing) * 5));
   /* Corner radius of the thumb. */
@@ -40,6 +43,4 @@
   --_slider-thumb-shadow: var(--slider-thumb-shadow, 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1));
   /* Ring colour of the thumb. */
   --_slider-thumb-ring: var(--slider-thumb-ring, color-mix(in oklab, var(--ring) 50%, transparent));
-  /* Opacity of the thumb when disabled. */
-  --_slider-thumb-disabled-opacity: var(--slider-thumb-disabled-opacity, 0.5);
 }

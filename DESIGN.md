@@ -2115,7 +2115,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>slider</strong> (11)</summary>
+<summary><strong>slider</strong> (10)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -2129,7 +2129,6 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--slider-thumb` | Fill colour of the thumb. | `var(--white)` |
 | `--slider-thumb-shadow` | Shadow of the thumb. | `0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)` |
 | `--slider-thumb-ring` | Ring colour of the thumb. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
-| `--slider-thumb-disabled-opacity` | Opacity of the thumb when disabled. | `0.5` |
 
 </details>
 

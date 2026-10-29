@@ -16083,18 +16083,6 @@
      "reads": [
       "--ring"
      ]
-    },
-    {
-     "name": "--slider-thumb-disabled-opacity",
-     "private": "--_slider-thumb-disabled-opacity",
-     "default": "0.5",
-     "description": "Opacity of the thumb when disabled.",
-     "type": "opacity",
-     "part": "slider-thumb",
-     "variant": null,
-     "state": "disabled",
-     "property": "opacity",
-     "reads": []
     }
    ]
   },
