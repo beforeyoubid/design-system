@@ -2940,45 +2940,56 @@
 [class*="(--_native-select-wrapper-"],
 [class*="(--_native-select-wrapper)"] {
   /* Fills its container, like every input; the layout around it sets the width. */
-  /* @remove w-fit */
+  /* @remove w-fit has-[select:disabled]:opacity-50 */
   /* @add w-full */
 }
 
 [data-slot="native-select"],
 [class*="(--_native-select-"],
 [class*="(--_native-select)"] {
-  /* @add data-[size=sm]:h-(--_native-select-sm-height) */
+  /* Matches the input: no ring while invalid until focused, and a filled look when disabled instead of fading the whole field. */
+  /* @remove text-sm aria-invalid:ring-[3px] aria-invalid:ring-(--_native-select-invalid-ring) */
+  /* @add data-[size=sm]:h-(--_native-select-sm-height) text-body-5 text-(--_native-select-foreground) aria-invalid:focus-visible:ring-(--_native-select-invalid-ring) disabled:bg-(--_native-select-disabled) disabled:text-(--_native-select-disabled-foreground) */
   /* Height of the native-select. */
-  --_native-select-height: var(--native-select-height, calc(var(--spacing) * 9));
+  --_native-select-height: var(--native-select-height, calc(var(--spacing) * 10));
   /* Corner radius of the native-select. */
-  --_native-select-radius: var(--native-select-radius, var(--radius-4xl));
+  --_native-select-radius: var(--native-select-radius, var(--radius-lg));
   /* Border colour of the native-select. */
-  --_native-select-border: var(--native-select-border, var(--input));
+  --_native-select-border: var(--native-select-border, var(--dark-45));
   /* Fill colour of the native-select. */
-  --_native-select: var(--native-select, color-mix(in oklab, var(--input) 30%, transparent));
+  --_native-select: var(--native-select, var(--white));
   /* Vertical padding of the native-select. */
   --_native-select-padding-y: var(--native-select-padding-y, calc(var(--spacing) * 1));
+  /* Text colour of the native-select. */
+  --_native-select-foreground: var(--native-select-foreground, var(--dark-100));
   /* Placeholder text colour of the native-select. */
-  --_native-select-placeholder: var(--native-select-placeholder, var(--muted-foreground));
+  --_native-select-placeholder: var(--native-select-placeholder, var(--dark-90));
   /* Border colour of the native-select when focused. */
-  --_native-select-focus-border: var(--native-select-focus-border, var(--ring));
+  --_native-select-focus-border: var(--native-select-focus-border, var(--mint-45));
   /* Ring colour of the native-select when focused. */
-  --_native-select-focus-ring: var(--native-select-focus-ring, color-mix(in oklab, var(--ring) 50%, transparent));
+  --_native-select-focus-ring: var(--native-select-focus-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
   /* Border colour of the native-select when invalid. */
   --_native-select-invalid-border: var(--native-select-invalid-border, var(--destructive));
   /* Ring colour of the native-select when invalid. */
   --_native-select-invalid-ring: var(--native-select-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
+  /* Fill colour of the native-select when disabled. */
+  --_native-select-disabled: var(--native-select-disabled, var(--light-l2));
+  /* Text colour of the native-select when disabled. */
+  --_native-select-disabled-foreground: var(--native-select-disabled-foreground, var(--dark-45));
   /* Height of a small (sm) native select. */
-  --_native-select-sm-height: var(--native-select-sm-height, calc(var(--spacing) * 8));
+  --_native-select-sm-height: var(--native-select-sm-height, calc(var(--spacing) * 9));
 }
 
 [data-slot="native-select-icon"],
 [class*="(--_native-select-icon-"],
 [class*="(--_native-select-icon)"] {
+  /* @add group-has-[select:disabled]/native-select:text-(--_native-select-icon-disabled-foreground) */
   /* Width and height of the icon. */
-  --_native-select-icon-size: var(--native-select-icon-size, calc(var(--spacing) * 4));
+  --_native-select-icon-size: var(--native-select-icon-size, calc(var(--spacing) * 3.5));
   /* Text colour of the icon. */
-  --_native-select-icon-foreground: var(--native-select-icon-foreground, var(--muted-foreground));
+  --_native-select-icon-foreground: var(--native-select-icon-foreground, var(--dark-75));
+  /* Text colour of the icon when disabled. */
+  --_native-select-icon-disabled-foreground: var(--native-select-icon-disabled-foreground, var(--dark-45));
 }
 
 [data-slot="native-select-option"],

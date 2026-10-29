@@ -1738,23 +1738,27 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>native-select</strong> (17)</summary>
+<summary><strong>native-select</strong> (21)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
-| `--native-select-height` | Height of the native-select. | `calc(var(--spacing) * 9)` |
-| `--native-select-radius` | Corner radius of the native-select. | `var(--radius-4xl)` |
-| `--native-select-border` | Border colour of the native-select. | `var(--input)` |
-| `--native-select` | Fill colour of the native-select. | `color-mix(in oklab, var(--input) 30%, transparent)` |
+| `--native-select-height` | Height of the native-select. | `calc(var(--spacing) * 10)` |
+| `--native-select-radius` | Corner radius of the native-select. | `var(--radius-lg)` |
+| `--native-select-border` | Border colour of the native-select. | `var(--dark-45)` |
+| `--native-select` | Fill colour of the native-select. | `var(--white)` |
 | `--native-select-padding-y` | Vertical padding of the native-select. | `calc(var(--spacing) * 1)` |
-| `--native-select-placeholder` | Placeholder text colour of the native-select. | `var(--muted-foreground)` |
-| `--native-select-focus-border` | Border colour of the native-select when focused. | `var(--ring)` |
-| `--native-select-focus-ring` | Ring colour of the native-select when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
+| `--native-select-foreground` | Text colour of the native-select. | `var(--dark-100)` |
+| `--native-select-placeholder` | Placeholder text colour of the native-select. | `var(--dark-90)` |
+| `--native-select-focus-border` | Border colour of the native-select when focused. | `var(--mint-45)` |
+| `--native-select-focus-ring` | Ring colour of the native-select when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
 | `--native-select-invalid-border` | Border colour of the native-select when invalid. | `var(--destructive)` |
 | `--native-select-invalid-ring` | Ring colour of the native-select when invalid. | `color-mix(in oklab, var(--destructive) 20%, transparent)` |
-| `--native-select-sm-height` | Height of a small (sm) native select. | `calc(var(--spacing) * 8)` |
-| `--native-select-icon-size` | Width and height of the icon. | `calc(var(--spacing) * 4)` |
-| `--native-select-icon-foreground` | Text colour of the icon. | `var(--muted-foreground)` |
+| `--native-select-disabled` | Fill colour of the native-select when disabled. | `var(--light-l2)` |
+| `--native-select-disabled-foreground` | Text colour of the native-select when disabled. | `var(--dark-45)` |
+| `--native-select-sm-height` | Height of a small (sm) native select. | `calc(var(--spacing) * 9)` |
+| `--native-select-icon-size` | Width and height of the icon. | `calc(var(--spacing) * 3.5)` |
+| `--native-select-icon-foreground` | Text colour of the icon. | `var(--dark-75)` |
+| `--native-select-icon-disabled-foreground` | Text colour of the icon when disabled. | `var(--dark-45)` |
 | `--native-select-option` | Fill colour of the option. | `Canvas` |
 | `--native-select-option-foreground` | Text colour of the option. | `CanvasText` |
 | `--native-select-optgroup` | Fill colour of the optgroup. | `Canvas` |

@@ -655,7 +655,6 @@
     "item",
     "kbd",
     "menubar",
-    "native-select",
     "popover",
     "progress",
     "select",
@@ -801,7 +800,6 @@
     "calendar",
     "field",
     "item",
-    "native-select",
     "resizable",
     "scroll-area",
     "slider",
@@ -12192,7 +12190,7 @@
     {
      "name": "--native-select-height",
      "private": "--_native-select-height",
-     "default": "calc(var(--spacing) * 9)",
+     "default": "calc(var(--spacing) * 10)",
      "description": "Height of the native-select.",
      "type": "length",
      "part": "native-select",
@@ -12206,7 +12204,7 @@
     {
      "name": "--native-select-radius",
      "private": "--_native-select-radius",
-     "default": "var(--radius-4xl)",
+     "default": "var(--radius-lg)",
      "description": "Corner radius of the native-select.",
      "type": "radius",
      "part": "native-select",
@@ -12214,13 +12212,13 @@
      "state": null,
      "property": "radius",
      "reads": [
-      "--radius-4xl"
+      "--radius-lg"
      ]
     },
     {
      "name": "--native-select-border",
      "private": "--_native-select-border",
-     "default": "var(--input)",
+     "default": "var(--dark-45)",
      "description": "Border colour of the native-select.",
      "type": "color",
      "part": "native-select",
@@ -12228,13 +12226,13 @@
      "state": null,
      "property": "border",
      "reads": [
-      "--input"
+      "--dark-45"
      ]
     },
     {
      "name": "--native-select",
      "private": "--_native-select",
-     "default": "color-mix(in oklab, var(--input) 30%, transparent)",
+     "default": "var(--white)",
      "description": "Fill colour of the native-select.",
      "type": "color",
      "part": "native-select",
@@ -12242,7 +12240,7 @@
      "state": null,
      "property": "fill",
      "reads": [
-      "--input"
+      "--white"
      ]
     },
     {
@@ -12260,9 +12258,23 @@
      ]
     },
     {
+     "name": "--native-select-foreground",
+     "private": "--_native-select-foreground",
+     "default": "var(--dark-100)",
+     "description": "Text colour of the native-select.",
+     "type": "color",
+     "part": "native-select",
+     "variant": null,
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--dark-100"
+     ]
+    },
+    {
      "name": "--native-select-placeholder",
      "private": "--_native-select-placeholder",
-     "default": "var(--muted-foreground)",
+     "default": "var(--dark-90)",
      "description": "Placeholder text colour of the native-select.",
      "type": "color",
      "part": "native-select",
@@ -12270,13 +12282,13 @@
      "state": "placeholder",
      "property": "foreground",
      "reads": [
-      "--muted-foreground"
+      "--dark-90"
      ]
     },
     {
      "name": "--native-select-focus-border",
      "private": "--_native-select-focus-border",
-     "default": "var(--ring)",
+     "default": "var(--mint-45)",
      "description": "Border colour of the native-select when focused.",
      "type": "color",
      "part": "native-select",
@@ -12284,13 +12296,13 @@
      "state": "focus",
      "property": "border",
      "reads": [
-      "--ring"
+      "--mint-45"
      ]
     },
     {
      "name": "--native-select-focus-ring",
      "private": "--_native-select-focus-ring",
-     "default": "color-mix(in oklab, var(--ring) 50%, transparent)",
+     "default": "color-mix(in oklab, var(--mint-45) 30%, transparent)",
      "description": "Ring colour of the native-select when focused.",
      "type": "color",
      "part": "native-select",
@@ -12298,7 +12310,7 @@
      "state": "focus",
      "property": "ring",
      "reads": [
-      "--ring"
+      "--mint-45"
      ]
     },
     {
@@ -12330,9 +12342,37 @@
      ]
     },
     {
+     "name": "--native-select-disabled",
+     "private": "--_native-select-disabled",
+     "default": "var(--light-l2)",
+     "description": "Fill colour of the native-select when disabled.",
+     "type": "color",
+     "part": "native-select",
+     "variant": null,
+     "state": "disabled",
+     "property": "fill",
+     "reads": [
+      "--light-l2"
+     ]
+    },
+    {
+     "name": "--native-select-disabled-foreground",
+     "private": "--_native-select-disabled-foreground",
+     "default": "var(--dark-45)",
+     "description": "Text colour of the native-select when disabled.",
+     "type": "color",
+     "part": "native-select",
+     "variant": null,
+     "state": "disabled",
+     "property": "foreground",
+     "reads": [
+      "--dark-45"
+     ]
+    },
+    {
      "name": "--native-select-sm-height",
      "private": "--_native-select-sm-height",
-     "default": "calc(var(--spacing) * 8)",
+     "default": "calc(var(--spacing) * 9)",
      "description": "Height of a small (sm) native select.",
      "type": "length",
      "part": "native-select",
@@ -12346,7 +12386,7 @@
     {
      "name": "--native-select-icon-size",
      "private": "--_native-select-icon-size",
-     "default": "calc(var(--spacing) * 4)",
+     "default": "calc(var(--spacing) * 3.5)",
      "description": "Width and height of the icon.",
      "type": "length",
      "part": "native-select-icon",
@@ -12360,7 +12400,7 @@
     {
      "name": "--native-select-icon-foreground",
      "private": "--_native-select-icon-foreground",
-     "default": "var(--muted-foreground)",
+     "default": "var(--dark-75)",
      "description": "Text colour of the icon.",
      "type": "color",
      "part": "native-select-icon",
@@ -12368,7 +12408,21 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--muted-foreground"
+      "--dark-75"
+     ]
+    },
+    {
+     "name": "--native-select-icon-disabled-foreground",
+     "private": "--_native-select-icon-disabled-foreground",
+     "default": "var(--dark-45)",
+     "description": "Text colour of the icon when disabled.",
+     "type": "color",
+     "part": "native-select-icon",
+     "variant": null,
+     "state": "disabled",
+     "property": "foreground",
+     "reads": [
+      "--dark-45"
      ]
     },
     {
