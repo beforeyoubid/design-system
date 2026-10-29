@@ -671,7 +671,8 @@
     "combobox",
     "context-menu",
     "empty",
-    "menubar"
+    "menubar",
+    "toggle"
    ]
   },
   {
@@ -681,7 +682,8 @@
    "usedBy": [
     "combobox",
     "context-menu",
-    "menubar"
+    "menubar",
+    "toggle"
    ]
   },
   {
@@ -18102,15 +18104,29 @@
     {
      "name": "--toggle-pressed",
      "private": "--_toggle-pressed",
-     "default": "var(--muted)",
-     "description": "Fill colour of the toggle when pressed.",
+     "default": "var(--accent)",
+     "description": "Fill colour of the toggle when pressed. The mint accent, so on reads apart from off (muted matched the page).",
      "type": "color",
      "part": "toggle",
      "variant": null,
      "state": "pressed",
      "property": "fill",
      "reads": [
-      "--muted"
+      "--accent"
+     ]
+    },
+    {
+     "name": "--toggle-pressed-foreground",
+     "private": "--_toggle-pressed-foreground",
+     "default": "var(--accent-foreground)",
+     "description": "Text colour of the toggle when pressed.",
+     "type": "color",
+     "part": "toggle",
+     "variant": null,
+     "state": "pressed",
+     "property": "foreground",
+     "reads": [
+      "--accent-foreground"
      ]
     },
     {

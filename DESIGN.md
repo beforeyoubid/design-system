@@ -2322,7 +2322,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>toggle</strong> (22)</summary>
+<summary><strong>toggle</strong> (23)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -2336,7 +2336,8 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--toggle-disabled-opacity` | Opacity of the toggle when disabled. | `0.5` |
 | `--toggle-invalid-border` | Border colour of the toggle when invalid. | `var(--destructive)` |
 | `--toggle-invalid-ring` | Ring colour of the toggle when invalid. | `color-mix(in oklab, var(--destructive) 20%, transparent)` |
-| `--toggle-pressed` | Fill colour of the toggle when pressed. | `var(--muted)` |
+| `--toggle-pressed` | Fill colour of the toggle when pressed. The mint accent, so on reads apart from off (muted matched the page). | `var(--accent)` |
+| `--toggle-pressed-foreground` | Text colour of the toggle when pressed. | `var(--accent-foreground)` |
 | `--toggle-outline-border` | Border colour of the toggle (outline variant). | `var(--input)` |
 | `--toggle-outline-hover` | Fill colour of the toggle (outline variant) when hovered. | `var(--toggle-hover, var(--muted))` |
 | `--toggle-md-height` | Height of the toggle (md size). | `calc(var(--spacing) * 9)` |

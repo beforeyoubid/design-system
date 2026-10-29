@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const toggleVariants = cva(
-  "group/toggle inline-flex items-center justify-center gap-(--_toggle-gap) rounded-(--_toggle-radius) text-body-5 font-(--_toggle-font-weight) whitespace-nowrap transition-colors outline-none hover:bg-(--_toggle-hover) hover:text-(--_toggle-hover-foreground) focus-visible:border-(--_toggle-focus-border) focus-visible:ring-3 focus-visible:ring-(--_toggle-focus-ring) disabled:pointer-events-none disabled:opacity-(--_toggle-disabled-opacity) aria-invalid:border-(--_toggle-invalid-border) aria-invalid:ring-(--_toggle-invalid-ring) aria-pressed:bg-(--_toggle-pressed) dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 cursor-pointer",
+  "group/toggle inline-flex items-center justify-center gap-(--_toggle-gap) rounded-(--_toggle-radius) text-body-5 font-(--_toggle-font-weight) whitespace-nowrap transition-colors outline-none hover:bg-(--_toggle-hover) hover:text-(--_toggle-hover-foreground) focus-visible:border-(--_toggle-focus-border) focus-visible:ring-3 focus-visible:ring-(--_toggle-focus-ring) disabled:pointer-events-none disabled:opacity-(--_toggle-disabled-opacity) aria-invalid:border-(--_toggle-invalid-border) aria-invalid:ring-(--_toggle-invalid-ring) aria-pressed:bg-(--_toggle-pressed) dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 cursor-pointer aria-pressed:text-(--_toggle-pressed-foreground)",
   {
     variants: {
       variant: {

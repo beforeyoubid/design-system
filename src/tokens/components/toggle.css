@@ -5,7 +5,7 @@
 
 [data-slot="toggle"] {
   /* @alias md = size.default */
-  /* @add cursor-pointer text-body-5 focus-visible:ring-3 */
+  /* @add cursor-pointer text-body-5 focus-visible:ring-3 aria-pressed:text-(--_toggle-pressed-foreground) */
   /* @add(md) has-data-[icon=inline-end]:pe-(--_toggle-md-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_toggle-md-with-icon-padding-x) */
   /* @add(size.sm) has-data-[icon=inline-end]:pe-(--_toggle-sm-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_toggle-sm-with-icon-padding-x) */
   /* @add(size.lg) has-data-[icon=inline-end]:pe-(--_toggle-lg-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_toggle-lg-with-icon-padding-x) */
@@ -29,8 +29,10 @@
   --_toggle-invalid-border: var(--toggle-invalid-border, var(--destructive));
   /* Ring colour of the toggle when invalid. */
   --_toggle-invalid-ring: var(--toggle-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
-  /* Fill colour of the toggle when pressed. */
-  --_toggle-pressed: var(--toggle-pressed, var(--muted));
+  /* Fill colour of the toggle when pressed. The mint accent, so on reads apart from off (muted matched the page). */
+  --_toggle-pressed: var(--toggle-pressed, var(--accent));
+  /* Text colour of the toggle when pressed. */
+  --_toggle-pressed-foreground: var(--toggle-pressed-foreground, var(--accent-foreground));
   /* Border colour of the toggle (outline variant). */
   --_toggle-outline-border: var(--toggle-outline-border, var(--input));
   /* Fill colour of the toggle (outline variant) when hovered. */
