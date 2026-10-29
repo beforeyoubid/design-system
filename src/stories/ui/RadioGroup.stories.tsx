@@ -126,3 +126,13 @@ export const BareSizes: Story = {
     </RadioGroup>
   ),
 }
+
+/** In a form section that failed validation. */
+export const Invalid: Story = {
+  render: () => (
+    <RadioGroup aria-invalid className="max-w-sm">
+      <RadioGroupItem value="basic" label="Basic" aria-invalid />
+      <RadioGroupItem value="standard" label="Standard" aria-invalid />
+    </RadioGroup>
+  ),
+}

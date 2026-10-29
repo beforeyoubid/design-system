@@ -400,3 +400,52 @@ export const RowActionsMenu: Story = {
     </div>
   ),
 }
+
+/** An item indented to line up with items that have an icon, and a sub-menu that's unavailable. */
+export const InsetAndDisabledSubMenu: Story = {
+  name: 'Inset item, disabled sub-menu',
+  render: () => (
+    <DropdownMenu>
+      <Trigger>Report</Trigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuGroup>
+          <DropdownMenuItem>
+            <IconDownload />
+            Download PDF
+          </DropdownMenuItem>
+          <DropdownMenuItem inset>Print</DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger disabled>
+            <IconShare />
+            Share (no access)
+          </DropdownMenuSubTrigger>
+          <DropdownMenuSubContent>
+            <DropdownMenuItem>Email</DropdownMenuItem>
+          </DropdownMenuSubContent>
+        </DropdownMenuSub>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  ),
+}
+
+/** The card and icon triggers when there's nothing to pick. */
+export const DisabledTriggers: Story = {
+  render: () => (
+    <div className="flex w-120 flex-col items-start gap-4">
+      <DropdownMenu>
+        <DropdownMenuCardTrigger icon={<FileText />} label="Document" title="Contract of sale" meta="No other documents" disabled />
+        <DropdownMenuContent>
+          <DropdownMenuItem>Contract of sale</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+      <DropdownMenu>
+        <DropdownMenuIconTrigger icon={<FileText />} label="Report menu" disabled />
+        <DropdownMenuContent>
+          <DropdownMenuItem>Open</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  ),
+}

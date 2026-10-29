@@ -109,3 +109,19 @@ export const Sizes: Story = {
     </div>
   ),
 }
+
+/** An item that can't be opened yet. */
+export const WithDisabledItem: Story = {
+  render: () => (
+    <Accordion className="w-110">
+      <AccordionItem value="booked">
+        <AccordionTrigger>Inspection booked</AccordionTrigger>
+        <AccordionContent>Tuesday 21 Oct, 9am, at 12 Smith St, Newtown.</AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="report" disabled>
+        <AccordionTrigger>Report (available after the inspection)</AccordionTrigger>
+        <AccordionContent>Your report will appear here.</AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  ),
+}

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { IconInfoCircle, IconAlertTriangle } from '@tabler/icons-react'
-import { Alert, AlertTitle, AlertDescription } from '../../components/ui/alert'
+import { Button } from '../../components/button'
+import { Alert, AlertAction, AlertDescription, AlertTitle } from '../../components/ui/alert'
 
 const meta: Meta<typeof Alert> = {
   title: 'BYB Components/Alert',
@@ -27,6 +28,20 @@ export const Destructive: Story = {
       <IconAlertTriangle className="h-4 w-4" />
       <AlertTitle>Error</AlertTitle>
       <AlertDescription>Your session has expired. Please log in again.</AlertDescription>
+    </Alert>
+  ),
+}
+
+/** With a button on the right, which keeps the text clear of it. */
+export const WithAction: Story = {
+  render: () => (
+    <Alert className="w-110">
+      <IconInfoCircle />
+      <AlertTitle>Your report is ready</AlertTitle>
+      <AlertDescription>The building &amp; pest report for 12 Smith St, Newtown has arrived.</AlertDescription>
+      <AlertAction>
+        <Button size="sm">View</Button>
+      </AlertAction>
     </Alert>
   ),
 }

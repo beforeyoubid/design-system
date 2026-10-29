@@ -88,3 +88,24 @@ export const IconTones: Story = {
     </div>
   ),
 }
+
+/** The small size, with a header, content and footer. */
+export const Small: Story = {
+  render: () => (
+    <Card size="sm" className="w-80">
+      <CardHeader>
+        <CardTitle>Strata report</CardTitle>
+        <CardDescription>Ready 18 Oct</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="text-body-5 text-muted-foreground">Levies, sinking fund, by-laws and minutes.</p>
+      </CardContent>
+      <CardFooter className="gap-2">
+        <Button variant="tertiary" size="sm">
+          Download
+        </Button>
+        <Button size="sm">View</Button>
+      </CardFooter>
+    </Card>
+  ),
+}

@@ -161,6 +161,12 @@ export const AllParts: Story = {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
                 <SidebarMenuItem>
+                  <SidebarMenuButton disabled>
+                    <IconInbox />
+                    <span>Billing (no access)</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
                   <SidebarMenuSkeleton showIcon />
                 </SidebarMenuItem>
               </SidebarMenu>

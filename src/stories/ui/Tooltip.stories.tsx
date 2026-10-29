@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Button } from '../../components/button'
+import { Kbd } from '../../components/ui/kbd'
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '../../components/ui/tooltip'
 
 const meta: Meta<typeof Tooltip> = {
@@ -57,6 +58,20 @@ export const Sides: Story = {
           </Tooltip>
         </TooltipProvider>
       ))}
+    </div>
+  ),
+}
+
+/** With the keyboard shortcut at the end. */
+export const WithShortcut: Story = {
+  render: () => (
+    <div className="pt-16">
+      <Tooltip defaultOpen>
+        <TooltipTrigger render={<Button variant="tertiary">Search</Button>} />
+        <TooltipContent>
+          Search reports <Kbd>⌘K</Kbd>
+        </TooltipContent>
+      </Tooltip>
     </div>
   ),
 }

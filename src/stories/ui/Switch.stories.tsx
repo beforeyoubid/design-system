@@ -65,3 +65,8 @@ export const WithLabel: Story = {
     </div>
   ),
 }
+
+/** In a form section that failed validation. */
+export const Invalid: Story = {
+  render: () => <Switch aria-invalid aria-label="Accept the terms" />,
+}

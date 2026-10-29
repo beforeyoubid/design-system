@@ -38,3 +38,29 @@ export const Default: Story = {
     </NavigationMenu>
   ),
 }
+
+/** A section that isn't available yet. */
+export const WithDisabledItem: Story = {
+  render: () => (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Services</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-72">
+              <li>
+                <NavigationMenuLink href="#">Pre-purchase inspection</NavigationMenuLink>
+              </li>
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger disabled>Partners (coming soon)</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-72" />
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  ),
+}
