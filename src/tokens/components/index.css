@@ -391,7 +391,7 @@
 [data-slot="avatar-badge"],
 [class*="(--_avatar-badge-"],
 [class*="(--_avatar-badge)"] {
-  /* @add group-data-[size=sm]/avatar:size-2 group-data-[size=sm]/avatar:[&>svg]:hidden group-data-[size=default]/avatar:size-2.5 group-data-[size=default]/avatar:[&>svg]:size-2 group-data-[size=lg]/avatar:size-3 group-data-[size=lg]/avatar:[&>svg]:size-2 */
+  /* @add group-data-[size=sm]/avatar:size-(--_avatar-badge-sm-size) group-data-[size=sm]/avatar:[&>svg]:hidden group-data-[size=default]/avatar:size-(--_avatar-badge-size) group-data-[size=default]/avatar:[&>svg]:size-2 group-data-[size=lg]/avatar:size-(--_avatar-badge-lg-size) group-data-[size=lg]/avatar:[&>svg]:size-2 */
   /* Corner radius of the badge. */
   --_avatar-badge-radius: var(--avatar-badge-radius, var(--radius-full));
   /* Fill colour of the badge. */
@@ -400,6 +400,12 @@
   --_avatar-badge-foreground: var(--avatar-badge-foreground, var(--primary-foreground));
   /* Ring colour of the badge. */
   --_avatar-badge-ring: var(--avatar-badge-ring, var(--background));
+  /* Width and height of the status dot on a default avatar. */
+  --_avatar-badge-size: var(--avatar-badge-size, calc(var(--spacing) * 2.5));
+  /* Width and height of the status dot on a small avatar. */
+  --_avatar-badge-sm-size: var(--avatar-badge-sm-size, calc(var(--spacing) * 2));
+  /* Width and height of the status dot on a large avatar. */
+  --_avatar-badge-lg-size: var(--avatar-badge-lg-size, calc(var(--spacing) * 3));
 }
 
 [data-slot="avatar-group-count"],
@@ -579,13 +585,13 @@
 [class*="(--_breadcrumb-list-"],
 [class*="(--_breadcrumb-list)"] {
   /* @add text-body-5 */
-  /* @add sm:gap-(--_breadcrumb-list-from-sm-gap) */
+  /* @add sm:gap-(--_breadcrumb-list-gap--sm) */
   /* Gap between items of the list. */
   --_breadcrumb-list-gap: var(--breadcrumb-list-gap, calc(var(--spacing) * 1.5));
   /* Text colour of the list. */
   --_breadcrumb-list-foreground: var(--breadcrumb-list-foreground, var(--muted-foreground));
   /* Gap between crumbs from the sm breakpoint up. */
-  --_breadcrumb-list-from-sm-gap: var(--breadcrumb-list-from-sm-gap, calc(var(--spacing) * 2.5));
+  --_breadcrumb-list-gap--sm: var(--breadcrumb-list-gap\:sm, calc(var(--spacing) * 2.5));
 }
 
 [data-slot="breadcrumb-item"],
@@ -1708,13 +1714,13 @@
 [class*="(--_drawer-header-"],
 [class*="(--_drawer-header)"] {
   /* @remove pb-0 */
-  /* @add md:gap-(--_drawer-header-from-md-gap) */
+  /* @add md:gap-(--_drawer-header-gap--md) */
   /* Gap between items of the header. */
   --_drawer-header-gap: var(--drawer-header-gap, calc(var(--spacing) * 0.5));
   /* Padding of the header. */
   --_drawer-header-padding: var(--drawer-header-padding, calc(var(--spacing) * 4));
   /* Gap between the title and description from the md breakpoint up. */
-  --_drawer-header-from-md-gap: var(--drawer-header-from-md-gap, calc(var(--spacing) * 1.5));
+  --_drawer-header-gap--md: var(--drawer-header-gap\:md, calc(var(--spacing) * 1.5));
 }
 
 [data-slot="drawer-footer"],
@@ -3698,9 +3704,15 @@
 [data-slot="sidebar-inset"],
 [class*="(--_sidebar-inset-"],
 [class*="(--_sidebar-inset)"] {
-  /* @add md:peer-data-[variant=inset]:rounded-2xl */
+  /* @add md:peer-data-[variant=inset]:m-(--_sidebar-inset-offset--md) md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ms-(--_sidebar-inset-offset--md) md:peer-data-[variant=inset]:rounded-(--_sidebar-inset-radius--md) md:peer-data-[variant=inset]:shadow-(--_sidebar-inset-shadow--md) */
   /* Fill colour of the inset. */
   --_sidebar-inset: var(--sidebar-inset, var(--background));
+  /* With the inset sidebar, from md up: space between the content panel and the screen edges (none on the sidebar's side while it's open). */
+  --_sidebar-inset-offset--md: var(--sidebar-inset-offset\:md, calc(var(--spacing) * 2));
+  /* With the inset sidebar, from md up: corner radius of the content panel. */
+  --_sidebar-inset-radius--md: var(--sidebar-inset-radius\:md, var(--radius-2xl));
+  /* With the inset sidebar, from md up: shadow of the content panel. */
+  --_sidebar-inset-shadow--md: var(--sidebar-inset-shadow\:md, 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1));
 }
 
 [data-slot="sidebar-input"],
@@ -4433,13 +4445,13 @@
 [class*="(--_toast-viewport-"],
 [class*="(--_toast-viewport)"] {
   /* @remove mx-auto w-auto max-w-sm sm:end-4 sm:start-auto sm:mx-0 sm:w-full */
-  /* @add inset-x-(--_toast-viewport-offset) bottom-(--_toast-viewport-offset) sm:inset-x-(--_toast-viewport-from-sm-offset) sm:bottom-(--_toast-viewport-from-sm-offset) md:start-auto md:w-(--_toast-viewport-from-md-width) */
+  /* @add inset-x-(--_toast-viewport-offset) bottom-(--_toast-viewport-offset) sm:inset-x-(--_toast-viewport-offset--sm) sm:bottom-(--_toast-viewport-offset--sm) md:start-auto md:w-(--_toast-viewport-width--md) */
   /* Distance of the toasts from the bottom and side edges of the screen. */
   --_toast-viewport-offset: var(--toast-viewport-offset, calc(var(--spacing) * 4));
   /* Distance of the toasts from the screen edges from the sm breakpoint up. */
-  --_toast-viewport-from-sm-offset: var(--toast-viewport-from-sm-offset, calc(var(--spacing) * 6));
+  --_toast-viewport-offset--sm: var(--toast-viewport-offset\:sm, calc(var(--spacing) * 6));
   /* Width of the toasts from the md breakpoint up, held to the end edge. Below md they span the screen. */
-  --_toast-viewport-from-md-width: var(--toast-viewport-from-md-width, calc(var(--spacing) * 110));
+  --_toast-viewport-width--md: var(--toast-viewport-width\:md, calc(var(--spacing) * 110));
 }
 
 [data-slot="toast"],

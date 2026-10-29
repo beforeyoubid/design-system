@@ -568,16 +568,29 @@ Tokens come in three layers. Each layer reads the one above it, so a change at t
 A **part** is one element of a component, named by its `data-slot` (`select-trigger`, `dialog-content`). A lever's name says which part, which variant, which state and which property it sets:
 
 ```
---<part>[-<variant>][-<state>][-<property>]
+--<part>[-<variant>][-<state>][-<property>][\:<breakpoint>]
 
 --button-default                    fill of the primary button
 --button-default-hover              its fill when hovered
 --button-outline-border             border colour of the tertiary (stock outline) button
 --input-radius                      corner radius of every input
 --dropdown-menu-item-highlighted-foreground   text colour of the highlighted menu item
+--toast-viewport-offset\:sm         distance of the toasts from the screen edges, from sm up
 ```
 
-No property means the fill. Properties: `foreground` (text and icon colour), `border`, `ring`, `radius`, `height`, `min-height`, `width`, `size`, `padding`, `padding-x`, `padding-y`, `gap`, `offset` (distance from the screen or container edge), `shadow`, `font-weight`, `opacity`, `tracking`. States: `hover`, `focus`, `active`, `pressed`, `open`, `selected`, `highlighted`, `checked`, `disabled`, `invalid`, `placeholder`. A variant's lever falls back to the component's own lever where there is one (`--button-sm-radius` → `--button-radius`). Variants keep the stock key in lever names: our `primary` button is `default`, `tertiary` is `outline`. A value that changes at a breakpoint gets its own lever with `from-<breakpoint>` in the variant place, for that breakpoint and up (`--toast-viewport-offset`, then `--toast-viewport-from-sm-offset`); `from-` keeps it apart from size variants called `sm` and `md`.
+No property means the fill. Properties: `foreground` (text and icon colour), `border`, `ring`, `radius`, `height`, `min-height`, `width`, `size`, `padding`, `padding-x`, `padding-y`, `gap`, `offset` (distance from the screen or container edge), `shadow`, `font-weight`, `opacity`, `tracking`. States: `hover`, `focus`, `active`, `pressed`, `open`, `selected`, `highlighted`, `checked`, `disabled`, `invalid`, `placeholder`. A variant's lever falls back to the component's own lever where there is one (`--button-sm-radius` → `--button-radius`). Variants keep the stock key in lever names: our `primary` button is `default`, `tertiary` is `outline`.
+
+**Breakpoints.** We're mobile-first: a lever without a breakpoint is the value on every screen, and a value that changes at a breakpoint gets its own lever with `\:<breakpoint>` at the end, for that breakpoint and up. `--toast-viewport-offset` is 16px; `--toast-viewport-offset\:sm` makes it 24px from `sm` up. A range adds `-to-<breakpoint>`, up to but not including the second: `\:md-to-lg` is `md` up to `lg`. Breakpoints are `sm`, `md`, `lg`, `xl` and `2xl` ([Breakpoints and grid](#breakpoints-and-grid)). The backslash is part of the name in CSS; in JavaScript leave it out: `el.style.setProperty('--toast-viewport-offset:sm', '32px')`.
+
+```css
+:root {
+  --toast-viewport-offset: 12px;
+  --toast-viewport-offset\:sm: 32px;
+  --sidebar-inset-offset\:md: 0px;
+}
+```
+
+Inside the token files the private name ends in `--<breakpoint>` instead (`--_toast-viewport-offset--sm`), because Tailwind won't read a class with a backslash in it. Only an `@add` class reads a breakpoint lever, under that breakpoint's prefix (`sm:`, or `md:max-lg:` for a range); `pnpm check-component-tokens` fails if the prefix doesn't match.
 
 **Pull a lever** by setting it on `:root`, or on any element to change one section only:
 
@@ -738,7 +751,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>avatar</strong> (19)</summary>
+<summary><strong>avatar</strong> (22)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -754,6 +767,9 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--avatar-badge` | Fill colour of the badge. | `var(--primary)` |
 | `--avatar-badge-foreground` | Text colour of the badge. | `var(--primary-foreground)` |
 | `--avatar-badge-ring` | Ring colour of the badge. | `var(--background)` |
+| `--avatar-badge-size` | Width and height of the status dot on a default avatar. | `calc(var(--spacing) * 2.5)` |
+| `--avatar-badge-sm-size` | Width and height of the status dot on a small avatar. | `calc(var(--spacing) * 2)` |
+| `--avatar-badge-lg-size` | Width and height of the status dot on a large avatar. | `calc(var(--spacing) * 3)` |
 | `--avatar-group-count-size` | Width and height of the group-count. | `calc(var(--spacing) * 8)` |
 | `--avatar-group-count-radius` | Corner radius of the group-count. | `var(--radius-full)` |
 | `--avatar-group-count` | Fill colour of the group-count. | `var(--muted)` |
@@ -844,7 +860,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 |---|---|---|
 | `--breadcrumb-list-gap` | Gap between items of the list. | `calc(var(--spacing) * 1.5)` |
 | `--breadcrumb-list-foreground` | Text colour of the list. | `var(--muted-foreground)` |
-| `--breadcrumb-list-from-sm-gap` | Gap between crumbs from the sm breakpoint up. | `calc(var(--spacing) * 2.5)` |
+| `--breadcrumb-list-gap\:sm` | Gap between crumbs from the sm breakpoint up. | `calc(var(--spacing) * 2.5)` |
 | `--breadcrumb-item-gap` | Gap between items of the item. | `calc(var(--spacing) * 1.5)` |
 | `--breadcrumb-link-hover-foreground` | Text colour of the link when hovered. | `var(--foreground)` |
 | `--breadcrumb-page-font-weight` | Font weight of the page. | `500` |
@@ -1274,7 +1290,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--drawer-content-min-height` | Minimum height of the content. | `calc(var(--spacing) * 0)` |
 | `--drawer-header-gap` | Gap between items of the header. | `calc(var(--spacing) * 0.5)` |
 | `--drawer-header-padding` | Padding of the header. | `calc(var(--spacing) * 4)` |
-| `--drawer-header-from-md-gap` | Gap between the title and description from the md breakpoint up. | `calc(var(--spacing) * 1.5)` |
+| `--drawer-header-gap\:md` | Gap between the title and description from the md breakpoint up. | `calc(var(--spacing) * 1.5)` |
 | `--drawer-footer-gap` | Gap between items of the footer. | `calc(var(--spacing) * 2)` |
 | `--drawer-footer-padding` | Padding of the footer. | `calc(var(--spacing) * 4)` |
 | `--drawer-title-font-weight` | Font weight of the title. | `500` |
@@ -2000,7 +2016,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>sidebar</strong> (78)</summary>
+<summary><strong>sidebar</strong> (81)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
@@ -2008,6 +2024,9 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--sidebar-inner` | Fill colour of the inner. | `var(--sidebar)` |
 | `--sidebar-rail-width` | Width of the rail. | `calc(var(--spacing) * 4)` |
 | `--sidebar-inset` | Fill colour of the inset. | `var(--background)` |
+| `--sidebar-inset-offset\:md` | With the inset sidebar, from md up: space between the content panel and the screen edges (none on the sidebar's side while it's open). | `calc(var(--spacing) * 2)` |
+| `--sidebar-inset-radius\:md` | With the inset sidebar, from md up: corner radius of the content panel. | `var(--radius-2xl)` |
+| `--sidebar-inset-shadow\:md` | With the inset sidebar, from md up: shadow of the content panel. | `0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)` |
 | `--sidebar-input-height` | Height of the input. | `calc(var(--spacing) * 8)` |
 | `--sidebar-input` | Fill colour of the input. | `var(--background)` |
 | `--sidebar-input-shadow` | Shadow of the input. | `0 0 #0000` |
@@ -2279,8 +2298,8 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | Lever | What it changes | Default |
 |---|---|---|
 | `--toast-viewport-offset` | Distance of the toasts from the bottom and side edges of the screen. | `calc(var(--spacing) * 4)` |
-| `--toast-viewport-from-sm-offset` | Distance of the toasts from the screen edges from the sm breakpoint up. | `calc(var(--spacing) * 6)` |
-| `--toast-viewport-from-md-width` | Width of the toasts from the md breakpoint up, held to the end edge. Below md they span the screen. | `calc(var(--spacing) * 110)` |
+| `--toast-viewport-offset\:sm` | Distance of the toasts from the screen edges from the sm breakpoint up. | `calc(var(--spacing) * 6)` |
+| `--toast-viewport-width\:md` | Width of the toasts from the md breakpoint up, held to the end edge. Below md they span the screen. | `calc(var(--spacing) * 110)` |
 | `--toast-radius` | Corner radius of the toast. | `var(--radius-2xl)` |
 | `--toast-focus-ring` | Ring colour of the toast when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
 | `--toast` | Fill colour of the toast. | `var(--light-l2)` |

@@ -75,13 +75,13 @@ export function prettyVar(name: string) {
 export interface ColorValue { ref: string; alpha: number }
 export function parseColor(v: string): ColorValue | null {
   const s = v.trim()
-  let m = s.match(/^var\((--[\w-]+)(?:\s*,\s*([\s\S]+))?\)$/)
+  let m = s.match(/^var\((--(?:[\w-]|\\:)+)(?:\s*,\s*([\s\S]+))?\)$/)
   if (m) {
     // A lever that falls back to another lever: show what it resolves to.
     if (!hexByVar.has(m[1]) && !semanticByVar.has(m[1]) && m[2]) return parseColor(m[2])
     return { ref: m[1], alpha: 100 }
   }
-  m = s.match(/^color-mix\(in \w+,\s*var\((--[\w-]+)\)\s+([\d.]+)%,\s*transparent\)$/)
+  m = s.match(/^color-mix\(in \w+,\s*var\((--(?:[\w-]|\\:)+)\)\s+([\d.]+)%,\s*transparent\)$/)
   if (m) return { ref: m[1], alpha: +m[2] }
   if (s === 'transparent') return { ref: 'transparent', alpha: 100 }
   return null
@@ -111,7 +111,7 @@ export function parseLength(v: string): number | null {
   if (m) return +m[1]
   m = s.match(/^([\d.]+)rem$/)
   if (m) return +m[1] * 16
-  m = s.match(/^var\(--[\w-]+,\s*([\s\S]+)\)$/)
+  m = s.match(/^var\(--(?:[\w-]|\\:)+,\s*([\s\S]+)\)$/)
   if (m) return parseLength(m[1])
   return null
 }
@@ -185,6 +185,6 @@ export function exportCss(overrides: Overrides) {
 /** Read a block exported earlier back into overrides. */
 export function importCss(css: string): Overrides {
   const out: Overrides = {}
-  for (const m of css.matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)) out[m[1]] = m[2].trim()
+  for (const m of css.matchAll(/(--(?:[\w-]|\\:)+)\s*:\s*([^;]+);/g)) out[m[1]] = m[2].trim()
   return out
 }

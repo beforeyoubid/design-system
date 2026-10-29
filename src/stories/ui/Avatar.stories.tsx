@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Avatar, AvatarImage, AvatarFallback } from '../../components/ui/avatar'
+import { Avatar, AvatarBadge, AvatarImage, AvatarFallback } from '../../components/ui/avatar'
 
 const meta: Meta<typeof Avatar> = {
   title: 'BYB Components/Avatar',
@@ -34,6 +34,20 @@ export const Group: Story = {
         <Avatar key={i} className="ring-background ring-2">
           <AvatarImage src={`https://i.pravatar.cc/64?img=${i}`} alt={`@user-${i}`} />
           <AvatarFallback>U{i}</AvatarFallback>
+        </Avatar>
+      ))}
+    </div>
+  ),
+}
+
+/** A status dot in the corner, at each avatar size. */
+export const WithStatus: Story = {
+  render: () => (
+    <div className="flex items-center gap-4">
+      {(['sm', 'default', 'lg'] as const).map((size) => (
+        <Avatar key={size} size={size}>
+          <AvatarFallback>BY</AvatarFallback>
+          <AvatarBadge />
         </Avatar>
       ))}
     </div>

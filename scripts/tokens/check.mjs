@@ -16,7 +16,7 @@
  */
 import fs from 'node:fs'
 import path from 'node:path'
-import { findSites, parseTokenFile, parseTokenName, root, tokenDir, tokenFiles, uiDir } from './lib.mjs'
+import { findSites, parseTokenFile, parseTokenName, breakpointPrefix, root, tokenDir, tokenFiles, uiDir } from './lib.mjs'
 import { contrast, resolveColor, rootVars } from './color.mjs'
 
 const errors = []
@@ -91,9 +91,15 @@ for (const { component, file } of files) {
         continue
       }
       if (!t.ours && !ui) fail(`${where}: no ui file renders data-slot="${rule.slot}" (mark the token @ours if our own component reads it)`)
-      // A lever an @add class reads names its own case (e.g. `with-icon`, `from-sm`); it needn't be a cva key.
+      // A lever an @add class reads names its own case (e.g. `with-icon`); it needn't be a cva key.
       const readByAdd = rule.add.some((d) => d.classes.some((c) => c.includes(`(${t.name})`)))
       if (!t.ours && !readByAdd && p.variant?.unresolved) fail(`${where}: "${p.variant.unresolved}" is not a cva key or @alias on data-slot="${rule.slot}"`)
+      if (p.breakpoint) {
+        const prefix = breakpointPrefix(p.breakpoint)
+        const reads = rule.add.flatMap((d) => d.classes).filter((c) => c.includes(`(${t.name})`))
+        if (!t.ours && !reads.length) fail(`${where}: ${t.name} is for a breakpoint, so an @add class must read it (under ${prefix})`)
+        for (const c of reads) if (!c.startsWith(prefix)) fail(`${where}: ${c} reads a ${p.breakpoint} lever, so it must start with ${prefix}`)
+      }
       if (t.ours && !ourSource.includes(t.name)) fail(`${where}: ${t.name} is marked @ours but none of our components reads it`)
       if (!t.description) fail(`${where}: ${t.name} needs a comment saying what it's for`)
       parsedTokens.push({ ...t, ...p, slot: rule.slot, component, where })

@@ -14,7 +14,12 @@
  *   --_<slot>[-<variant>][-<state>][-<property>]
  * <slot> is the rule's data-slot; <variant> is a cva key on that part (or an
  * alias declared with @alias); <state> and <property> come from the tables
- * below. A token's comment can carry directives:
+ * below. A value for one breakpoint and up ends in `\:<breakpoint>` on the public
+ * lever (`--toast-viewport-offset\:sm`, or `\:md-to-lg` for a range) and in
+ * `--<breakpoint>` on the private one (`--_toast-viewport-offset--sm`), because
+ * Tailwind won't read a class with a backslash in it. Only an @add class reads a
+ * breakpoint lever, under that breakpoint's prefix (`sm:`, `md:max-lg:`).
+ * A token's comment can carry directives:
  *   @site <cva group>.<key> | base   which class string to edit (instead of inferring it)
  *   @ours                          read by our own components, not class-edited in ui/
  * and a rule can carry standalone directives for classes that aren't levers:
@@ -86,6 +91,31 @@ export const STATES = {
 }
 const STATE_NAMES = Object.keys(STATES)
 
+// Breakpoints, mobile-first: a lever for `md` applies from md up; `md-to-lg` from md up to lg.
+export const BREAKPOINTS = ['sm', 'md', 'lg', 'xl', '2xl']
+const BP = BREAKPOINTS.join('|')
+const breakpointRe = new RegExp(`^(.+?)--((${BP})(?:-to-(${BP}))?)$`)
+
+/** Split a private name into its base and breakpoint: `--_x--md-to-lg` → { base: '--_x', breakpoint: 'md-to-lg' }. */
+export function splitBreakpoint(privateName) {
+  const m = privateName.match(breakpointRe)
+  if (!m) return { base: privateName, breakpoint: null }
+  if (m[4] && BREAKPOINTS.indexOf(m[4]) <= BREAKPOINTS.indexOf(m[3])) throw new Error(`${privateName}: a range must go from a smaller breakpoint to a larger one`)
+  return { base: m[1], breakpoint: m[2] }
+}
+
+/** The public lever a private name reads: `--_x--md` → `--x\:md`. */
+export function publicName(privateName) {
+  const { base, breakpoint } = splitBreakpoint(privateName)
+  return base.replace(/^--_/, '--') + (breakpoint ? `\\:${breakpoint}` : '')
+}
+
+/** The Tailwind prefix for a breakpoint: `md` → `md:`, `md-to-lg` → `md:max-lg:`. */
+export function breakpointPrefix(breakpoint) {
+  const [from, to] = breakpoint.split('-to-')
+  return to ? `${from}:max-${to}:` : `${from}:`
+}
+
 // ---------------------------------------------------------------------------
 // Token files
 // ---------------------------------------------------------------------------
@@ -144,7 +174,7 @@ export function parseTokenFile(file) {
         continue
       }
       const [, , name, value] = it
-      const v = value.trim().match(/^var\((--[\w-]+)\s*,\s*([\s\S]+)\)$/)
+      const v = value.trim().match(/^var\((--(?:[\w-]|\\:)+)\s*,\s*([\s\S]+)\)$/)
       if (!v) throw new Error(`${path.basename(file)}:${line}: ${name} must be var(--public, fallback)`)
       const desc = pending ?? ''
       rule.tokens.push({
@@ -168,8 +198,10 @@ export function parseTokenFile(file) {
  * `cvaKeys` lists the cva keys on that part as "group.key".
  */
 export function parseTokenName(token, rule, cvaKeys = []) {
-  const pub = token.name.replace(/^--_/, '')
-  if (token.public !== `--${pub}`) throw new Error(`${token.name} must read --${pub}, not ${token.public}`)
+  const { base, breakpoint } = splitBreakpoint(token.name)
+  const expected = publicName(token.name)
+  if (token.public !== expected) throw new Error(`${token.name} must read ${expected}, not ${token.public}`)
+  const pub = base.replace(/^--_/, '')
   if (pub !== rule.slot && !pub.startsWith(rule.slot + '-')) {
     throw new Error(`${token.name} is declared on [data-slot="${rule.slot}"] but doesn't start with "${rule.slot}"`)
   }
@@ -211,7 +243,7 @@ export function parseTokenName(token, rule, cvaKeys = []) {
   if (token.site) {
     variant = token.site === 'base' ? null : { group: token.site.split('.')[0], key: token.site.split('.').slice(1).join('.') }
   }
-  return { variant, state, property }
+  return { variant, state, property, breakpoint }
 }
 
 // ---------------------------------------------------------------------------

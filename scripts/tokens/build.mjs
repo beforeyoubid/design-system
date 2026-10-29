@@ -43,7 +43,7 @@ const keysFor = (slot) => {
   }
   return []
 }
-const refs = (value) => [...value.matchAll(/var\((--[\w-]+)/g)].map((m) => m[1])
+const refs = (value) => [...value.matchAll(/var\((--(?:[\w-]|\\:)+)/g)].map((m) => m[1])
 
 const components = files.map(({ component, file }) => {
   const { header, rules } = parseTokenFile(file)
@@ -73,7 +73,7 @@ const components = files.map(({ component, file }) => {
 // Brand tokens: colour primitives (with hex), radius, type scale. Semantic tokens: shadcn roles.
 const css = fs.readFileSync(path.join(root, 'globals.css'), 'utf8')
 const firstRoot = css.match(/(?:^|\n):root\s*\{([\s\S]*?)\n\}/)[1]
-const brandColors = [...firstRoot.matchAll(/(--[\w-]+):\s*oklch\([^)]*\);\s*\/\*\s*(#[0-9A-Fa-f]{6})/g)].map(([, name, hex]) => ({ name, hex: hex.toUpperCase() }))
+const brandColors = [...firstRoot.matchAll(/(--(?:[\w-]|\\:)+):\s*oklch\([^)]*\);\s*\/\*\s*(#[0-9A-Fa-f]{6})/g)].map(([, name, hex]) => ({ name, hex: hex.toUpperCase() }))
 const scale = (re) => [...firstRoot.matchAll(re)].map(([, name, value]) => ({ name, value: value.trim() }))
 const radius = scale(/(--radius-[\w]+):\s*([^;]+);/g)
 const text = scale(/(--text-[\w-]+?):\s*([^;]+);/g).filter((t) => !t.name.includes('--', 2))

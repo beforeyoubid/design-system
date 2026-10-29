@@ -2188,6 +2188,48 @@
      ]
     },
     {
+     "name": "--avatar-badge-size",
+     "private": "--_avatar-badge-size",
+     "default": "calc(var(--spacing) * 2.5)",
+     "description": "Width and height of the status dot on a default avatar.",
+     "type": "length",
+     "part": "avatar-badge",
+     "variant": null,
+     "state": null,
+     "property": "size",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--avatar-badge-sm-size",
+     "private": "--_avatar-badge-sm-size",
+     "default": "calc(var(--spacing) * 2)",
+     "description": "Width and height of the status dot on a small avatar.",
+     "type": "length",
+     "part": "avatar-badge",
+     "variant": "sm",
+     "state": null,
+     "property": "size",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--avatar-badge-lg-size",
+     "private": "--_avatar-badge-lg-size",
+     "default": "calc(var(--spacing) * 3)",
+     "description": "Width and height of the status dot on a large avatar.",
+     "type": "length",
+     "part": "avatar-badge",
+     "variant": "lg",
+     "state": null,
+     "property": "size",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
      "name": "--avatar-group-count-size",
      "private": "--_avatar-group-count-size",
      "default": "calc(var(--spacing) * 8)",
@@ -3234,13 +3276,13 @@
      ]
     },
     {
-     "name": "--breadcrumb-list-from-sm-gap",
-     "private": "--_breadcrumb-list-from-sm-gap",
+     "name": "--breadcrumb-list-gap\\:sm",
+     "private": "--_breadcrumb-list-gap--sm",
      "default": "calc(var(--spacing) * 2.5)",
      "description": "Gap between crumbs from the sm breakpoint up.",
      "type": "length",
      "part": "breadcrumb-list",
-     "variant": "from-sm",
+     "variant": null,
      "state": null,
      "property": "gap",
      "reads": [
@@ -7464,13 +7506,13 @@
      ]
     },
     {
-     "name": "--drawer-header-from-md-gap",
-     "private": "--_drawer-header-from-md-gap",
+     "name": "--drawer-header-gap\\:md",
+     "private": "--_drawer-header-gap--md",
      "default": "calc(var(--spacing) * 1.5)",
      "description": "Gap between the title and description from the md breakpoint up.",
      "type": "length",
      "part": "drawer-header",
-     "variant": "from-md",
+     "variant": null,
      "state": null,
      "property": "gap",
      "reads": [
@@ -14796,6 +14838,46 @@
      ]
     },
     {
+     "name": "--sidebar-inset-offset\\:md",
+     "private": "--_sidebar-inset-offset--md",
+     "default": "calc(var(--spacing) * 2)",
+     "description": "With the inset sidebar, from md up: space between the content panel and the screen edges (none on the sidebar's side while it's open).",
+     "type": "length",
+     "part": "sidebar-inset",
+     "variant": null,
+     "state": null,
+     "property": "offset",
+     "reads": [
+      "--spacing"
+     ]
+    },
+    {
+     "name": "--sidebar-inset-radius\\:md",
+     "private": "--_sidebar-inset-radius--md",
+     "default": "var(--radius-2xl)",
+     "description": "With the inset sidebar, from md up: corner radius of the content panel.",
+     "type": "radius",
+     "part": "sidebar-inset",
+     "variant": null,
+     "state": null,
+     "property": "radius",
+     "reads": [
+      "--radius-2xl"
+     ]
+    },
+    {
+     "name": "--sidebar-inset-shadow\\:md",
+     "private": "--_sidebar-inset-shadow--md",
+     "default": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+     "description": "With the inset sidebar, from md up: shadow of the content panel.",
+     "type": "shadow",
+     "part": "sidebar-inset",
+     "variant": null,
+     "state": null,
+     "property": "shadow",
+     "reads": []
+    },
+    {
      "name": "--sidebar-input-height",
      "private": "--_sidebar-input-height",
      "default": "calc(var(--spacing) * 8)",
@@ -17617,13 +17699,13 @@
      ]
     },
     {
-     "name": "--toast-viewport-from-sm-offset",
-     "private": "--_toast-viewport-from-sm-offset",
+     "name": "--toast-viewport-offset\\:sm",
+     "private": "--_toast-viewport-offset--sm",
      "default": "calc(var(--spacing) * 6)",
      "description": "Distance of the toasts from the screen edges from the sm breakpoint up.",
      "type": "length",
      "part": "toast-viewport",
-     "variant": "from-sm",
+     "variant": null,
      "state": null,
      "property": "offset",
      "reads": [
@@ -17631,13 +17713,13 @@
      ]
     },
     {
-     "name": "--toast-viewport-from-md-width",
-     "private": "--_toast-viewport-from-md-width",
+     "name": "--toast-viewport-width\\:md",
+     "private": "--_toast-viewport-width--md",
      "default": "calc(var(--spacing) * 110)",
      "description": "Width of the toasts from the md breakpoint up, held to the end edge. Below md they span the screen.",
      "type": "length",
      "part": "toast-viewport",
-     "variant": "from-md",
+     "variant": null,
      "state": null,
      "property": "width",
      "reads": [

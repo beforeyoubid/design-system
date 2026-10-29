@@ -216,7 +216,7 @@ This tells bundlers that JS exports are side-effect-free (free to tree-shake) bu
 
 ### Component tokens (levers) and the shadcn CLI
 
-Three layers: **brand** tokens (`--mint-45`, `--text-body-4`, `--radius-lg`) → **semantic** tokens (`--primary`, `--border`) → **component** tokens, called **levers** (`--button-default`, `--input-radius`). A **part** is one element of a component, named by its `data-slot`. Lever names are `--<part>[-<variant>][-<state>][-<property>]`; DESIGN.md "Component tokens (levers)" has the full grammar and the generated list.
+Three layers: **brand** tokens (`--mint-45`, `--text-body-4`, `--radius-lg`) → **semantic** tokens (`--primary`, `--border`) → **component** tokens, called **levers** (`--button-default`, `--input-radius`). A **part** is one element of a component, named by its `data-slot`. Lever names are `--<part>[-<variant>][-<state>][-<property>][\:<breakpoint>]` (mobile-first: `\:md` is md and up, `\:md-to-lg` a range); DESIGN.md "Component tokens (levers)" has the full grammar and the generated list.
 
 - A token file (`src/tokens/components/<component>.css`) declares a private `--_x` per lever on its part, falling back to the public `--x`, then the default. The ui file reads the private name (`rounded-(--_input-radius)`); apps set the public one.
 - Directives in token files: `/* @add classes */` and `/* @remove classes */` on a part, `/* @add(size.sm) … */` for one cva key, `/* @alias md = size.default */`. In a token's comment, `@ours` marks a lever read by our own component, not the ui file.

@@ -31,7 +31,7 @@
 }
 
 [data-slot="avatar-badge"] {
-  /* @add group-data-[size=sm]/avatar:size-2 group-data-[size=sm]/avatar:[&>svg]:hidden group-data-[size=default]/avatar:size-2.5 group-data-[size=default]/avatar:[&>svg]:size-2 group-data-[size=lg]/avatar:size-3 group-data-[size=lg]/avatar:[&>svg]:size-2 */
+  /* @add group-data-[size=sm]/avatar:size-(--_avatar-badge-sm-size) group-data-[size=sm]/avatar:[&>svg]:hidden group-data-[size=default]/avatar:size-(--_avatar-badge-size) group-data-[size=default]/avatar:[&>svg]:size-2 group-data-[size=lg]/avatar:size-(--_avatar-badge-lg-size) group-data-[size=lg]/avatar:[&>svg]:size-2 */
   /* Corner radius of the badge. */
   --_avatar-badge-radius: var(--avatar-badge-radius, var(--radius-full));
   /* Fill colour of the badge. */
@@ -40,6 +40,12 @@
   --_avatar-badge-foreground: var(--avatar-badge-foreground, var(--primary-foreground));
   /* Ring colour of the badge. */
   --_avatar-badge-ring: var(--avatar-badge-ring, var(--background));
+  /* Width and height of the status dot on a default avatar. */
+  --_avatar-badge-size: var(--avatar-badge-size, calc(var(--spacing) * 2.5));
+  /* Width and height of the status dot on a small avatar. */
+  --_avatar-badge-sm-size: var(--avatar-badge-sm-size, calc(var(--spacing) * 2));
+  /* Width and height of the status dot on a large avatar. */
+  --_avatar-badge-lg-size: var(--avatar-badge-lg-size, calc(var(--spacing) * 3));
 }
 
 [data-slot="avatar-group-count"] {

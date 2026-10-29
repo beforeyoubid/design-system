@@ -9,7 +9,7 @@ import { root } from './lib.mjs'
 const css = fs.readFileSync(path.join(root, 'globals.css'), 'utf8')
 export const rootVars = new Map()
 for (const block of css.matchAll(/(?:^|\n):root\s*\{([\s\S]*?)\n\}/g)) {
-  for (const [, name, value] of block[1].matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)) rootVars.set(name, value.trim())
+  for (const [, name, value] of block[1].matchAll(/(--(?:[\w-]|\\:)+)\s*:\s*([^;]+);/g)) rootVars.set(name, value.trim())
 }
 
 const NAMED = { white: '#ffffff', black: '#000000' }
@@ -68,7 +68,7 @@ export function resolveColor(value, depth = 0) {
     if (m[5]) c.a = m[6] ? +m[5] / 100 : +m[5]
     return c
   }
-  m = v.match(/^var\(\s*(--[\w-]+)\s*(?:,\s*([\s\S]+))?\)$/)
+  m = v.match(/^var\(\s*(--(?:[\w-]|\\:)+)\s*(?:,\s*([\s\S]+))?\)$/)
   if (m) {
     if (rootVars.has(m[1])) return resolveColor(rootVars.get(m[1]), depth + 1)
     return m[2] ? resolveColor(m[2], depth + 1) : null
