@@ -57,6 +57,22 @@ function ColorControl({ id, value, onChange }: ControlProps) {
       </button>
       {open && (
         <div className="pg-palette" role="dialog" aria-label="Choose a colour">
+          <div className="pg-palette-row">
+            <span className="pg-palette-label">Colour roles</span>
+            <span className="pg-palette-hint">Prefer a role: apps can retheme it in one place.</span>
+            <div className="pg-palette-roles">
+              {manifest.semantic.map((s) => (
+                <button key={s.name} type="button" aria-pressed={parsed.ref === s.name} className="pg-role-chip" onClick={() => pick(s.name)} title={`Follows the ${prettyVar(s.name)} role, so it changes when that role does`}>
+                  <Swatch value={`var(${s.name})`} size="sm" />
+                  {prettyVar(s.name)}
+                </button>
+              ))}
+              <button type="button" aria-pressed={parsed.ref === 'transparent'} className="pg-role-chip" onClick={() => pick('transparent')}>
+                <Swatch value="transparent" size="sm" />
+                None
+              </button>
+            </div>
+          </div>
           {colorFamilies.map(({ family, colors }) => (
             <div key={family} className="pg-palette-row">
               <span className="pg-palette-label">{familyLabel[family]}</span>
@@ -76,21 +92,6 @@ function ColorControl({ id, value, onChange }: ControlProps) {
               </div>
             </div>
           ))}
-          <div className="pg-palette-row">
-            <span className="pg-palette-label">Colour roles</span>
-            <div className="pg-palette-roles">
-              {manifest.semantic.map((s) => (
-                <button key={s.name} type="button" aria-pressed={parsed.ref === s.name} className="pg-role-chip" onClick={() => pick(s.name)} title={`Follows the ${prettyVar(s.name)} role, so it changes when that role does`}>
-                  <Swatch value={`var(${s.name})`} size="sm" />
-                  {prettyVar(s.name)}
-                </button>
-              ))}
-              <button type="button" aria-pressed={parsed.ref === 'transparent'} className="pg-role-chip" onClick={() => pick('transparent')}>
-                <Swatch value="transparent" size="sm" />
-                None
-              </button>
-            </div>
-          </div>
           {parsed.ref !== 'transparent' && (
             <label className="pg-palette-alpha">
               <span>Strength</span>
