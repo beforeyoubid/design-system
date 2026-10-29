@@ -5,7 +5,13 @@
 
 [data-slot="toast-viewport"] {
   /* @remove mx-auto w-auto max-w-sm sm:end-4 sm:start-auto sm:mx-0 sm:w-full */
-  /* @add sm:inset-x-6 sm:bottom-6 md:start-auto md:w-110 */
+  /* @add inset-x-(--_toast-viewport-offset) bottom-(--_toast-viewport-offset) sm:inset-x-(--_toast-viewport-from-sm-offset) sm:bottom-(--_toast-viewport-from-sm-offset) md:start-auto md:w-(--_toast-viewport-from-md-width) */
+  /* Distance of the toasts from the bottom and side edges of the screen. */
+  --_toast-viewport-offset: var(--toast-viewport-offset, calc(var(--spacing) * 4));
+  /* Distance of the toasts from the screen edges from the sm breakpoint up. */
+  --_toast-viewport-from-sm-offset: var(--toast-viewport-from-sm-offset, calc(var(--spacing) * 6));
+  /* Width of the toasts from the md breakpoint up, held to the end edge. Below md they span the screen. */
+  --_toast-viewport-from-md-width: var(--toast-viewport-from-md-width, calc(var(--spacing) * 110));
 }
 
 [data-slot="toast"] {

@@ -577,7 +577,7 @@ A **part** is one element of a component, named by its `data-slot` (`select-trig
 --dropdown-menu-item-highlighted-foreground   text colour of the highlighted menu item
 ```
 
-No property means the fill. Properties: `foreground` (text and icon colour), `border`, `ring`, `radius`, `height`, `min-height`, `width`, `size`, `padding`, `padding-x`, `padding-y`, `gap`, `shadow`, `font-weight`, `opacity`, `tracking`. States: `hover`, `focus`, `active`, `pressed`, `open`, `selected`, `highlighted`, `checked`, `disabled`, `invalid`, `placeholder`. A variant's lever falls back to the component's own lever where there is one (`--button-sm-radius` → `--button-radius`). Variants keep the stock key in lever names: our `primary` button is `default`, `tertiary` is `outline`.
+No property means the fill. Properties: `foreground` (text and icon colour), `border`, `ring`, `radius`, `height`, `min-height`, `width`, `size`, `padding`, `padding-x`, `padding-y`, `gap`, `offset` (distance from the screen or container edge), `shadow`, `font-weight`, `opacity`, `tracking`. States: `hover`, `focus`, `active`, `pressed`, `open`, `selected`, `highlighted`, `checked`, `disabled`, `invalid`, `placeholder`. A variant's lever falls back to the component's own lever where there is one (`--button-sm-radius` → `--button-radius`). Variants keep the stock key in lever names: our `primary` button is `default`, `tertiary` is `outline`. A value that changes at a breakpoint gets its own lever with `from-<breakpoint>` in the variant place, for that breakpoint and up (`--toast-viewport-offset`, then `--toast-viewport-from-sm-offset`); `from-` keeps it apart from size variants called `sm` and `md`.
 
 **Pull a lever** by setting it on `:root`, or on any element to change one section only:
 
@@ -2274,10 +2274,13 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>toast</strong> (23)</summary>
+<summary><strong>toast</strong> (26)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
+| `--toast-viewport-offset` | Distance of the toasts from the bottom and side edges of the screen. | `calc(var(--spacing) * 4)` |
+| `--toast-viewport-from-sm-offset` | Distance of the toasts from the screen edges from the sm breakpoint up. | `calc(var(--spacing) * 6)` |
+| `--toast-viewport-from-md-width` | Width of the toasts from the md breakpoint up, held to the end edge. Below md they span the screen. | `calc(var(--spacing) * 110)` |
 | `--toast-radius` | Corner radius of the toast. | `var(--radius-2xl)` |
 | `--toast-focus-ring` | Ring colour of the toast when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
 | `--toast` | Fill colour of the toast. | `var(--light-l2)` |

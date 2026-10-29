@@ -55,6 +55,9 @@ export const PROPERTIES = {
   'padding-x': { utility: 'px', type: 'length', probe: 'px-[3px]', label: 'Horizontal padding' },
   'padding-y': { utility: 'py', type: 'length', probe: 'py-[3px]', label: 'Vertical padding' },
   gap: { utility: 'gap', type: 'length', probe: 'gap-[3px]', label: 'Gap between items' },
+  // Distance from the edge of the screen or container, for a part positioned against it
+  // (a toast stack, a floating panel). Only an @add class reads it, as inset-*, bottom-* or m-*.
+  offset: { utility: 'inset', type: 'length', probe: 'inset-[3px]', label: 'Distance from the edge' },
   shadow: { utility: 'shadow', type: 'shadow', probe: 'shadow-[0_0_0_#010203]', label: 'Shadow' },
   'font-weight': { utility: 'font', type: 'font-weight', probe: 'font-[555]', label: 'Font weight' },
   opacity: { utility: 'opacity', type: 'opacity', probe: 'opacity-[.33]', label: 'Opacity' },
@@ -196,7 +199,7 @@ export function parseTokenName(token, rule, cvaKeys = []) {
       // A variant name can exist in more than one cva group (button `default` is both a
       // variant and a size). Sizing properties go to the size group, colours to the variant.
       const matches = cvaKeys.filter((k) => k.split('.').slice(1).join('.') === rest)
-      const sizing = ['radius', 'height', 'min-height', 'width', 'size', 'padding', 'padding-x', 'padding-y', 'gap'].includes(property)
+      const sizing = ['radius', 'height', 'min-height', 'width', 'size', 'padding', 'padding-x', 'padding-y', 'gap', 'offset'].includes(property)
       const pick =
         matches.find((k) => (sizing ? /^size\./ : /^variant\./).test(k)) ?? (matches.length === 1 ? matches[0] : null)
       if (pick) {
