@@ -150,6 +150,7 @@ body { background: var(--pg-bg); }
   position: relative;
 }
 .pg-row:hover { background: var(--pg-hover); }
+.pg-row[data-warning="true"] { box-shadow: inset 0 0 0 1.5px var(--pg-fail); }
 .pg-row[data-changed="true"] { background: color-mix(in oklab, var(--pg-mark) 28%, transparent); }
 .pg-row[data-changed="true"]::before {
   content: ""; position: absolute; left: 0; top: 10px; bottom: 10px; width: 3px; border-radius: 2px; background: var(--pg-mark);

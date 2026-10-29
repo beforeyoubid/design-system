@@ -150,7 +150,7 @@ function Row({ id, label, hint, type, name, defaultValue, overrides, set, max, w
   const changed = name in overrides
   const value = overrides[name] ?? defaultValue
   return (
-    <div className="pg-row" data-changed={changed}>
+    <div className="pg-row" data-changed={changed} data-warning={!!warning}>
       <div className="pg-row-text">
         <div className="pg-row-title">
           <label htmlFor={id}>{label}</label>
