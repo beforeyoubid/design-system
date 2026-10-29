@@ -137,6 +137,8 @@ export const REMOVED_EXPORTS = {
 export const EXPORT_RENAMES = {
   BYBCounter: 'Counter',
   BYBPillCard: 'PillCard',
+  BYBTimePicker: 'TimePicker',
+  BYBTimePickerProps: 'TimePickerProps',
 }
 
 /** Exports that moved to another package. The name stays; the import moves. */

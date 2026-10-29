@@ -31,8 +31,9 @@ export { BYBEmptyState, bybEmptyStateVariants } from './components/BYBEmptyState
 export type { BYBEmptyStateProps } from './components/BYBEmptyState'
 export { BYBFieldset } from './components/BYBFieldset'
 export type { BYBFieldsetProps } from './components/BYBFieldset'
-export { BYBDatePicker, BYBTimePicker, formatDateDMY } from './components/BYBDatePicker'
-export type { BYBDatePickerProps, BYBTimePickerProps } from './components/BYBDatePicker'
+export { BYBDatePicker, formatDateDMY } from './components/BYBDatePicker'
+export type { BYBDatePickerProps } from './components/BYBDatePicker'
+export { TimePicker, type TimePickerProps } from './components/time-picker'
 export { BYBAttachment, BYBFileUploadCard, bybDropZoneVariants } from './components/BYBAttachment'
 export type {
   BYBAttachmentProps,

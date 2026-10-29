@@ -1,6 +1,6 @@
 import * as React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { BYBDatePicker, BYBTimePicker } from '../components/BYBDatePicker'
+import { BYBDatePicker } from '../components/BYBDatePicker'
 
 const meta: Meta<typeof BYBDatePicker> = {
   title: 'BYB Components/BYBDatePicker',
@@ -51,22 +51,5 @@ export const DateFormat: Story = {
   args: {
     value: new Date(2026, 9, 16),
     description: 'Shown as 16/10/2026 (DD/MM/YYYY).',
-  },
-}
-
-/** The time picker on its own: same trigger and popover as the date picker. */
-export const StandaloneTimePicker: StoryObj<typeof BYBTimePicker> = {
-  render: function Render() {
-    const [time, setTime] = React.useState('')
-    const [withSec, setWithSec] = React.useState('09:15:30')
-    const [stepped, setStepped] = React.useState('14:30')
-    return (
-      <div className="flex h-96 items-start gap-4">
-        <BYBTimePicker value={time} onChange={setTime} />
-        <BYBTimePicker value={withSec} onChange={setWithSec} />
-        <BYBTimePicker value={stepped} onChange={setStepped} minuteStep={15} />
-        <BYBTimePicker value="08:00" disabled />
-      </div>
-    )
   },
 }

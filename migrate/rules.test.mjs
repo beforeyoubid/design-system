@@ -172,6 +172,13 @@ test('renames BYBCounter and BYBPillCard through the file', () => {
   assert.equal(out, "import { Counter, PillCard, cn } from '@beforeyoubid/design-system'\n<Counter value={1} />\n<PillCard>x</PillCard>")
 })
 
+test('renames BYBTimePicker and its props type', () => {
+  assert.equal(
+    run("import { BYBTimePicker, type BYBTimePickerProps } from '@beforeyoubid/design-system'\nconst p: BYBTimePickerProps = {}\n<BYBTimePicker {...p} />"),
+    "import { TimePicker, type TimePickerProps } from '@beforeyoubid/design-system'\nconst p: TimePickerProps = {}\n<TimePicker {...p} />",
+  )
+})
+
 test('keeps the local name when the import is aliased or the new name is taken', () => {
   assert.equal(
     run("import { BYBCounter as Count } from '@beforeyoubid/design-system'\n<Count />"),
