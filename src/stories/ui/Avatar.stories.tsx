@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Avatar, AvatarBadge, AvatarImage, AvatarFallback } from '../../components/ui/avatar'
+import { Avatar, AvatarBadge, AvatarFallback, AvatarGroup, AvatarGroupCount, AvatarImage } from '../../components/ui/avatar'
 
 const meta: Meta<typeof Avatar> = {
   title: 'BYB Components/Avatar',
@@ -49,6 +49,24 @@ export const WithStatus: Story = {
           <AvatarFallback>BY</AvatarFallback>
           <AvatarBadge />
         </Avatar>
+      ))}
+    </div>
+  ),
+}
+
+/** Stacked avatars with a "+N" count, at each size. */
+export const GroupWithCount: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4">
+      {(['sm', 'default', 'lg'] as const).map((size) => (
+        <AvatarGroup key={size}>
+          {['AB', 'CD', 'EF'].map((initials) => (
+            <Avatar key={initials} size={size}>
+              <AvatarFallback>{initials}</AvatarFallback>
+            </Avatar>
+          ))}
+          <AvatarGroupCount>+4</AvatarGroupCount>
+        </AvatarGroup>
       ))}
     </div>
   ),

@@ -4,11 +4,15 @@ import {
   ComboboxChip,
   ComboboxChips,
   ComboboxChipsInput,
+  ComboboxCollection,
   ComboboxContent,
   ComboboxEmpty,
+  ComboboxGroup,
   ComboboxInput,
   ComboboxItem,
+  ComboboxLabel,
   ComboboxList,
+  ComboboxSeparator,
   ComboboxValue,
   useComboboxAnchor,
 } from '../../components/combobox'
@@ -81,6 +85,79 @@ export const Multiple: Story = {
             </ComboboxList>
           </ComboboxContent>
         </Combobox>
+      </div>
+    )
+  },
+}
+
+const groups = [
+  { value: 'Inspections', items: ['Building & pest report', 'Pool inspection', 'Electrical report'] },
+  { value: 'Documents', items: ['Strata report', 'Contract review'] },
+]
+
+/** Options in labelled groups with a line between them, and one option that can't be picked. */
+export const Grouped: Story = {
+  render: () => (
+    <div className="w-80">
+      <Combobox items={groups}>
+        <ComboboxInput placeholder="Search reports" />
+        <ComboboxContent>
+          <ComboboxEmpty>No reports found.</ComboboxEmpty>
+          <ComboboxList>
+            {(group: (typeof groups)[number], index: number) => (
+              <ComboboxGroup key={group.value} items={group.items}>
+                {index > 0 && <ComboboxSeparator />}
+                <ComboboxLabel>{group.value}</ComboboxLabel>
+                <ComboboxCollection>
+                  {(item: string) => (
+                    <ComboboxItem key={item} value={item} disabled={item === 'Contract review'}>
+                      {item}
+                    </ComboboxItem>
+                  )}
+                </ComboboxCollection>
+              </ComboboxGroup>
+            )}
+          </ComboboxList>
+        </ComboboxContent>
+      </Combobox>
+    </div>
+  ),
+}
+
+/** A multiple combobox that's disabled, and one that's invalid. */
+export const MultipleStates: Story = {
+  render: function Render() {
+    const disabledAnchor = useComboboxAnchor()
+    const invalidAnchor = useComboboxAnchor()
+    const field = (anchor: ReturnType<typeof useComboboxAnchor>, props: { disabled?: boolean; invalid?: boolean }) => (
+      <Combobox multiple items={reports} defaultValue={[reports[0], reports[3]]} disabled={props.disabled}>
+        <ComboboxChips ref={anchor} aria-invalid={props.invalid || undefined}>
+          <ComboboxValue>
+            {(values: string[]) => (
+              <>
+                {values.map((value) => (
+                  <ComboboxChip key={value}>{value}</ComboboxChip>
+                ))}
+                <ComboboxChipsInput placeholder="Add a report" aria-invalid={props.invalid || undefined} />
+              </>
+            )}
+          </ComboboxValue>
+        </ComboboxChips>
+        <ComboboxContent anchor={anchor}>
+          <ComboboxList>
+            {(item: string) => (
+              <ComboboxItem key={item} value={item}>
+                {item}
+              </ComboboxItem>
+            )}
+          </ComboboxList>
+        </ComboboxContent>
+      </Combobox>
+    )
+    return (
+      <div className="flex w-96 flex-col gap-4">
+        {field(disabledAnchor, { disabled: true })}
+        {field(invalidAnchor, { invalid: true })}
       </div>
     )
   },

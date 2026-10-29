@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { IconArrowLeft, IconArrowUpRight } from '@tabler/icons-react'
+import { IconArrowLeft, IconArrowUpRight, IconPlus } from '@tabler/icons-react'
 import { Button } from '../../components/button'
 
 const meta: Meta<typeof Button> = {
@@ -69,9 +69,40 @@ export const AllVariants: Story = {
 export const AllSizes: Story = {
   render: () => (
     <div className="flex items-center gap-3">
+      <Button size="xs">xs · 24</Button>
       <Button size="sm">sm · 36</Button>
       <Button size="md">md · 40</Button>
       <Button size="lg">lg · 44</Button>
     </div>
   ),
 }
+
+/** Each size with a leading icon, which trims the padding on that side. */
+export const SizesWithIcon: Story = {
+  render: () => (
+    <div className="flex items-center gap-3">
+      {(['xs', 'sm', 'md', 'lg'] as const).map((size) => (
+        <Button key={size} size={size}>
+          <IconPlus data-icon="inline-start" />
+          Add {size}
+        </Button>
+      ))}
+    </div>
+  ),
+}
+
+/** Square icon-only buttons, smallest to largest. */
+export const IconOnly: Story = {
+  render: () => (
+    <div className="flex items-center gap-3">
+      {(['icon-xs', 'icon-sm', 'icon', 'icon-lg'] as const).map((size) => (
+        <Button key={size} size={size} variant="tertiary" aria-label={`Add (${size})`}>
+          <IconPlus />
+        </Button>
+      ))}
+    </div>
+  ),
+}
+
+/** A button in an invalid form section. */
+export const Invalid: Story = { args: { variant: 'tertiary', 'aria-invalid': true, children: 'Upload contract' } }

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Progress } from '../../components/ui/progress'
+import { Progress, ProgressLabel, ProgressValue } from '../../components/ui/progress'
 
 const meta: Meta<typeof Progress> = {
   title: 'BYB Components/Progress',
@@ -25,5 +25,15 @@ export const Stages: Story = {
         </div>
       ))}
     </div>
+  ),
+}
+
+/** With a label and the value as a percentage. */
+export const WithLabel: Story = {
+  render: () => (
+    <Progress value={66} className="w-72">
+      <ProgressLabel>Uploading contract</ProgressLabel>
+      <ProgressValue />
+    </Progress>
   ),
 }

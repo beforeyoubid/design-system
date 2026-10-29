@@ -28,3 +28,36 @@ export const All: Story = {
     </div>
   ),
 }
+
+/** The three sizes, icon only and with a label beside the icon. */
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex flex-col gap-3">
+      {(['sm', 'default', 'lg'] as const).map((size) => (
+        <div key={size} className="flex items-center gap-2">
+          <Toggle size={size} aria-label={`Bold (${size})`}>
+            <IconBold />
+          </Toggle>
+          <Toggle size={size} variant="outline">
+            <IconItalic data-icon="inline-start" />
+            Italic
+          </Toggle>
+        </div>
+      ))}
+    </div>
+  ),
+}
+
+/** Disabled, and invalid in a form. */
+export const States: Story = {
+  render: () => (
+    <div className="flex gap-2">
+      <Toggle disabled aria-label="Bold (disabled)">
+        <IconBold />
+      </Toggle>
+      <Toggle variant="outline" aria-invalid aria-label="Underline (invalid)">
+        <IconUnderline />
+      </Toggle>
+    </div>
+  ),
+}

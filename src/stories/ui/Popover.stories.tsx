@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Button } from '../../components/button'
-import { Popover, PopoverContent, PopoverTrigger } from '../../components/popover'
+import { Popover, PopoverContent, PopoverDescription, PopoverHeader, PopoverTitle, PopoverTrigger } from '../../components/popover'
 import { Label } from '../../components/ui/label'
 import { Input } from '../../components/ui/input'
 
@@ -28,6 +28,21 @@ export const Default: Story = {
             <Input defaultValue="25px" className="col-span-2 h-8" />
           </div>
         </div>
+      </PopoverContent>
+    </Popover>
+  ),
+}
+
+/** At its own width, with a title and description. */
+export const WithHeader: Story = {
+  render: () => (
+    <Popover>
+      <PopoverTrigger render={<Button variant="tertiary">What’s included?</Button>} />
+      <PopoverContent>
+        <PopoverHeader>
+          <PopoverTitle>Building &amp; pest report</PopoverTitle>
+          <PopoverDescription>A licensed inspector checks the structure, roof, wet areas and signs of termites.</PopoverDescription>
+        </PopoverHeader>
       </PopoverContent>
     </Popover>
   ),

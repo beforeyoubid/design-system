@@ -6,7 +6,9 @@ import {
   ItemActions,
   ItemContent,
   ItemDescription,
+  ItemFooter,
   ItemGroup,
+  ItemHeader,
   ItemMedia,
   ItemSeparator,
   ItemTitle,
@@ -70,6 +72,56 @@ export const Group: Story = {
           </div>
         ))}
       </ItemGroup>
+    </div>
+  ),
+}
+
+const PHOTO =
+  'data:image/svg+xml;utf8,' +
+  encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" fill="#D2EFEA"/><path d="M8 30l9-11 7 8 4-5 6 8z" fill="#009E87"/></svg>')
+
+/** An image thumbnail at each item size, in groups of that size. */
+export const WithImage: Story = {
+  render: () => (
+    <div className="flex w-110 flex-col gap-6">
+      {(['default', 'sm', 'xs'] as const).map((size) => (
+        <ItemGroup key={size}>
+          {['12 Smith St, Newtown', '4/88 King St, Enmore'].map((address) => (
+            <Item key={address} size={size} variant="outline">
+              <ItemMedia variant="image">
+                <img src={PHOTO} alt="" />
+              </ItemMedia>
+              <ItemContent>
+                <ItemTitle>{address}</ItemTitle>
+                <ItemDescription>Building & pest · {size}</ItemDescription>
+              </ItemContent>
+            </Item>
+          ))}
+        </ItemGroup>
+      ))}
+    </div>
+  ),
+}
+
+/** A header above the content and a footer below it. */
+export const WithHeaderAndFooter: Story = {
+  render: () => (
+    <div className="w-110">
+      <Item variant="outline" className="flex-col items-stretch">
+        <ItemHeader>
+          <ItemTitle>Strata report</ItemTitle>
+          <ItemDescription>Ready 18 Oct</ItemDescription>
+        </ItemHeader>
+        <ItemContent>
+          <ItemDescription>Levies, sinking fund, by-laws and the last two years of minutes.</ItemDescription>
+        </ItemContent>
+        <ItemFooter>
+          <Button variant="tertiary" size="sm">
+            Download
+          </Button>
+          <Button size="sm">View</Button>
+        </ItemFooter>
+      </Item>
     </div>
   ),
 }

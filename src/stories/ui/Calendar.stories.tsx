@@ -21,7 +21,28 @@ export const Default: Story = {
 
 export const Range: Story = {
   render: () => {
-    const [range, setRange] = React.useState<DateRange | undefined>()
+    const [range, setRange] = React.useState<DateRange | undefined>(() => {
+      const from = new Date()
+      return { from, to: new Date(from.getFullYear(), from.getMonth(), from.getDate() + 4) }
+    })
     return <Calendar mode="range" selected={range} onSelect={setRange} className="rounded-md border" />
+  },
+}
+
+/** Weekends and past days can't be picked. */
+export const DisabledDays: Story = {
+  render: () => {
+    const [date, setDate] = React.useState<Date | undefined>()
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    return (
+      <Calendar
+        mode="single"
+        selected={date}
+        onSelect={setDate}
+        disabled={[{ before: today }, { dayOfWeek: [0, 6] }]}
+        className="rounded-md border"
+      />
+    )
   },
 }

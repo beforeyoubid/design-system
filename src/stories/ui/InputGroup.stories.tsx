@@ -100,6 +100,17 @@ export const WithButton: Story = {
           </InputGroupButton>
         </InputGroupAddon>
       </InputGroup>
+      <InputGroup className="h-11">
+        <InputGroupInput placeholder="Search an address" />
+        <InputGroupAddon align="inline-end">
+          <InputGroupButton size="icon-sm" aria-label="Copy search">
+            <IconCopy />
+          </InputGroupButton>
+          <InputGroupButton size="sm" variant="primary">
+            Search
+          </InputGroupButton>
+        </InputGroupAddon>
+      </InputGroup>
     </div>
   ),
 }
