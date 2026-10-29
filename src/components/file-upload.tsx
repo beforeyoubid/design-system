@@ -22,10 +22,10 @@ import {
   type AttachmentUploadStatus,
 } from "@/components/attachment"
 import { ConfirmDialog } from "@/components/confirm-dialog"
+import { FieldDescription } from "@/components/field"
 import { FileDropZone } from "@/components/file-drop-zone"
 import { Spinner } from "@/components/spinner"
 import { toast } from "@/components/toast"
-import { buttonVariants } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 
 /**
@@ -75,6 +75,11 @@ export interface FileUploadBaseProps {
   /** The error look, e.g. while the field has a validation error. */
   "aria-invalid"?: React.AriaAttributes["aria-invalid"]
   "aria-describedby"?: string
+  /**
+   * Help line under the drop zone, between it and the files (e.g. "PDF or DOCX, up to 28 MB").
+   * Its id is `<id>-hint`. A refused file's message shows in its place.
+   */
+  hint?: React.ReactNode
   /** Shown when a picked file fails `accept` or `maxSize`. Defaults to a message naming the file. */
   invalidText?: string
   /** Ask in a ConfirmDialog before deleting a file (not when cancelling an upload). */
@@ -181,56 +186,77 @@ type Pending = {
   progress: number
 }
 
-/** One card, as FileUpload draws it. */
-type Card = {
-  key: string
+export interface FileUploadCardProps {
   name: string
+  /** Bytes. */
   size?: number
+  /** No status: a file that isn't uploaded (FileUpload without uploadOptions). */
   status?: AttachmentUploadStatus
+  /** 0–100, while `uploading`. */
   progress?: number
+  /** Shown on an `uploaded` card: "Uploaded 12 Oct 2026". */
   uploadedAt?: Date | string
+  /** Shows the download action. */
   url?: string
+  /** The message on an `error` card. */
+  error?: string
+  /** The × while `uploading`. */
   onCancel?: () => void
+  /** The Retry link on an `error` card. */
   onRetry?: () => void
-  onDelete: () => void
+  /** Shows the delete action. */
+  onDelete?: () => void
+  className?: string
 }
+
+type Card = FileUploadCardProps & { key: string }
 
 let nextKey = 0
 const newKey = () => `f${++nextKey}`
 
 /** Icon-only card action with a tooltip; a download link when `href` is set. */
 function CardAction({
+  action,
   label,
   tooltip,
   href,
   onClick,
   children,
 }: {
+  action: "download" | "delete" | "cancel"
   label: string
   tooltip?: string
   href?: string
   onClick?: () => void
   children: React.ReactNode
 }) {
-  // Native elements with AttachmentAction's look, so the tooltip can anchor to them on React 18 too.
+  // Native elements, so the tooltip can anchor to them on React 18 too.
   const props = {
-    "data-slot": "attachment-action",
+    "data-slot": "file-upload-action",
+    "data-action": action,
     "aria-label": label,
     onClick,
-    className: buttonVariants({ variant: "ghost", size: "icon-xs" }),
+    className:
+      "flex size-(--_file-upload-action-size) shrink-0 cursor-pointer items-center justify-center rounded-md outline-none transition-colors focus-visible:ring-2 focus-visible:ring-(--_file-upload-action-focus-ring) [&_svg]:size-(--_file-upload-action-icon-size) group-data-[size=sm]/attachment:[&_svg]:size-(--_file-upload-action-sm-icon-size) data-[action=download]:text-(--_file-upload-action-download-foreground) data-[action=download]:hover:text-(--_file-upload-action-download-hover-foreground) data-[action=delete]:text-(--_file-upload-action-delete-foreground) data-[action=delete]:hover:text-(--_file-upload-action-delete-hover-foreground) data-[action=cancel]:text-(--_file-upload-action-cancel-foreground) data-[action=cancel]:hover:text-(--_file-upload-action-cancel-hover-foreground)",
     children,
   }
-  const action = href ? <a href={href} download {...props} /> : <button type="button" {...props} />
-  if (!tooltip) return action
+  const element = href ? <a href={href} download {...props} /> : <button type="button" {...props} />
+  if (!tooltip) return element
   return (
     <Tooltip>
-      <TooltipTrigger delay={300} render={action} />
+      <TooltipTrigger delay={300} render={element} />
       <TooltipContent>{tooltip}</TooltipContent>
     </Tooltip>
   )
 }
 
-function FileCard({ card }: { card: Card }) {
+/**
+ * One file, as FileUpload draws it: the uploaded card (size, date, download,
+ * delete) or, while uploading, completed or failed, the compact card with the
+ * status, progress bar, cancel and Retry. Also for listing files outside an
+ * upload field.
+ */
+function FileUploadCard(card: FileUploadCardProps) {
   const { name, size, status, progress = 0 } = card
   const uploading = status === "uploading"
   const sizeText = size
@@ -239,7 +265,14 @@ function FileCard({ card }: { card: Card }) {
       : formatBytes(size)
     : null
   return (
-    <Attachment status={status} className="w-full" aria-label={name} role="group">
+    <Attachment
+      status={status}
+      // In flight, completed or failed: the compact card. Saved files and local files: the full one.
+      size={status === "uploading" || status === "completed" || status === "error" ? "sm" : "default"}
+      className={cn("w-full", card.className)}
+      aria-label={name}
+      role="group"
+    >
       <AttachmentMedia>
         <IconFileText />
       </AttachmentMedia>
@@ -254,8 +287,7 @@ function FileCard({ card }: { card: Card }) {
             .join(" · ")}
           {(uploading || status === "completed" || status === "error") && (
             <>
-              {sizeText ? " · " : null}
-              <AttachmentStatus>
+              <AttachmentStatus className={cn(sizeText && "ms-2")}>
                 {uploading ? <Spinner variant="dots" aria-hidden /> : status === "completed" ? <IconCircleCheck /> : <IconAlertCircle />}
                 {uploading ? "Uploading" : status === "completed" ? "Completed" : "Failed"}
               </AttachmentStatus>
@@ -263,26 +295,28 @@ function FileCard({ card }: { card: Card }) {
           )}
         </AttachmentDescription>
       </AttachmentContent>
-      <AttachmentActions>
+      <AttachmentActions className="-me-1 gap-1 group-data-[size=sm]/attachment:-me-1.5 group-data-[size=sm]/attachment:-mt-1.5 group-data-[size=sm]/attachment:gap-0.5 group-data-[size=sm]/attachment:self-start">
         {uploading ? (
-          <CardAction label={`Cancel upload of ${name}`} onClick={card.onCancel}>
+          <CardAction action="cancel" label={`Cancel upload of ${name}`} onClick={card.onCancel}>
             <IconX />
           </CardAction>
         ) : (
           <>
             {card.url && (
-              <CardAction label={`Download ${name}`} tooltip="Download" href={card.url}>
+              <CardAction action="download" label={`Download ${name}`} tooltip="Download" href={card.url}>
                 <IconDownload />
               </CardAction>
             )}
-            <CardAction label={`Delete ${name}`} tooltip="Delete" onClick={card.onDelete}>
-              <IconTrash />
-            </CardAction>
+            {card.onDelete && (
+              <CardAction action="delete" label={`Delete ${name}`} tooltip="Delete" onClick={card.onDelete}>
+                <IconTrash />
+              </CardAction>
+            )}
           </>
         )}
       </AttachmentActions>
       {uploading && <AttachmentProgress value={Math.round(progress)} aria-label={`Uploading ${name}`} />}
-      {status === "error" && <AttachmentError onRetry={card.onRetry}>{UPLOAD_FAILED}</AttachmentError>}
+      {status === "error" && <AttachmentError onRetry={card.onRetry}>{card.error ?? UPLOAD_FAILED}</AttachmentError>}
     </Attachment>
   )
 }
@@ -300,6 +334,7 @@ function FileUploadImpl<TValue = string>(
     maxSize,
     required,
     disabled,
+    hint,
     invalidText,
     confirmDelete,
     deleteToast,
@@ -496,8 +531,10 @@ function FileUploadImpl<TValue = string>(
   // One file: its card takes the drop zone's place; deleting it brings the zone back.
   const zoneHidden = !multiple && cards.length > 0
   const isInvalid = !!invalid || (props["aria-invalid"] != null && props["aria-invalid"] !== false && props["aria-invalid"] !== "false")
-  const messageId = React.useId()
-  const describedBy = [props["aria-describedby"], invalid ? messageId : null].filter(Boolean).join(" ") || undefined
+  const generatedId = React.useId()
+  const hintId = `${id ?? generatedId}-hint`
+  const showHint = !zoneHidden && (!!invalid || hint != null)
+  const describedBy = [props["aria-describedby"], showHint ? hintId : null].filter(Boolean).join(" ") || undefined
 
   return (
     <div data-slot="file-upload" className={cn("flex w-full flex-col gap-(--_file-upload-gap)", className)}>
@@ -542,15 +579,20 @@ function FileUploadImpl<TValue = string>(
         committed.map((v, i) => (
           <input key={i} type="hidden" name={name} value={typeof v === "string" ? v : JSON.stringify(v)} />
         ))}
-      {invalid && (
-        <p id={messageId} role="alert" data-slot="file-upload-message" className="text-body-5 text-(--_file-upload-message-foreground)">
-          {invalid}
-        </p>
-      )}
+      {showHint &&
+        (invalid ? (
+          <p id={hintId} role="alert" data-slot="file-upload-message" className="text-body-5 text-(--_file-upload-message-foreground)">
+            {invalid}
+          </p>
+        ) : (
+          <FieldDescription id={hintId} className={cn(disabled && "opacity-50")}>
+            {hint}
+          </FieldDescription>
+        ))}
       {cards.length > 0 && (
-        <div data-slot="file-upload-list" className="flex flex-col gap-(--_file-upload-list-gap)">
-          {cards.map((card) => (
-            <FileCard key={card.key} card={card} />
+        <div data-slot="file-upload-list" className="mt-1 flex flex-col gap-(--_file-upload-list-gap)">
+          {cards.map(({ key, ...card }) => (
+            <FileUploadCard key={key} {...card} />
           ))}
         </div>
       )}
@@ -608,4 +650,4 @@ const FileUpload = React.forwardRef(FileUploadImpl) as {
   (props: FileUploadBaseProps & FileUploadLocalProps & RefProp): React.ReactElement
 }
 
-export { FileUpload }
+export { FileUpload, FileUploadCard }

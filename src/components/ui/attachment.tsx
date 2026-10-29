@@ -7,13 +7,13 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
 const attachmentVariants = cva(
-  "group/attachment relative flex w-fit max-w-full min-w-0 shrink-0 flex-wrap rounded-(--_attachment-radius) border bg-(--_attachment) text-(--_attachment-foreground) transition-colors focus-within:ring-1 focus-within:ring-(--_attachment-focus-ring) has-[>a,>button]:hover:bg-muted/50 data-[state=error]:border-destructive/30 data-[state=idle]:border-dashed",
+  "group/attachment relative flex w-fit max-w-full min-w-0 shrink-0 flex-wrap rounded-(--_attachment-radius) border bg-(--_attachment) text-(--_attachment-foreground) transition-colors focus-within:ring-1 focus-within:ring-(--_attachment-focus-ring) has-[>a,>button]:hover:bg-muted/50 data-[state=error]:border-(--_attachment-error-border) data-[state=idle]:border-dashed shadow-(--_attachment-shadow)",
   {
     variants: {
       size: {
         default:
-          "gap-(--_attachment-default-gap) text-sm has-data-[slot=attachment-content]:px-2.5 has-data-[slot=attachment-content]:py-2 has-data-[slot=attachment-media]:p-2",
-        sm: "gap-(--_attachment-sm-gap) text-xs has-data-[slot=attachment-content]:px-2 has-data-[slot=attachment-content]:py-1.5 has-data-[slot=attachment-media]:p-1.5",
+          "gap-(--_attachment-default-gap) text-sm p-(--_attachment-default-padding)",
+        sm: "gap-(--_attachment-sm-gap) text-xs p-(--_attachment-sm-padding)",
         xs: "gap-(--_attachment-xs-gap) rounded-(--_attachment-xs-radius) text-xs has-data-[slot=attachment-content]:px-1.5 has-data-[slot=attachment-content]:py-1 has-data-[slot=attachment-media]:p-1",
       },
       orientation: {
@@ -47,7 +47,7 @@ function Attachment({
 }
 
 const attachmentMediaVariants = cva(
-  "relative flex aspect-square w-(--_attachment-media-width) shrink-0 items-center justify-center overflow-hidden rounded-(--_attachment-media-radius) bg-(--_attachment-media) text-(--_attachment-media-foreground) group-data-[orientation=vertical]/attachment:w-full group-data-[size=sm]/attachment:w-(--_attachment-media-sm-width) group-data-[size=xs]/attachment:w-(--_attachment-media-xs-width) group-data-[size=xs]/attachment:rounded-(--_attachment-media-xs-radius) group-data-[state=error]/attachment:bg-destructive/10 group-data-[state=error]/attachment:text-destructive group-data-[orientation=vertical]/attachment:*:data-[slot=spinner]:size-6! [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 group-data-[orientation=vertical]/attachment:[&_svg:not([class*='size-'])]:size-6 group-data-[size=xs]/attachment:[&_svg:not([class*='size-'])]:size-3.5",
+  "relative flex aspect-square w-(--_attachment-media-width) shrink-0 items-center justify-center overflow-hidden rounded-(--_attachment-media-radius) bg-(--_attachment-media) text-(--_attachment-media-foreground) group-data-[orientation=vertical]/attachment:w-full group-data-[size=sm]/attachment:w-(--_attachment-media-sm-width) group-data-[size=xs]/attachment:w-(--_attachment-media-xs-width) group-data-[size=xs]/attachment:rounded-(--_attachment-media-xs-radius) group-data-[state=error]/attachment:bg-(--_attachment-media-error) group-data-[state=error]/attachment:text-(--_attachment-media-error-foreground) group-data-[orientation=vertical]/attachment:*:data-[slot=spinner]:size-6! [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-(--_attachment-media-icon-size) group-data-[orientation=vertical]/attachment:[&_svg:not([class*='size-'])]:size-6 group-data-[size=xs]/attachment:[&_svg:not([class*='size-'])]:size-3.5 group-data-[size=sm]/attachment:[&_svg:not([class*='size-'])]:size-(--_attachment-media-sm-icon-size)",
   {
     variants: {
       variant: {
@@ -101,7 +101,7 @@ function AttachmentTitle({
     <span
       data-slot="attachment-title"
       className={cn(
-        "block max-w-full min-w-0 truncate font-(--_attachment-title-font-weight) group-data-[state=processing]/attachment:shimmer group-data-[state=uploading]/attachment:shimmer",
+        "block max-w-full min-w-0 truncate font-(--_attachment-title-font-weight) group-data-[state=processing]/attachment:shimmer group-data-[state=uploading]/attachment:shimmer text-(--_attachment-title-foreground) text-body-4 group-data-[size=sm]/attachment:text-body-5",
         className
       )}
       {...props}
@@ -117,7 +117,7 @@ function AttachmentDescription({
     <span
       data-slot="attachment-description"
       className={cn(
-        "mt-0.5 block min-w-0 truncate text-xs text-(--_attachment-description-foreground) group-data-[state=error]/attachment:text-destructive/80 max-w-full",
+        "mt-0.5 block min-w-0 truncate text-(--_attachment-description-foreground) group-data-[state=error]/attachment:text-(--_attachment-description-error-foreground) max-w-full text-caption-1 group-data-[size=sm]/attachment:text-caption-2",
         "max-w-full",
         className
       )}

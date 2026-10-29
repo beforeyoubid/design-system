@@ -5,18 +5,29 @@
 
 [data-slot="attachment"] {
   /* @add(orientation.vertical) has-data-[slot=attachment-content]:w-(--_attachment-vertical-with-content-width) */
+  /* @remove(size.default) has-data-[slot=attachment-content]:px-2.5 has-data-[slot=attachment-content]:py-2 has-data-[slot=attachment-media]:p-2 */
+  /* @remove(size.sm) has-data-[slot=attachment-content]:px-2 has-data-[slot=attachment-content]:py-1.5 has-data-[slot=attachment-media]:p-1.5 */
+  /* @add data-[state=error]:border-(--_attachment-error-border) */
   /* Corner radius of the attachment. */
-  --_attachment-radius: var(--attachment-radius, var(--radius-2xl));
+  --_attachment-radius: var(--attachment-radius, var(--radius-lg));
   /* Fill colour of the attachment. */
   --_attachment: var(--attachment, var(--card));
   /* Text colour of the attachment. */
   --_attachment-foreground: var(--attachment-foreground, var(--card-foreground));
+  /* Shadow of the attachment. */
+  --_attachment-shadow: var(--attachment-shadow, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+  /* Border colour of a failed upload. */
+  --_attachment-error-border: var(--attachment-error-border, var(--error-75));
   /* Ring colour of the attachment when focused. */
   --_attachment-focus-ring: var(--attachment-focus-ring, color-mix(in oklab, var(--ring) 50%, transparent));
   /* Gap between items of the attachment (default size). */
-  --_attachment-default-gap: var(--attachment-default-gap, calc(var(--spacing) * 2));
-  /* Gap between items of the attachment (sm size). */
-  --_attachment-sm-gap: var(--attachment-sm-gap, calc(var(--spacing) * 2.5));
+  --_attachment-default-gap: var(--attachment-default-gap, calc(var(--spacing) * 4));
+  /* Padding of the attachment (default size). */
+  --_attachment-default-padding: var(--attachment-default-padding, calc(var(--spacing) * 4));
+  /* Gap between items of the attachment (sm size, the card of an upload in progress). */
+  --_attachment-sm-gap: var(--attachment-sm-gap, calc(var(--spacing) * 3));
+  /* Padding of the attachment (sm size). */
+  --_attachment-sm-padding: var(--attachment-sm-padding, calc(var(--spacing) * 4));
   /* Gap between items of the attachment (xs size). */
   --_attachment-xs-gap: var(--attachment-xs-gap, calc(var(--spacing) * 1.5));
   /* Corner radius of the attachment (xs size). */
@@ -29,14 +40,24 @@
 
 [data-slot="attachment-media"] {
   /* @add group-data-[size=sm]/attachment:w-(--_attachment-media-sm-width) group-data-[size=xs]/attachment:w-(--_attachment-media-xs-width) group-data-[size=xs]/attachment:rounded-(--_attachment-media-xs-radius) */
+  /* @add group-data-[state=error]/attachment:bg-(--_attachment-media-error) group-data-[state=error]/attachment:text-(--_attachment-media-error-foreground) */
+  /* @add [&_svg:not([class*='size-'])]:size-(--_attachment-media-icon-size) group-data-[size=sm]/attachment:[&_svg:not([class*='size-'])]:size-(--_attachment-media-sm-icon-size) */
   /* Width of the media. */
-  --_attachment-media-width: var(--attachment-media-width, calc(var(--spacing) * 10));
+  --_attachment-media-width: var(--attachment-media-width, calc(var(--spacing) * 9));
   /* Corner radius of the media. */
-  --_attachment-media-radius: var(--attachment-media-radius, var(--radius-xl));
+  --_attachment-media-radius: var(--attachment-media-radius, var(--radius-full));
   /* Fill colour of the media. */
-  --_attachment-media: var(--attachment-media, var(--muted));
+  --_attachment-media: var(--attachment-media, var(--mint-l3));
   /* Text colour of the media. */
-  --_attachment-media-foreground: var(--attachment-media-foreground, var(--foreground));
+  --_attachment-media-foreground: var(--attachment-media-foreground, var(--mint-60));
+  /* Fill colour of the media on a failed upload. */
+  --_attachment-media-error: var(--attachment-media-error, var(--mint-l3));
+  /* Icon colour of the media on a failed upload. */
+  --_attachment-media-error-foreground: var(--attachment-media-error-foreground, var(--mint-60));
+  /* Size of the media's icon. */
+  --_attachment-media-icon-size: var(--attachment-media-icon-size, calc(var(--spacing) * 5));
+  /* Size of the media's icon in a small (sm) attachment. */
+  --_attachment-media-sm-icon-size: var(--attachment-media-sm-icon-size, calc(var(--spacing) * 4.5));
   /* Opacity of the media (image variant). */
   --_attachment-media-image-opacity: var(--attachment-media-image-opacity, 0.6);
   /* Width of the media in a small (sm) attachment. */
@@ -48,14 +69,20 @@
 }
 
 [data-slot="attachment-title"] {
+  /* @add text-body-4 group-data-[size=sm]/attachment:text-body-5 */
   /* Font weight of the title. */
-  --_attachment-title-font-weight: var(--attachment-title-font-weight, 500);
+  --_attachment-title-font-weight: var(--attachment-title-font-weight, 600);
+  /* Text colour of the title. */
+  --_attachment-title-foreground: var(--attachment-title-foreground, var(--dark-90));
 }
 
 [data-slot="attachment-description"] {
-  /* @add max-w-full */
+  /* @remove text-xs */
+  /* @add max-w-full text-caption-1 group-data-[size=sm]/attachment:text-caption-2 group-data-[state=error]/attachment:text-(--_attachment-description-error-foreground) */
   /* Text colour of the description. */
-  --_attachment-description-foreground: var(--attachment-description-foreground, var(--muted-foreground));
+  --_attachment-description-foreground: var(--attachment-description-foreground, var(--dark-75));
+  /* Text colour of the description on a failed upload (the status label stays red). */
+  --_attachment-description-error-foreground: var(--attachment-description-error-foreground, var(--dark-75));
 }
 
 [data-slot="attachment-group"] {

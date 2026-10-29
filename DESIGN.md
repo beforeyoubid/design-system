@@ -680,30 +680,40 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>attachment</strong> (33)</summary>
+<summary><strong>attachment</strong> (43)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
-| `--attachment-radius` | Corner radius of the attachment. | `var(--radius-2xl)` |
+| `--attachment-radius` | Corner radius of the attachment. | `var(--radius-lg)` |
 | `--attachment` | Fill colour of the attachment. | `var(--card)` |
 | `--attachment-foreground` | Text colour of the attachment. | `var(--card-foreground)` |
+| `--attachment-shadow` | Shadow of the attachment. | `0 1px 2px 0 rgb(0 0 0 / 0.05)` |
+| `--attachment-error-border` | Border colour of a failed upload. | `var(--error-75)` |
 | `--attachment-focus-ring` | Ring colour of the attachment when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
-| `--attachment-default-gap` | Gap between items of the attachment (default size). | `calc(var(--spacing) * 2)` |
-| `--attachment-sm-gap` | Gap between items of the attachment (sm size). | `calc(var(--spacing) * 2.5)` |
+| `--attachment-default-gap` | Gap between items of the attachment (default size). | `calc(var(--spacing) * 4)` |
+| `--attachment-default-padding` | Padding of the attachment (default size). | `calc(var(--spacing) * 4)` |
+| `--attachment-sm-gap` | Gap between items of the attachment (sm size, the card of an upload in progress). | `calc(var(--spacing) * 3)` |
+| `--attachment-sm-padding` | Padding of the attachment (sm size). | `calc(var(--spacing) * 4)` |
 | `--attachment-xs-gap` | Gap between items of the attachment (xs size). | `calc(var(--spacing) * 1.5)` |
 | `--attachment-xs-radius` | Corner radius of the attachment (xs size). | `var(--attachment-radius, var(--radius-xl))` |
 | `--attachment-vertical-width` | Width of the attachment (vertical variant). | `calc(var(--spacing) * 24)` |
 | `--attachment-vertical-with-content-width` | Width of a vertical attachment that shows its title and description. | `calc(var(--spacing) * 30)` |
-| `--attachment-media-width` | Width of the media. | `calc(var(--spacing) * 10)` |
-| `--attachment-media-radius` | Corner radius of the media. | `var(--radius-xl)` |
-| `--attachment-media` | Fill colour of the media. | `var(--muted)` |
-| `--attachment-media-foreground` | Text colour of the media. | `var(--foreground)` |
+| `--attachment-media-width` | Width of the media. | `calc(var(--spacing) * 9)` |
+| `--attachment-media-radius` | Corner radius of the media. | `var(--radius-full)` |
+| `--attachment-media` | Fill colour of the media. | `var(--mint-l3)` |
+| `--attachment-media-foreground` | Text colour of the media. | `var(--mint-60)` |
+| `--attachment-media-error` | Fill colour of the media on a failed upload. | `var(--mint-l3)` |
+| `--attachment-media-error-foreground` | Icon colour of the media on a failed upload. | `var(--mint-60)` |
+| `--attachment-media-icon-size` | Size of the media's icon. | `calc(var(--spacing) * 5)` |
+| `--attachment-media-sm-icon-size` | Size of the media's icon in a small (sm) attachment. | `calc(var(--spacing) * 4.5)` |
 | `--attachment-media-image-opacity` | Opacity of the media (image variant). | `0.6` |
 | `--attachment-media-sm-width` | Width of the media in a small (sm) attachment. | `calc(var(--spacing) * 8)` |
 | `--attachment-media-xs-width` | Width of the media in an extra-small (xs) attachment. | `calc(var(--spacing) * 7)` |
 | `--attachment-media-xs-radius` | Corner radius of the media in an extra-small (xs) attachment. | `var(--radius-lg)` |
-| `--attachment-title-font-weight` | Font weight of the title. | `500` |
-| `--attachment-description-foreground` | Text colour of the description. | `var(--muted-foreground)` |
+| `--attachment-title-font-weight` | Font weight of the title. | `600` |
+| `--attachment-title-foreground` | Text colour of the title. | `var(--dark-90)` |
+| `--attachment-description-foreground` | Text colour of the description. | `var(--dark-75)` |
+| `--attachment-description-error-foreground` | Text colour of the description on a failed upload (the status label stays red). | `var(--dark-75)` |
 | `--attachment-group-gap` | Gap between items of the group. | `calc(var(--spacing) * 3)` |
 | `--attachment-group-padding-y` | Vertical padding of the group. | `calc(var(--spacing) * 1)` |
 | `--attachment-status-gap` | Gap between the status icon and its label. | `calc(var(--spacing) * 1)` |
@@ -1440,13 +1450,23 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>file-upload</strong> (3)</summary>
+<summary><strong>file-upload</strong> (13)</summary>
 
 | Lever | What it changes | Default |
 |---|---|---|
 | `--file-upload-gap` | Gap between the drop zone, its message and the list of files. | `calc(var(--spacing) * 2)` |
 | `--file-upload-list-gap` | Gap between the file cards. | `calc(var(--spacing) * 2)` |
 | `--file-upload-message-foreground` | Colour of the message when a picked file isn't accepted (wrong type or too large). | `var(--error-75)` |
+| `--file-upload-action-size` | Width and height of a file card's download, delete and cancel buttons. | `calc(var(--spacing) * 8)` |
+| `--file-upload-action-icon-size` | Icon size of a file card's buttons. | `calc(var(--spacing) * 5)` |
+| `--file-upload-action-sm-icon-size` | Icon size of the buttons on a compact (sm) card: an upload in progress, completed or failed. | `calc(var(--spacing) * 4)` |
+| `--file-upload-action-focus-ring` | Focus ring colour of a file card's buttons. | `var(--mint-45)` |
+| `--file-upload-action-download-foreground` | Colour of the download button. | `var(--mint-75)` |
+| `--file-upload-action-download-hover-foreground` | Colour of the download button on hover. | `var(--mint-90)` |
+| `--file-upload-action-delete-foreground` | Colour of the delete button. | `var(--error-75)` |
+| `--file-upload-action-delete-hover-foreground` | Colour of the delete button on hover. | `var(--error-90)` |
+| `--file-upload-action-cancel-foreground` | Colour of the cancel (×) button. | `var(--dark-75)` |
+| `--file-upload-action-cancel-hover-foreground` | Colour of the cancel (×) button on hover. | `var(--dark-100)` |
 
 </details>
 

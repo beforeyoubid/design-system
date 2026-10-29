@@ -118,5 +118,17 @@
   "fill": "--_stepper-indicator-complete",
   "status": "accepted",
   "note": "A done step shows only a tick icon, which needs 3:1 as a graphic; mint-75 on mint-l2 is 4.33:1."
+ },
+ {
+  "foreground": "--_attachment-media-foreground",
+  "fill": "--_attachment-media",
+  "status": "undecided",
+  "note": "File card icon: the mint-60 file icon on the mint-l3 circle is 2.97:1, just under the 3:1 a graphic needs. It's the old BYBAttachment card's look. Options: accept it, or use mint-75 for the icon."
+ },
+ {
+  "foreground": "--_attachment-media-error-foreground",
+  "fill": "--_attachment-media-error",
+  "status": "undecided",
+  "note": "File card icon: the mint-60 file icon on the mint-l3 circle is 2.97:1, just under the 3:1 a graphic needs. It's the old BYBAttachment card's look. Options: accept it, or use mint-75 for the icon."
  }
 ]
