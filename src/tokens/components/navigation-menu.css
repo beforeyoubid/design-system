@@ -11,6 +11,9 @@
 [data-slot="navigation-menu-trigger"] {
   /* @remove py-2.5 hover:bg-muted focus:bg-muted focus-visible:outline-1 disabled:opacity-50 data-popup-open:hover:bg-muted data-open:bg-muted/50 data-open:hover:bg-muted data-open:focus:bg-muted */
   /* @add cursor-pointer text-body-5 focus-visible:ring-3 */
+  /* Base UI marks a disabled trigger with data-disabled and aria-disabled, never :disabled. */
+  /* @remove disabled:pointer-events-none disabled:text-(--_navigation-menu-trigger-disabled-foreground) */
+  /* @add data-disabled:pointer-events-none data-disabled:text-(--_navigation-menu-trigger-disabled-foreground) */
   /* Height of the trigger. */
   --_navigation-menu-trigger-height: var(--navigation-menu-trigger-height, calc(var(--spacing) * 10));
   /* Gap between items of the trigger. */

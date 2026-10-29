@@ -11,7 +11,7 @@
 
 [data-slot="input-otp-slot"] {
   /* @remove border-y border-e first:rounded-s-4xl first:border-s last:rounded-e-4xl data-[active=true]:aria-invalid:border-destructive */
-  /* @add border text-body-5 transition data-[active=true]:ring-3 group-has-aria-invalid/input-otp:border-destructive data-[active=true]:aria-invalid:ring-destructive/20 group-has-aria-invalid/input-otp:data-[active=true]:ring-destructive/20 group-has-disabled/input-otp:bg-light-l2 group-has-disabled/input-otp:text-dark-45 */
+  /* @add border text-body-5 transition data-[active=true]:ring-3 group-has-aria-invalid/input-otp:border-(--_input-otp-slot-invalid-border) data-[active=true]:aria-invalid:ring-destructive/20 group-has-aria-invalid/input-otp:data-[active=true]:ring-destructive/20 group-has-disabled/input-otp:bg-light-l2 group-has-disabled/input-otp:text-dark-45 */
   /* Width and height of the slot. */
   --_input-otp-slot-size: var(--input-otp-slot-size, calc(var(--spacing) * 8));
   /* Corner radius of the slot. */

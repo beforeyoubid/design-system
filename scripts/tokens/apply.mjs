@@ -78,8 +78,10 @@ for (const { component, file } of tokenFiles()) {
     // @remove on the base reaches every class string of the part: stock often
     // splits one element's classes over several literals in its cn() call.
     const editEveryBase = (label, fn) => {
-      const count = findSites(sources.get(uiFile), uiFile).slots.get(rule.slot).allLits.length
-      if (!count) return edit(label, null, fn)
+      const { slots } = findSites(sources.get(uiFile), uiFile)
+      const count = slots.get(rule.slot).allLits.length
+      // A part styled by a cva helper keeps its own classes in the cva base, besides any strings in its cn() call.
+      if (!count || slots.get(rule.slot).cva) edit(label, null, fn)
       for (let i = 0; i < count; i++) {
         const src = sources.get(uiFile)
         const lit = findSites(src, uiFile).slots.get(rule.slot).allLits[i]

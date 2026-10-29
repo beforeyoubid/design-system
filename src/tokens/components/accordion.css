@@ -17,6 +17,9 @@
 [data-slot="accordion-trigger"] {
   /* @remove border border-transparent p-4 hover:underline **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground */
   /* @add cursor-pointer items-center transition-colors text-h5 [&_svg]:size-5 */
+  /* Base UI marks a disabled trigger with disabled and data-disabled, not aria-disabled. */
+  /* @remove aria-disabled:pointer-events-none aria-disabled:opacity-(--_accordion-trigger-disabled-opacity) aria-disabled:opacity-50 */
+  /* @add data-disabled:pointer-events-none data-disabled:opacity-(--_accordion-trigger-disabled-opacity) */
   /* Font weight of the trigger. */
   --_accordion-trigger-font-weight: var(--accordion-trigger-font-weight, 600);
   /* Text colour of the trigger. */

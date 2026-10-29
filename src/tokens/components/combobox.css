@@ -89,6 +89,9 @@
 
 [data-slot="combobox-chip"] {
   /* @add has-data-[slot=combobox-chip-remove]:pe-(--_combobox-chip-with-remove-padding-x) */
+  /* A chip in a disabled combobox has data-disabled and no remove button, so has-disabled never matched. */
+  /* @remove has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-(--_combobox-chip-disabled-opacity) has-disabled:opacity-50 */
+  /* @add data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-(--_combobox-chip-disabled-opacity) */
   /* Gap between items of the chip. */
   --_combobox-chip-gap: var(--combobox-chip-gap, calc(var(--spacing) * 1));
   /* Corner radius of the chip. */

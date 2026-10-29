@@ -26,6 +26,9 @@
 [class*="(--_accordion-trigger)"] {
   /* @remove border border-transparent p-4 hover:underline **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground */
   /* @add cursor-pointer items-center transition-colors text-h5 [&_svg]:size-5 */
+  /* Base UI marks a disabled trigger with disabled and data-disabled, not aria-disabled. */
+  /* @remove aria-disabled:pointer-events-none aria-disabled:opacity-(--_accordion-trigger-disabled-opacity) aria-disabled:opacity-50 */
+  /* @add data-disabled:pointer-events-none data-disabled:opacity-(--_accordion-trigger-disabled-opacity) */
   /* Font weight of the trigger. */
   --_accordion-trigger-font-weight: var(--accordion-trigger-font-weight, 600);
   /* Text colour of the trigger. */
@@ -1245,6 +1248,9 @@
 [class*="(--_combobox-chip-"],
 [class*="(--_combobox-chip)"] {
   /* @add has-data-[slot=combobox-chip-remove]:pe-(--_combobox-chip-with-remove-padding-x) */
+  /* A chip in a disabled combobox has data-disabled and no remove button, so has-disabled never matched. */
+  /* @remove has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-(--_combobox-chip-disabled-opacity) has-disabled:opacity-50 */
+  /* @add data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-(--_combobox-chip-disabled-opacity) */
   /* Gap between items of the chip. */
   --_combobox-chip-gap: var(--combobox-chip-gap, calc(var(--spacing) * 1));
   /* Corner radius of the chip. */
@@ -2491,7 +2497,7 @@
 [class*="(--_input-otp-slot-"],
 [class*="(--_input-otp-slot)"] {
   /* @remove border-y border-e first:rounded-s-4xl first:border-s last:rounded-e-4xl data-[active=true]:aria-invalid:border-destructive */
-  /* @add border text-body-5 transition data-[active=true]:ring-3 group-has-aria-invalid/input-otp:border-destructive data-[active=true]:aria-invalid:ring-destructive/20 group-has-aria-invalid/input-otp:data-[active=true]:ring-destructive/20 group-has-disabled/input-otp:bg-light-l2 group-has-disabled/input-otp:text-dark-45 */
+  /* @add border text-body-5 transition data-[active=true]:ring-3 group-has-aria-invalid/input-otp:border-(--_input-otp-slot-invalid-border) data-[active=true]:aria-invalid:ring-destructive/20 group-has-aria-invalid/input-otp:data-[active=true]:ring-destructive/20 group-has-disabled/input-otp:bg-light-l2 group-has-disabled/input-otp:text-dark-45 */
   /* Width and height of the slot. */
   --_input-otp-slot-size: var(--input-otp-slot-size, calc(var(--spacing) * 8));
   /* Corner radius of the slot. */
@@ -3011,6 +3017,9 @@
 [class*="(--_navigation-menu-trigger)"] {
   /* @remove py-2.5 hover:bg-muted focus:bg-muted focus-visible:outline-1 disabled:opacity-50 data-popup-open:hover:bg-muted data-open:bg-muted/50 data-open:hover:bg-muted data-open:focus:bg-muted */
   /* @add cursor-pointer text-body-5 focus-visible:ring-3 */
+  /* Base UI marks a disabled trigger with data-disabled and aria-disabled, never :disabled. */
+  /* @remove disabled:pointer-events-none disabled:text-(--_navigation-menu-trigger-disabled-foreground) */
+  /* @add data-disabled:pointer-events-none data-disabled:text-(--_navigation-menu-trigger-disabled-foreground) */
   /* Height of the trigger. */
   --_navigation-menu-trigger-height: var(--navigation-menu-trigger-height, calc(var(--spacing) * 10));
   /* Gap between items of the trigger. */

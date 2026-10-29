@@ -243,7 +243,7 @@ export const LongList: Story = {
 export const States: Story = {
   render: () => (
     <div className="flex w-80 flex-col gap-4">
-      <Select disabled>
+      <Select disabled defaultValue="nsw" items={{ nsw: 'New South Wales' }}>
         <SelectTrigger aria-label="State (disabled)">
           <SelectValue placeholder="Select a state" />
         </SelectTrigger>

@@ -55,7 +55,7 @@ function NavigationMenuItem({
 }
 
 const navigationMenuTriggerStyle = cva(
-  "group/navigation-menu-trigger inline-flex h-(--_navigation-menu-trigger-height) w-max items-center justify-center rounded-(--_navigation-menu-trigger-radius) px-(--_navigation-menu-trigger-padding-x) py-2.5 text-body-5 font-(--_navigation-menu-trigger-font-weight) transition-all outline-none hover:bg-muted focus:bg-muted focus-visible:ring-3 focus-visible:ring-(--_navigation-menu-trigger-focus-ring) focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-popup-open:bg-(--_navigation-menu-trigger-open) data-popup-open:hover:bg-muted data-open:hover:bg-muted data-open:focus:bg-muted gap-(--_navigation-menu-trigger-gap) text-(--_navigation-menu-trigger-foreground) hover:text-(--_navigation-menu-trigger-hover-foreground) disabled:text-(--_navigation-menu-trigger-disabled-foreground) data-popup-open:text-(--_navigation-menu-trigger-open-foreground) cursor-pointer"
+  "group/navigation-menu-trigger inline-flex h-(--_navigation-menu-trigger-height) w-max items-center justify-center rounded-(--_navigation-menu-trigger-radius) px-(--_navigation-menu-trigger-padding-x) text-body-5 font-(--_navigation-menu-trigger-font-weight) transition-all outline-none focus-visible:ring-3 focus-visible:ring-(--_navigation-menu-trigger-focus-ring) data-popup-open:bg-(--_navigation-menu-trigger-open) gap-(--_navigation-menu-trigger-gap) text-(--_navigation-menu-trigger-foreground) hover:text-(--_navigation-menu-trigger-hover-foreground) data-popup-open:text-(--_navigation-menu-trigger-open-foreground) cursor-pointer data-disabled:pointer-events-none data-disabled:text-(--_navigation-menu-trigger-disabled-foreground)"
 )
 
 function NavigationMenuTrigger({
