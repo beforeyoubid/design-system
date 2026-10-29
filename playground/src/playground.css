@@ -253,6 +253,8 @@ body { background: var(--pg-bg); }
 /* The stage is BYB's world: light, Plus Jakarta Sans, the components' own tokens. */
 .pg-story-stage {
   padding: 20px; overflow-x: auto; color: var(--foreground); background: var(--pg-canvas);
+  /* A containing block for position: fixed parts (the Sidebar), so they stay in their frame instead of the page. */
+  transform: translateZ(0);
   font-family: var(--font-sans); font-size: 1rem; line-height: 1.5; color-scheme: light;
 }
 .pg-story-error { color: var(--pg-fail); font-size: 12px; margin: 0; }
