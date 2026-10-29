@@ -70,12 +70,12 @@ export function App() {
 
       <header className="pg-top">
         <div className="pg-brand">
-          <span className="pg-brand-mark" aria-hidden="true" />
-          <h1>BYB Design Levers</h1>
+          <BybMark />
+          <h1>BYB Design Cockpit</h1>
         </div>
         <label className="pg-search">
-          <span className="pg-visually-hidden">Find a component or lever</span>
-          <input id="pg-search" type="search" placeholder="Find a component or lever, e.g. radius" value={query} onChange={(e) => setQuery(e.target.value)} />
+          <span className="pg-visually-hidden">Find a component or token</span>
+          <input id="pg-search" type="search" placeholder="Find a component or token, e.g. radius" value={query} onChange={(e) => setQuery(e.target.value)} />
         </label>
         <button type="button" className="pg-export-button" onClick={() => setExportOpen(true)}>
           <span className="pg-count" data-active={changed > 0}>{changed}</span>
@@ -115,7 +115,7 @@ export function App() {
         </ul>
       </nav>
 
-      <main className="pg-controls" aria-label="Levers">
+      <main className="pg-controls" aria-label="Component tokens">
         {view.kind === 'global' && <GlobalLook overrides={overrides} set={set} />}
         {view.kind === 'semantic' && <SemanticRoles overrides={overrides} set={set} onOpen={(name) => setView({ kind: 'component', name })} tick={tick} />}
         {view.kind === 'component' && (
@@ -176,7 +176,7 @@ function GlobalLook({ overrides, set }: { overrides: Overrides; set: (n: string,
   const px = (v: string) => (v.endsWith('rem') ? `${parseFloat(v) * 16}px` : v)
   return (
     <>
-      <Intro title="Global look" text="These change every component at once. A component lever, where one is set, wins over these." />
+      <Intro title="Global look" text="These change every component at once. A component token, where one is set, wins over these." />
       <h3 className="pg-group">Corner radius scale</h3>
       {manifest.brand.radius
         .filter((r) => r.name !== '--radius-full')
@@ -196,7 +196,7 @@ function SemanticRoles({ overrides, set, onOpen, tick }: { overrides: Overrides;
   const pairs = React.useMemo(() => semanticPairs(), [tick])
   return (
     <>
-      <Intro title="Colour roles" text="A role is a colour many components share. Change one here and every component that follows it changes too. Component levers set to a specific colour don't follow." />
+      <Intro title="Colour roles" text="A role is a colour many components share. Change one here and every component that follows it changes too. Component tokens set to a specific colour don't follow." />
       {manifest.semantic.map((s) => {
         const pair = pairs.find((p) => p.fg === s.name)
         return (
@@ -252,7 +252,7 @@ function ComponentLevers({ name, overrides, set, query, tick }: { name: string; 
   const parts = [...new Set(tokens.map((t) => t.part))]
   return (
     <>
-      <Intro title={titleCase(name)} text={`${comp.tokens.length} levers.`} />
+      <Intro title={titleCase(name)} text={`${comp.tokens.length} component tokens.`} />
       {parts.map((part) => {
         const inPart = tokens.filter((t) => t.part === part)
         const groups = [...new Set(inPart.map((t) => t.variant ?? ''))]
@@ -293,6 +293,20 @@ function Verdict({ ratio, label }: { ratio: number; label: string }) {
     <span className="pg-verdict" data-pass={pass} title="WCAG AA needs 4.5:1 for body-size text">
       {pass ? 'Passes AA' : 'Fails AA'} · {ratio.toFixed(2)}:1 {label}
     </span>
+  )
+}
+
+/** The BYB logo mark (byb-website/public/byb-logo-mark.svg); its navy parts follow the ink colour so it reads in dark mode. */
+function BybMark() {
+  return (
+    <svg className="pg-brand-mark" viewBox="0 0 43 53" aria-hidden="true">
+      <circle cx="17.65" cy="22.55" r="2.93" fill="#00AE95" />
+      <circle cx="25.55" cy="22.55" r="2.93" fill="#015AFF" />
+      <circle cx="17.65" cy="30.46" r="2.93" fill="#D4F269" />
+      <circle cx="25.55" cy="30.46" r="2.93" fill="currentColor" />
+      <path d="M21.4363 0L0.125943 17.3588L0.0455999 17.424L0 27.3616L5.20273 31.471V20.0187L21.4363 6.93222L37.6938 19.9948V35.639H42.8965V17.424L21.4363 0Z" fill="currentColor" />
+      <path d="M21.5317 46.0679L12.7982 39.0487L8.72465 42.354L21.5295 53.0001L42.8421 35.6391L42.9224 35.5739V28.8221L21.5317 46.0679Z" fill="#00AE95" />
+    </svg>
   )
 }
 
@@ -422,7 +436,7 @@ function ExportPanel({ css, changed, onClose, onImport, onReset }: { css: string
           <div className="pg-import">
             <label htmlFor="pg-import">Paste a block you exported before. It replaces the current changes.</label>
             <textarea id="pg-import" rows={6} value={paste} onChange={(e) => setPaste(e.target.value)} placeholder=":root { --button-radius: 8px; }" />
-            {unknown.length > 0 && <p className="pg-warn">Not levers in this version, so they'll be kept but have no effect: {unknown.join(', ')}</p>}
+            {unknown.length > 0 && <p className="pg-warn">Not component tokens in this version, so they'll be kept but have no effect: {unknown.join(', ')}</p>}
             <button type="button" className="pg-primary" disabled={!paste.trim()} onClick={() => { onImport(importCss(paste)); setPasting(false); setPaste('') }}>
               Load these changes
             </button>
