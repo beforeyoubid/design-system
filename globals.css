@@ -23,7 +23,7 @@
 @import "tw-animate-css";
 @import "./shadcn.css";
 @import "./utilities.css";
-/* Component tokens: one file per component, each declaring the levers apps can set. */
+/* Component tokens: one file per component, each declaring the component tokens apps can set. */
 @import "./src/tokens/components/index.css";
 
 /* -----------------------------------------------------------------------------

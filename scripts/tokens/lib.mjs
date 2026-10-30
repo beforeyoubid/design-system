@@ -3,7 +3,7 @@
  * the checks and the generated docs.
  *
  * A token file (src/tokens/components/<component>.css) declares, per part, a
- * private token that reads a public lever with the designed value as the fallback:
+ * private token that reads a public component token with the designed value as the fallback:
  *
  *   [data-slot="input"] {
  *     \/* Corner radius. *\/
@@ -15,14 +15,14 @@
  * <slot> is the rule's data-slot; <variant> is a cva key on that part (or an
  * alias declared with @alias); <state> and <property> come from the tables
  * below. A value for one breakpoint and up ends in `\:<breakpoint>` on the public
- * lever (`--toast-viewport-offset\:sm`, or `\:md-to-lg` for a range) and in
+ * component token (`--toast-viewport-offset\:sm`, or `\:md-to-lg` for a range) and in
  * `--<breakpoint>` on the private one (`--_toast-viewport-offset--sm`), because
  * Tailwind won't read a class with a backslash in it. Only an @add class reads a
- * breakpoint lever, under that breakpoint's prefix (`sm:`, `md:max-lg:`).
+ * breakpoint component token, under that breakpoint's prefix (`sm:`, `md:max-lg:`).
  * A token's comment can carry directives:
  *   @site <cva group>.<key> | base   which class string to edit (instead of inferring it)
  *   @ours                          read by our own components, not class-edited in ui/
- * and a rule can carry standalone directives for classes that aren't levers:
+ * and a rule can carry standalone directives for classes that aren't component tokens:
  *   \/* @add classes *\/            ensure these classes are present (replacing any
  *                                  class of the same property and state)
  *   \/* @remove classes *\/         remove these classes
@@ -46,7 +46,7 @@ export const uiDir = path.join(root, 'src', 'components', 'ui')
 export const PROPERTIES = {
   '': { utility: 'bg', type: 'color', probe: 'bg-[#010203]', label: 'Fill colour' },
   // Same as '' — for a part named like a semantic token (--input is the semantic
-  // border colour, so the input's fill lever is --input-fill).
+  // border colour, so the input's fill component token is --input-fill).
   fill: { utility: 'bg', type: 'color', probe: 'bg-[#010203]', label: 'Fill colour' },
   foreground: { utility: 'text', type: 'color', probe: 'text-[#010203]', label: 'Text colour' },
   border: { utility: 'border', type: 'color', probe: 'border-[#010203]', label: 'Border colour' },
@@ -91,7 +91,7 @@ export const STATES = {
 }
 const STATE_NAMES = Object.keys(STATES)
 
-// Breakpoints, mobile-first: a lever for `md` applies from md up; `md-to-lg` from md up to lg.
+// Breakpoints, mobile-first: a component token for `md` applies from md up; `md-to-lg` from md up to lg.
 export const BREAKPOINTS = ['sm', 'md', 'lg', 'xl', '2xl']
 const BP = BREAKPOINTS.join('|')
 const breakpointRe = new RegExp(`^(.+?)--((${BP})(?:-to-(${BP}))?)$`)
@@ -104,7 +104,7 @@ export function splitBreakpoint(privateName) {
   return { base: m[1], breakpoint: m[2] }
 }
 
-/** The public lever a private name reads: `--_x--md` → `--x\:md`. */
+/** The public component token a private name reads: `--_x--md` → `--x\:md`. */
 export function publicName(privateName) {
   const { base, breakpoint } = splitBreakpoint(privateName)
   return base.replace(/^--_/, '--') + (breakpoint ? `\\:${breakpoint}` : '')

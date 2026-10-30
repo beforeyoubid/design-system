@@ -2,7 +2,7 @@
 
 /* ---- accordion.css ---- */
 /* Accordion — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --accordion-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/accordion.tsx follow from these names. */
 
@@ -62,7 +62,7 @@
 
 /* ---- alert-dialog.css ---- */
 /* Alert Dialog — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --alert-dialog-overlay: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/alert-dialog.tsx follow from these names. */
 
@@ -140,7 +140,7 @@
 
 /* ---- alert.css ---- */
 /* Alert — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --alert-gap: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/alert.tsx follow from these names. */
 
@@ -194,13 +194,13 @@
 
 /* ---- aspect-ratio.css ---- */
 /* Aspect Ratio — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --aspect-ratio-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/aspect-ratio.tsx follow from these names. */
 
 /* ---- attachment.css ---- */
 /* Attachment — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --attachment-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/attachment.tsx follow from these names. */
 
@@ -354,7 +354,7 @@
 
 /* ---- avatar.css ---- */
 /* Avatar — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --avatar-size: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/avatar.tsx follow from these names. */
 
@@ -429,7 +429,7 @@
 
 /* ---- badge.css ---- */
 /* Badge — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --badge-height: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/badge.tsx follow from these names. */
 
@@ -575,7 +575,7 @@
 
 /* ---- breadcrumb.css ---- */
 /* Breadcrumb — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --breadcrumb-list-gap: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/breadcrumb.tsx follow from these names. */
 
@@ -624,7 +624,7 @@
 
 /* ---- button-group.css ---- */
 /* Button Group — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --button-group-text-gap: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/button-group.tsx follow from these names. */
 
@@ -652,7 +652,7 @@
 
 /* ---- button.css ---- */
 /* Button — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --button-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/button.tsx follow from these names. */
 
@@ -837,7 +837,7 @@
 
 /* ---- calendar.css ---- */
 /* Calendar — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --calendar-day-selected: … }
  * Our own Calendar (components/calendar.tsx) reads these. Defaults are the shipped design. */
 
@@ -911,7 +911,7 @@
 
 /* ---- card.css ---- */
 /* Card — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --card-gap: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/card.tsx follow from these names. */
 
@@ -988,7 +988,7 @@
 
 /* ---- carousel.css ---- */
 /* Carousel — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --carousel-previous-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/carousel.tsx follow from these names. */
 
@@ -1008,8 +1008,8 @@
 
 /* ---- chart-frame.css ---- */
 /* Chart frame — component tokens.
- * Set any lever (the name without the underscore) on :root or a section.
- * Defaults are the shipped design. Edited by hand; our component (chart-frame.tsx) reads these levers. */
+ * Set any component token (the name without the underscore) on :root or a section.
+ * Defaults are the shipped design. Edited by hand; our component (chart-frame.tsx) reads these component tokens. */
 
 [data-slot="chart-frame"],
 [class*="(--_chart-frame-"],
@@ -1046,7 +1046,7 @@
 
 /* ---- chart.css ---- */
 /* Chart — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --chart-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/chart.tsx follow from these names. */
 
@@ -1058,7 +1058,7 @@
 
 /* ---- checkbox.css ---- */
 /* Checkbox — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --checkbox-size: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/checkbox.tsx follow from these names. */
 
@@ -1131,13 +1131,13 @@
 
 /* ---- collapsible.css ---- */
 /* Collapsible — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --collapsible-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/collapsible.tsx follow from these names. */
 
 /* ---- combobox.css ---- */
 /* Combobox — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --combobox-content-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/combobox.tsx follow from these names. */
 
@@ -1275,7 +1275,7 @@
 
 /* ---- command.css ---- */
 /* Command — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --command-radius: … }
  * Defaults are the shipped design. Stock wraps the command input in an InputGroup; the wrapper flattens it to a borderless search row. Edited by hand; the class edits in ui/command.tsx follow from these names. */
 
@@ -1400,7 +1400,7 @@
 
 /* ---- context-menu.css ---- */
 /* Context Menu — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --context-menu-content-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/context-menu.tsx follow from these names. */
 
@@ -1545,8 +1545,8 @@
 
 /* ---- counter.css ---- */
 /* Counter — component tokens.
- * Set any lever (the name without the underscore) on :root or a section.
- * Defaults are the shipped design. Edited by hand; our component (counter.tsx) reads these levers. */
+ * Set any component token (the name without the underscore) on :root or a section.
+ * Defaults are the shipped design. Edited by hand; our component (counter.tsx) reads these component tokens. */
 
 [data-slot="counter-value"],
 [class*="(--_counter-value-"],
@@ -1572,7 +1572,7 @@
 
 /* ---- dialog.css ---- */
 /* Dialog — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --dialog-overlay: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/dialog.tsx follow from these names. */
 
@@ -1669,13 +1669,13 @@
 
 /* ---- direction.css ---- */
 /* Direction — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --direction-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/direction.tsx follow from these names. */
 
 /* ---- drawer.css ---- */
 /* Drawer — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --drawer-overlay: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/drawer.tsx follow from these names. */
 
@@ -1756,7 +1756,7 @@
 
 /* ---- dropdown-menu.css ---- */
 /* Dropdown Menu — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --dropdown-menu-content-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/dropdown-menu.tsx follow from these names. */
 
@@ -2017,7 +2017,7 @@
 
 /* ---- empty.css ---- */
 /* Empty — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --empty-gap: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/empty.tsx follow from these names. */
 
@@ -2090,7 +2090,7 @@
 
 /* ---- field.css ---- */
 /* Field — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --field-set-gap: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/field.tsx follow from these names. */
 
@@ -2203,8 +2203,8 @@
 
 /* ---- file-drop-zone.css ---- */
 /* File Drop Zone — component tokens.
- * Set any lever (the name without the underscore) on :root or a section.
- * Defaults are the shipped design. Edited by hand; our component (file-drop-zone.tsx) reads these levers. */
+ * Set any component token (the name without the underscore) on :root or a section.
+ * Defaults are the shipped design. Edited by hand; our component (file-drop-zone.tsx) reads these component tokens. */
 
 [data-slot="file-drop-zone"],
 [class*="(--_file-drop-zone-"],
@@ -2263,9 +2263,9 @@
 
 /* ---- file-upload.css ---- */
 /* File Upload — component tokens.
- * Set any lever (the name without the underscore) on :root or a section.
- * Defaults are the shipped design. Edited by hand; our component (file-upload.tsx) reads these levers.
- * The drop zone and the file cards have their own levers: file-drop-zone.css and attachment.css. */
+ * Set any component token (the name without the underscore) on :root or a section.
+ * Defaults are the shipped design. Edited by hand; our component (file-upload.tsx) reads these component tokens.
+ * The drop zone and the file cards have their own component tokens: file-drop-zone.css and attachment.css. */
 
 [data-slot="file-upload"],
 [class*="(--_file-upload-"],
@@ -2315,7 +2315,7 @@
 
 /* ---- hover-card.css ---- */
 /* Hover Card — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --hover-card-content-width: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/hover-card.tsx follow from these names. */
 
@@ -2344,8 +2344,8 @@
 
 /* ---- icon-tile.css ---- */
 /* Icon tile — component tokens.
- * Set any lever (the name without the underscore) on :root or a section.
- * Defaults are the shipped design. Edited by hand; our component (icon-tile.tsx) reads these levers. */
+ * Set any component token (the name without the underscore) on :root or a section.
+ * Defaults are the shipped design. Edited by hand; our component (icon-tile.tsx) reads these component tokens. */
 
 [data-slot="icon-tile"],
 [class*="(--_icon-tile-"],
@@ -2386,7 +2386,7 @@
 
 /* ---- input-group.css ---- */
 /* Input Group — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --input-group-min-height: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/input-group.tsx follow from these names. */
 
@@ -2476,7 +2476,7 @@
 
 /* ---- input-otp.css ---- */
 /* Input Otp — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --input-otp-group-gap: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/input-otp.tsx follow from these names. */
 
@@ -2528,7 +2528,7 @@
 
 /* ---- input.css ---- */
 /* Input — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --input-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/input.tsx follow from these names. */
 
@@ -2567,7 +2567,7 @@
 
 /* ---- item.css ---- */
 /* Item — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --item-group-gap: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/item.tsx follow from these names. */
 
@@ -2686,7 +2686,7 @@
 
 /* ---- kbd.css ---- */
 /* Kbd — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --kbd-height: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/kbd.tsx follow from these names. */
 
@@ -2718,7 +2718,7 @@
 
 /* ---- label.css ---- */
 /* Label — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --label-gap: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/label.tsx follow from these names. */
 
@@ -2736,7 +2736,7 @@
 
 /* ---- menubar.css ---- */
 /* Menubar — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --menubar-height: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/menubar.tsx follow from these names. */
 
@@ -2927,7 +2927,7 @@
 
 /* ---- native-select.css ---- */
 /* Native Select — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --native-select-height: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/native-select.tsx follow from these names. */
 
@@ -3007,7 +3007,7 @@
 
 /* ---- navigation-menu.css ---- */
 /* Navigation Menu — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --navigation-menu-list-gap: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/navigation-menu.tsx follow from these names. */
 
@@ -3097,9 +3097,9 @@
 
 /* ---- pagination.css ---- */
 /* Pagination — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --pagination-content-gap: … }
- * Defaults are the shipped design. The pagination-link levers are read by our PaginationLink (components/pagination.tsx). */
+ * Defaults are the shipped design. The pagination-link component tokens are read by our PaginationLink (components/pagination.tsx). */
 
 [data-slot="pagination-content"],
 [class*="(--_pagination-content-"],
@@ -3132,7 +3132,7 @@
 
 /* ---- popover.css ---- */
 /* Popover — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --popover-content-width: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/popover.tsx follow from these names. */
 
@@ -3184,7 +3184,7 @@
 
 /* ---- progress.css ---- */
 /* Progress — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --progress-gap: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/progress.tsx follow from these names. */
 
@@ -3231,7 +3231,7 @@
 
 /* ---- radio-group.css ---- */
 /* Radio Group — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --radio-group-gap: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/radio-group.tsx follow from these names. */
 
@@ -3319,7 +3319,7 @@
 
 /* ---- resizable.css ---- */
 /* Resizable — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --resizable-handle-width: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/resizable.tsx follow from these names. */
 
@@ -3336,7 +3336,7 @@
 
 /* ---- scroll-area.css ---- */
 /* Scroll Area — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --scroll-area-viewport-focus-ring: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/scroll-area.tsx follow from these names. */
 
@@ -3366,7 +3366,7 @@
 
 /* ---- select.css ---- */
 /* Select — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --select-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/select.tsx follow from these names. */
 
@@ -3567,7 +3567,7 @@
 
 /* ---- separator.css ---- */
 /* Separator — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --separator: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/separator.tsx follow from these names. */
 
@@ -3580,7 +3580,7 @@
 
 /* ---- sheet.css ---- */
 /* Sheet — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --sheet-overlay: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/sheet.tsx follow from these names. */
 
@@ -3641,7 +3641,7 @@
 
 /* ---- sidebar.css ---- */
 /* Sidebar — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --sidebar-fill: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/sidebar.tsx follow from these names. */
 
@@ -3932,7 +3932,7 @@
 
 /* ---- skeleton.css ---- */
 /* Skeleton — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --skeleton-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/skeleton.tsx follow from these names. */
 
@@ -3949,7 +3949,7 @@
 
 /* ---- slider.css ---- */
 /* Slider — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --slider-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/slider.tsx follow from these names. */
 
@@ -4005,7 +4005,7 @@
 
 /* ---- spinner.css ---- */
 /* Spinner — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --spinner-size: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/spinner.tsx follow from these names. */
 
@@ -4021,8 +4021,8 @@
 
 /* ---- stepper.css ---- */
 /* Stepper — component tokens.
- * Set any lever (the name without the underscore) on :root or a section.
- * Defaults are the shipped design. Edited by hand; our component (stepper.tsx) reads these levers. */
+ * Set any component token (the name without the underscore) on :root or a section.
+ * Defaults are the shipped design. Edited by hand; our component (stepper.tsx) reads these component tokens. */
 
 [data-slot="stepper-indicator"],
 [class*="(--_stepper-indicator-"],
@@ -4078,7 +4078,7 @@
 
 /* ---- switch.css ---- */
 /* Switch — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --switch-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/switch.tsx follow from these names. */
 
@@ -4130,7 +4130,7 @@
 
 /* ---- table.css ---- */
 /* Table — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --table-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/table.tsx follow from these names. */
 
@@ -4240,7 +4240,7 @@
 
 /* ---- tabs.css ---- */
 /* Tabs — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --tabs-gap: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/tabs.tsx follow from these names.
  * The trigger drops stock's active fill and underline: our Tabs draw a sliding thumb instead (components/tabs.tsx). */
@@ -4373,7 +4373,7 @@
 
 /* ---- textarea.css ---- */
 /* Textarea — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --textarea-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/textarea.tsx follow from these names. */
 
@@ -4410,7 +4410,7 @@
 
 /* ---- toast.css ---- */
 /* Toast — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --toast-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/toast.tsx follow from these names. */
 
@@ -4521,7 +4521,7 @@
 
 /* ---- toggle-group.css ---- */
 /* Toggle Group — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --toggle-group-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/toggle-group.tsx follow from these names. */
 
@@ -4533,7 +4533,7 @@
 
 /* ---- toggle.css ---- */
 /* Toggle — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --toggle-gap: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/toggle.tsx follow from these names. */
 
@@ -4595,7 +4595,7 @@
 
 /* ---- tooltip.css ---- */
 /* Tooltip — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --tooltip-content-gap: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/tooltip.tsx follow from these names. */
 

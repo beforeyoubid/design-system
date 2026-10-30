@@ -18,7 +18,7 @@ test('a later custom size or colour replaces the earlier one', () => {
 })
 
 // Component tokens: parts read private variables in their classes. A one-off
-// className from the app must still win over the lever.
+// className from the app must still win over the component token.
 test('a className override beats a component-token class', () => {
   assert.equal(cn('rounded-(--_input-radius)', 'rounded-none'), 'rounded-none')
   assert.equal(cn('h-(--_input-height)', 'h-12'), 'h-12')

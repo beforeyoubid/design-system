@@ -15,10 +15,12 @@ import {
 
 type View = { kind: 'global' } | { kind: 'semantic'; name?: string } | { kind: 'component'; name: string }
 
-const STORAGE = 'byb-levers:overrides'
+const STORAGE = 'byb-console:overrides'
+// Where overrides were saved before the console was renamed; read once so nobody loses their work.
+const OLD_STORAGE = 'byb-levers:overrides'
 const load = (): Overrides => {
   try {
-    return JSON.parse(localStorage.getItem(STORAGE) ?? '{}')
+    return JSON.parse(localStorage.getItem(STORAGE) ?? localStorage.getItem(OLD_STORAGE) ?? '{}')
   } catch {
     return {}
   }
@@ -119,7 +121,7 @@ export function App() {
         {view.kind === 'global' && <GlobalLook overrides={overrides} set={set} />}
         {view.kind === 'semantic' && <SemanticRoles overrides={overrides} set={set} onOpen={(name) => setView({ kind: 'component', name })} tick={tick} />}
         {view.kind === 'component' && (
-          <ComponentLevers name={view.name} overrides={overrides} set={set} query={q} tick={tick} />
+          <ComponentTokens name={view.name} overrides={overrides} set={set} query={q} tick={tick} />
         )}
       </main>
 
@@ -144,7 +146,7 @@ function Row({ id, label, hint, type, name, defaultValue, overrides, set, max, w
   overrides: Overrides
   set: (name: string, v: string | null) => void
   max?: number
-  /** Why this lever needs attention, e.g. its text fails WCAG AA on its fill. */
+  /** Why this component token needs attention, e.g. its text fails WCAG AA on its fill. */
   warning?: string
 }) {
   const changed = name in overrides
@@ -234,7 +236,7 @@ function SemanticRoles({ overrides, set, onOpen, tick }: { overrides: Overrides;
 
 // ---------------------------------------------------------------------------
 const partLabel = (component: string, part: string) => (part === component ? titleCase(component) : titleCase(part.replace(component + '-', '')))
-/** A lever for wider screens names its breakpoint: `from-sm` → "sm". Named, not in px, so it follows the breakpoint if it moves. */
+/** A component token for wider screens names its breakpoint: `from-sm` → "sm". Named, not in px, so it follows the breakpoint if it moves. */
 const breakpointOf = (variant: string | null) => variant?.match(/(?:^|-)from-(sm|md|lg|xl|2xl)$/)?.[1] ?? null
 function variantHeading(variant: string, inPart: ComponentToken[]) {
   const bp = breakpointOf(variant)
@@ -244,9 +246,9 @@ function variantHeading(variant: string, inPart: ComponentToken[]) {
   return `${words} ${sizing ? 'size' : 'style'}`
 }
 
-function ComponentLevers({ name, overrides, set, query, tick }: { name: string; overrides: Overrides; set: (n: string, v: string | null) => void; query: string; tick: number }) {
+function ComponentTokens({ name, overrides, set, query, tick }: { name: string; overrides: Overrides; set: (n: string, v: string | null) => void; query: string; tick: number }) {
   const comp = manifest.components.find((c) => c.component === name)!
-  // Text levers whose pair fails AA, recomputed when the overrides change.
+  // Text component tokens whose pair fails AA, recomputed when the overrides change.
   const failing = React.useMemo(() => new Map(pairsFor(name).filter((p) => p.ratio < 4.5).map((p) => [p.fg.name, p])), [name, tick])
   const tokens = comp.tokens.filter((t) => !query || t.description.toLowerCase().includes(query) || t.name.includes(query) || name.includes(query))
   const parts = [...new Set(tokens.map((t) => t.part))]

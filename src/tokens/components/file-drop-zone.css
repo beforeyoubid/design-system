@@ -1,6 +1,6 @@
 /* File Drop Zone — component tokens.
- * Set any lever (the name without the underscore) on :root or a section.
- * Defaults are the shipped design. Edited by hand; our component (file-drop-zone.tsx) reads these levers. */
+ * Set any component token (the name without the underscore) on :root or a section.
+ * Defaults are the shipped design. Edited by hand; our component (file-drop-zone.tsx) reads these component tokens. */
 
 [data-slot="file-drop-zone"] {
   /* Minimum height of the drop zone. @ours */

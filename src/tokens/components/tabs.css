@@ -1,5 +1,5 @@
 /* Tabs — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --tabs-gap: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/tabs.tsx follow from these names.
  * The trigger drops stock's active fill and underline: our Tabs draw a sliding thumb instead (components/tabs.tsx). */

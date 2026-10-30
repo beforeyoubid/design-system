@@ -8,7 +8,7 @@ export * from "@/components/ui/pagination"
 
 // The BYB look: a lime fill on the current page, plain text on the rest. Stock
 // switches between Button variants inside PaginationLink, so the link and the
-// two arrows that render it are ours. Levers: src/tokens/components/pagination.css.
+// two arrows that render it are ours. Component tokens: src/tokens/components/pagination.css.
 
 type PaginationLinkProps = {
   isActive?: boolean

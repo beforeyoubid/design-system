@@ -19,7 +19,7 @@
 8. [Motion](#motion)
 9. [Iconography](#iconography)
 10. [Components](#components)
-11. [Component tokens (levers)](#component-tokens-levers)
+11. [Component tokens](#component-tokens)
 12. [Accessibility](#accessibility)
 13. [Rules for designers and engineers](#rules-for-designers-and-engineers)
 14. [Tokens in JS](#tokens-in-js)
@@ -555,7 +555,7 @@ Every toast has a × so it can be closed early. Override per toast with `timeout
 
 Our `Attachment` adds `status` (`uploading` · `completed` · `error` · `uploaded`) and three parts: `AttachmentStatus` (the coloured label in the description), `AttachmentProgress` (a full-width bar) and `AttachmentError` (the message, with Retry when `onRetry` is set).
 
-## Component tokens (levers)
+## Component tokens
 
 Tokens come in three layers. Each layer reads the one above it, so a change at the top flows down.
 
@@ -563,9 +563,9 @@ Tokens come in three layers. Each layer reads the one above it, so a change at t
 |---|---|---|---|
 | Brand | The raw palette, type scale and radius scale | `--mint-45`, `--navy`, `--text-body-4`, `--radius-lg` | `globals.css` `:root` |
 | Semantic | Roles that shadcn components read | `--primary`, `--muted-foreground`, `--border`, `--ring` | `globals.css` `:root` and `.dark` |
-| Component | One look of one part of one component: a **lever** | `--button-default`, `--input-radius`, `--tabs-trigger-active-foreground` | `src/tokens/components/<component>.css` |
+| Component | One look of one part of one component: a **component token** | `--button-default`, `--input-radius`, `--tabs-trigger-active-foreground` | `src/tokens/components/<component>.css` |
 
-A **part** is one element of a component, named by its `data-slot` (`select-trigger`, `dialog-content`). A lever's name says which part, which variant, which state and which property it sets:
+A **part** is one element of a component, named by its `data-slot` (`select-trigger`, `dialog-content`). A component token's name says which part, which variant, which state and which property it sets:
 
 ```
 --<part>[-<variant>][-<state>][-<property>][\:<breakpoint>]
@@ -578,9 +578,9 @@ A **part** is one element of a component, named by its `data-slot` (`select-trig
 --toast-viewport-offset\:sm         distance of the toasts from the screen edges, from sm up
 ```
 
-No property means the fill. Properties: `foreground` (text and icon colour), `border`, `ring`, `radius`, `height`, `min-height`, `width`, `size`, `padding`, `padding-x`, `padding-y`, `gap`, `offset` (distance from the screen or container edge), `shadow`, `font-weight`, `opacity`, `tracking`. States: `hover`, `focus`, `active`, `pressed`, `open`, `selected`, `highlighted`, `checked`, `disabled`, `invalid`, `placeholder`. A variant's lever falls back to the component's own lever where there is one (`--button-sm-radius` → `--button-radius`). Variants keep the stock key in lever names: our `primary` button is `default`, `tertiary` is `outline`.
+No property means the fill. Properties: `foreground` (text and icon colour), `border`, `ring`, `radius`, `height`, `min-height`, `width`, `size`, `padding`, `padding-x`, `padding-y`, `gap`, `offset` (distance from the screen or container edge), `shadow`, `font-weight`, `opacity`, `tracking`. States: `hover`, `focus`, `active`, `pressed`, `open`, `selected`, `highlighted`, `checked`, `disabled`, `invalid`, `placeholder`. A variant's component token falls back to the component's own component token where there is one (`--button-sm-radius` → `--button-radius`). Variants keep the stock key in component token names: our `primary` button is `default`, `tertiary` is `outline`.
 
-**Breakpoints.** We're mobile-first: a lever without a breakpoint is the value on every screen, and a value that changes at a breakpoint gets its own lever with `\:<breakpoint>` at the end, for that breakpoint and up. `--toast-viewport-offset` is 16px; `--toast-viewport-offset\:sm` makes it 24px from `sm` up. A range adds `-to-<breakpoint>`, up to but not including the second: `\:md-to-lg` is `md` up to `lg`. Breakpoints are `sm`, `md`, `lg`, `xl` and `2xl` ([Breakpoints and grid](#breakpoints-and-grid)). The backslash is part of the name in CSS; in JavaScript leave it out: `el.style.setProperty('--toast-viewport-offset:sm', '32px')`.
+**Breakpoints.** We're mobile-first: a component token without a breakpoint is the value on every screen, and a value that changes at a breakpoint gets its own component token with `\:<breakpoint>` at the end, for that breakpoint and up. `--toast-viewport-offset` is 16px; `--toast-viewport-offset\:sm` makes it 24px from `sm` up. A range adds `-to-<breakpoint>`, up to but not including the second: `\:md-to-lg` is `md` up to `lg`. Breakpoints are `sm`, `md`, `lg`, `xl` and `2xl` ([Breakpoints and grid](#breakpoints-and-grid)). The backslash is part of the name in CSS; in JavaScript leave it out: `el.style.setProperty('--toast-viewport-offset:sm', '32px')`.
 
 ```css
 :root {
@@ -590,9 +590,9 @@ No property means the fill. Properties: `foreground` (text and icon colour), `bo
 }
 ```
 
-Inside the token files the private name ends in `--<breakpoint>` instead (`--_toast-viewport-offset--sm`), because Tailwind won't read a class with a backslash in it. Only an `@add` class reads a breakpoint lever, under that breakpoint's prefix (`sm:`, or `md:max-lg:` for a range); `pnpm check-component-tokens` fails if the prefix doesn't match.
+Inside the token files the private name ends in `--<breakpoint>` instead (`--_toast-viewport-offset--sm`), because Tailwind won't read a class with a backslash in it. Only an `@add` class reads a breakpoint component token, under that breakpoint's prefix (`sm:`, or `md:max-lg:` for a range); `pnpm check-component-tokens` fails if the prefix doesn't match.
 
-**Pull a lever** by setting it on `:root`, or on any element to change one section only:
+**Set a component token** on `:root`, or on any element to change one section only:
 
 ```css
 :root {
@@ -602,24 +602,24 @@ Inside the token files the private name ends in `--<breakpoint>` instead (`--_to
 .checkout { --card-padding-y: calc(var(--spacing) * 8); }
 ```
 
-Every default is the BYB design, so an app that sets nothing gets the designed look. Don't edit the component files to change a look; pull its lever. If no lever exists for what you need, add one (below).
+Every default is the BYB design, so an app that sets nothing gets the designed look. Don't edit the component files to change a look; set its component token. If no component token exists for what you need, add one (below).
 
 **The Design Console** (`pnpm console`, or the published "BYB Design Console" page) lists every brand, semantic and component token with a picker that only offers values of the right type (palette colours for colours, the radius scale for radii, and so on), shows every affected component live from the Storybook stories, checks contrast as you go, and exports the changes as a `:root` block to paste into an app.
 
-**How the levers reach the components.** The shadcn components in `src/components/ui/` are the CLI's own files. `pnpm tokens:apply` edits their class strings so each designed value reads its lever (`h-9` → `h-(--_input-height)`). The private name (`--_input-height`) is declared on the part and falls back to the public lever, then to the default. Components that change how stock behaves or is built, not just how it looks, are our own files in `src/components/` and export over the stock ones (Button, Calendar, Pagination, Tabs, Toast, …).
+**How the component tokens reach the components.** The shadcn components in `src/components/ui/` are the CLI's own files. `pnpm tokens:apply` edits their class strings so each designed value reads its component token (`h-9` → `h-(--_input-height)`). The private name (`--_input-height`) is declared on the part and falls back to the public component token, then to the default. Components that change how stock behaves or is built, not just how it looks, are our own files in `src/components/` and export over the stock ones (Button, Calendar, Pagination, Tabs, Toast, …).
 
 To update the shadcn components:
 
 ```bash
 npx shadcn@latest add <components> --overwrite   # the CLI's latest files
-pnpm tokens:apply                                # re-applies every lever
+pnpm tokens:apply                                # re-applies every component token
 pnpm tokens:build                                # index.css, Design Console manifest, the table below
-pnpm check-component-tokens                      # names, missing levers, contrast
+pnpm check-component-tokens                      # names, missing component tokens, contrast
 ```
 
 Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-exceptions.json` as `undecided` (a design call still to make) or `accepted` (with the reason). `check-component-tokens --strict` fails while any are undecided.
 
-### Every lever
+### Every component token
 
 <!-- component-tokens:start -->
 <!-- Generated by scripts/tokens/build.mjs from src/tokens/components/*.css; don't edit. -->
@@ -627,7 +627,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>accordion</strong> (12)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--accordion-item-border` | Border colour of the item. | `var(--dark-15)` |
 | `--accordion-trigger-font-weight` | Font weight of the trigger. | `600` |
@@ -647,7 +647,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>alert-dialog</strong> (16)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--alert-dialog-overlay` | Fill colour of the overlay. | `color-mix(in oklab, var(--dark-100) 50%, transparent)` |
 | `--alert-dialog-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 6)` |
@@ -671,7 +671,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>alert</strong> (14)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--alert-gap` | Gap between items of the alert. | `calc(var(--spacing) * 0.5)` |
 | `--alert-radius` | Corner radius of the alert. | `var(--radius-2xl)` |
@@ -693,7 +693,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>aspect-ratio</strong> (0)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 
 
@@ -702,7 +702,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>attachment</strong> (43)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--attachment-radius` | Corner radius of the attachment. | `var(--radius-lg)` |
 | `--attachment` | Fill colour of the attachment. | `var(--card)` |
@@ -753,7 +753,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>avatar</strong> (19)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--avatar-size` | Width and height of the avatar. | `calc(var(--spacing) * 8)` |
 | `--avatar-radius` | Corner radius of the avatar. | `var(--radius-full)` |
@@ -780,7 +780,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>badge</strong> (65)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--badge-height` | Height of the badge. | `calc(var(--spacing) * 5)` |
 | `--badge-gap` | Gap between items of the badge. | `calc(var(--spacing) * 1)` |
@@ -853,7 +853,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>breadcrumb</strong> (8)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--breadcrumb-list-gap` | Gap between items of the list. | `calc(var(--spacing) * 1.5)` |
 | `--breadcrumb-list-foreground` | Text colour of the list. | `var(--muted-foreground)` |
@@ -869,7 +869,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>button-group</strong> (6)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--button-group-text-gap` | Gap between items of the text. | `calc(var(--spacing) * 2)` |
 | `--button-group-text-radius` | Corner radius of the text. | `var(--radius-4xl)` |
@@ -883,7 +883,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>button</strong> (81)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--button-radius` | Corner radius of the button. | `var(--radius-xl)` |
 | `--button-font-weight` | Font weight of the button. | `600` |
@@ -972,7 +972,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>calendar</strong> (14)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--calendar-day-selected` | Fill of the selected day, and of a range's first and last day. | `var(--lime)` |
 | `--calendar-day-selected-foreground` | Text colour of the selected day. | `var(--navy)` |
@@ -994,7 +994,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>card</strong> (17)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--card-gap` | Gap between items of the card. | `calc(var(--spacing) * 6)` |
 | `--card-radius` | Corner radius of the card. | `var(--radius-lg)` |
@@ -1019,7 +1019,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>carousel</strong> (2)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--carousel-previous-radius` | Corner radius of the previous. | `var(--radius-full)` |
 | `--carousel-next-radius` | Corner radius of the next. | `var(--radius-full)` |
@@ -1029,7 +1029,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>chart-frame</strong> (9)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--chart-frame` | Fill colour of the chart card. | `var(--white)` |
 | `--chart-frame-border` | Border colour of the chart card. | `var(--light-l3)` |
@@ -1046,7 +1046,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>chart</strong> (0)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 
 
@@ -1055,7 +1055,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>checkbox</strong> (19)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--checkbox-size` | Width and height of the checkbox. | `calc(var(--spacing) * 4)` |
 | `--checkbox-radius` | Corner radius of the checkbox. | `var(--radius-sm)` |
@@ -1082,7 +1082,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>collapsible</strong> (0)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 
 
@@ -1091,7 +1091,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>combobox</strong> (41)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--combobox-content-radius` | Corner radius of the content. | `var(--radius-2xl)` |
 | `--combobox-content` | Fill colour of the content. | `var(--popover)` |
@@ -1140,7 +1140,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>command</strong> (27)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--command-radius` | Corner radius of the command. | `var(--radius-lg)` |
 | `--command-border` | Border colour of the command. | `var(--light-l3)` |
@@ -1175,7 +1175,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>context-menu</strong> (40)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--context-menu-content-radius` | Corner radius of the content. | `var(--radius-lg)` |
 | `--context-menu-content-border` | Border colour of the content. | `var(--border)` |
@@ -1223,7 +1223,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>counter</strong> (6)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--counter-value-navy-foreground` | Colour of the number and icon (navy variant). | `var(--navy)` |
 | `--counter-value-lime-foreground` | Colour of the number and icon (lime variant, for dark sections). | `var(--lime)` |
@@ -1237,7 +1237,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>dialog</strong> (22)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--dialog-overlay` | Fill colour of the overlay. | `color-mix(in oklab, var(--dark-100) 50%, transparent)` |
 | `--dialog-content-radius` | Corner radius of the content. | `var(--radius-3xl)` |
@@ -1267,7 +1267,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>direction</strong> (0)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 
 
@@ -1276,7 +1276,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>drawer</strong> (15)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--drawer-overlay` | Fill colour of the overlay. | `color-mix(in oklab, var(--dark-100) 50%, transparent)` |
 | `--drawer-popup-min-height` | Minimum height of the popup. | `calc(var(--spacing) * 0)` |
@@ -1299,7 +1299,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>dropdown-menu</strong> (86)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--dropdown-menu-content-radius` | Corner radius of the content. | `var(--radius-lg)` |
 | `--dropdown-menu-content-border` | Border colour of the content. | `var(--dark-15)` |
@@ -1393,7 +1393,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>empty</strong> (15)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--empty-gap` | Gap between items of the empty. | `calc(var(--spacing) * 4)` |
 | `--empty-radius` | Corner radius of the empty. | `var(--radius-lg)` |
@@ -1416,7 +1416,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>field</strong> (21)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--field-set-gap` | Gap between items of the set. | `calc(var(--spacing) * 5)` |
 | `--field-set-with-choices-gap` | Gap between items of a field set that holds a checkbox or radio group. | `calc(var(--spacing) * 3)` |
@@ -1445,7 +1445,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>file-drop-zone</strong> (20)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--file-drop-zone-min-height` | Minimum height of the drop zone. | `calc(var(--spacing) * 26)` |
 | `--file-drop-zone-gap` | Gap between the icon and the text. | `calc(var(--spacing) * 2.5)` |
@@ -1473,7 +1473,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>file-upload</strong> (13)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--file-upload-gap` | Gap between the drop zone, its message and the list of files. | `calc(var(--spacing) * 2)` |
 | `--file-upload-list-gap` | Gap between the file cards. | `calc(var(--spacing) * 2)` |
@@ -1494,7 +1494,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>hover-card</strong> (8)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--hover-card-content-width` | Width of the content. | `calc(var(--spacing) * 75)` |
 | `--hover-card-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 3)` |
@@ -1510,7 +1510,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>icon-tile</strong> (16)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--icon-tile-mint` | Fill colour of the tile (mint variant). | `var(--mint-l3)` |
 | `--icon-tile-mint-foreground` | Icon colour of the tile (mint variant). | `var(--mint-75)` |
@@ -1534,7 +1534,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>input-group</strong> (22)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--input-group-min-height` | Minimum height of the input-group. | `calc(var(--spacing) * 10)` |
 | `--input-group-gap` | Gap between items of the input-group. | `calc(var(--spacing) * 2)` |
@@ -1564,7 +1564,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>input-otp</strong> (13)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--input-otp-group-gap` | Gap between items of the group. | `calc(var(--spacing) * 0.5)` |
 | `--input-otp-slot-size` | Width and height of the slot. | `calc(var(--spacing) * 8)` |
@@ -1585,7 +1585,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>input</strong> (13)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--input-radius` | Corner radius of the input. | `var(--radius-lg)` |
 | `--input-border` | Border colour of the input. | `var(--dark-45)` |
@@ -1606,7 +1606,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>item</strong> (32)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--item-group-gap` | Gap between items of the group. | `calc(var(--spacing) * 4)` |
 | `--item-group-sm-gap` | Gap between small (sm) items. | `calc(var(--spacing) * 2.5)` |
@@ -1646,7 +1646,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>kbd</strong> (8)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--kbd-height` | Height of the kbd. | `calc(var(--spacing) * 5)` |
 | `--kbd-gap` | Gap between items of the kbd. | `calc(var(--spacing) * 1)` |
@@ -1662,7 +1662,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>label</strong> (3)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--label-gap` | Gap between items of the label. | `calc(var(--spacing) * 2)` |
 | `--label-font-weight` | Font weight of the label. | `500` |
@@ -1673,7 +1673,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>menubar</strong> (56)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--menubar-height` | Height of the menubar. | `calc(var(--spacing) * 9)` |
 | `--menubar-radius` | Corner radius of the menubar. | `var(--radius-md)` |
@@ -1737,7 +1737,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>native-select</strong> (21)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--native-select-height` | Height of the native-select. | `calc(var(--spacing) * 10)` |
 | `--native-select-radius` | Corner radius of the native-select. | `var(--radius-lg)` |
@@ -1766,7 +1766,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>navigation-menu</strong> (25)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--navigation-menu-list-gap` | Gap between items of the list. | `calc(var(--spacing) * 0)` |
 | `--navigation-menu-trigger-height` | Height of the trigger. | `calc(var(--spacing) * 10)` |
@@ -1799,7 +1799,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>pagination</strong> (7)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--pagination-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 1)` |
 | `--pagination-ellipsis-size` | Width and height of the ellipsis. | `calc(var(--spacing) * 9)` |
@@ -1814,7 +1814,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>popover</strong> (11)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--popover-content-width` | Width of the content. | `calc(var(--spacing) * 72)` |
 | `--popover-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 4)` |
@@ -1833,7 +1833,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>progress</strong> (7)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--progress-gap` | Gap between items of the progress. | `calc(var(--spacing) * 3)` |
 | `--progress-track-height` | Height of the track. | `calc(var(--spacing) * 2)` |
@@ -1848,7 +1848,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>radio-group</strong> (24)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--radio-group-gap` | Gap between items of the radio-group. | `calc(var(--spacing) * 2.5)` |
 | `--radio-group-sm-gap` | Gap between options (sm size). | `calc(var(--spacing) * 2)` |
@@ -1880,7 +1880,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>resizable</strong> (3)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--resizable-handle-width` | Width of the handle. | `1px` |
 | `--resizable-handle` | Fill colour of the handle. | `var(--border)` |
@@ -1891,7 +1891,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>scroll-area</strong> (4)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--scroll-area-viewport-focus-ring` | Ring colour of the viewport when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
 | `--scroll-area-scrollbar-padding` | Padding of the scrollbar. | `1px` |
@@ -1903,7 +1903,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>select</strong> (63)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--select-trigger-height` | Height of the trigger. | `calc(var(--spacing) * 10)` |
 | `--select-trigger-gap` | Gap between items of the trigger. | `calc(var(--spacing) * 2)` |
@@ -1974,7 +1974,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>separator</strong> (1)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--separator` | Fill colour of the separator. | `var(--border)` |
 
@@ -1983,7 +1983,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>sheet</strong> (11)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--sheet-overlay` | Fill colour of the overlay. | `color-mix(in oklab, var(--dark-100) 50%, transparent)` |
 | `--sheet-content` | Fill colour of the content. | `var(--popover)` |
@@ -2002,7 +2002,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>sidebar</strong> (81)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--sidebar-fill` | Fill colour of the sidebar. | `var(--sidebar)` |
 | `--sidebar-inner` | Fill colour of the inner. | `var(--sidebar)` |
@@ -2091,7 +2091,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>skeleton</strong> (2)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--skeleton-radius` | Corner radius of the skeleton. | `var(--radius-2xl)` |
 | `--skeleton` | Fill colour of the skeleton. | `var(--light-l2)` |
@@ -2101,7 +2101,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>slider</strong> (10)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--slider-track-height` | Height of the track. | `calc(var(--spacing) * 2)` |
 | `--slider-track-radius` | Corner radius of the track. | `var(--radius-full)` |
@@ -2119,7 +2119,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>spinner</strong> (2)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--spinner-size` | Width and height of the spinner. | `calc(var(--spacing) * 4)` |
 | `--spinner-foreground` | Text colour of the spinner. | `var(--primary)` |
@@ -2129,7 +2129,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>stepper</strong> (16)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--stepper-indicator-active` | Fill colour of the current step (and of a done step in the dot size). | `var(--mint-60)` |
 | `--stepper-indicator-active-foreground` | Number colour of the current step. | `var(--navy)` |
@@ -2153,7 +2153,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>switch</strong> (11)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--switch-radius` | Corner radius of the switch. | `var(--radius-full)` |
 | `--switch-padding` | Padding of the switch. | `calc(var(--spacing) * 0.5)` |
@@ -2172,7 +2172,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>table</strong> (25)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--table-header-tinted` | Fill colour of the header row (card and bordered variants). | `var(--light-l1)` |
 | `--table-footer-border` | Border colour of the footer. | `var(--border)` |
@@ -2205,7 +2205,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>tabs</strong> (45)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--tabs-gap` | Gap between items of the tabs. | `calc(var(--spacing) * 2)` |
 | `--tabs-list-default-gap` | Gap between items of the list (default variant). | `calc(var(--spacing) * 0.5)` |
@@ -2258,7 +2258,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>textarea</strong> (12)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--textarea-radius` | Corner radius of the textarea. | `var(--radius-lg)` |
 | `--textarea-border` | Border colour of the textarea. | `var(--dark-45)` |
@@ -2278,7 +2278,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>toast</strong> (26)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--toast-viewport-offset` | Distance of the toasts from the bottom and side edges of the screen. | `calc(var(--spacing) * 4)` |
 | `--toast-viewport-offset\:sm` | Distance of the toasts from the screen edges from the sm breakpoint up. | `calc(var(--spacing) * 6)` |
@@ -2312,7 +2312,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>toggle-group</strong> (0)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 
 
@@ -2321,7 +2321,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>toggle</strong> (23)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--toggle-gap` | Gap between items of the toggle. | `calc(var(--spacing) * 1)` |
 | `--toggle-radius` | Corner radius of the toggle. | `var(--radius-md)` |
@@ -2352,7 +2352,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 <details>
 <summary><strong>tooltip</strong> (7)</summary>
 
-| Lever | What it changes | Default |
+| Component token | What it changes | Default |
 |---|---|---|
 | `--tooltip-content-gap` | Gap between items of the content. | `calc(var(--spacing) * 1.5)` |
 | `--tooltip-content-radius` | Corner radius of the content. | `var(--radius-xl)` |

@@ -1,6 +1,6 @@
 /* Chart frame — component tokens.
- * Set any lever (the name without the underscore) on :root or a section.
- * Defaults are the shipped design. Edited by hand; our component (chart-frame.tsx) reads these levers. */
+ * Set any component token (the name without the underscore) on :root or a section.
+ * Defaults are the shipped design. Edited by hand; our component (chart-frame.tsx) reads these component tokens. */
 
 [data-slot="chart-frame"] {
   /* Fill colour of the chart card. @ours */

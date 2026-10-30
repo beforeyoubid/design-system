@@ -14,7 +14,7 @@ export * from "@/components/ui/select"
 /**
  * The BYB trigger ends in a chevron that turns and goes mint while open; stock's
  * ends in an up-down selector. Stock's icon is hidden (it has no slot to hook,
- * only Tabler's class) and ours follows the value. Levers: select-icon in
+ * only Tabler's class) and ours follows the value. Component tokens: select-icon in
  * src/tokens/components/select.css.
  *
  * Pass `onClear` to show an × beside the chevron that clears the selection

@@ -1,5 +1,5 @@
 /* Alert Dialog — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --alert-dialog-overlay: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/alert-dialog.tsx follow from these names. */
 

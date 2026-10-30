@@ -7,7 +7,7 @@ export * from "@/components/ui/spinner"
 
 /**
  * The BYB Spinner is the loader-2 arc (`ring`, default); stock's is the loader
- * rays, kept as `dots`. Both read the spinner levers. Inside a control, placed
+ * rays, kept as `dots`. Both read the spinner component tokens. Inside a control, placed
  * with data-icon, it takes the control's text colour.
  */
 function Spinner({

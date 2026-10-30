@@ -18,7 +18,7 @@ Give the component in `$ARGUMENTS` a component token for every designed value an
 
 ### 1. Read the grammar
 
-Read **Component tokens (levers)** in `DESIGN.md` for the naming rules:
+Read **Component tokens** in `DESIGN.md` for the naming rules:
 
 ```
 --<part>[-<variant>][-<state>][-<property>][\:<breakpoint>]

@@ -638,8 +638,8 @@ function FileUploadImpl<TValue = string>(
  * also go into hidden inputs. The value only changes once an upload finishes,
  * so a required check blocks submit while one is still running.
  *
- * Levers: src/tokens/components/file-upload.css, file-drop-zone.css and the
- * attachment-status/progress/error levers in attachment.css.
+ * Component tokens: src/tokens/components/file-upload.css, file-drop-zone.css and the
+ * attachment-status/progress/error component tokens in attachment.css.
  */
 type RefProp = { ref?: React.Ref<HTMLInputElement> }
 

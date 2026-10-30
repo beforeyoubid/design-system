@@ -1,5 +1,5 @@
 /* Toast — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --toast-radius: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/toast.tsx follow from these names. */
 

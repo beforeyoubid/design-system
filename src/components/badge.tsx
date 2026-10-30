@@ -11,10 +11,10 @@ import { Spinner } from "@/components/spinner"
 
 export * from "@/components/ui/badge"
 
-// The badge part's look comes from the stock levers (badge.css): the md status
+// The badge part's look comes from the stock component tokens (badge.css): the md status
 // pill is the stock size, and mint / gray / error are the stock default /
 // secondary / destructive keys. Here: the tones, sizes and solid look stock
-// doesn't have, each reading an @ours lever.
+// doesn't have, each reading an @ours component token.
 const badgeVariants = cva(
   "",
   {

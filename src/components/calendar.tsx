@@ -3,7 +3,7 @@
 // BYB Calendar: the stock component with the BYB look (lime selected day, light
 // range, quiet navigation). Kept as our own component because the look lives in
 // the classNames map and the day button, which the CLI rewrites wholesale.
-// Levers: src/tokens/components/calendar.css.
+// Component tokens: src/tokens/components/calendar.css.
 
 import * as React from "react"
 import {

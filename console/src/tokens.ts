@@ -77,7 +77,7 @@ export function parseColor(v: string): ColorValue | null {
   const s = v.trim()
   let m = s.match(/^var\((--(?:[\w-]|\\:)+)(?:\s*,\s*([\s\S]+))?\)$/)
   if (m) {
-    // A lever that falls back to another lever: show what it resolves to.
+    // A component token that falls back to another component token: show what it resolves to.
     if (!hexByVar.has(m[1]) && !semanticByVar.has(m[1]) && m[2]) return parseColor(m[2])
     return { ref: m[1], alpha: 100 }
   }

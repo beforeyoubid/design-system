@@ -14,7 +14,7 @@ export interface FileDropZoneProps extends Omit<React.ComponentProps<"button">, 
  * The dashed "drop files or browse" box. A button, so a FieldLabel can point at
  * it and it takes focus and Enter like any control; set `aria-invalid` for its
  * error look. It only reports drops; FileUpload checks and uploads them.
- * Levers: src/tokens/components/file-drop-zone.css.
+ * Component tokens: src/tokens/components/file-drop-zone.css.
  */
 function FileDropZone({
   className,

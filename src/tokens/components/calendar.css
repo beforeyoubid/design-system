@@ -1,5 +1,5 @@
 /* Calendar — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --calendar-day-selected: … }
  * Our own Calendar (components/calendar.tsx) reads these. Defaults are the shipped design. */
 

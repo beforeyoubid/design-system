@@ -27,9 +27,9 @@ Several can apply: a rename inside a new component is author-component plus brea
 | `utilities.css` | Bespoke product utilities (`.clip-triangle`, `.mask-fade-x`, `.text-button-*`, `.text-overline`, `.text-h*` / `.text-display-*` tracking). Imported by `globals.css`. |
 | `components.json` | shadcn CLI config — wire for `npx shadcn add <component>`. |
 | `src/components/` | Our components: BYB composites (`FileUpload`, `Stepper`, `BYBAreaChart`, …) and wrappers that export over a stock component (`button.tsx`, `tabs.tsx`, `calendar.tsx`, …). One file per component. |
-| `src/components/ui/` | The shadcn CLI's files, with class strings edited by `pnpm tokens:apply` to read the levers. **Don't hand-edit**: change a token file, or move the change into a wrapper in `src/components/`. |
-| `src/tokens/components/` | Component tokens (levers): one CSS file per component, defaults are the BYB design. `index.css` is generated from them. |
-| `scripts/tokens/` | `apply.mjs` (token files → ui class strings), `build.mjs` (index.css, Design Console manifest, DESIGN.md levers table), `check.mjs` (names, missing levers, contrast), `import.mjs` (a Design Console export → the files that own each value), `contrast-exceptions.json`. |
+| `src/components/ui/` | The shadcn CLI's files, with class strings edited by `pnpm tokens:apply` to read the component tokens. **Don't hand-edit**: change a token file, or move the change into a wrapper in `src/components/`. |
+| `src/tokens/components/` | Component tokens: one CSS file per component, defaults are the BYB design. `index.css` is generated from them. |
+| `scripts/tokens/` | `apply.mjs` (token files → ui class strings), `build.mjs` (index.css, Design Console manifest, DESIGN.md component tokens table), `check.mjs` (names, missing component tokens, contrast), `import.mjs` (a Design Console export → the files that own each value), `contrast-exceptions.json`. |
 | `console/` | The BYB Design Console (Vite + React): every token with a typed picker, the real stories live, contrast, `:root` export. `pnpm console` (watches the token files); `pnpm console:build` writes one self-contained `console/dist/design-console.html`. Setup for designers: `console/README.md`. |
 | `src/tokens.ts` | `generateDesignSystemTokens({ overrides })` — tokens for non-CSS contexts (Stripe, canvas). Reads `src/generated/default-tokens.ts`. |
 | `src/generated/default-tokens.ts` | Generated from `globals.css` + `utilities.css` by `pnpm generate-tokens`. Never edit by hand. |
@@ -230,15 +230,15 @@ This tells bundlers that JS exports are side-effect-free (free to tree-shake) bu
 - **Inputs fill their container** (`w-full`). Don't give a control a fixed width; the layout around it sets the width.
 - **Boolean props default to `false`** and are named for what they add (`clearable`, not `hideClear`), so turning one on is passing it. Never ship a boolean that callers turn off with `={false}`.
 
-### Component tokens (levers) and the shadcn CLI
+### Component tokens and the shadcn CLI
 
-Three layers: **brand** tokens (`--mint-45`, `--text-body-4`, `--radius-lg`) → **semantic** tokens (`--primary`, `--border`) → **component** tokens, called **levers** (`--button-default`, `--input-radius`). A **part** is one element of a component, named by its `data-slot`. Lever names are `--<part>[-<variant>][-<state>][-<property>][\:<breakpoint>]` (mobile-first: `\:md` is md and up, `\:md-to-lg` a range); DESIGN.md "Component tokens (levers)" has the full grammar and the generated list.
+Three layers: **brand** tokens (`--mint-45`, `--text-body-4`, `--radius-lg`) → **semantic** tokens (`--primary`, `--border`) → **component** tokens (`--button-default`, `--input-radius`). A **part** is one element of a component, named by its `data-slot`. Component token names are `--<part>[-<variant>][-<state>][-<property>][\:<breakpoint>]` (mobile-first: `\:md` is md and up, `\:md-to-lg` a range); DESIGN.md "Component tokens" has the full grammar and the generated list.
 
-- A token file (`src/tokens/components/<component>.css`) declares a private `--_x` per lever on its part, falling back to the public `--x`, then the default. The ui file reads the private name (`rounded-(--_input-radius)`); apps set the public one.
-- Directives in token files: `/* @add classes */` and `/* @remove classes */` on a part, `/* @add(size.sm) … */` for one cva key, `/* @alias md = size.default */`. In a token's comment, `@ours` marks a lever read by our own component, not the ui file.
+- A token file (`src/tokens/components/<component>.css`) declares a private `--_x` per component token on its part, falling back to the public `--x`, then the default. The ui file reads the private name (`rounded-(--_input-radius)`); apps set the public one.
+- Directives in token files: `/* @add classes */` and `/* @remove classes */` on a part, `/* @add(size.sm) … */` for one cva key, `/* @alias md = size.default */`. In a token's comment, `@ours` marks a component token read by our own component, not the ui file.
 - To update stock components: `npx shadcn@latest add <names> --overwrite` → `pnpm tokens:apply` → `pnpm tokens:build` → `pnpm check-component-tokens`. Review the diff of `src/components/ui/` and the visual result before committing.
-- To add a new stock component: `npx shadcn@latest add <name>`, write its token file (one lever per designed value), then the same three commands. Export it from `src/index.ts`.
-- A change that isn't just a look (different structure, behaviour or variants) goes in a wrapper in `src/components/<name>.tsx` that re-exports `ui/<name>` and exports over the parts it changes. Its levers are `@ours`.
+- To add a new stock component: `npx shadcn@latest add <name>`, write its token file (one component token per designed value), then the same three commands. Export it from `src/index.ts`.
+- A change that isn't just a look (different structure, behaviour or variants) goes in a wrapper in `src/components/<name>.tsx` that re-exports `ui/<name>` and exports over the parts it changes. Its component tokens are `@ours`.
 - Contrast pairs under AA go in `scripts/tokens/contrast-exceptions.json` as `undecided` or `accepted` with a note. `check-component-tokens` warns on undecided; `scripts/tokens/check.mjs --strict` fails.
 
 ### Component API conventions
@@ -283,8 +283,8 @@ pnpm sync-shadcn-css # refresh shadcn.css after bumping shadcn
 pnpm test:migrate # migrator tests
 pnpm test:cn      # cn() merge tests
 pnpm tokens:apply # token files → class strings in src/components/ui
-pnpm tokens:build # regenerate index.css, the Design Console manifest and the DESIGN.md levers table
-pnpm check-component-tokens # fail if any of the above is stale, a lever is misnamed, or contrast fails
+pnpm tokens:build # regenerate index.css, the Design Console manifest and the DESIGN.md component tokens table
+pnpm check-component-tokens # fail if any of the above is stale, a component token is misnamed, or contrast fails
 pnpm console      # the Design Console at http://localhost:6010, rebuilt as token files change
 pnpm tokens:import <file.css> # make a Design Console export the defaults (--dry-run to preview)
 pnpm registry:build # regenerate docs/registry.md

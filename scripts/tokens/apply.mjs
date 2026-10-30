@@ -7,9 +7,9 @@
  *
  * It
  *   1. rewrites the CLI's `import { cn } from "cn"` to our helper (`@/lib/utils`);
- *   2. applies the class edits each token file implies: every lever token replaces
+ *   2. applies the class edits each token file implies: every component token replaces
  *      the class that sets the same property in the same state on its part, and the
- *      @add / @remove directives restore the design's classes that aren't levers.
+ *      @add / @remove directives restore the design's classes that aren't component tokens.
  *
  * Running it twice changes nothing.
  */
@@ -91,8 +91,8 @@ for (const { component, file } of tokenFiles()) {
       }
     }
     // Every plain string in the part's cn() call applies, and a later one wins in cn.
-    // Once a lever class is in place, drop the classes in the part's other strings that
-    // set the same property under the same condition, or they'd override the lever.
+    // Once a component token class is in place, drop the classes in the part's other strings that
+    // set the same property under the same condition, or they'd override the component token.
     const dropConflicts = (keep) => (s) => {
       const list = s.split(/\s+/).filter(Boolean)
       const kept = list.filter((c) => {
@@ -105,7 +105,7 @@ for (const { component, file } of tokenFiles()) {
       })
       return kept.length === list.length ? s : kept.join(' ')
     }
-    const leverClassesIn = (variant, name) => {
+    const tokenClassesIn = (variant, name) => {
       const { lit } = literalFor(sources.get(uiFile), null, variant)
       return lit ? lit.text.split(/\s+/).filter((c) => c.includes(`(${name})`)) : []
     }
@@ -138,7 +138,7 @@ for (const { component, file } of tokenFiles()) {
       }
       edit(t.name, parsed.variant, (s) => applyToken(s, { name: t.name, part: rule.slot, hints: rule.add.flatMap((d) => d.classes), ...parsed }))
       if (!parsed.variant) {
-        const keep = leverClassesIn(null, t.name)
+        const keep = tokenClassesIn(null, t.name)
         if (keep.length) editEveryBase(`${t.name} (other strings)`, dropConflicts(keep))
       }
     }

@@ -29,7 +29,7 @@ function FieldLabel({
 
 /**
  * Stock FieldTitle (a choice card's title) shares the label's data-slot, so it
- * follows the label's disabled-opacity lever too.
+ * follows the label's disabled-opacity component token too.
  */
 function FieldTitle({ className, ...props }: React.ComponentProps<typeof StockFieldTitle>) {
   return (

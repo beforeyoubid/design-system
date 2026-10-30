@@ -7,7 +7,7 @@ import { Empty as EmptyBase } from "@/components/ui/empty"
 export * from "@/components/ui/empty"
 
 const emptyVariants = cva(
-  // The layout is the stock empty part (empty levers); variants add a border or fill.
+  // The layout is the stock empty part (empty component tokens); variants add a border or fill.
   "",
   {
     variants: {

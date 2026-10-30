@@ -14,8 +14,8 @@ import {
 export * from "@/components/ui/tabs"
 
 // The pill list and trigger are the stock default (tabs-list / tabs-trigger
-// levers) and the line list is stock `line`. Here: the segmented list, the line
-// and segmented triggers, and the sliding indicator, each reading an @ours lever.
+// component tokens) and the line list is stock `line`. Here: the segmented list, the line
+// and segmented triggers, and the sliding indicator, each reading an @ours component token.
 const tabsListVariants = cva(
   "",
   {

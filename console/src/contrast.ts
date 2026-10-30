@@ -53,7 +53,7 @@ function probe(part: string, fgVar: string, bgVar: string) {
 
 export interface Pair { fg: ComponentToken; bg: ComponentToken; ratio: number; fgCss: string; bgCss: string }
 
-/** Every foreground lever paired with the fill it sits on, for one component. */
+/** Every foreground component token paired with the fill it sits on, for one component. */
 export function pairsFor(component: string): Pair[] {
   const comp = manifest.components.find((c) => c.component === component)
   if (!comp) return []

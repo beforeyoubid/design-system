@@ -10,7 +10,7 @@ export * from "@/components/ui/input-group"
 
 /*
  * The variant helpers below are public API. The stock ui file keeps private
- * copies with the same classes (reading the same levers); keep the two in step.
+ * copies with the same classes (reading the same component tokens); keep the two in step.
  */
 
 const inputGroupAddonVariants = cva(

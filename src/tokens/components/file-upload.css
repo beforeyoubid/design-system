@@ -1,7 +1,7 @@
 /* File Upload — component tokens.
- * Set any lever (the name without the underscore) on :root or a section.
- * Defaults are the shipped design. Edited by hand; our component (file-upload.tsx) reads these levers.
- * The drop zone and the file cards have their own levers: file-drop-zone.css and attachment.css. */
+ * Set any component token (the name without the underscore) on :root or a section.
+ * Defaults are the shipped design. Edited by hand; our component (file-upload.tsx) reads these component tokens.
+ * The drop zone and the file cards have their own component tokens: file-drop-zone.css and attachment.css. */
 
 [data-slot="file-upload"] {
   /* Gap between the drop zone, its message and the list of files. @ours */

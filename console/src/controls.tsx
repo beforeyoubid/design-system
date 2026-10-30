@@ -177,7 +177,7 @@ export function ValueControl({ type, id, value, onChange, max }: ControlProps & 
   }
 }
 
-/** What kind of value a lever takes, in words, so nobody has to guess. */
+/** What kind of value a component token takes, in words, so nobody has to guess. */
 export const typeHint: Record<ValueType, string> = {
   color: 'Colour from the BYB palette',
   radius: 'Corner radius',

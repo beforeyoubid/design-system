@@ -813,7 +813,7 @@
  "components": [
   {
    "component": "accordion",
-   "description": "Accordion — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --accordion-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/accordion.tsx follow from these names.",
+   "description": "Accordion — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --accordion-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/accordion.tsx follow from these names.",
    "tokens": [
     {
      "name": "--accordion-item-border",
@@ -983,7 +983,7 @@
   },
   {
    "component": "alert-dialog",
-   "description": "Alert Dialog — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --alert-dialog-overlay: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/alert-dialog.tsx follow from these names.",
+   "description": "Alert Dialog — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --alert-dialog-overlay: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/alert-dialog.tsx follow from these names.",
    "tokens": [
     {
      "name": "--alert-dialog-overlay",
@@ -1209,7 +1209,7 @@
   },
   {
    "component": "alert",
-   "description": "Alert — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --alert-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/alert.tsx follow from these names.",
+   "description": "Alert — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --alert-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/alert.tsx follow from these names.",
    "tokens": [
     {
      "name": "--alert-gap",
@@ -1409,12 +1409,12 @@
   },
   {
    "component": "aspect-ratio",
-   "description": "Aspect Ratio — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --aspect-ratio-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/aspect-ratio.tsx follow from these names.",
+   "description": "Aspect Ratio — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --aspect-ratio-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/aspect-ratio.tsx follow from these names.",
    "tokens": []
   },
   {
    "component": "attachment",
-   "description": "Attachment — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --attachment-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/attachment.tsx follow from these names.",
+   "description": "Attachment — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --attachment-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/attachment.tsx follow from these names.",
    "tokens": [
     {
      "name": "--attachment-radius",
@@ -2015,7 +2015,7 @@
   },
   {
    "component": "avatar",
-   "description": "Avatar — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --avatar-size: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/avatar.tsx follow from these names.",
+   "description": "Avatar — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --avatar-size: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/avatar.tsx follow from these names.",
    "tokens": [
     {
      "name": "--avatar-size",
@@ -2287,7 +2287,7 @@
   },
   {
    "component": "badge",
-   "description": "Badge — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --badge-height: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/badge.tsx follow from these names.",
+   "description": "Badge — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --badge-height: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/badge.tsx follow from these names.",
    "tokens": [
     {
      "name": "--badge-height",
@@ -3201,7 +3201,7 @@
   },
   {
    "component": "breadcrumb",
-   "description": "Breadcrumb — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --breadcrumb-list-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/breadcrumb.tsx follow from these names.",
+   "description": "Breadcrumb — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --breadcrumb-list-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/breadcrumb.tsx follow from these names.",
    "tokens": [
     {
      "name": "--breadcrumb-list-gap",
@@ -3317,7 +3317,7 @@
   },
   {
    "component": "button-group",
-   "description": "Button Group — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --button-group-text-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/button-group.tsx follow from these names.",
+   "description": "Button Group — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --button-group-text-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/button-group.tsx follow from these names.",
    "tokens": [
     {
      "name": "--button-group-text-gap",
@@ -3405,7 +3405,7 @@
   },
   {
    "component": "button",
-   "description": "Button — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --button-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/button.tsx follow from these names.",
+   "description": "Button — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --button-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/button.tsx follow from these names.",
    "tokens": [
     {
      "name": "--button-radius",
@@ -4542,7 +4542,7 @@
   },
   {
    "component": "calendar",
-   "description": "Calendar — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --calendar-day-selected: … }\nOur own Calendar (components/calendar.tsx) reads these. Defaults are the shipped design.",
+   "description": "Calendar — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --calendar-day-selected: … }\nOur own Calendar (components/calendar.tsx) reads these. Defaults are the shipped design.",
    "tokens": [
     {
      "name": "--calendar-day-selected",
@@ -4744,7 +4744,7 @@
   },
   {
    "component": "card",
-   "description": "Card — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --card-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/card.tsx follow from these names.",
+   "description": "Card — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --card-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/card.tsx follow from these names.",
    "tokens": [
     {
      "name": "--card-gap",
@@ -4984,7 +4984,7 @@
   },
   {
    "component": "carousel",
-   "description": "Carousel — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --carousel-previous-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/carousel.tsx follow from these names.",
+   "description": "Carousel — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --carousel-previous-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/carousel.tsx follow from these names.",
    "tokens": [
     {
      "name": "--carousel-previous-radius",
@@ -5018,7 +5018,7 @@
   },
   {
    "component": "chart-frame",
-   "description": "Chart frame — component tokens.\nSet any lever (the name without the underscore) on :root or a section.\nDefaults are the shipped design. Edited by hand; our component (chart-frame.tsx) reads these levers.",
+   "description": "Chart frame — component tokens.\nSet any component token (the name without the underscore) on :root or a section.\nDefaults are the shipped design. Edited by hand; our component (chart-frame.tsx) reads these component tokens.",
    "tokens": [
     {
      "name": "--chart-frame",
@@ -5150,12 +5150,12 @@
   },
   {
    "component": "chart",
-   "description": "Chart — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --chart-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/chart.tsx follow from these names.",
+   "description": "Chart — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --chart-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/chart.tsx follow from these names.",
    "tokens": []
   },
   {
    "component": "checkbox",
-   "description": "Checkbox — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --checkbox-size: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/checkbox.tsx follow from these names.",
+   "description": "Checkbox — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --checkbox-size: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/checkbox.tsx follow from these names.",
    "tokens": [
     {
      "name": "--checkbox-size",
@@ -5425,12 +5425,12 @@
   },
   {
    "component": "collapsible",
-   "description": "Collapsible — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --collapsible-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/collapsible.tsx follow from these names.",
+   "description": "Collapsible — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --collapsible-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/collapsible.tsx follow from these names.",
    "tokens": []
   },
   {
    "component": "combobox",
-   "description": "Combobox — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --combobox-content-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/combobox.tsx follow from these names.",
+   "description": "Combobox — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --combobox-content-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/combobox.tsx follow from these names.",
    "tokens": [
     {
      "name": "--combobox-content-radius",
@@ -5994,7 +5994,7 @@
   },
   {
    "component": "command",
-   "description": "Command — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --command-radius: … }\nDefaults are the shipped design. Stock wraps the command input in an InputGroup; the wrapper flattens it to a borderless search row. Edited by hand; the class edits in ui/command.tsx follow from these names.",
+   "description": "Command — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --command-radius: … }\nDefaults are the shipped design. Stock wraps the command input in an InputGroup; the wrapper flattens it to a borderless search row. Edited by hand; the class edits in ui/command.tsx follow from these names.",
    "tokens": [
     {
      "name": "--command-radius",
@@ -6374,7 +6374,7 @@
   },
   {
    "component": "context-menu",
-   "description": "Context Menu — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --context-menu-content-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/context-menu.tsx follow from these names.",
+   "description": "Context Menu — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --context-menu-content-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/context-menu.tsx follow from these names.",
    "tokens": [
     {
      "name": "--context-menu-content-radius",
@@ -6928,7 +6928,7 @@
   },
   {
    "component": "counter",
-   "description": "Counter — component tokens.\nSet any lever (the name without the underscore) on :root or a section.\nDefaults are the shipped design. Edited by hand; our component (counter.tsx) reads these levers.",
+   "description": "Counter — component tokens.\nSet any component token (the name without the underscore) on :root or a section.\nDefaults are the shipped design. Edited by hand; our component (counter.tsx) reads these component tokens.",
    "tokens": [
     {
      "name": "--counter-value-navy-foreground",
@@ -7018,7 +7018,7 @@
   },
   {
    "component": "dialog",
-   "description": "Dialog — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --dialog-overlay: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/dialog.tsx follow from these names.",
+   "description": "Dialog — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --dialog-overlay: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/dialog.tsx follow from these names.",
    "tokens": [
     {
      "name": "--dialog-overlay",
@@ -7328,12 +7328,12 @@
   },
   {
    "component": "direction",
-   "description": "Direction — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --direction-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/direction.tsx follow from these names.",
+   "description": "Direction — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --direction-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/direction.tsx follow from these names.",
    "tokens": []
   },
   {
    "component": "drawer",
-   "description": "Drawer — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --drawer-overlay: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/drawer.tsx follow from these names.",
+   "description": "Drawer — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --drawer-overlay: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/drawer.tsx follow from these names.",
    "tokens": [
     {
      "name": "--drawer-overlay",
@@ -7547,7 +7547,7 @@
   },
   {
    "component": "dropdown-menu",
-   "description": "Dropdown Menu — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --dropdown-menu-content-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/dropdown-menu.tsx follow from these names.",
+   "description": "Dropdown Menu — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --dropdown-menu-content-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/dropdown-menu.tsx follow from these names.",
    "tokens": [
     {
      "name": "--dropdown-menu-content-radius",
@@ -8751,7 +8751,7 @@
   },
   {
    "component": "empty",
-   "description": "Empty — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --empty-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/empty.tsx follow from these names.",
+   "description": "Empty — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --empty-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/empty.tsx follow from these names.",
    "tokens": [
     {
      "name": "--empty-gap",
@@ -8965,7 +8965,7 @@
   },
   {
    "component": "field",
-   "description": "Field — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --field-set-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/field.tsx follow from these names.",
+   "description": "Field — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --field-set-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/field.tsx follow from these names.",
    "tokens": [
     {
      "name": "--field-set-gap",
@@ -9255,7 +9255,7 @@
   },
   {
    "component": "file-drop-zone",
-   "description": "File Drop Zone — component tokens.\nSet any lever (the name without the underscore) on :root or a section.\nDefaults are the shipped design. Edited by hand; our component (file-drop-zone.tsx) reads these levers.",
+   "description": "File Drop Zone — component tokens.\nSet any component token (the name without the underscore) on :root or a section.\nDefaults are the shipped design. Edited by hand; our component (file-drop-zone.tsx) reads these component tokens.",
    "tokens": [
     {
      "name": "--file-drop-zone-min-height",
@@ -9539,7 +9539,7 @@
   },
   {
    "component": "file-upload",
-   "description": "File Upload — component tokens.\nSet any lever (the name without the underscore) on :root or a section.\nDefaults are the shipped design. Edited by hand; our component (file-upload.tsx) reads these levers.\nThe drop zone and the file cards have their own levers: file-drop-zone.css and attachment.css.",
+   "description": "File Upload — component tokens.\nSet any component token (the name without the underscore) on :root or a section.\nDefaults are the shipped design. Edited by hand; our component (file-upload.tsx) reads these component tokens.\nThe drop zone and the file cards have their own component tokens: file-drop-zone.css and attachment.css.",
    "tokens": [
     {
      "name": "--file-upload-gap",
@@ -9727,7 +9727,7 @@
   },
   {
    "component": "hover-card",
-   "description": "Hover Card — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --hover-card-content-width: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/hover-card.tsx follow from these names.",
+   "description": "Hover Card — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --hover-card-content-width: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/hover-card.tsx follow from these names.",
    "tokens": [
     {
      "name": "--hover-card-content-width",
@@ -9843,7 +9843,7 @@
   },
   {
    "component": "icon-tile",
-   "description": "Icon tile — component tokens.\nSet any lever (the name without the underscore) on :root or a section.\nDefaults are the shipped design. Edited by hand; our component (icon-tile.tsx) reads these levers.",
+   "description": "Icon tile — component tokens.\nSet any component token (the name without the underscore) on :root or a section.\nDefaults are the shipped design. Edited by hand; our component (icon-tile.tsx) reads these component tokens.",
    "tokens": [
     {
      "name": "--icon-tile-mint",
@@ -10073,7 +10073,7 @@
   },
   {
    "component": "input-group",
-   "description": "Input Group — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --input-group-min-height: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/input-group.tsx follow from these names.",
+   "description": "Input Group — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --input-group-min-height: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/input-group.tsx follow from these names.",
    "tokens": [
     {
      "name": "--input-group-min-height",
@@ -10383,7 +10383,7 @@
   },
   {
    "component": "input-otp",
-   "description": "Input Otp — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --input-otp-group-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/input-otp.tsx follow from these names.",
+   "description": "Input Otp — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --input-otp-group-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/input-otp.tsx follow from these names.",
    "tokens": [
     {
      "name": "--input-otp-group-gap",
@@ -10569,7 +10569,7 @@
   },
   {
    "component": "input",
-   "description": "Input — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --input-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/input.tsx follow from these names.",
+   "description": "Input — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --input-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/input.tsx follow from these names.",
    "tokens": [
     {
      "name": "--input-radius",
@@ -10757,7 +10757,7 @@
   },
   {
    "component": "item",
-   "description": "Item — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --item-group-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/item.tsx follow from these names.",
+   "description": "Item — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --item-group-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/item.tsx follow from these names.",
    "tokens": [
     {
      "name": "--item-group-gap",
@@ -11207,7 +11207,7 @@
   },
   {
    "component": "kbd",
-   "description": "Kbd — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --kbd-height: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/kbd.tsx follow from these names.",
+   "description": "Kbd — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --kbd-height: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/kbd.tsx follow from these names.",
    "tokens": [
     {
      "name": "--kbd-height",
@@ -11323,7 +11323,7 @@
   },
   {
    "component": "label",
-   "description": "Label — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --label-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/label.tsx follow from these names.",
+   "description": "Label — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --label-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/label.tsx follow from these names.",
    "tokens": [
     {
      "name": "--label-gap",
@@ -11369,7 +11369,7 @@
   },
   {
    "component": "menubar",
-   "description": "Menubar — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --menubar-height: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/menubar.tsx follow from these names.",
+   "description": "Menubar — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --menubar-height: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/menubar.tsx follow from these names.",
    "tokens": [
     {
      "name": "--menubar-height",
@@ -12145,7 +12145,7 @@
   },
   {
    "component": "native-select",
-   "description": "Native Select — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --native-select-height: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/native-select.tsx follow from these names.",
+   "description": "Native Select — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --native-select-height: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/native-select.tsx follow from these names.",
    "tokens": [
     {
      "name": "--native-select-height",
@@ -12437,7 +12437,7 @@
   },
   {
    "component": "navigation-menu",
-   "description": "Navigation Menu — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --navigation-menu-list-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/navigation-menu.tsx follow from these names.",
+   "description": "Navigation Menu — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --navigation-menu-list-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/navigation-menu.tsx follow from these names.",
    "tokens": [
     {
      "name": "--navigation-menu-list-gap",
@@ -12791,7 +12791,7 @@
   },
   {
    "component": "pagination",
-   "description": "Pagination — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --pagination-content-gap: … }\nDefaults are the shipped design. The pagination-link levers are read by our PaginationLink (components/pagination.tsx).",
+   "description": "Pagination — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --pagination-content-gap: … }\nDefaults are the shipped design. The pagination-link component tokens are read by our PaginationLink (components/pagination.tsx).",
    "tokens": [
     {
      "name": "--pagination-content-gap",
@@ -12895,7 +12895,7 @@
   },
   {
    "component": "popover",
-   "description": "Popover — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --popover-content-width: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/popover.tsx follow from these names.",
+   "description": "Popover — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --popover-content-width: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/popover.tsx follow from these names.",
    "tokens": [
     {
      "name": "--popover-content-width",
@@ -13051,7 +13051,7 @@
   },
   {
    "component": "progress",
-   "description": "Progress — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --progress-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/progress.tsx follow from these names.",
+   "description": "Progress — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --progress-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/progress.tsx follow from these names.",
    "tokens": [
     {
      "name": "--progress-gap",
@@ -13153,7 +13153,7 @@
   },
   {
    "component": "radio-group",
-   "description": "Radio Group — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --radio-group-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/radio-group.tsx follow from these names.",
+   "description": "Radio Group — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --radio-group-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/radio-group.tsx follow from these names.",
    "tokens": [
     {
      "name": "--radio-group-gap",
@@ -13493,7 +13493,7 @@
   },
   {
    "component": "resizable",
-   "description": "Resizable — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --resizable-handle-width: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/resizable.tsx follow from these names.",
+   "description": "Resizable — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --resizable-handle-width: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/resizable.tsx follow from these names.",
    "tokens": [
     {
      "name": "--resizable-handle-width",
@@ -13539,7 +13539,7 @@
   },
   {
    "component": "scroll-area",
-   "description": "Scroll Area — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --scroll-area-viewport-focus-ring: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/scroll-area.tsx follow from these names.",
+   "description": "Scroll Area — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --scroll-area-viewport-focus-ring: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/scroll-area.tsx follow from these names.",
    "tokens": [
     {
      "name": "--scroll-area-viewport-focus-ring",
@@ -13599,7 +13599,7 @@
   },
   {
    "component": "select",
-   "description": "Select — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --select-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/select.tsx follow from these names.",
+   "description": "Select — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --select-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/select.tsx follow from these names.",
    "tokens": [
     {
      "name": "--select-trigger-height",
@@ -14483,7 +14483,7 @@
   },
   {
    "component": "separator",
-   "description": "Separator — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --separator: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/separator.tsx follow from these names.",
+   "description": "Separator — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --separator: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/separator.tsx follow from these names.",
    "tokens": [
     {
      "name": "--separator",
@@ -14503,7 +14503,7 @@
   },
   {
    "component": "sheet",
-   "description": "Sheet — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --sheet-overlay: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/sheet.tsx follow from these names.",
+   "description": "Sheet — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --sheet-overlay: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/sheet.tsx follow from these names.",
    "tokens": [
     {
      "name": "--sheet-overlay",
@@ -14659,7 +14659,7 @@
   },
   {
    "component": "sidebar",
-   "description": "Sidebar — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --sidebar-fill: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/sidebar.tsx follow from these names.",
+   "description": "Sidebar — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --sidebar-fill: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/sidebar.tsx follow from these names.",
    "tokens": [
     {
      "name": "--sidebar-fill",
@@ -15790,7 +15790,7 @@
   },
   {
    "component": "skeleton",
-   "description": "Skeleton — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --skeleton-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/skeleton.tsx follow from these names.",
+   "description": "Skeleton — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --skeleton-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/skeleton.tsx follow from these names.",
    "tokens": [
     {
      "name": "--skeleton-radius",
@@ -15824,7 +15824,7 @@
   },
   {
    "component": "slider",
-   "description": "Slider — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --slider-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/slider.tsx follow from these names.",
+   "description": "Slider — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --slider-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/slider.tsx follow from these names.",
    "tokens": [
     {
      "name": "--slider-track-height",
@@ -15968,7 +15968,7 @@
   },
   {
    "component": "spinner",
-   "description": "Spinner — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --spinner-size: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/spinner.tsx follow from these names.",
+   "description": "Spinner — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --spinner-size: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/spinner.tsx follow from these names.",
    "tokens": [
     {
      "name": "--spinner-size",
@@ -16002,7 +16002,7 @@
   },
   {
    "component": "stepper",
-   "description": "Stepper — component tokens.\nSet any lever (the name without the underscore) on :root or a section.\nDefaults are the shipped design. Edited by hand; our component (stepper.tsx) reads these levers.",
+   "description": "Stepper — component tokens.\nSet any component token (the name without the underscore) on :root or a section.\nDefaults are the shipped design. Edited by hand; our component (stepper.tsx) reads these component tokens.",
    "tokens": [
     {
      "name": "--stepper-indicator-active",
@@ -16232,7 +16232,7 @@
   },
   {
    "component": "switch",
-   "description": "Switch — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --switch-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/switch.tsx follow from these names.",
+   "description": "Switch — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --switch-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/switch.tsx follow from these names.",
    "tokens": [
     {
      "name": "--switch-radius",
@@ -16388,7 +16388,7 @@
   },
   {
    "component": "table",
-   "description": "Table — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --table-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/table.tsx follow from these names.",
+   "description": "Table — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --table-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/table.tsx follow from these names.",
    "tokens": [
     {
      "name": "--table-header-tinted",
@@ -16742,7 +16742,7 @@
   },
   {
    "component": "tabs",
-   "description": "Tabs — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --tabs-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/tabs.tsx follow from these names.\nThe trigger drops stock's active fill and underline: our Tabs draw a sliding thumb instead (components/tabs.tsx).",
+   "description": "Tabs — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --tabs-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/tabs.tsx follow from these names.\nThe trigger drops stock's active fill and underline: our Tabs draw a sliding thumb instead (components/tabs.tsx).",
    "tokens": [
     {
      "name": "--tabs-gap",
@@ -17376,7 +17376,7 @@
   },
   {
    "component": "textarea",
-   "description": "Textarea — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --textarea-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/textarea.tsx follow from these names.",
+   "description": "Textarea — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --textarea-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/textarea.tsx follow from these names.",
    "tokens": [
     {
      "name": "--textarea-radius",
@@ -17550,7 +17550,7 @@
   },
   {
    "component": "toast",
-   "description": "Toast — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --toast-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/toast.tsx follow from these names.",
+   "description": "Toast — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --toast-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/toast.tsx follow from these names.",
    "tokens": [
     {
      "name": "--toast-viewport-offset",
@@ -17916,12 +17916,12 @@
   },
   {
    "component": "toggle-group",
-   "description": "Toggle Group — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --toggle-group-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/toggle-group.tsx follow from these names.",
+   "description": "Toggle Group — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --toggle-group-radius: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/toggle-group.tsx follow from these names.",
    "tokens": []
   },
   {
    "component": "toggle",
-   "description": "Toggle — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --toggle-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/toggle.tsx follow from these names.",
+   "description": "Toggle — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --toggle-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/toggle.tsx follow from these names.",
    "tokens": [
     {
      "name": "--toggle-gap",
@@ -18246,7 +18246,7 @@
   },
   {
    "component": "tooltip",
-   "description": "Tooltip — component tokens.\nSet any lever (the name without the underscore) on :root or a section, e.g.\n  :root { --tooltip-content-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/tooltip.tsx follow from these names.",
+   "description": "Tooltip — component tokens.\nSet any component token (the name without the underscore) on :root or a section, e.g.\n  :root { --tooltip-content-gap: … }\nDefaults are the shipped design. Edited by hand; the class edits in ui/tooltip.tsx follow from these names.",
    "tokens": [
     {
      "name": "--tooltip-content-gap",

@@ -80,7 +80,7 @@ const toastVariants = cva("", {
       warning: "bg-(--_toast-warning) text-(--_toast-warning-foreground)",
       error: "bg-(--_toast-error) text-(--_toast-error-foreground)",
       info: "bg-(--_toast-info) text-(--_toast-info-foreground)",
-      // The stock toast fill and text (toast levers)
+      // The stock toast fill and text (toast component tokens)
       default: "",
     },
   },

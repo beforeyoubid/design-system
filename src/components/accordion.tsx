@@ -11,7 +11,7 @@ import {
 export * from "@/components/ui/accordion"
 
 /**
- * Trigger row. md is the stock trigger (accordion-trigger levers); sm and lg
+ * Trigger row. md is the stock trigger (accordion-trigger component tokens); sm and lg
  * set their own title size, padding and chevron size.
  */
 const accordionTriggerVariants = cva("", {

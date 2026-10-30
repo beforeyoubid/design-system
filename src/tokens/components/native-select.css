@@ -1,5 +1,5 @@
 /* Native Select — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --native-select-height: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/native-select.tsx follow from these names. */
 

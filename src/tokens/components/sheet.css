@@ -1,5 +1,5 @@
 /* Sheet — component tokens.
- * Set any lever (the name without the underscore) on :root or a section, e.g.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
  *   :root { --sheet-overlay: … }
  * Defaults are the shipped design. Edited by hand; the class edits in ui/sheet.tsx follow from these names. */
 

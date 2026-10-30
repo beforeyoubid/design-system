@@ -80,7 +80,7 @@ for (const { component, file } of files) {
       const where = `${component}.css:${t.line}`
       if (declared.has(t.name)) fail(`${where}: ${t.name} is also declared in ${declared.get(t.name)}`)
       declared.set(t.name, where)
-      if (rootVars.has(t.public)) fail(`${where}: ${t.public} is a brand or semantic token; a lever needs its own name (use -fill for a fill)`)
+      if (rootVars.has(t.public)) fail(`${where}: ${t.public} is a brand or semantic token; a component token needs its own name (use -fill for a fill)`)
       if (publics.has(t.public)) fail(`${where}: ${t.public} is also read in ${publics.get(t.public)}`)
       publics.set(t.public, where)
       let p
@@ -91,14 +91,14 @@ for (const { component, file } of files) {
         continue
       }
       if (!t.ours && !ui) fail(`${where}: no ui file renders data-slot="${rule.slot}" (mark the token @ours if our own component reads it)`)
-      // A lever an @add class reads names its own case (e.g. `with-icon`); it needn't be a cva key.
+      // A component token an @add class reads names its own case (e.g. `with-icon`); it needn't be a cva key.
       const readByAdd = rule.add.some((d) => d.classes.some((c) => c.includes(`(${t.name})`)))
       if (!t.ours && !readByAdd && p.variant?.unresolved) fail(`${where}: "${p.variant.unresolved}" is not a cva key or @alias on data-slot="${rule.slot}"`)
       if (p.breakpoint) {
         const prefix = breakpointPrefix(p.breakpoint)
         const reads = rule.add.flatMap((d) => d.classes).filter((c) => c.includes(`(${t.name})`))
         if (!t.ours && !reads.length) fail(`${where}: ${t.name} is for a breakpoint, so an @add class must read it (under ${prefix})`)
-        for (const c of reads) if (!c.startsWith(prefix)) fail(`${where}: ${c} reads a ${p.breakpoint} lever, so it must start with ${prefix}`)
+        for (const c of reads) if (!c.startsWith(prefix)) fail(`${where}: ${c} reads a ${p.breakpoint} component token, so it must start with ${prefix}`)
       }
       if (t.ours && !ourSource.includes(t.name)) fail(`${where}: ${t.name} is marked @ours but none of our components reads it`)
       if (!t.description) fail(`${where}: ${t.name} needs a comment saying what it's for`)
