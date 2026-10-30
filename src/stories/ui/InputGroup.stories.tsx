@@ -132,7 +132,7 @@ export const Loading: Story = {
 
 export const TextareaWithFooter: Story = {
   render: () => (
-    <InputGroup className="w-96">
+    <InputGroup className="w-full max-w-96">
       <InputGroupTextarea rows={3} placeholder="Ask a question about this report…" />
       <InputGroupAddon align="block-end" className="justify-between">
         <InputGroupButton size="icon-xs" aria-label="Attach file">

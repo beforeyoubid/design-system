@@ -1,6 +1,6 @@
 ---
 name: breaking-change
-description: Ship a breaking change to the BYB design system with a migrator rule, a test and a CHANGELOG entry, so apps upgrade with `npx design-system-migrate`. Use when renaming or removing a component, export, prop, prop value, variant, class or token, or changing a prop's default value, a component's default variant or size, or a brand or semantic token's value, in this repo.
+description: Ship a breaking change to the BYB design system with a migrator rule, a test and a CHANGELOG entry, so apps upgrade with `npx design-system-migrate`. Use when renaming or removing a component, export, prop, prop value, variant, class or token, or changing a prop's default value or a component's default variant or size, in this repo. A token's value (a brand colour, a semantic role) is `update-token-values` instead.
 argument-hint: <what is being renamed, removed or changed>
 ---
 

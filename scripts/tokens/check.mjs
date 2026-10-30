@@ -14,7 +14,8 @@
  *     3:1 for icon and spinner parts) and the
  *     pair isn't listed in scripts/tokens/contrast-exceptions.json. A listed pair is
  *     "accepted" (a decided exception) or "undecided" (a warning until it's decided;
- *     --strict fails on it, for the release gate).
+ *     --strict fails on it, for the release gate). An entry whose pair now passes fails
+ *     the check, so the list never hides a later regression.
  */
 import fs from 'node:fs'
 import path from 'node:path'
@@ -128,6 +129,7 @@ const strict = process.argv.includes('--strict')
 const warnings = []
 const pairs = []
 const unchecked = []
+const failing = new Set()
 // A default can point at another component token (`var(--_timeline-title-foreground)`); resolve those too.
 for (const t of parsedTokens) if (!rootVars.has(t.name)) rootVars.set(t.name, t.fallback)
 for (const t of parsedTokens) {
@@ -159,11 +161,17 @@ for (const t of parsedTokens) {
   const ratio = contrast(fg, bg)
   pairs.push({ fg: t.name, bg: fill.name, ratio })
   if (ratio < min) {
+    failing.add(`${t.name} on ${fill.name}`)
     const ex = exceptions.find((e) => e.foreground === t.name && e.fill === fill.name)
     const msg = `${t.name} on ${fill.name} is ${ratio.toFixed(2)}:1, under WCAG AA ${min}:1`
     if (!ex) fail(`${t.where}: ${msg} (fix the default, or list the pair in contrast-exceptions.json)`)
     else if (ex.status !== 'accepted') (strict ? fail : (m) => warnings.push(m))(`${t.where}: ${msg} (undecided)`)
   }
+}
+
+// An exception for a pair that now passes, or no longer exists, would hide a future failure.
+for (const e of exceptions) {
+  if (!failing.has(`${e.foreground} on ${e.fill}`)) fail(`contrast-exceptions.json: ${e.foreground} on ${e.fill} now passes WCAG AA (or no longer exists); remove its entry`)
 }
 
 if (warnings.length || unchecked.length) console.warn([...warnings, ...unchecked].map((w) => `⚠ ${w}`).join('\n') + '\n')

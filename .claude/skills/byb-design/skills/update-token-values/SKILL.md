@@ -1,6 +1,6 @@
 ---
 name: update-token-values
-description: Make a `:root { … }` block exported from the BYB Design Console (or written by hand) the design system's shipped defaults, across brand, semantic and component tokens. Use when the user pastes a Design Console export, a block of CSS custom properties, or asks to "make these the defaults", "apply these token values" or "update the tokens" in this repo.
+description: Make a `:root { … }` block exported from the BYB Design Console (or written by hand) the design system's shipped defaults, across brand, semantic and component tokens. Use when the user pastes a Design Console export, a block of CSS custom properties, or asks to "make these the defaults", "apply these token values", "update the tokens" or change a brand colour or any token's value (for example "the mint should be #00A88F") in this repo.
 argument-hint: <pasted :root block, or a path to a .css file>
 ---
 
@@ -19,7 +19,7 @@ Make the values the user gave the shipped defaults.
 
 ### 1. Save the block
 
-If the user pasted CSS, write it to a file in your scratchpad (not in the repo). If they gave a path, use it.
+If the user pasted CSS, write it to a file in your scratchpad (not in the repo). If they gave a path, use it. If they described a change in words ("the mint should be #00A88F"), find the token it means and write it as a block: `:root { --mint-45: #00A88F; }`.
 
 ### 2. Dry run
 
@@ -53,8 +53,9 @@ If `check-component-tokens` reports a pair under AA:
 
 ### 5. Prose
 
-1. Search `DESIGN.md` for each changed token's old value in the prose sections (colour tables, component descriptions). The generated token table is already updated; the prose isn't. Update every sentence that describes the old look.
-2. Add a CHANGELOG line, in the section **Which CHANGELOG section** in `CLAUDE.md` names. A semantic or brand token change goes under **Breaking** if an app's look changes without the app changing anything (say what changed and that apps reading the token follow it). A component token default change goes under **Changed**.
+1. Search the repo for each changed value's old form, a brand colour's old hex included: `git grep -n -i '<old value>' -- . ':!CHANGELOG.md'`. Update DESIGN.md's prose and colour tables, stories and anything else that quotes it; the generated files are already rebuilt. Leave older CHANGELOG entries as they are.
+2. If `check-component-tokens` says an exception now passes, remove its entry. Update the ratios in the notes of exceptions that involve a changed colour.
+3. Add a CHANGELOG line, in the section **Which CHANGELOG section** in `CLAUDE.md` names. A semantic or brand token change goes under **Breaking** if an app's look changes without the app changing anything (say what changed and that apps reading the token follow it). It needs no migrator rule: apps that use the token follow it, and an app that hard-coded the old value is already outside the guardrails, which `design-system-check` reports. A component token default change goes under **Changed**.
 
 ### 6. Report
 

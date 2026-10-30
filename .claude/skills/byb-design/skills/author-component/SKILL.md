@@ -22,7 +22,8 @@ Build or change the component the user asked for. Terms (part, cva key, wrapper,
 ### 1. Look before building
 
 1. Read `CLAUDE.md` in this repo.
-2. Search `docs/registry.md` for an existing component that does the job, or one that could take a new variant instead. Extending one beats adding one.
+2. Search `docs/registry.md` and `DESIGN.md` for an existing component that does the job, or one that could take a new variant instead. Extending one beats adding one.
+   - **If one already does the job**, stop building. Tell the user which component it is and how to use it, then make it easier to find: its story `description` and a story showing this use, and a line in DESIGN.md. Run `pnpm registry:build`. Skip the remaining steps; a docs-only change needs no CHANGELOG line.
 3. Check whether shadcn ships it: `pnpm dlx shadcn@latest search @shadcn -q <name>`. If it does, `pnpm dlx shadcn@latest docs <name>` and read the docs and example it links.
 
 ### 2. Put it in the right place

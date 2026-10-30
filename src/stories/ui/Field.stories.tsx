@@ -26,7 +26,7 @@ type Story = StoryObj<typeof FieldSet>
 /** A section: legend, description, then a group of fields. */
 export const Default: Story = {
   render: () => (
-    <div className="w-96">
+    <div className="w-full max-w-96">
       <FieldSet>
         <FieldLegend>Contact details</FieldLegend>
         <FieldDescription>How we reach you about this property.</FieldDescription>
@@ -49,7 +49,7 @@ export const Default: Story = {
 /** `required` on the label adds the mint asterisk; `required` on the control is what screen readers announce. */
 export const Required: Story = {
   render: () => (
-    <div className="w-96">
+    <div className="w-full max-w-96">
       <FieldGroup>
         <Field>
           <FieldLabel htmlFor="address" required>Property address</FieldLabel>
@@ -63,7 +63,7 @@ export const Required: Story = {
 /** `data-invalid` on the Field, `aria-invalid` on the control. */
 export const Invalid: Story = {
   render: () => (
-    <div className="w-96">
+    <div className="w-full max-w-96">
       <FieldGroup>
         <Field data-invalid>
           <FieldLabel htmlFor="email">Email</FieldLabel>
@@ -78,7 +78,7 @@ export const Invalid: Story = {
 /** Sections split by a `FieldSeparator` (replaces BYBFieldset `divided`). */
 export const Separated: Story = {
   render: () => (
-    <div className="w-96">
+    <div className="w-full max-w-96">
       <FieldGroup>
         <FieldSet>
           <FieldLegend>Contact details</FieldLegend>
@@ -103,7 +103,7 @@ export const Separated: Story = {
 /** A set of checkboxes, each with a label and description beside it. */
 export const Choices: Story = {
   render: () => (
-    <div className="w-96">
+    <div className="w-full max-w-96">
       <FieldSet>
         <FieldLegend>Reports to include</FieldLegend>
         <FieldDescription>Pick at least one.</FieldDescription>
@@ -129,7 +129,7 @@ export const Choices: Story = {
 /** A separator with words in it, between two ways to fill the form. */
 export const SeparatorWithText: Story = {
   render: () => (
-    <div className="w-96">
+    <div className="w-full max-w-96">
       <FieldGroup>
         <Field>
           <FieldLabel htmlFor="listing">Listing link</FieldLabel>

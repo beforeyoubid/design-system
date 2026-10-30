@@ -61,7 +61,7 @@ export const Multiple: Story = {
   render: function Render() {
     const anchor = useComboboxAnchor()
     return (
-      <div className="w-96">
+      <div className="w-full max-w-96">
         <Combobox multiple items={reports} defaultValue={[reports[0]]}>
           <ComboboxChips ref={anchor}>
             <ComboboxValue>
@@ -156,7 +156,7 @@ export const MultipleStates: Story = {
       </Combobox>
     )
     return (
-      <div className="flex w-96 flex-col gap-4">
+      <div className="flex w-full max-w-96 flex-col gap-4">
         {field(disabledAnchor, { disabled: true })}
         {field(invalidAnchor, { invalid: true })}
       </div>

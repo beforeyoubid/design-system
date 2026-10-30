@@ -12,8 +12,8 @@ The `byb-design` plugin in `.claude/skills/byb-design/` loads in every session i
 |---|---|
 | Add, build, extend or restyle a component; add a variant, size or prop | `byb-design:author-component` |
 | Give a component tokens, or add, rename or fix its tokens | `byb-design:add-component-tokens` (author-component runs it too) |
-| Apply a Design Console export or a pasted `:root { … }` block as the defaults | `byb-design:update-token-values` |
-| Rename or remove a component, export, prop, value, class or token; change a prop's default value, a component's default variant or size, or a brand or semantic token's value | `byb-design:breaking-change` |
+| Change any token's value, brand colours included, or apply a Design Console export or a pasted `:root { … }` block as the defaults | `byb-design:update-token-values` |
+| Rename or remove a component, export, prop, value, class or token; change a prop's default value or a component's default variant or size | `byb-design:breaking-change` |
 
 Several can apply: a rename inside a new component is author-component plus breaking-change.
 

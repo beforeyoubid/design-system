@@ -29,6 +29,7 @@ Read **Component tokens** in `DESIGN.md` for the naming rules:
 - States: `hover`, `focus`, `active`, `pressed`, `open`, `selected`, `highlighted`, `checked`, `disabled`, `invalid`, `placeholder`.
 - Variants keep the stock cva key (our `primary` button is `default`).
 - A look that lasts while something is true (the latest item in a timeline, a featured card) is a variant, even when a prop or the item's position sets it. Name it on the part whose look changes: if the latest event's title turns mint, that's `--timeline-title-latest-foreground`. States are only the ones listed, which come from interaction or form status.
+- When two props set a look together (a colour and an appearance), name both, in the order the component's existing tokens use: `--badge-mint-outline-border`.
 - When a component gets its first `variant` prop, the existing look keeps its token names without a variant (`--tooltip-content`), and only the new look adds one (`--tooltip-content-light`). Tabs work this way.
 - A breakpoint value gets its own token, `\:sm` for sm and up, `\:md-to-lg` for a range. In the token file its private name ends `--sm`.
 
@@ -80,7 +81,9 @@ Read the diff of `src/components/ui/<name>.tsx`. Each designed class should now 
 
 `check-component-tokens` measures every text token against the fill it sits on: its own part's fill, the token named with `@on`, or the page background. Text needs 4.5:1; parts named `icon` or `spinner` need 3:1; disabled text is exempt.
 
-1. Change the default so the pair passes AA (4.5:1 for text, 3:1 for icons and borders) when a nearby token passes and keeps the design. Darker text on the same tint is usually the fix (`mint-75` or `mint-90` on mint tints).
+It doesn't measure borders. A border that is the only thing showing a control's edge or shape (an input, an outline badge) needs 3:1 against what's behind it: work it out from the two colours (the Design Console shows both) and raise any under 3:1 with the user. A border around something that already has a fill or text doesn't need it.
+
+1. Change the default so the pair passes AA (4.5:1 for text, 3:1 for icons) when a nearby token passes and keeps the design. Darker text on the same tint is usually the fix (`mint-75` or `mint-90` on mint tints).
 2. When it can't pass without changing the design, add it to `scripts/tokens/contrast-exceptions.json` and tell the user:
 
    ```json

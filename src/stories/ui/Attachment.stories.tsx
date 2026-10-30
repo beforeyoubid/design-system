@@ -69,7 +69,7 @@ type Story = StoryObj<typeof Attachment>
 /** Every `state`: idle, uploading, processing, error, done. */
 export const States: Story = {
   render: () => (
-    <div className="flex w-96 flex-col gap-3">
+    <div className="flex w-full max-w-96 flex-col gap-3">
       {(['idle', 'uploading', 'processing', 'error', 'done'] as const).map((state) => (
         <File key={state} state={state} />
       ))}
@@ -79,7 +79,7 @@ export const States: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div className="flex w-96 flex-col gap-3">
+    <div className="flex w-full max-w-96 flex-col gap-3">
       <File size="default" />
       <File size="sm" />
       <File size="xs" />
@@ -90,7 +90,7 @@ export const Sizes: Story = {
 /** Vertical cards in a scrolling `AttachmentGroup`. */
 export const VerticalGroup: Story = {
   render: () => (
-    <div className="w-96">
+    <div className="w-full max-w-96">
       <AttachmentGroup>
         <File orientation="vertical" />
         <File orientation="vertical" state="uploading" />

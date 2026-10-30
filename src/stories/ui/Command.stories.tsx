@@ -78,7 +78,7 @@ function Items() {
 
 export const Default: Story = {
   render: () => (
-    <Command className="w-96">
+    <Command className="w-full max-w-96">
       <CommandInput placeholder="Type a command or search…" />
       <CommandList>
         <Items />
@@ -90,7 +90,7 @@ export const Default: Story = {
 function EmptyDemo() {
   const [search, setSearch] = React.useState('pool inspection')
   return (
-    <Command className="w-96">
+    <Command className="w-full max-w-96">
       <CommandInput placeholder="Type a command or search…" value={search} onValueChange={setSearch} />
       <CommandList>
         <Items />
