@@ -1366,8 +1366,10 @@
 [class*="(--_command-item)"] {
   /* @remove py-2 in-data-[slot=dialog-content]:rounded-2xl data-[disabled=true]:opacity-50 data-selected:bg-muted data-selected:text-foreground data-selected:*:[svg]:text-foreground */
   /* @add cursor-pointer text-body-5 data-[disabled=true]:text-dark-45 */
-  /* Height of the item. */
-  --_command-item-height: var(--command-item-height, calc(var(--spacing) * 8));
+  /* Minimum height of the item; it grows when the item wraps or holds a second line. */
+  --_command-item-min-height: var(--command-item-min-height, calc(var(--spacing) * 8));
+  /* Vertical padding of the item. */
+  --_command-item-padding-y: var(--command-item-padding-y, calc(var(--spacing) * 1.5));
   /* Gap between items of the item. */
   --_command-item-gap: var(--command-item-gap, calc(var(--spacing) * 2.5));
   /* Corner radius of the item. */
@@ -1797,8 +1799,10 @@
 [class*="(--_dropdown-menu-item)"] {
   /* @remove py-2 focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive data-disabled:opacity-50 data-[variant=destructive]:*:[svg]:text-destructive */
   /* @add cursor-pointer text-body-5 data-inset:ps-(--_dropdown-menu-item-inset-padding-x) data-[variant=destructive]:text-(--_dropdown-menu-item-destructive-foreground) data-[variant=destructive]:data-highlighted:bg-(--_dropdown-menu-item-destructive-highlighted) data-[variant=destructive]:data-highlighted:text-(--_dropdown-menu-item-destructive-highlighted-foreground) */
-  /* Height of the item. */
-  --_dropdown-menu-item-height: var(--dropdown-menu-item-height, calc(var(--spacing) * 8));
+  /* Minimum height of the item; it grows when the item wraps or holds a second line. */
+  --_dropdown-menu-item-min-height: var(--dropdown-menu-item-min-height, calc(var(--spacing) * 8));
+  /* Vertical padding of the item. */
+  --_dropdown-menu-item-padding-y: var(--dropdown-menu-item-padding-y, calc(var(--spacing) * 1.5));
   /* Gap between items of the item. */
   --_dropdown-menu-item-gap: var(--dropdown-menu-item-gap, calc(var(--spacing) * 2.5));
   /* Corner radius of the item. */

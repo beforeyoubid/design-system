@@ -108,7 +108,8 @@ const PRIMARY_FOREGROUND_VAR = /var\(\s*--(?:color-)?primary-foreground\s*([,)])
 // ---------------------------------------------------------------------------
 export const PROP_RENAMES = {
   Badge: {
-    variant: { default: 'gray', secondary: 'gray', outline: 'gray', destructive: 'error' },
+    // cobalt was renamed electric-blue; its tinted badge kept the same look.
+    variant: { default: 'gray', secondary: 'gray', outline: 'gray', destructive: 'error', cobalt: 'electric-blue' },
   },
   Switch: { size: { default: 'md' } },
   TabsList: { variant: { default: 'pill', pills: 'pill' } },
@@ -120,7 +121,6 @@ const VARIANT_HELPERS = { buttonVariants: 'Button', badgeVariants: 'Badge' }
 export const PROP_REVIEW = {
   Badge: {
     variant: {
-      cobalt: 'tinted cobalt badge removed: use category={n} or another variant',
       teal: 'tinted teal badge removed: use category={n} or another variant',
       ghost: 'ghost badge removed',
       link: 'link badge removed',

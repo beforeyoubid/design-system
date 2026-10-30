@@ -103,7 +103,7 @@ function segments(cls) {
 
 // A class string is all class-shaped words; anything else (prose, a URL, a path) is skipped whole.
 const CLASS_WORD = /^!?-?[a-z0-9@*[(][^\s{};,]*$/
-const looksLikeClasses = (tokens) => tokens.length > 0 && tokens.every((t) => CLASS_WORD.test(t) && !/[.?!]$|^https?:|\/\/|\.\w+$/.test(t))
+const looksLikeClasses = (tokens) => tokens.length > 0 && tokens.every((t) => CLASS_WORD.test(t) && !/[.?!]$|^https?:|\/\/|\.[a-z]\w*$/i.test(t))
 
 /**
  * Findings for one class string: [{ rule, found, use, fixable }].

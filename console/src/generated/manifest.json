@@ -6629,15 +6629,30 @@
      "on": null
     },
     {
-     "name": "--command-item-height",
-     "private": "--_command-item-height",
+     "name": "--command-item-min-height",
+     "private": "--_command-item-min-height",
      "default": "calc(var(--spacing) * 8)",
-     "description": "Height of the item.",
+     "description": "Minimum height of the item; it grows when the item wraps or holds a second line.",
      "type": "length",
      "part": "command-item",
      "variant": null,
      "state": null,
-     "property": "height",
+     "property": "min-height",
+     "reads": [
+      "--spacing"
+     ],
+     "on": null
+    },
+    {
+     "name": "--command-item-padding-y",
+     "private": "--_command-item-padding-y",
+     "default": "calc(var(--spacing) * 1.5)",
+     "description": "Vertical padding of the item.",
+     "type": "length",
+     "part": "command-item",
+     "variant": null,
+     "state": null,
+     "property": "padding-y",
      "reads": [
       "--spacing"
      ],
@@ -8157,15 +8172,30 @@
      "on": null
     },
     {
-     "name": "--dropdown-menu-item-height",
-     "private": "--_dropdown-menu-item-height",
+     "name": "--dropdown-menu-item-min-height",
+     "private": "--_dropdown-menu-item-min-height",
      "default": "calc(var(--spacing) * 8)",
-     "description": "Height of the item.",
+     "description": "Minimum height of the item; it grows when the item wraps or holds a second line.",
      "type": "length",
      "part": "dropdown-menu-item",
      "variant": null,
      "state": null,
-     "property": "height",
+     "property": "min-height",
+     "reads": [
+      "--spacing"
+     ],
+     "on": null
+    },
+    {
+     "name": "--dropdown-menu-item-padding-y",
+     "private": "--_dropdown-menu-item-padding-y",
+     "default": "calc(var(--spacing) * 1.5)",
+     "description": "Vertical padding of the item.",
+     "type": "length",
+     "part": "dropdown-menu-item",
+     "variant": null,
+     "state": null,
+     "property": "padding-y",
      "reads": [
       "--spacing"
      ],

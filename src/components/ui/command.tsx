@@ -156,7 +156,7 @@ function CommandItem({
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "group/command-item relative flex cursor-pointer items-center gap-(--_command-item-gap) rounded-(--_command-item-radius) px-(--_command-item-padding-x) text-body-5 outline-hidden select-none data-[disabled=true]:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 h-(--_command-item-height) text-(--_command-item-foreground) data-selected:bg-(--_command-item-selected) data-selected:text-(--_command-item-selected-foreground) data-[disabled=true]:text-dark-45",
+        "group/command-item relative flex cursor-pointer items-center gap-(--_command-item-gap) rounded-(--_command-item-radius) px-(--_command-item-padding-x) text-body-5 outline-hidden select-none data-[disabled=true]:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 text-(--_command-item-foreground) data-selected:bg-(--_command-item-selected) data-selected:text-(--_command-item-selected-foreground) data-[disabled=true]:text-dark-45 min-h-(--_command-item-min-height) py-(--_command-item-padding-y)",
         className
       )}
       {...props}

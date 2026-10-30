@@ -9,7 +9,7 @@ Upgrade an app with `npx design-system-migrate` (dry run) then `--write`, in the
 - **Type classes are role + step.** `text-display-1…4`, `text-h1…h6`, `text-body-1…5`, `text-caption-1…3`, `text-overline`, `text-button-lg/md/sm`. The 1.1.x names (`text-heading-*`, `text-medium-*`, `text-body-lg/md/sm`, `text-caption`, `text-btn-*`, the 10px `text-xs`, `text-2xs`) and `tracking-btn` are removed; the migrator maps each one.
 - **Tailwind's default `text-xs` is 12px again.** 1.1.x overrode it to 10px; those uses become `text-caption-2`.
 - **`rounded-xl` is 16px and `rounded-2xl` 20px** (they were 20px and 16px). Components were swapped to match; the migrator swaps app uses. `rounded-btn` is removed (→ `rounded-xl`).
-- **`cobalt` is renamed `electric-blue`**, including `-l1` and the CSS variables.
+- **`cobalt` is renamed `electric-blue`**, including `-l1`, the CSS variables and Badge `variant="cobalt"`.
 - **`--primary-foreground` is navy** (was white): white on mint-45 is 2.80:1, under WCAG AA. The primary button text, an icon in the avatar status dot and selected text in a native select follow it. The migrator turns app uses of `*-primary-foreground` and `var(--primary-foreground)` into `white`, so app markup keeps the colour it had.
 - **`--success` is a light mint tint** (`mint-15`, was a solid green) with `--success-foreground` `mint-90`, so success text on it passes WCAG AA. Every component text pair now passes AA with no exceptions: mint text darkened to `mint-75` / `mint-90` on light fills (badges, toasts, selected menu, select, command and navigation rows), checkbox ticks and the stepper's active number are navy, toast warning text is `warning-75`, and dropdown menu borders are `dark-15`.
 - **Badge, Switch and TabsList variants renamed.** Badge `default`/`secondary`/`outline` → `gray`, `destructive` → `error`; `dot` removed. Switch size `default` → `md`. TabsList `default`/`pills` → `pill`.
@@ -35,6 +35,7 @@ Upgrade an app with `npx design-system-migrate` (dry run) then `--write`, in the
 
 - Accordion panels animate open and closed. They used keyframes that read Radix's height variable, which Base UI never sets; the panel now transitions to Base UI's `--accordion-panel-height`.
 - `--input` is dark-45, the form-control border in DESIGN.md (it was dark-15, shared with `--border`). Stock shadcn controls that read `border-input` now match the BYB ones.
+- Dropdown menu and command items grow to fit a second line (a description under the label). They had a fixed 32px height, so the second line spilled onto the next item; 32px is now the minimum, and `--dropdown-menu-item-height` / `--command-item-height` are `--dropdown-menu-item-min-height` / `--command-item-min-height` with a `-padding-y` token each.
 - A single Combobox's popup lines up with its field: same left edge, same width. It was anchored to the text input inside the field, so it sat indented and narrower. Pass `anchor` to anchor it elsewhere.
 - Tailwind's default text sizes are no longer cleared, so `text-sm`, `text-lg` and the rest keep working in apps.
 

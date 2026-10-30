@@ -101,13 +101,17 @@ test('renames component variants on package components', () => {
 
 test('flags variants with no replacement and removed props', () => {
   const { reviews } = migrateSource(
-    withImports('<Button>Go</Button>\n<Button variant="navy" />\n<Badge variant="cobalt" dot>New</Badge>'),
+    withImports('<Button>Go</Button>\n<Button variant="navy" />\n<Badge variant="teal" dot>New</Badge>'),
   )
   assert.deepEqual(
     reviews.map((r) => r.line),
     [4, 4],
   )
-  assert.match(reviews[0].message, /cobalt/)
+  assert.match(reviews[0].message, /teal/)
+})
+
+test('a cobalt badge becomes electric-blue', () => {
+  assert.match(migrateSource(withImports('<Badge variant="cobalt">New</Badge>')).text, /<Badge variant="electric-blue">/)
 })
 
 test('leaves every Button variant and size alone', () => {

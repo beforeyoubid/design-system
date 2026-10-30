@@ -96,6 +96,10 @@ test('space-*, matching w/h and dark: are flagged', () => {
   ])
 })
 
+test('half-step classes are classes, not file extensions', () => {
+  assert.equal(fixed('mt-0.5 text-sm py-2.5 md:text-sm text-dark-75'), 'mt-0.5 text-body-5 py-2.5 md:text-body-5 text-muted-foreground')
+})
+
 test('prose, paths and URLs are not class strings', () => {
   assert.deepEqual(uses('Right-click the left-hand side.'), [])
   assert.deepEqual(uses('./components/left-panel.tsx'), [])

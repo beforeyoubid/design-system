@@ -1138,7 +1138,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>command</strong> (27)</summary>
+<summary><strong>command</strong> (28)</summary>
 
 | Component token | What it changes | Default |
 |---|---|---|
@@ -1160,7 +1160,8 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--command-group-foreground` | Text colour of the group. | `var(--dark-90)` |
 | `--command-separator-height` | Height of the separator. | `1px` |
 | `--command-separator` | Fill colour of the separator. | `var(--light-l3)` |
-| `--command-item-height` | Height of the item. | `calc(var(--spacing) * 8)` |
+| `--command-item-min-height` | Minimum height of the item; it grows when the item wraps or holds a second line. | `calc(var(--spacing) * 8)` |
+| `--command-item-padding-y` | Vertical padding of the item. | `calc(var(--spacing) * 1.5)` |
 | `--command-item-gap` | Gap between items of the item. | `calc(var(--spacing) * 2.5)` |
 | `--command-item-radius` | Corner radius of the item. | `var(--radius-md)` |
 | `--command-item-padding-x` | Horizontal padding of the item. | `calc(var(--spacing) * 2)` |
@@ -1297,7 +1298,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>dropdown-menu</strong> (86)</summary>
+<summary><strong>dropdown-menu</strong> (87)</summary>
 
 | Component token | What it changes | Default |
 |---|---|---|
@@ -1310,7 +1311,8 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--dropdown-menu-label-padding-x` | Horizontal padding of the label. | `calc(var(--spacing) * 2.5)` |
 | `--dropdown-menu-label-font-weight` | Font weight of the label. | `600` |
 | `--dropdown-menu-label-foreground` | Text colour of the label. | `var(--navy)` |
-| `--dropdown-menu-item-height` | Height of the item. | `calc(var(--spacing) * 8)` |
+| `--dropdown-menu-item-min-height` | Minimum height of the item; it grows when the item wraps or holds a second line. | `calc(var(--spacing) * 8)` |
+| `--dropdown-menu-item-padding-y` | Vertical padding of the item. | `calc(var(--spacing) * 1.5)` |
 | `--dropdown-menu-item-gap` | Gap between items of the item. | `calc(var(--spacing) * 2.5)` |
 | `--dropdown-menu-item-radius` | Corner radius of the item. | `var(--radius-md)` |
 | `--dropdown-menu-item-padding-x` | Horizontal padding of the item. | `calc(var(--spacing) * 2.5)` |
