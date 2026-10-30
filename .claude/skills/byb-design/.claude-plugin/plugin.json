@@ -1,0 +1,6 @@
+{
+  "name": "byb-design",
+  "displayName": "BYB Design",
+  "description": "Author design-system components, add their component tokens, apply Design Console exports and ship breaking changes with a migrator rule.",
+  "author": { "name": "Before You Buy" }
+}

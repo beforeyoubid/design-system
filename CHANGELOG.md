@@ -23,6 +23,8 @@ Upgrade an app with `npx design-system-migrate` (dry run) then `--write`, in the
 
 ### Added
 
+- **Guardrail docs for apps** ship in the package: `docs/README.md` (start here), `styling.md`, `components.md`, and `registry.md`, every export with its purpose, variant props and component tokens. Point an app's CLAUDE.md at `node_modules/@beforeyoubid/design-system/docs/README.md`.
+- `npx design-system-migrate --check [paths]` reports guardrail findings in app code with what to use instead (logical sides, arbitrary values, type classes, semantic colours, `gap`, `size-*`, `dark:`, inline styles, icon imports, `asChild`). `--changed` limits it to lines changed since the last commit. It never fails a build.
 - `generateDesignSystemTokens({ overrides })`: colours, product badge colours and type styles for non-CSS contexts, generated from `globals.css` so they can't drift.
 - `design-system-migrate` codemod.
 - BYB product components, prefixed `BYB` so they never collide with a shadcn name: `BYBIconTile`, `BYBStepper`, `BYBColorDot`.
