@@ -32,7 +32,15 @@ npx design-system-check --changed --fix
 
 `--fix` applies the findings with one safe answer that look the same afterwards (logical sides, `size-*`, brand colours with an identical semantic token, icon imports, dropping `dark:` classes) and lists the rest for you to fix.
 
-`npx design-system-check src/` checks a folder.
+Already committed? Check the commits instead:
+
+```bash
+npx design-system-check --commits abc123             # one commit
+npx design-system-check --commits abc123..def456     # what changed after abc123, up to def456
+npx design-system-check --commits abc123,def456      # several
+```
+
+`--fix` works here too, on files that haven't changed since. `npx design-system-check src/` checks a folder. Pass one of paths, `--changed` or `--commits`.
 
 ## After upgrading the package
 

@@ -3,13 +3,19 @@
  * Checks app code against the design system's guardrails
  * (node_modules/@beforeyoubid/design-system/docs/README.md).
  *
- *   npx design-system-check [paths…]          report findings; changes nothing
- *   npx design-system-check --changed         only lines changed since the last commit
- *   npx design-system-check --changed --fix   fix what has one safe answer, report the rest
+ *   npx design-system-check [paths…]                report findings; changes nothing
+ *   npx design-system-check --changed               only lines changed since the last commit
+ *   npx design-system-check --commits abc123        only lines a commit changed
+ *   npx design-system-check --commits abc..def      only lines changed after abc, up to and including def
+ *   npx design-system-check --commits abc123,def456 several commits or ranges
+ *   add --fix to any of these                       fix what has one safe answer, report the rest
  *
+ * Paths, --changed and --commits are alternatives: pass one.
  * It never fails a build. --fix only rewrites findings that look the same
  * afterwards: logical sides, size-*, brand colours with an identical semantic
- * token, design-system icon imports, and dropping dark: classes.
+ * token, design-system icon imports, and dropping dark: classes. With
+ * --commits it fixes the files on disk, and skips a file that has changed
+ * since the commit it's checking.
  */
 import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
@@ -18,22 +24,60 @@ import { CHECK_RULES, checkSource, fixSource } from './check.mjs'
 
 const EXTENSIONS = new Set(['.js', '.jsx', '.ts', '.tsx', '.mjs', '.cjs', '.mdx', '.css', '.scss', '.html'])
 const SKIP_DIRS = new Set(['node_modules', '.git', '.next', 'dist', 'build', 'out', 'coverage', 'storybook-static', '.turbo', '.vercel'])
-
-const argv = process.argv.slice(2)
-if (argv.includes('--help') || argv.includes('-h')) {
-  console.log(fs.readFileSync(new URL(import.meta.url), 'utf8').match(/\/\*\*([\s\S]*?)\*\//)[1].replace(/^ \* ?/gm, ''))
-  process.exit(0)
-}
-const unknown = argv.filter((a) => a.startsWith('--') && !['--changed', '--fix'].includes(a))
-if (unknown.length) fail(`Unknown option ${unknown[0]}`)
-const changed = argv.includes('--changed')
-const fix = argv.includes('--fix')
-const paths = argv.filter((a) => !a.startsWith('--'))
-if (changed && paths.length) fail('Pass paths or --changed, not both.')
+const EMPTY_TREE = '4b825dc642cb6eb9a060e54bf8d69288fbee4904'
 
 function fail(message) {
   console.error(`✖ ${message}`)
   process.exit(1)
+}
+
+function parseArgs(argv) {
+  const options = { paths: [], changed: false, fix: false, commits: [] }
+  for (let i = 0; i < argv.length; i++) {
+    const arg = argv[i]
+    if (arg === '--help' || arg === '-h') {
+      console.log(fs.readFileSync(new URL(import.meta.url), 'utf8').match(/\/\*\*([\s\S]*?)\*\//)[1].replace(/^ \* ?/gm, ''))
+      process.exit(0)
+    } else if (arg === '--changed') options.changed = true
+    else if (arg === '--fix') options.fix = true
+    else if (arg === '--commits' || arg.startsWith('--commits=')) {
+      const value = arg.includes('=') ? arg.slice(arg.indexOf('=') + 1) : argv[++i]
+      if (!value || value.startsWith('--')) fail('--commits takes a commit, a range (abc..def) or a comma-separated list.')
+      options.commits.push(...value.split(',').map((s) => s.trim()).filter(Boolean))
+    } else if (arg.startsWith('--')) fail(`Unknown option ${arg}`)
+    else options.paths.push(arg)
+  }
+  const modes = [options.paths.length > 0, options.changed, options.commits.length > 0].filter(Boolean).length
+  if (modes > 1) fail('Pass paths, --changed or --commits: only one of them.')
+  return options
+}
+
+const git = (...args) => execFileSync('git', args, { encoding: 'utf8', maxBuffer: 256 * 1024 * 1024, stdio: ['ignore', 'pipe', 'pipe'] })
+let top
+function repoRoot() {
+  try {
+    return (top ??= git('rev-parse', '--show-toplevel').trim())
+  } catch {
+    fail('--changed and --commits need a git repository.')
+  }
+}
+// git prints paths from the repository root; report them from here, and skip any outside here.
+const fromHere = (name) => path.relative(process.cwd(), path.join(repoRoot(), name))
+
+/** Changed line numbers per file in a `git diff -U0`: Map<path from here, Set<line>>. */
+function linesFromDiff(diff) {
+  const files = new Map()
+  let file
+  for (const line of diff.split('\n')) {
+    const name = line.match(/^\+\+\+ b\/(.+)$/)
+    if (name) {
+      file = fromHere(name[1])
+      if (!file.startsWith('..')) files.set(file, new Set())
+    }
+    const hunk = line.match(/^@@ -\S+ \+(\d+)(?:,(\d+))? @@/)
+    if (hunk && files.has(file)) for (let i = 0; i < Number(hunk[2] ?? 1); i++) files.get(file).add(Number(hunk[1]) + i)
+  }
+  return files
 }
 
 function* walk(target) {
@@ -48,72 +92,92 @@ function* walk(target) {
   }
 }
 
-/** Lines changed since HEAD, per file: a Set of line numbers, or null for a new file (every line). */
-function changedLines() {
-  const git = (...args) => execFileSync('git', args, { encoding: 'utf8' })
-  const files = new Map()
-  // git prints paths from the repository root; report them from here, and skip any outside here.
-  const add = (name, lines) => {
-    const rel = path.relative(process.cwd(), path.join(top, name))
-    if (!rel.startsWith('..')) files.set(rel, lines)
-    return rel
-  }
-  let top
-  try {
-    top = git('rev-parse', '--show-toplevel').trim()
-    let file
-    for (const line of git('diff', '--unified=0', '--no-color', 'HEAD').split('\n')) {
-      const name = line.match(/^\+\+\+ b\/(.+)$/)
-      if (name) file = add(name[1], new Set())
-      const hunk = line.match(/^@@ -\S+ \+(\d+)(?:,(\d+))? @@/)
-      if (hunk && files.has(file)) for (let i = 0; i < Number(hunk[2] ?? 1); i++) files.get(file).add(Number(hunk[1]) + i)
+/**
+ * What to check: [{ file, label, text, lines (Set or null for every line), onDisk }].
+ * `onDisk` says whether `text` is the file on disk, so --fix may write it.
+ */
+function units({ paths, changed, commits }) {
+  const out = []
+  const readable = (file) => EXTENSIONS.has(path.extname(file)) && fs.existsSync(file)
+  if (changed) {
+    repoRoot()
+    for (const [file, lines] of linesFromDiff(git('diff', '--unified=0', '--no-color', 'HEAD'))) {
+      if (readable(file)) out.push({ file, label: file, text: fs.readFileSync(file, 'utf8'), lines, onDisk: true })
     }
-    for (const name of git('ls-files', '--others', '--exclude-standard', '--full-name', top).split('\n').filter(Boolean)) add(name, null)
-  } catch {
-    fail('--changed needs a git repository with at least one commit.')
+    for (const name of git('ls-files', '--others', '--exclude-standard', '--full-name', repoRoot()).split('\n').filter(Boolean)) {
+      const file = fromHere(name)
+      if (!file.startsWith('..') && readable(file)) out.push({ file, label: file, text: fs.readFileSync(file, 'utf8'), lines: null, onDisk: true })
+    }
+    return out
   }
-  return files
-}
-
-const scope = changed ? changedLines() : null
-const targets = changed ? [...scope.keys()] : paths.length ? paths : ['.']
-const results = []
-const fixedCounts = {}
-let filesFixed = 0
-for (const target of targets) {
-  // A path from git diff may be a deleted file.
-  if (!fs.existsSync(target)) continue
-  for (const file of walk(target)) {
-    const lines = scope?.get(file)
-    const inScope = (line) => !lines || lines.has(line)
-    let text = fs.readFileSync(file, 'utf8')
-    if (fix) {
-      const result = fixSource(text, file, inScope)
-      if (result.fixed.length) {
-        fs.writeFileSync(file, result.text)
-        text = result.text
-        filesFixed++
-        for (const { rule } of result.fixed) fixedCounts[rule] = (fixedCounts[rule] ?? 0) + 1
+  if (commits.length) {
+    repoRoot()
+    for (const spec of commits) {
+      const range = spec.match(/^(.+?)\.\.(.+)$/)
+      let base, end
+      try {
+        end = git('rev-parse', '--verify', `${range ? range[2] : spec}^{commit}`).trim()
+        if (range) base = git('rev-parse', '--verify', `${range[1]}^{commit}`).trim()
+        else base = git('rev-list', '--parents', '-n', '1', end).trim().split(' ')[1] ?? EMPTY_TREE
+      } catch {
+        fail(`${spec} isn't a commit or a range of commits in this repository.`)
+      }
+      const short = end.slice(0, 7)
+      for (const [file, lines] of linesFromDiff(git('diff', '--unified=0', '--no-color', base, end))) {
+        if (!EXTENSIONS.has(path.extname(file))) continue
+        const name = path.relative(repoRoot(), path.resolve(file))
+        const text = git('show', `${end}:${name}`)
+        const onDisk = fs.existsSync(file) && fs.readFileSync(file, 'utf8') === text
+        out.push({ file, label: `${file} @ ${short}`, text, lines, onDisk })
       }
     }
-    for (const finding of checkSource(text, file)) if (inScope(finding.line)) results.push({ file, ...finding })
+    return out
   }
+  for (const target of paths.length ? paths : ['.']) {
+    if (!fs.existsSync(target)) fail(`${target} does not exist`)
+    for (const file of walk(target)) out.push({ file, label: file, text: fs.readFileSync(file, 'utf8'), lines: null, onDisk: true })
+  }
+  return out
 }
 
-const where = changed ? ' in the changed lines' : ''
+const options = parseArgs(process.argv.slice(2))
+const results = []
+const fixedCounts = {}
+const skipped = []
+let filesFixed = 0
+for (const unit of units(options)) {
+  const inScope = (line) => !unit.lines || unit.lines.has(line)
+  let text = unit.text
+  if (options.fix) {
+    const result = fixSource(text, unit.file, inScope)
+    if (result.fixed.length && !unit.onDisk) skipped.push(unit.label)
+    else if (result.fixed.length) {
+      fs.writeFileSync(unit.file, result.text)
+      text = result.text
+      filesFixed++
+      for (const { rule } of result.fixed) fixedCounts[rule] = (fixedCounts[rule] ?? 0) + 1
+    }
+  }
+  for (const finding of checkSource(text, unit.file)) if (inScope(finding.line)) results.push({ label: unit.label, ...finding })
+}
+
+const where = options.changed ? ' in the changed lines' : options.commits.length ? ` in the lines ${options.commits.join(', ')} changed` : ''
 const fixedTotal = Object.values(fixedCounts).reduce((a, b) => a + b, 0)
 if (fixedTotal) {
   console.log(`Fixed ${fixedTotal} findings in ${filesFixed} files${where}:`)
   for (const [rule, count] of Object.entries(fixedCounts).sort((a, b) => b[1] - a[1])) console.log(`  ${String(count).padStart(5)}  ${rule}`)
   console.log('')
 }
+if (skipped.length) {
+  console.log(`Not fixed, because the file has changed since that commit (fix these by hand):\n  ${skipped.join('\n  ')}\n`)
+}
 if (!results.length) {
   console.log(`✓ No guardrail findings${fixedTotal ? ' left' : ''}${where}.`)
   process.exit(0)
 }
 let current
-for (const { file, line, rule, found, use, fixable } of results) {
-  if (file !== current) console.log(`\n${(current = file)}`)
+for (const { label, line, rule, found, use, fixable } of results) {
+  if (label !== current) console.log(`\n${(current = label)}`)
   console.log(`  ${String(line).padStart(5)}  ${found}${use ? `  →  ${use}` : ''}   (${rule}${fixable ? ', --fix' : ''})`)
 }
 const counts = {}
@@ -121,5 +185,5 @@ for (const { rule } of results) counts[rule] = (counts[rule] ?? 0) + 1
 console.log(`\n${results.length} findings${where}:`)
 for (const [rule, count] of Object.entries(counts).sort((a, b) => b[1] - a[1])) console.log(`  ${String(count).padStart(5)}  ${rule}: ${CHECK_RULES[rule]}`)
 const fixableLeft = results.filter((r) => r.fixable).length
-if (fixableLeft) console.log(`\n${fixableLeft} of these have one safe answer: re-run with --fix to apply them.`)
+if (fixableLeft && !options.fix) console.log(`\n${fixableLeft} of these have one safe answer: re-run with --fix to apply them.`)
 console.log('\nAdvisory: fix the ones on lines you changed. See node_modules/@beforeyoubid/design-system/docs/README.md.')

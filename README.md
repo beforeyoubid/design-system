@@ -113,7 +113,7 @@ Point the app's `CLAUDE.md` (or `AGENTS.md`) at the guardrails, so agents read t
 
 > Before writing UI, read `node_modules/@beforeyoubid/design-system/docs/README.md`.
 
-Before committing, `npx design-system-check --changed` lists guardrail findings on the lines you changed, and `--fix` applies the safe ones.
+Before committing, `npx design-system-check --changed` lists guardrail findings on the lines you changed, and `--fix` applies the safe ones. After committing, `--commits <sha or range>` does the same for those commits.
 
 ## Generating new components
 
