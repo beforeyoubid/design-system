@@ -17,6 +17,10 @@ The `byb-design` plugin in `.claude/skills/byb-design/` loads in every session i
 
 Several can apply: a rename inside a new component is author-component plus breaking-change.
 
+Changing a component token's default (the tooltip's radius, a badge's fill) isn't breaking: apps that set the token keep their value. It goes under **Changed** in the CHANGELOG.
+
+**Talking to the user:** describe what changed in design terms (colours, sizes, corners, spacing, what each variant looks like), not in code terms. Before using a word from **Words used here**, say what it means.
+
 ### Words used here
 
 | Word | Means |
@@ -194,16 +198,16 @@ Max-width: `max-w-site` = 1280px — always use this for the content container.
 
 ```
 rounded-sm    4px
-rounded-md    8px   ← component default
-rounded-lg   12px   ← cards, inputs, small buttons
-rounded-xl   16px   ← default (md) and large buttons, tooltip, tab panel
-rounded-2xl  20px   ← alerts, toasts, popovers, drawers
-rounded-3xl  24px   ← dialogs
+rounded-md    8px
+rounded-lg   12px
+rounded-xl   16px
+rounded-2xl  20px
+rounded-3xl  24px
 rounded-4xl  32px
 rounded-full
 ```
 
-Buttons: `sm` uses `rounded-lg` (12px); `md`/`lg` use `rounded-xl` (16px). Cards use `rounded-lg`.
+Which component uses which radius is in each component's tokens (`DESIGN.md`, "Every component token").
 Overlays/backdrops use `bg-dark-100/50`. New components don't need dark-mode styling.
 
 shadcn components reference `var(--radius)` which aliases to `--radius-md`.

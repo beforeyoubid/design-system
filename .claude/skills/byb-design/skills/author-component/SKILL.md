@@ -13,7 +13,7 @@ Build or change the component described in `$ARGUMENTS`. Terms (part, cva key, w
 - The component lives in the right place (stock file, wrapper or BYB composite) and follows every rule under **Authoring rules**.
 - Its story covers every variant, size and state, and has a one-line docs description.
 - It's exported from `src/index.ts`.
-- Its component tokens exist (step 5) and every contrast pair passes WCAG AA, or a failing one is raised with the user.
+- Its component tokens exist (step 4) and every contrast pair passes WCAG AA, or a failing one is raised with the user.
 - DESIGN.md, the CHANGELOG and `docs/registry.md` describe it.
 - Every check under **Verify** passes, and you've looked at it rendered.
 
@@ -30,7 +30,7 @@ Build or change the component described in `$ARGUMENTS`. Terms (part, cva key, w
 | What you're doing | Where it goes |
 |---|---|
 | Adding a stock shadcn component | `pnpm dlx shadcn@latest add <name>` writes `src/components/ui/<name>.tsx`. Read it. |
-| Changing only how a stock component looks | Its token file, through step 5. Never hand-edit `src/components/ui/`. |
+| Changing only how a stock component looks | Its token file, through step 4. Never hand-edit `src/components/ui/`. |
 | Changing structure, behaviour, props or variants of a stock component | A wrapper, `src/components/<name>.tsx`, that starts with `export * from "@/components/ui/<name>"` and exports over only the parts it changes. |
 | A stock part with no `data-slot` (so no component token can reach it, like the Tooltip arrow) | A wrapper that re-implements the part that renders it and gives the element a `data-slot` named `<component>-<part>`. |
 | A BYB component with no stock equivalent | `src/components/<name>.tsx`, one component per file. |
@@ -64,17 +64,17 @@ Build or change the component described in `$ARGUMENTS`. Terms (part, cva key, w
   - Boolean props default to `false` and are named for what they add (`clearable`, not `hideClear`).
 - **Accessibility:** keyboard and ARIA come from Base UI primitives (`@base-ui/react`); don't rebuild them. Icon-only controls take a label prop. Visible focus. `aria-invalid` for errors, `aria-busy` for loading.
 
-### 4. Story
+### 4. Component tokens
+
+Run the `byb-design:add-component-tokens` skill for the component.
+
+### 5. Story
 
 1. Write `src/stories/ui/<Name>.stories.tsx` for a stock or wrapped component, `src/stories/<Name>.stories.tsx` for a BYB composite.
 2. Meta `title: 'BYB Components/<Name>'`, `component`, `tags: ['autodocs']`.
 3. `parameters: { docs: { description: { component: '<one line: what it is for, and what to use instead when it isn't the right fit>' } } }`. The registry and Storybook both show this line.
 4. `argTypes` with `options` for each variant prop (`variant`, `size`, …). The registry lists these. When those props are on a part rather than the root (`TooltipContent`'s `variant`), make that part the meta's `component` and type it `Meta<typeof TooltipContent>`, or `pnpm type-check:stories` fails. The stories still render the whole component.
 5. One story per variant, size and state (disabled, invalid, loading, empty).
-
-### 5. Component tokens
-
-Run the `byb-design:add-component-tokens` skill for the component.
 
 ### 6. Export and document
 
@@ -92,7 +92,6 @@ pnpm lint
 pnpm check-tokens
 pnpm check-component-tokens
 pnpm check-registry
-node migrate/check-cli.mjs src/components/<name>.tsx src/stories/<the story file>   # expect no findings
 ```
 
 Then look at it in a browser. In the Claude app, start `console` or `storybook` from `.claude/launch.json` in the browser pane; elsewhere run `pnpm console` (http://localhost:6010) or `pnpm storybook` (http://localhost:6006). Check every story, at 375px and at desktop width, and the component's contrast panel in the console. Take a screenshot to show the user.
