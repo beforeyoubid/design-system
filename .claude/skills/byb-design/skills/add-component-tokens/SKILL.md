@@ -25,7 +25,7 @@ Read **Component tokens** in `DESIGN.md` for the naming rules:
 ```
 
 - The part is the element's `data-slot` (`select-trigger`). No property means the fill.
-- Properties: `foreground`, `border`, `ring`, `radius`, `height`, `min-height`, `width`, `size`, `padding`, `padding-x`, `padding-y`, `gap`, `offset`, `shadow`, `font-weight`, `opacity`, `tracking`.
+- Properties: `foreground`, `border`, `border-width`, `ring`, `ring-width`, `radius`, `height`, `min-height`, `width`, `size`, `padding`, `padding-x`, `padding-y`, `padding-top`, `padding-bottom`, `padding-start`, `padding-end`, `gap`, `offset`, `shadow`, `font-weight`, `opacity`, `tracking`.
 - States: `hover`, `focus`, `active`, `pressed`, `open`, `selected`, `highlighted`, `checked`, `disabled`, `invalid`, `placeholder`.
 - Variants keep the stock cva key (our `primary` button is `default`).
 - A look that lasts while something is true (the latest item in a timeline, a featured card) is a variant, even when a prop or the item's position sets it: `--timeline-item-latest-foreground`. States are only the ones listed, which come from interaction or form status.

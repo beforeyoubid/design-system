@@ -53,6 +53,9 @@ export const PROPERTIES = {
   foreground: { utility: 'text', type: 'color', probe: 'text-[#010203]', label: 'Text colour' },
   border: { utility: 'border', type: 'color', probe: 'border-[#010203]', label: 'Border colour' },
   ring: { utility: 'ring', type: 'color', probe: 'ring-[#010203]', label: 'Ring colour' },
+  // `length:` tells Tailwind a ring-(--x) or border-(--x) is a width, not a colour.
+  'border-width': { utility: 'border', cssType: 'length', type: 'length', probe: 'border-[3px]', label: 'Border thickness' },
+  'ring-width': { utility: 'ring', cssType: 'length', type: 'length', probe: 'ring-[3px]', label: 'Ring thickness' },
   radius: { utility: 'rounded', type: 'radius', probe: 'rounded-[3px]', label: 'Corner radius' },
   height: { utility: 'h', type: 'length', probe: 'h-[3px]', label: 'Height' },
   'min-height': { utility: 'min-h', type: 'length', probe: 'min-h-[3px]', label: 'Minimum height' },
@@ -61,6 +64,10 @@ export const PROPERTIES = {
   padding: { utility: 'p', type: 'length', probe: 'p-[3px]', label: 'Padding' },
   'padding-x': { utility: 'px', type: 'length', probe: 'px-[3px]', label: 'Horizontal padding' },
   'padding-y': { utility: 'py', type: 'length', probe: 'py-[3px]', label: 'Vertical padding' },
+  'padding-top': { utility: 'pt', type: 'length', probe: 'pt-[3px]', label: 'Top padding' },
+  'padding-bottom': { utility: 'pb', type: 'length', probe: 'pb-[3px]', label: 'Bottom padding' },
+  'padding-start': { utility: 'ps', type: 'length', probe: 'ps-[3px]', label: 'Padding at the start (left, or right in right-to-left)' },
+  'padding-end': { utility: 'pe', type: 'length', probe: 'pe-[3px]', label: 'Padding at the end (right, or left in right-to-left)' },
   gap: { utility: 'gap', type: 'length', probe: 'gap-[3px]', label: 'Gap between items' },
   // Distance from the edge of the screen or container, for a part positioned against it
   // (a toast stack, a floating panel). Only an @add class reads it, as inset-*, bottom-* or m-*.
@@ -234,7 +241,7 @@ export function parseTokenName(token, rule, cvaKeys = []) {
       // A variant name can exist in more than one cva group (button `default` is both a
       // variant and a size). Sizing properties go to the size group, colours to the variant.
       const matches = cvaKeys.filter((k) => k.split('.').slice(1).join('.') === rest)
-      const sizing = ['radius', 'height', 'min-height', 'width', 'size', 'padding', 'padding-x', 'padding-y', 'gap', 'offset'].includes(property)
+      const sizing = ['radius', 'height', 'min-height', 'width', 'size', 'padding', 'padding-x', 'padding-y', 'padding-top', 'padding-bottom', 'padding-start', 'padding-end', 'gap', 'offset', 'border-width', 'ring-width'].includes(property)
       const pick =
         matches.find((k) => (sizing ? /^size\./ : /^variant\./).test(k)) ?? (matches.length === 1 ? matches[0] : null)
       if (pick) {
@@ -277,7 +284,7 @@ export function sameGroup(a, b) {
 /** The class a token writes, e.g. `hover:bg-(--_button-default-hover)`. */
 export function tokenClass(prefix, property, name) {
   const p = PROPERTIES[property]
-  return `${prefix}${p.utility}-(${name})`
+  return `${prefix}${p.utility}-(${p.cssType ? p.cssType + ':' : ''}${name})`
 }
 
 /**

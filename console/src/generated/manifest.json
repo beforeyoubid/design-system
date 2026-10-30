@@ -19618,6 +19618,14 @@
    "label": "Ring colour",
    "type": "color"
   },
+  "border-width": {
+   "label": "Border thickness",
+   "type": "length"
+  },
+  "ring-width": {
+   "label": "Ring thickness",
+   "type": "length"
+  },
   "radius": {
    "label": "Corner radius",
    "type": "radius"
@@ -19648,6 +19656,22 @@
   },
   "padding-y": {
    "label": "Vertical padding",
+   "type": "length"
+  },
+  "padding-top": {
+   "label": "Top padding",
+   "type": "length"
+  },
+  "padding-bottom": {
+   "label": "Bottom padding",
+   "type": "length"
+  },
+  "padding-start": {
+   "label": "Padding at the start (left, or right in right-to-left)",
+   "type": "length"
+  },
+  "padding-end": {
+   "label": "Padding at the end (right, or left in right-to-left)",
    "type": "length"
   },
   "gap": {

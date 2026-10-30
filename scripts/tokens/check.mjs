@@ -127,6 +127,9 @@ const exceptions = JSON.parse(fs.readFileSync(path.join(root, 'scripts', 'tokens
 const strict = process.argv.includes('--strict')
 const warnings = []
 const pairs = []
+const unchecked = []
+// A default can point at another component token (`var(--_timeline-title-foreground)`); resolve those too.
+for (const t of parsedTokens) if (!rootVars.has(t.name)) rootVars.set(t.name, t.fallback)
 for (const t of parsedTokens) {
   // Disabled text is exempt from WCAG contrast.
   if (t.property !== 'foreground' || t.state === 'disabled' || /-disabled$/.test(t.slot)) continue
@@ -147,7 +150,12 @@ for (const t of parsedTokens) {
   }
   const fg = resolveColor(t.fallback)
   const bg = resolveColor(fill.fallback)
-  if (!fg || !bg) continue
+  if (!fg || !bg) {
+    // The browser picks system colours (a native <option>'s Canvas) and currentColor; nothing to check.
+    if (/^(Canvas|CanvasText|Field|FieldText|currentColor|inherit)$/i.test(!fg ? t.fallback : fill.fallback)) continue
+    unchecked.push(`${t.where}: couldn't work out the colour of ${!fg ? t.name : fill.name}, so ${t.name} on ${fill.name} wasn't checked for contrast`)
+    continue
+  }
   const ratio = contrast(fg, bg)
   pairs.push({ fg: t.name, bg: fill.name, ratio })
   if (ratio < min) {
@@ -158,10 +166,10 @@ for (const t of parsedTokens) {
   }
 }
 
-if (warnings.length) console.warn(warnings.map((w) => `⚠ ${w}`).join('\n') + '\n')
+if (warnings.length || unchecked.length) console.warn([...warnings, ...unchecked].map((w) => `⚠ ${w}`).join('\n') + '\n')
 if (errors.length) {
   console.error(errors.map((e) => `✖ ${e}`).join('\n'))
   console.error(`\n${errors.length} problem(s). ${parsedTokens.length} tokens in ${files.length} files; ${pairs.length} contrast pairs checked.`)
   process.exit(1)
 }
-console.log(`✅ ${parsedTokens.length} component tokens in ${files.length} files; ${pairs.length} contrast pairs checked${warnings.length ? `, ${warnings.length} undecided` : ''}.`)
+console.log(`✅ ${parsedTokens.length} component tokens in ${files.length} files; ${pairs.length} contrast pairs checked${warnings.length ? `, ${warnings.length} undecided` : ''}${unchecked.length ? `, ${unchecked.length} not checked` : ''}.`)

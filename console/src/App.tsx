@@ -244,7 +244,7 @@ function variantHeading(variant: string, inPart: ComponentToken[]) {
   const bp = breakpointOf(variant)
   if (bp) return <>From <span className="pg-bp" title={`Applies when the window is at the ${bp} breakpoint or wider`}>{bp}</span> up</>
   const words = titleCase(variant.split('-').map((w) => SIZE_WORDS[w] ?? w).join('-')).replace(/ With (\w+)/g, (_, w: string) => ` with ${w.toLowerCase()}`)
-  const sizing = inPart.find((t) => t.variant === variant && ['height', 'padding-x', 'radius', 'size', 'gap', 'width'].includes(t.property)) && !inPart.find((t) => t.variant === variant && t.property === 'fill')
+  const sizing = inPart.find((t) => t.variant === variant && ['height', 'padding-x', 'padding-y', 'padding-top', 'padding-bottom', 'padding-start', 'padding-end', 'radius', 'size', 'gap', 'width'].includes(t.property)) && !inPart.find((t) => t.variant === variant && t.property === 'fill')
   return `${words} ${sizing ? 'size' : 'style'}`
 }
 
