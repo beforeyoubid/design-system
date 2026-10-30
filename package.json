@@ -20,13 +20,15 @@
     "migrate/index.mjs",
     "migrate/rules.mjs",
     "migrate/check.mjs",
+    "migrate/check-cli.mjs",
     "docs/README.md",
     "docs/styling.md",
     "docs/components.md",
     "docs/registry.md"
   ],
   "bin": {
-    "design-system-migrate": "migrate/index.mjs"
+    "design-system-migrate": "migrate/index.mjs",
+    "design-system-check": "migrate/check-cli.mjs"
   },
   "exports": {
     ".": {

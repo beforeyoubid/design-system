@@ -80,7 +80,7 @@ pnpm lint
 pnpm check-tokens
 pnpm check-component-tokens
 pnpm check-registry
-node migrate/index.mjs --check src/components/<name>.tsx src/stories   # expect no findings in your files
+node migrate/check-cli.mjs src/components/<name>.tsx src/stories/<the story file>   # expect no findings
 ```
 
 Then look at it: `pnpm storybook` (http://localhost:6006) or `pnpm console` (http://localhost:6010). Check every story, at 375px and at desktop width. Take a screenshot to show the user.

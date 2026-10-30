@@ -182,7 +182,7 @@ No separate tokens; use opacity modifiers.
 
 Every error and destructive colour reads `destructive`: error text, invalid borders and rings, destructive buttons, menu items, badges, alerts and toasts. Use `text-destructive`, `border-destructive` and so on rather than `error-75`, so the error red changes in one place.
 
-`globals.css` keeps shadcn's `.dark` values, but BYB apps have no dark mode: don't write `dark:` classes, and component tokens have no dark values.
+Dark mode is supported in code (`<html class="dark">` flips the semantic tokens), but it isn't configured or optimised yet: component tokens have no dark values and nothing has been designed or checked in dark. Until it is, apps don't turn it on and nobody writes `dark:` classes.
 
 ---
 
@@ -2395,7 +2395,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 11. **Sub-headings are `dark-90`.** Overlines, group labels, section labels and column labels use `text-dark-90`; `dark-60` and `dark-75` are too grey for them. Descriptions keep `text-muted-foreground`, except dialog descriptions (`DialogDescription`), which are `dark-90`.
 12. **No `dark-60` for text or icons.** Hints, helper text, meta labels and icons use `text-dark-75`; `dark-60` is too light (3.3:1 on white).
 13. **Deleting anything asks first.** Every delete or remove action (files, rows, reports, list items, saved records) opens a delete dialog before anything is removed: `ConfirmDialog destructive` with a trash `IconTile`, a title that names the thing ("Delete this file?"), a description naming the item and what happens, and Cancel (focused by default) / Delete. Only after Delete is confirmed is the item removed, followed by a `success` toast ("File deleted") with an Undo action where the delete can be reversed. Cancelling an upload in progress or clearing a field is not a delete and needs no dialog. Other destructive row actions such as "Cancel order" follow the same pattern ("Cancel this order?", Keep order / Cancel order). Built in: `FileUpload` (`confirmDelete`); examples in the DropdownMenu, ContextMenu and Table stories.
-14. **Apps follow `docs/README.md`.** The guardrail docs ship in the package; keep them in step with these rules. Apps check their changes with `npx design-system-migrate --check --changed`.
+14. **Apps follow `docs/README.md`.** The guardrail docs ship in the package; keep them in step with these rules. Apps check their changes with `npx design-system-check --changed` (`--fix` applies the safe fixes).
 
 ---
 

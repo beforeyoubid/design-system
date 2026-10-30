@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { checkClasses, checkSource } from './check.mjs'
+import { checkClasses, checkSource, fixSource } from './check.mjs'
 
 const uses = (classes) => checkClasses(classes).map(({ rule, found, use }) => `${rule}: ${found}${use ? ` → ${use}` : ''}`)
 
@@ -75,4 +75,18 @@ test('source checks report lines, read template literals and skip imports', () =
 test('css files are checked in @apply only; tests are skipped', () => {
   assert.deepEqual(checkSource('.a { margin-left: 4px; @apply ml-2; }', 'a.css').map((f) => f.found), ['ml-2'])
   assert.deepEqual(checkSource('cy.get("[data-testid=x]"); const c = "ml-2"', 'a.test.tsx'), [])
+})
+
+test('--fix rewrites only what has one safe answer, and only on the lines asked for', () => {
+  const source = [
+    'import { IconX } from "@tabler/icons-react"',
+    'const a = <div className="ml-2 w-4 h-4 dark:bg-navy text-dark-75 text-sm" />',
+    'const b = <div className="absolute left-1/2 -translate-x-1/2 pr-3" />',
+  ].join('\n')
+  assert.equal(fixSource(source, 'a.tsx').text, [
+    'import { IconX } from "@beforeyoubid/design-system/icons"',
+    'const a = <div className="ms-2 size-4 text-muted-foreground text-sm" />',
+    'const b = <div className="absolute left-1/2 -translate-x-1/2 pe-3" />',
+  ].join('\n'))
+  assert.equal(fixSource(source, 'a.tsx', (line) => line === 3).fixed.length, 1)
 })

@@ -15,7 +15,7 @@ Live Storybook: https://storybook.beforeyoubuy.com.au/design-system/
 - Components — shadcn on Base UI styled to the BYB design, plus BYB components (`FileUpload`, `Stepper`, `BYBAreaChart`, …). Every one is listed in [`docs/registry.md`](./docs/registry.md)
 - Component tokens — change any component's look from an app's CSS (`--button-radius`, `--card-gap`, …)
 - `cn()` helper with `tailwind-merge` extended for every BYB token
-- Guardrail docs for apps in [`docs/`](./docs/README.md), shipped with the package, and `npx design-system-migrate --check` to report code that breaks them
+- Guardrail docs for apps in [`docs/`](./docs/README.md), shipped with the package, and `npx design-system-check` to report code that breaks them (`--fix` applies the safe fixes)
 - The **BYB Design Console** (`pnpm console`): change any token and see every component update, with contrast checked. Setup: [`console/README.md`](./console/README.md)
 
 ## Requirements
@@ -107,11 +107,13 @@ Working with Claude Code in this repo, the `byb-design` skills (`.claude/skills/
 
 ## Using it in an app
 
+Apps install published versions only. Don't link a local build into an app.
+
 Point the app's `CLAUDE.md` (or `AGENTS.md`) at the guardrails, so agents read them before writing UI:
 
 > Before writing UI, read `node_modules/@beforeyoubid/design-system/docs/README.md`.
 
-Before committing, `npx design-system-migrate --check --changed` lists guardrail findings on the lines you changed.
+Before committing, `npx design-system-check --changed` lists guardrail findings on the lines you changed, and `--fix` applies the safe ones.
 
 ## Generating new components
 
@@ -133,32 +135,6 @@ pnpm build-and-publish   # builds then runs npm publish --access public
 ```
 
 Bump the version in `package.json` before publishing. v2.0 onwards follows semver from `2.0.0-alpha.N`.
-
-## Using in byb-website (local)
-
-byb-website uses Yarn 1 classic, so link the built package for local development:
-
-**1. Register the link (once, in design-system):**
-```bash
-cd services/design-system
-pnpm build        # must build first so dist/ exists
-pnpm link --global
-```
-
-**2. Use the link (in byb-website):**
-```bash
-cd services/byb-website
-yarn link @beforeyoubid/design-system
-```
-
-From then on, run `pnpm dev` in design-system while working — changes rebuild automatically and byb-website picks them up on next page refresh.
-
-**To unlink when done:**
-```bash
-cd services/byb-website
-yarn unlink @beforeyoubid/design-system
-yarn install --force
-```
 
 ## Migrating from v1
 

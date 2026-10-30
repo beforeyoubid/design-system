@@ -26,7 +26,7 @@ Status colours (success, warning, error) always come from these roles or a `Badg
 
 For transparency use an opacity modifier, `bg-dark-100/50`, never a new colour.
 
-No `dark:` classes. BYB apps have no dark mode.
+No `dark:` classes. The package has dark values in code, but dark mode isn't configured or optimised yet.
 
 ## No arbitrary values
 

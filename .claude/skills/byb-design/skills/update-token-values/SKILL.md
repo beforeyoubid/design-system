@@ -31,7 +31,7 @@ It sorts each variable into brand, semantic or component and prints `old → new
 
 - **Unknown names stop the run** and nothing is written. Show the user the list. A typo or a renamed token is the usual cause; ask which token they meant.
 - **Brand colours need a hex value** (`--mint-45: #00AE95`). The script writes OKLCH with the hex in a comment.
-- Semantic tokens change the light theme only. BYB apps have no dark mode.
+- Semantic tokens change the light theme only. Dark mode isn't configured or optimised yet, so its values stay as they are.
 
 ### 3. Apply
 

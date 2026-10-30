@@ -16,17 +16,23 @@ Read this before writing or changing UI in an app that uses the design system. T
 6. **Space siblings with `gap`.** A flex or grid parent with `gap-*`, not margins on the children or `space-y-*`.
 7. **Mobile first.** Unprefixed classes are the phone layout. Each breakpoint prefix applies from its width up.
 8. **Change a component's look through its props, then its component tokens.** Use `className` on a design system component for layout (width, placement, spacing). A `className` that changes its colours is a last resort and needs a comment saying why.
-9. **No dark mode.** BYB apps are light only, so never write `dark:` classes.
+9. **No dark mode yet.** The package has dark values in code, but dark mode isn't configured or optimised. Don't turn it on or write `dark:` classes until it is.
 
 ## Check your changes before you commit
 
 ```bash
-npx design-system-migrate --check --changed
+npx design-system-check --changed
 ```
 
-It lists guardrail findings on the lines you changed since the last commit, with what to use instead. Fix the ones on lines you touched. It never fails a build, and older code nearby can wait.
+It lists guardrail findings on the lines you changed since the last commit, with what to use instead, and changes nothing. Fix the ones on lines you touched; older code nearby can wait. It never fails a build.
 
-`npx design-system-migrate --check src/` runs it over a folder.
+```bash
+npx design-system-check --changed --fix
+```
+
+`--fix` applies the findings with one safe answer that look the same afterwards (logical sides, `size-*`, brand colours with an identical semantic token, icon imports, dropping `dark:` classes) and lists the rest for you to fix.
+
+`npx design-system-check src/` checks a folder.
 
 ## After upgrading the package
 
