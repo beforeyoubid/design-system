@@ -30,7 +30,14 @@ It lists guardrail findings on the lines you changed since the last commit, with
 npx design-system-check --changed --fix
 ```
 
-`--fix` applies the findings with one safe answer that look the same afterwards (logical sides, `size-*`, brand colours with an identical semantic token, icon imports, dropping `dark:` classes) and lists the rest for you to fix.
+`--fix` applies the findings with one safe answer and lists the rest for you to fix:
+
+- physical sides to logical ones (`ml-2` → `ms-2`, `left-0` → `start-0`, `rounded-tl-md` → `rounded-ss-md`)
+- arbitrary values that are on a scale: spacing on the 2px grid (`p-[8px]` → `p-2`, `max-w-[1920px]` → `max-w-480`), radius (`rounded-[8px]` → `rounded-md`), opacity (`opacity-[0.87]` → `opacity-87`), `z-[100]` → `z-100`, `aspect-[16/9]` → `aspect-video`, brand hex colours (`text-[#00AE95]` → `text-primary`), tracking (`tracking-[0.04em]` → `tracking-button`) and `bg-[var(--x)]` → `bg-(--x)`
+- text sizes on the type scale (`text-sm` → `text-body-5`, `text-[16px]` → `text-body-4`; with `font-semibold` or bolder, a size a heading shares becomes the heading, so `text-2xl font-semibold` → `text-h4`), and a `leading-[…]` the type class already sets is dropped
+- brand colours with an identical semantic token, `w-N h-N` → `size-N`, icon imports, and dropping `dark:` classes
+
+Text sizes between two steps (`text-[13px]`, `text-3xl`) are listed with the steps either side. Add `--nearest` to snap them to the nearer one (a tie goes to the larger), then check those screens. Values with nothing to swap to (`%`, viewport units, `calc()`, grid templates) aren't flagged. `translate-x`, `origin-left`, `bg-right` and `object-left` have no logical twin, so they're listed for you to check in right-to-left.
 
 Already committed? Check the commits instead:
 

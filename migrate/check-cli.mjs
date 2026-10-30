@@ -9,11 +9,16 @@
  *   npx design-system-check --commits abc..def      only lines changed after abc, up to and including def
  *   npx design-system-check --commits abc123,def456 several commits or ranges
  *   add --fix to any of these                       fix what has one safe answer, report the rest
+ *   add --nearest as well                           also snap text sizes off the type scale to the nearest step
  *
  * Paths, --changed and --commits are alternatives: pass one.
  * It never fails a build. --fix only rewrites findings that look the same
- * afterwards: logical sides, size-*, brand colours with an identical semantic
- * token, design-system icon imports, and dropping dark: classes. With
+ * afterwards, or as near as the scale allows: logical sides, size-*, arbitrary
+ * values that are on a scale (spacing on the 2px grid, radius, opacity, z,
+ * aspect, brand hex colours, tracking), Tailwind and px text sizes on the type
+ * scale (and line-heights the type class already sets), brand colours with an
+ * identical semantic token, design-system icon imports, and dropping dark:
+ * classes. With
  * --commits it fixes the files on disk, and skips a file that has changed
  * since the commit it's checking.
  */
@@ -32,7 +37,7 @@ function fail(message) {
 }
 
 function parseArgs(argv) {
-  const options = { paths: [], changed: false, fix: false, commits: [] }
+  const options = { paths: [], changed: false, fix: false, nearest: false, commits: [] }
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i]
     if (arg === '--help' || arg === '-h') {
@@ -40,6 +45,7 @@ function parseArgs(argv) {
       process.exit(0)
     } else if (arg === '--changed') options.changed = true
     else if (arg === '--fix') options.fix = true
+    else if (arg === '--nearest') options.nearest = true
     else if (arg === '--commits' || arg.startsWith('--commits=')) {
       const value = arg.includes('=') ? arg.slice(arg.indexOf('=') + 1) : argv[++i]
       if (!value || value.startsWith('--')) fail('--commits takes a commit, a range (abc..def) or a comma-separated list.')
@@ -149,7 +155,7 @@ for (const unit of units(options)) {
   const inScope = (line) => !unit.lines || unit.lines.has(line)
   let text = unit.text
   if (options.fix) {
-    const result = fixSource(text, unit.file, inScope)
+    const result = fixSource(text, unit.file, inScope, options)
     if (result.fixed.length && !unit.onDisk) skipped.push(unit.label)
     else if (result.fixed.length) {
       fs.writeFileSync(unit.file, result.text)
@@ -158,7 +164,7 @@ for (const unit of units(options)) {
       for (const { rule } of result.fixed) fixedCounts[rule] = (fixedCounts[rule] ?? 0) + 1
     }
   }
-  for (const finding of checkSource(text, unit.file)) if (inScope(finding.line)) results.push({ label: unit.label, ...finding })
+  for (const finding of checkSource(text, unit.file, options)) if (inScope(finding.line)) results.push({ label: unit.label, ...finding })
 }
 
 const where = options.changed ? ' in the changed lines' : options.commits.length ? ` in the lines ${options.commits.join(', ')} changed` : ''
@@ -184,6 +190,6 @@ const counts = {}
 for (const { rule } of results) counts[rule] = (counts[rule] ?? 0) + 1
 console.log(`\n${results.length} findings${where}:`)
 for (const [rule, count] of Object.entries(counts).sort((a, b) => b[1] - a[1])) console.log(`  ${String(count).padStart(5)}  ${rule}: ${CHECK_RULES[rule]}`)
-const fixableLeft = results.filter((r) => r.fixable).length
+const fixableLeft = results.filter((r) => r.fixable && !r.superseded).length
 if (fixableLeft && !options.fix) console.log(`\n${fixableLeft} of these have one safe answer: re-run with --fix to apply them.`)
 console.log('\nAdvisory: fix the ones on lines you changed. See node_modules/@beforeyoubid/design-system/docs/README.md.')
