@@ -54,7 +54,7 @@ If `check-component-tokens` reports a pair under AA:
 ### 5. Prose
 
 1. Search `DESIGN.md` for each changed token's old value in the prose sections (colour tables, component descriptions). The generated token table is already updated; the prose isn't. Update every sentence that describes the old look.
-2. Add a CHANGELOG line under the next version. A semantic or brand token change goes under **Breaking** if an app's look changes without the app changing anything (say what changed and that apps reading the token follow it). A component token default change goes under **Changed**.
+2. Add a CHANGELOG line, in the section **Which CHANGELOG section** in `CLAUDE.md` names. A semantic or brand token change goes under **Breaking** if an app's look changes without the app changing anything (say what changed and that apps reading the token follow it). A component token default change goes under **Changed**.
 
 ### 6. Report
 

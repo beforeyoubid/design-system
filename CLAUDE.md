@@ -6,16 +6,36 @@ Read this before adding or modifying any component or token.
 
 ## Skills: use them for design-system work
 
-The `byb-design` plugin in `.claude/skills/byb-design/` loads in every session in this repo. Use its skills; they hold the steps and checks for each job.
+The `byb-design` plugin in `.claude/skills/byb-design/` loads in every session in this repo. **Invoke the matching skill before you change any component, token or export**, even for a one-line change, and follow it to the end; the skills hold the steps and checks each job needs.
 
 | When the task is to… | Use |
 |---|---|
 | Add, build, extend or restyle a component; add a variant, size or prop | `byb-design:author-component` |
 | Give a component tokens, or add, rename or fix its tokens | `byb-design:add-component-tokens` (author-component runs it too) |
 | Apply a Design Console export or a pasted `:root { … }` block as the defaults | `byb-design:update-token-values` |
-| Rename or remove a component, export, prop, value, class or token, or change a default apps rely on | `byb-design:breaking-change` |
+| Rename or remove a component, export, prop, value, class or token; change a prop's default value, a component's default variant or size, or a brand or semantic token's value | `byb-design:breaking-change` |
 
 Several can apply: a rename inside a new component is author-component plus breaking-change.
+
+### Words used here
+
+| Word | Means |
+|---|---|
+| Brand token | A colour, size or radius from the BYB palette in Figma (`--mint-45`, `--radius-lg`). Says what it looks like. |
+| Semantic token | A role that components use (`--primary`, `--border`, `--destructive`). Points at a brand token; an app can change the role in one place. |
+| Component token | One designed value of one part of one component (`--button-default`, `--input-radius`). Points at a semantic or brand token. |
+| Part | One element of a component, named by its `data-slot` attribute (`select-trigger`, `dialog-content`). Component token names start with it. |
+| Variant | One look of a component, chosen by a prop (`variant="outline"`, `size="sm"`). |
+| cva key | The name of a variant in the component's code. Component token names use it, so our `primary` button is `default` in token names. |
+| Public / private name | Apps set the public name (`--input-radius`). Inside the package, the component reads the private name (`--_input-radius`), which falls back to the public one, then to the default. |
+| Stock component | A component as the shadcn CLI writes it, in `src/components/ui/`. Never edited by hand. |
+| Wrapper | Our file in `src/components/` that re-exports a stock component and replaces the parts we change. |
+| `@ours` | In a token file comment: this component token is read by our wrapper, not by the stock file. |
+| `@on` | In a token file comment: the token this text sits on, for the contrast check, when its own part has no fill (`@on --tabs-indicator`). Without it, text with no fill is checked against the page background. |
+
+### Which CHANGELOG section
+
+Add to the top section of `CHANGELOG.md` while it's unreleased: its version isn't in `npm view @beforeyoubid/design-system versions`. If it's already published, add a `## Unreleased` section above it. Never change `version` in `package.json`; that happens when the package is published.
 
 ## What lives here
 

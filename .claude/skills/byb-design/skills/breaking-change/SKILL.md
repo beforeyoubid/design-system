@@ -1,6 +1,6 @@
 ---
 name: breaking-change
-description: Ship a breaking change to the BYB design system with a migrator rule, a test and a CHANGELOG entry, so apps upgrade with `npx design-system-migrate`. Use when renaming or removing a component, export, prop, prop value, variant, class or token, or changing a default that apps rely on, in this repo.
+description: Ship a breaking change to the BYB design system with a migrator rule, a test and a CHANGELOG entry, so apps upgrade with `npx design-system-migrate`. Use when renaming or removing a component, export, prop, prop value, variant, class or token, or changing a prop's default value, a component's default variant or size, or a brand or semantic token's value, in this repo.
 argument-hint: <what is being renamed, removed or changed>
 ---
 
@@ -13,7 +13,7 @@ Make the change in `$ARGUMENTS` and give apps a way through it.
 - The change is made in the package, and nothing in the package still uses the old name.
 - `migrate/rules.mjs` rewrites the old usage to the new one, or, where a person has to decide, reports it for review.
 - `migrate/rules.test.mjs` has a test for the rule that fails without it.
-- `CHANGELOG.md` has an entry under **Breaking** for the next version.
+- `CHANGELOG.md` has an entry under **Breaking**, in the section **Which CHANGELOG section** in `CLAUDE.md` names.
 - `pnpm test:migrate` and every check under **Verify** pass.
 
 ## Steps
@@ -63,7 +63,7 @@ Without `--write` it only reports. Check the counts match step 1 and the review 
 
 ### 6. CHANGELOG
 
-Under **Breaking** for the next version, one bullet: **what changed** in bold, the reason in a clause, what to use instead, and that the migrator handles it (or what it reports). Match the existing entries' style.
+Under **Breaking**, in the section **Which CHANGELOG section** in `CLAUDE.md` names, one bullet: **what changed** in bold, the reason in a clause, what to use instead, and that the migrator handles it (or what it reports). Match the existing entries' style.
 
 ## Verify
 

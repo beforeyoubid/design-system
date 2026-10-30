@@ -6,7 +6,7 @@ argument-hint: <component name and what it should do>
 
 # Author a component
 
-Build or change the component described in `$ARGUMENTS`.
+Build or change the component described in `$ARGUMENTS`. Terms (part, cva key, wrapper, `@ours`, public and private names) are explained under **Words used here** in `CLAUDE.md`.
 
 ## Done when
 
@@ -23,7 +23,7 @@ Build or change the component described in `$ARGUMENTS`.
 
 1. Read `CLAUDE.md` in this repo.
 2. Search `docs/registry.md` for an existing component that does the job, or one that could take a new variant instead. Extending one beats adding one.
-3. Check whether shadcn ships it: `pnpm dlx shadcn@latest search <name>`, then `pnpm dlx shadcn@latest docs <name>` and read the docs and example it links.
+3. Check whether shadcn ships it: `pnpm dlx shadcn@latest search @shadcn -q <name>`. If it does, `pnpm dlx shadcn@latest docs <name>` and read the docs and example it links.
 
 ### 2. Put it in the right place
 
@@ -32,7 +32,19 @@ Build or change the component described in `$ARGUMENTS`.
 | Adding a stock shadcn component | `pnpm dlx shadcn@latest add <name>` writes `src/components/ui/<name>.tsx`. Read it. |
 | Changing only how a stock component looks | Its token file, through step 5. Never hand-edit `src/components/ui/`. |
 | Changing structure, behaviour, props or variants of a stock component | A wrapper, `src/components/<name>.tsx`, that starts with `export * from "@/components/ui/<name>"` and exports over only the parts it changes. |
+| A stock part with no `data-slot` (so no component token can reach it, like the Tooltip arrow) | A wrapper that re-implements the part that renders it and gives the element a `data-slot` named `<component>-<part>`. |
 | A BYB component with no stock equivalent | `src/components/<name>.tsx`, one component per file. |
+
+**When you add a wrapper**, point everything at it, or the change only reaches some apps:
+
+1. In `src/index.ts`, export the component from `./components/<name>` instead of `./components/ui/<name>`.
+2. Find our files that still import the stock file, and import the wrapper instead (`@/components/<name>`):
+
+   ```bash
+   grep -rln "components/ui/<name>['\"]" src --include='*.tsx' | grep -v '^src/components/ui/'
+   ```
+
+   The wrapper itself keeps importing the stock file.
 
 ### 3. Authoring rules
 
@@ -57,7 +69,7 @@ Build or change the component described in `$ARGUMENTS`.
 1. Write `src/stories/ui/<Name>.stories.tsx` for a stock or wrapped component, `src/stories/<Name>.stories.tsx` for a BYB composite.
 2. Meta `title: 'BYB Components/<Name>'`, `component`, `tags: ['autodocs']`.
 3. `parameters: { docs: { description: { component: '<one line: what it is for, and what to use instead when it isn't the right fit>' } } }`. The registry and Storybook both show this line.
-4. `argTypes` with `options` for each variant prop (`variant`, `size`, …). The registry lists these.
+4. `argTypes` with `options` for each variant prop (`variant`, `size`, …). The registry lists these. When those props are on a part rather than the root (`TooltipContent`'s `variant`), make that part the meta's `component` and type it `Meta<typeof TooltipContent>`, or `pnpm type-check:stories` fails. The stories still render the whole component.
 5. One story per variant, size and state (disabled, invalid, loading, empty).
 
 ### 5. Component tokens
@@ -68,7 +80,7 @@ Run the `byb-design:add-component-tokens` skill for the component.
 
 1. Export from `src/index.ts` in the section that matches (BYB components or shadcn primitives).
 2. Add or update its entry under **Components** in `DESIGN.md`: variants, sizes, the look of each state.
-3. Add a line to `CHANGELOG.md` under the next version (**Added**, or **Fixed** for a change to an existing component). A rename or removal goes through `byb-design:breaking-change` instead.
+3. Add a line to `CHANGELOG.md` (**Added**, or **Fixed** for a change to an existing component), in the section **Which CHANGELOG section** in `CLAUDE.md` names. A rename, a removal or a changed default goes through `byb-design:breaking-change` instead.
 4. `pnpm registry:build`.
 
 ## Verify
@@ -83,4 +95,4 @@ pnpm check-registry
 node migrate/check-cli.mjs src/components/<name>.tsx src/stories/<the story file>   # expect no findings
 ```
 
-Then look at it: `pnpm storybook` (http://localhost:6006) or `pnpm console` (http://localhost:6010). Check every story, at 375px and at desktop width. Take a screenshot to show the user.
+Then look at it in a browser. In the Claude app, start `console` or `storybook` from `.claude/launch.json` in the browser pane; elsewhere run `pnpm console` (http://localhost:6010) or `pnpm storybook` (http://localhost:6006). Check every story, at 375px and at desktop width, and the component's contrast panel in the console. Take a screenshot to show the user.

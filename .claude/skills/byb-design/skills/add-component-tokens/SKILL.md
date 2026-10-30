@@ -6,7 +6,7 @@ argument-hint: <component name>
 
 # Add component tokens
 
-Give the component in `$ARGUMENTS` a component token for every designed value an app might want to change.
+Give the component in `$ARGUMENTS` a component token for every designed value an app might want to change. Terms (part, cva key, `@ours`, `@on`, public and private names) are explained under **Words used here** in `CLAUDE.md`.
 
 ## Done when
 
@@ -28,6 +28,7 @@ Read **Component tokens** in `DESIGN.md` for the naming rules:
 - Properties: `foreground`, `border`, `ring`, `radius`, `height`, `min-height`, `width`, `size`, `padding`, `padding-x`, `padding-y`, `gap`, `offset`, `shadow`, `font-weight`, `opacity`, `tracking`.
 - States: `hover`, `focus`, `active`, `pressed`, `open`, `selected`, `highlighted`, `checked`, `disabled`, `invalid`, `placeholder`.
 - Variants keep the stock cva key (our `primary` button is `default`).
+- A look that lasts while something is true (the latest item in a timeline, a featured card) is a variant, even when a prop or the item's position sets it: `--timeline-item-latest-foreground`. States are only the ones listed, which come from interaction or form status.
 - A breakpoint value gets its own token, `\:sm` for sm and up, `\:md-to-lg` for a range. In the token file its private name ends `--sm`.
 
 Open a token file for a similar component (`src/tokens/components/button.css`, `select.css`) and copy its shape.
@@ -35,6 +36,8 @@ Open a token file for a similar component (`src/tokens/components/button.css`, `
 ### 2. List the designed values
 
 Read the component's class strings (in `src/components/ui/<name>.tsx` and any wrapper in `src/components/`). For each part, list every class that sets a designed value, per variant, state and breakpoint. Skip pure layout (`flex`, `items-center`) and behaviour (`pointer-events-none`).
+
+If an element you need to change has no `data-slot`, no token can reach it. Give it one in a wrapper first (`byb-design:author-component`, step 2), then come back.
 
 ### 3. Write the token file
 
@@ -59,6 +62,7 @@ Read the component's class strings (in `src/components/ui/<name>.tsx` and any wr
 - A variant's token falls back to the component's own where one exists: `var(--foo-sm-radius, var(--_foo-radius))`.
 - Class changes that aren't a value swap go in directives on the rule: `/* @add classes */`, `/* @remove classes */`, `/* @add(size.sm) classes */` for one cva key, `/* @alias md = size.default */`.
 - A token read by our wrapper rather than the ui file gets `@ours` in its comment, and the wrapper uses the private name directly (`rounded-(--_foo-radius)`).
+- Text on a part with no fill of its own is checked against the page background. When it sits on something else (a parent part's fill, a thumb, a dark section), name that token with `@on` in its comment: `/* Text colour of the active tab. @on --tabs-indicator */`.
 
 ### 4. Apply and build
 
@@ -72,7 +76,7 @@ Read the diff of `src/components/ui/<name>.tsx`. Each designed class should now 
 
 ### 5. Contrast
 
-`check-component-tokens` measures every text token against the fill it sits on.
+`check-component-tokens` measures every text token against the fill it sits on: its own part's fill, the token named with `@on`, or the page background. Text needs 4.5:1; parts named `icon` or `spinner` need 3:1; disabled text is exempt.
 
 1. Change the default so the pair passes AA (4.5:1 for text, 3:1 for icons and borders) when a nearby token passes and keeps the design. Darker text on the same tint is usually the fix (`mint-75` or `mint-90` on mint tints).
 2. When it can't pass without changing the design, add it to `scripts/tokens/contrast-exceptions.json` and tell the user:
