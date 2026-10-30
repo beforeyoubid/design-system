@@ -6,6 +6,12 @@ import { composeStories } from '@storybook/react-vite'
  * console shows a component's real stories as its live examples.
  */
 const modules = import.meta.glob('../../src/stories/**/*.stories.tsx', { eager: true }) as Record<string, Record<string, unknown>>
+// Module namespaces list exports alphabetically; the source gives the order the stories were written in.
+const sources = import.meta.glob('../../src/stories/**/*.stories.tsx', { eager: true, query: '?raw', import: 'default' }) as Record<string, string>
+const sourceOrder = (file: string, exportName: string) => {
+  const at = sources[file]?.search(new RegExp(`export\\s+(?:const|function)\\s+${exportName}\\b`)) ?? -1
+  return at < 0 ? Infinity : at
+}
 
 export interface StoryEntry { id: string; name: string; Story: React.ComponentType }
 
@@ -24,9 +30,11 @@ for (const [file, mod] of Object.entries(modules)) {
   const key = kebab(file)
   try {
     const composed = composeStories(mod as Parameters<typeof composeStories>[0]) as Record<string, React.ComponentType & { storyName?: string }>
-    const entries = Object.entries(composed).map(([exportName, Story]) => ({
+    const entries = Object.entries(composed)
+      .sort(([a], [b]) => sourceOrder(file, a) - sourceOrder(file, b))
+      .map(([exportName, Story]) => ({
       id: `${key}--${exportName}`,
-      name: Story.storyName ?? exportName.replace(/([a-z])([A-Z])/g, '$1 $2'),
+      name: (Story.storyName ?? exportName).replace(/([a-z])([A-Z])/g, '$1 $2'),
       Story,
     }))
     storiesByComponent.set(key, [...(storiesByComponent.get(key) ?? []), ...entries])

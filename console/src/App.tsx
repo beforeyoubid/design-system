@@ -238,10 +238,12 @@ function SemanticRoles({ overrides, set, onOpen, tick }: { overrides: Overrides;
 const partLabel = (component: string, part: string) => (part === component ? titleCase(component) : titleCase(part.replace(component + '-', '')))
 /** A component token for wider screens names its breakpoint: `from-sm` → "sm". Named, not in px, so it follows the breakpoint if it moves. */
 const breakpointOf = (variant: string | null) => variant?.match(/(?:^|-)from-(sm|md|lg|xl|2xl)$/)?.[1] ?? null
+/** Size keys in words, so a group reads "Small size", not "Sm size". */
+const SIZE_WORDS: Record<string, string> = { xs: 'extra small', sm: 'small', md: 'medium', lg: 'large', xl: 'extra large' }
 function variantHeading(variant: string, inPart: ComponentToken[]) {
   const bp = breakpointOf(variant)
   if (bp) return <>From <span className="pg-bp" title={`Applies when the window is at the ${bp} breakpoint or wider`}>{bp}</span> up</>
-  const words = titleCase(variant).replace(/ With (\w+)/g, (_, w: string) => ` with ${w.toLowerCase()}`)
+  const words = titleCase(variant.split('-').map((w) => SIZE_WORDS[w] ?? w).join('-')).replace(/ With (\w+)/g, (_, w: string) => ` with ${w.toLowerCase()}`)
   const sizing = inPart.find((t) => t.variant === variant && ['height', 'padding-x', 'radius', 'size', 'gap', 'width'].includes(t.property)) && !inPart.find((t) => t.variant === variant && t.property === 'fill')
   return `${words} ${sizing ? 'size' : 'style'}`
 }
