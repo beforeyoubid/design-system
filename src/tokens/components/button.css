@@ -51,7 +51,7 @@
   /* Fill colour of the button (outline variant) when hovered. */
   --_button-outline-hover: var(--button-outline-hover, var(--dark-45));
   /* Text colour of the button (outline variant) when hovered. */
-  --_button-outline-hover-foreground: var(--button-outline-hover-foreground, var(--white));
+  --_button-outline-hover-foreground: var(--button-outline-hover-foreground, var(--dark-100));
   /* Border colour of the button (outline variant) while open. */
   --_button-outline-open-border: var(--button-outline-open-border, var(--mint-45));
   /* Fill colour of the button (outline variant) while open. */

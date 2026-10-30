@@ -102,7 +102,7 @@
   /* Text colour of the solid badge (gray variant). @ours */
   --_badge-gray-solid-foreground: var(--badge-gray-solid-foreground, var(--white));
   /* Fill and border colour of the solid badge (mint variant). @ours */
-  --_badge-mint-solid: var(--badge-mint-solid, var(--mint-45));
+  --_badge-mint-solid: var(--badge-mint-solid, var(--mint-75));
   /* Text colour of the solid badge (mint variant). @ours */
   --_badge-mint-solid-foreground: var(--badge-mint-solid-foreground, var(--white));
   /* Fill and border colour of the solid badge (lime variant). @ours */
@@ -110,7 +110,7 @@
   /* Text colour of the solid badge (lime variant). @ours */
   --_badge-lime-solid-foreground: var(--badge-lime-solid-foreground, var(--navy));
   /* Fill and border colour of the solid badge (success variant). @ours */
-  --_badge-success-solid: var(--badge-success-solid, var(--mint-60));
+  --_badge-success-solid: var(--badge-success-solid, var(--mint-75));
   /* Text colour of the solid badge (success variant). @ours */
   --_badge-success-solid-foreground: var(--badge-success-solid-foreground, var(--white));
   /* Fill and border colour of the solid badge (error variant). @ours */

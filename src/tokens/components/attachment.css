@@ -49,11 +49,11 @@
   /* Fill colour of the media. */
   --_attachment-media: var(--attachment-media, var(--mint-l3));
   /* Text colour of the media. */
-  --_attachment-media-foreground: var(--attachment-media-foreground, var(--mint-60));
+  --_attachment-media-foreground: var(--attachment-media-foreground, var(--mint-75));
   /* Fill colour of the media on a failed upload. */
   --_attachment-media-error: var(--attachment-media-error, var(--mint-l3));
   /* Icon colour of the media on a failed upload. */
-  --_attachment-media-error-foreground: var(--attachment-media-error-foreground, var(--mint-60));
+  --_attachment-media-error-foreground: var(--attachment-media-error-foreground, var(--mint-75));
   /* Size of the media's icon. */
   --_attachment-media-icon-size: var(--attachment-media-icon-size, calc(var(--spacing) * 5));
   /* Size of the media's icon in a small (sm) attachment. */

@@ -326,8 +326,8 @@
   --destructive-foreground: var(--white);
 
   /* shadcn doesn't ship these by default — common project extensions */
-  --success:            var(--success-45);
-  --success-foreground: var(--white);
+  --success:            var(--mint-15);
+  --success-foreground: var(--mint-90);
   --warning:            var(--warning-45);
   --warning-foreground: var(--dark-100);
 

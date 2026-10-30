@@ -9,7 +9,7 @@
   /* Corner radius of the content. */
   --_dropdown-menu-content-radius: var(--dropdown-menu-content-radius, var(--radius-lg));
   /* Border colour of the content. */
-  --_dropdown-menu-content-border: var(--dropdown-menu-content-border, var(--dark-45));
+  --_dropdown-menu-content-border: var(--dropdown-menu-content-border, var(--dark-15));
   /* Fill colour of the content. */
   --_dropdown-menu-content: var(--dropdown-menu-content, var(--white));
   /* Padding of the content. */
@@ -47,7 +47,7 @@
   /* Fill colour of the item when highlighted. */
   --_dropdown-menu-item-highlighted: var(--dropdown-menu-item-highlighted, var(--mint-l2));
   /* Text colour of the item when highlighted. */
-  --_dropdown-menu-item-highlighted-foreground: var(--dropdown-menu-item-highlighted-foreground, var(--mint-75));
+  --_dropdown-menu-item-highlighted-foreground: var(--dropdown-menu-item-highlighted-foreground, var(--mint-90));
   /* Text colour of the item when disabled. */
   --_dropdown-menu-item-disabled-foreground: var(--dropdown-menu-item-disabled-foreground, var(--dark-45));
   /* Left padding of an indented row (inset items, labels and sub-menu triggers). */
@@ -76,13 +76,13 @@
   /* Fill colour of the sub-trigger when highlighted. */
   --_dropdown-menu-sub-trigger-highlighted: var(--dropdown-menu-sub-trigger-highlighted, var(--mint-l2));
   /* Text colour of the sub-trigger when highlighted. */
-  --_dropdown-menu-sub-trigger-highlighted-foreground: var(--dropdown-menu-sub-trigger-highlighted-foreground, var(--mint-75));
+  --_dropdown-menu-sub-trigger-highlighted-foreground: var(--dropdown-menu-sub-trigger-highlighted-foreground, var(--mint-90));
   /* Text colour of the sub-trigger when disabled. */
   --_dropdown-menu-sub-trigger-disabled-foreground: var(--dropdown-menu-sub-trigger-disabled-foreground, var(--dark-45));
   /* Fill colour of the sub-trigger while open. */
   --_dropdown-menu-sub-trigger-open: var(--dropdown-menu-sub-trigger-open, var(--mint-l2));
   /* Text colour of the sub-trigger while open. */
-  --_dropdown-menu-sub-trigger-open-foreground: var(--dropdown-menu-sub-trigger-open-foreground, var(--mint-75));
+  --_dropdown-menu-sub-trigger-open-foreground: var(--dropdown-menu-sub-trigger-open-foreground, var(--mint-90));
 }
 
 [data-slot="dropdown-menu-sub-content"] {
@@ -119,11 +119,11 @@
   /* Corner radius of the checkbox-item-indicator. */
   --_dropdown-menu-checkbox-item-indicator-radius: var(--dropdown-menu-checkbox-item-indicator-radius, var(--radius-sm));
   /* Border colour of the checkbox-item-indicator. */
-  --_dropdown-menu-checkbox-item-indicator-border: var(--dropdown-menu-checkbox-item-indicator-border, var(--dark-45));
+  --_dropdown-menu-checkbox-item-indicator-border: var(--dropdown-menu-checkbox-item-indicator-border, var(--dark-15));
   /* Fill colour of the checkbox-item-indicator. */
   --_dropdown-menu-checkbox-item-indicator: var(--dropdown-menu-checkbox-item-indicator, var(--white));
   /* Text colour of the checkbox-item-indicator. */
-  --_dropdown-menu-checkbox-item-indicator-foreground: var(--dropdown-menu-checkbox-item-indicator-foreground, var(--white));
+  --_dropdown-menu-checkbox-item-indicator-foreground: var(--dropdown-menu-checkbox-item-indicator-foreground, var(--navy));
 }
 
 [data-slot="dropdown-menu-radio-item"] {
@@ -148,7 +148,7 @@
   /* Fill colour of the radio-item when checked. */
   --_dropdown-menu-radio-item-checked: var(--dropdown-menu-radio-item-checked, var(--mint-l2));
   /* Text colour of the radio-item when checked. */
-  --_dropdown-menu-radio-item-checked-foreground: var(--dropdown-menu-radio-item-checked-foreground, var(--mint-75));
+  --_dropdown-menu-radio-item-checked-foreground: var(--dropdown-menu-radio-item-checked-foreground, var(--mint-90));
 }
 
 [data-slot="dropdown-menu-separator"] {
@@ -188,7 +188,7 @@
   /* Fill colour of the card trigger. @ours */
   --_dropdown-menu-card-trigger: var(--dropdown-menu-card-trigger, var(--white));
   /* Border colour of the card trigger. @ours */
-  --_dropdown-menu-card-trigger-border: var(--dropdown-menu-card-trigger-border, var(--dark-45));
+  --_dropdown-menu-card-trigger-border: var(--dropdown-menu-card-trigger-border, var(--dark-15));
   /* Corner radius of the card trigger. @ours */
   --_dropdown-menu-card-trigger-radius: var(--dropdown-menu-card-trigger-radius, var(--radius-lg));
   /* Border colour of the card trigger when hovered. @ours */
@@ -215,13 +215,13 @@
   /* Fill colour of an option card. @ours */
   --_dropdown-menu-card-item: var(--dropdown-menu-card-item, var(--white));
   /* Border colour of an option card. @ours */
-  --_dropdown-menu-card-item-border: var(--dropdown-menu-card-item-border, var(--dark-45));
+  --_dropdown-menu-card-item-border: var(--dropdown-menu-card-item-border, var(--dark-15));
   /* Corner radius of an option card. @ours */
   --_dropdown-menu-card-item-radius: var(--dropdown-menu-card-item-radius, var(--radius-lg));
   /* Fill colour of an option card when highlighted. @ours */
   --_dropdown-menu-card-item-highlighted: var(--dropdown-menu-card-item-highlighted, var(--light-l1));
   /* Border colour of an option card when highlighted. @ours */
-  --_dropdown-menu-card-item-highlighted-border: var(--dropdown-menu-card-item-highlighted-border, var(--dark-75));
+  --_dropdown-menu-card-item-highlighted-border: var(--dropdown-menu-card-item-highlighted-border, var(--mint-45));
   /* Fill colour of the chosen option card. @ours */
   --_dropdown-menu-card-item-checked: var(--dropdown-menu-card-item-checked, var(--mint-l3));
   /* Border colour of the chosen option card. @ours */

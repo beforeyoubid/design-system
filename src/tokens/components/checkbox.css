@@ -15,7 +15,7 @@
   /* Fill colour of the checkbox. */
   --_checkbox: var(--checkbox, var(--white));
   /* Text colour of the checkbox. */
-  --_checkbox-foreground: var(--checkbox-foreground, var(--white));
+  --_checkbox-foreground: var(--checkbox-foreground, var(--navy));
   /* Border colour of the checkbox when focused. */
   --_checkbox-focus-border: var(--checkbox-focus-border, var(--mint-45));
   /* Ring colour of the checkbox when focused. */

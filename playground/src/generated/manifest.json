@@ -725,14 +725,14 @@
   },
   {
    "name": "--success",
-   "value": "var(--success-45)",
-   "hex": "#22B976",
+   "value": "var(--mint-15)",
+   "hex": "#6BCCBB",
    "usedBy": []
   },
   {
    "name": "--success-foreground",
-   "value": "var(--white)",
-   "hex": "#FFFFFF",
+   "value": "var(--mint-90)",
+   "hex": "#005246",
    "usedBy": []
   },
   {
@@ -1656,7 +1656,7 @@
     {
      "name": "--attachment-media-foreground",
      "private": "--_attachment-media-foreground",
-     "default": "var(--mint-60)",
+     "default": "var(--mint-75)",
      "description": "Text colour of the media.",
      "type": "color",
      "part": "attachment-media",
@@ -1664,7 +1664,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--mint-60"
+      "--mint-75"
      ]
     },
     {
@@ -1684,7 +1684,7 @@
     {
      "name": "--attachment-media-error-foreground",
      "private": "--_attachment-media-error-foreground",
-     "default": "var(--mint-60)",
+     "default": "var(--mint-75)",
      "description": "Icon colour of the media on a failed upload.",
      "type": "color",
      "part": "attachment-media",
@@ -1692,7 +1692,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--mint-60"
+      "--mint-75"
      ]
     },
     {
@@ -2934,7 +2934,7 @@
     {
      "name": "--badge-mint-solid",
      "private": "--_badge-mint-solid",
-     "default": "var(--mint-45)",
+     "default": "var(--mint-75)",
      "description": "Fill and border colour of the solid badge (mint variant).",
      "type": "color",
      "part": "badge",
@@ -2942,7 +2942,7 @@
      "state": null,
      "property": "fill",
      "reads": [
-      "--mint-45"
+      "--mint-75"
      ]
     },
     {
@@ -2990,7 +2990,7 @@
     {
      "name": "--badge-success-solid",
      "private": "--_badge-success-solid",
-     "default": "var(--mint-60)",
+     "default": "var(--mint-75)",
      "description": "Fill and border colour of the solid badge (success variant).",
      "type": "color",
      "part": "badge",
@@ -2998,7 +2998,7 @@
      "state": null,
      "property": "fill",
      "reads": [
-      "--mint-60"
+      "--mint-75"
      ]
     },
     {
@@ -3642,7 +3642,7 @@
     {
      "name": "--button-outline-hover-foreground",
      "private": "--_button-outline-hover-foreground",
-     "default": "var(--white)",
+     "default": "var(--dark-100)",
      "description": "Text colour of the button (outline variant) when hovered.",
      "type": "color",
      "part": "button",
@@ -3650,7 +3650,7 @@
      "state": "hover",
      "property": "foreground",
      "reads": [
-      "--white"
+      "--dark-100"
      ]
     },
     {
@@ -5216,7 +5216,7 @@
     {
      "name": "--checkbox-foreground",
      "private": "--_checkbox-foreground",
-     "default": "var(--white)",
+     "default": "var(--navy)",
      "description": "Text colour of the checkbox.",
      "type": "color",
      "part": "checkbox",
@@ -5224,7 +5224,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--white"
+      "--navy"
      ]
     },
     {
@@ -6331,7 +6331,7 @@
     {
      "name": "--command-item-selected-foreground",
      "private": "--_command-item-selected-foreground",
-     "default": "var(--mint-75)",
+     "default": "var(--mint-90)",
      "description": "Text colour of the item when selected.",
      "type": "color",
      "part": "command-item",
@@ -6339,7 +6339,7 @@
      "state": "selected",
      "property": "foreground",
      "reads": [
-      "--mint-75"
+      "--mint-90"
      ]
     },
     {
@@ -7566,7 +7566,7 @@
     {
      "name": "--dropdown-menu-content-border",
      "private": "--_dropdown-menu-content-border",
-     "default": "var(--dark-45)",
+     "default": "var(--dark-15)",
      "description": "Border colour of the content.",
      "type": "color",
      "part": "dropdown-menu-content",
@@ -7574,7 +7574,7 @@
      "state": null,
      "property": "border",
      "reads": [
-      "--dark-45"
+      "--dark-15"
      ]
     },
     {
@@ -7758,7 +7758,7 @@
     {
      "name": "--dropdown-menu-item-highlighted-foreground",
      "private": "--_dropdown-menu-item-highlighted-foreground",
-     "default": "var(--mint-75)",
+     "default": "var(--mint-90)",
      "description": "Text colour of the item when highlighted.",
      "type": "color",
      "part": "dropdown-menu-item",
@@ -7766,7 +7766,7 @@
      "state": "highlighted",
      "property": "foreground",
      "reads": [
-      "--mint-75"
+      "--mint-90"
      ]
     },
     {
@@ -7926,7 +7926,7 @@
     {
      "name": "--dropdown-menu-sub-trigger-highlighted-foreground",
      "private": "--_dropdown-menu-sub-trigger-highlighted-foreground",
-     "default": "var(--mint-75)",
+     "default": "var(--mint-90)",
      "description": "Text colour of the sub-trigger when highlighted.",
      "type": "color",
      "part": "dropdown-menu-sub-trigger",
@@ -7934,7 +7934,7 @@
      "state": "highlighted",
      "property": "foreground",
      "reads": [
-      "--mint-75"
+      "--mint-90"
      ]
     },
     {
@@ -7968,7 +7968,7 @@
     {
      "name": "--dropdown-menu-sub-trigger-open-foreground",
      "private": "--_dropdown-menu-sub-trigger-open-foreground",
-     "default": "var(--mint-75)",
+     "default": "var(--mint-90)",
      "description": "Text colour of the sub-trigger while open.",
      "type": "color",
      "part": "dropdown-menu-sub-trigger",
@@ -7976,7 +7976,7 @@
      "state": "open",
      "property": "foreground",
      "reads": [
-      "--mint-75"
+      "--mint-90"
      ]
     },
     {
@@ -8122,7 +8122,7 @@
     {
      "name": "--dropdown-menu-checkbox-item-indicator-border",
      "private": "--_dropdown-menu-checkbox-item-indicator-border",
-     "default": "var(--dark-45)",
+     "default": "var(--dark-15)",
      "description": "Border colour of the checkbox-item-indicator.",
      "type": "color",
      "part": "dropdown-menu-checkbox-item-indicator",
@@ -8130,7 +8130,7 @@
      "state": null,
      "property": "border",
      "reads": [
-      "--dark-45"
+      "--dark-15"
      ]
     },
     {
@@ -8150,7 +8150,7 @@
     {
      "name": "--dropdown-menu-checkbox-item-indicator-foreground",
      "private": "--_dropdown-menu-checkbox-item-indicator-foreground",
-     "default": "var(--white)",
+     "default": "var(--navy)",
      "description": "Text colour of the checkbox-item-indicator.",
      "type": "color",
      "part": "dropdown-menu-checkbox-item-indicator",
@@ -8158,7 +8158,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--white"
+      "--navy"
      ]
     },
     {
@@ -8290,7 +8290,7 @@
     {
      "name": "--dropdown-menu-radio-item-checked-foreground",
      "private": "--_dropdown-menu-radio-item-checked-foreground",
-     "default": "var(--mint-75)",
+     "default": "var(--mint-90)",
      "description": "Text colour of the radio-item when checked.",
      "type": "color",
      "part": "dropdown-menu-radio-item",
@@ -8298,7 +8298,7 @@
      "state": "checked",
      "property": "foreground",
      "reads": [
-      "--mint-75"
+      "--mint-90"
      ]
     },
     {
@@ -8470,7 +8470,7 @@
     {
      "name": "--dropdown-menu-card-trigger-border",
      "private": "--_dropdown-menu-card-trigger-border",
-     "default": "var(--dark-45)",
+     "default": "var(--dark-15)",
      "description": "Border colour of the card trigger.",
      "type": "color",
      "part": "dropdown-menu-card-trigger",
@@ -8478,7 +8478,7 @@
      "state": null,
      "property": "border",
      "reads": [
-      "--dark-45"
+      "--dark-15"
      ]
     },
     {
@@ -8638,7 +8638,7 @@
     {
      "name": "--dropdown-menu-card-item-border",
      "private": "--_dropdown-menu-card-item-border",
-     "default": "var(--dark-45)",
+     "default": "var(--dark-15)",
      "description": "Border colour of an option card.",
      "type": "color",
      "part": "dropdown-menu-card-item",
@@ -8646,7 +8646,7 @@
      "state": null,
      "property": "border",
      "reads": [
-      "--dark-45"
+      "--dark-15"
      ]
     },
     {
@@ -8680,7 +8680,7 @@
     {
      "name": "--dropdown-menu-card-item-highlighted-border",
      "private": "--_dropdown-menu-card-item-highlighted-border",
-     "default": "var(--dark-75)",
+     "default": "var(--mint-45)",
      "description": "Border colour of an option card when highlighted.",
      "type": "color",
      "part": "dropdown-menu-card-item",
@@ -8688,7 +8688,7 @@
      "state": "highlighted",
      "property": "border",
      "reads": [
-      "--dark-75"
+      "--mint-45"
      ]
     },
     {
@@ -12762,7 +12762,7 @@
     {
      "name": "--navigation-menu-link-active-foreground",
      "private": "--_navigation-menu-link-active-foreground",
-     "default": "var(--mint-75)",
+     "default": "var(--mint-90)",
      "description": "Text colour of the link when active.",
      "type": "color",
      "part": "navigation-menu-link",
@@ -12770,7 +12770,7 @@
      "state": "active",
      "property": "foreground",
      "reads": [
-      "--mint-75"
+      "--mint-90"
      ]
     },
     {
@@ -14260,7 +14260,7 @@
     {
      "name": "--select-item-selected-foreground",
      "private": "--_select-item-selected-foreground",
-     "default": "var(--mint-75)",
+     "default": "var(--mint-90)",
      "description": "Text colour of the item when selected.",
      "type": "color",
      "part": "select-item",
@@ -14268,7 +14268,7 @@
      "state": "selected",
      "property": "foreground",
      "reads": [
-      "--mint-75"
+      "--mint-90"
      ]
     },
     {
@@ -14330,7 +14330,7 @@
     {
      "name": "--select-item-checkbox-checked-foreground",
      "private": "--_select-item-checkbox-checked-foreground",
-     "default": "var(--white)",
+     "default": "var(--navy)",
      "description": "Colour of the tick in a selected checkbox.",
      "type": "color",
      "part": "select-item",
@@ -14338,7 +14338,7 @@
      "state": "checked",
      "property": "foreground",
      "reads": [
-      "--white"
+      "--navy"
      ]
     },
     {
@@ -16021,7 +16021,7 @@
     {
      "name": "--stepper-indicator-active-foreground",
      "private": "--_stepper-indicator-active-foreground",
-     "default": "var(--white)",
+     "default": "var(--navy)",
      "description": "Number colour of the current step.",
      "type": "color",
      "part": "stepper-indicator",
@@ -16029,7 +16029,7 @@
      "state": "active",
      "property": "foreground",
      "reads": [
-      "--white"
+      "--navy"
      ]
     },
     {
@@ -16063,7 +16063,7 @@
     {
      "name": "--stepper-indicator-complete-foreground",
      "private": "--_stepper-indicator-complete-foreground",
-     "default": "var(--mint-75)",
+     "default": "var(--mint-90)",
      "description": "Tick colour of a done step.",
      "type": "color",
      "part": "stepper-indicator",
@@ -16071,7 +16071,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--mint-75"
+      "--mint-90"
      ]
     },
     {
@@ -17667,7 +17667,7 @@
     {
      "name": "--toast-success-foreground",
      "private": "--_toast-success-foreground",
-     "default": "var(--mint-60)",
+     "default": "var(--mint-75)",
      "description": "Colour of the title, icon and × (success type).",
      "type": "color",
      "part": "toast",
@@ -17675,7 +17675,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--mint-60"
+      "--mint-75"
      ]
     },
     {
@@ -17695,7 +17695,7 @@
     {
      "name": "--toast-warning-foreground",
      "private": "--_toast-warning-foreground",
-     "default": "var(--warning-60)",
+     "default": "var(--warning-75)",
      "description": "Colour of the title, icon and × (warning type).",
      "type": "color",
      "part": "toast",
@@ -17703,7 +17703,7 @@
      "state": null,
      "property": "foreground",
      "reads": [
-      "--warning-60"
+      "--warning-75"
      ]
     },
     {
@@ -18436,120 +18436,5 @@
    "type": "tracking"
   }
  },
- "contrastExceptions": [
-  {
-   "foreground": "--_dropdown-menu-item-highlighted-foreground",
-   "fill": "--_dropdown-menu-item-highlighted",
-   "status": "undecided",
-   "note": "Menu highlight: mint-75 text on a mint-l2 fill is 4.33:1. Options: accept it, darken the text to mint-90 (7.53:1), or keep the paler mint-l3 fill (4.65:1)."
-  },
-  {
-   "foreground": "--_dropdown-menu-sub-trigger-highlighted-foreground",
-   "fill": "--_dropdown-menu-sub-trigger-highlighted",
-   "status": "undecided",
-   "note": "Menu highlight: mint-75 text on a mint-l2 fill is 4.33:1. Options: accept it, darken the text to mint-90 (7.53:1), or keep the paler mint-l3 fill (4.65:1)."
-  },
-  {
-   "foreground": "--_dropdown-menu-sub-trigger-open-foreground",
-   "fill": "--_dropdown-menu-sub-trigger-open",
-   "status": "undecided",
-   "note": "Menu highlight: mint-75 text on a mint-l2 fill is 4.33:1. Options: accept it, darken the text to mint-90 (7.53:1), or keep the paler mint-l3 fill (4.65:1)."
-  },
-  {
-   "foreground": "--_dropdown-menu-radio-item-checked-foreground",
-   "fill": "--_dropdown-menu-radio-item-checked",
-   "status": "undecided",
-   "note": "Menu highlight: mint-75 text on a mint-l2 fill is 4.33:1. Options: accept it, darken the text to mint-90 (7.53:1), or keep the paler mint-l3 fill (4.65:1)."
-  },
-  {
-   "foreground": "--_command-item-selected-foreground",
-   "fill": "--_command-item-selected",
-   "status": "undecided",
-   "note": "Menu highlight: mint-75 text on a mint-l2 fill is 4.33:1. Options: accept it, darken the text to mint-90 (7.53:1), or keep the paler mint-l3 fill (4.65:1)."
-  },
-  {
-   "foreground": "--_select-item-selected-foreground",
-   "fill": "--_select-item-selected",
-   "status": "undecided",
-   "note": "Menu highlight: mint-75 text on a mint-l2 fill is 4.33:1. Options: accept it, darken the text to mint-90 (7.53:1), or keep the paler mint-l3 fill (4.65:1)."
-  },
-  {
-   "foreground": "--_navigation-menu-link-active-foreground",
-   "fill": "--_navigation-menu-link-active",
-   "status": "undecided",
-   "note": "Menu highlight: mint-75 text on a mint-l2 fill is 4.33:1. Options: accept it, darken the text to mint-90 (7.53:1), or keep the paler mint-l3 fill (4.65:1)."
-  },
-  {
-   "foreground": "--_button-outline-hover-foreground",
-   "fill": "--_button-outline-hover",
-   "status": "undecided",
-   "note": "Tertiary button on hover: white text on a dark-45 fill is 2.30:1. Options: a darker hover fill (dark-75), or keep dark text on hover."
-  },
-  {
-   "foreground": "--_checkbox-foreground",
-   "fill": "--_checkbox",
-   "status": "accepted",
-   "note": "The checkmark only shows when checked, on the checked fill; the resting fill never has text on it."
-  },
-  {
-   "foreground": "--_dropdown-menu-checkbox-item-indicator-foreground",
-   "fill": "--_dropdown-menu-checkbox-item-indicator",
-   "status": "accepted",
-   "note": "The indicator only shows when checked, on the checked fill."
-  },
-  {
-   "foreground": "--_badge-mint-solid-foreground",
-   "fill": "--_badge-mint-solid",
-   "status": "undecided",
-   "note": "Solid mint badge: white on mint-45 is 2.80:1, the same pair as the primary button. Options: accept it with the button, or use mint-75 for the solid fill."
-  },
-  {
-   "foreground": "--_badge-success-solid-foreground",
-   "fill": "--_badge-success-solid",
-   "status": "undecided",
-   "note": "Solid success badge: white on mint-60 is 3.36:1. Options: accept it for short status labels, or use mint-75 for the solid fill."
-  },
-  {
-   "foreground": "--_select-item-checkbox-checked-foreground",
-   "fill": "--_select-item-checkbox-checked",
-   "status": "undecided",
-   "note": "Multiple-select checkbox: a white tick on mint-45 is 2.80:1, under the 3:1 a graphic needs. It's the same pair as the primary button and the Checkbox component. Options: accept it with those, or use mint-75 for the checked fill."
-  },
-  {
-   "foreground": "--_toast-success-foreground",
-   "fill": "--_toast-success",
-   "status": "undecided",
-   "note": "Success toast: the mint-60 title on the mint-l3 fill is 2.97:1. The icon passes the 3:1 a graphic needs, the title text doesn't. Options: accept it, or use the darker -75 shade for the title and icon."
-  },
-  {
-   "foreground": "--_toast-warning-foreground",
-   "fill": "--_toast-warning",
-   "status": "undecided",
-   "note": "Warning toast: the warning-60 title on the warning-l3 fill is 3.23:1. The icon passes the 3:1 a graphic needs, the title text doesn't. Options: accept it, or use the darker -75 shade for the title and icon."
-  },
-  {
-   "foreground": "--_stepper-indicator-active-foreground",
-   "fill": "--_stepper-indicator-active",
-   "status": "undecided",
-   "note": "Current step: the white step number on mint-60 is 3.36:1. Options: accept it, or use mint-75 for the current step's fill."
-  },
-  {
-   "foreground": "--_stepper-indicator-complete-foreground",
-   "fill": "--_stepper-indicator-complete",
-   "status": "accepted",
-   "note": "A done step shows only a tick icon, which needs 3:1 as a graphic; mint-75 on mint-l2 is 4.33:1."
-  },
-  {
-   "foreground": "--_attachment-media-foreground",
-   "fill": "--_attachment-media",
-   "status": "undecided",
-   "note": "File card icon: the mint-60 file icon on the mint-l3 circle is 2.97:1, just under the 3:1 a graphic needs. It's the old BYBAttachment card's look. Options: accept it, or use mint-75 for the icon."
-  },
-  {
-   "foreground": "--_attachment-media-error-foreground",
-   "fill": "--_attachment-media-error",
-   "status": "undecided",
-   "note": "File card icon: the mint-60 file icon on the mint-l3 circle is 2.97:1, just under the 3:1 a graphic needs. It's the old BYBAttachment card's look. Options: accept it, or use mint-75 for the icon."
-  }
- ]
+ "contrastExceptions": []
 }

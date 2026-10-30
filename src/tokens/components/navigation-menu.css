@@ -69,7 +69,7 @@
   /* Fill colour of the link when active. */
   --_navigation-menu-link-active: var(--navigation-menu-link-active, var(--mint-l2));
   /* Text colour of the link when active. */
-  --_navigation-menu-link-active-foreground: var(--navigation-menu-link-active-foreground, var(--mint-75));
+  --_navigation-menu-link-active-foreground: var(--navigation-menu-link-active-foreground, var(--mint-90));
 }
 
 [data-slot="navigation-menu-indicator"] {

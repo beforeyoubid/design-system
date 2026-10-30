@@ -87,7 +87,7 @@ Utility pattern: `bg-{token}`, `text-{token}`, `border-{token}`, `ring-{token}`,
 | `dark-90` | `#444A5A` | Body text, sub-headings, placeholders | | `light-l2` | `#F2F4F7` | Disabled fill, segmented track |
 | `dark-75` | `#656E85` | Secondary text via `muted-foreground`, hints, icons (not sub-headings) | | `light-l3` | `#EAECF0` | Dividers on white |
 | `dark-60` | `#858EA3` | Not used for text or icons (too light: 3.3:1 on white); use `dark-75` | | `light-sandy` | `#F8F3EE` | Warm marketing surface |
-| `dark-45` | `#A5ABBB` | Form control borders (inputs, select, date picker, dropdown menus, checkbox, radio, choice cards), disabled text, tertiary hover | | `white` | `#FFFFFF` | Page and card background |
+| `dark-45` | `#A5ABBB` | Form control borders (inputs, select, date picker, checkbox, radio, choice cards), disabled text, tertiary hover | | `white` | `#FFFFFF` | Page and card background |
 | `dark-30` | `#C2C6D1` | | | | | |
 | `dark-15` | `#DFE1E7` | Borders on cards and non-form surfaces | | | | |
 
@@ -173,7 +173,7 @@ No separate tokens; use opacity modifiers.
 | `muted` / `-foreground` | light-l1 / dark-75 | dark-90 / dark-45 |
 | `accent` / `-foreground` | mint-l3 / mint-90 | mint-90 / mint-l2 |
 | `destructive` | error-75 | error-45 |
-| `success` | success-45 | success-30 |
+| `success` / `-foreground` | mint-15 / mint-90 | success-30 / dark-100 |
 | `warning` | warning-45 | warning-30 |
 | `border` | dark-15 | dark-90 |
 | `input` | dark-45 | dark-90 |
@@ -355,7 +355,7 @@ Base: semibold, UPPERCASE, 0.04em tracking, focus ring `ring-2 ring-navy ring-of
 |---|---|---|---|
 | `primary` | `bg-primary` (mint-45) `text-primary-foreground` (navy) `shadow-xs` | `bg-primary/80` | **Main CTA**, one per view |
 | `secondary` | `bg-white border-navy text-navy` | `bg-navy text-white` | Secondary action |
-| `tertiary` | `bg-white border-dark-15 text-dark-90` | `bg-dark-45 text-white` | Neutral / cancel |
+| `tertiary` | `bg-white border-dark-15 text-dark-90` | `bg-dark-45 text-dark-100` | Neutral / cancel |
 | `ghost` | `text-mint-75` | `text-mint-45` | Low emphasis |
 | `destructive` | `bg-destructive text-white` | `bg-error-45` | Delete, irreversible |
 | `link` | `text-mint-75` | underline | Inline action |
@@ -396,7 +396,7 @@ Pill, semibold. Sizes `sm` / `md` (default, 20px, `text-caption-2`) / `lg` (28px
 | `warning` | warning-l3 / warning-l1 / warning-75 |
 | `electric-blue` | electric-blue-l1 / electric-blue-l1 / electric-blue |
 
-Solid (`appearance="solid"`): gray dark-75 + white · mint mint-45 + white · lime lime + navy · success mint-60 + white · error error-75 + white · warning warning-30 + navy · electric-blue electric-blue + white. Example: `<Badge size="lg" appearance="solid" variant="warning" icon={<Clock />}>Awaiting authority</Badge>`.
+Solid (`appearance="solid"`): gray dark-75 + white · mint mint-75 + white · lime lime + navy · success mint-75 + white · error error-75 + white · warning warning-30 + navy · electric-blue electric-blue + white. Example: `<Badge size="lg" appearance="solid" variant="warning" icon={<Clock />}>Awaiting authority</Badge>`.
 
 `category={1…35}`: solid badge in the category palette, white text (md: 24px, `text-body-5` medium). Follows `size`.
 `product="electrical-report"` (any product badge name): same solid style in the product's colour. Overrides `category`.
@@ -412,7 +412,7 @@ Solid (`appearance="solid"`): gray dark-75 + white · mint mint-45 + white · li
 - Label, hint and error come from `Field`, `FieldLabel`, `FieldDescription` and `FieldError`; `FieldLabel required` adds a mint asterisk. Groups of fields use `FieldSet` with `FieldLegend` and a `FieldGroup`, with a `FieldSeparator` between sections. Apps build forms with `@beforeyoubid/form`, whose `InputField`, `SelectField` and `DateField` compose these parts.
 - `Select` rows take `meta` (right side of the row, e.g. a count or `<ColorDot />`); on single-select rows a `meta` replaces the trailing check and the mint row fill marks the selection. `SelectTrigger onClear={…}` shows an × beside the chevron (`IconX`, `dark-75`, hover `dark-100`, no background; pass it only while something is selected), and `SelectChip` / `SelectChipOverflow` ("+N") render selected values in the field. Multi-select lists end with an "N selected · CLEAR" footer (`SelectFooter`); CLEAR is `text-overline` (uppercase) in `mint-75`, hover `mint-90`.
 - `TimePicker` has a 40px trigger and scrollable hour / minute columns: 24-hour (no AM/PM), selected value in lime like the calendar's selected day; columns scroll without a visible scrollbar (`no-scrollbar`). `formatDateDMY` shows a date as DD/MM/YYYY.
-- Resting border `dark-45` on every form control and menu: Input, Textarea, InputGroup, InputOTP, Select trigger (its options panel keeps `light-l3`), DatePicker / TimePicker trigger and panel, DropdownMenu panel, card trigger and card items, Checkbox and Radio boxes, and checkbox / radio choice cards. Select trigger hover `dark-75`. Focus, open, checked and invalid states keep mint-45 / error-75.
+- Resting border `dark-45` on every form control and menu: Input, Textarea, InputGroup, InputOTP, Select trigger (its options panel keeps `light-l3`), DatePicker / TimePicker trigger and panel, Checkbox and Radio boxes, and checkbox / radio choice cards. DropdownMenu keeps the lighter `dark-15` on its panel, card trigger, card items and checkbox-item boxes, with `mint-45` on a highlighted card item. Checkbox ticks are navy. Select trigger hover `dark-75`. Focus, open, checked and invalid states keep mint-45 / error-75.
 - Checkbox, Radio, Switch: mint-checked; `RadioGroup` sizes `sm` / `md` / `lg`; labels `text-body-5 font-semibold text-navy`, descriptions `text-dark-75`.
 
 ### Card
@@ -487,9 +487,9 @@ toast.add({
 
 | `type` | Fill | Title, icon, ×, action link | Use for |
 |---|---|---|---|
-| `success` | `mint-l3` | `mint-60`, check | A completed action: "Inspection booked" |
+| `success` | `mint-l3` | `mint-75`, check | A completed action: "Inspection booked" |
 | `info` | `mint-l4` | `mint-75`, "i" | Neutral updates: "Report is being prepared" |
-| `warning` | `warning-l3` | `warning-60`, exclamation mark | Needs attention but nothing failed: "Please check your conditions" |
+| `warning` | `warning-l3` | `warning-75`, exclamation mark | Needs attention but nothing failed: "Please check your conditions" |
 | `error` | `error-l1` | `destructive`, × | Something failed or is blocked: "You are not verified" |
 | none (default) | `light-l2` | `navy`, bell | General notices that aren't success, warning or error: "Settings saved" |
 
@@ -537,7 +537,7 @@ Every toast has a × so it can be closed early. Override per toast with `timeout
 
 ### Navigation and structure
 
-`Stepper` (sizes `sm/md/lg/dot`; statuses active mint-60 with ring, complete mint-l2, upcoming white with 2px navy border and navy number, error error-75; title `text-body-4 font-semibold text-navy` (`text-body-5` at sm), description `text-body-5 text-dark-90`) · `Breadcrumb` · `Pagination` · `NavigationMenu` · `Sidebar` · `Accordion` (`size` `sm` / `md` / `lg`) · `Collapsible` · `Separator` · `ScrollArea` · `Resizable` · `AspectRatio` · `Carousel`.
+`Stepper` (sizes `sm/md/lg/dot`; statuses active mint-60 with ring and navy number, complete mint-l2 with mint-90 tick, upcoming white with 2px navy border and navy number, error error-75; title `text-body-4 font-semibold text-navy` (`text-body-5` at sm), description `text-body-5 text-dark-90`) · `Breadcrumb` · `Pagination` · `NavigationMenu` · `Sidebar` · `Accordion` (`size` `sm` / `md` / `lg`) · `Collapsible` · `Separator` · `ScrollArea` · `Resizable` · `AspectRatio` · `Carousel`.
 
 ### Data and media
 
@@ -721,9 +721,9 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--attachment-media-width` | Width of the media. | `calc(var(--spacing) * 9)` |
 | `--attachment-media-radius` | Corner radius of the media. | `var(--radius-full)` |
 | `--attachment-media` | Fill colour of the media. | `var(--mint-l3)` |
-| `--attachment-media-foreground` | Text colour of the media. | `var(--mint-60)` |
+| `--attachment-media-foreground` | Text colour of the media. | `var(--mint-75)` |
 | `--attachment-media-error` | Fill colour of the media on a failed upload. | `var(--mint-l3)` |
-| `--attachment-media-error-foreground` | Icon colour of the media on a failed upload. | `var(--mint-60)` |
+| `--attachment-media-error-foreground` | Icon colour of the media on a failed upload. | `var(--mint-75)` |
 | `--attachment-media-icon-size` | Size of the media's icon. | `calc(var(--spacing) * 5)` |
 | `--attachment-media-sm-icon-size` | Size of the media's icon in a small (sm) attachment. | `calc(var(--spacing) * 4.5)` |
 | `--attachment-media-image-opacity` | Opacity of the media (image variant). | `0.6` |
@@ -828,11 +828,11 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--badge-electric-blue-font-weight` | Font weight of the badge (electric-blue variant). | `var(--badge-font-weight, 600)` |
 | `--badge-gray-solid` | Fill and border colour of the solid badge (gray variant). | `var(--dark-75)` |
 | `--badge-gray-solid-foreground` | Text colour of the solid badge (gray variant). | `var(--white)` |
-| `--badge-mint-solid` | Fill and border colour of the solid badge (mint variant). | `var(--mint-45)` |
+| `--badge-mint-solid` | Fill and border colour of the solid badge (mint variant). | `var(--mint-75)` |
 | `--badge-mint-solid-foreground` | Text colour of the solid badge (mint variant). | `var(--white)` |
 | `--badge-lime-solid` | Fill and border colour of the solid badge (lime variant). | `var(--lime)` |
 | `--badge-lime-solid-foreground` | Text colour of the solid badge (lime variant). | `var(--navy)` |
-| `--badge-success-solid` | Fill and border colour of the solid badge (success variant). | `var(--mint-60)` |
+| `--badge-success-solid` | Fill and border colour of the solid badge (success variant). | `var(--mint-75)` |
 | `--badge-success-solid-foreground` | Text colour of the solid badge (success variant). | `var(--white)` |
 | `--badge-error-solid` | Fill and border colour of the solid badge (error variant). | `var(--destructive)` |
 | `--badge-error-solid-foreground` | Text colour of the solid badge (error variant). | `var(--white)` |
@@ -902,7 +902,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--button-outline-foreground` | Text colour of the button (outline variant). | `var(--dark-90)` |
 | `--button-outline-hover-border` | Border colour of the button (outline variant) when hovered. | `var(--dark-45)` |
 | `--button-outline-hover` | Fill colour of the button (outline variant) when hovered. | `var(--dark-45)` |
-| `--button-outline-hover-foreground` | Text colour of the button (outline variant) when hovered. | `var(--white)` |
+| `--button-outline-hover-foreground` | Text colour of the button (outline variant) when hovered. | `var(--dark-100)` |
 | `--button-outline-open-border` | Border colour of the button (outline variant) while open. | `var(--mint-45)` |
 | `--button-outline-open` | Fill colour of the button (outline variant) while open. | `var(--mint-l4)` |
 | `--button-outline-open-foreground` | Text colour of the button (outline variant) while open. | `var(--mint-75)` |
@@ -1061,7 +1061,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--checkbox-radius` | Corner radius of the checkbox. | `var(--radius-sm)` |
 | `--checkbox-border` | Border colour of the checkbox. | `var(--dark-45)` |
 | `--checkbox` | Fill colour of the checkbox. | `var(--white)` |
-| `--checkbox-foreground` | Text colour of the checkbox. | `var(--white)` |
+| `--checkbox-foreground` | Text colour of the checkbox. | `var(--navy)` |
 | `--checkbox-focus-border` | Border colour of the checkbox when focused. | `var(--mint-45)` |
 | `--checkbox-focus-ring` | Ring colour of the checkbox when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
 | `--checkbox-checked-border` | Border colour of the checkbox when checked. | `var(--mint-45)` |
@@ -1166,7 +1166,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--command-item-padding-x` | Horizontal padding of the item. | `calc(var(--spacing) * 2)` |
 | `--command-item-foreground` | Text colour of the item. | `var(--dark-90)` |
 | `--command-item-selected` | Fill colour of the item when selected. | `var(--mint-l2)` |
-| `--command-item-selected-foreground` | Text colour of the item when selected. | `var(--mint-75)` |
+| `--command-item-selected-foreground` | Text colour of the item when selected. | `var(--mint-90)` |
 | `--command-shortcut-foreground` | Text colour of the shortcut. | `var(--dark-75)` |
 | `--command-dialog-radius` | Corner radius of the command palette dialog. | `var(--radius-lg)` |
 
@@ -1302,7 +1302,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | Lever | What it changes | Default |
 |---|---|---|
 | `--dropdown-menu-content-radius` | Corner radius of the content. | `var(--radius-lg)` |
-| `--dropdown-menu-content-border` | Border colour of the content. | `var(--dark-45)` |
+| `--dropdown-menu-content-border` | Border colour of the content. | `var(--dark-15)` |
 | `--dropdown-menu-content` | Fill colour of the content. | `var(--white)` |
 | `--dropdown-menu-content-padding` | Padding of the content. | `calc(var(--spacing) * 1)` |
 | `--dropdown-menu-content-foreground` | Text colour of the content. | `var(--dark-90)` |
@@ -1316,7 +1316,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--dropdown-menu-item-padding-x` | Horizontal padding of the item. | `calc(var(--spacing) * 2.5)` |
 | `--dropdown-menu-item-foreground` | Text colour of the item. | `var(--dark-90)` |
 | `--dropdown-menu-item-highlighted` | Fill colour of the item when highlighted. | `var(--mint-l2)` |
-| `--dropdown-menu-item-highlighted-foreground` | Text colour of the item when highlighted. | `var(--mint-75)` |
+| `--dropdown-menu-item-highlighted-foreground` | Text colour of the item when highlighted. | `var(--mint-90)` |
 | `--dropdown-menu-item-disabled-foreground` | Text colour of the item when disabled. | `var(--dark-45)` |
 | `--dropdown-menu-item-inset-padding-x` | Left padding of an indented row (inset items, labels and sub-menu triggers). | `calc(var(--spacing) * 9)` |
 | `--dropdown-menu-item-destructive-foreground` | Text colour of a destructive item (e.g. Delete). | `var(--destructive)` |
@@ -1328,10 +1328,10 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--dropdown-menu-sub-trigger-padding-x` | Horizontal padding of the sub-trigger. | `calc(var(--spacing) * 2.5)` |
 | `--dropdown-menu-sub-trigger-foreground` | Text colour of the sub-trigger. | `var(--dark-90)` |
 | `--dropdown-menu-sub-trigger-highlighted` | Fill colour of the sub-trigger when highlighted. | `var(--mint-l2)` |
-| `--dropdown-menu-sub-trigger-highlighted-foreground` | Text colour of the sub-trigger when highlighted. | `var(--mint-75)` |
+| `--dropdown-menu-sub-trigger-highlighted-foreground` | Text colour of the sub-trigger when highlighted. | `var(--mint-90)` |
 | `--dropdown-menu-sub-trigger-disabled-foreground` | Text colour of the sub-trigger when disabled. | `var(--dark-45)` |
 | `--dropdown-menu-sub-trigger-open` | Fill colour of the sub-trigger while open. | `var(--mint-l2)` |
-| `--dropdown-menu-sub-trigger-open-foreground` | Text colour of the sub-trigger while open. | `var(--mint-75)` |
+| `--dropdown-menu-sub-trigger-open-foreground` | Text colour of the sub-trigger while open. | `var(--mint-90)` |
 | `--dropdown-menu-checkbox-item-min-height` | Minimum height of the checkbox item. | `calc(var(--spacing) * 8)` |
 | `--dropdown-menu-checkbox-item-radius` | Corner radius of the checkbox item. | `var(--radius-md)` |
 | `--dropdown-menu-checkbox-item-padding-y` | Vertical padding of the checkbox item. | `calc(var(--spacing) * 1.5)` |
@@ -1342,9 +1342,9 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--dropdown-menu-checkbox-item-padding-x` | Horizontal padding of the checkbox-item. | `calc(var(--spacing) * 2.5)` |
 | `--dropdown-menu-checkbox-item-indicator-size` | Width and height of the checkbox-item-indicator. | `calc(var(--spacing) * 4)` |
 | `--dropdown-menu-checkbox-item-indicator-radius` | Corner radius of the checkbox-item-indicator. | `var(--radius-sm)` |
-| `--dropdown-menu-checkbox-item-indicator-border` | Border colour of the checkbox-item-indicator. | `var(--dark-45)` |
+| `--dropdown-menu-checkbox-item-indicator-border` | Border colour of the checkbox-item-indicator. | `var(--dark-15)` |
 | `--dropdown-menu-checkbox-item-indicator` | Fill colour of the checkbox-item-indicator. | `var(--white)` |
-| `--dropdown-menu-checkbox-item-indicator-foreground` | Text colour of the checkbox-item-indicator. | `var(--white)` |
+| `--dropdown-menu-checkbox-item-indicator-foreground` | Text colour of the checkbox-item-indicator. | `var(--navy)` |
 | `--dropdown-menu-radio-item-min-height` | Minimum height of the radio item. | `calc(var(--spacing) * 8)` |
 | `--dropdown-menu-radio-item-radius` | Corner radius of the radio item. | `var(--radius-md)` |
 | `--dropdown-menu-radio-item-padding-y` | Vertical padding of the radio item. | `calc(var(--spacing) * 1.5)` |
@@ -1354,7 +1354,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--dropdown-menu-radio-item-gap` | Gap between items of the radio-item. | `calc(var(--spacing) * 2.5)` |
 | `--dropdown-menu-radio-item-padding-x` | Horizontal padding of the radio-item. | `calc(var(--spacing) * 2.5)` |
 | `--dropdown-menu-radio-item-checked` | Fill colour of the radio-item when checked. | `var(--mint-l2)` |
-| `--dropdown-menu-radio-item-checked-foreground` | Text colour of the radio-item when checked. | `var(--mint-75)` |
+| `--dropdown-menu-radio-item-checked-foreground` | Text colour of the radio-item when checked. | `var(--mint-90)` |
 | `--dropdown-menu-separator-height` | Height of the separator. | `1px` |
 | `--dropdown-menu-separator` | Fill colour of the separator. | `var(--light-l3)` |
 | `--dropdown-menu-shortcut-foreground` | Text colour of the shortcut. | `var(--dark-75)` |
@@ -1367,7 +1367,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--dropdown-menu-icon-trigger-focus-ring` | Focus ring of the icon trigger. | `var(--mint-45)` |
 | `--dropdown-menu-icon-trigger-disabled-foreground` | Icon colour when disabled. | `var(--dark-45)` |
 | `--dropdown-menu-card-trigger` | Fill colour of the card trigger. | `var(--white)` |
-| `--dropdown-menu-card-trigger-border` | Border colour of the card trigger. | `var(--dark-45)` |
+| `--dropdown-menu-card-trigger-border` | Border colour of the card trigger. | `var(--dark-15)` |
 | `--dropdown-menu-card-trigger-radius` | Corner radius of the card trigger. | `var(--radius-lg)` |
 | `--dropdown-menu-card-trigger-hover-border` | Border colour of the card trigger when hovered. | `var(--mint-30)` |
 | `--dropdown-menu-card-trigger-open` | Fill colour of the card trigger while open. | `var(--mint-l4)` |
@@ -1379,10 +1379,10 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--dropdown-menu-card-trigger-foreground` | Text colour of the title. | `var(--dark-100)` |
 | `--dropdown-menu-card-trigger-meta-foreground` | Colour of the right-hand meta text and the chevron. | `var(--dark-75)` |
 | `--dropdown-menu-card-item` | Fill colour of an option card. | `var(--white)` |
-| `--dropdown-menu-card-item-border` | Border colour of an option card. | `var(--dark-45)` |
+| `--dropdown-menu-card-item-border` | Border colour of an option card. | `var(--dark-15)` |
 | `--dropdown-menu-card-item-radius` | Corner radius of an option card. | `var(--radius-lg)` |
 | `--dropdown-menu-card-item-highlighted` | Fill colour of an option card when highlighted. | `var(--light-l1)` |
-| `--dropdown-menu-card-item-highlighted-border` | Border colour of an option card when highlighted. | `var(--dark-75)` |
+| `--dropdown-menu-card-item-highlighted-border` | Border colour of an option card when highlighted. | `var(--mint-45)` |
 | `--dropdown-menu-card-item-checked` | Fill colour of the chosen option card. | `var(--mint-l3)` |
 | `--dropdown-menu-card-item-checked-border` | Border colour of the chosen option card. | `var(--mint-45)` |
 | `--dropdown-menu-card-item-foreground` | Text colour of an option card title. | `var(--dark-100)` |
@@ -1791,7 +1791,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--navigation-menu-link-focus` | Fill colour of the link when focused. | `var(--light-l1)` |
 | `--navigation-menu-link-focus-ring` | Ring colour of the link when focused. | `color-mix(in oklab, var(--mint-45) 30%, transparent)` |
 | `--navigation-menu-link-active` | Fill colour of the link when active. | `var(--mint-l2)` |
-| `--navigation-menu-link-active-foreground` | Text colour of the link when active. | `var(--mint-75)` |
+| `--navigation-menu-link-active-foreground` | Text colour of the link when active. | `var(--mint-90)` |
 | `--navigation-menu-indicator-height` | Height of the indicator. | `calc(var(--spacing) * 1.5)` |
 
 </details>
@@ -1952,12 +1952,12 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--select-item-highlighted` | Fill colour of the item when highlighted. | `var(--light-l1)` |
 | `--select-item-focus` | Fill colour of the item when focused. | `var(--light-l1)` |
 | `--select-item-selected` | Fill colour of the item when selected. | `var(--mint-l2)` |
-| `--select-item-selected-foreground` | Text colour of the item when selected. | `var(--mint-75)` |
+| `--select-item-selected-foreground` | Text colour of the item when selected. | `var(--mint-90)` |
 | `--select-item-disabled-foreground` | Text colour of the item when disabled. | `var(--dark-45)` |
 | `--select-item-checkbox` | Fill colour of the checkbox in a multiple-select row. | `var(--white)` |
 | `--select-item-checkbox-border` | Border colour of the checkbox in a multiple-select row. | `var(--dark-45)` |
 | `--select-item-checkbox-checked` | Fill and border colour of the checkbox when its row is selected. | `var(--mint-45)` |
-| `--select-item-checkbox-checked-foreground` | Colour of the tick in a selected checkbox. | `var(--white)` |
+| `--select-item-checkbox-checked-foreground` | Colour of the tick in a selected checkbox. | `var(--navy)` |
 | `--select-item-check-foreground` | Colour of the trailing tick on the selected row (single select). | `var(--mint-75)` |
 | `--select-item-meta-foreground` | Text colour of the right-hand label (meta) in a row. | `var(--dark-75)` |
 | `--select-separator-height` | Height of the separator. | `1px` |
@@ -2132,10 +2132,10 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | Lever | What it changes | Default |
 |---|---|---|
 | `--stepper-indicator-active` | Fill colour of the current step (and of a done step in the dot size). | `var(--mint-60)` |
-| `--stepper-indicator-active-foreground` | Number colour of the current step. | `var(--white)` |
+| `--stepper-indicator-active-foreground` | Number colour of the current step. | `var(--navy)` |
 | `--stepper-indicator-active-ring` | Ring colour around the current step. | `var(--mint-45)` |
 | `--stepper-indicator-complete` | Fill colour of a done step. | `var(--mint-l2)` |
-| `--stepper-indicator-complete-foreground` | Tick colour of a done step. | `var(--mint-75)` |
+| `--stepper-indicator-complete-foreground` | Tick colour of a done step. | `var(--mint-90)` |
 | `--stepper-indicator-upcoming` | Fill colour of a step still to come. | `var(--white)` |
 | `--stepper-indicator-upcoming-border` | Border colour of a step still to come. | `var(--navy)` |
 | `--stepper-indicator-upcoming-foreground` | Number colour of a step still to come. | `var(--navy)` |
@@ -2288,9 +2288,9 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--toast` | Fill colour of the toast. | `var(--light-l2)` |
 | `--toast-foreground` | Text colour of the toast. | `var(--navy)` |
 | `--toast-success` | Fill colour of the toast (success type). | `var(--mint-l3)` |
-| `--toast-success-foreground` | Colour of the title, icon and × (success type). | `var(--mint-60)` |
+| `--toast-success-foreground` | Colour of the title, icon and × (success type). | `var(--mint-75)` |
 | `--toast-warning` | Fill colour of the toast (warning type). | `var(--warning-l3)` |
-| `--toast-warning-foreground` | Colour of the title, icon and × (warning type). | `var(--warning-60)` |
+| `--toast-warning-foreground` | Colour of the title, icon and × (warning type). | `var(--warning-75)` |
 | `--toast-error` | Fill colour of the toast (error type). | `var(--error-l1)` |
 | `--toast-error-foreground` | Colour of the title, icon and × (error type). | `var(--destructive)` |
 | `--toast-info` | Fill colour of the toast (info type). | `var(--mint-l4)` |

@@ -28,11 +28,11 @@
   /* Fill colour of the toast (success type). @ours */
   --_toast-success: var(--toast-success, var(--mint-l3));
   /* Colour of the title, icon and × (success type). @ours */
-  --_toast-success-foreground: var(--toast-success-foreground, var(--mint-60));
+  --_toast-success-foreground: var(--toast-success-foreground, var(--mint-75));
   /* Fill colour of the toast (warning type). @ours */
   --_toast-warning: var(--toast-warning, var(--warning-l3));
   /* Colour of the title, icon and × (warning type). @ours */
-  --_toast-warning-foreground: var(--toast-warning-foreground, var(--warning-60));
+  --_toast-warning-foreground: var(--toast-warning-foreground, var(--warning-75));
   /* Fill colour of the toast (error type). @ours */
   --_toast-error: var(--toast-error, var(--error-l1));
   /* Colour of the title, icon and × (error type). @ours */

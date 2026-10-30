@@ -87,7 +87,7 @@
   /* Fill colour of the item when selected. */
   --_command-item-selected: var(--command-item-selected, var(--mint-l2));
   /* Text colour of the item when selected. */
-  --_command-item-selected-foreground: var(--command-item-selected-foreground, var(--mint-75));
+  --_command-item-selected-foreground: var(--command-item-selected-foreground, var(--mint-90));
 }
 
 [data-slot="command-shortcut"] {

@@ -132,7 +132,7 @@
   /* Fill colour of the item when selected. */
   --_select-item-selected: var(--select-item-selected, var(--mint-l2));
   /* Text colour of the item when selected. */
-  --_select-item-selected-foreground: var(--select-item-selected-foreground, var(--mint-75));
+  --_select-item-selected-foreground: var(--select-item-selected-foreground, var(--mint-90));
   /* Text colour of the item when disabled. */
   --_select-item-disabled-foreground: var(--select-item-disabled-foreground, var(--dark-45));
   /* Fill colour of the checkbox in a multiple-select row. @ours */
@@ -142,7 +142,7 @@
   /* Fill and border colour of the checkbox when its row is selected. @ours */
   --_select-item-checkbox-checked: var(--select-item-checkbox-checked, var(--mint-45));
   /* Colour of the tick in a selected checkbox. @ours */
-  --_select-item-checkbox-checked-foreground: var(--select-item-checkbox-checked-foreground, var(--white));
+  --_select-item-checkbox-checked-foreground: var(--select-item-checkbox-checked-foreground, var(--navy));
   /* Colour of the trailing tick on the selected row (single select). @ours */
   --_select-item-check-foreground: var(--select-item-check-foreground, var(--mint-75));
   /* Text colour of the right-hand label (meta) in a row. @ours */

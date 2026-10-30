@@ -6,13 +6,13 @@
   /* Fill colour of the current step (and of a done step in the dot size). @ours */
   --_stepper-indicator-active: var(--stepper-indicator-active, var(--mint-60));
   /* Number colour of the current step. @ours */
-  --_stepper-indicator-active-foreground: var(--stepper-indicator-active-foreground, var(--white));
+  --_stepper-indicator-active-foreground: var(--stepper-indicator-active-foreground, var(--navy));
   /* Ring colour around the current step. @ours */
   --_stepper-indicator-active-ring: var(--stepper-indicator-active-ring, var(--mint-45));
   /* Fill colour of a done step. @ours */
   --_stepper-indicator-complete: var(--stepper-indicator-complete, var(--mint-l2));
   /* Tick colour of a done step. @ours */
-  --_stepper-indicator-complete-foreground: var(--stepper-indicator-complete-foreground, var(--mint-75));
+  --_stepper-indicator-complete-foreground: var(--stepper-indicator-complete-foreground, var(--mint-90));
   /* Fill colour of a step still to come. @ours */
   --_stepper-indicator-upcoming: var(--stepper-indicator-upcoming, var(--white));
   /* Border colour of a step still to come. @ours */
