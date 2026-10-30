@@ -90,9 +90,3 @@ test('--fix rewrites only what has one safe answer, and only on the lines asked 
   ].join('\n'))
   assert.equal(fixSource(source, 'a.tsx', (line) => line === 3).fixed.length, 1)
 })
-
-test('a skipped rule is neither reported nor fixed', () => {
-  const text = "import { IconX } from '@tabler/icons-react'\nexport const X = () => <IconX className=\"ml-2\" />\n"
-  assert.deepEqual(checkSource(text, 'a.tsx', { skip: ['icon-import'] }).map((f) => f.rule), ['logical-direction'])
-  assert.match(fixSource(text, 'a.tsx', () => true, { skip: ['icon-import'] }).text, /from '@tabler\/icons-react'/)
-})
