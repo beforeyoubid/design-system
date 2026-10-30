@@ -31,13 +31,21 @@ export const Navy: Story = {
   args: { variant: 'navy', value: '10,000+', label: 'Reports ordered' },
 }
 
+// Lime and white are for dark sections, so their stories sit on navy (here and in the Design Console).
+const onNavy = (Story: React.ComponentType) => (
+  <div className="rounded-lg bg-navy p-6">
+    <Story />
+  </div>
+)
+
 export const Lime: Story = {
   args: { variant: 'lime', value: '10,000+', label: 'Reports ordered' },
+  decorators: [onNavy],
 }
 
 export const White: Story = {
   args: { variant: 'white', value: '10,000+', label: 'Reports ordered' },
-  parameters: { backgrounds: { default: 'navy' } },
+  decorators: [onNavy],
 }
 
 // ── With icon ─────────────────────────────────────────────────────────────────
@@ -70,8 +78,10 @@ export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-wrap gap-8 p-6">
       <Counter variant="navy"  value="10,000+" label="Reports ordered"       icon={IconFileDescription} />
-      <Counter variant="lime"  value="98%"     label="Customer satisfaction" icon={IconStarFilled} />
-      <Counter variant="white" value="500+"    label="Certified inspectors"  icon={IconUsers} />
+      <div className="flex flex-wrap gap-8 rounded-lg bg-navy p-6">
+        <Counter variant="lime"  value="98%"     label="Customer satisfaction" icon={IconStarFilled} />
+        <Counter variant="white" value="500+"    label="Certified inspectors"  icon={IconUsers} />
+      </div>
     </div>
   ),
 }

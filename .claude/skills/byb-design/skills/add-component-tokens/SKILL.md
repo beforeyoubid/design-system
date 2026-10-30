@@ -6,7 +6,7 @@ argument-hint: <component name>
 
 # Add component tokens
 
-Give the component in `$ARGUMENTS` a component token for every designed value an app might want to change. Terms (part, cva key, `@ours`, `@on`, public and private names) are explained under **Words used here** in `CLAUDE.md`.
+Give the component the user asked about a component token for every designed value an app might want to change. Terms (part, cva key, `@ours`, `@on`, public and private names) are explained under **Words used here** in `CLAUDE.md`.
 
 ## Done when
 
@@ -62,6 +62,7 @@ If an element you need to change has no `data-slot`, no token can reach it. Give
 - Defaults reference tokens: semantic first (`var(--primary)`), then brand (`var(--mint-75)`), spacing as `calc(var(--spacing) * N)`, radius as `var(--radius-*)`. No hex.
 - A variant's token falls back to the component's own where one exists: `var(--foo-sm-radius, var(--_foo-radius))`.
 - Class changes that aren't a value swap go in directives on the rule: `/* @add classes */`, `/* @remove classes */`, `/* @add(size.sm) classes */` for one cva key, `/* @alias md = size.default */`.
+- A part can have no tokens of its own when it takes its look from another part (a tooltip arrow in the bubble's fill). Give it a `data-slot` anyway.
 - A token read by our wrapper rather than the ui file gets `@ours` in its comment, and the wrapper uses the private name directly (`rounded-(--_foo-radius)`).
 - Text on a part with no fill of its own is checked against the page background. When it sits on something else (a parent part's fill, a thumb, a dark section), name that token with `@on` in its comment: `/* Text colour of the active tab. @on --tabs-indicator */`.
 

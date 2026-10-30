@@ -6,7 +6,7 @@ argument-hint: <pasted :root block, or a path to a .css file>
 
 # Update token values
 
-Make the values in `$ARGUMENTS` the shipped defaults.
+Make the values the user gave the shipped defaults.
 
 ## Done when
 

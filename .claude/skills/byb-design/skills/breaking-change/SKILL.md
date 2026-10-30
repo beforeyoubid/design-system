@@ -6,7 +6,7 @@ argument-hint: <what is being renamed, removed or changed>
 
 # Ship a breaking change
 
-Make the change in `$ARGUMENTS` and give apps a way through it.
+Make the change the user asked for and give apps a way through it.
 
 ## Done when
 
@@ -28,7 +28,7 @@ npm pack @beforeyoubid/design-system@<that version> --pack-destination <your scr
 ```
 
 - **The old name was published:** carry on below.
-- **It only exists in the unreleased version** (added or renamed since the last release): it isn't breaking. Change it everywhere in the package, and if a migrator rule already maps an older name to it (`BYBCounter: 'Counter'`), point that rule at the new name instead of adding another. Do steps 3 to 5 for that, skip 2 and 6 (no app uses the unreleased name), and in step 7 log it under **Changed**, not **Breaking**.
+- **It only exists in the unreleased version** (added or renamed since the last release): it isn't breaking. Change it everywhere in the package, and if a migrator rule already maps an older name to it (`BYBCounter: 'Counter'`), point that rule at the new name instead of adding another. Do steps 3 to 5 for that and skip 2 and 6 (no app uses the unreleased name). In step 7, change the CHANGELOG entry for that published rename to the new name (`BYBCounter` is renamed `Stat`); it stays under **Breaking**. If no rule points at it, the name is brand new: log the rename under **Changed**.
 
 ### 2. Find what apps use
 

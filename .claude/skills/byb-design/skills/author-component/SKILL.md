@@ -6,7 +6,7 @@ argument-hint: <component name and what it should do>
 
 # Author a component
 
-Build or change the component described in `$ARGUMENTS`. Terms (part, cva key, wrapper, `@ours`, public and private names) are explained under **Words used here** in `CLAUDE.md`.
+Build or change the component the user asked for. Terms (part, cva key, wrapper, `@ours`, public and private names) are explained under **Words used here** in `CLAUDE.md`.
 
 ## Done when
 
@@ -46,7 +46,7 @@ Build or change the component described in `$ARGUMENTS`. Terms (part, cva key, w
 
    The wrapper itself keeps importing the stock file.
 
-**When a wrapper re-implements a stock part** (to add a `data-slot` or change its structure), start from the stock part's class string and say so in a comment: `// From ui/tooltip.tsx TooltipContent; update it when shadcn updates the tooltip.` `tokens:apply` keeps the stock file in step with shadcn, but not your copy.
+**When a wrapper re-implements a stock part** (to add a `data-slot` or change its structure), start from the stock part's class string and say so in a comment: `// From ui/tooltip.tsx TooltipContent; update it when shadcn updates the tooltip.` `tokens:apply` keeps the stock file in step with shadcn, but not your copy, and `@add` / `@remove` in the token file only edit the stock file: write that part's classes in the wrapper.
 
 ### 3. Authoring rules
 

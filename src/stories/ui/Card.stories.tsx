@@ -15,7 +15,7 @@ type Story = StoryObj<typeof Card>
 
 export const Default: Story = {
   render: () => (
-    <Card className="w-96">
+    <Card className="w-full max-w-96">
       <CardHeader>
         <CardTitle>Inspection report</CardTitle>
         <CardDescription>Generated 3 hours ago</CardDescription>
@@ -35,7 +35,7 @@ export const Default: Story = {
 
 export const Minimal: Story = {
   render: () => (
-    <Card className="w-96 p-6">
+    <Card className="w-full max-w-96 p-6">
       <p className="text-body-4">A minimal card with just content.</p>
     </Card>
   ),
@@ -43,7 +43,7 @@ export const Minimal: Story = {
 
 export const WithIcon: Story = {
   render: () => (
-    <Card className="w-96">
+    <Card className="w-full max-w-96">
       <CardHeader icon={<FileText />} iconVariant="mint">
         <CardTitle>Inspection report</CardTitle>
         <CardDescription>Generated 3 hours ago</CardDescription>
