@@ -58,6 +58,7 @@
     "check-shadcn-css": "node scripts/sync-shadcn-css.mjs --check",
     "tokens:apply": "node --experimental-strip-types --no-warnings scripts/tokens/apply.mjs",
     "tokens:build": "node --experimental-strip-types --no-warnings scripts/tokens/build.mjs",
+    "tokens:import": "node --experimental-strip-types --no-warnings scripts/tokens/import.mjs",
     "check-component-tokens": "node --experimental-strip-types --no-warnings scripts/tokens/apply.mjs --check && node --experimental-strip-types --no-warnings scripts/tokens/build.mjs --check && node --experimental-strip-types --no-warnings scripts/tokens/check.mjs",
     "console": "node scripts/console-dev.mjs",
     "console:build": "pnpm tokens:build && vite build --config console/vite.config.ts && node scripts/console-inline.mjs",
