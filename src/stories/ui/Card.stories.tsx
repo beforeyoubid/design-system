@@ -7,6 +7,7 @@ const meta: Meta<typeof Card> = {
   title: 'BYB Components/Card',
   component: Card,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A bordered surface that groups related content, with header, title, description, content and footer parts.' } } },
 }
 
 export default meta

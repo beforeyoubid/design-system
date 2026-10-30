@@ -24,6 +24,7 @@ const meta: Meta<typeof ContextMenu> = {
   title: 'BYB Components/ContextMenu',
   component: ContextMenu,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Actions on right-click (or long-press) for the thing under the pointer.' } } },
 }
 
 export default meta

@@ -5,6 +5,7 @@ const meta: Meta<typeof Progress> = {
   title: 'BYB Components/Progress',
   component: Progress,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'How far through a known amount of work something is.' } } },
 }
 
 export default meta

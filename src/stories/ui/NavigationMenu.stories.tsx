@@ -12,6 +12,7 @@ const meta: Meta<typeof NavigationMenu> = {
   title: 'BYB Components/NavigationMenu',
   component: NavigationMenu,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Site navigation with links and dropdown panels.' } } },
 }
 
 export default meta

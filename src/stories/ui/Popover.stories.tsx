@@ -8,6 +8,7 @@ const meta: Meta<typeof Popover> = {
   title: 'BYB Components/Popover',
   component: Popover,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Floating content anchored to a trigger, for small forms and extra detail.' } } },
 }
 
 export default meta

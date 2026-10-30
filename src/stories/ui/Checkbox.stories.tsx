@@ -5,6 +5,7 @@ const meta: Meta<typeof Checkbox> = {
   title: 'BYB Components/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'An on/off choice in a list or form, or a checkbox card for a richer option.' } } },
   argTypes: {
     variant: { control: 'inline-radio', options: ['default', 'card'] },
     disabled: { control: 'boolean' },

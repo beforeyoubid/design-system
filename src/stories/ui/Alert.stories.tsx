@@ -7,6 +7,7 @@ const meta: Meta<typeof Alert> = {
   title: 'BYB Components/Alert',
   component: Alert,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A message that stays on the page: info, success, warning or destructive. For passing news use a toast instead.' } } },
 }
 
 export default meta

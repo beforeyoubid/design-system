@@ -5,6 +5,7 @@ const meta: Meta<typeof Accordion> = {
   title: 'BYB Components/Accordion',
   component: Accordion,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Stacked sections that expand one at a time or several at once. For FAQs and long settings pages.' } } },
   argTypes: {
     size: { control: 'select', options: ['sm', 'md', 'lg'] },
   },

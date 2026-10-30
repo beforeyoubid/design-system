@@ -18,6 +18,7 @@ const meta: Meta<typeof Select> = {
   title: 'BYB Components/Select',
   component: Select,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Pick one or more options from a list. For type-to-filter use Combobox.' } } },
 }
 
 export default meta

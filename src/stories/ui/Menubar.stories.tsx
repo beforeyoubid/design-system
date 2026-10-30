@@ -22,6 +22,7 @@ const meta: Meta<typeof Menubar> = {
   title: 'BYB Components/Menubar',
   component: Menubar,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A desktop-style menu bar with dropdown menus.' } } },
 }
 
 export default meta

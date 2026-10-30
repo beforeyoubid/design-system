@@ -6,6 +6,7 @@ const meta: Meta<typeof Badge> = {
   title: 'BYB Components/Badge',
   component: Badge,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A short status or category label. Status variants (success, warning, error), product colours, soft or solid appearance.' } } },
   argTypes: {
     variant: {
       control: 'select',

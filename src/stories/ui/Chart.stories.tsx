@@ -10,6 +10,7 @@ import {
 const meta: Meta = {
   title: 'BYB Components/Chart',
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Recharts wrapper with BYB colours, tooltip and legend. Start from BYBAreaChart or BYBBarChart; use this for other chart types.' } } },
 }
 
 export default meta

@@ -7,6 +7,7 @@ const meta: Meta<typeof Tooltip> = {
   title: 'BYB Components/Tooltip',
   component: Tooltip,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A short label on hover or focus, for icon-only buttons and truncated text.' } } },
 }
 
 export default meta

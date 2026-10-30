@@ -5,6 +5,7 @@ const meta: Meta<typeof Slider> = {
   title: 'BYB Components/Slider',
   component: Slider,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Pick a value or range by dragging along a track.' } } },
 }
 
 export default meta

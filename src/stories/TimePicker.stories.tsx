@@ -7,6 +7,7 @@ const meta: Meta<typeof TimePicker> = {
   title: 'BYB Components/TimePicker',
   component: TimePicker,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Pick a time of day (24-hour) from a popover with hour, minute and optional second columns.' } } },
 }
 
 export default meta

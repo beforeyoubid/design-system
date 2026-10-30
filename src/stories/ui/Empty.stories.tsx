@@ -14,6 +14,7 @@ const meta: Meta<typeof Empty> = {
   title: 'BYB Components/Empty',
   component: Empty,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'What to show when there\'s nothing yet: an icon, a title, a line of help and an action.' } } },
   argTypes: { variant: { control: 'select', options: ['default', 'outline', 'muted'] } },
   render: (args) => (
     <div className="w-128">

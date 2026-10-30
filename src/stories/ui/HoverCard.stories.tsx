@@ -7,6 +7,7 @@ const meta: Meta<typeof HoverCard> = {
   title: 'BYB Components/HoverCard',
   component: HoverCard,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A preview card on hover, for extra detail about a link or person.' } } },
 }
 
 export default meta

@@ -7,6 +7,7 @@ const meta: Meta<typeof Input> = {
   title: 'BYB Components/Input',
   component: Input,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A single-line text field. Wrap it in InputGroup to add icons, buttons or text inside the edge.' } } },
 }
 
 export default meta

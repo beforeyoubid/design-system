@@ -12,6 +12,7 @@ const meta: Meta<typeof Counter> = {
   title: 'BYB Components/Counter',
   component: Counter,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A headline stat that counts up to its value ("1,200+") with a label under it. For marketing and dashboard figures.' } } },
   argTypes: {
     variant:           { control: 'select', options: ['navy', 'lime', 'white'] },
     value:             { control: 'text' },

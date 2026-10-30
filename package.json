@@ -19,7 +19,11 @@
     "src/tokens/components/index.css",
     "migrate/index.mjs",
     "migrate/rules.mjs",
-    "migrate/check.mjs"
+    "migrate/check.mjs",
+    "docs/README.md",
+    "docs/styling.md",
+    "docs/components.md",
+    "docs/registry.md"
   ],
   "bin": {
     "design-system-migrate": "migrate/index.mjs"
@@ -60,6 +64,8 @@
     "tokens:apply": "node --experimental-strip-types --no-warnings scripts/tokens/apply.mjs",
     "tokens:build": "node --experimental-strip-types --no-warnings scripts/tokens/build.mjs",
     "tokens:import": "node --experimental-strip-types --no-warnings scripts/tokens/import.mjs",
+    "registry:build": "node scripts/registry/build.mjs",
+    "check-registry": "node scripts/registry/build.mjs --check",
     "check-component-tokens": "node --experimental-strip-types --no-warnings scripts/tokens/apply.mjs --check && node --experimental-strip-types --no-warnings scripts/tokens/build.mjs --check && node --experimental-strip-types --no-warnings scripts/tokens/check.mjs",
     "console": "node scripts/console-dev.mjs",
     "console:build": "pnpm tokens:build && vite build --config console/vite.config.ts && node scripts/console-inline.mjs",

@@ -42,6 +42,7 @@ const meta: Meta<typeof DropdownMenu> = {
   title: 'BYB Components/DropdownMenu',
   component: DropdownMenu,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Actions or choices behind a trigger button, with checkbox, radio, product and card-grid items and an icon-only trigger.' } } },
 }
 
 export default meta

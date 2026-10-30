@@ -18,6 +18,7 @@ const meta: Meta<typeof AlertDialog> = {
   title: 'BYB Components/AlertDialog',
   component: AlertDialog,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A modal that interrupts for a decision the user must make. For a confirm-then-act step prefer ConfirmDialog.' } } },
 }
 
 export default meta

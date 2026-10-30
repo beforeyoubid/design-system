@@ -14,6 +14,7 @@ const meta: Meta<typeof Drawer> = {
   title: 'BYB Components/Drawer',
   component: Drawer,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A panel that slides up from the bottom, mostly for mobile flows.' } } },
 }
 
 export default meta

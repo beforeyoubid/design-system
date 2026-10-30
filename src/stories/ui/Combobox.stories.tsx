@@ -30,6 +30,7 @@ const meta: Meta<typeof Combobox> = {
   title: 'BYB Components/Combobox',
   component: Combobox,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Pick one or many options by typing to filter. Use over Select when the list is long or searchable; chips for multiple.' } } },
 }
 
 export default meta

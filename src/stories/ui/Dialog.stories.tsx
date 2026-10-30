@@ -21,6 +21,7 @@ const meta: Meta<typeof Dialog> = {
   title: 'BYB Components/Dialog',
   component: Dialog,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A modal for a focused task (a form, details) with sizes sm to xl, an icon header and a scrolling body. Includes ConfirmDialog for confirm-then-act.' } } },
 }
 
 export default meta

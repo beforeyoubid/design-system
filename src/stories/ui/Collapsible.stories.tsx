@@ -7,6 +7,7 @@ const meta: Meta<typeof Collapsible> = {
   title: 'BYB Components/Collapsible',
   component: Collapsible,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'One section that shows and hides its content.' } } },
 }
 
 export default meta

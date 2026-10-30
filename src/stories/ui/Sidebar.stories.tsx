@@ -29,6 +29,7 @@ const meta: Meta<typeof Sidebar> = {
   title: 'BYB Components/Sidebar',
   component: Sidebar,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'The app\'s side navigation: collapsible, with groups, menus and a mobile sheet.' } } },
 }
 
 export default meta

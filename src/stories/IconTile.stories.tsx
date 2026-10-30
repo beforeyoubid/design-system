@@ -7,6 +7,7 @@ const meta: Meta<typeof IconTile> = {
   title: 'BYB Components/IconTile',
   component: IconTile,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'An icon on a tinted rounded tile. The icon chip used by Card, Dialog headers and product menus.' } } },
   argTypes: {
     variant: { control: 'select', options: ['mint', 'navy', 'lime', 'warning', 'error', 'neutral'] },
     size: { control: 'select', options: ['sm', 'md', 'lg'] },

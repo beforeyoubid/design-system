@@ -60,6 +60,7 @@ const meta: Meta<typeof Attachment> = {
   title: 'BYB Components/Attachment',
   component: Attachment,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'One file in an upload list: name, size, status (uploading, completed, error, uploaded) and actions.' } } },
 }
 
 export default meta

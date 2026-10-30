@@ -30,6 +30,7 @@ const meta: Meta<typeof BYBAreaChart> = {
   title: 'BYB Components/BYBAreaChart',
   component: BYBAreaChart,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Area chart for a trend over time, in a card with title, trend line and caption. Use over a raw Recharts chart so axes, grid and colours match.' } } },
   argTypes: {
     curve: { control: 'select', options: ['natural', 'linear', 'step'] },
   },

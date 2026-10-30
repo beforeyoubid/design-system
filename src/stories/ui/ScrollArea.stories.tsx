@@ -6,6 +6,7 @@ const meta: Meta<typeof ScrollArea> = {
   title: 'BYB Components/ScrollArea',
   component: ScrollArea,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A scroll container with styled scrollbars.' } } },
 }
 
 export default meta

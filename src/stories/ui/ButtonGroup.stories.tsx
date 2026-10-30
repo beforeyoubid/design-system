@@ -12,6 +12,7 @@ const meta: Meta<typeof ButtonGroup> = {
   title: 'BYB Components/ButtonGroup',
   component: ButtonGroup,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Joins related buttons into one control with shared edges.' } } },
 }
 
 export default meta

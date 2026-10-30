@@ -7,6 +7,7 @@ const meta: Meta<typeof Spinner> = {
   title: 'BYB Components/Spinner',
   component: Spinner,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Shows a short wait. For content loading in place use Skeleton.' } } },
 }
 
 export default meta

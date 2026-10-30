@@ -5,6 +5,7 @@ const meta: Meta<typeof Skeleton> = {
   title: 'BYB Components/Skeleton',
   component: Skeleton,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A placeholder in the shape of content that is loading.' } } },
 }
 
 export default meta

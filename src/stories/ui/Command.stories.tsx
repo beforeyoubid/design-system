@@ -26,6 +26,7 @@ const meta: Meta<typeof Command> = {
   title: 'BYB Components/Command',
   component: Command,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A searchable list of commands or options, on its own or in a dialog (a command palette).' } } },
 }
 
 export default meta

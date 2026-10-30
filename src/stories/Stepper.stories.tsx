@@ -12,6 +12,7 @@ const meta: Meta<typeof Stepper> = {
   title: 'BYB Components/Stepper',
   component: Stepper,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Progress through a fixed sequence of steps (a checkout, an onboarding flow), horizontal or vertical, with active, complete, upcoming and error states.' } } },
   argTypes: {
     orientation: { control: 'select', options: ['horizontal', 'vertical', 'responsive'] },
     indicator: { control: 'select', options: ['number', 'icon', 'dot'] },

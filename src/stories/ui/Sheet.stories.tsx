@@ -14,6 +14,7 @@ const meta: Meta<typeof Sheet> = {
   title: 'BYB Components/Sheet',
   component: Sheet,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A panel that slides in from an edge for a secondary flow.' } } },
 }
 
 export default meta

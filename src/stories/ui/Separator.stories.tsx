@@ -5,6 +5,7 @@ const meta: Meta<typeof Separator> = {
   title: 'BYB Components/Separator',
   component: Separator,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A thin line between groups of content.' } } },
 }
 
 export default meta

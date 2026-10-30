@@ -6,6 +6,7 @@ const meta: Meta<typeof Button> = {
   title: 'BYB Components/Button',
   component: Button,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Runs an action or, with render, navigates. Variants primary, secondary, tertiary, ghost, destructive, link, lime and navy; built-in loading and icon props.' } } },
   argTypes: {
     variant: {
       control: 'select',

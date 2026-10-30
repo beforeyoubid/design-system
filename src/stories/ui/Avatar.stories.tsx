@@ -5,6 +5,7 @@ const meta: Meta<typeof Avatar> = {
   title: 'BYB Components/Avatar',
   component: Avatar,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A person\'s photo or initials, with an optional status badge, in groups with a +N count.' } } },
 }
 
 export default meta

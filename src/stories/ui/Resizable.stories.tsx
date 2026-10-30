@@ -5,6 +5,7 @@ const meta: Meta<typeof ResizablePanelGroup> = {
   title: 'BYB Components/Resizable',
   component: ResizablePanelGroup,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Panels the user can resize by dragging the handle between them.' } } },
 }
 
 export default meta

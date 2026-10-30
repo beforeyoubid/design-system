@@ -13,6 +13,7 @@ const meta: Meta<typeof Pagination> = {
   title: 'BYB Components/Pagination',
   component: Pagination,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Moves between pages of results.' } } },
 }
 
 export default meta

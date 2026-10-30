@@ -5,6 +5,7 @@ const meta: Meta<typeof Switch> = {
   title: 'BYB Components/Switch',
   component: Switch,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Turns a setting on or off straight away.' } } },
   argTypes: {
     size: { control: 'inline-radio', options: ['default', 'sm'] },
     disabled: { control: 'boolean' },

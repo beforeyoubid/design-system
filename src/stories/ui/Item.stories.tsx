@@ -18,6 +18,7 @@ const meta: Meta<typeof Item> = {
   title: 'BYB Components/Item',
   component: Item,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A row of media, title, description and actions, for lists and settings.' } } },
   argTypes: {
     variant: { control: 'select', options: ['default', 'outline', 'muted'] },
     size: { control: 'select', options: ['default', 'sm', 'xs'] },

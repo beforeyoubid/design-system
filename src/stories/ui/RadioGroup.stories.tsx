@@ -5,6 +5,7 @@ const meta: Meta<typeof RadioGroup> = {
   title: 'BYB Components/RadioGroup',
   component: RadioGroup,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'One choice from a short list, as radios or radio cards.' } } },
   argTypes: {
     variant: { control: 'inline-radio', options: ['default', 'card'] },
     size: { control: 'inline-radio', options: ['sm', 'md', 'lg'] },

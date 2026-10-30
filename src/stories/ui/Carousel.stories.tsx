@@ -12,6 +12,7 @@ const meta: Meta<typeof Carousel> = {
   title: 'BYB Components/Carousel',
   component: Carousel,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Horizontally scrolling slides with previous and next controls.' } } },
 }
 
 export default meta

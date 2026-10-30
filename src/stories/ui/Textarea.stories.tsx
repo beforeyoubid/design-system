@@ -6,6 +6,7 @@ const meta: Meta<typeof Textarea> = {
   title: 'BYB Components/Textarea',
   component: Textarea,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A multi-line text field.' } } },
 }
 
 export default meta

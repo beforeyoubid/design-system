@@ -9,6 +9,7 @@ const meta: Meta<typeof NativeSelect> = {
   title: 'BYB Components/NativeSelect',
   component: NativeSelect,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'The browser\'s own select, styled to match. Use where the native picker is better (mobile, very long lists without search).' } } },
   argTypes: { size: { control: 'select', options: ['default', 'sm'] } },
   // It fills its container; the wrapper sets the width.
   decorators: [(Story) => <div className="w-72"><Story /></div>],

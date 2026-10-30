@@ -6,6 +6,7 @@ const meta: Meta<typeof Toggle> = {
   title: 'BYB Components/Toggle',
   component: Toggle,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A button that stays pressed or unpressed.' } } },
 }
 
 export default meta

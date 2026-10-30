@@ -13,6 +13,7 @@ const meta: Meta<typeof Breadcrumb> = {
   title: 'BYB Components/Breadcrumb',
   component: Breadcrumb,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'The path from the top of the app to the current page.' } } },
 }
 
 export default meta

@@ -7,6 +7,7 @@ const meta: Meta<typeof Calendar> = {
   title: 'BYB Components/Calendar',
   component: Calendar,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A month grid for picking a date or range. For a field use the date picker built on it.' } } },
 }
 
 export default meta

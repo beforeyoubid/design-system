@@ -17,6 +17,7 @@ const meta: Meta<typeof FieldSet> = {
   title: 'BYB Components/Field',
   component: FieldSet,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Form layout parts: FieldGroup, Field, FieldLabel, FieldDescription, FieldError, FieldSet and FieldLegend. Apps with @beforeyoubid/form use its fields instead.' } } },
 }
 
 export default meta

@@ -5,6 +5,7 @@ const meta: Meta<typeof Kbd> = {
   title: 'BYB Components/Kbd',
   component: Kbd,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Shows a keyboard key or shortcut.' } } },
 }
 
 export default meta

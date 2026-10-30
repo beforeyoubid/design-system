@@ -10,6 +10,7 @@ const meta: Meta<typeof InputOTP> = {
   title: 'BYB Components/InputOTP',
   component: InputOTP,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Enter a one-time code, one box per character.' } } },
 }
 
 export default meta

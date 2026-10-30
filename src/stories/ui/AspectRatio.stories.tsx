@@ -5,6 +5,7 @@ const meta: Meta<typeof AspectRatio> = {
   title: 'BYB Components/AspectRatio',
   component: AspectRatio,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Keeps media at a fixed width-to-height ratio as its width changes.' } } },
 }
 
 export default meta

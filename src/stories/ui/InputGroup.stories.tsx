@@ -21,6 +21,7 @@ const meta: Meta<typeof InputGroup> = {
   title: 'BYB Components/InputGroup',
   component: InputGroup,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'An input or textarea with addons inside its border: icons, prefixes, buttons.' } } },
 }
 
 export default meta

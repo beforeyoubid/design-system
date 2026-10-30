@@ -16,7 +16,10 @@ const meta: Meta<typeof Toaster> = {
   parameters: {
     layout: 'fullscreen',
     // Toasts are fixed to the viewport, so each story gets its own frame.
-    docs: { story: { inline: false, height: '280px' } },
+    docs: {
+      description: { component: 'Brief news after an action, fired with toast.add({ type, title }) and shown by <Toaster /> mounted once at the app root.' },
+      story: { inline: false, height: '280px' },
+    },
   },
 }
 

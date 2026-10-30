@@ -45,6 +45,7 @@ const meta: Meta<typeof BYBBarChart> = {
   title: 'BYB Components/BYBBarChart',
   component: BYBBarChart,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Bar chart for comparing values across categories, in a card with title and optional stat toggles. Use over a raw Recharts chart.' } } },
   argTypes: {
     layout: { control: 'select', options: ['vertical', 'horizontal'] },
     labels: { control: 'select', options: ['none', 'value', 'category', 'inside'] },

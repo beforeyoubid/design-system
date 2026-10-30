@@ -6,6 +6,7 @@ const meta: Meta<typeof ToggleGroup> = {
   title: 'BYB Components/ToggleGroup',
   component: ToggleGroup,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A set of toggles for picking one or several of 2 to 7 options.' } } },
 }
 
 export default meta

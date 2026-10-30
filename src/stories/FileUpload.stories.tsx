@@ -71,6 +71,7 @@ const meta: Meta<typeof FileUpload> = {
   title: 'BYB Components/FileUpload',
   component: FileUpload,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Upload files with a drop zone, a progress list, retry and delete (with confirmation). Uploads straight to S3 through a presigned URL from the app.' } } },
   decorators: [
     (Story) => (
       <div className="w-112">
