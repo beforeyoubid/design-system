@@ -3,7 +3,7 @@ import { composeStories } from '@storybook/react-vite'
 
 /**
  * Every Storybook story, composed so it renders outside Storybook. The
- * playground shows a component's real stories as its live examples.
+ * console shows a component's real stories as its live examples.
  */
 const modules = import.meta.glob('../../src/stories/**/*.stories.tsx', { eager: true }) as Record<string, Record<string, unknown>>
 

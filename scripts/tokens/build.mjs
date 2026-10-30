@@ -2,7 +2,7 @@
 /**
  * Generates everything that's derived from the token files:
  *   - src/tokens/components/index.css   imports every token file
- *   - playground/src/generated/manifest.json   brand, semantic and component tokens for the playground
+ *   - console/src/generated/manifest.json   brand, semantic and component tokens for the Design Console
  *   - the "Component tokens" table in DESIGN.md (between the component-tokens markers)
  *
  *   node scripts/tokens/build.mjs           write them
@@ -99,10 +99,10 @@ const manifest = {
   components,
   states: Object.fromEntries(Object.entries(STATES).map(([k, v]) => [k, v.label])),
   properties: Object.fromEntries(Object.entries(PROPERTIES).map(([k, v]) => [k || 'fill', { label: v.label, type: v.type }])),
-  // Pairs under AA that are known: the playground shows the note next to the result.
+  // Pairs under AA that are known: the console shows the note next to the result.
   contrastExceptions: JSON.parse(fs.readFileSync(path.join(root, 'scripts', 'tokens', 'contrast-exceptions.json'), 'utf8')),
 }
-outputs.push({ file: path.join(root, 'playground', 'src', 'generated', 'manifest.json'), content: JSON.stringify(manifest, null, 1) + '\n' })
+outputs.push({ file: path.join(root, 'console', 'src', 'generated', 'manifest.json'), content: JSON.stringify(manifest, null, 1) + '\n' })
 
 // ---------- DESIGN.md table ----------
 const designFile = path.join(root, 'DESIGN.md')

@@ -604,7 +604,7 @@ Inside the token files the private name ends in `--<breakpoint>` instead (`--_to
 
 Every default is the BYB design, so an app that sets nothing gets the designed look. Don't edit the component files to change a look; pull its lever. If no lever exists for what you need, add one (below).
 
-**The playground** (`pnpm playground`, or the published "BYB Design Levers" page) lists every brand, semantic and component token with a picker that only offers values of the right type (palette colours for colours, the radius scale for radii, and so on), shows every affected component live from the Storybook stories, checks contrast as you go, and exports the changes as a `:root` block to paste into an app.
+**The Design Console** (`pnpm console`, or the published "BYB Design Console" page) lists every brand, semantic and component token with a picker that only offers values of the right type (palette colours for colours, the radius scale for radii, and so on), shows every affected component live from the Storybook stories, checks contrast as you go, and exports the changes as a `:root` block to paste into an app.
 
 **How the levers reach the components.** The shadcn components in `src/components/ui/` are the CLI's own files. `pnpm tokens:apply` edits their class strings so each designed value reads its lever (`h-9` → `h-(--_input-height)`). The private name (`--_input-height`) is declared on the part and falls back to the public lever, then to the default. Components that change how stock behaves or is built, not just how it looks, are our own files in `src/components/` and export over the stock ones (Button, Calendar, Pagination, Tabs, Toast, …).
 
@@ -613,7 +613,7 @@ To update the shadcn components:
 ```bash
 npx shadcn@latest add <components> --overwrite   # the CLI's latest files
 pnpm tokens:apply                                # re-applies every lever
-pnpm tokens:build                                # index.css, playground manifest, the table below
+pnpm tokens:build                                # index.css, Design Console manifest, the table below
 pnpm check-component-tokens                      # names, missing levers, contrast
 ```
 

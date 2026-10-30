@@ -5,8 +5,8 @@ import react from '@vitejs/plugin-react'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 
-// The playground renders the real components and their Storybook stories, so it
-// resolves `@/` like Storybook does. `pnpm playground:build` writes one HTML file.
+// The console renders the real components and their Storybook stories, so it
+// resolves `@/` like Storybook does. `pnpm console:build` writes one HTML file.
 export default defineConfig({
   root: here,
   base: './',
@@ -20,7 +20,7 @@ export default defineConfig({
     assetsInlineLimit: 100_000_000,
     cssCodeSplit: false,
     chunkSizeWarningLimit: 10_000,
-    // One JS file, so scripts/playground-inline.mjs can fold the build into one HTML page.
+    // One JS file, so scripts/console-inline.mjs can fold the build into one HTML page.
     rollupOptions: { output: { inlineDynamicImports: true } },
   },
   server: { port: 6010 },

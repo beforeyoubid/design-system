@@ -59,8 +59,8 @@
     "tokens:apply": "node --experimental-strip-types --no-warnings scripts/tokens/apply.mjs",
     "tokens:build": "node --experimental-strip-types --no-warnings scripts/tokens/build.mjs",
     "check-component-tokens": "node --experimental-strip-types --no-warnings scripts/tokens/apply.mjs --check && node --experimental-strip-types --no-warnings scripts/tokens/build.mjs --check && node --experimental-strip-types --no-warnings scripts/tokens/check.mjs",
-    "playground": "vite --config playground/vite.config.ts",
-    "playground:build": "pnpm tokens:build && vite build --config playground/vite.config.ts && node scripts/playground-inline.mjs",
+    "console": "node scripts/console-dev.mjs",
+    "console:build": "pnpm tokens:build && vite build --config console/vite.config.ts && node scripts/console-inline.mjs",
     "test": "jest",
     "test:migrate": "node --test migrate/rules.test.mjs",
     "test:cn": "node --experimental-strip-types --no-warnings --test scripts/tests/cn.test.mjs"

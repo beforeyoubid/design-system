@@ -1,4 +1,4 @@
-/* BYB Design Levers — the playground's own chrome.
+/* BYB Design Console — the console's own chrome.
  * Layout: a proofing desk. Top bar; then three columns: what to change (nav),
  * the levers for it (controls), and the live proof (preview). The chrome stays
  * in ink-blue neutrals so the only brand colour on screen is the proof itself;
@@ -66,7 +66,7 @@ body { background: var(--pg-bg); }
   grid-template-rows: auto minmax(0, 1fr);
   grid-template-areas: "top top top" "nav controls preview";
 }
-/* The playground's own controls only. These rules sit outside Tailwind's layers, so on the
+/* The console's own controls only. These rules sit outside Tailwind's layers, so on the
  * stage they'd beat the components' utilities (every button's text size and colour). */
 .pg :where(button, input, textarea):not(.pg-story-stage *) { font: inherit; color: inherit; }
 .pg :where(button):not(.pg-story-stage *) { cursor: pointer; }

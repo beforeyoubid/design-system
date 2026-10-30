@@ -473,7 +473,7 @@ export function slotNames(source) {
 }
 
 // ---------------------------------------------------------------------------
-// Values: what a token's fallback means, for the playground and the contrast check.
+// Values: what a token's fallback means, for the Design Console and the contrast check.
 // ---------------------------------------------------------------------------
 
 /** The value type of a token, from its property. */

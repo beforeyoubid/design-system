@@ -16,8 +16,8 @@ Read this before adding or modifying any component or token.
 | `src/components/` | Our components: BYB composites (`FileUpload`, `Stepper`, `BYBAreaChart`, …) and wrappers that export over a stock component (`button.tsx`, `tabs.tsx`, `calendar.tsx`, …). One file per component. |
 | `src/components/ui/` | The shadcn CLI's files, with class strings edited by `pnpm tokens:apply` to read the levers. **Don't hand-edit**: change a token file, or move the change into a wrapper in `src/components/`. |
 | `src/tokens/components/` | Component tokens (levers): one CSS file per component, defaults are the BYB design. `index.css` is generated from them. |
-| `scripts/tokens/` | `apply.mjs` (token files → ui class strings), `build.mjs` (index.css, playground manifest, DESIGN.md levers table), `check.mjs` (names, missing levers, contrast), `contrast-exceptions.json`. |
-| `playground/` | The levers playground (Vite + React): every token with a typed picker, the real stories live, contrast, `:root` export. `pnpm playground`; `pnpm playground:build` writes one self-contained `playground/dist/levers.html`. |
+| `scripts/tokens/` | `apply.mjs` (token files → ui class strings), `build.mjs` (index.css, Design Console manifest, DESIGN.md levers table), `check.mjs` (names, missing levers, contrast), `contrast-exceptions.json`. |
+| `console/` | The BYB Design Console (Vite + React): every token with a typed picker, the real stories live, contrast, `:root` export. `pnpm console` (watches the token files); `pnpm console:build` writes one self-contained `console/dist/design-console.html`. Setup for designers: `console/README.md`. |
 | `src/tokens.ts` | `generateDesignSystemTokens({ overrides })` — tokens for non-CSS contexts (Stripe, canvas). Reads `src/generated/default-tokens.ts`. |
 | `src/generated/default-tokens.ts` | Generated from `globals.css` + `utilities.css` by `pnpm generate-tokens`. Never edit by hand. |
 | `migrate/` | `design-system-migrate` codemod that moves apps from 1.1.x to the role + step names. Tests: `pnpm test:migrate`. |
@@ -267,9 +267,9 @@ pnpm sync-shadcn-css # refresh shadcn.css after bumping shadcn
 pnpm test:migrate # migrator tests
 pnpm test:cn      # cn() merge tests
 pnpm tokens:apply # token files → class strings in src/components/ui
-pnpm tokens:build # regenerate index.css, the playground manifest and the DESIGN.md levers table
+pnpm tokens:build # regenerate index.css, the Design Console manifest and the DESIGN.md levers table
 pnpm check-component-tokens # fail if any of the above is stale, a lever is misnamed, or contrast fails
-pnpm playground   # the levers playground at http://localhost:6010
+pnpm console      # the Design Console at http://localhost:6010, rebuilt as token files change
 pnpm type-check   # TypeScript strict check
 pnpm lint         # ESLint
 ```

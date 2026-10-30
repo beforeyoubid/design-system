@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Folds the playground build (playground/dist) into one self-contained HTML
- * page, playground/dist/levers.html, for publishing as a Claude artifact:
+ * Folds the console build (console/dist) into one self-contained HTML
+ * page, console/dist/design-console.html, for publishing as a Claude artifact:
  * the CSS and JS are inlined; fonts come from Google Fonts. Every non-ASCII
  * character in the JS is written as a \uXXXX escape, so the script parses
  * whatever charset the page is served with, and no literal U+FFFD reaches the
@@ -11,7 +11,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const dist = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'playground', 'dist')
+const dist = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'console', 'dist')
 const html = fs.readFileSync(path.join(dist, 'index.html'), 'utf8')
 const read = (href) => fs.readFileSync(path.join(dist, href.replace(/^\.\//, '')), 'utf8')
 const css = [...html.matchAll(/<link rel="stylesheet"[^>]*href="(\.\/assets\/[^"]+\.css)"[^>]*>/g)].map((m) => read(m[1])).join('\n')
@@ -29,5 +29,5 @@ ${fonts}
 <div id="root"></div>
 <script type="module">${ascii(js.replace(/<\/script/gi, '<\\/script'))}</script>
 `
-fs.writeFileSync(path.join(dist, 'levers.html'), page)
-console.log(`Wrote playground/dist/levers.html (${(page.length / 1024 / 1024).toFixed(2)} MB)`)
+fs.writeFileSync(path.join(dist, 'design-console.html'), page)
+console.log(`Wrote console/dist/design-console.html (${(page.length / 1024 / 1024).toFixed(2)} MB)`)
