@@ -19,7 +19,7 @@ Several can apply: a rename inside a new component is author-component plus brea
 
 Changing a component token's default (the tooltip's radius, a badge's fill) isn't breaking: apps that set the token keep their value. It goes under **Changed** in the CHANGELOG.
 
-**Talking to the user:** describe what changed in design terms (colours, sizes, corners, spacing, what each variant looks like), not in code terms. Before using a word from **Words used here**, say what it means.
+**Talking to the user:** describe what changed in design terms (colours, sizes, corners, spacing, what each variant looks like), not in code terms. Before using a word from **Words used here**, say what it means. When you need a decision, write the question and its options in your reply too, not only in a question card: the card doesn't always show.
 
 ### Words used here
 
