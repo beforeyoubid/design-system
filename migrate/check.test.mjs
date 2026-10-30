@@ -124,6 +124,17 @@ test('source checks report lines, read template literals and skip imports', () =
   ])
 })
 
+test("an apostrophe in a comment or JSX text doesn't hide the strings after it", () => {
+  const source = [
+    "{/* the product's summary */}",
+    '<p>Don\'t</p>',
+    '<p className="ml-2" />',
+    "// it's here",
+    "const a = 'pr-2'",
+  ].join('\n')
+  assert.deepEqual(checkSource(source, 'a.tsx').map((f) => `${f.line} ${f.found}`), ['3 ml-2', '5 pr-2'])
+})
+
 test('css files are checked in @apply only; tests are skipped', () => {
   assert.deepEqual(checkSource('.a { margin-left: 4px; @apply ml-2; }', 'a.css').map((f) => f.found), ['ml-2'])
   assert.deepEqual(checkSource('cy.get("[data-testid=x]"); const c = "ml-2"', 'a.test.tsx'), [])

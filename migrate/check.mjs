@@ -234,7 +234,43 @@ export function checkClasses(classes, options = {}) {
   return findings
 }
 
-const STRING = /(["'`])((?:\\.|(?!\1)[^\\])*?)\1/g
+/**
+ * The string literals in source: [{ index, body }], index at the opening quote. Comments are
+ * skipped, and a ' or " that doesn't close on its own line is an apostrophe in JSX text, not a
+ * string, so it can't swallow the code after it.
+ */
+function* stringsIn(source) {
+  let i = 0
+  while (i < source.length) {
+    const ch = source[i]
+    if (ch === '/' && source[i + 1] === '/') {
+      i = source.indexOf('\n', i)
+      if (i < 0) return
+    } else if (ch === '/' && source[i + 1] === '*') {
+      i = source.indexOf('*/', i + 2)
+      if (i < 0) return
+      i += 2
+    } else if (ch === "'" || ch === '"') {
+      let j = i + 1
+      while (j < source.length && source[j] !== ch && source[j] !== '\n') j += source[j] === '\\' ? 2 : 1
+      if (source[j] === ch) {
+        yield { index: i, body: source.slice(i + 1, j) }
+        i = j + 1
+      } else i++
+    } else if (ch === '`') {
+      let j = i + 1
+      let depth = 0
+      while (j < source.length && (depth > 0 || source[j] !== '`')) {
+        if (source[j] === '\\') j++
+        else if (source[j] === '$' && source[j + 1] === '{') (depth++, j++)
+        else if (source[j] === '}' && depth > 0) depth--
+        j++
+      }
+      yield { index: i, body: source.slice(i + 1, j) }
+      i = j + 1
+    } else i++
+  }
+}
 const lineOf = (text, offset) => text.slice(0, offset).split('\n').length
 
 /** Findings for a file's text: [{ rule, line, found, use }]. */
@@ -258,9 +294,8 @@ export function checkSource(text, file = 'x.tsx', options = {}) {
   // Import specifiers aren't classes; blank them out, keeping offsets and line numbers.
   const code = text.replace(/^\s*import\b[\s\S]*?from\s*(['"])[^'"]+\1;?|^\s*import\s*(['"])[^'"]+\2;?/gm, (s) => s.replace(/[^\n]/g, ' '))
   const scan = (source, base) => {
-    for (const m of source.matchAll(STRING)) {
-      const body = m[2]
-      const start = base + m.index + 1
+    for (const { index, body } of stringsIn(source)) {
+      const start = base + index + 1
       // A template literal's ${…} parts aren't classes, but the strings inside them can be.
       for (const part of body.matchAll(/\$\{([^}]*)\}/g)) scan(part[1], start + part.index + 2)
       if (!/\s|-/.test(body) || body.length > 2000) continue
