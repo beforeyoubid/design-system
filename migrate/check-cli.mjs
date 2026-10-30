@@ -16,6 +16,8 @@
  * token, design-system icon imports, and dropping dark: classes. With
  * --commits it fixes the files on disk, and skips a file that has changed
  * since the commit it's checking.
+ * Run inside the design system's own repo, it leaves out icon-import: the
+ * package's components import Tabler directly.
  */
 import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
@@ -140,7 +142,17 @@ function units({ paths, changed, commits }) {
   return out
 }
 
+/** Inside the design system itself, components import icons from Tabler directly; the rule is for apps. */
+function insideDesignSystem() {
+  for (let dir = process.cwd(); ; dir = path.dirname(dir)) {
+    const file = path.join(dir, 'package.json')
+    if (fs.existsSync(file)) return JSON.parse(fs.readFileSync(file, 'utf8')).name === '@beforeyoubid/design-system'
+    if (path.dirname(dir) === dir) return false
+  }
+}
+
 const options = parseArgs(process.argv.slice(2))
+const checkOptions = { skip: insideDesignSystem() ? ['icon-import'] : [] }
 const results = []
 const fixedCounts = {}
 const skipped = []
@@ -149,7 +161,7 @@ for (const unit of units(options)) {
   const inScope = (line) => !unit.lines || unit.lines.has(line)
   let text = unit.text
   if (options.fix) {
-    const result = fixSource(text, unit.file, inScope)
+    const result = fixSource(text, unit.file, inScope, checkOptions)
     if (result.fixed.length && !unit.onDisk) skipped.push(unit.label)
     else if (result.fixed.length) {
       fs.writeFileSync(unit.file, result.text)
@@ -158,7 +170,7 @@ for (const unit of units(options)) {
       for (const { rule } of result.fixed) fixedCounts[rule] = (fixedCounts[rule] ?? 0) + 1
     }
   }
-  for (const finding of checkSource(text, unit.file)) if (inScope(finding.line)) results.push({ label: unit.label, ...finding })
+  for (const finding of checkSource(text, unit.file, checkOptions)) if (inScope(finding.line)) results.push({ label: unit.label, ...finding })
 }
 
 const where = options.changed ? ' in the changed lines' : options.commits.length ? ` in the lines ${options.commits.join(', ')} changed` : ''
@@ -186,4 +198,4 @@ console.log(`\n${results.length} findings${where}:`)
 for (const [rule, count] of Object.entries(counts).sort((a, b) => b[1] - a[1])) console.log(`  ${String(count).padStart(5)}  ${rule}: ${CHECK_RULES[rule]}`)
 const fixableLeft = results.filter((r) => r.fixable).length
 if (fixableLeft && !options.fix) console.log(`\n${fixableLeft} of these have one safe answer: re-run with --fix to apply them.`)
-console.log('\nAdvisory: fix the ones on lines you changed. See node_modules/@beforeyoubid/design-system/docs/README.md.')
+console.log(`\nAdvisory: fix the ones on lines you changed. See ${checkOptions.skip.length ? 'docs/README.md' : 'node_modules/@beforeyoubid/design-system/docs/README.md'}.`)

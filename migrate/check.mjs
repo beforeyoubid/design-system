@@ -106,8 +106,11 @@ export function checkClasses(classes) {
 const STRING = /(["'`])((?:\\.|(?!\1)[^\\])*?)\1/g
 const lineOf = (text, offset) => text.slice(0, offset).split('\n').length
 
-/** Findings for a file's text: [{ rule, line, found, use }]. */
-export function checkSource(text, file = 'x.tsx') {
+/**
+ * Findings for a file's text: [{ rule, line, found, use }].
+ * `skip` lists rules to leave out (the package itself imports icons from Tabler).
+ */
+export function checkSource(text, file = 'x.tsx', { skip = [] } = {}) {
   const findings = []
   // Tests query the DOM with selectors that look like arbitrary values; they aren't UI code.
   if (/\.(test|spec)\.[cm]?[jt]sx?$|(^|\/)(__tests__|playwright-tests|e2e)\//.test(file)) return findings
@@ -141,7 +144,7 @@ export function checkSource(text, file = 'x.tsx') {
     }
   }
   scan(code, 0)
-  return findings.sort((a, b) => a.line - b.line)
+  return findings.filter((f) => !skip.includes(f.rule)).sort((a, b) => a.line - b.line)
 }
 
 const escape = (s) => s.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&')
@@ -155,13 +158,14 @@ function removeClass(line, cls) {
 }
 
 /**
- * Apply the fixable findings. `onLine(line)` limits fixes to some lines (for --changed).
+ * Apply the fixable findings. `onLine(line)` limits fixes to some lines (for --changed);
+ * `options` is checkSource's.
  * Returns the new text and the findings it fixed.
  */
-export function fixSource(text, file = 'x.tsx', onLine = () => true) {
+export function fixSource(text, file = 'x.tsx', onLine = () => true, options = {}) {
   const lines = text.split('\n')
   const fixed = []
-  for (const f of checkSource(text, file)) {
+  for (const f of checkSource(text, file, options)) {
     if (!f.fixable || !onLine(f.line)) continue
     const i = f.line - 1
     const before = lines[i]
