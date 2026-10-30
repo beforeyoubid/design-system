@@ -20,7 +20,7 @@ const js = [...html.matchAll(/<script type="module"[^>]*src="(\.\/assets\/[^"]+\
 // one code point under /u) and identifiers.
 const ascii = (code) => code.replace(/[^\x00-\x7f]/g, (c) => `\\u${c.charCodeAt(0).toString(16).padStart(4, '0')}`)
 const fonts = html.match(/<link rel="stylesheet" href="https:\/\/fonts[^>]+>/)?.[0] ?? ''
-const page = `<title>BYB Design Cockpit</title>
+const page = `<title>BYB Design Console</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

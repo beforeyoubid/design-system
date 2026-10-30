@@ -71,7 +71,7 @@ export function App() {
       <header className="pg-top">
         <div className="pg-brand">
           <BybMark />
-          <h1>BYB Design Cockpit</h1>
+          <h1>BYB Design Console</h1>
         </div>
         <label className="pg-search">
           <span className="pg-visually-hidden">Find a component or token</span>
