@@ -171,7 +171,7 @@ function FileUploadCard({
           <span className="truncate text-body-4 font-semibold text-dark-90">
             {name}
           </span>
-          <span className="truncate text-caption-1 text-dark-75">
+          <span className="truncate text-caption-1 text-dark-100">
             {[size ? formatBytes(size) : null, uploadedAt ? `Uploaded ${formatDate(uploadedAt)}` : null]
               .filter(Boolean)
               .join(" · ")}
@@ -230,14 +230,14 @@ function FileUploadCard({
           <span className="truncate text-body-5 font-semibold text-dark-90">
             {name}
           </span>
-          <span className="flex flex-wrap items-center gap-2 text-caption-2 text-dark-75">
+          <span className="flex flex-wrap items-center gap-2 text-caption-1 text-dark-100">
             <span>
               {done
                 ? formatBytes(size)
                 : `${formatBytes(loaded)} / ${formatBytes(size)}`}
             </span>
             {uploading && (
-              <span className="inline-flex items-center gap-1 text-dark-75">
+              <span className="inline-flex items-center gap-1 text-dark-100">
                 <Spinner size="sm" variant="dots" label="Uploading" />
                 Uploading
               </span>
