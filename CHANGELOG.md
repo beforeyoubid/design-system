@@ -27,7 +27,7 @@ Upgrade an app with `npx design-system-migrate` (dry run) then `--write`, in the
 - `npx design-system-migrate --check [paths]` reports guardrail findings in app code with what to use instead (logical sides, arbitrary values, type classes, semantic colours, `gap`, `size-*`, `dark:`, inline styles, icon imports, `asChild`). `--changed` limits it to lines changed since the last commit. It never fails a build.
 - `generateDesignSystemTokens({ overrides })`: colours, product badge colours and type styles for non-CSS contexts, generated from `globals.css` so they can't drift.
 - `design-system-migrate` codemod.
-- BYB product components, prefixed `BYB` so they never collide with a shadcn name: `BYBIconTile`, `BYBStepper`, `BYBColorDot`.
+- BYB product components with no shadcn equivalent: `IconTile`, `Stepper`, `ColorDot`.
 - `shadcn.css`: a copy of shadcn's stylesheet (custom variants, `no-scrollbar`, `scroll-fade-*`, `shimmer`), refreshed with `pnpm sync-shadcn-css`. Fixes Separator and ScrollArea scrollbars, which rendered 0px.
 - `tw-animate-css` is a dependency and imported by `globals.css`, so overlay enter/exit animations (`animate-in`, `fade-in-0`, `zoom-in-95`, `slide-in-from-*`) work. Apps need no change.
 

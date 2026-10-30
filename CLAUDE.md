@@ -80,7 +80,7 @@ import { House } from '@beforeyoubid/design-system/icons/lucide'
 2. **Semantic** — shadcn slots that components consume
    `--primary`, `--background`, `--muted`, `--accent`, `--destructive`, `--border`, `--ring`, `--card`, `--popover`, `--sidebar-*`, `--chart-1…5`, plus `--success` and `--warning` as BYB extensions.
 
-**Use primitives for marketing pages and brand-coloured surfaces. Use semantic tokens inside reusable components** — that's what makes shadcn primitives drop-in compatible.
+**Prefer semantic tokens wherever a role fits, in components and in apps.** Use brand primitives only where no role fits (a marketing illustration, a product badge). Semantic tokens are what make shadcn components drop-in compatible, and they let an app retheme a role in one place. `docs/styling.md` has the table apps follow.
 
 ### Colour reference (primitives)
 
@@ -197,7 +197,7 @@ shadcn components reference `var(--radius)` which aliases to `--radius-md`.
 
 ## Dark mode
 
-The package ships full dark-mode coverage via a `.dark` class. Toggling is the consuming app's responsibility (`<html class="dark">`). Component authors don't need to opt in — semantic tokens flip automatically.
+`globals.css` keeps shadcn's `.dark` values, but BYB apps have no dark mode. Don't add `dark:` classes or dark values for component tokens; the guardrail docs tell apps the same.
 
 ## Tree-shaking guarantees (don't break these)
 
@@ -220,7 +220,7 @@ This tells bundlers that JS exports are side-effect-free (free to tree-shake) bu
 - One component per file in `src/components/`
 - Every component must be exported from `src/index.ts`
 - Every component must have a story in `src/stories/` covering all variants, with a one-line `parameters.docs.description.component` (the registry reads it)
-- **Prefer semantic tokens** (`bg-primary`, `text-muted-foreground`) over brand primitives inside reusable components. Use primitives for marketing pages.
+- **Prefer semantic tokens** (`bg-primary`, `text-muted-foreground`) over brand primitives. Use a primitive only where no role fits.
 - Use `cva` (class-variance-authority) for all component variants — not ad-hoc `Record<>` maps
 - Use `cn` (exported from `src/lib/utils.ts`) for all className merging — not raw `clsx`
 - Use Base UI's `render` prop (not `asChild`) to render an interactive component as another element

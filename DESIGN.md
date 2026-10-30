@@ -46,8 +46,8 @@ Before You Buy helps people make property decisions: reports, inspections, contr
 
 Colours are defined in OKLCH in `globals.css` with the hex alongside. Two layers:
 
-1. **Primitives**: the exact Figma palette. Use for marketing pages and brand surfaces.
-2. **Semantic**: shadcn slots (`primary`, `muted`, `border`, …). Use inside reusable components so they flip in dark mode.
+1. **Primitives**: the exact Figma palette. Use only where no semantic role fits (a marketing illustration, a product badge).
+2. **Semantic**: shadcn roles (`primary`, `muted`, `border`, …). Prefer them everywhere, in components and in apps, so an app can retheme a role in one place.
 
 Utility pattern: `bg-{token}`, `text-{token}`, `border-{token}`, `ring-{token}`, `fill-{token}`, `stroke-{token}`.
 
@@ -182,7 +182,7 @@ No separate tokens; use opacity modifiers.
 
 Every error and destructive colour reads `destructive`: error text, invalid borders and rings, destructive buttons, menu items, badges, alerts and toasts. Use `text-destructive`, `border-destructive` and so on rather than `error-75`, so the error red changes in one place.
 
-Dark mode is turned on by the app with `<html class="dark">`; semantic tokens flip automatically.
+`globals.css` keeps shadcn's `.dark` values, but BYB apps have no dark mode: don't write `dark:` classes, and component tokens have no dark values.
 
 ---
 
@@ -2383,7 +2383,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 ## Rules for designers and engineers
 
 1. **Never hard-code hex** or arbitrary values (`text-[#090034]`, `p-[13px]`). Add a token instead.
-2. **Primitives for marketing, semantic tokens inside components.**
+2. **Semantic tokens wherever a role fits;** brand primitives only where none does.
 3. **One primary CTA per view.**
 4. **Content width is `max-w-site`.**
 5. **No inline styles, no MUI.** Use `cva` for variants, `cn()` for merging, Base UI `render` for links.
@@ -2395,6 +2395,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 11. **Sub-headings are `dark-90`.** Overlines, group labels, section labels and column labels use `text-dark-90`; `dark-60` and `dark-75` are too grey for them. Descriptions keep `text-muted-foreground`, except dialog descriptions (`DialogDescription`), which are `dark-90`.
 12. **No `dark-60` for text or icons.** Hints, helper text, meta labels and icons use `text-dark-75`; `dark-60` is too light (3.3:1 on white).
 13. **Deleting anything asks first.** Every delete or remove action (files, rows, reports, list items, saved records) opens a delete dialog before anything is removed: `ConfirmDialog destructive` with a trash `IconTile`, a title that names the thing ("Delete this file?"), a description naming the item and what happens, and Cancel (focused by default) / Delete. Only after Delete is confirmed is the item removed, followed by a `success` toast ("File deleted") with an Undo action where the delete can be reversed. Cancelling an upload in progress or clearing a field is not a delete and needs no dialog. Other destructive row actions such as "Cancel order" follow the same pattern ("Cancel this order?", Keep order / Cancel order). Built in: `FileUpload` (`confirmDelete`); examples in the DropdownMenu, ContextMenu and Table stories.
+14. **Apps follow `docs/README.md`.** The guardrail docs ship in the package; keep them in step with these rules. Apps check their changes with `npx design-system-migrate --check --changed`.
 
 ---
 

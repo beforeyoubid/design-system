@@ -55,17 +55,17 @@ The package is configured for full tree-shaking on both axes — you only ship t
 
 ### CSS (automatic)
 
-Tailwind v4 only emits utility classes that are referenced somewhere in scanned source files. To make sure classes baked into our compiled components (`bg-primary` inside `BYBButton` etc.) reach your bundle, our `globals.css` ships an `@source` directive that points Tailwind at `node_modules/@beforeyoubid/design-system/dist/**`. **Zero consumer config required.**
+Tailwind v4 only emits utility classes that are referenced somewhere in scanned source files. To make sure classes baked into our compiled components (`bg-primary` inside `Button` etc.) reach your bundle, our `globals.css` ships an `@source` directive that points Tailwind at `node_modules/@beforeyoubid/design-system/dist/**`. **Zero consumer config required.**
 
-If you only render `<BYBButton variant="lime" />` in your app, only the utility classes that variant uses end up in your CSS. The rest are dropped.
+If you only render `<Button variant="lime" />` in your app, only the utility classes that variant uses end up in your CSS. The rest are dropped.
 
 ### JS (automatic, with `sideEffects: ["**/*.css"]`)
 
 Components are published as ESM. Importing just one named export drops the rest:
 
 ```ts
-import { BYBButton } from "@beforeyoubid/design-system"
-//        ^ only BYBButton + its transitive deps end up in your bundle
+import { Button } from "@beforeyoubid/design-system"
+//       ^ only Button + its transitive deps end up in your bundle
 ```
 
 The package declares `"sideEffects": ["**/*.css"]` in its `package.json`, so bundlers know JS exports are pure (free to tree-shake) but CSS side-effects (`import "./globals.css"`) are preserved.
