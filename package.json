@@ -18,7 +18,8 @@
     "utilities.css",
     "src/tokens/components/index.css",
     "migrate/index.mjs",
-    "migrate/rules.mjs"
+    "migrate/rules.mjs",
+    "migrate/check.mjs"
   ],
   "bin": {
     "design-system-migrate": "migrate/index.mjs"
@@ -63,7 +64,7 @@
     "console": "node scripts/console-dev.mjs",
     "console:build": "pnpm tokens:build && vite build --config console/vite.config.ts && node scripts/console-inline.mjs",
     "test": "jest",
-    "test:migrate": "node --test migrate/rules.test.mjs",
+    "test:migrate": "node --test migrate/rules.test.mjs migrate/check.test.mjs",
     "test:cn": "node --experimental-strip-types --no-warnings --test scripts/tests/cn.test.mjs"
   },
   "peerDependencies": {
