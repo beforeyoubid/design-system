@@ -8,7 +8,7 @@ Prefer the semantic token. It names what a colour is for, so an app can change i
 
 | Use | Not | Role |
 |---|---|---|
-| `bg-background`, `bg-card` | `bg-white` | Page and card surface |
+| `bg-background`, `bg-card` | | Page and card surface. `bg-white` stays right for white that isn't a surface (a dot, a chip on a dark panel) |
 | `text-foreground` | `text-dark-100` | Body text |
 | `text-muted-foreground` | `text-dark-75` | Secondary text |
 | `bg-muted` | `bg-light-l1` | Quiet fill |

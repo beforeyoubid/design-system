@@ -31,8 +31,8 @@ test("Tailwind's text sizes point at the type classes", () => {
 })
 
 test('brand colours with an exact semantic twin suggest it, by what they paint', () => {
+  // bg-white stays: white isn't always a surface, so bg-background isn't a safe suggestion.
   assert.deepEqual(uses('bg-white text-dark-100 border-dark-15 hover:bg-mint-45/80 text-mint-45'), [
-    'semantic-colour: bg-white → bg-background or bg-card',
     'semantic-colour: text-dark-100 → text-foreground',
     'semantic-colour: border-dark-15 → border-border',
     'semantic-colour: hover:bg-mint-45/80 → hover:bg-primary/80',

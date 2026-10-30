@@ -32,13 +32,13 @@ const TYPE_HINT = { xs: 'text-caption-1', sm: 'text-body-5', base: 'text-body-4'
 
 // Brand utilities with a semantic token of exactly the same colour, by what the utility paints.
 const SEMANTIC = {
-  fill: { white: 'background|card', 'light-l2': 'secondary', 'light-l1': 'muted', 'mint-45': 'primary', 'mint-l3': 'accent', 'error-75': 'destructive', 'warning-45': 'warning', 'mint-15': 'success' },
+  fill: { 'light-l2': 'secondary', 'light-l1': 'muted', 'mint-45': 'primary', 'mint-l3': 'accent', 'error-75': 'destructive', 'warning-45': 'warning', 'mint-15': 'success' },
   text: { 'dark-100': 'foreground', 'dark-75': 'muted-foreground', 'error-75': 'destructive' },
   line: { 'dark-15': 'border', 'dark-45': 'input', 'error-75': 'destructive' },
   ring: { 'mint-45': 'ring', 'error-75': 'destructive' },
 }
 const PAINTS = { bg: 'fill', fill: 'fill', text: 'text', border: 'line', divide: 'line', ring: 'ring', outline: 'ring' }
-const COLOUR_CLASS = /^(bg|fill|text|border|divide|ring|outline)-([a-z]+-(?:l?\d+)|white)(\/\d+)?$/
+const COLOUR_CLASS = /^(bg|fill|text|border|divide|ring|outline)-([a-z]+-(?:l?\d+))(\/\d+)?$/
 
 /** Split a class at top-level colons: "md:data-[x=y]:p-2" → ["md", "data-[x=y]", "p-2"]. */
 function segments(cls) {
@@ -82,7 +82,7 @@ export function checkClasses(classes) {
     if (/^-?space-(x|y)-/.test(utility)) findings.push({ rule: 'gap-not-space', found: token, use: `${prefix}flex ${prefix}gap-…` })
     const colour = utility.match(COLOUR_CLASS)
     const semantic = colour && SEMANTIC[PAINTS[colour[1]]][colour[2]]
-    if (semantic) findings.push({ rule: 'semantic-colour', found: token, use: semantic.split('|').map((s) => `${prefix}${colour[1]}-${s}${colour[3] ?? ''}`).join(' or ') })
+    if (semantic) findings.push({ rule: 'semantic-colour', found: token, use: `${prefix}${colour[1]}-${semantic}${colour[3] ?? ''}` })
     const wh = utility.match(/^(w|h)-(.+)$/)
     if (wh && !/^(full|screen|auto|fit|min|max|dvh|svh|lvh)/.test(wh[2])) {
       const key = `${prefix}${wh[2]}`
