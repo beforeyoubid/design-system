@@ -46,13 +46,11 @@ Build or change the component described in `$ARGUMENTS`. Terms (part, cva key, w
 
    The wrapper itself keeps importing the stock file.
 
+**When a wrapper re-implements a stock part** (to add a `data-slot` or change its structure), start from the stock part's class string and say so in a comment: `// From ui/tooltip.tsx TooltipContent; update it when shadcn updates the tooltip.` `tokens:apply` keeps the stock file in step with shadcn, but not your copy.
+
 ### 3. Authoring rules
 
-- **Tokens, never values.** Semantic tokens inside components (`bg-primary`, `text-muted-foreground`, `border-border`). Brand tokens only when no role fits. No hex, no arbitrary values (`w-[312px]`), no inline `style`.
-- **Type classes** (`text-body-5`, `text-h4`), never `text-sm`. Weight with `font-medium` / `font-semibold`.
-- **Logical sides** (`ms-*`, `pe-*`, `start-*`, `text-start`, `rounded-s-*`, `border-e`). `rtl` is on.
-- **Layout:** `gap-*` on flex or grid, not margins or `space-*`. `size-*` when width and height match. Inputs are `w-full`; the layout sets the width.
-- **No `dark:` classes.**
+- **Styling:** every rule under **Styling rules** in `CLAUDE.md`: no pixel values, no hard-coded colours, no arbitrary values, type classes, logical sides, `gap-*`, mobile first.
 - **Every part has a `data-slot`** named `<component>-<part>` (`stepper-indicator`). Component tokens and the Design Console find parts by it.
 - **Variants with `cva`**, exported (`fooVariants`) so apps can extend them. Merge with `cn` from `@/lib/utils`.
 - **Icons** from `@tabler/icons-react` inside the package.

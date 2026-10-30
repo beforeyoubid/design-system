@@ -115,6 +115,10 @@ Point the app's `CLAUDE.md` (or `AGENTS.md`) at the guardrails, so agents read t
 
 Before committing, `npx design-system-check --changed` lists guardrail findings on the lines you changed, and `--fix` applies the safe ones. After committing, `--commits <sha or range>` does the same for those commits.
 
+## Changing the package
+
+Styling and component rules for anyone changing this package, by hand or with Claude, are in [CLAUDE.md](./CLAUDE.md) under **Styling rules** and **Component rules**: no pixel values, no hard-coded colours, no arbitrary values, semantic tokens first, Tailwind's spacing and our type scale. In Claude, the `byb-design` skills walk through adding components, component tokens, token values and breaking changes.
+
 ## Generating new components
 
 This package is configured for the shadcn CLI:

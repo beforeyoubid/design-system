@@ -11,7 +11,7 @@ function Card({
       data-slot="card"
       data-size={size}
       className={cn(
-        "group/card flex flex-col gap-(--_card-gap) overflow-hidden rounded-(--_card-radius) bg-(--_card-fill) py-(--_card-padding-y) text-body-5 text-card-foreground has-[>img:first-child]:pt-0 *:[img:first-child]:rounded-t-lg *:[img:last-child]:rounded-b-lg border-(--_card-border) shadow-(--_card-shadow) border data-[size=sm]:gap-(--_card-sm-gap) data-[size=sm]:py-(--_card-sm-padding-y)",
+        "group/card flex flex-col gap-(--_card-gap) overflow-hidden rounded-(--_card-radius) bg-(--_card-fill) py-(--_card-padding-y) text-body-5 text-card-foreground has-[>img:first-child]:pt-0 *:[img:first-child]:rounded-t-(--_card-radius) *:[img:last-child]:rounded-b-(--_card-radius) border-(--_card-border) shadow-(--_card-shadow) border data-[size=sm]:gap-(--_card-sm-gap) data-[size=sm]:py-(--_card-sm-padding-y)",
         className
       )}
       {...props}
@@ -24,7 +24,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card-header"
       className={cn(
-        "group/card-header @container/card-header grid auto-rows-min items-start gap-(--_card-header-gap) rounded-t-lg px-(--_card-header-padding-x) has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-6 group-data-[size=sm]/card:px-(--_card-header-sm-padding-x) group-data-[size=sm]/card:[.border-b]:pb-4",
+        "group/card-header @container/card-header grid auto-rows-min items-start gap-(--_card-header-gap) rounded-t-(--_card-radius) px-(--_card-header-padding-x) has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-(--_card-padding-y) group-data-[size=sm]/card:px-(--_card-header-sm-padding-x) group-data-[size=sm]/card:[.border-b]:pb-(--_card-sm-padding-y)",
         className
       )}
       {...props}
@@ -80,7 +80,7 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card-footer"
       className={cn(
-        "flex items-center rounded-b-lg px-(--_card-footer-padding-x) [.border-t]:pt-6 group-data-[size=sm]/card:px-(--_card-footer-sm-padding-x) group-data-[size=sm]/card:[.border-t]:pt-4",
+        "flex items-center rounded-b-(--_card-radius) px-(--_card-footer-padding-x) [.border-t]:pt-(--_card-padding-y) group-data-[size=sm]/card:px-(--_card-footer-sm-padding-x) group-data-[size=sm]/card:[.border-t]:pt-(--_card-sm-padding-y)",
         className
       )}
       {...props}

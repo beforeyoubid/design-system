@@ -41,6 +41,20 @@ Changing a component token's default (the tooltip's radius, a badge's fill) isn'
 
 Add to the top section of `CHANGELOG.md` while it's unreleased: its version isn't in `npm view @beforeyoubid/design-system versions`. If it's already published, add a `## Unreleased` section above it. Never change `version` in `package.json`; that happens when the package is published.
 
+## Styling rules
+
+These apply to every component, wrapper, story and token default in this package. Tailwind's own best practices, plus ours:
+
+- **No pixel values.** Spacing uses Tailwind's scale (`p-6`, `gap-4`), and in a token default `calc(var(--spacing) * 6)`. Corners use `rounded-*` or `var(--radius-*)`. Text sizes use the type classes. A one-pixel line (`border`, `ring-1`) is the only plain pixel.
+- **No hard-coded colours.** No hex, `rgb()` or `oklch()` in components or token defaults. Use semantic tokens first (`bg-primary`, `text-muted-foreground`, `border-border`), and a brand token only where no role fits. Errors use `destructive`.
+- **No arbitrary values** (`w-[312px]`, `text-[#090034]`, `leading-[1.4]`). If a value is missing, add a token. Selectors in brackets are fine (`data-[side=top]:`, `[.border-b]:`), and so is arbitrary code copied from a stock component.
+- **Type classes**, never Tailwind's sizes: `text-h1`…`text-h6`, `text-body-1`…`text-body-5`, `text-caption-*`, `text-overline`. Weight with `font-medium` / `font-semibold`.
+- **Logical sides** (`ms-*`, `pe-*`, `start-*`, `text-start`, `rounded-s-*`, `border-e`); `rtl` is on. The exception is a shape turned 45° (a tooltip arrow), whose physical sides don't swap.
+- **Layout with `gap-*`** on flex or grid, not margins or `space-*`. `size-*` when width and height match. Inputs are `w-full`.
+- **Mobile first.** Unprefixed classes are the phone layout; `sm:` (640px), `md:`, `lg:` and up add to it.
+- **Merge classes with `cn`** and write variants with `cva`, never string templates or `Record<>` maps.
+- **No inline `style`, no `dark:` classes, no `!important`** unless stock code already has it.
+
 ## What lives here
 
 | Path | Purpose |
@@ -92,9 +106,8 @@ import { House } from '@beforeyoubid/design-system/icons/lucide'
 
 ## Token rules
 
-- **Never hard-code a hex value.** Use a token utility (`bg-mint-45`, `text-navy`, `border-dark-15`).
 - **Error and destructive colours use the `destructive` token** (`text-destructive`, `border-destructive`, `var(--destructive)`), never `error-75` directly, so the error red changes in one place.
-- **Never use arbitrary Tailwind values** (`text-[#090034]`). If a token is missing, add it to `globals.css` and run `pnpm check-tokens`.
+- **A missing value is a new token**, never an arbitrary value (see **Styling rules**): add it to `globals.css` and run `pnpm check-tokens`.
 - **Token naming mirrors Figma 1:1.** When in doubt, check the Figma library or `globals.css`.
 
 ### Two layers of tokens

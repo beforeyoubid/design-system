@@ -18,15 +18,27 @@ Make the change in `$ARGUMENTS` and give apps a way through it.
 
 ## Steps
 
-### 1. Find what apps use
+### 1. Check what's been released
+
+A rename or removal only breaks apps if the old name was published. Check the last published version:
+
+```bash
+npm view @beforeyoubid/design-system version
+npm pack @beforeyoubid/design-system@<that version> --pack-destination <your scratchpad>   # then read package/dist/index.d.ts
+```
+
+- **The old name was published:** carry on below.
+- **It only exists in the unreleased version** (added or renamed since the last release): it isn't breaking. Change it everywhere in the package, and if a migrator rule already maps an older name to it (`BYBCounter: 'Counter'`), point that rule at the new name instead of adding another. Do steps 3 to 5 for that, skip 2 and 6 (no app uses the unreleased name), and in step 7 log it under **Changed**, not **Breaking**.
+
+### 2. Find what apps use
 
 Search the consuming apps for the old name before choosing the rule. They're cloned next to this repo under `../../` (for example `../../byb-website`, `../../byb-backyard-v3`). Check the branch each is on with `git -C <app> branch --show-current`. Count uses; note any that a rewrite can't handle (dynamic names, spread props). If the apps aren't cloned there, tell the user the search was skipped.
 
-### 2. Make the change
+### 3. Make the change
 
 Change the package. Update its story, DESIGN.md, `src/index.ts` and the component tokens as the other skills describe (`byb-design:author-component`, `byb-design:add-component-tokens`). Search the package for the old name and fix every use. Run `pnpm registry:build` so `docs/registry.md` drops the old name, and update `docs/` wherever the guardrails mention it.
 
-### 3. Pick the rule
+### 4. Pick the rule
 
 `migrate/rules.mjs` has a home for each kind of change. Add to the existing table rather than writing a new pass:
 
@@ -43,7 +55,7 @@ Change the package. Update its story, DESIGN.md, `src/index.ts` and the componen
 
 Rewrite when the new code is certain. Report for review when it isn't. A wrong rewrite is worse than a review line.
 
-### 4. Test
+### 5. Test
 
 Add a test to `migrate/rules.test.mjs` in the style of its neighbours: the old source in, the expected source out (or the expected review message). Cover variant prefixes (`md:hover:`) for classes and aliased imports for exports.
 
@@ -51,7 +63,7 @@ Add a test to `migrate/rules.test.mjs` in the style of its neighbours: the old s
 pnpm test:migrate
 ```
 
-### 5. Dry-run it on an app
+### 6. Dry-run it on an app
 
 Skip this when no app is cloned next to the repo.
 
@@ -59,9 +71,9 @@ Skip this when no app is cloned next to the repo.
 cd ../../<app> && node <path to this repo>/migrate/index.mjs
 ```
 
-Without `--write` it only reports. Check the counts match step 1 and the review lines make sense. Don't write to the app.
+Without `--write` it only reports. Every use you found in step 2 should appear, as a rewrite or a review line, and nothing else should. Don't write to the app.
 
-### 6. CHANGELOG
+### 7. CHANGELOG
 
 Under **Breaking**, in the section **Which CHANGELOG section** in `CLAUDE.md` names, one bullet: **what changed** in bold, the reason in a clause, what to use instead, and that the migrator handles it (or what it reports). Match the existing entries' style.
 

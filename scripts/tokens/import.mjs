@@ -13,6 +13,8 @@
  *   pbpaste | pnpm tokens:import -              read the block from stdin
  *
  * Exits non-zero, writing nothing, if a name isn't a known token.
+ * A pixel value for a spacing or radius default is written as a token, the way the
+ * Console writes it: 24px → calc(var(--spacing) * 6), 16px → var(--radius-xl).
  */
 import { spawnSync } from 'node:child_process'
 import fs from 'node:fs'
@@ -54,6 +56,11 @@ globals.forEach((line, i) => {
     if (m && !lightLines.has(m[1])) lightLines.set(m[1], i)
   }
 })
+const radii = []
+for (const line of globals.slice(0, darkStart === -1 ? undefined : darkStart)) {
+  const m = line.match(/^\s*(--radius-[\w-]+)\s*:\s*([\d.]+)(px|rem)\s*;/)
+  if (m && !radii.some((r) => r.name === m[1])) radii.push({ name: m[1], px: m[3] === 'rem' ? +m[2] * 16 : +m[2] })
+}
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'console', 'src', 'generated', 'manifest.json'), 'utf8'))
 const semanticNames = new Set(manifest.semantic.map((s) => s.name))
 
@@ -65,7 +72,7 @@ for (const [name, value] of overrides) {
   const component = componentTokens.get(name)
   if (component) {
     const line = fs.readFileSync(component.file, 'utf8').split('\n').findIndex((l) => l.includes(`var(${name}, `))
-    changes.push({ kind: 'component', name, file: component.file, line, from: component.fallback, to: value })
+    changes.push({ kind: 'component', name, file: component.file, line, from: component.fallback, to: asToken(value, component.fallback) })
     continue
   }
   const i = lightLines.get(name)
@@ -128,6 +135,19 @@ const run = (args) => {
 if (byFile.has(globalsPath)) run([path.join(root, 'scripts', 'generate-tokens.mjs')])
 run([path.join(root, 'scripts', 'tokens', 'build.mjs')])
 console.log('\nNext: pnpm check-component-tokens, then update DESIGN.md prose and the CHANGELOG.')
+
+/** A px value as the token the default already uses: spacing steps or a radius step. */
+function asToken(value, fallback) {
+  const px = value.match(/^(\d*\.?\d+)px$/)?.[1]
+  if (px === undefined) return value
+  if (/^var\(--radius-[\w-]+\)$/.test(fallback)) {
+    const step = radii.find((r) => r.px === +px)
+    return step ? `var(${step.name})` : value
+  }
+  // 4px spacing steps, in halves: 24px → 6, 10px → 2.5. Odd pixels (a 1px line) stay as they are.
+  if (/^calc\(var\(--spacing\)/.test(fallback) && (+px * 2) % 4 === 0) return `calc(var(--spacing) * ${+px / 4})`
+  return value
+}
 
 function fail(message) {
   console.error(`✖ ${message}`)
