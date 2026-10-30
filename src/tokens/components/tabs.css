@@ -63,7 +63,7 @@
   --_tabs-trigger-font-weight: var(--tabs-trigger-font-weight, 600);
   /* Text colour of the trigger. */
   --_tabs-trigger-foreground: var(--tabs-trigger-foreground, var(--navy));
-  /* Text colour of the trigger when active. */
+  /* Text colour of the trigger when active. @on --tabs-indicator */
   --_tabs-trigger-active-foreground: var(--tabs-trigger-active-foreground, var(--white));
   /* Height of the trigger (line variant). @ours */
   --_tabs-trigger-line-height: var(--tabs-trigger-line-height, calc(var(--spacing) * 10));
@@ -87,7 +87,7 @@
   --_tabs-trigger-segmented-padding-x: var(--tabs-trigger-segmented-padding-x, calc(var(--spacing) * 3));
   /* Text colour of the trigger (segmented variant). @ours */
   --_tabs-trigger-segmented-foreground: var(--tabs-trigger-segmented-foreground, var(--navy));
-  /* Text colour of the trigger (segmented variant) when active. @ours */
+  /* Text colour of the trigger (segmented variant) when active. @ours @on --tabs-indicator-segmented */
   --_tabs-trigger-segmented-active-foreground: var(--tabs-trigger-segmented-active-foreground, var(--white));
 }
 

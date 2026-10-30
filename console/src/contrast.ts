@@ -51,20 +51,44 @@ function probe(part: string, fgVar: string, bgVar: string) {
   return out
 }
 
-export interface Pair { fg: ComponentToken; bg: ComponentToken; ratio: number; fgCss: string; bgCss: string }
+export interface Pair {
+  fg: ComponentToken
+  bg: Pick<ComponentToken, 'name' | 'private' | 'description'>
+  ratio: number
+  /** WCAG AA: 4.5:1 for text, 3:1 for icons and spinners. */
+  min: number
+  fgCss: string
+  bgCss: string
+}
 
-/** Every foreground component token paired with the fill it sits on, for one component. */
+const allTokens = () => manifest.components.flatMap((c) => c.tokens)
+
+/**
+ * Every foreground component token paired with what it sits on, for one component:
+ * its own part's fill, else the token its comment names with @on, else the page
+ * background. The same pairs `pnpm check-component-tokens` checks.
+ */
 export function pairsFor(component: string): Pair[] {
   const comp = manifest.components.find((c) => c.component === component)
   if (!comp) return []
   const out: Pair[] = []
   for (const fg of comp.tokens) {
-    if (fg.property !== 'foreground' || fg.state === 'disabled') continue
+    // Disabled text is exempt from WCAG contrast.
+    if (fg.property !== 'foreground' || fg.state === 'disabled' || /-disabled$/.test(fg.part)) continue
+    const min = /(^|-)(icon|spinner)(-|$)/.test(fg.part) ? 3 : 4.5
     const same = (o: ComponentToken) => o.part === fg.part && ['fill'].includes(o.property) && o.variant === fg.variant
-    const bg = comp.tokens.find((o) => same(o) && o.state === fg.state) ?? (fg.state ? undefined : comp.tokens.find((o) => same(o) && !o.state))
-    if (!bg) continue
-    const { fg: fgCss, bg: bgCss } = probe(fg.part, fg.private, bg.private)
-    out.push({ fg, bg, ratio: ratio(fgCss, bgCss), fgCss, bgCss })
+    const own = comp.tokens.find((o) => same(o) && o.state === fg.state) ?? (fg.state ? undefined : comp.tokens.find((o) => same(o) && !o.state))
+    if (own) {
+      const { fg: fgCss, bg: bgCss } = probe(fg.part, fg.private, own.private)
+      out.push({ fg, bg: own, ratio: ratio(fgCss, bgCss), min, fgCss, bgCss })
+      continue
+    }
+    const on = fg.on ?? '--background'
+    const owner = allTokens().find((o) => o.name === on || o.private === on)
+    const bg = owner ?? { name: on, private: on, description: on === '--background' ? 'The page background.' : `${on}.` }
+    const fgCss = probe(fg.part, fg.private, fg.private).fg
+    const bgCss = owner ? probe(owner.part, owner.private, owner.private).bg : probe(fg.part, on, on).bg
+    out.push({ fg, bg, ratio: ratio(fgCss, bgCss), min, fgCss, bgCss })
   }
   return out
 }

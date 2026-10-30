@@ -9,7 +9,9 @@
  *   - an @ours token isn't read by any of our components;
  *   - one of our own components has the name of a shadcn registry component
  *     (scripts/tokens/registry-names.json; refresh with --update-registry);
- *   - a foreground token and the fill it sits on are under WCAG AA (4.5:1) and the
+ *   - a foreground token and the fill it sits on (its own part's fill, else the token its
+ *     comment names with @on, else --background) are under WCAG AA (4.5:1 for text,
+ *     3:1 for icon and spinner parts) and the
  *     pair isn't listed in scripts/tokens/contrast-exceptions.json. A listed pair is
  *     "accepted" (a decided exception) or "undecided" (a warning until it's decided;
  *     --strict fails on it, for the release gate).
@@ -126,22 +128,31 @@ const strict = process.argv.includes('--strict')
 const warnings = []
 const pairs = []
 for (const t of parsedTokens) {
-  if (t.property !== 'foreground' || t.state === 'disabled') continue
+  // Disabled text is exempt from WCAG contrast.
+  if (t.property !== 'foreground' || t.state === 'disabled' || /-disabled$/.test(t.slot)) continue
+  // Icons and other non-text graphics need 3:1; text needs 4.5:1.
+  const min = /(^|-)(icon|spinner)(-|$)/.test(t.slot) ? 3 : 4.5
   // An @ours variant isn't a cva key; match it by its name instead.
   const variantOf = (x) => x.variant?.key ?? x.variant?.unresolved
   const same = (o) => o.slot === t.slot && ['', 'fill'].includes(o.property) && variantOf(o) === variantOf(t)
-  const fill =
+  let fill =
     parsedTokens.find((o) => same(o) && o.state === t.state) ??
     (t.state ? null : parsedTokens.find((o) => same(o) && !o.state))
-  if (!fill) continue
+  if (!fill) {
+    // Text with no fill of its own part sits on what is behind it: the page, unless its
+    // comment names another token with @on (a parent part's fill, --card, …).
+    const on = t.on ?? '--background'
+    const owner = parsedTokens.find((o) => o.public === on || o.name === on)
+    fill = { name: owner?.name ?? on, fallback: owner?.fallback ?? `var(${on})` }
+  }
   const fg = resolveColor(t.fallback)
   const bg = resolveColor(fill.fallback)
   if (!fg || !bg) continue
   const ratio = contrast(fg, bg)
   pairs.push({ fg: t.name, bg: fill.name, ratio })
-  if (ratio < 4.5) {
+  if (ratio < min) {
     const ex = exceptions.find((e) => e.foreground === t.name && e.fill === fill.name)
-    const msg = `${t.name} on ${fill.name} is ${ratio.toFixed(2)}:1, under WCAG AA 4.5:1`
+    const msg = `${t.name} on ${fill.name} is ${ratio.toFixed(2)}:1, under WCAG AA ${min}:1`
     if (!ex) fail(`${t.where}: ${msg} (fix the default, or list the pair in contrast-exceptions.json)`)
     else if (ex.status !== 'accepted') (strict ? fail : (m) => warnings.push(m))(`${t.where}: ${msg} (undecided)`)
   }

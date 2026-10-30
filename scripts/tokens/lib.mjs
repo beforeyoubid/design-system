@@ -22,6 +22,8 @@
  * A token's comment can carry directives:
  *   @site <cva group>.<key> | base   which class string to edit (instead of inferring it)
  *   @ours                          read by our own components, not class-edited in ui/
+ *   @on <token>                    for text with no fill on its own part: what it sits on
+ *                                  (default --background), for the contrast check
  * and a rule can carry standalone directives for classes that aren't component tokens:
  *   \/* @add classes *\/            ensure these classes are present (replacing any
  *                                  class of the same property and state)
@@ -181,9 +183,10 @@ export function parseTokenFile(file) {
         name,
         public: v[1],
         fallback: v[2].trim(),
-        description: desc.replace(/@site\s+\S+|@ours/g, '').replace(/\s+/g, ' ').trim(),
+        description: desc.replace(/@(?:site|on)\s+\S+|@ours/g, '').replace(/\s+/g, ' ').trim(),
         site: desc.match(/@site\s+(\S+)/)?.[1] ?? null,
         ours: /@ours\b/.test(desc),
+        on: desc.match(/@on\s+(--[\w-]+)/)?.[1] ?? null,
         line,
       })
       pending = null

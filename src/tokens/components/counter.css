@@ -5,9 +5,9 @@
 [data-slot="counter-value"] {
   /* Colour of the number and icon (navy variant). @ours */
   --_counter-value-navy-foreground: var(--counter-value-navy-foreground, var(--navy));
-  /* Colour of the number and icon (lime variant, for dark sections). @ours */
+  /* Colour of the number and icon (lime variant, for dark sections). @ours @on --navy */
   --_counter-value-lime-foreground: var(--counter-value-lime-foreground, var(--lime));
-  /* Colour of the number and icon (white variant, for dark sections). @ours */
+  /* Colour of the number and icon (white variant, for dark sections). @ours @on --navy */
   --_counter-value-white-foreground: var(--counter-value-white-foreground, var(--white));
 }
 
@@ -16,6 +16,6 @@
   --_counter-label-navy-foreground: var(--counter-label-navy-foreground, var(--dark-75));
   /* Text colour of the label (lime variant). @ours */
   --_counter-label-lime-foreground: var(--counter-label-lime-foreground, var(--dark-75));
-  /* Text colour of the label (white variant). @ours */
+  /* Text colour of the label (white variant). @ours @on --navy */
   --_counter-label-white-foreground: var(--counter-label-white-foreground, var(--white));
 }

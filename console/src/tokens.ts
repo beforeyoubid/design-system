@@ -13,6 +13,8 @@ export interface ComponentToken {
   state: string | null
   property: string
   reads: string[]
+  /** For text with no fill on its own part: the token it sits on (`@on` in its comment). */
+  on: string | null
 }
 
 export interface Manifest {

@@ -1,1 +1,86 @@
-[]
+[
+  {
+    "foreground": "--_accordion-trigger-hover-foreground",
+    "fill": "--background",
+    "status": "undecided",
+    "note": "Accordion trigger text when hovered, mint-45: 2.80:1 on the page background. Options: mint-75 (5.27:1), mint-90 (9.15:1), or accept it."
+  },
+  {
+    "foreground": "--_accordion-trigger-open-foreground",
+    "fill": "--background",
+    "status": "undecided",
+    "note": "Accordion trigger text when open, mint-45: 2.80:1 on the page background. Options: mint-75 (5.27:1), mint-90 (9.15:1), or accept it."
+  },
+  {
+    "foreground": "--_attachment-status-completed-foreground",
+    "fill": "--background",
+    "status": "undecided",
+    "note": "Attachment \"completed\" label, mint-60: 3.36:1 on the page background. Options: mint-75 (5.27:1), mint-90 (9.15:1), or accept it."
+  },
+  {
+    "foreground": "--_badge-link-foreground",
+    "fill": "--background",
+    "status": "undecided",
+    "note": "Link badge text, mint-45: 2.80:1 on the page background. Options: mint-75 (5.27:1), mint-90 (9.15:1), or accept it."
+  },
+  {
+    "foreground": "--_button-ghost-hover-foreground",
+    "fill": "--background",
+    "status": "undecided",
+    "note": "Ghost button text when hovered, mint-45: 2.80:1 on the page background. Options: mint-75 (5.27:1), mint-90 (9.15:1), or accept it."
+  },
+  {
+    "foreground": "--_button-ghost-open-foreground",
+    "fill": "--background",
+    "status": "undecided",
+    "note": "Ghost button text when its menu is open, mint-45: 2.80:1 on the page background. Options: mint-75 (5.27:1), mint-90 (9.15:1), or accept it."
+  },
+  {
+    "foreground": "--_button-link-hover-foreground",
+    "fill": "--background",
+    "status": "undecided",
+    "note": "Link button text when hovered, mint-45: 2.80:1 on the page background. Options: mint-75 (5.27:1), mint-90 (9.15:1), or accept it."
+  },
+  {
+    "foreground": "--_calendar-outside-foreground",
+    "fill": "--background",
+    "status": "undecided",
+    "note": "Calendar days from the next and previous month, dark-45: 2.30:1 on the page background. Options: dark-60 (3.28:1), dark-75 (5.09:1, the same as current-month days), or accept it as de-emphasised text."
+  },
+  {
+    "foreground": "--_dialog-collapsible-toggle-hover-foreground",
+    "fill": "--background",
+    "status": "undecided",
+    "note": "Dialog collapsible toggle text when hovered, mint-45: 2.80:1 on the page background. Options: mint-75 (5.27:1), mint-90 (9.15:1), or accept it."
+  },
+  {
+    "foreground": "--_dropdown-menu-icon-trigger-mint-hover-foreground",
+    "fill": "--background",
+    "status": "undecided",
+    "note": "Mint icon trigger when hovered, mint-45: 2.80:1 on the page background, under 3:1 for icons. Options: mint-60 (3.36:1), mint-75 (5.27:1), or accept it."
+  },
+  {
+    "foreground": "--_field-label-required-foreground",
+    "fill": "--background",
+    "status": "undecided",
+    "note": "Required-field asterisk, mint-45: 2.80:1 on the page background. Options: mint-75 (5.27:1), mint-90 (9.15:1), or accept it."
+  },
+  {
+    "foreground": "--_spinner-foreground",
+    "fill": "--background",
+    "status": "undecided",
+    "note": "Spinner, mint-45: 2.80:1 on the page background, under 3:1 for graphics. Options: mint-60 (3.36:1), mint-75 (5.27:1), or accept it."
+  },
+  {
+    "foreground": "--_tabs-trigger-active-foreground",
+    "fill": "--_tabs-indicator",
+    "status": "undecided",
+    "note": "Active tab text, white on the mint-60 thumb: 3.36:1. Options: a mint-75 thumb (5.27:1), navy text (5.88:1), or accept it."
+  },
+  {
+    "foreground": "--_tabs-trigger-segmented-active-foreground",
+    "fill": "--_tabs-indicator-segmented",
+    "status": "undecided",
+    "note": "Active segment text, white on the mint-45 thumb: 2.80:1. Options: a mint-75 thumb (5.27:1), navy text (7.06:1), or accept it."
+  }
+]

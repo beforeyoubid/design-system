@@ -1553,9 +1553,9 @@
 [class*="(--_counter-value)"] {
   /* Colour of the number and icon (navy variant). @ours */
   --_counter-value-navy-foreground: var(--counter-value-navy-foreground, var(--navy));
-  /* Colour of the number and icon (lime variant, for dark sections). @ours */
+  /* Colour of the number and icon (lime variant, for dark sections). @ours @on --navy */
   --_counter-value-lime-foreground: var(--counter-value-lime-foreground, var(--lime));
-  /* Colour of the number and icon (white variant, for dark sections). @ours */
+  /* Colour of the number and icon (white variant, for dark sections). @ours @on --navy */
   --_counter-value-white-foreground: var(--counter-value-white-foreground, var(--white));
 }
 
@@ -1566,7 +1566,7 @@
   --_counter-label-navy-foreground: var(--counter-label-navy-foreground, var(--dark-75));
   /* Text colour of the label (lime variant). @ours */
   --_counter-label-lime-foreground: var(--counter-label-lime-foreground, var(--dark-75));
-  /* Text colour of the label (white variant). @ours */
+  /* Text colour of the label (white variant). @ours @on --navy */
   --_counter-label-white-foreground: var(--counter-label-white-foreground, var(--white));
 }
 
@@ -4310,7 +4310,7 @@
   --_tabs-trigger-font-weight: var(--tabs-trigger-font-weight, 600);
   /* Text colour of the trigger. */
   --_tabs-trigger-foreground: var(--tabs-trigger-foreground, var(--navy));
-  /* Text colour of the trigger when active. */
+  /* Text colour of the trigger when active. @on --tabs-indicator */
   --_tabs-trigger-active-foreground: var(--tabs-trigger-active-foreground, var(--white));
   /* Height of the trigger (line variant). @ours */
   --_tabs-trigger-line-height: var(--tabs-trigger-line-height, calc(var(--spacing) * 10));
@@ -4334,7 +4334,7 @@
   --_tabs-trigger-segmented-padding-x: var(--tabs-trigger-segmented-padding-x, calc(var(--spacing) * 3));
   /* Text colour of the trigger (segmented variant). @ours */
   --_tabs-trigger-segmented-foreground: var(--tabs-trigger-segmented-foreground, var(--navy));
-  /* Text colour of the trigger (segmented variant) when active. @ours */
+  /* Text colour of the trigger (segmented variant) when active. @ours @on --tabs-indicator-segmented */
   --_tabs-trigger-segmented-active-foreground: var(--tabs-trigger-segmented-active-foreground, var(--white));
 }
 

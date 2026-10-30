@@ -64,6 +64,7 @@ const components = files.map(({ component, file }) => {
         state: p.state,
         property: p.property || 'fill',
         reads: refs(t.fallback),
+        on: t.on,
       })
     }
   }

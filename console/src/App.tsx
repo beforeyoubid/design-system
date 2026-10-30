@@ -58,7 +58,7 @@ export function App() {
   const css = React.useMemo(() => exportCss(overrides), [overrides])
   const changed = Object.keys(overrides).length
   // Failing pairs per section, recomputed whenever the overrides (and so the computed colours) change.
-  const failingIn = React.useMemo(() => new Map(componentNames.map((c) => [c, pairsFor(c).filter((p) => p.ratio < 4.5).length])), [tick])
+  const failingIn = React.useMemo(() => new Map(componentNames.map((c) => [c, pairsFor(c).filter((p) => p.ratio < p.min).length])), [tick])
   const failingRoles = React.useMemo(() => semanticPairs().filter((p) => p.ratio < 4.5).length, [tick])
   const changedIn = (component: string) => manifest.components.find((c) => c.component === component)!.tokens.filter((t) => t.name in overrides).length
 
@@ -249,7 +249,7 @@ function variantHeading(variant: string, inPart: ComponentToken[]) {
 function ComponentTokens({ name, overrides, set, query, tick }: { name: string; overrides: Overrides; set: (n: string, v: string | null) => void; query: string; tick: number }) {
   const comp = manifest.components.find((c) => c.component === name)!
   // Text component tokens whose pair fails AA, recomputed when the overrides change.
-  const failing = React.useMemo(() => new Map(pairsFor(name).filter((p) => p.ratio < 4.5).map((p) => [p.fg.name, p])), [name, tick])
+  const failing = React.useMemo(() => new Map(pairsFor(name).filter((p) => p.ratio < p.min).map((p) => [p.fg.name, p])), [name, tick])
   const tokens = comp.tokens.filter((t) => !query || t.description.toLowerCase().includes(query) || t.name.includes(query) || name.includes(query))
   const parts = [...new Set(tokens.map((t) => t.part))]
   return (
@@ -289,10 +289,10 @@ function ComponentTokens({ name, overrides, set, query, tick }: { name: string; 
 }
 
 // ---------------------------------------------------------------------------
-function Verdict({ ratio, label }: { ratio: number; label: string }) {
-  const pass = ratio >= 4.5
+function Verdict({ ratio, label, min = 4.5 }: { ratio: number; label: string; min?: number }) {
+  const pass = ratio >= min
   return (
-    <span className="pg-verdict" data-pass={pass} title="WCAG AA needs 4.5:1 for body-size text">
+    <span className="pg-verdict" data-pass={pass} title={min === 3 ? 'WCAG AA needs 3:1 for icons and graphics' : 'WCAG AA needs 4.5:1 for body-size text'}>
       {pass ? 'Passes AA' : 'Fails AA'} · {ratio.toFixed(2)}:1 {label}
     </span>
   )
@@ -335,11 +335,11 @@ const knownPair = (p: Pair) => manifest.contrastExceptions.find((e) => e.foregro
 
 function ContrastStrip({ pairs }: { pairs: Pair[] }) {
   if (!pairs.length) return null
-  const failing = pairs.filter((p) => p.ratio < 4.5)
+  const failing = pairs.filter((p) => p.ratio < p.min)
   return (
     <details className="pg-contrast" open={failing.length > 0}>
       <summary>
-        Text contrast: {failing.length ? `${failing.length} of ${pairs.length} pairs fail WCAG AA` : `all ${pairs.length} pairs pass WCAG AA`}
+        Contrast: {failing.length ? `${failing.length} of ${pairs.length} pairs fail WCAG AA` : `all ${pairs.length} pairs pass WCAG AA`}
       </summary>
       <ul>
         {pairs.map((p) => (
@@ -347,14 +347,14 @@ function ContrastStrip({ pairs }: { pairs: Pair[] }) {
             <span className="pg-pair" style={{ color: p.fgCss, background: p.bgCss }}>Aa</span>
             <span className="pg-pair-text">
               {p.fg.description.replace(/\.$/, '')}
-              {p.ratio < 4.5 && knownPair(p) && (
+              {p.ratio < p.min && knownPair(p) && (
                 <span className="pg-pair-note" data-status={knownPair(p)!.status}>
                   <strong>{knownPair(p)!.status === 'undecided' ? 'Yours to decide. ' : 'Accepted. '}</strong>
                   {knownPair(p)!.note}
                 </span>
               )}
             </span>
-            <Verdict ratio={p.ratio} label="" />
+            <Verdict ratio={p.ratio} min={p.min} label="" />
           </li>
         ))}
       </ul>
