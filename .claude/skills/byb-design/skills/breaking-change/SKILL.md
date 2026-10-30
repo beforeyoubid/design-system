@@ -24,7 +24,7 @@ Search the consuming apps for the old name before choosing the rule. They're clo
 
 ### 2. Make the change
 
-Change the package. Update its story, DESIGN.md, `src/index.ts` and the component tokens as the other skills describe (`byb-design:author-component`, `byb-design:add-component-tokens`). Search the package for the old name and fix every use.
+Change the package. Update its story, DESIGN.md, `src/index.ts` and the component tokens as the other skills describe (`byb-design:author-component`, `byb-design:add-component-tokens`). Search the package for the old name and fix every use. Run `pnpm registry:build` so `docs/registry.md` drops the old name, and update `docs/` wherever the guardrails mention it.
 
 ### 3. Pick the rule
 

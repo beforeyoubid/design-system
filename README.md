@@ -9,12 +9,14 @@ Live Storybook: https://storybook.beforeyoubuy.com.au/design-system/
 ## What you get
 
 - Brand colour palette (OKLCH, full Figma parity) — `bg-mint-45`, `bg-electric-blue`, `text-navy`, …
-- shadcn semantic layer — `bg-primary`, `text-foreground`, `bg-destructive`, dark mode, … out of the box
+- shadcn semantic layer — `bg-primary`, `text-foreground`, `bg-destructive`, … out of the box
 - Typography scale — `text-display-1`, `text-h1`, `text-body-4`, `text-button-md`, `text-overline`, …
 - Radius, shadow, spacing, animation tokens
-- Components — opinionated BYB wrappers (`BYBButton`, `BYBCard`, `BYBPillTabs`, …)
+- Components — shadcn on Base UI styled to the BYB design, plus BYB components (`FileUpload`, `Stepper`, `BYBAreaChart`, …). Every one is listed in [`docs/registry.md`](./docs/registry.md)
+- Component tokens — change any component's look from an app's CSS (`--button-radius`, `--card-gap`, …)
 - `cn()` helper with `tailwind-merge` extended for every BYB token
-- `components.json` so `npx shadcn@latest add <component>` works inside this repo
+- Guardrail docs for apps in [`docs/`](./docs/README.md), shipped with the package, and `npx design-system-migrate --check` to report code that breaks them
+- The **BYB Design Console** (`pnpm console`): change any token and see every component update, with contrast checked. Setup: [`console/README.md`](./console/README.md)
 
 ## Requirements
 
@@ -76,7 +78,10 @@ This repo uses **pnpm** (`pnpm@11.9.0` via corepack). Enable it once with `corep
 pnpm install
 pnpm dev          # tsup watch mode
 pnpm storybook    # Storybook at http://localhost:6006
+pnpm console      # the Design Console at http://localhost:6010
 ```
+
+Working with Claude Code in this repo, the `byb-design` skills (`.claude/skills/byb-design/`) load automatically: authoring components, adding component tokens, applying Design Console exports and shipping breaking changes. `CLAUDE.md` says which to use when.
 
 ### Scripts
 
@@ -90,18 +95,34 @@ pnpm storybook    # Storybook at http://localhost:6006
 | `pnpm type-check` | TypeScript strict check (no emit) |
 | `pnpm check-tokens` | Fail if a colour primitive has no utility class or the generated JS tokens are out of date |
 | `pnpm generate-tokens` | Regenerate `src/generated/default-tokens.ts` from `globals.css` |
-| `pnpm test:migrate` | Run the `design-system-migrate` codemod tests |
+| `pnpm test:migrate` | Run the `design-system-migrate` codemod and `--check` tests |
+| `pnpm console` | The Design Console on port 6010, rebuilt as token files change |
+| `pnpm console:build` | One self-contained page, `console/dist/design-console.html` |
+| `pnpm tokens:apply` | Token files → class strings in `src/components/ui` |
+| `pnpm tokens:build` | Regenerate `index.css`, the Design Console manifest and the DESIGN.md token table |
+| `pnpm tokens:import <file>` | Make a Design Console export the defaults (`--dry-run` to preview) |
+| `pnpm check-component-tokens` | Fail if a token file and the ui classes disagree, a name is wrong or contrast fails |
+| `pnpm registry:build` | Regenerate `docs/registry.md` |
+| `pnpm check-registry` | Fail if `docs/registry.md` is stale or a story has no description |
+
+## Using it in an app
+
+Point the app's `CLAUDE.md` (or `AGENTS.md`) at the guardrails, so agents read them before writing UI:
+
+> Before writing UI, read `node_modules/@beforeyoubid/design-system/docs/README.md`.
+
+Before committing, `npx design-system-migrate --check --changed` lists guardrail findings on the lines you changed.
 
 ## Generating new components
 
 This package is configured for the shadcn CLI:
 
 ```bash
-npx shadcn@latest add button
+pnpm dlx shadcn@latest add button
 # generates src/components/ui/button.tsx wired against our semantic tokens
 ```
 
-Customize the generated file, then re-export from `src/index.ts`.
+Don't hand-edit the generated file. Give it a token file in `src/tokens/components/`, then `pnpm tokens:apply`, `pnpm tokens:build` and `pnpm check-component-tokens`; changes to structure or behaviour go in a wrapper in `src/components/`. Re-export from `src/index.ts` and add a story. `CLAUDE.md` has the details, and the `byb-design:author-component` skill walks through it.
 
 ## Publishing
 
@@ -157,7 +178,7 @@ v1.x targeted Tailwind v3 with a `tailwind.config.ts` extension. v2.0 moves ever
 
 ## CI
 
-Every PR runs: token sanity check → type-check → lint → migrator tests → build → Storybook build.
+Every PR runs: token sanity check → component tokens → component registry → type-check → lint → migrator tests → build → Storybook build.
 
 Merging to `main` triggers an automatic Storybook deploy to S3 + CloudFront invalidation.
 
