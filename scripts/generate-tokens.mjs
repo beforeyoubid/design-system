@@ -10,6 +10,7 @@
  * Reads:
  *   - colour primitives in :root   (`--mint-45: oklch(…); /* #00AE95 *\/`)
  *   - product badge aliases        (`--badge-product-bpi: var(--category-01);`)
+ *   - semantic colour roles        (`--primary: var(--mint-45);`, any alias with a --color-* utility)
  *   - text styles in :root        (`--text-h1`, `--text-h1--line-height`, …)
  *   - letter-spacing / uppercase   (the `.text-*` rules in utilities.css)
  */
@@ -73,6 +74,16 @@ for (const [, name, ref] of rootBlock.matchAll(/^\s*--badge-product-([\w-]+):\s*
   badgeProductAliases[toCamel(name)] = toCamel(ref)
 }
 
+// Semantic roles alias a colour token, like --primary: var(--mint-45). A role is an alias with a
+// --color-* utility in @theme inline, which leaves out non-colour aliases like --radius.
+const semanticAliases = {}
+for (const [, name, ref] of rootBlock.matchAll(/^\s*--([\w-]+):\s*var\(--([\w-]+)\);/gm)) {
+  if (name.startsWith('badge-product-') || hexByVar[name] || !exposed.has(name)) continue
+  if (!hexByVar[ref]) throw new Error(`--${name} points at --${ref}, which isn't a colour primitive`)
+  if (colors[toCamel(name)]) throw new Error(`--${name} has the same JS name as a colour primitive`)
+  semanticAliases[toCamel(name)] = toCamel(ref)
+}
+
 // ---------- Typography ----------
 const textRules = {}
 for (const [, selectors, body] of utilities.matchAll(/((?:\s*\.text-[\w-]+\s*,?)+)\{([^}]*)\}/g)) {
@@ -113,6 +124,9 @@ const output = `// Generated from globals.css and utilities.css by scripts/gener
 
 export const defaultColors = ${literal(colors)} as const
 
+// Each semantic role names the colour token it uses, as in globals.css.
+export const defaultSemanticAliases = ${literal(semanticAliases)} as const
+
 // Each product badge names the colour token it uses, as in globals.css.
 export const defaultBadgeProductAliases = ${literal(badgeProductAliases)} as const
 
@@ -130,7 +144,7 @@ if (process.argv.includes('--check')) {
   fs.mkdirSync(path.dirname(outFile), { recursive: true })
   fs.writeFileSync(outFile, output)
   console.log(
-    `✅ Wrote ${path.relative(root, outFile)}: ${Object.keys(colors).length} colours, ` +
+    `✅ Wrote ${path.relative(root, outFile)}: ${Object.keys(colors).length} colours, ${Object.keys(semanticAliases).length} semantic roles, ` +
       `${Object.keys(badgeProductAliases).length} product badges, ${Object.keys(typography).length} text styles.`,
   )
 }

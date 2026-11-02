@@ -91,6 +91,46 @@ export const defaultColors = {
   category35: '#5C6BC0'
 } as const
 
+// Each semantic role names the colour token it uses, as in globals.css.
+export const defaultSemanticAliases = {
+  background: 'white',
+  foreground: 'dark100',
+  card: 'white',
+  cardForeground: 'dark100',
+  popover: 'white',
+  popoverForeground: 'dark100',
+  primary: 'mint45',
+  primaryForeground: 'navy',
+  secondary: 'lightL2',
+  secondaryForeground: 'dark100',
+  muted: 'lightL1',
+  mutedForeground: 'dark75',
+  accent: 'mintL3',
+  accentForeground: 'mint90',
+  destructive: 'error75',
+  destructiveForeground: 'white',
+  success: 'mint15',
+  successForeground: 'mint90',
+  warning: 'warning45',
+  warningForeground: 'dark100',
+  border: 'dark15',
+  input: 'dark45',
+  ring: 'mint45',
+  chart1: 'mint45',
+  chart2: 'teal',
+  chart3: 'electricBlue',
+  chart4: 'warning30',
+  chart5: 'error60',
+  sidebar: 'lightL1',
+  sidebarForeground: 'dark100',
+  sidebarPrimary: 'mint45',
+  sidebarPrimaryForeground: 'white',
+  sidebarAccent: 'mintL3',
+  sidebarAccentForeground: 'mint90',
+  sidebarBorder: 'dark15',
+  sidebarRing: 'mint45'
+} as const
+
 // Each product badge names the colour token it uses, as in globals.css.
 export const defaultBadgeProductAliases = {
   bpi: 'category01',

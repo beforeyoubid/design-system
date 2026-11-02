@@ -2416,6 +2416,7 @@ export const tokens = generateDesignSystemTokens({
 })
 
 tokens.colors.mint45                  // '#00A08A'
+tokens.colors.primary                 // follows colors.mint45; use a role where one fits
 tokens.badgeProductColors.bpi         // follows colors.category01
 tokens.typography.h1                  // { fontSize: '40px', lineHeight: '1.2', fontWeight: 600, letterSpacing: '-0.005em' }
 ```

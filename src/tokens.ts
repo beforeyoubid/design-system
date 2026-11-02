@@ -11,14 +11,19 @@
 //   })
 //
 //   tokens.colors.mint45           // '#00A08A'
+//   tokens.colors.primary          // '#00A08A': a role follows its colour token
 //   tokens.typography.h1.fontSize  // '40px'
 import {
   defaultBadgeProductAliases,
   defaultColors,
+  defaultSemanticAliases,
   defaultTypography,
 } from './generated/default-tokens'
 
-export type ColorToken = keyof typeof defaultColors
+export type BrandColorToken = keyof typeof defaultColors
+export type SemanticColorToken = keyof typeof defaultSemanticAliases
+/** A brand colour (`mint45`) or a semantic role (`primary`, `mutedForeground`). */
+export type ColorToken = BrandColorToken | SemanticColorToken
 export type BadgeProductToken = keyof typeof defaultBadgeProductAliases
 export type TypographyToken = keyof typeof defaultTypography
 
@@ -31,6 +36,7 @@ export interface TypographyStyle {
 }
 
 export interface DesignSystemTokens {
+  /** Brand colours and semantic roles. Each role follows its brand colour unless overridden directly. */
   colors: Record<ColorToken, string>
   /** Product badge colours. Each follows its colour token unless overridden directly. */
   badgeProductColors: Record<BadgeProductToken, string>
@@ -51,7 +57,18 @@ export function generateDesignSystemTokens(
 ): DesignSystemTokens {
   const { overrides = {} } = options
 
-  const colors = { ...defaultColors, ...overrides.colors } as Record<ColorToken, string>
+  const brand = Object.fromEntries(
+    (Object.keys(defaultColors) as BrandColorToken[]).map((token) => [token, overrides.colors?.[token] ?? defaultColors[token]]),
+  ) as Record<BrandColorToken, string>
+
+  const semantic = Object.fromEntries(
+    (Object.keys(defaultSemanticAliases) as SemanticColorToken[]).map((role) => [
+      role,
+      overrides.colors?.[role] ?? brand[defaultSemanticAliases[role]],
+    ]),
+  ) as Record<SemanticColorToken, string>
+
+  const colors: Record<ColorToken, string> = { ...brand, ...semantic }
 
   const badgeProductColors = Object.fromEntries(
     (Object.keys(defaultBadgeProductAliases) as BadgeProductToken[]).map((product) => [
