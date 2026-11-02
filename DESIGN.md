@@ -435,9 +435,9 @@ Product icons, names and badge colours come from `productBadges` (`src/lib/produ
 
 | Variant | Look |
 |---|---|
-| `pill` (default) | White track with `dark-15` border, sliding `mint-60` pill, active text white |
+| `pill` | White track with `dark-15` border, sliding `mint-60` pill, active text white |
 | `line` | Underline row, 3px `mint-60` indicator, inactive `dark-100` → hover `dark-75`, active `navy` (same in vertical) |
-| `segmented` | `light-l2` track, sliding `mint-45` segment, active text white |
+| `segmented` (default) | `light-l2` track, sliding `mint-45` segment, active text white |
 
 All triggers: `text-body-5 font-semibold tracking-button uppercase`. Indicator slides with `ease-snappy` 300ms; panels slide 0.5rem. `TabsContent panel` gives a `rounded-xl` bordered panel. Supports vertical orientation.
 
@@ -669,7 +669,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>alert</strong> (14)</summary>
+<summary><strong>alert</strong> (23)</summary>
 
 | Component token | What it changes | Default |
 |---|---|---|
@@ -683,6 +683,15 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--alert-destructive` | Fill colour of the alert (destructive variant). | `var(--error-l1)` |
 | `--alert-destructive-border` | Border colour of the alert (destructive variant). | `var(--error-15)` |
 | `--alert-destructive-foreground` | Text colour of the alert (destructive variant). | `var(--destructive)` |
+| `--alert-success` | Fill colour of the alert (success variant). | `var(--success-l1)` |
+| `--alert-success-border` | Border colour of the alert (success variant). | `var(--success-15)` |
+| `--alert-success-foreground` | Text colour of the alert (success variant). | `var(--success-75)` |
+| `--alert-warning` | Fill colour of the alert (warning variant). | `var(--warning-l2)` |
+| `--alert-warning-border` | Border colour of the alert (warning variant). | `var(--warning-15)` |
+| `--alert-warning-foreground` | Text colour of the alert (warning variant). | `var(--warning-75)` |
+| `--alert-info` | Fill colour of the alert (info variant). | `var(--mint-l4)` |
+| `--alert-info-border` | Border colour of the alert (info variant). | `var(--mint-l2)` |
+| `--alert-info-foreground` | Text colour of the alert (info variant). | `var(--mint-90)` |
 | `--alert-with-icon-gap` | Gap between the icon and the text of an alert with an icon. | `calc(var(--spacing) * 2.5)` |
 | `--alert-with-action-padding-x` | Right padding of an alert with an action button (room for the button). | `calc(var(--spacing) * 18)` |
 | `--alert-title-font-weight` | Font weight of the title. | `500` |

@@ -112,7 +112,7 @@ export const PROP_RENAMES = {
     variant: { default: 'gray', secondary: 'gray', outline: 'gray', destructive: 'error', cobalt: 'electric-blue' },
   },
   Switch: { size: { default: 'md' } },
-  TabsList: { variant: { default: 'pill', pills: 'pill' } },
+  TabsList: { variant: { default: 'segmented', pills: 'pill' } },
 }
 // The cva helpers take the same props: buttonVariants({ variant: 'outline' })
 const VARIANT_HELPERS = { buttonVariants: 'Button', badgeVariants: 'Badge' }

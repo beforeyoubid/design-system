@@ -33,7 +33,7 @@ export type { ChartFrameProps, ChartLegendListProps, ChartLegendItem } from './c
 // components/<name>.tsx re-exports the stock module and is exported instead.
 // =============================================================================
 export * from './components/accordion'
-export * from './components/ui/alert'
+export * from './components/alert'
 export * from './components/ui/alert-dialog'
 export * from './components/ui/aspect-ratio'
 export * from './components/attachment'

@@ -1390,6 +1390,141 @@
      "on": null
     },
     {
+     "name": "--alert-success",
+     "private": "--_alert-success",
+     "default": "var(--success-l1)",
+     "description": "Fill colour of the alert (success variant).",
+     "type": "color",
+     "part": "alert",
+     "variant": "success",
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--success-l1"
+     ],
+     "on": null
+    },
+    {
+     "name": "--alert-success-border",
+     "private": "--_alert-success-border",
+     "default": "var(--success-15)",
+     "description": "Border colour of the alert (success variant).",
+     "type": "color",
+     "part": "alert",
+     "variant": "success",
+     "state": null,
+     "property": "border",
+     "reads": [
+      "--success-15"
+     ],
+     "on": null
+    },
+    {
+     "name": "--alert-success-foreground",
+     "private": "--_alert-success-foreground",
+     "default": "var(--success-75)",
+     "description": "Text colour of the alert (success variant).",
+     "type": "color",
+     "part": "alert",
+     "variant": "success",
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--success-75"
+     ],
+     "on": null
+    },
+    {
+     "name": "--alert-warning",
+     "private": "--_alert-warning",
+     "default": "var(--warning-l2)",
+     "description": "Fill colour of the alert (warning variant).",
+     "type": "color",
+     "part": "alert",
+     "variant": "warning",
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--warning-l2"
+     ],
+     "on": null
+    },
+    {
+     "name": "--alert-warning-border",
+     "private": "--_alert-warning-border",
+     "default": "var(--warning-15)",
+     "description": "Border colour of the alert (warning variant).",
+     "type": "color",
+     "part": "alert",
+     "variant": "warning",
+     "state": null,
+     "property": "border",
+     "reads": [
+      "--warning-15"
+     ],
+     "on": null
+    },
+    {
+     "name": "--alert-warning-foreground",
+     "private": "--_alert-warning-foreground",
+     "default": "var(--warning-75)",
+     "description": "Text colour of the alert (warning variant).",
+     "type": "color",
+     "part": "alert",
+     "variant": "warning",
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--warning-75"
+     ],
+     "on": null
+    },
+    {
+     "name": "--alert-info",
+     "private": "--_alert-info",
+     "default": "var(--mint-l4)",
+     "description": "Fill colour of the alert (info variant).",
+     "type": "color",
+     "part": "alert",
+     "variant": "info",
+     "state": null,
+     "property": "fill",
+     "reads": [
+      "--mint-l4"
+     ],
+     "on": null
+    },
+    {
+     "name": "--alert-info-border",
+     "private": "--_alert-info-border",
+     "default": "var(--mint-l2)",
+     "description": "Border colour of the alert (info variant).",
+     "type": "color",
+     "part": "alert",
+     "variant": "info",
+     "state": null,
+     "property": "border",
+     "reads": [
+      "--mint-l2"
+     ],
+     "on": null
+    },
+    {
+     "name": "--alert-info-foreground",
+     "private": "--_alert-info-foreground",
+     "default": "var(--mint-90)",
+     "description": "Text colour of the alert (info variant).",
+     "type": "color",
+     "part": "alert",
+     "variant": "info",
+     "state": null,
+     "property": "foreground",
+     "reads": [
+      "--mint-90"
+     ],
+     "on": null
+    },
+    {
      "name": "--alert-with-icon-gap",
      "private": "--_alert-with-icon-gap",
      "default": "calc(var(--spacing) * 2.5)",

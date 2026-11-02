@@ -171,6 +171,24 @@
   --_alert-destructive-border: var(--alert-destructive-border, var(--error-15));
   /* Text colour of the alert (destructive variant). */
   --_alert-destructive-foreground: var(--alert-destructive-foreground, var(--destructive));
+  /* Fill colour of the alert (success variant). @ours */
+  --_alert-success: var(--alert-success, var(--success-l1));
+  /* Border colour of the alert (success variant). @ours */
+  --_alert-success-border: var(--alert-success-border, var(--success-15));
+  /* Text colour of the alert (success variant). @ours */
+  --_alert-success-foreground: var(--alert-success-foreground, var(--success-75));
+  /* Fill colour of the alert (warning variant). @ours */
+  --_alert-warning: var(--alert-warning, var(--warning-l2));
+  /* Border colour of the alert (warning variant). @ours */
+  --_alert-warning-border: var(--alert-warning-border, var(--warning-15));
+  /* Text colour of the alert (warning variant). @ours */
+  --_alert-warning-foreground: var(--alert-warning-foreground, var(--warning-75));
+  /* Fill colour of the alert (info variant). @ours */
+  --_alert-info: var(--alert-info, var(--mint-l4));
+  /* Border colour of the alert (info variant). @ours */
+  --_alert-info-border: var(--alert-info-border, var(--mint-l2));
+  /* Text colour of the alert (info variant). @ours */
+  --_alert-info-foreground: var(--alert-info-foreground, var(--mint-90));
   /* Gap between the icon and the text of an alert with an icon. */
   --_alert-with-icon-gap: var(--alert-with-icon-gap, calc(var(--spacing) * 2.5));
   /* Right padding of an alert with an action button (room for the button). */

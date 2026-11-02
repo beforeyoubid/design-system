@@ -26,11 +26,11 @@ Stacked sections that expand one at a time or several at once. For FAQs and long
 
 A message that stays on the page: info, success, warning or destructive. For passing news use a toast instead.
 
-**Exports:** `Alert`, `AlertTitle`, `AlertDescription`, `AlertAction`
+**Exports:** `Alert`, `AlertTitle`, `AlertDescription`, `AlertAction`, `alertVariants`
 
-<details><summary>14 component tokens</summary>
+<details><summary>23 component tokens</summary>
 
-`--alert-gap` `--alert-radius` `--alert-padding-x` `--alert-padding-y` `--alert-default` `--alert-default-border` `--alert-default-foreground` `--alert-destructive` `--alert-destructive-border` `--alert-destructive-foreground` `--alert-with-icon-gap` `--alert-with-action-padding-x` `--alert-title-font-weight` `--alert-description-foreground`
+`--alert-gap` `--alert-radius` `--alert-padding-x` `--alert-padding-y` `--alert-default` `--alert-default-border` `--alert-default-foreground` `--alert-destructive` `--alert-destructive-border` `--alert-destructive-foreground` `--alert-success` `--alert-success-border` `--alert-success-foreground` `--alert-warning` `--alert-warning-border` `--alert-warning-foreground` `--alert-info` `--alert-info-border` `--alert-info-foreground` `--alert-with-icon-gap` `--alert-with-action-padding-x` `--alert-title-font-weight` `--alert-description-foreground`
 
 </details>
 
@@ -712,7 +712,7 @@ Data table with BYB typography: uppercase `text-overline` headers in `dark-100` 
 
 ## Tabs
 
-Tabs switch between related views. Set `variant` on `TabsList` (`pill`, `line` or `segmented`; default `pill`) and every `TabsTrigger` inside follows it.
+Tabs switch between related views. Set `variant` on `TabsList` (`pill`, `line` or `segmented`; default `segmented`) and every `TabsTrigger` inside follows it.
 
 **Exports:** `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`, `tabsListVariants`, `tabsTriggerVariants`, `tabsIndicatorVariants`, `tabsContentVariants`
 

@@ -88,6 +88,7 @@ test('renames component variants on package components', () => {
         '<Badge variant="destructive">Late</Badge>',
         '<Switch size="default" />',
         '<TabsList variant="pills">',
+        '<TabsList variant="default">',
       ].join('\n'),
     ),
   )
@@ -96,6 +97,7 @@ test('renames component variants on package components', () => {
   assert.match(text, /<Badge variant="error">/)
   assert.match(text, /<Switch size="md" \/>/)
   assert.match(text, /<TabsList variant="pill">/)
+  assert.match(text, /<TabsList variant="segmented">/)
   assert.equal(reviews.length, 0)
 })
 

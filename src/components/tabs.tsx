@@ -30,14 +30,14 @@ const tabsListVariants = cva(
       },
     },
     defaultVariants: {
-      variant: "pill",
+      variant: "segmented",
     },
   }
 )
 
 type TabsVariant = NonNullable<VariantProps<typeof tabsListVariants>["variant"]>
 
-const TabsVariantContext = React.createContext<TabsVariant>("pill")
+const TabsVariantContext = React.createContext<TabsVariant>("segmented")
 
 // Triggers sit above the indicator (z-10). Only `color` transitions once a tab
 // is active — a fading hover background would paint over the indicator as it
@@ -53,7 +53,7 @@ const tabsTriggerVariants = cva(
       },
     },
     defaultVariants: {
-      variant: "pill",
+      variant: "segmented",
     },
   }
 )
@@ -73,22 +73,22 @@ const tabsIndicatorVariants = cva(
         segmented: "top-0 left-0 h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) translate-y-(--active-tab-top) rounded-(--_tabs-indicator-segmented-radius) bg-(--_tabs-indicator-segmented) shadow-xs",
       },
     },
-    defaultVariants: { variant: "pill" },
+    defaultVariants: { variant: "segmented" },
   }
 )
 
 /**
- * Stock `TabsList` plus the `pill` (default), `line` and `segmented` looks and
+ * Stock `TabsList` plus the `segmented` (default), `pill` and `line` looks and
  * a sliding indicator under the active tab.
  */
 function TabsList({
   className,
-  variant = "pill",
+  variant = "segmented",
   children,
   ...props
 }: Omit<React.ComponentProps<typeof TabsListBase>, "variant"> &
   VariantProps<typeof tabsListVariants>) {
-  const resolved = variant ?? "pill"
+  const resolved = variant ?? "segmented"
   return (
     <TabsVariantContext.Provider value={resolved}>
       <TabsListBase

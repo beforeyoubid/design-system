@@ -5,7 +5,7 @@ const meta: Meta<typeof TabsList> = {
   title: 'BYB Components/Tabs',
   component: TabsList,
   tags: ['autodocs'],
-  args: { variant: 'pill' },
+  args: { variant: 'segmented' },
   argTypes: {
     variant: {
       control: 'inline-radio',
@@ -13,7 +13,7 @@ const meta: Meta<typeof TabsList> = {
       description: 'Visual style of the tab list. Triggers inherit it automatically.',
       table: {
         type: { summary: "'pill' | 'line' | 'segmented'" },
-        defaultValue: { summary: 'pill' },
+        defaultValue: { summary: 'segmented' },
       },
     },
   },
@@ -22,7 +22,7 @@ const meta: Meta<typeof TabsList> = {
     docs: {
       description: {
         component:
-          'Tabs switch between related views. Set `variant` on `TabsList` (`pill`, `line` or `segmented`; default `pill`) and every `TabsTrigger` inside follows it.',
+          'Tabs switch between related views. Set `variant` on `TabsList` (`pill`, `line` or `segmented`; default `segmented`) and every `TabsTrigger` inside follows it.',
       },
     },
   },
