@@ -37,7 +37,7 @@ npx design-system-check --changed --fix
 - text sizes on the type scale (`text-sm` → `text-body-5`, `text-[16px]` → `text-body-4`; with `font-semibold` or bolder, a size a heading shares becomes the heading, so `text-2xl font-semibold` → `text-h4`), and a `leading-[…]` the type class already sets is dropped
 - brand colours with an identical semantic token, `w-N h-N` → `size-N`, icon imports, and dropping `dark:` classes
 
-Text sizes between two steps (`text-[13px]`, `text-3xl`) are listed with the steps either side. Add `--nearest` to snap them to the nearer one (a tie goes to the larger), then check those screens. Values with nothing to swap to (`%`, viewport units, `calc()`, grid templates) aren't flagged. `translate-x`, `origin-left`, `bg-right` and `object-left` have no logical twin, so they're listed for you to check in right-to-left.
+Text sizes between two steps (`text-[13px]`, `text-3xl`) are listed with the steps either side. Add `--nearest` to snap them to the nearer one (a tie goes to the larger), then check those screens. Values with nothing to swap to (`%`, viewport units, `calc()`, grid templates) aren't flagged. `translate-x`, `origin-left`, `bg-right` and `object-left` have no logical twin, so they're listed for you to check in right-to-left. Classes 2.0 removed (`text-medium-sm`, `text-heading-lg`, `text-btn-md`, `rounded-btn`, `bg-cobalt`, …) generate no CSS, so they're listed with what replaced them; `npx design-system-migrate` renames them.
 
 Already committed? Check the commits instead:
 

@@ -67,6 +67,19 @@ test('a line-height the type class already sets is dropped; a different one stay
   assert.equal(fixed('text-[16px] leading-[1.4] md:text-h1'), 'text-body-4 leading-[1.4] md:text-h1')
 })
 
+test('classes 2.0 removed are flagged with what replaced them, and not fixed', () => {
+  assert.deepEqual(uses('text-medium-sm md:text-heading-lg text-btn-md hover:tracking-btn rounded-t-btn bg-cobalt-l1/50 text-xs'), [
+    'removed-class: text-medium-sm → text-body-5 font-medium',
+    'removed-class: md:text-heading-lg → md:text-h1',
+    'removed-class: text-btn-md → text-button-md',
+    'removed-class: hover:tracking-btn → hover:tracking-button',
+    'removed-class: rounded-t-btn → rounded-t-xl',
+    'removed-class: bg-cobalt-l1/50 → bg-electric-blue-l1/50',
+    'type-scale: text-xs → text-caption-1',
+  ])
+  assert.equal(fixed('text-medium-sm rounded-btn'), 'text-medium-sm rounded-btn')
+})
+
 test('directions with no logical twin are flagged for review; centring is not', () => {
   assert.deepEqual(uses('origin-top-left translate-x-full bg-right object-left'), [
     'direction-review: origin-top-left',

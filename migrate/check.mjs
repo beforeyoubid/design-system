@@ -6,8 +6,10 @@
  */
 
 import { readFileSync } from 'node:fs'
+import { CLASS_RENAMES } from './rules.mjs'
 
 const RULES = {
+  'removed-class': 'This class was removed in 2.0 and does nothing: it generates no CSS',
   'logical-direction': 'Use logical sides (start/end) so layouts flip for right-to-left',
   'direction-review': "This has no logical twin: check it still reads right when the layout flips for right-to-left",
   'arbitrary-value': 'Use a token or utility instead of an arbitrary [value]',
@@ -46,6 +48,11 @@ const RADIUS_BY_PX = new Map([[0, 'none'], ...[...GLOBALS.matchAll(/--radius-(\w
 const TRACKING = Object.fromEntries([...GLOBALS.matchAll(/--tracking-(\w+):\s*(-?[\d.]+em);/g)].map(([, name, value]) => [value.replace(/^(-?)0\./, '$1.'), name]))
 const BRAND_BY_HEX = new Map()
 for (const [, name, hex] of GLOBALS.matchAll(/--([a-z][\w-]*):\s*oklch\([^)]*\);\s*\/\*\s*#([0-9a-f]{6})/gi)) if (!BRAND_BY_HEX.has(hex.toLowerCase())) BRAND_BY_HEX.set(hex.toLowerCase(), name)
+
+// 1.1.x classes that 2.0 removed, with what replaced them. text-xs isn't one: it's Tailwind's 12px again.
+const REMOVED = new Map(Object.entries(CLASS_RENAMES).filter(([from]) => from !== 'text-xs'))
+const REMOVED_RADIUS = /^rounded(-[a-z]{1,2})?-btn$/
+const REMOVED_COBALT = /^([a-z-]+)-cobalt(-l1)?(\/.+)?$/
 
 // Tailwind's own text sizes, in px.
 const TAILWIND_SIZES = { xs: 12, sm: 14, base: 16, lg: 18, xl: 20, '2xl': 24, '3xl': 30, '4xl': 36, '5xl': 48, '6xl': 60, '7xl': 72, '8xl': 96, '9xl': 128 }
@@ -156,6 +163,12 @@ export function checkClasses(classes, options = {}) {
     }
     const report = (rule, use) => steps.push({ rule, found: token, ...(use ? { use } : {}) })
     let m
+
+    // Removed in 2.0: a warning only, with what replaced it.
+    const base = utility.replace(/\/.+$/, '')
+    if (REMOVED.has(base)) report('removed-class', REMOVED.get(base).split(' ').map((c) => prefix + bang + c).join(' '))
+    else if ((m = utility.match(REMOVED_RADIUS))) report('removed-class', `${prefix}${bang}rounded${m[1] ?? ''}-xl`)
+    else if ((m = utility.match(REMOVED_COBALT))) report('removed-class', `${prefix}${bang}${m[1]}-electric-blue${m[2] ?? ''}${m[3] ?? ''}`)
 
     // Arbitrary values that are already on a scale.
     if ((m = utility.match(/^(-?)([a-z][\w-]*)-\[var\((--[\w-]+)\)\](\/.+)?$/))) fix('arbitrary-value', `${m[1]}${m[2]}-(${m[3]})${m[4] ?? ''}`)
