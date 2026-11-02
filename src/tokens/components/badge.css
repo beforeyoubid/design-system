@@ -7,6 +7,7 @@
   /* @remove(variant.secondary) [a]:hover:bg-secondary/80 */
   /* @remove(variant.destructive) focus-visible:ring-destructive/20 [a]:hover:bg-destructive/20 */
   /* @add text-caption-2 focus-visible:ring-3 */
+  /* @remove aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 */
   /* @add(variant.default) [a]:hover:bg-mint-l1 */
   /* @add has-data-[icon=inline-end]:pe-(--_badge-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_badge-with-icon-padding-x) */
   /* Height of the badge. */
@@ -25,10 +26,6 @@
   --_badge-focus-border: var(--badge-focus-border, var(--ring));
   /* Ring colour of the badge when focused. */
   --_badge-focus-ring: var(--badge-focus-ring, color-mix(in oklab, var(--ring) 50%, transparent));
-  /* Border colour of the badge when invalid. */
-  --_badge-invalid-border: var(--badge-invalid-border, var(--destructive));
-  /* Ring colour of the badge when invalid. */
-  --_badge-invalid-ring: var(--badge-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
   /* Border colour of the badge (default variant). */
   --_badge-default-border: var(--badge-default-border, var(--mint-l1));
   /* Fill colour of the badge (default variant). */
@@ -53,18 +50,6 @@
   --_badge-destructive-font-weight: var(--badge-destructive-font-weight, var(--badge-font-weight, 600));
   /* Text colour of the badge (destructive variant). */
   --_badge-destructive-foreground: var(--badge-destructive-foreground, var(--destructive));
-  /* Border colour of the badge (outline variant). */
-  --_badge-outline-border: var(--badge-outline-border, var(--border));
-  /* Fill colour of the badge (outline variant). */
-  --_badge-outline: var(--badge-outline, color-mix(in oklab, var(--input) 30%, transparent));
-  /* Text colour of the badge (outline variant). */
-  --_badge-outline-foreground: var(--badge-outline-foreground, var(--foreground));
-  /* Fill colour of the badge (ghost variant) when hovered. */
-  --_badge-ghost-hover: var(--badge-ghost-hover, var(--muted));
-  /* Text colour of the badge (ghost variant) when hovered. */
-  --_badge-ghost-hover-foreground: var(--badge-ghost-hover-foreground, var(--muted-foreground));
-  /* Text colour of the badge (link variant). */
-  --_badge-link-foreground: var(--badge-link-foreground, var(--primary));
   /* Border colour of the badge (lime variant). @ours */
   --_badge-lime-border: var(--badge-lime-border, var(--lime));
   /* Fill colour of the badge (lime variant). @ours */

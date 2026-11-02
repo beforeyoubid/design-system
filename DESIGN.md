@@ -787,7 +787,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>badge</strong> (65)</summary>
+<summary><strong>badge</strong> (57)</summary>
 
 | Component token | What it changes | Default |
 |---|---|---|
@@ -799,8 +799,6 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--badge-font-weight` | Font weight of the badge. | `500` |
 | `--badge-focus-border` | Border colour of the badge when focused. | `var(--ring)` |
 | `--badge-focus-ring` | Ring colour of the badge when focused. | `color-mix(in oklab, var(--ring) 50%, transparent)` |
-| `--badge-invalid-border` | Border colour of the badge when invalid. | `var(--destructive)` |
-| `--badge-invalid-ring` | Ring colour of the badge when invalid. | `color-mix(in oklab, var(--destructive) 20%, transparent)` |
 | `--badge-default-border` | Border colour of the badge (default variant). | `var(--mint-l1)` |
 | `--badge-default` | Fill colour of the badge (default variant). | `var(--mint-l2)` |
 | `--badge-default-font-weight` | Font weight of the badge (default variant). | `var(--badge-font-weight, 600)` |
@@ -813,12 +811,6 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--badge-destructive` | Fill colour of the badge (destructive variant). | `var(--error-l1)` |
 | `--badge-destructive-font-weight` | Font weight of the badge (destructive variant). | `var(--badge-font-weight, 600)` |
 | `--badge-destructive-foreground` | Text colour of the badge (destructive variant). | `var(--destructive)` |
-| `--badge-outline-border` | Border colour of the badge (outline variant). | `var(--border)` |
-| `--badge-outline` | Fill colour of the badge (outline variant). | `color-mix(in oklab, var(--input) 30%, transparent)` |
-| `--badge-outline-foreground` | Text colour of the badge (outline variant). | `var(--foreground)` |
-| `--badge-ghost-hover` | Fill colour of the badge (ghost variant) when hovered. | `var(--muted)` |
-| `--badge-ghost-hover-foreground` | Text colour of the badge (ghost variant) when hovered. | `var(--muted-foreground)` |
-| `--badge-link-foreground` | Text colour of the badge (link variant). | `var(--primary)` |
 | `--badge-lime-border` | Border colour of the badge (lime variant). | `var(--lime)` |
 | `--badge-lime` | Fill colour of the badge (lime variant). | `var(--lime)` |
 | `--badge-lime-foreground` | Text colour of the badge (lime variant). | `var(--navy)` |

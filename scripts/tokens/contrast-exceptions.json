@@ -18,12 +18,6 @@
     "note": "Attachment \"completed\" label, mint-60: 3.36:1 on the page background. Options: mint-75 (5.27:1), mint-90 (9.15:1), or accept it."
   },
   {
-    "foreground": "--_badge-link-foreground",
-    "fill": "--background",
-    "status": "undecided",
-    "note": "Link badge text, mint-45: 2.80:1 on the page background. Options: mint-75 (5.27:1), mint-90 (9.15:1), or accept it."
-  },
-  {
     "foreground": "--_button-ghost-hover-foreground",
     "fill": "--background",
     "status": "undecided",
