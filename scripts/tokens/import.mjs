@@ -61,7 +61,10 @@ for (const line of globals.slice(0, darkStart === -1 ? undefined : darkStart)) {
   const m = line.match(/^\s*(--radius-[\w-]+)\s*:\s*([\d.]+)(px|rem)\s*;/)
   if (m && !radii.some((r) => r.name === m[1])) radii.push({ name: m[1], px: m[3] === 'rem' ? +m[2] * 16 : +m[2] })
 }
-const manifest = JSON.parse(fs.readFileSync(path.join(root, 'console', 'src', 'generated', 'manifest.json'), 'utf8'))
+// The console's manifest isn't committed: build it when this clone hasn't yet.
+const manifestFile = path.join(root, 'console', 'src', 'generated', 'manifest.json')
+if (!fs.existsSync(manifestFile)) spawnSync(process.execPath, [...process.execArgv, path.join(root, 'scripts', 'tokens', 'build.mjs')], { cwd: root, stdio: 'ignore' })
+const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'))
 const semanticNames = new Set(manifest.semantic.map((s) => s.name))
 
 // ---------- plan ----------

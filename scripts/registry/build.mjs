@@ -12,13 +12,15 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { parseTokenFile, tokenFiles } from '../tokens/lib.mjs'
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', '..')
 const src = path.join(root, 'src')
 const out = path.join(root, 'docs', 'registry.md')
 const check = process.argv.includes('--check')
-const manifest = JSON.parse(fs.readFileSync(path.join(root, 'console', 'src', 'generated', 'manifest.json'), 'utf8'))
-const tokensByComponent = new Map(manifest.components.map((c) => [c.component, c.tokens.map((t) => t.name)]))
+const tokensByComponent = new Map(
+  tokenFiles().map(({ component, file }) => [component, parseTokenFile(file).rules.flatMap((rule) => rule.tokens.map((t) => t.public))]),
+)
 
 // ---------- exports ----------
 const resolveModule = (spec, from) => {
