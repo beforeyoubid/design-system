@@ -1,0 +1,80 @@
+/* Input Group — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --input-group-min-height: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/input-group.tsx follow from these names. */
+
+[data-slot="input-group"] {
+  /* @remove h-9 has-data-[align=block-end]:rounded-2xl has-data-[align=block-start]:rounded-2xl has-[[data-slot=input-group-control]:focus-visible]:border-ring has-[[data-slot=input-group-control]:focus-visible]:ring-[3px] has-[[data-slot=input-group-control]:focus-visible]:ring-ring/50 has-[[data-slot][aria-invalid=true]]:border-destructive has-[[data-slot][aria-invalid=true]]:ring-[3px] has-[[data-slot][aria-invalid=true]]:ring-destructive/20 has-[textarea]:rounded-xl has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-start]]:h-auto has-[>textarea]:h-auto has-[>[data-align=block-end]]:[&>input]:pt-3 has-[>[data-align=block-start]]:[&>input]:pb-3 has-[>[data-align=inline-end]]:[&>input]:pe-1.5 has-[>[data-align=inline-start]]:[&>input]:ps-1.5 */
+  /* @add transition focus-within:ring-3 has-[[data-slot=input-group-control][aria-invalid=true]]:border-destructive has-[[data-slot=input-group-control][aria-invalid=true]]:focus-within:ring-destructive/20 has-[[data-slot=input-group-control]:disabled]:cursor-not-allowed has-[[data-slot=input-group-control]:disabled]:bg-light-l2 has-[[data-slot=input-group-control]:disabled]:opacity-70 data-[disabled=true]:bg-light-l2 data-[disabled=true]:opacity-70 in-data-[slot=combobox-content]:focus-within:border-dark-45 has-[>textarea]:items-stretch [&>textarea]:px-0 [&>textarea]:py-2.5 */
+  /* Minimum height of the input-group. */
+  --_input-group-min-height: var(--input-group-min-height, calc(var(--spacing) * 10));
+  /* Gap between items of the input-group. */
+  --_input-group-gap: var(--input-group-gap, calc(var(--spacing) * 2));
+  /* Corner radius of the input-group. */
+  --_input-group-radius: var(--input-group-radius, var(--radius-lg));
+  /* Border colour of the input-group. */
+  --_input-group-border: var(--input-group-border, var(--dark-45));
+  /* Fill colour of the input-group. */
+  --_input-group: var(--input-group, var(--white));
+  /* Horizontal padding of the input-group. */
+  --_input-group-padding-x: var(--input-group-padding-x, calc(var(--spacing) * 3));
+  /* Border colour of the input-group when focused. */
+  --_input-group-focus-border: var(--input-group-focus-border, var(--mint-45));
+  /* Ring colour of the input-group when focused. */
+  --_input-group-focus-ring: var(--input-group-focus-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
+}
+
+[data-slot="input-group-addon"] {
+  /* @remove py-2 font-medium */
+  /* @remove(align.inline-start) ps-3 has-[>kbd]:ms-[-0.15rem] */
+  /* @remove(align.inline-end) pe-3 has-[>kbd]:me-[-0.15rem] */
+  /* @remove(align.block-start) px-3 group-has-[>input]/input-group:pt-3 */
+  /* @remove(align.block-end) px-3 group-has-[>input]/input-group:pb-3 */
+  /* @add text-body-5 **:data-[slot=kbd]:rounded-sm **:data-[slot=kbd]:bg-light-l2 */
+  /* @add(align.inline-start) has-[>button]:-ms-1.5 */
+  /* @add(align.inline-end) has-[>button]:-me-1.5 */
+  /* @add(align.block-start) pt-2.5 [.border-b]:pb-2.5 */
+  /* @add(align.block-end) pb-2.5 [.border-t]:pt-2.5 */
+  /* Gap between items of the addon. */
+  --_input-group-addon-gap: var(--input-group-addon-gap, calc(var(--spacing) * 2));
+  /* Text colour of the addon. */
+  --_input-group-addon-foreground: var(--input-group-addon-foreground, var(--dark-75));
+}
+
+[data-slot="input-group-button"] {
+  /* @remove text-sm */
+  /* @add text-overline */
+  /* @remove(size.xs) gap-1 [&>svg:not([class*='size-'])]:size-3.5 */
+  /* @add(size.xs) py-0 [&>svg:not([class*='size-'])]:size-3.5 */
+  /* @add(size.sm) py-0 [&>svg:not([class*='size-'])]:size-4 */
+  /* @add(size.icon-xs) [&>svg:not([class*='size-'])]:size-4 */
+  /* @add(size.icon-sm) [&>svg:not([class*='size-'])]:size-4 */
+  /* Gap between items of the button. */
+  --_input-group-button-gap: var(--input-group-button-gap, calc(var(--spacing) * 1));
+  /* Corner radius of the button. */
+  --_input-group-button-radius: var(--input-group-button-radius, var(--radius-md));
+  /* Height of the button (xs size). */
+  --_input-group-button-xs-height: var(--input-group-button-xs-height, calc(var(--spacing) * 7));
+  /* Horizontal padding of the button (xs size). */
+  --_input-group-button-xs-padding-x: var(--input-group-button-xs-padding-x, calc(var(--spacing) * 2.5));
+  /* Height of the button (sm size). */
+  --_input-group-button-sm-height: var(--input-group-button-sm-height, calc(var(--spacing) * 8));
+  /* Horizontal padding of the button (sm size). */
+  --_input-group-button-sm-padding-x: var(--input-group-button-sm-padding-x, calc(var(--spacing) * 3));
+  /* Width and height of the button (icon-xs size). */
+  --_input-group-button-icon-xs-size: var(--input-group-button-icon-xs-size, calc(var(--spacing) * 7));
+  /* Width and height of the button (icon-sm size). */
+  --_input-group-button-icon-sm-size: var(--input-group-button-icon-sm-size, calc(var(--spacing) * 8));
+}
+
+[data-slot="input-group-control"] {
+  /* @add h-auto disabled:bg-transparent */
+  /* Minimum height of the control. */
+  --_input-group-control-min-height: var(--input-group-control-min-height, calc(var(--spacing) * 9));
+  /* Corner radius of the control. */
+  --_input-group-control-radius: var(--input-group-control-radius, 0);
+  /* Horizontal padding of the control. */
+  --_input-group-control-padding-x: var(--input-group-control-padding-x, calc(var(--spacing) * 0));
+  /* Shadow of the control. */
+  --_input-group-control-shadow: var(--input-group-control-shadow, 0 0 #0000);
+}

@@ -1,0 +1,62 @@
+/* Alert Dialog — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --alert-dialog-overlay: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/alert-dialog.tsx follow from these names. */
+
+[data-slot="alert-dialog-overlay"] {
+  /* Fill colour of the overlay. */
+  --_alert-dialog-overlay: var(--alert-dialog-overlay, color-mix(in oklab, var(--dark-100) 50%, transparent));
+}
+
+[data-slot="alert-dialog-content"] {
+  /* @remove ring-1 ring-foreground/5 */
+  /* @add border */
+  /* Gap between items of the content. */
+  --_alert-dialog-content-gap: var(--alert-dialog-content-gap, calc(var(--spacing) * 6));
+  /* Corner radius of the content. */
+  --_alert-dialog-content-radius: var(--alert-dialog-content-radius, var(--radius-2xl));
+  /* Border colour of the content. */
+  --_alert-dialog-content-border: var(--alert-dialog-content-border, var(--border));
+  /* Fill colour of the content. */
+  --_alert-dialog-content: var(--alert-dialog-content, var(--popover));
+  /* Padding of the content. */
+  --_alert-dialog-content-padding: var(--alert-dialog-content-padding, calc(var(--spacing) * 6));
+  /* Text colour of the content. */
+  --_alert-dialog-content-foreground: var(--alert-dialog-content-foreground, var(--popover-foreground));
+  /* Shadow of the content. */
+  --_alert-dialog-content-shadow: var(--alert-dialog-content-shadow, 0 25px 50px -12px rgb(0 0 0 / 0.25));
+}
+
+[data-slot="alert-dialog-header"] {
+  /* @add has-data-[slot=alert-dialog-media]:gap-x-(--_alert-dialog-header-with-media-gap) */
+  /* Gap between items of the header. */
+  --_alert-dialog-header-gap: var(--alert-dialog-header-gap, calc(var(--spacing) * 1.5));
+  /* Gap between the media and the text of a header with media. */
+  --_alert-dialog-header-with-media-gap: var(--alert-dialog-header-with-media-gap, calc(var(--spacing) * 6));
+}
+
+[data-slot="alert-dialog-footer"] {
+  /* Gap between items of the footer. */
+  --_alert-dialog-footer-gap: var(--alert-dialog-footer-gap, calc(var(--spacing) * 2));
+}
+
+[data-slot="alert-dialog-media"] {
+  /* Width and height of the media. */
+  --_alert-dialog-media-size: var(--alert-dialog-media-size, calc(var(--spacing) * 16));
+  /* Corner radius of the media. */
+  --_alert-dialog-media-radius: var(--alert-dialog-media-radius, var(--radius-full));
+  /* Fill colour of the media. */
+  --_alert-dialog-media: var(--alert-dialog-media, var(--muted));
+}
+
+[data-slot="alert-dialog-title"] {
+  /* @add text-body-3 */
+  /* Font weight of the title. */
+  --_alert-dialog-title-font-weight: var(--alert-dialog-title-font-weight, 500);
+}
+
+[data-slot="alert-dialog-description"] {
+  /* @add text-body-5 */
+  /* Text colour of the description. */
+  --_alert-dialog-description-foreground: var(--alert-dialog-description-foreground, var(--muted-foreground));
+}

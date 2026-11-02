@@ -2,9 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { AspectRatio } from '../../components/ui/aspect-ratio'
 
 const meta: Meta<typeof AspectRatio> = {
-  title: 'shadcn/AspectRatio',
+  title: 'BYB Components/AspectRatio',
   component: AspectRatio,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Keeps media at a fixed width-to-height ratio as its width changes.' } } },
 }
 
 export default meta
@@ -12,7 +13,7 @@ type Story = StoryObj<typeof AspectRatio>
 
 export const Default: Story = {
   render: () => (
-    <div className="w-[400px]">
+    <div className="w-100">
       <AspectRatio ratio={16 / 9} className="bg-light-l2 rounded-lg flex items-center justify-center">
         <span className="text-muted-foreground">16:9</span>
       </AspectRatio>
@@ -22,7 +23,7 @@ export const Default: Story = {
 
 export const Square: Story = {
   render: () => (
-    <div className="w-[200px]">
+    <div className="w-50">
       <AspectRatio ratio={1} className="bg-mint-l3 rounded-lg flex items-center justify-center">
         <span className="text-mint-90">1:1</span>
       </AspectRatio>

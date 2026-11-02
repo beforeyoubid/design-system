@@ -1,0 +1,4 @@
+/* Direction — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --direction-radius: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/direction.tsx follow from these names. */

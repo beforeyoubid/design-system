@@ -8,8 +8,9 @@ import {
 } from '../../components/ui/chart'
 
 const meta: Meta = {
-  title: 'shadcn/Chart',
+  title: 'BYB Components/Chart',
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Recharts wrapper with BYB colours, tooltip and legend. Start from BYBAreaChart or BYBBarChart; use this for other chart types.' } } },
 }
 
 export default meta
@@ -31,7 +32,7 @@ const config = {
 
 export const Bars: Story = {
   render: () => (
-    <ChartContainer config={config} className="h-64 w-[480px]">
+    <ChartContainer config={config} className="h-64 w-120">
       <BarChart data={data}>
         <CartesianGrid vertical={false} />
         <XAxis dataKey="month" tickLine={false} axisLine={false} tickMargin={8} />

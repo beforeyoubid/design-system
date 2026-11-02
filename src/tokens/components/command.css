@@ -1,0 +1,105 @@
+/* Command — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --command-radius: … }
+ * Defaults are the shipped design. Stock wraps the command input in an InputGroup; the wrapper flattens it to a borderless search row. Edited by hand; the class edits in ui/command.tsx follow from these names. */
+
+[data-slot="command"] {
+  /* @remove p-1 */
+  /* @add border text-body-5 in-data-[slot=dialog-content]:rounded-none in-data-[slot=dialog-content]:border-0 in-data-[slot=dialog-content]:shadow-none */
+  /* Corner radius of the command. */
+  --_command-radius: var(--command-radius, var(--radius-lg));
+  /* Border colour of the command. */
+  --_command-border: var(--command-border, var(--light-l3));
+  /* Fill colour of the command. */
+  --_command: var(--command, var(--white));
+  /* Text colour of the command. */
+  --_command-foreground: var(--command-foreground, var(--dark-90));
+  /* Shadow of the command. */
+  --_command-shadow: var(--command-shadow, 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1));
+}
+
+[data-slot="command-input-wrapper"] {
+  /* @remove p-1 pb-0 */
+  /* @add flex shrink-0 items-center border-b *:data-[slot=input-group]:h-full *:data-[slot=input-group]:min-h-0 *:data-[slot=input-group]:border-0 *:data-[slot=input-group]:bg-transparent *:data-[slot=input-group]:px-0 *:data-[slot=input-group]:focus-within:ring-0 */
+  /* Height of the input-wrapper. */
+  --_command-input-wrapper-height: var(--command-input-wrapper-height, calc(var(--spacing) * 11));
+  /* Gap between items of the input-wrapper. */
+  --_command-input-wrapper-gap: var(--command-input-wrapper-gap, calc(var(--spacing) * 2));
+  /* Border colour of the input-wrapper. */
+  --_command-input-wrapper-border: var(--command-input-wrapper-border, var(--light-l3));
+  /* Horizontal padding of the input-wrapper. */
+  --_command-input-wrapper-padding-x: var(--command-input-wrapper-padding-x, calc(var(--spacing) * 3));
+}
+
+[data-slot="command-input"] {
+  /* @remove disabled:opacity-50 */
+  /* @add h-full min-w-0 bg-transparent text-body-5 */
+  /* Text colour of the input. */
+  --_command-input-foreground: var(--command-input-foreground, var(--dark-100));
+  /* Placeholder text colour of the input. */
+  --_command-input-placeholder: var(--command-input-placeholder, var(--dark-90));
+  /* Text colour of the input when disabled. */
+  --_command-input-disabled-foreground: var(--command-input-disabled-foreground, var(--dark-45));
+}
+
+[data-slot="command-list"] {
+  /* @add max-h-80 */
+  /* Padding of the list. */
+  --_command-list-padding: var(--command-list-padding, calc(var(--spacing) * 1));
+}
+
+[data-slot="command-empty"] {
+  /* @add text-body-5 */
+  /* Vertical padding of the empty. */
+  --_command-empty-padding-y: var(--command-empty-padding-y, calc(var(--spacing) * 6));
+  /* Text colour of the empty. */
+  --_command-empty-foreground: var(--command-empty-foreground, var(--dark-75));
+}
+
+[data-slot="command-group"] {
+  /* @remove p-1 **:[[cmdk-group-heading]]:py-2 **:[[cmdk-group-heading]]:font-medium */
+  /* @add **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:pt-2 **:[[cmdk-group-heading]]:pb-1 **:[[cmdk-group-heading]]:text-caption-1 **:[[cmdk-group-heading]]:text-dark-90 */
+  /* Text colour of the group. */
+  --_command-group-foreground: var(--command-group-foreground, var(--dark-90));
+}
+
+[data-slot="command-separator"] {
+  /* @add -mx-1 */
+  /* Height of the separator. */
+  --_command-separator-height: var(--command-separator-height, 1px);
+  /* Fill colour of the separator. */
+  --_command-separator: var(--command-separator, var(--light-l3));
+}
+
+[data-slot="command-item"] {
+  /* @remove py-2 in-data-[slot=dialog-content]:rounded-2xl data-[disabled=true]:opacity-50 data-selected:bg-muted data-selected:text-foreground data-selected:*:[svg]:text-foreground */
+  /* @add cursor-pointer text-body-5 data-[disabled=true]:text-dark-45 */
+  /* Minimum height of the item; it grows when the item wraps or holds a second line. */
+  --_command-item-min-height: var(--command-item-min-height, calc(var(--spacing) * 8));
+  /* Vertical padding of the item. */
+  --_command-item-padding-y: var(--command-item-padding-y, calc(var(--spacing) * 1.5));
+  /* Gap between items of the item. */
+  --_command-item-gap: var(--command-item-gap, calc(var(--spacing) * 2.5));
+  /* Corner radius of the item. */
+  --_command-item-radius: var(--command-item-radius, var(--radius-md));
+  /* Horizontal padding of the item. */
+  --_command-item-padding-x: var(--command-item-padding-x, calc(var(--spacing) * 2));
+  /* Text colour of the item. */
+  --_command-item-foreground: var(--command-item-foreground, var(--dark-90));
+  /* Fill colour of the item when selected. */
+  --_command-item-selected: var(--command-item-selected, var(--mint-l2));
+  /* Text colour of the item when selected. */
+  --_command-item-selected-foreground: var(--command-item-selected-foreground, var(--mint-90));
+}
+
+[data-slot="command-shortcut"] {
+  /* @remove tracking-widest group-data-selected/command-item:text-foreground */
+  /* @add text-caption-1 */
+  /* Text colour of the shortcut. */
+  --_command-shortcut-foreground: var(--command-shortcut-foreground, var(--dark-75));
+}
+
+[data-slot="command-dialog"] {
+  /* Corner radius of the command palette dialog. @ours */
+  --_command-dialog-radius: var(--command-dialog-radius, var(--radius-lg));
+}

@@ -1,0 +1,79 @@
+/* Dialog — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --dialog-overlay: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/dialog.tsx follow from these names. */
+
+[data-slot="dialog-overlay"] {
+  /* Fill colour of the overlay. */
+  --_dialog-overlay: var(--dialog-overlay, color-mix(in oklab, var(--dark-100) 50%, transparent));
+}
+
+[data-slot="dialog-content"] {
+  /* @remove ring-1 ring-foreground/5 sm:max-w-md */
+  /* @add group/dialog flex max-h-11/12 w-11/12 max-w-110 flex-col text-body-5 */
+  /* Corner radius of the content. */
+  --_dialog-content-radius: var(--dialog-content-radius, var(--radius-3xl));
+  /* Gap between items of the content. */
+  --_dialog-content-gap: var(--dialog-content-gap, calc(var(--spacing) * 4));
+  /* Fill colour of the content. */
+  --_dialog-content: var(--dialog-content, var(--white));
+  /* Padding of the content. */
+  --_dialog-content-padding: var(--dialog-content-padding, calc(var(--spacing) * 6));
+  /* Text colour of the content. */
+  --_dialog-content-foreground: var(--dialog-content-foreground, var(--dark-90));
+  /* Shadow of the content. */
+  --_dialog-content-shadow: var(--dialog-content-shadow, 0 25px 50px -12px rgb(0 0 0 / 0.25));
+}
+
+[data-slot="dialog-header"] {
+  /* @add pe-10 text-start */
+  /* Gap between items of the header. */
+  --_dialog-header-gap: var(--dialog-header-gap, calc(var(--spacing) * 1.5));
+}
+
+[data-slot="dialog-footer"] {
+  /* @remove flex-col-reverse sm:flex-row sm:justify-end */
+  /* @add flex-wrap justify-end pt-2 */
+  /* Gap between items of the footer. */
+  --_dialog-footer-gap: var(--dialog-footer-gap, calc(var(--spacing) * 2));
+}
+
+[data-slot="dialog-title"] {
+  /* @add text-body-3 leading-tight */
+  /* Font weight of the title. */
+  --_dialog-title-font-weight: var(--dialog-title-font-weight, 600);
+  /* Text colour of the title. */
+  --_dialog-title-foreground: var(--dialog-title-foreground, var(--navy));
+}
+
+[data-slot="dialog-description"] {
+  /* @add *:[a]:hover:text-navy text-body-5 */
+  /* Text colour of the description. */
+  --_dialog-description-foreground: var(--dialog-description-foreground, var(--dark-90));
+}
+
+[data-slot="dialog-close"] {
+  /* Colour of the close (×) button. @ours */
+  --_dialog-close-foreground: var(--dialog-close-foreground, var(--dark-75));
+  /* Colour of the close button when hovered. @ours */
+  --_dialog-close-hover-foreground: var(--dialog-close-hover-foreground, var(--dark-100));
+}
+
+[data-slot="dialog-collapsible"] {
+  /* Border colour of the dropdown collapsible. @ours */
+  --_dialog-collapsible-border: var(--dialog-collapsible-border, var(--light-l3));
+  /* Text colour of the collapsible content. @ours */
+  --_dialog-collapsible-foreground: var(--dialog-collapsible-foreground, var(--dark-90));
+  /* Text colour of the dropdown row. @ours */
+  --_dialog-collapsible-trigger-foreground: var(--dialog-collapsible-trigger-foreground, var(--navy));
+  /* Text colour of the dropdown row when hovered. @ours */
+  --_dialog-collapsible-trigger-hover-foreground: var(--dialog-collapsible-trigger-hover-foreground, var(--mint-75));
+  /* Chevron colour of the dropdown row. @ours */
+  --_dialog-collapsible-icon-foreground: var(--dialog-collapsible-icon-foreground, var(--dark-75));
+  /* Text colour of the "View more" toggle. @ours */
+  --_dialog-collapsible-toggle-foreground: var(--dialog-collapsible-toggle-foreground, var(--mint-75));
+  /* Text colour of the "View more" toggle when hovered. @ours */
+  --_dialog-collapsible-toggle-hover-foreground: var(--dialog-collapsible-toggle-hover-foreground, var(--mint-45));
+  /* Focus ring of the collapsible toggles. @ours */
+  --_dialog-collapsible-focus-ring: var(--dialog-collapsible-focus-ring, var(--mint-45));
+}

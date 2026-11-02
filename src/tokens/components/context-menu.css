@@ -1,0 +1,125 @@
+/* Context Menu — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --context-menu-content-radius: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/context-menu.tsx follow from these names. */
+
+[data-slot="context-menu-content"] {
+  /* @remove ring-1 ring-foreground/5 */
+  /* @add border */
+  /* Corner radius of the content. */
+  --_context-menu-content-radius: var(--context-menu-content-radius, var(--radius-lg));
+  /* Border colour of the content. */
+  --_context-menu-content-border: var(--context-menu-content-border, var(--border));
+  /* Fill colour of the content. */
+  --_context-menu-content: var(--context-menu-content, var(--popover));
+  /* Padding of the content. */
+  --_context-menu-content-padding: var(--context-menu-content-padding, calc(var(--spacing) * 1));
+  /* Text colour of the content. */
+  --_context-menu-content-foreground: var(--context-menu-content-foreground, var(--popover-foreground));
+  /* Shadow of the content. */
+  --_context-menu-content-shadow: var(--context-menu-content-shadow, 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1));
+}
+
+[data-slot="context-menu-label"] {
+  /* @add text-caption-2 */
+  /* @add data-inset:ps-(--_context-menu-item-inset-padding-x) */
+  /* Horizontal padding of the label. */
+  --_context-menu-label-padding-x: var(--context-menu-label-padding-x, calc(var(--spacing) * 3));
+  /* Vertical padding of the label. */
+  --_context-menu-label-padding-y: var(--context-menu-label-padding-y, calc(var(--spacing) * 2.5));
+  /* Text colour of the label. */
+  --_context-menu-label-foreground: var(--context-menu-label-foreground, var(--muted-foreground));
+}
+
+[data-slot="context-menu-item"] {
+  /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_context-menu-item-inset-padding-x) */
+  /* Gap between items of the item. */
+  --_context-menu-item-gap: var(--context-menu-item-gap, calc(var(--spacing) * 2.5));
+  /* Corner radius of the item. */
+  --_context-menu-item-radius: var(--context-menu-item-radius, var(--radius-md));
+  /* Horizontal padding of the item. */
+  --_context-menu-item-padding-x: var(--context-menu-item-padding-x, calc(var(--spacing) * 3));
+  /* Vertical padding of the item. */
+  --_context-menu-item-padding-y: var(--context-menu-item-padding-y, calc(var(--spacing) * 2));
+  /* Fill colour of the item when focused. */
+  --_context-menu-item-focus: var(--context-menu-item-focus, var(--accent));
+  /* Text colour of the item when focused. */
+  --_context-menu-item-focus-foreground: var(--context-menu-item-focus-foreground, var(--accent-foreground));
+  /* Opacity of the item when disabled. */
+  --_context-menu-item-disabled-opacity: var(--context-menu-item-disabled-opacity, 0.5);
+  /* Left padding of an indented row (inset items, labels and sub-menu triggers). */
+  --_context-menu-item-inset-padding-x: var(--context-menu-item-inset-padding-x, calc(var(--spacing) * 9.5));
+}
+
+[data-slot="context-menu-sub-trigger"] {
+  /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_context-menu-item-inset-padding-x) */
+  /* Corner radius of the sub-trigger. */
+  --_context-menu-sub-trigger-radius: var(--context-menu-sub-trigger-radius, var(--radius-md));
+  /* Horizontal padding of the sub-trigger. */
+  --_context-menu-sub-trigger-padding-x: var(--context-menu-sub-trigger-padding-x, calc(var(--spacing) * 3));
+  /* Vertical padding of the sub-trigger. */
+  --_context-menu-sub-trigger-padding-y: var(--context-menu-sub-trigger-padding-y, calc(var(--spacing) * 2));
+  /* Fill colour of the sub-trigger when focused. */
+  --_context-menu-sub-trigger-focus: var(--context-menu-sub-trigger-focus, var(--accent));
+  /* Text colour of the sub-trigger when focused. */
+  --_context-menu-sub-trigger-focus-foreground: var(--context-menu-sub-trigger-focus-foreground, var(--accent-foreground));
+  /* Fill colour of the sub-trigger while open. */
+  --_context-menu-sub-trigger-open: var(--context-menu-sub-trigger-open, var(--accent));
+  /* Text colour of the sub-trigger while open. */
+  --_context-menu-sub-trigger-open-foreground: var(--context-menu-sub-trigger-open-foreground, var(--accent-foreground));
+}
+
+[data-slot="context-menu-sub-content"] {
+  /* Shadow of the sub-content. */
+  --_context-menu-sub-content-shadow: var(--context-menu-sub-content-shadow, 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1));
+}
+
+[data-slot="context-menu-checkbox-item"] {
+  /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_context-menu-item-inset-padding-x) */
+  /* Gap between items of the checkbox-item. */
+  --_context-menu-checkbox-item-gap: var(--context-menu-checkbox-item-gap, calc(var(--spacing) * 2));
+  /* Corner radius of the checkbox-item. */
+  --_context-menu-checkbox-item-radius: var(--context-menu-checkbox-item-radius, var(--radius-md));
+  /* Vertical padding of the checkbox-item. */
+  --_context-menu-checkbox-item-padding-y: var(--context-menu-checkbox-item-padding-y, calc(var(--spacing) * 2));
+  /* Fill colour of the checkbox-item when focused. */
+  --_context-menu-checkbox-item-focus: var(--context-menu-checkbox-item-focus, var(--accent));
+  /* Text colour of the checkbox-item when focused. */
+  --_context-menu-checkbox-item-focus-foreground: var(--context-menu-checkbox-item-focus-foreground, var(--accent-foreground));
+  /* Opacity of the checkbox-item when disabled. */
+  --_context-menu-checkbox-item-disabled-opacity: var(--context-menu-checkbox-item-disabled-opacity, 0.5);
+}
+
+[data-slot="context-menu-radio-item"] {
+  /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_context-menu-item-inset-padding-x) */
+  /* Gap between items of the radio-item. */
+  --_context-menu-radio-item-gap: var(--context-menu-radio-item-gap, calc(var(--spacing) * 2));
+  /* Corner radius of the radio-item. */
+  --_context-menu-radio-item-radius: var(--context-menu-radio-item-radius, var(--radius-md));
+  /* Vertical padding of the radio-item. */
+  --_context-menu-radio-item-padding-y: var(--context-menu-radio-item-padding-y, calc(var(--spacing) * 2));
+  /* Fill colour of the radio-item when focused. */
+  --_context-menu-radio-item-focus: var(--context-menu-radio-item-focus, var(--accent));
+  /* Text colour of the radio-item when focused. */
+  --_context-menu-radio-item-focus-foreground: var(--context-menu-radio-item-focus-foreground, var(--accent-foreground));
+  /* Opacity of the radio-item when disabled. */
+  --_context-menu-radio-item-disabled-opacity: var(--context-menu-radio-item-disabled-opacity, 0.5);
+}
+
+[data-slot="context-menu-separator"] {
+  /* Height of the separator. */
+  --_context-menu-separator-height: var(--context-menu-separator-height, 1px);
+  /* Fill colour of the separator. */
+  --_context-menu-separator: var(--context-menu-separator, color-mix(in oklab, var(--border) 50%, transparent));
+}
+
+[data-slot="context-menu-shortcut"] {
+  /* @remove tracking-widest */
+  /* @add text-caption-2 tracking-button */
+  /* Text colour of the shortcut. */
+  --_context-menu-shortcut-foreground: var(--context-menu-shortcut-foreground, var(--muted-foreground));
+}

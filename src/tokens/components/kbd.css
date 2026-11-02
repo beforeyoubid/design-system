@@ -1,0 +1,26 @@
+/* Kbd — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --kbd-height: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/kbd.tsx follow from these names. */
+
+[data-slot="kbd"] {
+  /* Height of the kbd. */
+  --_kbd-height: var(--kbd-height, calc(var(--spacing) * 5));
+  /* Gap between items of the kbd. */
+  --_kbd-gap: var(--kbd-gap, calc(var(--spacing) * 1));
+  /* Corner radius of the kbd. */
+  --_kbd-radius: var(--kbd-radius, var(--radius-sm));
+  /* Fill colour of the kbd. */
+  --_kbd: var(--kbd, var(--muted));
+  /* Horizontal padding of the kbd. */
+  --_kbd-padding-x: var(--kbd-padding-x, calc(var(--spacing) * 1));
+  /* Font weight of the kbd. */
+  --_kbd-font-weight: var(--kbd-font-weight, 500);
+  /* Text colour of the kbd. */
+  --_kbd-foreground: var(--kbd-foreground, var(--muted-foreground));
+}
+
+[data-slot="kbd-group"] {
+  /* Gap between items of the group. */
+  --_kbd-group-gap: var(--kbd-group-gap, calc(var(--spacing) * 1));
+}

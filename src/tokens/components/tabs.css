@@ -1,0 +1,121 @@
+/* Tabs — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --tabs-gap: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/tabs.tsx follow from these names.
+ * The trigger drops stock's active fill and underline: our Tabs draw a sliding thumb instead (components/tabs.tsx). */
+
+[data-slot="tabs"] {
+  /* @remove data-horizontal:flex-col */
+  /* @add data-[orientation=horizontal]:flex-col */
+  /* Gap between items of the tabs. */
+  --_tabs-gap: var(--tabs-gap, calc(var(--spacing) * 2));
+}
+
+[data-slot="tabs-list"] {
+  /* @remove justify-center rounded-4xl p-[3px] text-muted-foreground group-data-horizontal/tabs:h-9 group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col group-data-vertical/tabs:rounded-2xl data-[variant=line]:rounded-none */
+  /* @remove(variant.line) bg-transparent */
+  /* @add relative group-data-[orientation=vertical]/tabs:h-fit group-data-[orientation=vertical]/tabs:flex-col */
+  /* @add(variant.default) self-start border */
+  /* @add(variant.line) w-full justify-start border-b group-data-[orientation=vertical]/tabs:w-fit group-data-[orientation=vertical]/tabs:items-stretch group-data-[orientation=vertical]/tabs:gap-0.5 group-data-[orientation=vertical]/tabs:border-b-0 group-data-[orientation=vertical]/tabs:border-s */
+  /* @add(variant.line) group-data-[orientation=vertical]/tabs:gap-(--_tabs-list-line-vertical-gap) */
+  /* Gap between items of the list (default variant). */
+  --_tabs-list-default-gap: var(--tabs-list-default-gap, calc(var(--spacing) * 0.5));
+  /* Corner radius of the list (default variant). */
+  --_tabs-list-default-radius: var(--tabs-list-default-radius, var(--radius-full));
+  /* Border colour of the list (default variant). */
+  --_tabs-list-default-border: var(--tabs-list-default-border, var(--dark-15));
+  /* Fill colour of the list (default variant). */
+  --_tabs-list-default: var(--tabs-list-default, var(--white));
+  /* Padding of the list (default variant). */
+  --_tabs-list-default-padding: var(--tabs-list-default-padding, calc(var(--spacing) * 0.75));
+  /* Gap between items of the list (line variant). */
+  --_tabs-list-line-gap: var(--tabs-list-line-gap, calc(var(--spacing) * 6));
+  /* Border colour of the list (line variant). */
+  --_tabs-list-line-border: var(--tabs-list-line-border, var(--border));
+  /* Fill colour of the list (segmented variant). @ours */
+  --_tabs-list-segmented: var(--tabs-list-segmented, var(--light-l2));
+  /* Gap between items of the list (segmented variant). @ours */
+  --_tabs-list-segmented-gap: var(--tabs-list-segmented-gap, calc(var(--spacing) * 1));
+  /* Corner radius of the list (segmented variant). @ours */
+  --_tabs-list-segmented-radius: var(--tabs-list-segmented-radius, var(--radius-lg));
+  /* Padding of the list (segmented variant). @ours */
+  --_tabs-list-segmented-padding: var(--tabs-list-segmented-padding, calc(var(--spacing) * 1));
+  /* Gap between the triggers of a vertical line tab list. */
+  --_tabs-list-line-vertical-gap: var(--tabs-list-line-vertical-gap, calc(var(--spacing) * 0.5));
+}
+
+[data-slot="tabs-trigger"] {
+  /* @remove flex-1 border border-transparent py-1 group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start group-data-vertical/tabs:px-2.5 group-data-vertical/tabs:py-1.5 hover:text-foreground focus-visible:border-ring focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-active:bg-background data-active:text-foreground group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-active:bg-transparent after:absolute after:bg-foreground after:opacity-0 after:transition-opacity group-data-horizontal/tabs:after:inset-x-0 group-data-horizontal/tabs:after:bottom-[-5px] group-data-horizontal/tabs:after:h-0.5 group-data-vertical/tabs:after:inset-y-0 group-data-vertical/tabs:after:-end-1 group-data-vertical/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-active:after:opacity-100 */
+  /* @add z-10 cursor-pointer transition-colors duration-300 ease-snappy outline-none focus-visible:ring-2 focus-visible:ring-offset-1 data-active:transition-[color] motion-reduce:data-active:transition-none data-disabled:pointer-events-none data-disabled:cursor-not-allowed motion-reduce:transition-none group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:justify-start text-body-5 tracking-button uppercase not-data-active:hover:text-dark-75 */
+  /* Gap between items of the trigger. */
+  --_tabs-trigger-gap: var(--tabs-trigger-gap, calc(var(--spacing) * 1.5));
+  /* Ring colour of the trigger when focused. */
+  --_tabs-trigger-focus-ring: var(--tabs-trigger-focus-ring, var(--navy));
+  /* Text colour of the trigger when disabled. */
+  --_tabs-trigger-disabled-foreground: var(--tabs-trigger-disabled-foreground, var(--dark-45));
+  /* Height of the trigger. */
+  --_tabs-trigger-height: var(--tabs-trigger-height, calc(var(--spacing) * 7));
+  /* Corner radius of the trigger. */
+  --_tabs-trigger-radius: var(--tabs-trigger-radius, var(--radius-full));
+  /* Horizontal padding of the trigger. */
+  --_tabs-trigger-padding-x: var(--tabs-trigger-padding-x, calc(var(--spacing) * 2.5));
+  /* Font weight of the trigger. */
+  --_tabs-trigger-font-weight: var(--tabs-trigger-font-weight, 600);
+  /* Text colour of the trigger. */
+  --_tabs-trigger-foreground: var(--tabs-trigger-foreground, var(--navy));
+  /* Text colour of the trigger when active. @on --tabs-indicator */
+  --_tabs-trigger-active-foreground: var(--tabs-trigger-active-foreground, var(--white));
+  /* Height of the trigger (line variant). @ours */
+  --_tabs-trigger-line-height: var(--tabs-trigger-line-height, calc(var(--spacing) * 10));
+  /* Corner radius of the trigger (line variant). @ours */
+  --_tabs-trigger-line-radius: var(--tabs-trigger-line-radius, var(--radius-sm));
+  /* Horizontal padding of the trigger (line variant). @ours */
+  --_tabs-trigger-line-padding-x: var(--tabs-trigger-line-padding-x, calc(var(--spacing) * 1));
+  /* Text colour of the trigger (line variant). @ours */
+  --_tabs-trigger-line-foreground: var(--tabs-trigger-line-foreground, var(--dark-100));
+  /* Text colour of the trigger (line variant) when hovered. @ours */
+  --_tabs-trigger-line-hover-foreground: var(--tabs-trigger-line-hover-foreground, var(--dark-75));
+  /* Text colour of the trigger (line variant) when active. @ours */
+  --_tabs-trigger-line-active-foreground: var(--tabs-trigger-line-active-foreground, var(--navy));
+  /* Colour of the bar under a hovered trigger (line variant). @ours */
+  --_tabs-trigger-line-hover-indicator: var(--tabs-trigger-line-hover-indicator, var(--dark-15));
+  /* Height of the trigger (segmented variant). @ours */
+  --_tabs-trigger-segmented-height: var(--tabs-trigger-segmented-height, calc(var(--spacing) * 8));
+  /* Corner radius of the trigger (segmented variant). @ours */
+  --_tabs-trigger-segmented-radius: var(--tabs-trigger-segmented-radius, var(--radius-md));
+  /* Horizontal padding of the trigger (segmented variant). @ours */
+  --_tabs-trigger-segmented-padding-x: var(--tabs-trigger-segmented-padding-x, calc(var(--spacing) * 3));
+  /* Text colour of the trigger (segmented variant). @ours */
+  --_tabs-trigger-segmented-foreground: var(--tabs-trigger-segmented-foreground, var(--navy));
+  /* Text colour of the trigger (segmented variant) when active. @ours @on --tabs-indicator-segmented */
+  --_tabs-trigger-segmented-active-foreground: var(--tabs-trigger-segmented-active-foreground, var(--white));
+}
+
+[data-slot="tabs-indicator"] {
+  /* Colour of the sliding thumb behind the active tab. @ours */
+  --_tabs-indicator: var(--tabs-indicator, var(--mint-60));
+  /* Corner radius of the sliding thumb. @ours */
+  --_tabs-indicator-radius: var(--tabs-indicator-radius, var(--radius-full));
+  /* Colour of the bar under the active tab (line variant). @ours */
+  --_tabs-indicator-line: var(--tabs-indicator-line, var(--mint-60));
+  /* Thickness of the bar under the active tab (line variant). @ours */
+  --_tabs-indicator-line-height: var(--tabs-indicator-line-height, calc(var(--spacing) * 0.75));
+  /* Colour of the thumb behind the active segment (segmented variant). @ours */
+  --_tabs-indicator-segmented: var(--tabs-indicator-segmented, var(--mint-45));
+  /* Corner radius of the thumb (segmented variant). @ours */
+  --_tabs-indicator-segmented-radius: var(--tabs-indicator-segmented-radius, var(--radius-md));
+}
+
+[data-slot="tabs-content"] {
+  /* @add text-body-5 data-ending-style:hidden data-[activation-direction=right]:animate-tab-in-right data-[activation-direction=left]:animate-tab-in-left motion-reduce:animate-none */
+  /* Fill colour of the content card (panel variant). @ours */
+  --_tabs-content-panel: var(--tabs-content-panel, var(--white));
+  /* Border colour of the content card (panel variant). @ours */
+  --_tabs-content-panel-border: var(--tabs-content-panel-border, var(--light-l3));
+  /* Corner radius of the content card (panel variant). @ours */
+  --_tabs-content-panel-radius: var(--tabs-content-panel-radius, var(--radius-xl));
+  /* Padding of the content card (panel variant). @ours */
+  --_tabs-content-panel-padding: var(--tabs-content-panel-padding, calc(var(--spacing) * 6));
+  /* Gap between items of the content card (panel variant). @ours */
+  --_tabs-content-panel-gap: var(--tabs-content-panel-gap, calc(var(--spacing) * 5));
+}

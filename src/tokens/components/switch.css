@@ -1,0 +1,42 @@
+/* Switch — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --switch-radius: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/switch.tsx follow from these names. */
+
+[data-slot="switch"] {
+  /* @remove border border-transparent group-has-[:focus-visible]/field-label:border-transparent group-has-[:focus-visible]/field-label:ring-0 focus-visible:border-ring aria-invalid:border-destructive */
+  /* @add cursor-pointer transition-colors data-unchecked:bg-dark-30 focus-visible:ring-3 aria-invalid:ring-3 data-[size=default]:h-5 data-[size=default]:w-9 data-[size=sm]:h-4 data-[size=sm]:w-7 */
+  /* Corner radius of the switch. */
+  --_switch-radius: var(--switch-radius, var(--radius-full));
+  /* Padding of the switch. */
+  --_switch-padding: var(--switch-padding, calc(var(--spacing) * 0.5));
+  /* Fill colour of the switch when checked. */
+  --_switch-checked: var(--switch-checked, var(--mint-45));
+  /* Ring colour of the switch when focused. */
+  --_switch-focus-ring: var(--switch-focus-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
+  /* Ring colour of the switch when invalid. */
+  --_switch-invalid-ring: var(--switch-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
+  /* Opacity of the switch when disabled. */
+  --_switch-disabled-opacity: var(--switch-disabled-opacity, 0.5);
+}
+
+[data-slot="switch-thumb"] {
+  /* @remove group-data-[size=default]/switch:data-unchecked:translate-x-0 rtl:group-data-[size=default]/switch:data-unchecked:-translate-x-0 group-data-[size=sm]/switch:data-unchecked:translate-x-0 rtl:group-data-[size=sm]/switch:data-unchecked:-translate-x-0 */
+  /* @add data-unchecked:translate-x-0 group-data-[size=default]/switch:data-checked:translate-x-4 group-data-[size=sm]/switch:data-checked:translate-x-3 rtl:group-data-[size=default]/switch:data-checked:-translate-x-4 rtl:group-data-[size=sm]/switch:data-checked:-translate-x-3 */
+  /* Corner radius of the thumb. */
+  --_switch-thumb-radius: var(--switch-thumb-radius, var(--radius-full));
+  /* Fill colour of the thumb. */
+  --_switch-thumb: var(--switch-thumb, var(--white));
+  /* Shadow of the thumb. */
+  --_switch-thumb-shadow: var(--switch-thumb-shadow, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+}
+
+[data-slot="switch-label"] {
+  /* Text colour of the label beside the control. @ours */
+  --_switch-label-foreground: var(--switch-label-foreground, var(--navy));
+}
+
+[data-slot="switch-description"] {
+  /* Text colour of the description under the label. @ours */
+  --_switch-description-foreground: var(--switch-description-foreground, var(--dark-75));
+}

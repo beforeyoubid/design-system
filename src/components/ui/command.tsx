@@ -1,7 +1,9 @@
+"use client"
+
 import * as React from "react"
 import { Command as CommandPrimitive } from "cmdk"
-
 import { cn } from "@/lib/utils"
+
 import {
   Dialog,
   DialogContent,
@@ -23,7 +25,7 @@ function Command({
     <CommandPrimitive
       data-slot="command"
       className={cn(
-        "flex size-full flex-col overflow-hidden rounded-xl bg-popover p-1 text-popover-foreground",
+        "flex size-full flex-col overflow-hidden rounded-(--_command-radius) bg-(--_command) text-(--_command-foreground) border-(--_command-border) shadow-(--_command-shadow) border text-body-5 in-data-[slot=dialog-content]:rounded-none in-data-[slot=dialog-content]:border-0 in-data-[slot=dialog-content]:shadow-none",
         className
       )}
       {...props}
@@ -53,7 +55,7 @@ function CommandDialog({
       </DialogHeader>
       <DialogContent
         className={cn(
-          "top-1/3 translate-y-0 overflow-hidden rounded-xl! p-0",
+          "top-1/3 translate-y-0 overflow-hidden rounded-4xl! p-0",
           className
         )}
         showCloseButton={showCloseButton}
@@ -69,12 +71,12 @@ function CommandInput({
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Input>) {
   return (
-    <div data-slot="command-input-wrapper" className="p-1 pb-0">
+    <div data-slot="command-input-wrapper" className="h-(--_command-input-wrapper-height) gap-(--_command-input-wrapper-gap) border-(--_command-input-wrapper-border) px-(--_command-input-wrapper-padding-x) flex shrink-0 items-center border-b *:data-[slot=input-group]:h-full *:data-[slot=input-group]:min-h-0 *:data-[slot=input-group]:border-0 *:data-[slot=input-group]:bg-transparent *:data-[slot=input-group]:px-0 *:data-[slot=input-group]:focus-within:ring-0">
       <InputGroup className="h-9 bg-input/30">
         <CommandPrimitive.Input
           data-slot="command-input"
           className={cn(
-            "w-full text-sm outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
+            "w-full text-body-5 outline-hidden disabled:cursor-not-allowed text-(--_command-input-foreground) placeholder:text-(--_command-input-placeholder) disabled:text-(--_command-input-disabled-foreground) h-full min-w-0 bg-transparent",
             className
           )}
           {...props}
@@ -95,7 +97,7 @@ function CommandList({
     <CommandPrimitive.List
       data-slot="command-list"
       className={cn(
-        "no-scrollbar max-h-72 scroll-py-1 overflow-x-hidden overflow-y-auto outline-none",
+        "no-scrollbar max-h-80 scroll-py-1 overflow-x-hidden overflow-y-auto outline-none p-(--_command-list-padding)",
         className
       )}
       {...props}
@@ -110,7 +112,7 @@ function CommandEmpty({
   return (
     <CommandPrimitive.Empty
       data-slot="command-empty"
-      className={cn("py-6 text-center text-sm", className)}
+      className={cn("py-(--_command-empty-padding-y) text-center text-body-5 text-(--_command-empty-foreground)", className)}
       {...props}
     />
   )
@@ -124,7 +126,7 @@ function CommandGroup({
     <CommandPrimitive.Group
       data-slot="command-group"
       className={cn(
-        "overflow-hidden p-1 text-foreground **:[[cmdk-group-heading]]:px-3 **:[[cmdk-group-heading]]:py-2 **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:font-medium **:[[cmdk-group-heading]]:text-muted-foreground",
+        "overflow-hidden text-(--_command-group-foreground) **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:text-caption-1 **:[[cmdk-group-heading]]:text-dark-90 **:[[cmdk-group-heading]]:pt-2 **:[[cmdk-group-heading]]:pb-1",
         className
       )}
       {...props}
@@ -139,7 +141,7 @@ function CommandSeparator({
   return (
     <CommandPrimitive.Separator
       data-slot="command-separator"
-      className={cn("my-1 h-px bg-border/50", className)}
+      className={cn("my-1 h-(--_command-separator-height) bg-(--_command-separator) -mx-1", className)}
       {...props}
     />
   )
@@ -154,7 +156,7 @@ function CommandItem({
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "group/command-item relative flex cursor-default items-center gap-2 rounded-lg px-3 py-2 text-sm outline-hidden select-none in-data-[slot=dialog-content]:rounded-2xl data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-muted data-[selected=true]:text-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-[selected=true]:*:[svg]:text-foreground",
+        "group/command-item relative flex cursor-pointer items-center gap-(--_command-item-gap) rounded-(--_command-item-radius) px-(--_command-item-padding-x) text-body-5 outline-hidden select-none data-[disabled=true]:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 text-(--_command-item-foreground) data-selected:bg-(--_command-item-selected) data-selected:text-(--_command-item-selected-foreground) data-[disabled=true]:text-dark-45 min-h-(--_command-item-min-height) py-(--_command-item-padding-y)",
         className
       )}
       {...props}
@@ -173,7 +175,7 @@ function CommandShortcut({
     <span
       data-slot="command-shortcut"
       className={cn(
-        "ms-auto text-xs tracking-widest text-muted-foreground group-data-[selected=true]/command-item:text-foreground",
+        "ms-auto text-caption-1 text-(--_command-shortcut-foreground)",
         className
       )}
       {...props}

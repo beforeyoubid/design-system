@@ -9,9 +9,10 @@ import {
 import { Card, CardContent } from '../../components/ui/card'
 
 const meta: Meta<typeof Carousel> = {
-  title: 'shadcn/Carousel',
+  title: 'BYB Components/Carousel',
   component: Carousel,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Horizontally scrolling slides with previous and next controls.' } } },
 }
 
 export default meta
@@ -25,7 +26,7 @@ export const Default: Story = {
           <CarouselItem key={i}>
             <Card>
               <CardContent className="flex aspect-square items-center justify-center p-6">
-                <span className="text-4xl font-semibold">{i + 1}</span>
+                <span className="text-h2">{i + 1}</span>
               </CardContent>
             </Card>
           </CarouselItem>

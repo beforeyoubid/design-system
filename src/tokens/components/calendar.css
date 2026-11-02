@@ -1,0 +1,56 @@
+/* Calendar — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --calendar-day-selected: … }
+ * Our own Calendar (components/calendar.tsx) reads these. Defaults are the shipped design. */
+
+[data-slot="calendar-day"] {
+  /* Fill of the selected day, and of a range's first and last day. @ours */
+  --_calendar-day-selected: var(--calendar-day-selected, var(--lime));
+  /* Text colour of the selected day. @ours */
+  --_calendar-day-selected-foreground: var(--calendar-day-selected-foreground, var(--navy));
+  /* Text colour of a day. @ours */
+  --_calendar-day-foreground: var(--calendar-day-foreground, var(--dark-90));
+  /* Fill of a day when hovered. @ours */
+  --_calendar-day-hover: var(--calendar-day-hover, var(--light-l2));
+  /* Corner radius of a day, today and the ends of a range. @ours */
+  --_calendar-day-radius: var(--calendar-day-radius, var(--radius-full));
+}
+
+[data-slot="calendar-range"] {
+  /* Fill behind the days inside a range. @ours */
+  --_calendar-range: var(--calendar-range, var(--light-l2));
+}
+
+[data-slot="calendar-today"] {
+  /* Fill of today. @ours */
+  --_calendar-today: var(--calendar-today, var(--light-l2));
+  /* Text colour of today. @ours */
+  --_calendar-today-foreground: var(--calendar-today-foreground, var(--dark-90));
+}
+
+[data-slot="calendar-outside"] {
+  /* Text colour of days from the previous and next month. @ours */
+  --_calendar-outside-foreground: var(--calendar-outside-foreground, var(--dark-45));
+}
+
+[data-slot="calendar-disabled"] {
+  /* Text colour of days that can't be picked. @ours */
+  --_calendar-disabled-foreground: var(--calendar-disabled-foreground, var(--dark-45));
+}
+
+[data-slot="calendar-caption"] {
+  /* Text colour of the month and year. @ours */
+  --_calendar-caption-foreground: var(--calendar-caption-foreground, var(--navy));
+}
+
+[data-slot="calendar-weekday"] {
+  /* Text colour of the weekday names. @ours */
+  --_calendar-weekday-foreground: var(--calendar-weekday-foreground, var(--dark-75));
+}
+
+[data-slot="calendar-nav"] {
+  /* Colour of the previous and next month arrows. @ours */
+  --_calendar-nav-foreground: var(--calendar-nav-foreground, var(--dark-75));
+  /* Colour of the month arrows when hovered. @ours */
+  --_calendar-nav-hover-foreground: var(--calendar-nav-hover-foreground, var(--navy));
+}

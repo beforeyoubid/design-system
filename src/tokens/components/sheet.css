@@ -1,0 +1,47 @@
+/* Sheet — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --sheet-overlay: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/sheet.tsx follow from these names. */
+
+[data-slot="sheet-overlay"] {
+  /* Fill colour of the overlay. */
+  --_sheet-overlay: var(--sheet-overlay, color-mix(in oklab, var(--dark-100) 50%, transparent));
+}
+
+[data-slot="sheet-content"] {
+  /* @add text-body-5 */
+  /* Fill colour of the content. */
+  --_sheet-content: var(--sheet-content, var(--popover));
+  /* Text colour of the content. */
+  --_sheet-content-foreground: var(--sheet-content-foreground, var(--popover-foreground));
+  /* Shadow of the content. */
+  --_sheet-content-shadow: var(--sheet-content-shadow, 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1));
+}
+
+[data-slot="sheet-header"] {
+  /* Gap between items of the header. */
+  --_sheet-header-gap: var(--sheet-header-gap, calc(var(--spacing) * 1.5));
+  /* Padding of the header. */
+  --_sheet-header-padding: var(--sheet-header-padding, calc(var(--spacing) * 6));
+}
+
+[data-slot="sheet-footer"] {
+  /* Gap between items of the footer. */
+  --_sheet-footer-gap: var(--sheet-footer-gap, calc(var(--spacing) * 2));
+  /* Padding of the footer. */
+  --_sheet-footer-padding: var(--sheet-footer-padding, calc(var(--spacing) * 6));
+}
+
+[data-slot="sheet-title"] {
+  /* @add text-body-4 */
+  /* Font weight of the title. */
+  --_sheet-title-font-weight: var(--sheet-title-font-weight, 500);
+  /* Text colour of the title. */
+  --_sheet-title-foreground: var(--sheet-title-foreground, var(--foreground));
+}
+
+[data-slot="sheet-description"] {
+  /* @add text-body-5 */
+  /* Text colour of the description. */
+  --_sheet-description-foreground: var(--sheet-description-foreground, var(--muted-foreground));
+}

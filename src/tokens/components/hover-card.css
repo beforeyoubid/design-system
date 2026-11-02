@@ -1,0 +1,25 @@
+/* Hover Card — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --hover-card-content-width: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/hover-card.tsx follow from these names. */
+
+[data-slot="hover-card-content"] {
+  /* @remove ring-1 ring-foreground/5 */
+  /* @add flex border text-body-5 */
+  /* Width of the content. */
+  --_hover-card-content-width: var(--hover-card-content-width, calc(var(--spacing) * 75));
+  /* Gap between items of the content. */
+  --_hover-card-content-gap: var(--hover-card-content-gap, calc(var(--spacing) * 3));
+  /* Corner radius of the content. */
+  --_hover-card-content-radius: var(--hover-card-content-radius, var(--radius-lg));
+  /* Border colour of the content. */
+  --_hover-card-content-border: var(--hover-card-content-border, var(--light-l3));
+  /* Fill colour of the content. */
+  --_hover-card-content: var(--hover-card-content, var(--white));
+  /* Padding of the content. */
+  --_hover-card-content-padding: var(--hover-card-content-padding, calc(var(--spacing) * 4));
+  /* Text colour of the content. */
+  --_hover-card-content-foreground: var(--hover-card-content-foreground, var(--dark-90));
+  /* Shadow of the content. */
+  --_hover-card-content-shadow: var(--hover-card-content-shadow, 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1));
+}

@@ -1,9 +1,6 @@
-"use client"
-
 import * as React from "react"
-import { OTPInput, OTPInputContext } from "input-otp"
-
 import { cn } from "@/lib/utils"
+import { OTPInput, OTPInputContext } from "input-otp"
 import { IconMinus } from "@tabler/icons-react"
 
 function InputOTP({
@@ -32,7 +29,7 @@ function InputOTPGroup({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="input-otp-group"
       className={cn(
-        "flex items-center rounded-lg has-aria-invalid:border-destructive has-aria-invalid:ring-[3px] has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40",
+        "flex items-center dark:has-aria-invalid:ring-destructive/40 gap-(--_input-otp-group-gap)",
         className
       )}
       {...props}
@@ -55,7 +52,7 @@ function InputOTPSlot({
       data-slot="input-otp-slot"
       data-active={isActive}
       className={cn(
-        "relative flex size-9 items-center justify-center border-y border-e border-input bg-input/30 text-sm transition-all outline-none first:rounded-s-4xl first:border-s last:rounded-e-4xl aria-invalid:border-destructive data-[active=true]:z-10 data-[active=true]:border-ring data-[active=true]:ring-[3px] data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:border-destructive data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40",
+        "relative flex size-(--_input-otp-slot-size) items-center justify-center border-(--_input-otp-slot-border) bg-(--_input-otp-slot) text-body-5 transition outline-none aria-invalid:border-(--_input-otp-slot-invalid-border) data-[active=true]:z-10 data-[active=true]:border-(--_input-otp-slot-active-border) data-[active=true]:ring-3 data-[active=true]:ring-(--_input-otp-slot-active-ring) data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 rounded-(--_input-otp-slot-radius) font-(--_input-otp-slot-font-weight) text-(--_input-otp-slot-foreground) data-[active=true]:text-(--_input-otp-slot-active-foreground) border group-has-aria-invalid/input-otp:border-(--_input-otp-slot-invalid-border) group-has-aria-invalid/input-otp:data-[active=true]:ring-destructive/20 group-has-disabled/input-otp:bg-light-l2 group-has-disabled/input-otp:text-dark-45",
         className
       )}
       {...props}
@@ -74,7 +71,7 @@ function InputOTPSeparator({ ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="input-otp-separator"
-      className="flex items-center [&_svg:not([class*='size-'])]:size-4"
+      className="flex items-center px-(--_input-otp-separator-padding-x) text-(--_input-otp-separator-foreground) text-body-5 [&_svg]:size-3"
       role="separator"
       {...props}
     >

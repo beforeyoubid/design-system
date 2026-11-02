@@ -4,65 +4,134 @@ This package is the BYB design system: **Tailwind CSS v4 + shadcn/ui (BaseUI)** 
 
 Read this before adding or modifying any component or token.
 
+## Skills: use them for design-system work
+
+The `byb-design` plugin in `.claude/skills/byb-design/` loads in every session in this repo. **Invoke the matching skill before you change any component, token or export**, even for a one-line change, and follow it to the end; the skills hold the steps and checks each job needs.
+
+| When the task is to… | Use |
+|---|---|
+| Add, build, extend or restyle a component; add a variant, size or prop | `byb-design:author-component` |
+| Give a component tokens, or add, rename or fix its tokens | `byb-design:add-component-tokens` (author-component runs it too) |
+| Change any token's value, brand colours included, or apply a Design Console export or a pasted `:root { … }` block as the defaults | `byb-design:update-token-values` |
+| Rename or remove a component, export, prop, value, class or token; change a prop's default value or a component's default variant or size | `byb-design:breaking-change` |
+
+Several can apply: a rename inside a new component is author-component plus breaking-change.
+
+Changing a component token's default (the tooltip's radius, a badge's fill) isn't breaking: apps that set the token keep their value. It goes under **Changed** in the CHANGELOG.
+
+**Talking to the user:** describe what changed in design terms (colours, sizes, corners, spacing, what each variant looks like), not in code terms. Before using a word from **Words used here**, say what it means. When you need a decision, write the question and its options in your reply too, not only in a question card: the card doesn't always show.
+
+### Words used here
+
+| Word | Means |
+|---|---|
+| Brand token | A colour, size or radius from the BYB palette in Figma (`--mint-45`, `--radius-lg`). Says what it looks like. |
+| Semantic token | A role that components use (`--primary`, `--border`, `--destructive`). Points at a brand token; an app can change the role in one place. |
+| Component token | One designed value of one part of one component (`--button-default`, `--input-radius`). Points at a semantic or brand token. |
+| Part | One element of a component, named by its `data-slot` attribute (`select-trigger`, `dialog-content`). Component token names start with it. |
+| Variant | One look of a component, chosen by a prop (`variant="outline"`, `size="sm"`). |
+| cva key | The name of a variant in the component's code. Component token names use it, so our `primary` button is `default` in token names. |
+| Public / private name | Apps set the public name (`--input-radius`). Inside the package, the component reads the private name (`--_input-radius`), which falls back to the public one, then to the default. |
+| Stock component | A component as the shadcn CLI writes it, in `src/components/ui/`. Never edited by hand. |
+| Wrapper | Our file in `src/components/` that re-exports a stock component and replaces the parts we change. |
+| `@ours` | In a token file comment: this component token is read by our wrapper, not by the stock file. |
+| `@on` | In a token file comment: the token this text sits on, for the contrast check, when its own part has no fill (`@on --tabs-indicator`). Without it, text with no fill is checked against the page background. |
+
+### Which CHANGELOG section
+
+Add to the top section of `CHANGELOG.md` while it's unreleased: its version isn't in `npm view @beforeyoubid/design-system versions`. If it's already published, add a `## Unreleased` section above it. Never change `version` in `package.json`; that happens when the package is published.
+
+## Styling rules
+
+These apply to every component, wrapper, story and token default in this package. Tailwind's own best practices, plus ours:
+
+- **No pixel values.** Spacing uses Tailwind's scale (`p-6`, `gap-4`), and in a token default `calc(var(--spacing) * 6)`. Corners use `rounded-*` or `var(--radius-*)`. Text sizes use the type classes. A one-pixel line (`border`, `ring-1`) is the only plain pixel.
+- **No hard-coded colours.** No hex, `rgb()` or `oklch()` in components or token defaults. Use semantic tokens first (`bg-primary`, `text-muted-foreground`, `border-border`), and a brand token only where no role fits. Errors use `destructive`.
+- **No arbitrary values** (`w-[312px]`, `text-[#090034]`, `leading-[1.4]`). If a value is missing, add a token. Selectors in brackets are fine (`data-[side=top]:`, `[.border-b]:`), and so is arbitrary code copied from a stock component.
+- **Type classes**, never Tailwind's sizes: `text-h1`…`text-h6`, `text-body-1`…`text-body-5`, `text-caption-*`, `text-overline`. Weight with `font-medium` / `font-semibold`.
+- **Logical sides** (`ms-*`, `pe-*`, `start-*`, `text-start`, `rounded-s-*`, `border-e`); `rtl` is on. The exception is a shape turned 45° (a tooltip arrow), whose physical sides don't swap.
+- **Layout with `gap-*`** on flex or grid, not margins or `space-*`. `size-*` when width and height match. Inputs are `w-full`.
+- **Mobile first.** Unprefixed classes are the phone layout; `sm:` (640px), `md:`, `lg:` and up add to it.
+- **Merge classes with `cn`** and write variants with `cva`, never string templates or `Record<>` maps.
+- **No inline `style`, no `dark:` classes, no `!important`** unless stock code already has it.
+
 ## What lives here
 
 | Path | Purpose |
 |---|---|
 | `globals.css` | Design tokens + `@theme inline` → Tailwind utilities. **Source of truth.** |
-| `utilities.css` | Bespoke product utilities (`.clip-triangle`, `.mask-fade-x`, `.text-btn-*`, `.text-heading-*`). Imported by `globals.css`. |
+| `DESIGN.md` | Human-readable design spec (tokens, typography, breakpoints, components). Update it in the same PR as any token or component change. |
+| `shadcn.css` | Copy of shadcn's stylesheet (`data-horizontal:` and other custom variants, `no-scrollbar`, `scroll-fade-*`, `shimmer`). Imported by `globals.css`. Generated by `pnpm sync-shadcn-css` after bumping `shadcn`; `pnpm check-shadcn-css` fails if it's stale. Never edit by hand. |
+| `utilities.css` | Bespoke product utilities (`.clip-triangle`, `.mask-fade-x`, `.text-button-*`, `.text-overline`, `.text-h*` / `.text-display-*` tracking). Imported by `globals.css`. |
 | `components.json` | shadcn CLI config — wire for `npx shadcn add <component>`. |
-| `src/components/` | BYB-opinionated components (`BYBButton`, `BYBCard`, …). One file per component. |
-| `src/components/ui/` | Where shadcn CLI scaffolds new base primitives. Customize after scaffolding. |
-| `src/tokens.ts` | Same brand colors and typography exported as JS constants (for non-Tailwind contexts). |
-| `src/lib/utils.ts` | `cn()` helper — `tailwind-merge` extended with every BYB token. |
+| `src/components/` | Our components: BYB composites (`FileUpload`, `Stepper`, `BYBAreaChart`, …) and wrappers that export over a stock component (`button.tsx`, `tabs.tsx`, `calendar.tsx`, …). One file per component. |
+| `src/components/ui/` | The shadcn CLI's files, with class strings edited by `pnpm tokens:apply` to read the component tokens. **Don't hand-edit**: change a token file, or move the change into a wrapper in `src/components/`. |
+| `src/tokens/components/` | Component tokens: one CSS file per component, defaults are the BYB design. `index.css` is generated from them. |
+| `scripts/tokens/` | `apply.mjs` (token files → ui class strings), `build.mjs` (index.css, Design Console manifest, DESIGN.md component tokens table), `check.mjs` (names, missing component tokens, contrast), `import.mjs` (a Design Console export → the files that own each value), `contrast-exceptions.json`. |
+| `console/` | The BYB Design Console (Vite + React): every token with a typed picker, the real stories live, contrast, `:root` export. `pnpm console` (watches the token files); `pnpm console:build` writes one self-contained `console/dist/design-console.html`. Setup for designers: `console/README.md`. |
+| `src/tokens.ts` | `generateDesignSystemTokens({ overrides })` — tokens for non-CSS contexts (Stripe, canvas). Reads `src/generated/default-tokens.ts`. |
+| `src/generated/default-tokens.ts` | Generated from `globals.css` + `utilities.css` by `pnpm generate-tokens`. Never edit by hand. |
+| `migrate/` | `design-system-migrate`, the codemod that moves apps between versions (`index.mjs`, `rules.mjs`), and `design-system-check`, the advisory guardrail check for app code (`check-cli.mjs`, `check.mjs`; `--fix` applies the safe fixes). It's for apps: don't run it on this package. Tests: `pnpm test:migrate`. |
+| `docs/` | Shipped to apps: `README.md`, `styling.md`, `components.md` (the guardrails apps follow) and `registry.md` (every export, generated by `pnpm registry:build` from the stories and token files). Keep the guardrails in step with any change to the rules here. `restyle-audit.md` is internal and not shipped. |
+| `scripts/registry/` | `build.mjs` generates `docs/registry.md`; `pnpm check-registry` fails if it's stale or a story lacks a docs description. |
+| `.claude/skills/byb-design/` | The `byb-design` plugin: the skills in the table above. |
+| `src/lib/utils.ts` | `cn()` helper: shadcn's `cn` package with our font-size and text-colour groups (it merges `bg-(--x)`-style classes correctly). Tests: `pnpm test:cn`. |
 | `src/stories/` | Storybook — one file per component, all variants. |
 | `src/index.ts` | Public exports — every new component must be re-exported. |
-| `src/icons.ts` | Icon surface — re-exports the canonical icon set under the `@beforeyoubid/design-system/icons` subpath. |
+| `src/icons.ts` | Icon surface — re-exports Tabler under the `@beforeyoubid/design-system/icons` subpath. |
+| `src/icons-lucide.ts` | Re-exports Lucide under the `@beforeyoubid/design-system/icons/lucide` subpath. |
 
 > `tailwind.config.ts` is **removed** in v2.0. All theme tokens live in `globals.css` via Tailwind v4's `@theme inline` directive.
 
 ## Icons
 
-`@tabler/icons-react` is the **canonical** BYB icon set (lucide was dropped). Icons are exposed via a dedicated subpath — **not** the main barrel — so consumers opt in and keep full tree-shaking:
+BYB uses two icon sets, each on its own subpath — **not** the main barrel — so consumers opt in and keep full tree-shaking:
+
+- `@tabler/icons-react` (primary, used inside our components) → `@beforeyoubid/design-system/icons`
+- `lucide-react` → `@beforeyoubid/design-system/icons/lucide`
+
+They live on separate subpaths because both packages export overlapping names (`Icon`, `icons`, …).
 
 ```tsx
 import { IconHome, IconChevronRight } from '@beforeyoubid/design-system/icons'
+import { House } from '@beforeyoubid/design-system/icons/lucide'
 
 // Tabler renders currentColor strokes — BYB token utilities just work:
 <IconHome className="size-4 text-navy" />
 ```
 
-- `src/icons.ts` is `export * from '@tabler/icons-react'`. The package is marked **external** in `tsup.config.ts`, so the entry compiles to a thin pass-through and the consumer's bundler shakes against the real package.
-- The icons entry is built **without** the `'use client'` banner (a second tsup config) — Tabler icons are plain SVG and stay usable inside RSC server components. Cleaning is done once via `pnpm clean` before tsup runs; never set `clean: true` on the multi-config build or the concurrent configs race and wipe each other's `.d.ts`.
-- Use icons directly from this subpath. Don't add `@tabler/icons-react` as a direct dependency in consuming apps — import from the design system so the sanctioned set stays single-sourced.
+- `src/icons.ts` is `export * from '@tabler/icons-react'` and `src/icons-lucide.ts` is `export * from 'lucide-react'`. Both packages are marked **external** in `tsup.config.ts`, so the entries compile to thin pass-throughs and the consumer's bundler shakes against the real packages.
+- The icons entries are built **without** the `'use client'` banner (a second tsup config) — Tabler icons are plain SVG and stay usable inside RSC server components. Cleaning is done once via `pnpm clean` before tsup runs; never set `clean: true` on the multi-config build or the concurrent configs race and wipe each other's `.d.ts`.
+- Use icons directly from this subpath. Don't add `@tabler/icons-react` or `lucide-react` as a direct dependency in consuming apps — import from the design system so the sanctioned set stays single-sourced.
 
 ## Token rules
 
-- **Never hard-code a hex value.** Use a token utility (`bg-mint-45`, `text-navy`, `border-dark-15`).
-- **Never use arbitrary Tailwind values** (`text-[#090034]`, `p-[13px]`). If a token is missing, add it to `globals.css` and run `pnpm check-tokens`.
+- **Error and destructive colours use the `destructive` token** (`text-destructive`, `border-destructive`, `var(--destructive)`), never `error-75` directly, so the error red changes in one place.
+- **A missing value is a new token**, never an arbitrary value (see **Styling rules**): add it to `globals.css` and run `pnpm check-tokens`.
 - **Token naming mirrors Figma 1:1.** When in doubt, check the Figma library or `globals.css`.
 
 ### Two layers of tokens
 
 1. **Primitives** — brand colours, exact Figma palette
-   `--mint-45`, `--mint-l1`, `--cobalt`, `--dark-75`, `--light-sandy`, `--warning-30`, `--category-09`, …
+   `--mint-45`, `--mint-l1`, `--electric-blue`, `--dark-75`, `--light-sandy`, `--warning-30`, `--category-09`, …
 2. **Semantic** — shadcn slots that components consume
    `--primary`, `--background`, `--muted`, `--accent`, `--destructive`, `--border`, `--ring`, `--card`, `--popover`, `--sidebar-*`, `--chart-1…5`, plus `--success` and `--warning` as BYB extensions.
 
-**Use primitives for marketing pages and brand-coloured surfaces. Use semantic tokens inside reusable components** — that's what makes shadcn primitives drop-in compatible.
+**Prefer semantic tokens wherever a role fits, in components and in apps.** Use brand primitives only where no role fits (a marketing illustration, a product badge). Semantic tokens are what make shadcn components drop-in compatible, and they let an app retheme a role in one place. `docs/styling.md` has the table apps follow.
 
 ### Colour reference (primitives)
 
 ```
 mint-90 → mint-l4              primary brand scale (dark → light)
-navy, cobalt, teal, lime       brand accents
-cobalt-l1, teal-l1, lime-l1    accent tints (pill / badge backgrounds)
+navy, electric-blue, teal, lime   brand accents
+electric-blue-l1, teal-l1, lime-l1   accent tints (pill / badge backgrounds)
 dark-100 → dark-15             neutral text and borders (dark)
 light-l1 → light-sandy, white  neutrals (light)
 success-90 → success-l1        success states
 error-90  → error-l2           error / destructive states
 warning-75 → warning-l3        warning / amber states
-category-01 → category-16      data-viz palette
+category-01 → category-35      data-viz + product palette (20–35 unassigned)
+badge-product-*                product badge aliases (see "Product badges" below)
 ```
 
 ### Transparent colours — use opacity modifiers
@@ -78,30 +147,55 @@ modifier instead:
 | `Transparent/Button-B`       | `bg-dark-30/80`     |
 | `Transparent/Button-A`       | `bg-light-l2/80`    |
 
+### Product badges
+
+Each BYB product has a badge colour token that aliases a category primitive
+(`--badge-product-bpi: var(--category-01)`). Mapping lives in the Confluence
+"Product Badges" page (ER space). To reassign a product, repoint its alias in
+`globals.css` and run `pnpm generate-tokens`.
+
+```tsx
+<Badge product="electrical-report">Electrical Inspection</Badge>        // component
+<span className="badge-product-electrical-report">…</span>              // fill + white text
+<div className="border-badge-product-bpi text-badge-product-bpi">…</div> // colour only
+```
+
+`category-20` → `category-35` are unassigned placeholders for future products.
+
 ### Typography tokens
 
 Font: **Plus Jakarta Sans** — loaded by the consuming app (e.g. `next/font/google`). We declare the stack via `--font-sans` only.
 
-Pair semi-bold headings with `tracking-heading` (-0.005em); pair button text with `tracking-btn` (0.04em) + `uppercase`. The `.text-btn-*` and `.text-heading-*` classes in `utilities.css` already bake these in.
+Class names follow **role + size**: the same suffix always means the same step within a role. Need a different weight? Add `font-medium` / `font-semibold` to the size class; there is no separate weight scale. Tailwind's own `text-xs`…`text-9xl` still exist underneath (we never redefine Tailwind's base scale) but aren't used for designed text.
+
+Heading classes are **style names, not tags** — `<h2 className="text-h1">` is fine; pick the tag for document structure and the class for looks. The old 1.1.x names are gone; apps move with `npx design-system-migrate`.
+
+Display and heading classes bake in `tracking-heading` (-0.005em). Button and overline classes bake in `uppercase` + `tracking-button` (0.04em). Both are applied in `utilities.css`.
 
 ```
-text-display-xl   72px / 600   hero headline only
-text-display      56px / 600   section hero
-text-display-sm   52px / 600
-text-heading-lg   40px / 600
-text-heading-3xl  36px / 600
-text-heading-md   28px / 600
-text-heading-base 24px / 600
-text-heading-sm   20px / 600
-text-body-lg      18px / 400
-text-body-md      16px / 400
-text-body-sm      13px / 400
-text-caption      12px / 400
-text-xs           10px / 400
-text-2xs           8px / 400
-text-medium-*     8–52px / 500
-text-btn-lg/md/sm 18 / 16 / 13 / 600 (uppercase + tracking-btn baked in)
+text-display-1     72px / 600   primary KPI / standout screen title
+text-display-2     64px / 600
+text-display-3     56px / 600   stat card numbers
+text-display-4     52px / 600
+text-h1            40px / 600
+text-h2            36px / 600
+text-h3            28px / 600
+text-h4            24px / 600
+text-h5            20px / 600
+text-h6            18px / 600
+text-body-1        24px / 400
+text-body-2        20px / 400
+text-body-3        18px / 400
+text-body-4        16px / 400
+text-body-5        14px / 400
+text-caption-1     12px / 400
+text-caption-2     10px / 400
+text-caption-3      8px / 400
+text-overline      12px / 600   uppercase eyebrows, table headers, stat labels
+text-button-lg/md/sm 18 / 16 / 14px / 600   uppercase
 ```
+
+Medium-weight text: `text-body-5 font-medium`, `text-h4 font-medium`, etc.
 
 ### Spacing tokens
 
@@ -117,12 +211,17 @@ Max-width: `max-w-site` = 1280px — always use this for the content container.
 
 ```
 rounded-sm    4px
-rounded-md    8px   ← component default
+rounded-md    8px
 rounded-lg   12px
-rounded-xl   20px
-rounded-btn  18px
+rounded-xl   16px
+rounded-2xl  20px
+rounded-3xl  24px
+rounded-4xl  32px
 rounded-full
 ```
+
+Which component uses which radius is in each component's tokens (`DESIGN.md`, "Every component token").
+Overlays/backdrops use `bg-dark-100/50`. New components don't need dark-mode styling.
 
 shadcn components reference `var(--radius)` which aliases to `--radius-md`.
 
@@ -130,13 +229,12 @@ shadcn components reference `var(--radius)` which aliases to `--radius-md`.
 
 1. Add the CSS variable to `globals.css` under `:root` (use OKLCH, keep the hex in a comment).
 2. Add the matching `--color-{name}: var(--{name});` (or `--text-*`, `--radius-*`, …) line inside `@theme inline` so it generates a utility class.
-3. Run `pnpm check-tokens` — verifies parity.
-4. If non-Tailwind consumers may need the value, also add to `src/tokens.ts`.
-5. If it's a colour utility, add the name to the `text-color` group in `src/lib/utils.ts` so `cn()` handles it correctly.
+3. Run `pnpm generate-tokens` so the JS defaults pick it up (`pnpm check-tokens` fails until you do, or if the colour has no `@theme inline` line).
+4. If it's a colour utility, add the name to the `text-color` group in `src/lib/utils.ts` so `cn()` handles it correctly.
 
 ## Dark mode
 
-The package ships full dark-mode coverage via a `.dark` class. Toggling is the consuming app's responsibility (`<html class="dark">`). Component authors don't need to opt in — semantic tokens flip automatically.
+The code supports dark mode (`globals.css` has shadcn's `.dark` values and semantic tokens flip under it), but it isn't configured or optimised yet: component tokens have no dark values and nothing has been designed or checked in dark. Until it is, don't add `dark:` classes or dark values, and apps don't turn it on; the guardrail docs tell apps the same.
 
 ## Tree-shaking guarantees (don't break these)
 
@@ -158,54 +256,54 @@ This tells bundlers that JS exports are side-effect-free (free to tree-shake) bu
 
 - One component per file in `src/components/`
 - Every component must be exported from `src/index.ts`
-- Every component must have a story in `src/stories/` covering all variants
-- **Prefer semantic tokens** (`bg-primary`, `text-muted-foreground`) over brand primitives inside reusable components. Use primitives for marketing pages.
+- Every component must have a story in `src/stories/` covering all variants, with a one-line `parameters.docs.description.component` (the registry reads it)
+- **Prefer semantic tokens** (`bg-primary`, `text-muted-foreground`) over brand primitives. Use a primitive only where no role fits.
 - Use `cva` (class-variance-authority) for all component variants — not ad-hoc `Record<>` maps
 - Use `cn` (exported from `src/lib/utils.ts`) for all className merging — not raw `clsx`
-- Use `@radix-ui/react-slot` (`Slot`) for the `asChild` pattern on interactive components
-- For complex components needing accessibility primitives (Modal, Combobox, Tooltip), use `@radix-ui/*` packages
+- Use Base UI's `render` prop (not `asChild`) to render an interactive component as another element
+- For complex components needing accessibility primitives (Dialog, Combobox, Tooltip), use `@base-ui/react`
 - **No inline styles.** No `style={{}}` props unless absolutely unavoidable
 - **No MUI imports.** This package is MUI-free by design
+- **Inputs fill their container** (`w-full`). Don't give a control a fixed width; the layout around it sets the width.
+- **Boolean props default to `false`** and are named for what they add (`clearable`, not `hideClear`), so turning one on is passing it. Never ship a boolean that callers turn off with `={false}`.
 
-### Generating new components via shadcn CLI
+### Component tokens and the shadcn CLI
 
-This package is configured for the shadcn CLI (`components.json` at the root). Scaffold a new primitive with:
+Three layers: **brand** tokens (`--mint-45`, `--text-body-4`, `--radius-lg`) → **semantic** tokens (`--primary`, `--border`) → **component** tokens (`--button-default`, `--input-radius`). A **part** is one element of a component, named by its `data-slot`. Component token names are `--<part>[-<variant>][-<state>][-<property>][\:<breakpoint>]` (mobile-first: `\:md` is md and up, `\:md-to-lg` a range); DESIGN.md "Component tokens" has the full grammar and the generated list.
 
-```bash
-npx shadcn@latest add button
-# generates src/components/ui/button.tsx
-```
-
-The output uses semantic tokens (`bg-primary`, `text-primary-foreground`, etc.) and works out of the box because the semantic layer is wired up in `globals.css`. After scaffolding, customize the variants and export from `src/index.ts`.
-
-Generated components live under `src/components/ui/` to keep BYB-opinionated wrappers (`BYBButton`) separate from shadcn primitives.
+- A token file (`src/tokens/components/<component>.css`) declares a private `--_x` per component token on its part, falling back to the public `--x`, then the default. The ui file reads the private name (`rounded-(--_input-radius)`); apps set the public one.
+- Directives in token files: `/* @add classes */` and `/* @remove classes */` on a part, `/* @add(size.sm) … */` for one cva key, `/* @alias md = size.default */`. In a token's comment, `@ours` marks a component token read by our own component, not the ui file.
+- To update stock components: `npx shadcn@latest add <names> --overwrite` → `pnpm tokens:apply` → `pnpm tokens:build` → `pnpm check-component-tokens`. Review the diff of `src/components/ui/` and the visual result before committing.
+- To add a new stock component: `npx shadcn@latest add <name>`, write its token file (one component token per designed value), then the same three commands. Export it from `src/index.ts`.
+- A change that isn't just a look (different structure, behaviour or variants) goes in a wrapper in `src/components/<name>.tsx` that re-exports `ui/<name>` and exports over the parts it changes. Its component tokens are `@ours`.
+- Contrast pairs under AA go in `scripts/tokens/contrast-exceptions.json` as `undecided` or `accepted` with a note. `check-component-tokens` warns on undecided; `scripts/tokens/check.mjs --strict` fails.
 
 ### Component API conventions
 
 ```tsx
 // Use cva for variants — export the variants object so consumers can extend
 const buttonVariants = cva('base-classes', {
-  variants: { variant: { lime: '…', navy: '…' }, size: { sm: '…', md: '…' } },
-  defaultVariants: { variant: 'lime', size: 'md' },
+  variants: { variant: { primary: '…', tertiary: '…' }, size: { sm: '…', md: '…' } },
+  defaultVariants: { variant: 'primary', size: 'md' },
 })
 
-// Interface extends both native element props AND cva VariantProps
-export interface BYBButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+// Interface extends both the primitive's props AND cva VariantProps
+export interface ButtonProps
+  extends ButtonPrimitive.Props,
     VariantProps<typeof buttonVariants> {}
 
 // Use cn() — not clsx() — for className merging (cn handles Tailwind conflicts)
 className={cn(buttonVariants({ variant, size, className }))}
 ```
 
-### asChild pattern
+### render pattern
 
-Use `asChild` on interactive components to allow rendering as `<Link>` or `<a>` without losing styles:
+Use the Base UI `render` prop to render an interactive component as `<Link>` or `<a>` without losing styles:
 
 ```tsx
-<BYBButton asChild variant="lime">
-  <Link href="/get-a-quote">Get a quote</Link>
-</BYBButton>
+<Button nativeButton={false} render={<Link href="/get-a-quote" />}>
+  Get a quote
+</Button>
 ```
 
 ## Running locally
@@ -216,7 +314,18 @@ This repo uses **pnpm** (`pnpm@11.9.0` via corepack — run `corepack enable pnp
 pnpm install
 pnpm dev          # watch mode — rebuild on save
 pnpm storybook    # Storybook at http://localhost:6006
-pnpm check-tokens # verify every colour primitive is exposed via @theme inline
+pnpm check-tokens # fail if a colour has no utility class or generated tokens are stale
+pnpm generate-tokens # regenerate src/generated/default-tokens.ts from globals.css
+pnpm sync-shadcn-css # refresh shadcn.css after bumping shadcn
+pnpm test:migrate # migrator tests
+pnpm test:cn      # cn() merge tests
+pnpm tokens:apply # token files → class strings in src/components/ui
+pnpm tokens:build # regenerate index.css, the Design Console manifest and the DESIGN.md component tokens table
+pnpm check-component-tokens # fail if any of the above is stale, a component token is misnamed, or contrast fails
+pnpm console      # the Design Console at http://localhost:6010, rebuilt as token files change
+pnpm tokens:import <file.css> # make a Design Console export the defaults (--dry-run to preview)
+pnpm registry:build # regenerate docs/registry.md
+pnpm check-registry # fail if docs/registry.md is stale
 pnpm type-check   # TypeScript strict check
 pnpm lint         # ESLint
 ```
@@ -231,4 +340,4 @@ pnpm build-and-publish
 
 After publishing, update the version in consuming apps' `package.json` and run their install (`pnpm install` / `yarn install`).
 
-> **v2.0 is a breaking change.** Consumers must upgrade their host app to Tailwind v4 and drop the v3 `tailwind.config.ts`-based wiring. Direct utility classes (`bg-mint-45`, `text-navy`, `text-heading-lg`) continue to work unchanged.
+> **v2.0 is a breaking change.** Consumers must upgrade their host app to Tailwind v4 and drop the v3 `tailwind.config.ts`-based wiring. Direct utility classes (`bg-mint-45`, `text-navy`, `text-body-4`) continue to work unchanged.

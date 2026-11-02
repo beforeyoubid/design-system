@@ -1,0 +1,181 @@
+/* Button — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --button-radius: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/button.tsx follow from these names. */
+
+[data-slot="button"] {
+  /* @alias md = size.default */
+  /* @remove border-transparent bg-clip-padding text-sm focus-visible:border-ring disabled:opacity-50 aria-invalid:border-destructive */
+  /* @remove(variant.ghost) hover:bg-muted aria-expanded:bg-muted */
+  /* @remove(variant.destructive) focus-visible:border-destructive/40 */
+  /* @add cursor-pointer border-0 uppercase tracking-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed aria-busy:pointer-events-none aria-busy:cursor-progress aria-busy:opacity-70 aria-invalid:ring-3 */
+  /* @add(variant.outline) border aria-expanded:ring-3 */
+  /* @add(variant.secondary) border */
+  /* @add(md) text-button-sm has-data-[icon=inline-end]:pe-(--_button-md-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-md-with-icon-padding-x) */
+  /* @add(size.xs) text-caption-2 has-data-[icon=inline-end]:pe-(--_button-xs-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-xs-with-icon-padding-x) */
+  /* @add(size.sm) text-button-sm has-data-[icon=inline-end]:pe-(--_button-sm-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-sm-with-icon-padding-x) */
+  /* @add(size.lg) text-button-md has-data-[icon=inline-end]:pe-(--_button-lg-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-lg-with-icon-padding-x) [&_svg:not([class*='size-'])]:size-4.5 */
+  /* @add(size.icon-lg) [&_svg:not([class*='size-'])]:size-4.5 */
+  /* Corner radius of the button. */
+  --_button-radius: var(--button-radius, var(--radius-xl));
+  /* Font weight of the button. */
+  --_button-font-weight: var(--button-font-weight, 600);
+  /* Ring colour of the button when focused. */
+  --_button-focus-ring: var(--button-focus-ring, var(--navy));
+  /* Ring colour of the button when invalid. */
+  --_button-invalid-ring: var(--button-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
+  /* Fill colour of the button (default variant). */
+  --_button-default: var(--button-default, var(--primary));
+  /* Text colour of the button (default variant). */
+  --_button-default-foreground: var(--button-default-foreground, var(--primary-foreground));
+  /* Shadow of the button (default variant). */
+  --_button-default-shadow: var(--button-default-shadow, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+  /* Fill colour of the button (default variant) when hovered. */
+  --_button-default-hover: var(--button-default-hover, color-mix(in oklab, var(--primary) 80%, transparent));
+  /* Fill colour of the button (default variant) while open. */
+  --_button-default-open: var(--button-default-open, color-mix(in oklab, var(--primary) 80%, transparent));
+  /* Fill colour of the button (default variant) when disabled. */
+  --_button-default-disabled: var(--button-default-disabled, var(--light-l2));
+  /* Text colour of the button (default variant) when disabled. */
+  --_button-default-disabled-foreground: var(--button-default-disabled-foreground, var(--dark-45));
+  /* Shadow of the button (default variant) when disabled. */
+  --_button-default-disabled-shadow: var(--button-default-disabled-shadow, 0 0 #0000);
+  /* Border colour of the button (outline variant). */
+  --_button-outline-border: var(--button-outline-border, var(--dark-15));
+  /* Fill colour of the button (outline variant). */
+  --_button-outline: var(--button-outline, var(--white));
+  /* Text colour of the button (outline variant). */
+  --_button-outline-foreground: var(--button-outline-foreground, var(--dark-90));
+  /* Border colour of the button (outline variant) when hovered. */
+  --_button-outline-hover-border: var(--button-outline-hover-border, var(--dark-45));
+  /* Fill colour of the button (outline variant) when hovered. */
+  --_button-outline-hover: var(--button-outline-hover, var(--dark-45));
+  /* Text colour of the button (outline variant) when hovered. */
+  --_button-outline-hover-foreground: var(--button-outline-hover-foreground, var(--dark-100));
+  /* Border colour of the button (outline variant) while open. */
+  --_button-outline-open-border: var(--button-outline-open-border, var(--mint-45));
+  /* Fill colour of the button (outline variant) while open. */
+  --_button-outline-open: var(--button-outline-open, var(--mint-l4));
+  /* Text colour of the button (outline variant) while open. */
+  --_button-outline-open-foreground: var(--button-outline-open-foreground, var(--mint-75));
+  /* Ring colour of the button (outline variant) while open. */
+  --_button-outline-open-ring: var(--button-outline-open-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
+  /* Border colour of the button (outline variant) when disabled. */
+  --_button-outline-disabled-border: var(--button-outline-disabled-border, var(--light-l2));
+  /* Fill colour of the button (outline variant) when disabled. */
+  --_button-outline-disabled: var(--button-outline-disabled, var(--light-l2));
+  /* Text colour of the button (outline variant) when disabled. */
+  --_button-outline-disabled-foreground: var(--button-outline-disabled-foreground, var(--dark-45));
+  /* Border colour of the button (secondary variant). */
+  --_button-secondary-border: var(--button-secondary-border, var(--navy));
+  /* Fill colour of the button (secondary variant). */
+  --_button-secondary: var(--button-secondary, var(--white));
+  /* Text colour of the button (secondary variant). */
+  --_button-secondary-foreground: var(--button-secondary-foreground, var(--navy));
+  /* Fill colour of the button (secondary variant) when hovered. */
+  --_button-secondary-hover: var(--button-secondary-hover, var(--navy));
+  /* Text colour of the button (secondary variant) when hovered. */
+  --_button-secondary-hover-foreground: var(--button-secondary-hover-foreground, var(--white));
+  /* Fill colour of the button (secondary variant) while open. */
+  --_button-secondary-open: var(--button-secondary-open, var(--navy));
+  /* Text colour of the button (secondary variant) while open. */
+  --_button-secondary-open-foreground: var(--button-secondary-open-foreground, var(--white));
+  /* Border colour of the button (secondary variant) when disabled. */
+  --_button-secondary-disabled-border: var(--button-secondary-disabled-border, var(--dark-15));
+  /* Fill colour of the button (secondary variant) when disabled. */
+  --_button-secondary-disabled: var(--button-secondary-disabled, var(--light-l2));
+  /* Text colour of the button (secondary variant) when disabled. */
+  --_button-secondary-disabled-foreground: var(--button-secondary-disabled-foreground, var(--dark-45));
+  /* Text colour of the button (ghost variant). */
+  --_button-ghost-foreground: var(--button-ghost-foreground, var(--mint-75));
+  /* Text colour of the button (ghost variant) when hovered. */
+  --_button-ghost-hover-foreground: var(--button-ghost-hover-foreground, var(--mint-45));
+  /* Text colour of the button (ghost variant) while open. */
+  --_button-ghost-open-foreground: var(--button-ghost-open-foreground, var(--mint-45));
+  /* Text colour of the button (ghost variant) when disabled. */
+  --_button-ghost-disabled-foreground: var(--button-ghost-disabled-foreground, var(--dark-45));
+  /* Fill colour of the button (destructive variant). */
+  --_button-destructive: var(--button-destructive, var(--destructive));
+  /* Text colour of the button (destructive variant). */
+  --_button-destructive-foreground: var(--button-destructive-foreground, var(--white));
+  /* Shadow of the button (destructive variant). */
+  --_button-destructive-shadow: var(--button-destructive-shadow, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+  /* Fill colour of the button (destructive variant) when hovered. */
+  --_button-destructive-hover: var(--button-destructive-hover, var(--error-45));
+  /* Ring colour of the button (destructive variant) when focused. */
+  --_button-destructive-focus-ring: var(--button-destructive-focus-ring, var(--button-focus-ring, var(--destructive)));
+  /* Fill colour of the button (destructive variant) when disabled. */
+  --_button-destructive-disabled: var(--button-destructive-disabled, var(--light-l2));
+  /* Text colour of the button (destructive variant) when disabled. */
+  --_button-destructive-disabled-foreground: var(--button-destructive-disabled-foreground, var(--dark-45));
+  /* Shadow of the button (destructive variant) when disabled. */
+  --_button-destructive-disabled-shadow: var(--button-destructive-disabled-shadow, 0 0 #0000);
+  /* Text colour of the button (link variant). */
+  --_button-link-foreground: var(--button-link-foreground, var(--mint-75));
+  /* Text colour of the button (link variant) when hovered. */
+  --_button-link-hover-foreground: var(--button-link-hover-foreground, var(--mint-45));
+  /* Text colour of the button (link variant) when disabled. */
+  --_button-link-disabled-foreground: var(--button-link-disabled-foreground, var(--dark-45));
+  /* Height of the button (md size). */
+  --_button-md-height: var(--button-md-height, calc(var(--spacing) * 10));
+  /* Gap between items of the button (md size). */
+  --_button-md-gap: var(--button-md-gap, calc(var(--spacing) * 3));
+  /* Horizontal padding of the button (md size). */
+  --_button-md-padding-x: var(--button-md-padding-x, calc(var(--spacing) * 4));
+  /* Height of the button (xs size). */
+  --_button-xs-height: var(--button-xs-height, calc(var(--spacing) * 7));
+  /* Gap between items of the button (xs size). */
+  --_button-xs-gap: var(--button-xs-gap, calc(var(--spacing) * 1));
+  /* Corner radius of the button (xs size). */
+  --_button-xs-radius: var(--button-xs-radius, var(--button-radius, var(--radius-md)));
+  /* Horizontal padding of the button (xs size). */
+  --_button-xs-padding-x: var(--button-xs-padding-x, calc(var(--spacing) * 3));
+  /* Vertical padding of the button (xs size). */
+  --_button-xs-padding-y: var(--button-xs-padding-y, calc(var(--spacing) * 1));
+  /* Height of the button (sm size). */
+  --_button-sm-height: var(--button-sm-height, calc(var(--spacing) * 9));
+  /* Gap between items of the button (sm size). */
+  --_button-sm-gap: var(--button-sm-gap, calc(var(--spacing) * 2));
+  /* Corner radius of the button (sm size). */
+  --_button-sm-radius: var(--button-sm-radius, var(--button-radius, var(--radius-lg)));
+  /* Horizontal padding of the button (sm size). */
+  --_button-sm-padding-x: var(--button-sm-padding-x, calc(var(--spacing) * 3.5));
+  /* Height of the button (lg size). */
+  --_button-lg-height: var(--button-lg-height, calc(var(--spacing) * 11));
+  /* Gap between items of the button (lg size). */
+  --_button-lg-gap: var(--button-lg-gap, calc(var(--spacing) * 3));
+  /* Horizontal padding of the button (lg size). */
+  --_button-lg-padding-x: var(--button-lg-padding-x, calc(var(--spacing) * 4.5));
+  /* Width and height of the button (icon size). */
+  --_button-icon-size: var(--button-icon-size, calc(var(--spacing) * 10));
+  /* Corner radius of the button (icon size). */
+  --_button-icon-radius: var(--button-icon-radius, var(--button-radius, var(--radius-full)));
+  /* Width and height of the button (icon-xs size). */
+  --_button-icon-xs-size: var(--button-icon-xs-size, calc(var(--spacing) * 7));
+  /* Corner radius of the button (icon-xs size). */
+  --_button-icon-xs-radius: var(--button-icon-xs-radius, var(--button-radius, var(--radius-full)));
+  /* Width and height of the button (icon-sm size). */
+  --_button-icon-sm-size: var(--button-icon-sm-size, calc(var(--spacing) * 9));
+  /* Corner radius of the button (icon-sm size). */
+  --_button-icon-sm-radius: var(--button-icon-sm-radius, var(--button-radius, var(--radius-full)));
+  /* Width and height of the button (icon-lg size). */
+  --_button-icon-lg-size: var(--button-icon-lg-size, calc(var(--spacing) * 11));
+  /* Corner radius of the button (icon-lg size). */
+  --_button-icon-lg-radius: var(--button-icon-lg-radius, var(--button-radius, var(--radius-full)));
+  /* Fill colour of the button (lime variant). @ours */
+  --_button-lime: var(--button-lime, var(--lime));
+  /* Text colour of the button (lime variant). @ours */
+  --_button-lime-foreground: var(--button-lime-foreground, var(--navy));
+  /* Fill colour of the button (navy variant). @ours */
+  --_button-navy: var(--button-navy, var(--navy));
+  /* Text colour of the button (navy variant). @ours */
+  --_button-navy-foreground: var(--button-navy-foreground, var(--white));
+  /* Padding on the icon side of the button (md) when it has an icon. */
+  --_button-md-with-icon-padding-x: var(--button-md-with-icon-padding-x, calc(var(--spacing) * 3.5));
+  /* Padding on the icon side of the button (xs) when it has an icon. */
+  --_button-xs-with-icon-padding-x: var(--button-xs-with-icon-padding-x, calc(var(--spacing) * 2));
+  /* Padding on the icon side of the button (sm) when it has an icon. */
+  --_button-sm-with-icon-padding-x: var(--button-sm-with-icon-padding-x, calc(var(--spacing) * 3));
+  /* Padding on the icon side of the button (lg) when it has an icon. */
+  --_button-lg-with-icon-padding-x: var(--button-lg-with-icon-padding-x, calc(var(--spacing) * 4));
+}

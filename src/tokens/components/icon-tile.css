@@ -1,0 +1,38 @@
+/* Icon tile — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section.
+ * Defaults are the shipped design. Edited by hand; our component (icon-tile.tsx) reads these component tokens. */
+
+[data-slot="icon-tile"] {
+  /* Fill colour of the tile (mint variant). @ours */
+  --_icon-tile-mint: var(--icon-tile-mint, var(--mint-l3));
+  /* Icon colour of the tile (mint variant). @ours */
+  --_icon-tile-mint-foreground: var(--icon-tile-mint-foreground, var(--mint-75));
+  /* Fill colour of the tile (navy variant). @ours */
+  --_icon-tile-navy: var(--icon-tile-navy, var(--navy));
+  /* Icon colour of the tile (navy variant). @ours */
+  --_icon-tile-navy-foreground: var(--icon-tile-navy-foreground, var(--white));
+  /* Fill colour of the tile (warning variant). @ours */
+  --_icon-tile-warning: var(--icon-tile-warning, var(--warning-l2));
+  /* Icon colour of the tile (warning variant). @ours */
+  --_icon-tile-warning-foreground: var(--icon-tile-warning-foreground, var(--warning-75));
+  /* Fill colour of the tile (error variant). @ours */
+  --_icon-tile-error: var(--icon-tile-error, var(--error-l1));
+  /* Icon colour of the tile (error variant). @ours */
+  --_icon-tile-error-foreground: var(--icon-tile-error-foreground, var(--destructive));
+  /* Fill colour of the tile (lime variant). @ours */
+  --_icon-tile-lime: var(--icon-tile-lime, var(--lime));
+  /* Icon colour of the tile (lime variant). @ours */
+  --_icon-tile-lime-foreground: var(--icon-tile-lime-foreground, var(--navy));
+  /* Fill colour of the tile (neutral variant). @ours */
+  --_icon-tile-neutral: var(--icon-tile-neutral, var(--light-l2));
+  /* Icon colour of the tile (neutral variant). @ours */
+  --_icon-tile-neutral-foreground: var(--icon-tile-neutral-foreground, var(--navy));
+  /* Width and height of the tile (sm size). @ours */
+  --_icon-tile-sm-size: var(--icon-tile-sm-size, calc(var(--spacing) * 8));
+  /* Width and height of the tile (md size). @ours */
+  --_icon-tile-md-size: var(--icon-tile-md-size, calc(var(--spacing) * 10));
+  /* Width and height of the tile (lg size). @ours */
+  --_icon-tile-lg-size: var(--icon-tile-lg-size, calc(var(--spacing) * 12));
+  /* Corner radius of the tile (square shape). @ours */
+  --_icon-tile-square-radius: var(--icon-tile-square-radius, var(--radius-lg));
+}

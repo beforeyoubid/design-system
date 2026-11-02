@@ -1,0 +1,64 @@
+/* Alert — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --alert-gap: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/alert.tsx follow from these names. */
+
+[data-slot="alert"] {
+  /* @remove(variant.destructive) *:[svg]:text-current */
+  /* @add text-body-5 */
+  /* @add(variant.destructive) *:data-[slot=alert-description]:text-destructive/90 */
+  /* @add has-[>svg]:gap-x-(--_alert-with-icon-gap) has-data-[slot=alert-action]:pe-(--_alert-with-action-padding-x) */
+  /* Gap between items of the alert. */
+  --_alert-gap: var(--alert-gap, calc(var(--spacing) * 0.5));
+  /* Corner radius of the alert. */
+  --_alert-radius: var(--alert-radius, var(--radius-2xl));
+  /* Horizontal padding of the alert. */
+  --_alert-padding-x: var(--alert-padding-x, calc(var(--spacing) * 4));
+  /* Vertical padding of the alert. */
+  --_alert-padding-y: var(--alert-padding-y, calc(var(--spacing) * 3));
+  /* Fill colour of the alert (default variant). */
+  --_alert-default: var(--alert-default, var(--card));
+  /* Border colour of the alert (default variant). */
+  --_alert-default-border: var(--alert-default-border, var(--border));
+  /* Text colour of the alert (default variant). */
+  --_alert-default-foreground: var(--alert-default-foreground, var(--card-foreground));
+  /* Fill colour of the alert (destructive variant). */
+  --_alert-destructive: var(--alert-destructive, var(--error-l1));
+  /* Border colour of the alert (destructive variant). */
+  --_alert-destructive-border: var(--alert-destructive-border, var(--error-15));
+  /* Text colour of the alert (destructive variant). */
+  --_alert-destructive-foreground: var(--alert-destructive-foreground, var(--destructive));
+  /* Fill colour of the alert (success variant). @ours */
+  --_alert-success: var(--alert-success, var(--success-l1));
+  /* Border colour of the alert (success variant). @ours */
+  --_alert-success-border: var(--alert-success-border, var(--success-15));
+  /* Text colour of the alert (success variant). @ours */
+  --_alert-success-foreground: var(--alert-success-foreground, var(--success-75));
+  /* Fill colour of the alert (warning variant). @ours */
+  --_alert-warning: var(--alert-warning, var(--warning-l2));
+  /* Border colour of the alert (warning variant). @ours */
+  --_alert-warning-border: var(--alert-warning-border, var(--warning-15));
+  /* Text colour of the alert (warning variant). @ours */
+  --_alert-warning-foreground: var(--alert-warning-foreground, var(--warning-75));
+  /* Fill colour of the alert (info variant). @ours */
+  --_alert-info: var(--alert-info, var(--mint-l4));
+  /* Border colour of the alert (info variant). @ours */
+  --_alert-info-border: var(--alert-info-border, var(--mint-l2));
+  /* Text colour of the alert (info variant). @ours */
+  --_alert-info-foreground: var(--alert-info-foreground, var(--mint-90));
+  /* Gap between the icon and the text of an alert with an icon. */
+  --_alert-with-icon-gap: var(--alert-with-icon-gap, calc(var(--spacing) * 2.5));
+  /* Right padding of an alert with an action button (room for the button). */
+  --_alert-with-action-padding-x: var(--alert-with-action-padding-x, calc(var(--spacing) * 18));
+}
+
+[data-slot="alert-title"] {
+  /* Font weight of the title. */
+  --_alert-title-font-weight: var(--alert-title-font-weight, 500);
+}
+
+[data-slot="alert-description"] {
+  /* @add text-body-5 */
+  /* Text colour of the description. */
+  --_alert-description-foreground: var(--alert-description-foreground, var(--muted-foreground));
+}

@@ -1,0 +1,93 @@
+/* Toast — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --toast-radius: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/toast.tsx follow from these names. */
+
+[data-slot="toast-viewport"] {
+  /* @remove mx-auto w-auto max-w-sm sm:end-4 sm:start-auto sm:mx-0 sm:w-full */
+  /* @add inset-x-(--_toast-viewport-offset) bottom-(--_toast-viewport-offset) sm:inset-x-(--_toast-viewport-offset--sm) sm:bottom-(--_toast-viewport-offset--sm) md:start-auto md:w-(--_toast-viewport-width--md) */
+  /* Distance of the toasts from the bottom and side edges of the screen. */
+  --_toast-viewport-offset: var(--toast-viewport-offset, calc(var(--spacing) * 4));
+  /* Distance of the toasts from the screen edges from the sm breakpoint up. */
+  --_toast-viewport-offset--sm: var(--toast-viewport-offset\:sm, calc(var(--spacing) * 6));
+  /* Width of the toasts from the md breakpoint up, held to the end edge. Below md they span the screen. */
+  --_toast-viewport-width--md: var(--toast-viewport-width\:md, calc(var(--spacing) * 110));
+}
+
+[data-slot="toast"] {
+  /* @remove border shadow-lg focus-visible:border-ring */
+  /* @add font-sans [--gap:0.75rem] [--height:var(--toast-frontmost-height,var(--toast-height))] [--offset-y:calc(var(--toast-offset-y)*-1+calc(var(--toast-index)*var(--gap)*-1)+var(--toast-swipe-movement-y))] [--peek:0.75rem] [--scale:calc(max(0,1-(var(--toast-index)*0.1)))] [--shrink:calc(1-var(--scale))] h-(--height) [transform:translateX(var(--toast-swipe-movement-x))_translateY(calc(var(--toast-swipe-movement-y)-(var(--toast-index)*var(--peek))-(var(--shrink)*var(--height))))_scale(var(--scale))] [transition:transform_500ms_cubic-bezier(0.22,1,0.36,1),opacity_500ms,height_150ms] after:absolute after:top-full after:start-0 after:h-[calc(var(--gap)+1px)] after:w-full after:content-[''] data-expanded:h-(--toast-height) data-expanded:[transform:translateX(var(--toast-swipe-movement-x))_translateY(var(--offset-y))] data-limited:opacity-0 data-starting-style:[transform:translateY(150%)] [&[data-ending-style]:not([data-limited]):not([data-swipe-direction])]:[transform:translateY(150%)] data-ending-style:data-[swipe-direction=down]:[transform:translateY(calc(var(--toast-swipe-movement-y)+150%))] data-ending-style:data-[swipe-direction=left]:[transform:translateX(calc(var(--toast-swipe-movement-x)-150%))_translateY(var(--offset-y))] data-ending-style:data-[swipe-direction=right]:[transform:translateX(calc(var(--toast-swipe-movement-x)+150%))_translateY(var(--offset-y))] data-ending-style:data-[swipe-direction=up]:[transform:translateY(calc(var(--toast-swipe-movement-y)-150%))] data-expanded:data-ending-style:data-[swipe-direction=down]:[transform:translateY(calc(var(--toast-swipe-movement-y)+150%))] data-expanded:data-ending-style:data-[swipe-direction=left]:[transform:translateX(calc(var(--toast-swipe-movement-x)-150%))_translateY(var(--offset-y))] data-expanded:data-ending-style:data-[swipe-direction=right]:[transform:translateX(calc(var(--toast-swipe-movement-x)+150%))_translateY(var(--offset-y))] data-expanded:data-ending-style:data-[swipe-direction=up]:[transform:translateY(calc(var(--toast-swipe-movement-y)-150%))] */
+  /* Corner radius of the toast. */
+  --_toast-radius: var(--toast-radius, var(--radius-2xl));
+  /* Ring colour of the toast when focused. */
+  --_toast-focus-ring: var(--toast-focus-ring, color-mix(in oklab, var(--ring) 50%, transparent));
+  /* Fill colour of the toast. */
+  --_toast: var(--toast, var(--light-l2));
+  /* Text colour of the toast. */
+  --_toast-foreground: var(--toast-foreground, var(--navy));
+  /* Fill colour of the toast (success type). @ours */
+  --_toast-success: var(--toast-success, var(--mint-l3));
+  /* Colour of the title, icon and × (success type). @ours */
+  --_toast-success-foreground: var(--toast-success-foreground, var(--mint-75));
+  /* Fill colour of the toast (warning type). @ours */
+  --_toast-warning: var(--toast-warning, var(--warning-l3));
+  /* Colour of the title, icon and × (warning type). @ours */
+  --_toast-warning-foreground: var(--toast-warning-foreground, var(--warning-75));
+  /* Fill colour of the toast (error type). @ours */
+  --_toast-error: var(--toast-error, var(--error-l1));
+  /* Colour of the title, icon and × (error type). @ours */
+  --_toast-error-foreground: var(--toast-error-foreground, var(--destructive));
+  /* Fill colour of the toast (info type). @ours */
+  --_toast-info: var(--toast-info, var(--mint-l4));
+  /* Colour of the title, icon and × (info type). @ours */
+  --_toast-info-foreground: var(--toast-info-foreground, var(--mint-75));
+}
+
+[data-slot="toast-content"] {
+  /* @remove p-4 */
+  /* @add relative */
+  /* Gap between items of the content. */
+  --_toast-content-gap: var(--toast-content-gap, calc(var(--spacing) * 2));
+  /* Horizontal padding of the content. */
+  --_toast-content-padding-x: var(--toast-content-padding-x, calc(var(--spacing) * 2));
+  /* Vertical padding of the content. */
+  --_toast-content-padding-y: var(--toast-content-padding-y, calc(var(--spacing) * 3));
+}
+
+[data-slot="toast-title"] {
+  /* @add text-body-5 */
+  /* Font weight of the title. */
+  --_toast-title-font-weight: var(--toast-title-font-weight, 600);
+}
+
+[data-slot="toast-description"] {
+  /* @add text-body-5 */
+  /* Text colour of the description. */
+  --_toast-description-foreground: var(--toast-description-foreground, var(--dark-90));
+}
+
+[data-slot="toast-action"] {
+  /* @remove shrink-0 */
+  /* @add inline cursor-pointer underline underline-offset-3 */
+  /* Font weight of the action. */
+  --_toast-action-font-weight: var(--toast-action-font-weight, 600);
+}
+
+[data-slot="toast-close"] {
+  /* @remove shrink-0 text-muted-foreground */
+  /* @add absolute end-2 top-2 flex cursor-pointer transition-colors [&_svg:not([class*='size-'])]:size-4.5 */
+  /* Padding of the close. */
+  --_toast-close-padding: var(--toast-close-padding, calc(var(--spacing) * 1));
+  /* Text colour of the close when hovered. */
+  --_toast-close-hover-foreground: var(--toast-close-hover-foreground, var(--navy));
+}
+
+[data-slot="toast-icon"] {
+  /* @add flex items-center justify-center border border-current [&_svg:not([class*='size-'])]:size-4.5 */
+  /* Width and height of the icon. */
+  --_toast-icon-size: var(--toast-icon-size, calc(var(--spacing) * 8));
+  /* Corner radius of the icon. */
+  --_toast-icon-radius: var(--toast-icon-radius, var(--radius-full));
+  /* Fill colour of the icon. */
+  --_toast-icon: var(--toast-icon, var(--white));
+}

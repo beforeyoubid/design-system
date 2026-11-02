@@ -9,9 +9,10 @@ import {
 } from '../../components/ui/navigation-menu'
 
 const meta: Meta<typeof NavigationMenu> = {
-  title: 'shadcn/NavigationMenu',
+  title: 'BYB Components/NavigationMenu',
   component: NavigationMenu,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Site navigation with links and dropdown panels.' } } },
 }
 
 export default meta
@@ -24,15 +25,41 @@ export const Default: Story = {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Services</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-72 gap-2 p-3">
-              <li><NavigationMenuLink href="#">Pre-purchase inspection</NavigationMenuLink></li>
+            <ul className="grid w-72">
+              <li><NavigationMenuLink href="#" active>Pre-purchase inspection</NavigationMenuLink></li>
               <li><NavigationMenuLink href="#">Pest inspection</NavigationMenuLink></li>
               <li><NavigationMenuLink href="#">Building inspection</NavigationMenuLink></li>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink href="#" className="text-body-sm px-3 py-2">Pricing</NavigationMenuLink>
+          <NavigationMenuLink href="#" className="h-10 px-3 font-medium">Pricing</NavigationMenuLink>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  ),
+}
+
+/** A section that isn't available yet. */
+export const WithDisabledItem: Story = {
+  render: () => (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Services</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-72">
+              <li>
+                <NavigationMenuLink href="#">Pre-purchase inspection</NavigationMenuLink>
+              </li>
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger disabled>Partners (coming soon)</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-72" />
+          </NavigationMenuContent>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

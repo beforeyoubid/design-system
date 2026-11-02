@@ -1,5 +1,44 @@
 # Changelog
 
+## 2.0.0
+
+Upgrade an app with `npx design-system-migrate` (dry run) then `--write`, in the same PR as the version bump. See DESIGN.md → "Upgrading from 1.1.x".
+
+### Breaking
+
+- **Type classes are role + step.** `text-display-1…4`, `text-h1…h6`, `text-body-1…5`, `text-caption-1…3`, `text-overline`, `text-button-lg/md/sm`. The 1.1.x names (`text-heading-*`, `text-medium-*`, `text-body-lg/md/sm`, `text-caption`, `text-btn-*`, the 10px `text-xs`, `text-2xs`) and `tracking-btn` are removed; the migrator maps each one.
+- **Tailwind's default `text-xs` is 12px again.** 1.1.x overrode it to 10px; those uses become `text-caption-2`.
+- **`rounded-xl` is 16px and `rounded-2xl` 20px** (they were 20px and 16px). Components were swapped to match; the migrator swaps app uses. `rounded-btn` is removed (→ `rounded-xl`).
+- **`cobalt` is renamed `electric-blue`**, including `-l1`, the CSS variables and Badge `variant="cobalt"`.
+- **`--primary-foreground` is navy** (was white): white on mint-45 is 2.80:1, under WCAG AA. The primary button text, an icon in the avatar status dot and selected text in a native select follow it. The migrator turns app uses of `*-primary-foreground` and `var(--primary-foreground)` into `white`, so app markup keeps the colour it had.
+- **`--success` is a light mint tint** (`mint-15`, was a solid green) with `--success-foreground` `mint-90`, so success text on it passes WCAG AA. Every component text pair now passes AA with no exceptions: mint text darkened to `mint-75` / `mint-90` on light fills (badges, toasts, selected menu, select, command and navigation rows), checkbox ticks and the stepper's active number are navy, toast warning text is `warning-75`, and dropdown menu borders are `dark-15`.
+- **Badge, Switch and TabsList variants renamed.** Badge `default`/`secondary`/`outline` → `gray`, `destructive` → `error`; `dot` removed. Switch size `default` → `md`. TabsList `default` → `segmented` (still the default: a grey track with the selected tab raised), `pills` → `pill`.
+- **Button gains `secondary` (navy outline) and `tertiary` (grey outline); every 1.x variant stays.** `primary` is the mint fill, with `default` as an alias, and `outline-navy` is an alias of `secondary`. `outline`, `lime` and `navy` are unchanged, and size `default` is an alias of `md`. `ghost`, `destructive` and `link` take the BYB styling.
+- **`BYBPillCard` is removed.** No app used it; the website builds its own pill cards. The migrator lists any import of it.
+- **`colors` and `typography` are no longer exported.** Use `generateDesignSystemTokens({ overrides })` for non-CSS contexts, or a utility class.
+- **`2xl:` breakpoint is 1440px** (was 1536px). `xl:` stays at 1280px.
+- **Toasts use shadcn's `toast` on Base UI; Sonner is removed.** `sonner`, `showToast`, `dismissToast` and the inline `<Toast tone>` surface are gone. Fire toasts with `toast.add({ type, title, description, actionProps })` and `toast.promise(promise, { loading, success, error })`; `<Toaster />` is still mounted once. Types, colours, timings and the inline Undo link are unchanged. The `sonner` and `next-themes` dependencies are dropped.
+- **`EmptyState` is replaced by shadcn's `Empty`** (`Empty`, `EmptyHeader`, `EmptyMedia`, `EmptyTitle`, `EmptyDescription`, `EmptyContent`) with the same look. `plain` / `dashed` / `muted` are `default` / `outline` / `muted`. `TableEmpty` takes those parts as children instead of `icon` / `title` / `description` / `actions` / `footer` props.
+- **`Fieldset` is replaced by shadcn's `Field` parts** (`FieldSet`, `FieldLegend`, `FieldDescription`, `FieldGroup`, `Field`, `FieldLabel`, `FieldError`, `FieldSeparator`) styled to match. `divided` becomes a `FieldSeparator` between sections.
+
+### Added
+
+- **Guardrail docs for apps** ship in the package: `docs/README.md` (start here), `styling.md`, `components.md`, and `registry.md`, every export with its purpose, variant props and component tokens. Point an app's CLAUDE.md at `node_modules/@beforeyoubid/design-system/docs/README.md`.
+- `npx design-system-check [paths]` reports guardrail findings in app code with what to use instead (classes 2.0 removed, logical sides, arbitrary values, type classes, semantic colours, `gap`, `size-*`, `dark:`, inline styles, icon imports, `asChild`). `--changed` limits it to lines changed since the last commit, `--commits` to the lines given commits or ranges changed, and `--fix` applies the findings with one safe answer: logical sides, arbitrary values that are on a scale (spacing, radius, opacity, z, aspect, brand hex colours, tracking), Tailwind and px text sizes on the type scale, semantic colours, `size-*`, icon imports and dropping `dark:`. `--nearest` also snaps text sizes between two steps to the nearer one. It never fails a build.
+- `generateDesignSystemTokens({ overrides })`: brand colours, semantic roles (`colors.primary`, `colors.mutedForeground`, each following its brand colour), product badge colours and type styles for non-CSS contexts, generated from `globals.css` so they can't drift.
+- `design-system-migrate` codemod.
+- BYB product components with no shadcn equivalent: `IconTile`, `Stepper`, `ColorDot`.
+- `shadcn.css`: a copy of shadcn's stylesheet (custom variants, `no-scrollbar`, `scroll-fade-*`, `shimmer`), refreshed with `pnpm sync-shadcn-css`. Fixes Separator and ScrollArea scrollbars, which rendered 0px.
+- `tw-animate-css` is a dependency and imported by `globals.css`, so overlay enter/exit animations (`animate-in`, `fade-in-0`, `zoom-in-95`, `slide-in-from-*`) work. Apps need no change.
+
+### Fixed
+
+- Accordion panels animate open and closed. They used keyframes that read Radix's height variable, which Base UI never sets; the panel now transitions to Base UI's `--accordion-panel-height`.
+- `--input` is dark-45, the form-control border in DESIGN.md (it was dark-15, shared with `--border`). Stock shadcn controls that read `border-input` now match the BYB ones.
+- Dropdown menu and command items grow to fit a second line (a description under the label). They had a fixed 32px height, so the second line spilled onto the next item; 32px is now the minimum, and `--dropdown-menu-item-height` / `--command-item-height` are `--dropdown-menu-item-min-height` / `--command-item-min-height` with a `-padding-y` token each.
+- A single Combobox's popup lines up with its field: same left edge, same width. It was anchored to the text input inside the field, so it sat indented and narrower. Pass `anchor` to anchor it elsewhere.
+- Tailwind's default text sizes are no longer cleared, so `text-sm`, `text-lg` and the rest keep working in apps.
+
 ## 1.1.5
 
 ### Added

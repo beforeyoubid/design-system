@@ -7,12 +7,13 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '../../components/ui/pagination'
+} from '../../components/pagination'
 
 const meta: Meta<typeof Pagination> = {
-  title: 'shadcn/Pagination',
+  title: 'BYB Components/Pagination',
   component: Pagination,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'Moves between pages of results.' } } },
 }
 
 export default meta

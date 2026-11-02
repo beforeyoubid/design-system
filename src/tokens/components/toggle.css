@@ -1,0 +1,58 @@
+/* Toggle — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --toggle-gap: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/toggle.tsx follow from these names. */
+
+[data-slot="toggle"] {
+  /* @alias md = size.default */
+  /* @add cursor-pointer text-body-5 focus-visible:ring-3 aria-pressed:text-(--_toggle-pressed-foreground) */
+  /* @add(md) has-data-[icon=inline-end]:pe-(--_toggle-md-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_toggle-md-with-icon-padding-x) */
+  /* @add(size.sm) has-data-[icon=inline-end]:pe-(--_toggle-sm-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_toggle-sm-with-icon-padding-x) */
+  /* @add(size.lg) has-data-[icon=inline-end]:pe-(--_toggle-lg-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_toggle-lg-with-icon-padding-x) */
+  /* Gap between items of the toggle. */
+  --_toggle-gap: var(--toggle-gap, calc(var(--spacing) * 1));
+  /* Corner radius of the toggle. */
+  --_toggle-radius: var(--toggle-radius, var(--radius-md));
+  /* Font weight of the toggle. */
+  --_toggle-font-weight: var(--toggle-font-weight, 500);
+  /* Fill colour of the toggle when hovered. */
+  --_toggle-hover: var(--toggle-hover, var(--muted));
+  /* Text colour of the toggle when hovered. */
+  --_toggle-hover-foreground: var(--toggle-hover-foreground, var(--foreground));
+  /* Border colour of the toggle when focused. */
+  --_toggle-focus-border: var(--toggle-focus-border, var(--ring));
+  /* Ring colour of the toggle when focused. */
+  --_toggle-focus-ring: var(--toggle-focus-ring, color-mix(in oklab, var(--ring) 50%, transparent));
+  /* Opacity of the toggle when disabled. */
+  --_toggle-disabled-opacity: var(--toggle-disabled-opacity, 0.5);
+  /* Border colour of the toggle when invalid. */
+  --_toggle-invalid-border: var(--toggle-invalid-border, var(--destructive));
+  /* Ring colour of the toggle when invalid. */
+  --_toggle-invalid-ring: var(--toggle-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
+  /* Fill colour of the toggle when pressed. The mint accent, so on reads apart from off (muted matched the page). */
+  --_toggle-pressed: var(--toggle-pressed, var(--accent));
+  /* Text colour of the toggle when pressed. */
+  --_toggle-pressed-foreground: var(--toggle-pressed-foreground, var(--accent-foreground));
+  /* Border colour of the toggle (outline variant). */
+  --_toggle-outline-border: var(--toggle-outline-border, var(--input));
+  /* Fill colour of the toggle (outline variant) when hovered. */
+  --_toggle-outline-hover: var(--toggle-outline-hover, var(--toggle-hover, var(--muted)));
+  /* Height of the toggle (md size). */
+  --_toggle-md-height: var(--toggle-md-height, calc(var(--spacing) * 9));
+  /* Horizontal padding of the toggle (md size). */
+  --_toggle-md-padding-x: var(--toggle-md-padding-x, calc(var(--spacing) * 3));
+  /* Height of the toggle (sm size). */
+  --_toggle-sm-height: var(--toggle-sm-height, calc(var(--spacing) * 8));
+  /* Horizontal padding of the toggle (sm size). */
+  --_toggle-sm-padding-x: var(--toggle-sm-padding-x, calc(var(--spacing) * 3));
+  /* Height of the toggle (lg size). */
+  --_toggle-lg-height: var(--toggle-lg-height, calc(var(--spacing) * 10));
+  /* Horizontal padding of the toggle (lg size). */
+  --_toggle-lg-padding-x: var(--toggle-lg-padding-x, calc(var(--spacing) * 4));
+  /* Padding on the icon side of the toggle (md) when it has an icon. */
+  --_toggle-md-with-icon-padding-x: var(--toggle-md-with-icon-padding-x, calc(var(--spacing) * 2.5));
+  /* Padding on the icon side of the toggle (sm) when it has an icon. */
+  --_toggle-sm-with-icon-padding-x: var(--toggle-sm-with-icon-padding-x, calc(var(--spacing) * 2));
+  /* Padding on the icon side of the toggle (lg) when it has an icon. */
+  --_toggle-lg-with-icon-padding-x: var(--toggle-lg-with-icon-padding-x, calc(var(--spacing) * 3));
+}

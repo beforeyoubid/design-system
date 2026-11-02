@@ -3,9 +3,10 @@ import { IconAlignLeft, IconAlignCenter, IconAlignRight } from '@tabler/icons-re
 import { ToggleGroup, ToggleGroupItem } from '../../components/ui/toggle-group'
 
 const meta: Meta<typeof ToggleGroup> = {
-  title: 'shadcn/ToggleGroup',
+  title: 'BYB Components/ToggleGroup',
   component: ToggleGroup,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A set of toggles for picking one or several of 2 to 7 options.' } } },
 }
 
 export default meta
@@ -13,7 +14,7 @@ type Story = StoryObj<typeof ToggleGroup>
 
 export const Single: Story = {
   render: () => (
-    <ToggleGroup type="single" defaultValue="left">
+    <ToggleGroup defaultValue={['left']}>
       <ToggleGroupItem value="left" aria-label="Align left"><IconAlignLeft className="h-4 w-4" /></ToggleGroupItem>
       <ToggleGroupItem value="center" aria-label="Align center"><IconAlignCenter className="h-4 w-4" /></ToggleGroupItem>
       <ToggleGroupItem value="right" aria-label="Align right"><IconAlignRight className="h-4 w-4" /></ToggleGroupItem>
@@ -23,7 +24,7 @@ export const Single: Story = {
 
 export const Multiple: Story = {
   render: () => (
-    <ToggleGroup type="multiple" defaultValue={['left']}>
+    <ToggleGroup multiple defaultValue={['left']}>
       <ToggleGroupItem value="left" aria-label="Align left"><IconAlignLeft className="h-4 w-4" /></ToggleGroupItem>
       <ToggleGroupItem value="center" aria-label="Align center"><IconAlignCenter className="h-4 w-4" /></ToggleGroupItem>
       <ToggleGroupItem value="right" aria-label="Align right"><IconAlignRight className="h-4 w-4" /></ToggleGroupItem>

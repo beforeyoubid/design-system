@@ -1,0 +1,89 @@
+/* Field — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --field-set-gap: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/field.tsx follow from these names. */
+
+[data-slot="field-set"] {
+  /* @add has-[>[data-slot=checkbox-group]]:gap-(--_field-set-with-choices-gap) has-[>[data-slot=radio-group]]:gap-(--_field-set-with-choices-gap) */
+  /* Gap between items of the set. */
+  --_field-set-gap: var(--field-set-gap, calc(var(--spacing) * 5));
+  /* Gap between items of a field set that holds a checkbox or radio group. */
+  --_field-set-with-choices-gap: var(--field-set-with-choices-gap, calc(var(--spacing) * 3));
+}
+
+[data-slot="field-legend"] {
+  /* @add mb-5 leading-tight has-[+[data-slot=field-description]]:mb-2.5 data-[variant=label]:text-body-5 data-[variant=legend]:text-body-4 */
+  /* Font weight of the legend. */
+  --_field-legend-font-weight: var(--field-legend-font-weight, 600);
+  /* Text colour of the legend. */
+  --_field-legend-foreground: var(--field-legend-foreground, var(--navy));
+}
+
+[data-slot="field-group"] {
+  /* @add data-[slot=checkbox-group]:gap-(--_field-group-checkbox-group-gap) */
+  /* Gap between items of the group. */
+  --_field-group-gap: var(--field-group-gap, calc(var(--spacing) * 5));
+  /* Gap between the checkboxes of a field group used as a checkbox group. */
+  --_field-group-checkbox-group-gap: var(--field-group-checkbox-group-gap, calc(var(--spacing) * 3));
+}
+
+[data-slot="field"] {
+  /* Gap between items of the field. */
+  --_field-gap: var(--field-gap, calc(var(--spacing) * 1.5));
+}
+
+[data-slot="field-content"] {
+  /* Gap between items of the content. */
+  --_field-content-gap: var(--field-content-gap, calc(var(--spacing) * 1));
+}
+
+[data-slot="field-label"] {
+  /* @remove leading-snug leading-tight */
+  /* @add has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col items-center text-body-5 leading-tight */
+  /* Gap between items of the label. */
+  --_field-label-gap: var(--field-label-gap, calc(var(--spacing) * 2));
+  /* Font weight of the label. */
+  --_field-label-font-weight: var(--field-label-font-weight, 600);
+  /* Text colour of the label. */
+  --_field-label-foreground: var(--field-label-foreground, var(--navy));
+  /* @remove group-data-[disabled=true]/field:opacity-50 */
+  /* @add group-data-[disabled=true]/field:opacity-(--_field-label-disabled-opacity) */
+  /* Opacity of the label when its field is disabled. Dimmed: at full strength the greyed form read as live. */
+  --_field-label-disabled-opacity: var(--field-label-disabled-opacity, 0.5);
+}
+
+[data-slot="field-description"] {
+  /* @add text-body-5 last:mt-0 nth-last-2:-mt-1 [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary */
+  /* Font weight of the description. */
+  --_field-description-font-weight: var(--field-description-font-weight, 400);
+  /* Text colour of the description. */
+  --_field-description-foreground: var(--field-description-foreground, var(--muted-foreground));
+}
+
+[data-slot="field-separator"] {
+  /* @add text-body-5 */
+  /* Height of the separator. */
+  --_field-separator-height: var(--field-separator-height, calc(var(--spacing) * 5));
+}
+
+[data-slot="field-separator-content"] {
+  /* Fill colour of the separator-content. */
+  --_field-separator-content: var(--field-separator-content, var(--background));
+  /* Horizontal padding of the separator-content. */
+  --_field-separator-content-padding-x: var(--field-separator-content-padding-x, calc(var(--spacing) * 2));
+  /* Text colour of the separator-content. */
+  --_field-separator-content-foreground: var(--field-separator-content-foreground, var(--muted-foreground));
+}
+
+[data-slot="field-error"] {
+  /* @add text-body-5 */
+  /* Font weight of the error. */
+  --_field-error-font-weight: var(--field-error-font-weight, 400);
+  /* Text colour of the error. */
+  --_field-error-foreground: var(--field-error-foreground, var(--destructive));
+}
+
+[data-slot="field-label-required"] {
+  /* Colour of the asterisk on a required field's label. @ours */
+  --_field-label-required-foreground: var(--field-label-required-foreground, var(--mint-45));
+}

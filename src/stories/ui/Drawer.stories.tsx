@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Button } from '../../components/ui/button'
+import { Button } from '../../components/button'
 import {
   Drawer,
   DrawerContent,
@@ -8,12 +8,13 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from '../../components/ui/drawer'
+} from '../../components/drawer'
 
 const meta: Meta<typeof Drawer> = {
-  title: 'shadcn/Drawer',
+  title: 'BYB Components/Drawer',
   component: Drawer,
   tags: ['autodocs'],
+  parameters: { docs: { description: { component: 'A panel that slides up from the bottom, mostly for mobile flows.' } } },
 }
 
 export default meta
@@ -22,14 +23,14 @@ type Story = StoryObj<typeof Drawer>
 export const Default: Story = {
   render: () => (
     <Drawer>
-      <DrawerTrigger asChild><Button variant="outline">Open drawer</Button></DrawerTrigger>
+      <DrawerTrigger render={<Button variant="tertiary" />}>Open drawer</DrawerTrigger>
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
             <DrawerTitle>Move goal</DrawerTitle>
             <DrawerDescription>Set your daily activity goal.</DrawerDescription>
           </DrawerHeader>
-          <div className="p-4 text-body-sm text-muted-foreground">Drawer body content.</div>
+          <div className="p-4 text-body-5 text-muted-foreground">Drawer body content.</div>
           <DrawerFooter>
             <Button>Save</Button>
           </DrawerFooter>

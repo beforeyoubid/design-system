@@ -24,11 +24,20 @@ jobs:
       - name: Token parity
         run: pnpm check-tokens
 
+      - name: Component tokens
+        run: pnpm check-component-tokens
+
+      - name: Component registry
+        run: pnpm check-registry
+
       - name: Type check
         run: pnpm type-check
 
       - name: Lint
         run: pnpm lint
+
+      - name: Migrator tests
+        run: pnpm test:migrate
 
       - name: Build package
         run: pnpm build

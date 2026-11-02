@@ -1,0 +1,63 @@
+/* Avatar — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --avatar-size: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/avatar.tsx follow from these names. */
+
+[data-slot="avatar"] {
+  /* @add data-[size=lg]:size-(--_avatar-lg-size) data-[size=sm]:size-(--_avatar-sm-size) */
+  /* Width and height of the avatar. */
+  --_avatar-size: var(--avatar-size, calc(var(--spacing) * 8));
+  /* Corner radius of the avatar. */
+  --_avatar-radius: var(--avatar-radius, var(--radius-full));
+  /* Size of a small (sm) avatar. */
+  --_avatar-sm-size: var(--avatar-sm-size, calc(var(--spacing) * 6));
+  /* Size of a large (lg) avatar. */
+  --_avatar-lg-size: var(--avatar-lg-size, calc(var(--spacing) * 10));
+}
+
+[data-slot="avatar-image"] {
+  /* Corner radius of the image. */
+  --_avatar-image-radius: var(--avatar-image-radius, var(--radius-full));
+}
+
+[data-slot="avatar-fallback"] {
+  /* @add text-body-5 group-data-[size=sm]/avatar:text-caption-2 */
+  /* Corner radius of the fallback. */
+  --_avatar-fallback-radius: var(--avatar-fallback-radius, var(--radius-full));
+  /* Fill colour of the fallback. */
+  --_avatar-fallback: var(--avatar-fallback, var(--muted));
+  /* Text colour of the fallback. */
+  --_avatar-fallback-foreground: var(--avatar-fallback-foreground, var(--muted-foreground));
+}
+
+[data-slot="avatar-badge"] {
+  /* @add group-data-[size=sm]/avatar:size-(--_avatar-badge-sm-size) group-data-[size=sm]/avatar:[&>svg]:hidden group-data-[size=default]/avatar:size-(--_avatar-badge-size) group-data-[size=default]/avatar:[&>svg]:size-2 group-data-[size=lg]/avatar:size-(--_avatar-badge-lg-size) group-data-[size=lg]/avatar:[&>svg]:size-2 */
+  /* Corner radius of the badge. */
+  --_avatar-badge-radius: var(--avatar-badge-radius, var(--radius-full));
+  /* Fill colour of the badge. */
+  --_avatar-badge: var(--avatar-badge, var(--primary));
+  /* Text colour of the badge. */
+  --_avatar-badge-foreground: var(--avatar-badge-foreground, var(--primary-foreground));
+  /* Ring colour of the badge. */
+  --_avatar-badge-ring: var(--avatar-badge-ring, var(--background));
+  /* Width and height of the status dot on a default avatar. */
+  --_avatar-badge-size: var(--avatar-badge-size, calc(var(--spacing) * 2.5));
+  /* Width and height of the status dot on a small avatar. */
+  --_avatar-badge-sm-size: var(--avatar-badge-sm-size, calc(var(--spacing) * 2));
+  /* Width and height of the status dot on a large avatar. */
+  --_avatar-badge-lg-size: var(--avatar-badge-lg-size, calc(var(--spacing) * 3));
+}
+
+[data-slot="avatar-group-count"] {
+  /* The "+N" count is the same size as the avatars beside it, so it reads the avatar sizes rather than its own. */
+  /* @remove size-(--_avatar-group-count-size) group-has-data-[size=lg]/avatar-group:size-(--_avatar-group-count-lg-size) group-has-data-[size=sm]/avatar-group:size-(--_avatar-group-count-sm-size) */
+  /* @add text-body-5 size-(--_avatar-size) group-has-data-[size=lg]/avatar-group:size-(--_avatar-lg-size) group-has-data-[size=sm]/avatar-group:size-(--_avatar-sm-size) */
+  /* Corner radius of the group-count. */
+  --_avatar-group-count-radius: var(--avatar-group-count-radius, var(--radius-full));
+  /* Fill colour of the group-count. */
+  --_avatar-group-count: var(--avatar-group-count, var(--muted));
+  /* Text colour of the group-count. */
+  --_avatar-group-count-foreground: var(--avatar-group-count-foreground, var(--muted-foreground));
+  /* Ring colour of the group-count. */
+  --_avatar-group-count-ring: var(--avatar-group-count-ring, var(--background));
+}

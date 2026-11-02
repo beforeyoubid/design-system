@@ -1,0 +1,63 @@
+/* Card — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --card-gap: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/card.tsx follow from these names. */
+
+[data-slot="card"] {
+  /* @remove ring-1 ring-foreground/10 [--card-spacing:--spacing(6)] data-[size=sm]:[--card-spacing:--spacing(4)] */
+  /* @add border text-body-5 data-[size=sm]:gap-(--_card-sm-gap) data-[size=sm]:py-(--_card-sm-padding-y) *:[img:first-child]:rounded-t-(--_card-radius) *:[img:last-child]:rounded-b-(--_card-radius) */
+  /* Gap between items of the card. */
+  --_card-gap: var(--card-gap, calc(var(--spacing) * 6));
+  /* Corner radius of the card. */
+  --_card-radius: var(--card-radius, var(--radius-lg));
+  /* Border colour of the card. */
+  --_card-border: var(--card-border, var(--border));
+  /* Fill colour of the card. */
+  --_card-fill: var(--card-fill, var(--card));
+  /* Shadow of the card. */
+  --_card-shadow: var(--card-shadow, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+  /* Vertical padding of the card. */
+  --_card-padding-y: var(--card-padding-y, calc(var(--spacing) * 6));
+  /* Gap between sections of a small (sm) card. */
+  --_card-sm-gap: var(--card-sm-gap, calc(var(--spacing) * 4));
+  /* Vertical padding of a small (sm) card. */
+  --_card-sm-padding-y: var(--card-sm-padding-y, calc(var(--spacing) * 4));
+}
+
+[data-slot="card-header"] {
+  /* @add rounded-t-(--_card-radius) group-data-[size=sm]/card:px-(--_card-header-sm-padding-x) [.border-b]:pb-(--_card-padding-y) group-data-[size=sm]/card:[.border-b]:pb-(--_card-sm-padding-y) */
+  /* Gap between items of the header. */
+  --_card-header-gap: var(--card-header-gap, calc(var(--spacing) * 2));
+  /* Horizontal padding of the header. */
+  --_card-header-padding-x: var(--card-header-padding-x, calc(var(--spacing) * 6));
+  /* Horizontal padding of the header in a small (sm) card. */
+  --_card-header-sm-padding-x: var(--card-header-sm-padding-x, calc(var(--spacing) * 4));
+}
+
+[data-slot="card-title"] {
+  /* @add text-body-4 */
+  /* Font weight of the title. */
+  --_card-title-font-weight: var(--card-title-font-weight, 500);
+}
+
+[data-slot="card-description"] {
+  /* @add text-body-5 */
+  /* Text colour of the description. */
+  --_card-description-foreground: var(--card-description-foreground, var(--muted-foreground));
+}
+
+[data-slot="card-content"] {
+  /* @add group-data-[size=sm]/card:px-(--_card-content-sm-padding-x) */
+  /* Horizontal padding of the content. */
+  --_card-content-padding-x: var(--card-content-padding-x, calc(var(--spacing) * 6));
+  /* Horizontal padding of the content in a small (sm) card. */
+  --_card-content-sm-padding-x: var(--card-content-sm-padding-x, calc(var(--spacing) * 4));
+}
+
+[data-slot="card-footer"] {
+  /* @add rounded-b-(--_card-radius) group-data-[size=sm]/card:px-(--_card-footer-sm-padding-x) [.border-t]:pt-(--_card-padding-y) group-data-[size=sm]/card:[.border-t]:pt-(--_card-sm-padding-y) */
+  /* Horizontal padding of the footer. */
+  --_card-footer-padding-x: var(--card-footer-padding-x, calc(var(--spacing) * 6));
+  /* Horizontal padding of the footer in a small (sm) card. */
+  --_card-footer-sm-padding-x: var(--card-footer-sm-padding-x, calc(var(--spacing) * 4));
+}

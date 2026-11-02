@@ -4,9 +4,9 @@ import * as React from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 import { cva, type VariantProps } from "class-variance-authority"
+import { cn } from "@/lib/utils"
 
 import { useIsMobile } from "@/hooks/use-mobile"
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
@@ -169,7 +169,7 @@ function Sidebar({
       <div
         data-slot="sidebar"
         className={cn(
-          "flex h-full w-(--sidebar-width) flex-col bg-sidebar text-sidebar-foreground",
+          "flex h-full w-(--sidebar-width) flex-col bg-(--_sidebar-fill) text-sidebar-foreground",
           className
         )}
         {...props}
@@ -218,7 +218,7 @@ function Sidebar({
       <div
         data-slot="sidebar-gap"
         className={cn(
-          "relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear",
+          "relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180",
           "group-data-[collapsible=offcanvas]:w-0",
           "group-data-[side=right]:rotate-180",
           variant === "floating" || variant === "inset"
@@ -242,7 +242,7 @@ function Sidebar({
         <div
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
-          className="flex size-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:shadow-sm group-data-[variant=floating]:ring-1 group-data-[variant=floating]:ring-sidebar-border"
+          className="flex size-full flex-col bg-(--_sidebar-inner) group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:shadow-sm group-data-[variant=floating]:ring-1 group-data-[variant=floating]:ring-sidebar-border"
         >
           {children}
         </div>
@@ -289,7 +289,7 @@ function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
       onClick={toggleSidebar}
       title="Toggle Sidebar"
       className={cn(
-        "absolute inset-y-0 z-20 hidden w-4 transition-all ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:start-1/2 after:w-[2px] hover:after:bg-sidebar-border sm:flex ltr:-translate-x-1/2 rtl:-translate-x-1/2",
+        "absolute inset-y-0 z-20 hidden w-(--_sidebar-rail-width) transition-all ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:start-1/2 after:w-0.5 hover:after:bg-sidebar-border sm:flex ltr:-translate-x-1/2 rtl:-translate-x-1/2 in-data-[side=left]:cursor-w-resize rtl:in-data-[side=left]:cursor-e-resize in-data-[side=right]:cursor-e-resize rtl:in-data-[side=right]:cursor-w-resize [[data-side=left][data-state=collapsed]_&]:cursor-e-resize rtl:[[data-side=left][data-state=collapsed]_&]:cursor-w-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize rtl:[[data-side=right][data-state=collapsed]_&]:cursor-e-resize group-data-[collapsible=offcanvas]:translate-x-0 rtl:group-data-[collapsible=offcanvas]:-translate-x-0 group-data-[collapsible=offcanvas]:after:start-full hover:group-data-[collapsible=offcanvas]:bg-sidebar [[data-side=left][data-collapsible=offcanvas]_&]:-end-2 [[data-side=right][data-collapsible=offcanvas]_&]:-start-2",
         "in-data-[side=left]:cursor-w-resize rtl:in-data-[side=left]:cursor-e-resize in-data-[side=right]:cursor-e-resize rtl:in-data-[side=right]:cursor-w-resize",
         "[[data-side=left][data-state=collapsed]_&]:cursor-e-resize rtl:[[data-side=left][data-state=collapsed]_&]:cursor-w-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize rtl:[[data-side=right][data-state=collapsed]_&]:cursor-e-resize",
         "group-data-[collapsible=offcanvas]:translate-x-0 rtl:group-data-[collapsible=offcanvas]:-translate-x-0 group-data-[collapsible=offcanvas]:after:start-full hover:group-data-[collapsible=offcanvas]:bg-sidebar",
@@ -307,7 +307,7 @@ function SidebarInset({ className, ...props }: React.ComponentProps<"main">) {
     <main
       data-slot="sidebar-inset"
       className={cn(
-        "relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ms-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ms-2",
+        "relative flex w-full flex-1 flex-col bg-(--_sidebar-inset) md:peer-data-[variant=inset]:m-(--_sidebar-inset-offset--md) md:peer-data-[variant=inset]:ms-0 md:peer-data-[variant=inset]:rounded-(--_sidebar-inset-radius--md) md:peer-data-[variant=inset]:shadow-(--_sidebar-inset-shadow--md) md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ms-(--_sidebar-inset-offset--md)",
         className
       )}
       {...props}
@@ -323,7 +323,7 @@ function SidebarInput({
     <Input
       data-slot="sidebar-input"
       data-sidebar="input"
-      className={cn("h-8 w-full bg-background shadow-none", className)}
+      className={cn("h-(--_sidebar-input-height) w-full bg-(--_sidebar-input) shadow-(--_sidebar-input-shadow)", className)}
       {...props}
     />
   )
@@ -335,7 +335,7 @@ function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="sidebar-header"
       data-sidebar="header"
       className={cn(
-        "flex flex-col gap-2 p-2 [--radius:var(--radius-xl)]",
+        "flex flex-col gap-(--_sidebar-header-gap) p-(--_sidebar-header-padding) [--radius:var(--radius-2xl)]",
         className
       )}
       {...props}
@@ -348,7 +348,7 @@ function SidebarFooter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="sidebar-footer"
       data-sidebar="footer"
-      className={cn("flex flex-col gap-2 p-2", className)}
+      className={cn("flex flex-col gap-(--_sidebar-footer-gap) p-(--_sidebar-footer-padding)", className)}
       {...props}
     />
   )
@@ -362,7 +362,7 @@ function SidebarSeparator({
     <Separator
       data-slot="sidebar-separator"
       data-sidebar="separator"
-      className={cn("mx-2 w-auto bg-sidebar-border", className)}
+      className={cn("mx-2 w-auto bg-(--_sidebar-separator)", className)}
       {...props}
     />
   )
@@ -374,7 +374,7 @@ function SidebarContent({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="sidebar-content"
       data-sidebar="content"
       className={cn(
-        "no-scrollbar flex min-h-0 flex-1 flex-col gap-2 overflow-auto [--radius:var(--radius-xl)] group-data-[collapsible=icon]:overflow-hidden",
+        "no-scrollbar flex min-h-(--_sidebar-content-min-height) flex-1 flex-col gap-(--_sidebar-content-gap) overflow-auto [--radius:var(--radius-2xl)] group-data-[collapsible=icon]:overflow-hidden",
         className
       )}
       {...props}
@@ -387,7 +387,7 @@ function SidebarGroup({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="sidebar-group"
       data-sidebar="group"
-      className={cn("relative flex w-full min-w-0 flex-col p-2", className)}
+      className={cn("relative flex w-full min-w-0 flex-col p-(--_sidebar-group-padding)", className)}
       {...props}
     />
   )
@@ -403,7 +403,7 @@ function SidebarGroupLabel({
     props: mergeProps<"div">(
       {
         className: cn(
-          "flex h-8 shrink-0 items-center rounded-md px-3 text-xs font-medium text-sidebar-foreground/70 ring-sidebar-ring outline-hidden transition-[margin,opacity] duration-200 ease-linear group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0 focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+          "flex h-(--_sidebar-group-label-height) shrink-0 items-center rounded-(--_sidebar-group-label-radius) px-(--_sidebar-group-label-padding-x) text-caption-2 font-(--_sidebar-group-label-font-weight) text-(--_sidebar-group-label-foreground) ring-(--_sidebar-group-label-ring) outline-hidden transition-[margin,opacity] duration-200 ease-linear group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0 focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
           className
         ),
       },
@@ -427,7 +427,7 @@ function SidebarGroupAction({
     props: mergeProps<"button">(
       {
         className: cn(
-          "absolute top-3.5 end-3 flex aspect-square w-5 items-center justify-center rounded-md p-0 text-sidebar-foreground ring-sidebar-ring outline-hidden transition-transform group-data-[collapsible=icon]:hidden after:absolute after:-inset-2 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 md:after:hidden [&>svg]:size-4 [&>svg]:shrink-0",
+          "absolute top-3.5 end-3 flex aspect-square w-(--_sidebar-group-action-width) items-center justify-center rounded-(--_sidebar-group-action-radius) p-(--_sidebar-group-action-padding) text-(--_sidebar-group-action-foreground) ring-(--_sidebar-group-action-ring) outline-hidden transition-transform group-data-[collapsible=icon]:hidden after:absolute after:-inset-2 hover:text-(--_sidebar-group-action-hover-foreground) focus-visible:ring-2 md:after:hidden [&>svg]:size-4 [&>svg]:shrink-0 cursor-pointer",
           className
         ),
       },
@@ -449,7 +449,7 @@ function SidebarGroupContent({
     <div
       data-slot="sidebar-group-content"
       data-sidebar="group-content"
-      className={cn("w-full text-sm", className)}
+      className={cn("w-full text-body-5", className)}
       {...props}
     />
   )
@@ -460,7 +460,7 @@ function SidebarMenu({ className, ...props }: React.ComponentProps<"ul">) {
     <ul
       data-slot="sidebar-menu"
       data-sidebar="menu"
-      className={cn("flex w-full min-w-0 flex-col gap-1", className)}
+      className={cn("flex w-full min-w-0 flex-col gap-(--_sidebar-menu-gap)", className)}
       {...props}
     />
   )
@@ -478,18 +478,18 @@ function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
 }
 
 const sidebarMenuButtonVariants = cva(
-  "peer/menu-button group/menu-button flex w-full items-center gap-2 overflow-hidden rounded-lg px-3 py-2 text-start text-sm ring-sidebar-ring outline-hidden transition-[width,height,padding] group-has-data-[sidebar=menu-action]/menu-item:pe-8 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-open:hover:bg-sidebar-accent data-open:hover:text-sidebar-accent-foreground data-active:bg-sidebar-accent data-active:font-medium data-active:text-sidebar-accent-foreground [&_svg]:size-4 [&_svg]:shrink-0 [&>span:last-child]:truncate",
+  "peer/menu-button group/menu-button flex w-full items-center gap-(--_sidebar-menu-button-gap) overflow-hidden rounded-(--_sidebar-menu-button-radius) px-(--_sidebar-menu-button-padding-x) py-(--_sidebar-menu-button-padding-y) text-start text-body-5 ring-(--_sidebar-menu-button-ring) outline-hidden transition-[width,height,padding] group-has-data-[sidebar=menu-action]/menu-item:pe-8 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! hover:bg-(--_sidebar-menu-button-hover) hover:text-(--_sidebar-menu-button-hover-foreground) focus-visible:ring-2 active:bg-(--_sidebar-menu-button-active) active:text-(--_sidebar-menu-button-active-foreground) disabled:pointer-events-none disabled:opacity-(--_sidebar-menu-button-disabled-opacity) aria-disabled:pointer-events-none aria-disabled:opacity-(--_sidebar-menu-button-disabled-opacity) data-open:hover:bg-sidebar-accent data-open:hover:text-sidebar-accent-foreground data-active:bg-(--_sidebar-menu-button-active) data-active:font-(--_sidebar-menu-button-active-font-weight) data-active:text-(--_sidebar-menu-button-active-foreground) [&_svg]:size-4 [&_svg]:shrink-0 [&>span:last-child]:truncate cursor-pointer",
   {
     variants: {
       variant: {
-        default: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+        default: "hover:bg-(--_sidebar-menu-button-default-hover) hover:text-(--_sidebar-menu-button-default-hover-foreground)",
         outline:
-          "bg-background shadow-[0_0_0_1px_var(--sidebar-border)] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_var(--sidebar-accent)]",
+          "bg-(--_sidebar-menu-button-outline) shadow-[0_0_0_1px_var(--sidebar-border)] hover:bg-(--_sidebar-menu-button-outline-hover) hover:text-(--_sidebar-menu-button-outline-hover-foreground) hover:shadow-[0_0_0_1px_var(--sidebar-accent)]",
       },
       size: {
-        default: "h-9 text-sm",
-        sm: "h-8 text-xs",
-        lg: "h-14 px-3 text-sm group-data-[collapsible=icon]:p-0!",
+        default: "h-(--_sidebar-menu-button-md-height) text-body-5",
+        sm: "h-(--_sidebar-menu-button-sm-height) text-caption-2",
+        lg: "h-(--_sidebar-menu-button-lg-height) px-(--_sidebar-menu-button-lg-padding-x) text-body-5 group-data-[collapsible=icon]:p-0!",
       },
     },
     defaultVariants: {
@@ -567,7 +567,7 @@ function SidebarMenuAction({
     props: mergeProps<"button">(
       {
         className: cn(
-          "absolute top-1.5 end-1 flex aspect-square w-5 items-center justify-center rounded-md p-0 text-sidebar-foreground ring-sidebar-ring outline-hidden transition-transform group-data-[collapsible=icon]:hidden peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[size=default]/menu-button:top-2 peer-data-[size=lg]/menu-button:top-2.5 peer-data-[size=sm]/menu-button:top-1 after:absolute after:-inset-2 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 md:after:hidden [&>svg]:size-4 [&>svg]:shrink-0",
+          "absolute top-1.5 end-1 flex aspect-square w-(--_sidebar-menu-action-width) items-center justify-center rounded-(--_sidebar-menu-action-radius) p-(--_sidebar-menu-action-padding) text-(--_sidebar-menu-action-foreground) ring-(--_sidebar-menu-action-ring) outline-hidden transition-transform group-data-[collapsible=icon]:hidden peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[size=default]/menu-button:top-2 peer-data-[size=lg]/menu-button:top-2.5 peer-data-[size=sm]/menu-button:top-1 after:absolute after:-inset-2 hover:text-(--_sidebar-menu-action-hover-foreground) focus-visible:ring-2 md:after:hidden [&>svg]:size-4 [&>svg]:shrink-0 cursor-pointer",
           showOnHover &&
             "group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 peer-data-active/menu-button:text-sidebar-accent-foreground aria-expanded:opacity-100 md:opacity-0",
           className
@@ -592,7 +592,7 @@ function SidebarMenuBadge({
       data-slot="sidebar-menu-badge"
       data-sidebar="menu-badge"
       className={cn(
-        "pointer-events-none absolute end-1 flex h-5 min-w-5 items-center justify-center rounded-md px-1 text-xs font-medium text-sidebar-foreground tabular-nums select-none group-data-[collapsible=icon]:hidden peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 peer-data-[size=sm]/menu-button:top-1 peer-data-active/menu-button:text-sidebar-accent-foreground",
+        "pointer-events-none absolute end-1 flex h-(--_sidebar-menu-badge-height) min-w-5 items-center justify-center rounded-(--_sidebar-menu-badge-radius) px-(--_sidebar-menu-badge-padding-x) text-caption-2 font-(--_sidebar-menu-badge-font-weight) text-(--_sidebar-menu-badge-foreground) tabular-nums select-none group-data-[collapsible=icon]:hidden peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 peer-data-[size=sm]/menu-button:top-1 peer-data-active/menu-button:text-sidebar-accent-foreground",
         className
       )}
       {...props}
@@ -616,7 +616,7 @@ function SidebarMenuSkeleton({
     <div
       data-slot="sidebar-menu-skeleton"
       data-sidebar="menu-skeleton"
-      className={cn("flex h-8 items-center gap-2 rounded-md px-2", className)}
+      className={cn("flex h-(--_sidebar-menu-skeleton-height) items-center gap-(--_sidebar-menu-skeleton-gap) rounded-(--_sidebar-menu-skeleton-radius) px-(--_sidebar-menu-skeleton-padding-x)", className)}
       {...props}
     >
       {showIcon && (
@@ -644,7 +644,7 @@ function SidebarMenuSub({ className, ...props }: React.ComponentProps<"ul">) {
       data-slot="sidebar-menu-sub"
       data-sidebar="menu-sub"
       className={cn(
-        "mx-3.5 flex min-w-0 translate-x-px rtl:-translate-x-px flex-col gap-1 border-s border-sidebar-border px-2.5 py-0.5 group-data-[collapsible=icon]:hidden",
+        "mx-3.5 flex min-w-0 translate-x-px rtl:-translate-x-px flex-col gap-(--_sidebar-menu-sub-gap) border-s border-(--_sidebar-menu-sub-border) px-(--_sidebar-menu-sub-padding-x) py-(--_sidebar-menu-sub-padding-y) group-data-[collapsible=icon]:hidden",
         className
       )}
       {...props}
@@ -682,7 +682,7 @@ function SidebarMenuSubButton({
     props: mergeProps<"a">(
       {
         className: cn(
-          "flex h-7 min-w-0 -translate-x-px rtl:translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 text-sidebar-foreground ring-sidebar-ring outline-hidden group-data-[collapsible=icon]:hidden hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[size=md]:text-sm data-[size=sm]:text-xs data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground",
+          "flex h-(--_sidebar-menu-sub-button-height) min-w-0 -translate-x-px rtl:translate-x-px items-center gap-(--_sidebar-menu-sub-button-gap) overflow-hidden rounded-(--_sidebar-menu-sub-button-radius) px-(--_sidebar-menu-sub-button-padding-x) text-(--_sidebar-menu-sub-button-foreground) ring-(--_sidebar-menu-sub-button-ring) outline-hidden group-data-[collapsible=icon]:hidden hover:bg-(--_sidebar-menu-sub-button-hover) hover:text-(--_sidebar-menu-sub-button-hover-foreground) focus-visible:ring-2 active:bg-(--_sidebar-menu-sub-button-active) active:text-(--_sidebar-menu-sub-button-active-foreground) disabled:pointer-events-none disabled:opacity-(--_sidebar-menu-sub-button-disabled-opacity) aria-disabled:pointer-events-none aria-disabled:opacity-(--_sidebar-menu-sub-button-disabled-opacity) data-[size=md]:text-body-5 data-[size=sm]:text-caption-2 data-active:bg-(--_sidebar-menu-sub-button-active) data-active:text-(--_sidebar-menu-sub-button-active-foreground) [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground cursor-pointer",
           className
         ),
       },

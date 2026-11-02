@@ -1,0 +1,167 @@
+/* Menubar — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --menubar-height: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/menubar.tsx follow from these names. */
+
+[data-slot="menubar"] {
+  /* Height of the menubar. */
+  --_menubar-height: var(--menubar-height, calc(var(--spacing) * 9));
+  /* Corner radius of the menubar. */
+  --_menubar-radius: var(--menubar-radius, var(--radius-md));
+  /* Border colour of the menubar. */
+  --_menubar-border: var(--menubar-border, var(--border));
+  /* Padding of the menubar. */
+  --_menubar-padding: var(--menubar-padding, calc(var(--spacing) * 1));
+}
+
+[data-slot="menubar-trigger"] {
+  /* @remove hover:bg-muted */
+  /* @add cursor-pointer text-body-5 */
+  /* Corner radius of the trigger. */
+  --_menubar-trigger-radius: var(--menubar-trigger-radius, var(--radius-sm));
+  /* Horizontal padding of the trigger. */
+  --_menubar-trigger-padding-x: var(--menubar-trigger-padding-x, calc(var(--spacing) * 2));
+  /* Vertical padding of the trigger. */
+  --_menubar-trigger-padding-y: var(--menubar-trigger-padding-y, calc(var(--spacing) * 0.75));
+  /* Font weight of the trigger. */
+  --_menubar-trigger-font-weight: var(--menubar-trigger-font-weight, 500);
+  /* Text colour of the trigger when hovered. */
+  --_menubar-trigger-hover-foreground: var(--menubar-trigger-hover-foreground, var(--mint-75));
+  /* Fill colour of the trigger while open. */
+  --_menubar-trigger-open: var(--menubar-trigger-open, var(--muted));
+}
+
+[data-slot="menubar-content"] {
+  /* @remove ring-1 ring-foreground/5 */
+  /* @add border */
+  /* Corner radius of the content. */
+  --_menubar-content-radius: var(--menubar-content-radius, var(--radius-lg));
+  /* Border colour of the content. */
+  --_menubar-content-border: var(--menubar-content-border, var(--border));
+  /* Fill colour of the content. */
+  --_menubar-content: var(--menubar-content, var(--popover));
+  /* Padding of the content. */
+  --_menubar-content-padding: var(--menubar-content-padding, calc(var(--spacing) * 1));
+  /* Text colour of the content. */
+  --_menubar-content-foreground: var(--menubar-content-foreground, var(--popover-foreground));
+  /* Shadow of the content. */
+  --_menubar-content-shadow: var(--menubar-content-shadow, 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1));
+}
+
+[data-slot="menubar-item"] {
+  /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_menubar-item-inset-padding-x) */
+  /* Gap between items of the item. */
+  --_menubar-item-gap: var(--menubar-item-gap, calc(var(--spacing) * 2.5));
+  /* Corner radius of the item. */
+  --_menubar-item-radius: var(--menubar-item-radius, var(--radius-md));
+  /* Horizontal padding of the item. */
+  --_menubar-item-padding-x: var(--menubar-item-padding-x, calc(var(--spacing) * 3));
+  /* Vertical padding of the item. */
+  --_menubar-item-padding-y: var(--menubar-item-padding-y, calc(var(--spacing) * 2));
+  /* Fill colour of the item when focused. */
+  --_menubar-item-focus: var(--menubar-item-focus, var(--accent));
+  /* Text colour of the item when focused. */
+  --_menubar-item-focus-foreground: var(--menubar-item-focus-foreground, var(--accent-foreground));
+  /* Opacity of the item when disabled. */
+  --_menubar-item-disabled-opacity: var(--menubar-item-disabled-opacity, 0.5);
+  /* Left padding of an indented row (inset items, labels and sub-menu triggers). */
+  --_menubar-item-inset-padding-x: var(--menubar-item-inset-padding-x, calc(var(--spacing) * 9.5));
+}
+
+[data-slot="menubar-checkbox-item"] {
+  /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_menubar-item-inset-padding-x) */
+  /* Gap between items of the checkbox-item. */
+  --_menubar-checkbox-item-gap: var(--menubar-checkbox-item-gap, calc(var(--spacing) * 2.5));
+  /* Corner radius of the checkbox-item. */
+  --_menubar-checkbox-item-radius: var(--menubar-checkbox-item-radius, var(--radius-md));
+  /* Vertical padding of the checkbox-item. */
+  --_menubar-checkbox-item-padding-y: var(--menubar-checkbox-item-padding-y, calc(var(--spacing) * 2));
+  /* Fill colour of the checkbox-item when focused. */
+  --_menubar-checkbox-item-focus: var(--menubar-checkbox-item-focus, var(--accent));
+  /* Text colour of the checkbox-item when focused. */
+  --_menubar-checkbox-item-focus-foreground: var(--menubar-checkbox-item-focus-foreground, var(--accent-foreground));
+  /* Opacity of the checkbox-item when disabled. */
+  --_menubar-checkbox-item-disabled-opacity: var(--menubar-checkbox-item-disabled-opacity, 0.5);
+}
+
+[data-slot="menubar-radio-item"] {
+  /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_menubar-item-inset-padding-x) */
+  /* Gap between items of the radio-item. */
+  --_menubar-radio-item-gap: var(--menubar-radio-item-gap, calc(var(--spacing) * 2.5));
+  /* Corner radius of the radio-item. */
+  --_menubar-radio-item-radius: var(--menubar-radio-item-radius, var(--radius-md));
+  /* Vertical padding of the radio-item. */
+  --_menubar-radio-item-padding-y: var(--menubar-radio-item-padding-y, calc(var(--spacing) * 2));
+  /* Fill colour of the radio-item when focused. */
+  --_menubar-radio-item-focus: var(--menubar-radio-item-focus, var(--accent));
+  /* Text colour of the radio-item when focused. */
+  --_menubar-radio-item-focus-foreground: var(--menubar-radio-item-focus-foreground, var(--accent-foreground));
+  /* Opacity of the radio-item when disabled. */
+  --_menubar-radio-item-disabled-opacity: var(--menubar-radio-item-disabled-opacity, 0.5);
+}
+
+[data-slot="menubar-label"] {
+  /* @add text-caption-2 */
+  /* @add data-inset:ps-(--_menubar-item-inset-padding-x) */
+  /* Horizontal padding of the label. */
+  --_menubar-label-padding-x: var(--menubar-label-padding-x, calc(var(--spacing) * 3.5));
+  /* Vertical padding of the label. */
+  --_menubar-label-padding-y: var(--menubar-label-padding-y, calc(var(--spacing) * 2.5));
+  /* Text colour of the label. */
+  --_menubar-label-foreground: var(--menubar-label-foreground, var(--muted-foreground));
+}
+
+[data-slot="menubar-separator"] {
+  /* Height of the separator. */
+  --_menubar-separator-height: var(--menubar-separator-height, 1px);
+  /* Fill colour of the separator. */
+  --_menubar-separator: var(--menubar-separator, color-mix(in oklab, var(--border) 50%, transparent));
+}
+
+[data-slot="menubar-shortcut"] {
+  /* @remove tracking-widest */
+  /* @add text-caption-2 tracking-button */
+  /* Text colour of the shortcut. */
+  --_menubar-shortcut-foreground: var(--menubar-shortcut-foreground, var(--muted-foreground));
+}
+
+[data-slot="menubar-sub-trigger"] {
+  /* @add cursor-pointer text-body-5 */
+  /* @add data-inset:ps-(--_menubar-item-inset-padding-x) */
+  /* Gap between items of the sub-trigger. */
+  --_menubar-sub-trigger-gap: var(--menubar-sub-trigger-gap, calc(var(--spacing) * 2));
+  /* Corner radius of the sub-trigger. */
+  --_menubar-sub-trigger-radius: var(--menubar-sub-trigger-radius, var(--radius-md));
+  /* Horizontal padding of the sub-trigger. */
+  --_menubar-sub-trigger-padding-x: var(--menubar-sub-trigger-padding-x, calc(var(--spacing) * 3));
+  /* Vertical padding of the sub-trigger. */
+  --_menubar-sub-trigger-padding-y: var(--menubar-sub-trigger-padding-y, calc(var(--spacing) * 2));
+  /* Fill colour of the sub-trigger when focused. */
+  --_menubar-sub-trigger-focus: var(--menubar-sub-trigger-focus, var(--accent));
+  /* Text colour of the sub-trigger when focused. */
+  --_menubar-sub-trigger-focus-foreground: var(--menubar-sub-trigger-focus-foreground, var(--accent-foreground));
+  /* Fill colour of the sub-trigger while open. */
+  --_menubar-sub-trigger-open: var(--menubar-sub-trigger-open, var(--accent));
+  /* Text colour of the sub-trigger while open. */
+  --_menubar-sub-trigger-open-foreground: var(--menubar-sub-trigger-open-foreground, var(--accent-foreground));
+}
+
+[data-slot="menubar-sub-content"] {
+  /* @remove ring-1 ring-foreground/5 */
+  /* @add border */
+  /* Corner radius of the sub-content. */
+  --_menubar-sub-content-radius: var(--menubar-sub-content-radius, var(--radius-lg));
+  /* Border colour of the sub-content. */
+  --_menubar-sub-content-border: var(--menubar-sub-content-border, var(--border));
+  /* Fill colour of the sub-content. */
+  --_menubar-sub-content: var(--menubar-sub-content, var(--popover));
+  /* Padding of the sub-content. */
+  --_menubar-sub-content-padding: var(--menubar-sub-content-padding, calc(var(--spacing) * 1));
+  /* Text colour of the sub-content. */
+  --_menubar-sub-content-foreground: var(--menubar-sub-content-foreground, var(--popover-foreground));
+  /* Shadow of the sub-content. */
+  --_menubar-sub-content-shadow: var(--menubar-sub-content-shadow, 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1));
+}

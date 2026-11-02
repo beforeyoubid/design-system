@@ -1,0 +1,74 @@
+/* Radio Group — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --radio-group-gap: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/radio-group.tsx follow from these names. */
+
+[data-slot="radio-group"] {
+  /* Gap between items of the radio-group. */
+  --_radio-group-gap: var(--radio-group-gap, calc(var(--spacing) * 2.5));
+  /* Gap between options (sm size). @ours */
+  --_radio-group-sm-gap: var(--radio-group-sm-gap, calc(var(--spacing) * 2));
+  /* Gap between options (lg size). @ours */
+  --_radio-group-lg-gap: var(--radio-group-lg-gap, calc(var(--spacing) * 3));
+  /* Gap between options (card variant). @ours */
+  --_radio-group-card-gap: var(--radio-group-card-gap, calc(var(--spacing) * 2));
+}
+
+[data-slot="radio-group-item"] {
+  /* @remove group-has-[:focus-visible]/field-label:ring-0 group-has-[:focus-visible]/field-label:not-data-checked:border-input aria-invalid:aria-checked:border-primary data-checked:bg-primary data-checked:text-primary-foreground group-has-[:focus-visible]/field-label:data-checked:border-primary */
+  /* @add cursor-pointer data-disabled:cursor-not-allowed items-center justify-center transition-[border-color,box-shadow] [&_[data-slot=radio-group-indicator]>span]:size-2 aria-invalid:data-checked:border-mint-45 data-disabled:cursor-not-allowed data-disabled:opacity-(--_radio-group-item-disabled-opacity) */
+  /* Corner radius of the item. */
+  --_radio-group-item-radius: var(--radio-group-item-radius, var(--radius-full));
+  /* Border colour of the item. */
+  --_radio-group-item-border: var(--radio-group-item-border, var(--dark-45));
+  /* Fill colour of the item. */
+  --_radio-group-item: var(--radio-group-item, var(--white));
+  /* Width and height of the item. */
+  --_radio-group-item-size: var(--radio-group-item-size, calc(var(--spacing) * 4));
+  /* Width and height of the radio (sm size). @ours */
+  --_radio-group-item-sm-size: var(--radio-group-item-sm-size, calc(var(--spacing) * 3.5));
+  /* Width and height of the radio (lg size). @ours */
+  --_radio-group-item-lg-size: var(--radio-group-item-lg-size, calc(var(--spacing) * 5));
+  /* Border colour of the item when focused. */
+  --_radio-group-item-focus-border: var(--radio-group-item-focus-border, var(--mint-45));
+  /* Ring colour of the item when focused. */
+  --_radio-group-item-focus-ring: var(--radio-group-item-focus-ring, color-mix(in oklab, var(--mint-45) 30%, transparent));
+  /* Border colour of the item when checked. */
+  --_radio-group-item-checked-border: var(--radio-group-item-checked-border, var(--mint-45));
+  /* Border colour of the item when invalid. */
+  --_radio-group-item-invalid-border: var(--radio-group-item-invalid-border, var(--destructive));
+  /* Ring colour of the item when invalid. */
+  --_radio-group-item-invalid-ring: var(--radio-group-item-invalid-ring, color-mix(in oklab, var(--destructive) 20%, transparent));
+  /* Opacity of the item when disabled. */
+  --_radio-group-item-disabled-opacity: var(--radio-group-item-disabled-opacity, 0.5);
+}
+
+[data-slot="radio-group-indicator"] {
+  /* @remove size-4 */
+  /* @add [&>span]:bg-(--_radio-group-indicator) */
+  /* Fill of the dot in a checked radio. */
+  --_radio-group-indicator: var(--radio-group-indicator, var(--mint-45));
+}
+
+[data-slot="radio-group-field"] {
+  /* Fill colour of an option card (card variant). @ours */
+  --_radio-group-field-card: var(--radio-group-field-card, var(--white));
+  /* Border colour of an option card (card variant). @ours */
+  --_radio-group-field-card-border: var(--radio-group-field-card-border, var(--dark-45));
+  /* Corner radius of an option card (card variant). @ours */
+  --_radio-group-field-card-radius: var(--radio-group-field-card-radius, var(--radius-lg));
+  /* Fill colour of the chosen option card (card variant). @ours */
+  --_radio-group-field-card-checked: var(--radio-group-field-card-checked, var(--mint-l4));
+  /* Border colour of the chosen option card (card variant). @ours */
+  --_radio-group-field-card-checked-border: var(--radio-group-field-card-checked-border, var(--mint-45));
+}
+
+[data-slot="radio-group-label"] {
+  /* Text colour of an option's label. @ours */
+  --_radio-group-label-foreground: var(--radio-group-label-foreground, var(--navy));
+}
+
+[data-slot="radio-group-description"] {
+  /* Text colour of an option's description. @ours */
+  --_radio-group-description-foreground: var(--radio-group-description-foreground, var(--dark-75));
+}

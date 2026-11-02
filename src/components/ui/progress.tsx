@@ -1,5 +1,6 @@
-import { Progress as ProgressPrimitive } from "@base-ui/react/progress"
+"use client"
 
+import { Progress as ProgressPrimitive } from "@base-ui/react/progress"
 import { cn } from "@/lib/utils"
 
 function Progress({
@@ -12,7 +13,7 @@ function Progress({
     <ProgressPrimitive.Root
       value={value}
       data-slot="progress"
-      className={cn("flex flex-wrap gap-3", className)}
+      className={cn("flex flex-wrap gap-(--_progress-gap)", className)}
       {...props}
     >
       {children}
@@ -27,7 +28,7 @@ function ProgressTrack({ className, ...props }: ProgressPrimitive.Track.Props) {
   return (
     <ProgressPrimitive.Track
       className={cn(
-        "relative flex h-2 w-full items-center overflow-x-hidden rounded-full bg-dark-15",
+        "relative flex h-(--_progress-track-height) w-full items-center overflow-x-hidden rounded-(--_progress-track-radius) bg-(--_progress-track)",
         className
       )}
       data-slot="progress-track"
@@ -43,7 +44,7 @@ function ProgressIndicator({
   return (
     <ProgressPrimitive.Indicator
       data-slot="progress-indicator"
-      className={cn("h-full bg-primary transition-all", className)}
+      className={cn("h-full bg-(--_progress-indicator) transition-all", className)}
       {...props}
     />
   )
@@ -52,7 +53,7 @@ function ProgressIndicator({
 function ProgressLabel({ className, ...props }: ProgressPrimitive.Label.Props) {
   return (
     <ProgressPrimitive.Label
-      className={cn("text-sm font-medium", className)}
+      className={cn("text-body-5 font-(--_progress-label-font-weight)", className)}
       data-slot="progress-label"
       {...props}
     />
@@ -63,7 +64,7 @@ function ProgressValue({ className, ...props }: ProgressPrimitive.Value.Props) {
   return (
     <ProgressPrimitive.Value
       className={cn(
-        "ms-auto text-sm text-muted-foreground tabular-nums",
+        "ms-auto text-body-5 text-(--_progress-value-foreground) tabular-nums",
         className
       )}
       data-slot="progress-value"

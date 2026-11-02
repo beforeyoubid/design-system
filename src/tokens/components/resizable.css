@@ -1,0 +1,13 @@
+/* Resizable — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section, e.g.
+ *   :root { --resizable-handle-width: … }
+ * Defaults are the shipped design. Edited by hand; the class edits in ui/resizable.tsx follow from these names. */
+
+[data-slot="resizable-handle"] {
+  /* Width of the handle. */
+  --_resizable-handle-width: var(--resizable-handle-width, 1px);
+  /* Fill colour of the handle. */
+  --_resizable-handle: var(--resizable-handle, var(--border));
+  /* Ring colour of the handle when focused. */
+  --_resizable-handle-focus-ring: var(--resizable-handle-focus-ring, var(--ring));
+}
