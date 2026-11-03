@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.1
+
+### Fixed
+
+- **Stepper numbers sit in the centre of their circle.** The indicator's `leading-none` came before its text size, so `cn` dropped it and the number sat in a 1.4 line box, about 1px above centre. Apps that set `[&_[data-slot=stepper-indicator]]:leading-none` to work around it can drop that class.
+
 ## 2.0.0
 
 Upgrade an app with `npx design-system-migrate` (dry run) then `--write`, in the same PR as the version bump. See DESIGN.md → "Upgrading from 1.1.x".

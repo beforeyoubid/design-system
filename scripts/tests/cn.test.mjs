@@ -44,3 +44,10 @@ test('a border colour token leaves the border width alone', () => {
 test('conditional inputs work like clsx', () => {
   assert.equal(cn('a', false, null, undefined, { b: true, c: false }, ['d', ['e']]), 'a b d e')
 })
+
+// A font size resets the line height, so cn drops a leading- class that comes
+// before one. A line height has to follow the size it overrides.
+test('a line height survives only after the font size', () => {
+  assert.equal(cn('leading-none', 'text-caption-1'), 'text-caption-1')
+  assert.equal(cn('text-caption-1 leading-none'), 'text-caption-1 leading-none')
+})
