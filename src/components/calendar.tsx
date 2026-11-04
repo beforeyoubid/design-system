@@ -107,20 +107,28 @@ function Calendar({
           "text-caption-1 text-muted-foreground select-none",
           defaultClassNames.week_number
         ),
+        // The band between a range's ends rounds off where it meets the edge of a week row. Only the
+        // band: the ends are full circles, and a cell-radius corner beside a full radius gets scaled
+        // down to almost nothing, which flattened that side of an end falling on a Sunday or Saturday.
         day: cn(
-          "group/day relative aspect-square h-full w-full rounded-(--cell-radius) p-0 text-center select-none [&:last-child[data-selected=true]_button]:rounded-e-(--cell-radius)",
+          "group/day relative aspect-square size-full rounded-(--cell-radius) p-0 text-center select-none [&:last-child[data-selected=true]_button[data-range-middle=true]]:rounded-e-(--cell-radius)",
           props.showWeekNumber
-            ? "[&:nth-child(2)[data-selected=true]_button]:rounded-s-(--cell-radius)"
-            : "[&:first-child[data-selected=true]_button]:rounded-s-(--cell-radius)",
+            ? "[&:nth-child(2)[data-selected=true]_button[data-range-middle=true]]:rounded-s-(--cell-radius)"
+            : "[&:first-child[data-selected=true]_button[data-range-middle=true]]:rounded-s-(--cell-radius)",
           defaultClassNames.day
         ),
+        // A range's start carries the band on towards the next day, and its end back towards the
+        // previous one, except across the edge of a week row.
         range_start: cn(
-          "relative isolate z-0 rounded-s-(--cell-radius) bg-(--_calendar-range) after:absolute after:inset-y-0 after:end-0 after:w-4 after:bg-(--_calendar-range)",
+          "relative isolate z-0 rounded-s-(--cell-radius) bg-(--_calendar-range) after:absolute after:inset-y-0 after:end-0 after:w-4 after:bg-(--_calendar-range) last:rounded-e-(--cell-radius) last:after:hidden",
           defaultClassNames.range_start
         ),
         range_middle: cn("rounded-none", defaultClassNames.range_middle),
         range_end: cn(
           "relative isolate z-0 rounded-e-(--cell-radius) bg-(--_calendar-range) after:absolute after:inset-y-0 after:start-0 after:w-4 after:bg-(--_calendar-range)",
+          props.showWeekNumber
+            ? "[&:nth-child(2)]:rounded-s-(--cell-radius) [&:nth-child(2)]:after:hidden"
+            : "first:rounded-s-(--cell-radius) first:after:hidden",
           defaultClassNames.range_end
         ),
         today: cn(
