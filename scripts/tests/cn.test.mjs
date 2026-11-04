@@ -60,3 +60,9 @@ test('select popup width replaces the stock width and gives way to a call site',
   assert.equal(cn(stock, byb), byb)
   assert.equal(cn(stock, byb, 'w-72 max-w-none'), 'min-w-[max(var(--anchor-width),--spacing(36))] w-72 max-w-none')
 })
+
+test('combobox popup grows to fit and gives way to a call site', () => {
+  const stock = 'w-(--anchor-width) max-w-(--available-width) min-w-[calc(var(--anchor-width)+--spacing(7))]'
+  assert.equal(cn(stock, 'w-fit'), 'max-w-(--available-width) min-w-[calc(var(--anchor-width)+--spacing(7))] w-fit')
+  assert.equal(cn(stock, 'w-fit', 'w-80'), 'max-w-(--available-width) min-w-[calc(var(--anchor-width)+--spacing(7))] w-80')
+})

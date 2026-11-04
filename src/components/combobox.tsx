@@ -47,10 +47,15 @@ function ComboboxInput({ className, ref, ...props }: React.ComponentProps<typeof
   return <UiComboboxInput className={cn("w-full", className)} ref={merged} {...props} />
 }
 
-/** Stock ComboboxContent, anchored to the whole field (as the chips field is) unless `anchor` says otherwise. */
-function ComboboxContent({ anchor, ...props }: React.ComponentProps<typeof UiComboboxContent>) {
+/**
+ * Stock ComboboxContent, anchored to the whole field (as the chips field is) unless `anchor` says otherwise.
+ * Stock's popup is exactly the field's width, so long labels wrapped onto two or three lines in a narrow
+ * field. Like Select, it grows to fit the widest option; stock already keeps it at least the field's
+ * width and stops it at the screen edge, where labels wrap.
+ */
+function ComboboxContent({ anchor, className, ...props }: React.ComponentProps<typeof UiComboboxContent>) {
   const field = React.useContext(FieldContext)?.field
-  return <UiComboboxContent anchor={anchor ?? field ?? undefined} {...props} />
+  return <UiComboboxContent anchor={anchor ?? field ?? undefined} className={cn("w-fit", className)} {...props} />
 }
 
 function mergeRefs<T>(...refs: (React.Ref<T> | undefined)[]) {
