@@ -6,6 +6,7 @@
 
 - **Select options are never cut off.** The popup was exactly the trigger's width and labels never wrapped, so a label wider than the trigger was clipped with no ellipsis. The popup is now at least the trigger's width (and at least 9rem), grows to fit the widest option and stops at the screen edge, where long labels wrap. A `className` width on `SelectContent` still wins. Apps that widened the popup themselves (e.g. `w-fit min-w-(--anchor-width) max-w-(--available-width)`) can drop that.
 - **Combobox popups grow to fit their options.** The popup was exactly the field's width, so in a narrow field most labels wrapped onto two or three lines. Like Select, it now grows to the widest option, stays at least the field's width, and stops at the screen edge, where labels wrap. A `className` width on `ComboboxContent` still wins.
+- **A single-value Slider has one thumb.** The thumbs came from `[min, max]` unless the value was an array, so `value={40}`, `defaultValue={40}` or no value at all drew two thumbs on top of each other. Now there is one thumb per value in an array, and one otherwise.
 - **Stepper numbers sit in the centre of their circle.** The indicator's `leading-none` came before its text size, so `cn` dropped it and the number sat in a 1.4 line box, about 1px above centre. Apps that set `[&_[data-slot=stepper-indicator]]:leading-none` to work around it can drop that class.
 
 ## 2.0.0
