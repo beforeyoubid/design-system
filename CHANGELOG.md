@@ -4,6 +4,7 @@
 
 ### Fixed
 
+- **Select options are never cut off.** The popup was exactly the trigger's width and labels never wrapped, so a label wider than the trigger was clipped with no ellipsis. The popup is now at least the trigger's width (and at least 9rem), grows to fit the widest option and stops at the screen edge, where long labels wrap. A `className` width on `SelectContent` still wins. Apps that widened the popup themselves (e.g. `w-fit min-w-(--anchor-width) max-w-(--available-width)`) can drop that.
 - **Stepper numbers sit in the centre of their circle.** The indicator's `leading-none` came before its text size, so `cn` dropped it and the number sat in a 1.4 line box, about 1px above centre. Apps that set `[&_[data-slot=stepper-indicator]]:leading-none` to work around it can drop that class.
 
 ## 2.0.0
