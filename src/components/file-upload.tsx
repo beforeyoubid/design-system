@@ -62,7 +62,17 @@ export interface FileUploadFileInfo {
   url?: string
 }
 
-export interface FileUploadBaseProps {
+/**
+ * The root element's other props (`data-*`, `title`, `style`…), passed straight through. The root
+ * stays in place while the drop zone gives way to a file's card, so a test id put here always finds
+ * the field. `aria-label` and `aria-labelledby` name the drop zone instead.
+ */
+type FileUploadRootProps = Omit<
+  React.ComponentProps<"div">,
+  "id" | "onChange" | "onBlur" | "defaultValue" | "children" | "className" | "ref"
+>
+
+export interface FileUploadBaseProps extends FileUploadRootProps {
   /** Put on the drop zone, so a FieldLabel's htmlFor points at it. */
   id?: string
   name?: string
@@ -343,14 +353,23 @@ function FileUploadImpl<TValue = string>(
     className,
     uploadOptions,
     multiple = false,
+    value: valueProp,
+    defaultValue: defaultValueProp,
+    onValueChange: onValueChangeProp,
+    describe: describeProp,
+    "aria-invalid": ariaInvalid,
+    "aria-describedby": ariaDescribedBy,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledBy,
+    ...rootProps
   } = props
   const uploads = !!uploadOptions
   // Every value is handled as a list: File[] without uploadOptions, TValue[] with it.
   type Item = File | TValue
   const toList = (v: unknown): Item[] => (Array.isArray(v) ? v : v == null ? [] : [v as TValue])
-  const controlled = props.value !== undefined
-  const [internal, setInternal] = React.useState<Item[]>(() => toList(props.defaultValue))
-  const committed = controlled ? toList(props.value) : internal
+  const controlled = valueProp !== undefined
+  const [internal, setInternal] = React.useState<Item[]>(() => toList(defaultValueProp))
+  const committed = controlled ? toList(valueProp) : internal
   const committedRef = React.useRef(committed)
   committedRef.current = committed
 
@@ -373,7 +392,7 @@ function FileUploadImpl<TValue = string>(
   const commit = (next: Item[]) => {
     committedRef.current = next
     if (!controlled) setInternal(next)
-    const onValueChange = props.onValueChange as ((v: unknown) => void) | undefined
+    const onValueChange = onValueChangeProp as ((v: unknown) => void) | undefined
     onValueChange?.(!uploads || multiple ? next : (next[0] ?? null))
   }
 
@@ -492,7 +511,7 @@ function FileUploadImpl<TValue = string>(
   }
 
   const infoOf = (value: TValue): FileUploadFileInfo => {
-    const describe = props.describe as ((v: TValue) => FileUploadFileInfo) | undefined
+    const describe = describeProp as ((v: TValue) => FileUploadFileInfo) | undefined
     if (describe) return describe(value)
     return typeof value === "string" ? describeString(value) : { name: "File" }
   }
@@ -530,14 +549,18 @@ function FileUploadImpl<TValue = string>(
 
   // One file: its card takes the drop zone's place; deleting it brings the zone back.
   const zoneHidden = !multiple && cards.length > 0
-  const isInvalid = !!invalid || (props["aria-invalid"] != null && props["aria-invalid"] !== false && props["aria-invalid"] !== "false")
+  const isInvalid = !!invalid || (ariaInvalid != null && ariaInvalid !== false && ariaInvalid !== "false")
   const generatedId = React.useId()
   const hintId = `${id ?? generatedId}-hint`
   const showHint = !zoneHidden && (!!invalid || hint != null)
-  const describedBy = [props["aria-describedby"], showHint ? hintId : null].filter(Boolean).join(" ") || undefined
+  const describedBy = [ariaDescribedBy, showHint ? hintId : null].filter(Boolean).join(" ") || undefined
 
   return (
-    <div data-slot="file-upload" className={cn("flex w-full flex-col gap-(--_file-upload-gap)", className)}>
+    <div
+      {...rootProps}
+      data-slot="file-upload"
+      className={cn("flex w-full flex-col gap-(--_file-upload-gap)", className)}
+    >
       {!zoneHidden && (
         <FileDropZone
           id={id}
@@ -545,6 +568,8 @@ function FileUploadImpl<TValue = string>(
           disabled={disabled}
           aria-invalid={isInvalid || undefined}
           aria-describedby={describedBy}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
           onClick={() => inputRef.current?.click()}
           onBlur={onBlur}
           onFilesDropped={add}
