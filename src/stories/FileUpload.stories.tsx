@@ -149,6 +149,12 @@ export const RefusedFile: Story = {
   render: () => <FileUpload multiple accept=".pdf" maxSize={1024 * 1024} />,
 }
 
+/** The size limit in megabytes rather than bytes. */
+export const MaxSizeMb: Story = {
+  name: 'Max size in MB',
+  render: () => <FileUpload multiple accept=".pdf,.docx" maxSizeMb={1} />,
+}
+
 export const Disabled: Story = {
   render: () => <FileUpload disabled />,
 }

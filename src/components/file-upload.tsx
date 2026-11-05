@@ -78,8 +78,10 @@ export interface FileUploadBaseProps extends FileUploadRootProps {
   name?: string
   /** Comma list of extensions or MIME types, as on a file input. */
   accept?: string
-  /** Largest file allowed, in bytes. */
+  /** Largest file allowed, in bytes. Wins over `maxSizeMb` when both are set. */
   maxSize?: number
+  /** Largest file allowed, in megabytes (1 MB = 1024 × 1024 bytes, as the file cards count it). */
+  maxSizeMb?: number
   required?: boolean
   disabled?: boolean
   /** The error look, e.g. while the field has a validation error. */
@@ -90,7 +92,7 @@ export interface FileUploadBaseProps extends FileUploadRootProps {
    * Its id is `<id>-hint`. A refused file's message shows in its place.
    */
   hint?: React.ReactNode
-  /** Shown when a picked file fails `accept` or `maxSize`. Defaults to a message naming the file. */
+  /** Shown when a picked file fails `accept` or the size limit. Defaults to a message naming the file. */
   invalidText?: string
   /** Ask in a ConfirmDialog before deleting a file (not when cancelling an upload). */
   confirmDelete?: boolean
@@ -341,7 +343,8 @@ function FileUploadImpl<TValue = string>(
     id,
     name,
     accept,
-    maxSize,
+    maxSize: maxSizeBytes,
+    maxSizeMb,
     required,
     disabled,
     hint,
@@ -363,6 +366,7 @@ function FileUploadImpl<TValue = string>(
     "aria-labelledby": ariaLabelledBy,
     ...rootProps
   } = props
+  const maxSize = maxSizeBytes ?? (maxSizeMb != null ? maxSizeMb * 1048576 : undefined)
   const uploads = !!uploadOptions
   // Every value is handled as a list: File[] without uploadOptions, TValue[] with it.
   type Item = File | TValue

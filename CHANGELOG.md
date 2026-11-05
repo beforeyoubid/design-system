@@ -6,6 +6,10 @@
 
 - **React 19 is required.** The components take `ref` as a plain prop, which React 18 drops, so on React 18 they lose their refs: a combobox can't reach its own input (a pick doesn't show, typed characters go missing) and its popup loses its anchor. The `react` and `react-dom` peer ranges were `>=18`, so nothing warned; they are now `>=19`.
 
+### Added
+
+- **FileUpload takes its size limit in megabytes.** `maxSizeMb` sets the limit in megabytes (1 MB = 1024 × 1024 bytes, as the file cards count it) alongside `maxSize` in bytes, which wins when both are set. The form package's `FileUploadField` passes it through.
+
 ### Fixed
 
 - **Combobox buttons have names.** The chevron, the clear button and each chip's remove button were icon-only with no accessible name, so a screen reader announced each as just "button". They are now "Show options", "Clear" and "Remove" plus the chip's text ("Remove Apple"); `ComboboxInput` takes `triggerLabel` and `clearLabel`, and `ComboboxChip` takes `removeLabel` for a chip whose content isn't plain text. The chevron also leaves the tab order: the input already opens the list, so it was a second tab stop doing the same thing.
