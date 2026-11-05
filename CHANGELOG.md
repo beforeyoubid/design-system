@@ -2,6 +2,10 @@
 
 ## 2.0.1
 
+### Breaking
+
+- **React 19 is required.** The components take `ref` as a plain prop, which React 18 drops, so on React 18 they lose their refs: a combobox can't reach its own input (a pick doesn't show, typed characters go missing) and its popup loses its anchor. The `react` and `react-dom` peer ranges were `>=18`, so nothing warned; they are now `>=19`.
+
 ### Fixed
 
 - **Select options are never cut off.** The popup was exactly the trigger's width and labels never wrapped, so a label wider than the trigger was clipped with no ellipsis. The popup is now at least the trigger's width (and at least 9rem), grows to fit the widest option and stops at the screen edge, where long labels wrap. A `className` width on `SelectContent` still wins. Apps that widened the popup themselves (e.g. `w-fit min-w-(--anchor-width) max-w-(--available-width)`) can drop that.
