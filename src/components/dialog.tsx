@@ -87,12 +87,17 @@ function DialogHeader({
 /**
  * Main content area. Scrolls on its own when content is long; the top / bottom
  * edges fade only while there is more to scroll to (`scroll-fade-y`).
+ *
+ * A scrolling box clips what its children draw outside themselves, so a field
+ * at the very top or bottom lost its focus ring there. A 4px band inside the
+ * scroll area holds the ring (3px), and the matching negative margin keeps the
+ * content where it was. The sides already have the `-mx-6 px-6` band.
  */
 function DialogBody({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="dialog-body"
-      className={cn("-mx-6 min-h-0 flex-1 overflow-y-auto px-6 scroll-fade-y scroll-fade-6", className)}
+      className={cn("-mx-6 -my-1 min-h-0 flex-1 overflow-y-auto px-6 py-1 scroll-fade-y scroll-fade-6", className)}
       {...props}
     />
   )
