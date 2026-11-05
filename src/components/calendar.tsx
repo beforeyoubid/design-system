@@ -118,9 +118,11 @@ function Calendar({
           defaultClassNames.day
         ),
         // A range's start carries the band on towards the next day, and its end back towards the
-        // previous one, except across the edge of a week row.
+        // previous one, except across the edge of a week row. A range of one day is both its start and
+        // its end, with no band to carry: the two bridges would share one pseudo-element, pinned to
+        // the start side, and show as a grey tab beside the day.
         range_start: cn(
-          "relative isolate z-0 rounded-s-(--cell-radius) bg-(--_calendar-range) after:absolute after:inset-y-0 after:end-0 after:w-4 after:bg-(--_calendar-range) last:rounded-e-(--cell-radius) last:after:hidden",
+          "relative isolate z-0 rounded-s-(--cell-radius) bg-(--_calendar-range) after:absolute after:inset-y-0 after:end-0 after:w-4 after:bg-(--_calendar-range) last:rounded-e-(--cell-radius) last:after:hidden [&:has([data-range-end=true])]:bg-transparent [&:has([data-range-end=true])]:after:hidden",
           defaultClassNames.range_start
         ),
         range_middle: cn("rounded-none", defaultClassNames.range_middle),
