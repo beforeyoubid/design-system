@@ -45,8 +45,8 @@
 }
 
 [data-slot="tabs-trigger"] {
-  /* @remove flex-1 border border-transparent py-1 group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start group-data-vertical/tabs:px-2.5 group-data-vertical/tabs:py-1.5 hover:text-foreground focus-visible:border-ring focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-active:bg-background data-active:text-foreground group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-active:bg-transparent after:absolute after:bg-foreground after:opacity-0 after:transition-opacity group-data-horizontal/tabs:after:inset-x-0 group-data-horizontal/tabs:after:bottom-[-5px] group-data-horizontal/tabs:after:h-0.5 group-data-vertical/tabs:after:inset-y-0 group-data-vertical/tabs:after:-end-1 group-data-vertical/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-active:after:opacity-100 */
-  /* @add z-10 cursor-pointer transition-colors duration-300 ease-snappy outline-none focus-visible:ring-2 focus-visible:ring-offset-1 data-active:transition-[color] motion-reduce:data-active:transition-none data-disabled:pointer-events-none data-disabled:cursor-not-allowed motion-reduce:transition-none group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:justify-start text-body-5 tracking-button uppercase not-data-active:hover:text-dark-75 */
+  /* @remove flex-1 border border-transparent py-1 group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start group-data-vertical/tabs:px-2.5 group-data-vertical/tabs:py-1.5 hover:text-foreground focus-visible:border-ring focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-active:bg-background data-active:text-foreground group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-active:bg-transparent after:absolute after:bg-foreground after:opacity-0 after:transition-opacity group-data-horizontal/tabs:after:inset-x-0 group-data-horizontal/tabs:after:bottom-[-5px] group-data-horizontal/tabs:after:h-0.5 group-data-vertical/tabs:after:inset-y-0 group-data-vertical/tabs:after:-end-1 group-data-vertical/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-active:after:opacity-100 not-data-active:hover:text-dark-75 tracking-button */
+  /* @add z-10 cursor-pointer transition-colors duration-300 ease-snappy outline-none focus-visible:ring-2 focus-visible:ring-offset-1 data-active:transition-[color] motion-reduce:data-active:transition-none data-disabled:pointer-events-none data-disabled:cursor-not-allowed motion-reduce:transition-none group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:justify-start uppercase not-data-active:hover:text-(--_tabs-trigger-hover-foreground) */
   /* Gap between items of the trigger. */
   --_tabs-trigger-gap: var(--tabs-trigger-gap, calc(var(--spacing) * 1.5));
   /* Ring colour of the trigger when focused. */
@@ -61,6 +61,14 @@
   --_tabs-trigger-padding-x: var(--tabs-trigger-padding-x, calc(var(--spacing) * 2.5));
   /* Font weight of the trigger. */
   --_tabs-trigger-font-weight: var(--tabs-trigger-font-weight, 600);
+  /* Text size of the trigger. */
+  --_tabs-trigger-font-size: var(--tabs-trigger-font-size, var(--text-body-5));
+  /* Line height of the trigger. */
+  --_tabs-trigger-leading: var(--tabs-trigger-leading, var(--text-body-5--line-height));
+  /* Letter spacing of the trigger. */
+  --_tabs-trigger-tracking: var(--tabs-trigger-tracking, var(--tracking-button));
+  /* Text colour of the trigger when hovered (not the active one). */
+  --_tabs-trigger-hover-foreground: var(--tabs-trigger-hover-foreground, var(--dark-75));
   /* Text colour of the trigger. */
   --_tabs-trigger-foreground: var(--tabs-trigger-foreground, var(--navy));
   /* Text colour of the trigger when active. @on --tabs-indicator */
@@ -107,7 +115,11 @@
 }
 
 [data-slot="tabs-content"] {
-  /* @add text-body-5 data-ending-style:hidden data-[activation-direction=right]:animate-tab-in-right data-[activation-direction=left]:animate-tab-in-left motion-reduce:animate-none */
+  /* @add data-ending-style:hidden data-[activation-direction=right]:animate-tab-in-right data-[activation-direction=left]:animate-tab-in-left motion-reduce:animate-none */
+  /* Text size of the content. */
+  --_tabs-content-font-size: var(--tabs-content-font-size, var(--text-body-5));
+  /* Line height of the content. */
+  --_tabs-content-leading: var(--tabs-content-leading, var(--text-body-5--line-height));
   /* Fill colour of the content card (panel variant). @ours */
   --_tabs-content-panel: var(--tabs-content-panel, var(--white));
   /* Border colour of the content card (panel variant). @ours */

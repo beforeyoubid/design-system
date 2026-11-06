@@ -16,7 +16,7 @@
 
 [data-slot="accordion-trigger"] {
   /* @remove border border-transparent p-4 hover:underline **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground */
-  /* @add cursor-pointer items-center transition-colors text-h5 [&_svg]:size-5 */
+  /* @add cursor-pointer items-center transition-colors text-h5 [&_svg]:size-5 **:data-[slot=accordion-trigger-icon]:text-(--_accordion-trigger-icon-foreground) hover:**:data-[slot=accordion-trigger-icon]:text-(--_accordion-trigger-icon-hover-foreground) data-panel-open:**:data-[slot=accordion-trigger-icon]:text-(--_accordion-trigger-icon-open-foreground) */
   /* Base UI marks a disabled trigger with disabled and data-disabled, not aria-disabled. */
   /* @remove aria-disabled:pointer-events-none aria-disabled:opacity-(--_accordion-trigger-disabled-opacity) aria-disabled:opacity-50 */
   /* @add data-disabled:pointer-events-none data-disabled:opacity-(--_accordion-trigger-disabled-opacity) */
@@ -40,6 +40,12 @@
   --_accordion-trigger-sm-padding-y: var(--accordion-trigger-sm-padding-y, calc(var(--spacing) * 3));
   /* Vertical padding of the trigger (lg size). @ours */
   --_accordion-trigger-lg-padding-y: var(--accordion-trigger-lg-padding-y, calc(var(--spacing) * 6));
+  /* Colour of the chevron. Follows the title's colour unless set. Read on both chevrons by the trigger's classes. */
+  --_accordion-trigger-icon-foreground: var(--accordion-trigger-icon-foreground, currentColor);
+  /* Colour of the chevron when the trigger is hovered. */
+  --_accordion-trigger-icon-hover-foreground: var(--accordion-trigger-icon-hover-foreground, currentColor);
+  /* Colour of the chevron while open. */
+  --_accordion-trigger-icon-open-foreground: var(--accordion-trigger-icon-open-foreground, currentColor);
 }
 
 [data-slot="accordion-content"] {

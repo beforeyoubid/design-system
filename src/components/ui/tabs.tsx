@@ -57,7 +57,7 @@ function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
     <TabsPrimitive.Tab
       data-slot="tabs-trigger"
       className={cn(
-        "relative inline-flex h-(--_tabs-trigger-height) items-center justify-center gap-(--_tabs-trigger-gap) rounded-(--_tabs-trigger-radius) px-(--_tabs-trigger-padding-x) text-body-5 font-(--_tabs-trigger-font-weight) whitespace-nowrap text-(--_tabs-trigger-foreground) transition-colors focus-visible:ring-2 focus-visible:ring-(--_tabs-trigger-focus-ring) dark:text-muted-foreground dark:hover:text-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-disabled:text-(--_tabs-trigger-disabled-foreground) data-active:text-(--_tabs-trigger-active-foreground) z-10 cursor-pointer duration-300 ease-snappy outline-none focus-visible:ring-offset-1 data-active:transition-[color] motion-reduce:data-active:transition-none data-disabled:pointer-events-none data-disabled:cursor-not-allowed motion-reduce:transition-none group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:justify-start tracking-button uppercase not-data-active:hover:text-dark-75",
+        "relative inline-flex h-(--_tabs-trigger-height) items-center justify-center gap-(--_tabs-trigger-gap) rounded-(--_tabs-trigger-radius) px-(--_tabs-trigger-padding-x) text-(length:--_tabs-trigger-font-size) font-(--_tabs-trigger-font-weight) whitespace-nowrap text-(--_tabs-trigger-foreground) transition-colors focus-visible:ring-2 focus-visible:ring-(--_tabs-trigger-focus-ring) dark:text-muted-foreground dark:hover:text-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-disabled:text-(--_tabs-trigger-disabled-foreground) data-active:text-(--_tabs-trigger-active-foreground) z-10 cursor-pointer duration-300 ease-snappy outline-none focus-visible:ring-offset-1 data-active:transition-[color] motion-reduce:data-active:transition-none data-disabled:pointer-events-none data-disabled:cursor-not-allowed motion-reduce:transition-none group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:justify-start uppercase leading-(--_tabs-trigger-leading) tracking-(--_tabs-trigger-tracking) not-data-active:hover:text-(--_tabs-trigger-hover-foreground)",
         "dark:group-data-[variant=line]/tabs-list:data-active:border-transparent dark:group-data-[variant=line]/tabs-list:data-active:bg-transparent",
         "dark:data-active:border-input dark:data-active:bg-input/30 dark:data-active:text-foreground",
         "",
@@ -72,7 +72,7 @@ function TabsContent({ className, ...props }: TabsPrimitive.Panel.Props) {
   return (
     <TabsPrimitive.Panel
       data-slot="tabs-content"
-      className={cn("flex-1 text-body-5 outline-none data-ending-style:hidden data-[activation-direction=right]:animate-tab-in-right data-[activation-direction=left]:animate-tab-in-left motion-reduce:animate-none", className)}
+      className={cn("flex-1 text-(length:--_tabs-content-font-size) outline-none data-ending-style:hidden data-[activation-direction=right]:animate-tab-in-right data-[activation-direction=left]:animate-tab-in-left motion-reduce:animate-none leading-(--_tabs-content-leading)", className)}
       {...props}
     />
   )

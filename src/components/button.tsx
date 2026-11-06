@@ -30,8 +30,8 @@ const bybButtonVariants = cva("", {
     variant: {
       outline:
         "border border-border bg-border/30 hover:bg-border/50 hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground disabled:bg-(--_button-default-disabled) disabled:text-(--_button-default-disabled-foreground)",
-      lime: "bg-(--_button-lime) text-(--_button-lime-foreground) hover:opacity-90 disabled:bg-(--_button-default-disabled) disabled:text-(--_button-default-disabled-foreground)",
-      navy: "bg-(--_button-navy) text-(--_button-navy-foreground) hover:opacity-90 disabled:bg-(--_button-default-disabled) disabled:text-(--_button-default-disabled-foreground)",
+      lime: "bg-(--_button-lime) text-(--_button-lime-foreground) hover:opacity-90 disabled:bg-(--_button-lime-disabled) disabled:text-(--_button-lime-disabled-foreground)",
+      navy: "bg-(--_button-navy) text-(--_button-navy-foreground) hover:opacity-90 disabled:bg-(--_button-navy-disabled) disabled:text-(--_button-navy-disabled-foreground)",
     },
   },
 })

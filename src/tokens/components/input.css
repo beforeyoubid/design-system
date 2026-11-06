@@ -5,7 +5,7 @@
 
 [data-slot="input"] {
   /* @remove disabled:pointer-events-none disabled:opacity-50 aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 md:text-sm */
-  /* @add text-body-5 transition focus-visible:ring-3 aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-destructive/20 file:text-body-5 file:text-dark-100 */
+  /* @add transition focus-visible:ring-3 aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-destructive/20 file:text-body-5 file:text-dark-100 */
   /* Corner radius of the input. */
   --_input-radius: var(--input-radius, var(--radius-lg));
   /* Border colour of the input. */
@@ -32,4 +32,8 @@
   --_input-height: var(--input-height, calc(var(--spacing) * 10));
   /* Vertical padding of the input. */
   --_input-padding-y: var(--input-padding-y, calc(var(--spacing) * 1));
+  /* Text size of the input. */
+  --_input-font-size: var(--input-font-size, var(--text-body-5));
+  /* Line height of the input. */
+  --_input-leading: var(--input-leading, var(--text-body-5--line-height));
 }

@@ -76,6 +76,11 @@ export const PROPERTIES = {
   'font-weight': { utility: 'font', type: 'font-weight', probe: 'font-[555]', label: 'Font weight' },
   opacity: { utility: 'opacity', type: 'opacity', probe: 'opacity-[.33]', label: 'Opacity' },
   tracking: { utility: 'tracking', type: 'tracking', probe: 'tracking-[3px]', label: 'Letter spacing' },
+  // Type on a part whose size or line height an app may set apart from the type scale's
+  // pairing (a button size, a tab). `leading`, not `line-height`: `-line-height` already
+  // reads as the line variant's height (--tabs-trigger-line-height).
+  'font-size': { utility: 'text', cssType: 'length', type: 'font-size', probe: 'text-[3px]', label: 'Text size' },
+  leading: { utility: 'leading', type: 'leading', probe: 'leading-[3px]', label: 'Line height' },
 }
 // Longest suffix first, so `padding-x` wins over `padding` and `min-height` over `height`.
 // No property may share a name with a variant or size (outline, icon), or names would be ambiguous.
