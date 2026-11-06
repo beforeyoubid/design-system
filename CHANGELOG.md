@@ -9,6 +9,7 @@
 ### Added
 
 - **FileUpload takes its size limit in megabytes.** `maxSizeMb` sets the limit in megabytes (1 MB = 1024 × 1024 bytes, as the file cards count it) alongside `maxSize` in bytes, which wins when both are set. The form package's `FileUploadField` passes it through.
+- **Apps only ship the components they use.** The ES module build was one file marked `'use client'`, so importing any component put the whole design system (charts, calendars, the command palette) into every page that used one. It is now one file per component with shared chunks, behind an index of plain re-exports. In a Next.js app, add `experimental: { optimizePackageImports: ['@beforeyoubid/design-system'] }` to `next.config` so imports from the package root resolve to those files. The CommonJS build and the type declarations are unchanged.
 
 ### Fixed
 
