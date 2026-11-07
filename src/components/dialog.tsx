@@ -8,6 +8,7 @@ import { ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {
   DialogContent as DialogContentBase,
+  DialogFooter as DialogFooterBase,
   DialogHeader as DialogHeaderBase,
 } from "@/components/ui/dialog"
 import { IconTile, type IconTileVariant } from "@/components/icon-tile"
@@ -19,12 +20,17 @@ export * from "@/components/ui/dialog"
  * spacing (no divider lines); long content scrolls in `DialogBody`, whose edges
  * fade while there's more to see. Everything is left-aligned; a header `icon`
  * sits on the left in one row with the title.
+ *
+ * Two safety nets for content the layout didn't plan for. A dialog without a
+ * `DialogBody` scrolls as a whole rather than running its actions off the
+ * screen, and text wraps anywhere, so an unbroken string (an email address, a
+ * URL) breaks instead of pushing the dialog wider than the screen.
  */
 const dialogContentVariants = cva(
   // The look is in the dialog-content component tokens (stock classes). Here: the BYB close
   // button (a plain grey ×, not stock's ghost Button), read from the
   // dialog-close component tokens.
-  "*:data-[slot=dialog-close]:top-5 *:data-[slot=dialog-close]:end-5 *:data-[slot=dialog-close]:size-8 *:data-[slot=dialog-close]:rounded-full *:data-[slot=dialog-close]:bg-transparent *:data-[slot=dialog-close]:text-(--_dialog-close-foreground) *:data-[slot=dialog-close]:hover:bg-transparent *:data-[slot=dialog-close]:hover:text-(--_dialog-close-hover-foreground) *:data-[slot=dialog-close]:[&_svg]:size-5!",
+  "overflow-y-auto wrap-anywhere *:data-[slot=dialog-close]:top-5 *:data-[slot=dialog-close]:end-5 *:data-[slot=dialog-close]:size-8 *:data-[slot=dialog-close]:rounded-full *:data-[slot=dialog-close]:bg-transparent *:data-[slot=dialog-close]:text-(--_dialog-close-foreground) *:data-[slot=dialog-close]:hover:bg-transparent *:data-[slot=dialog-close]:hover:text-(--_dialog-close-hover-foreground) *:data-[slot=dialog-close]:[&_svg]:size-5!",
   {
     variants: {
       size: {
@@ -81,6 +87,60 @@ function DialogHeader({
       {icon && <IconTile variant={iconVariant} size="md" icon={icon} />}
       {children}
     </DialogHeaderBase>
+  )
+}
+
+/**
+ * Stock `DialogFooter`, plus a phone layout for actions that don't fit on one
+ * row. Below `sm`, once the buttons wrap, the main action (the last button)
+ * moves to the top row and every button stretches to fill its row, so wrapped
+ * buttons read as a stack instead of ragged right-aligned rows. Buttons that
+ * fit stay side by side as before, and nothing changes from `sm` up.
+ *
+ * CSS can't tell when a flex row has wrapped, so the footer measures its
+ * buttons and sets `data-wrapped` while they sit on more than one row.
+ * Stretching never changes where a row breaks, so this can't flip back.
+ */
+function DialogFooter({ className, ref, ...props }: React.ComponentProps<typeof DialogFooterBase>) {
+  const footerRef = React.useRef<HTMLDivElement | null>(null)
+  const [wrapped, setWrapped] = React.useState(false)
+
+  React.useLayoutEffect(() => {
+    const footer = footerRef.current
+    if (!footer || typeof ResizeObserver === "undefined") return
+    const measure = () => {
+      const tops = new Set(
+        Array.from(footer.children, (child) => Math.round((child as HTMLElement).offsetTop))
+      )
+      setWrapped(tops.size > 1)
+    }
+    const resize = new ResizeObserver(measure)
+    const observeAll = () => {
+      resize.disconnect()
+      resize.observe(footer)
+      Array.from(footer.children).forEach((child) => resize.observe(child))
+      measure()
+    }
+    const mutation = new MutationObserver(observeAll)
+    mutation.observe(footer, { childList: true })
+    observeAll()
+    return () => {
+      resize.disconnect()
+      mutation.disconnect()
+    }
+  }, [])
+
+  return (
+    <DialogFooterBase
+      ref={(node: HTMLDivElement | null) => {
+        footerRef.current = node
+        if (typeof ref === "function") ref(node)
+        else if (ref && typeof ref === "object") (ref as React.MutableRefObject<HTMLDivElement | null>).current = node
+      }}
+      data-wrapped={wrapped ? "" : undefined}
+      className={cn("max-sm:flex-wrap-reverse max-sm:data-wrapped:*:grow", className)}
+      {...props}
+    />
   )
 }
 
@@ -181,6 +241,7 @@ export {
   DialogBody,
   DialogCollapsible,
   DialogContent,
+  DialogFooter,
   DialogHeader,
   dialogContentVariants,
 }
