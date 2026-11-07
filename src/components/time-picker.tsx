@@ -52,7 +52,13 @@ function parseTime(value?: string) {
   }
 }
 
-export interface TimePickerProps {
+/** The trigger button's other props (`data-*`, `title`, event handlers…), passed straight through. */
+type TriggerProps = Omit<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  "value" | "defaultValue" | "onChange" | "children" | "type"
+>
+
+export interface TimePickerProps extends TriggerProps {
   /** "HH:MM" or "HH:MM:SS" (24-hour). Seconds are shown when the value has them or `withSeconds` is set. */
   value?: string
   onChange?: (time: string) => void
@@ -170,6 +176,7 @@ function TimePicker({
   "aria-describedby": ariaDescribedBy,
   "aria-invalid": ariaInvalid,
   "aria-required": ariaRequired,
+  ...triggerProps
 }: TimePickerProps) {
   const [open, setOpen] = useControllableOpen(openProp, onOpenChange)
   const { hour, minute, second } = parseTime(value)
@@ -192,6 +199,7 @@ function TimePicker({
   return (
     <Popover open={open} onOpenChange={(next) => setOpen(next)}>
       <PopoverTrigger
+        {...triggerProps}
         id={id}
         disabled={disabled}
         onBlur={onBlur}

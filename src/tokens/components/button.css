@@ -5,21 +5,25 @@
 
 [data-slot="button"] {
   /* @alias md = size.default */
-  /* @remove border-transparent bg-clip-padding text-sm focus-visible:border-ring disabled:opacity-50 aria-invalid:border-destructive */
+  /* @remove text-sm focus-visible:border-ring aria-invalid:border-destructive */
   /* @remove(variant.ghost) hover:bg-muted aria-expanded:bg-muted */
   /* @remove(variant.destructive) focus-visible:border-destructive/40 */
-  /* @add cursor-pointer border-0 uppercase tracking-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed aria-busy:pointer-events-none aria-busy:cursor-progress aria-busy:opacity-70 aria-invalid:ring-3 */
+  /* @add cursor-pointer border-transparent bg-clip-padding uppercase tracking-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed aria-busy:pointer-events-none aria-busy:cursor-progress aria-busy:opacity-70 aria-invalid:ring-3 */
   /* @add(variant.outline) border aria-expanded:ring-3 */
   /* @add(variant.secondary) border */
-  /* @add(md) text-button-sm has-data-[icon=inline-end]:pe-(--_button-md-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-md-with-icon-padding-x) */
-  /* @add(size.xs) text-caption-2 has-data-[icon=inline-end]:pe-(--_button-xs-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-xs-with-icon-padding-x) */
-  /* @add(size.sm) text-button-sm has-data-[icon=inline-end]:pe-(--_button-sm-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-sm-with-icon-padding-x) */
-  /* @add(size.lg) text-button-md has-data-[icon=inline-end]:pe-(--_button-lg-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-lg-with-icon-padding-x) [&_svg:not([class*='size-'])]:size-4.5 */
+  /* @add(md) has-data-[icon=inline-end]:pe-(--_button-md-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-md-with-icon-padding-x) */
+  /* @add(size.xs) has-data-[icon=inline-end]:pe-(--_button-xs-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-xs-with-icon-padding-x) */
+  /* @add(size.sm) has-data-[icon=inline-end]:pe-(--_button-sm-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-sm-with-icon-padding-x) */
+  /* @add(size.lg) has-data-[icon=inline-end]:pe-(--_button-lg-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-lg-with-icon-padding-x) [&_svg:not([class*='size-'])]:size-4.5 */
   /* @add(size.icon-lg) [&_svg:not([class*='size-'])]:size-4.5 */
   /* Corner radius of the button. */
   --_button-radius: var(--button-radius, var(--radius-xl));
   /* Font weight of the button. */
   --_button-font-weight: var(--button-font-weight, 600);
+  /* Border thickness of the button. Variants with a border (outline, secondary) keep a one-pixel line; on the others the border is transparent and the fill stops inside it. */
+  --_button-border-width: var(--button-border-width, 0px);
+  /* Opacity of the button when disabled, on top of its disabled colours. */
+  --_button-disabled-opacity: var(--button-disabled-opacity, 1);
   /* Ring colour of the button when focused. */
   --_button-focus-ring: var(--button-focus-ring, var(--navy));
   /* Ring colour of the button when invalid. */
@@ -122,6 +126,10 @@
   --_button-md-gap: var(--button-md-gap, calc(var(--spacing) * 3));
   /* Horizontal padding of the button (md size). */
   --_button-md-padding-x: var(--button-md-padding-x, calc(var(--spacing) * 4));
+  /* Text size of the button (md size). */
+  --_button-md-font-size: var(--button-md-font-size, var(--text-button-sm));
+  /* Line height of the button (md size). */
+  --_button-md-leading: var(--button-md-leading, var(--text-button-sm--line-height));
   /* Height of the button (xs size). */
   --_button-xs-height: var(--button-xs-height, calc(var(--spacing) * 7));
   /* Gap between items of the button (xs size). */
@@ -132,6 +140,10 @@
   --_button-xs-padding-x: var(--button-xs-padding-x, calc(var(--spacing) * 3));
   /* Vertical padding of the button (xs size). */
   --_button-xs-padding-y: var(--button-xs-padding-y, calc(var(--spacing) * 1));
+  /* Text size of the button (xs size). */
+  --_button-xs-font-size: var(--button-xs-font-size, var(--text-caption-2));
+  /* Line height of the button (xs size). */
+  --_button-xs-leading: var(--button-xs-leading, var(--text-caption-2--line-height));
   /* Height of the button (sm size). */
   --_button-sm-height: var(--button-sm-height, calc(var(--spacing) * 9));
   /* Gap between items of the button (sm size). */
@@ -140,12 +152,20 @@
   --_button-sm-radius: var(--button-sm-radius, var(--button-radius, var(--radius-lg)));
   /* Horizontal padding of the button (sm size). */
   --_button-sm-padding-x: var(--button-sm-padding-x, calc(var(--spacing) * 3.5));
+  /* Text size of the button (sm size). */
+  --_button-sm-font-size: var(--button-sm-font-size, var(--text-button-sm));
+  /* Line height of the button (sm size). */
+  --_button-sm-leading: var(--button-sm-leading, var(--text-button-sm--line-height));
   /* Height of the button (lg size). */
   --_button-lg-height: var(--button-lg-height, calc(var(--spacing) * 11));
   /* Gap between items of the button (lg size). */
   --_button-lg-gap: var(--button-lg-gap, calc(var(--spacing) * 3));
   /* Horizontal padding of the button (lg size). */
   --_button-lg-padding-x: var(--button-lg-padding-x, calc(var(--spacing) * 4.5));
+  /* Text size of the button (lg size). */
+  --_button-lg-font-size: var(--button-lg-font-size, var(--text-button-md));
+  /* Line height of the button (lg size). */
+  --_button-lg-leading: var(--button-lg-leading, var(--text-button-md--line-height));
   /* Width and height of the button (icon size). */
   --_button-icon-size: var(--button-icon-size, calc(var(--spacing) * 10));
   /* Corner radius of the button (icon size). */
@@ -166,10 +186,18 @@
   --_button-lime: var(--button-lime, var(--lime));
   /* Text colour of the button (lime variant). @ours */
   --_button-lime-foreground: var(--button-lime-foreground, var(--navy));
+  /* Fill colour of the button (lime variant) when disabled. @ours */
+  --_button-lime-disabled: var(--button-lime-disabled, var(--_button-default-disabled));
+  /* Text colour of the button (lime variant) when disabled. @ours */
+  --_button-lime-disabled-foreground: var(--button-lime-disabled-foreground, var(--_button-default-disabled-foreground));
   /* Fill colour of the button (navy variant). @ours */
   --_button-navy: var(--button-navy, var(--navy));
   /* Text colour of the button (navy variant). @ours */
   --_button-navy-foreground: var(--button-navy-foreground, var(--white));
+  /* Fill colour of the button (navy variant) when disabled. @ours */
+  --_button-navy-disabled: var(--button-navy-disabled, var(--_button-default-disabled));
+  /* Text colour of the button (navy variant) when disabled. @ours */
+  --_button-navy-disabled-foreground: var(--button-navy-disabled-foreground, var(--_button-default-disabled-foreground));
   /* Padding on the icon side of the button (md) when it has an icon. */
   --_button-md-with-icon-padding-x: var(--button-md-with-icon-padding-x, calc(var(--spacing) * 3.5));
   /* Padding on the icon side of the button (xs) when it has an icon. */

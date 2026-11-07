@@ -44,3 +44,25 @@ test('a border colour token leaves the border width alone', () => {
 test('conditional inputs work like clsx', () => {
   assert.equal(cn('a', false, null, undefined, { b: true, c: false }, ['d', ['e']]), 'a b d e')
 })
+
+// A font size resets the line height, so cn drops a leading- class that comes
+// before one. A line height has to follow the size it overrides.
+test('a line height survives only after the font size', () => {
+  assert.equal(cn('leading-none', 'text-caption-1'), 'text-caption-1')
+  assert.equal(cn('text-caption-1 leading-none'), 'text-caption-1 leading-none')
+})
+
+// Select's popup width: stock pins it to the trigger; the BYB SelectContent puts its own
+// width first and the call site's className last, so both have to replace what came before.
+test('select popup width replaces the stock width and gives way to a call site', () => {
+  const stock = 'w-(--anchor-width) min-w-36'
+  const byb = 'w-fit min-w-[max(var(--anchor-width),--spacing(36))] max-w-(--available-width)'
+  assert.equal(cn(stock, byb), byb)
+  assert.equal(cn(stock, byb, 'w-72 max-w-none'), 'min-w-[max(var(--anchor-width),--spacing(36))] w-72 max-w-none')
+})
+
+test('combobox popup grows to fit and gives way to a call site', () => {
+  const stock = 'w-(--anchor-width) max-w-(--available-width) min-w-[calc(var(--anchor-width)+--spacing(7))]'
+  assert.equal(cn(stock, 'w-fit'), 'max-w-(--available-width) min-w-[calc(var(--anchor-width)+--spacing(7))] w-fit')
+  assert.equal(cn(stock, 'w-fit', 'w-80'), 'max-w-(--available-width) min-w-[calc(var(--anchor-width)+--spacing(7))] w-80')
+})

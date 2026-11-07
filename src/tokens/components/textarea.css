@@ -5,7 +5,7 @@
 
 [data-slot="textarea"] {
   /* @remove field-sizing-content disabled:opacity-50 aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 md:text-sm */
-  /* @add min-w-0 text-body-5 transition focus-visible:ring-3 aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-destructive/20 min-h-auto resize-y */
+  /* @add min-w-0 transition focus-visible:ring-3 aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-destructive/20 min-h-auto resize-y */
   /* Corner radius of the textarea. */
   --_textarea-radius: var(--textarea-radius, var(--radius-lg));
   /* Border colour of the textarea. */
@@ -30,4 +30,8 @@
   --_textarea-disabled-foreground: var(--textarea-disabled-foreground, var(--dark-45));
   /* Vertical padding of the textarea. */
   --_textarea-padding-y: var(--textarea-padding-y, calc(var(--spacing) * 2.5));
+  /* Text size of the textarea. */
+  --_textarea-font-size: var(--textarea-font-size, var(--text-body-5));
+  /* Line height of the textarea. */
+  --_textarea-leading: var(--textarea-leading, var(--text-body-5--line-height));
 }

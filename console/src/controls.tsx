@@ -13,6 +13,8 @@ import {
   radiusSteps,
   SHADOWS,
   TRACKING,
+  TEXT_SIZES,
+  LEADINGS,
   WEIGHTS,
   type ValueType,
 } from './tokens'
@@ -174,6 +176,10 @@ export function ValueControl({ type, id, value, onChange, max }: ControlProps & 
       return <OpacityControl id={id} value={value} onChange={onChange} />
     case 'tracking':
       return <Segmented id={id} value={value} onChange={onChange} options={TRACKING} />
+    case 'font-size':
+      return <Segmented id={id} value={value} onChange={onChange} options={TEXT_SIZES} />
+    case 'leading':
+      return <Segmented id={id} value={value} onChange={onChange} options={LEADINGS} />
   }
 }
 
@@ -186,4 +192,6 @@ export const typeHint: Record<ValueType, string> = {
   'font-weight': 'Font weight',
   opacity: 'Opacity',
   tracking: 'Letter spacing',
+  'font-size': 'Text size from the type scale',
+  leading: 'Line height (multiple of the text size)',
 }

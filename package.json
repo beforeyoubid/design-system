@@ -1,12 +1,12 @@
 {
   "name": "@beforeyoubid/design-system",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "BYB design system — Tailwind CSS v4 + shadcn/ui (BaseUI) pattern components",
   "author": "Before You Buy",
   "license": "ISC",
   "packageManager": "pnpm@11.9.0",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "module": "./dist/esm/index.mjs",
   "types": "dist/index.d.ts",
   "sideEffects": [
     "**/*.css"
@@ -33,7 +33,7 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
+      "import": "./dist/esm/index.mjs",
       "require": "./dist/index.js"
     },
     "./icons": {
@@ -77,8 +77,8 @@
   },
   "peerDependencies": {
     "next": ">=14",
-    "react": ">=18",
-    "react-dom": ">=18",
+    "react": ">=19",
+    "react-dom": ">=19",
     "tailwindcss": ">=4"
   },
   "devDependencies": {

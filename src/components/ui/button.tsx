@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-(--_button-radius) border-0 font-(--_button-font-weight) whitespace-nowrap transition-all outline-none select-none focus-visible:ring-2 focus-visible:ring-(--_button-focus-ring) active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none aria-invalid:ring-3 aria-invalid:ring-(--_button-invalid-ring) dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 cursor-pointer uppercase tracking-button focus-visible:outline-none focus-visible:ring-offset-2 disabled:cursor-not-allowed aria-busy:pointer-events-none aria-busy:cursor-progress aria-busy:opacity-70",
+  "group/button inline-flex shrink-0 items-center justify-center rounded-(--_button-radius) border-(length:--_button-border-width) font-(--_button-font-weight) whitespace-nowrap transition-all outline-none select-none focus-visible:ring-2 focus-visible:ring-(--_button-focus-ring) active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none aria-invalid:ring-3 aria-invalid:ring-(--_button-invalid-ring) dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 cursor-pointer uppercase tracking-button focus-visible:outline-none focus-visible:ring-offset-2 disabled:cursor-not-allowed aria-busy:pointer-events-none aria-busy:cursor-progress aria-busy:opacity-70 disabled:opacity-(--_button-disabled-opacity) border-transparent bg-clip-padding",
   {
     variants: {
       variant: {
@@ -20,10 +20,10 @@ const buttonVariants = cva(
       },
       size: {
         default:
-          "h-(--_button-md-height) gap-(--_button-md-gap) px-(--_button-md-padding-x) has-data-[icon=inline-end]:pe-(--_button-md-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-md-with-icon-padding-x) text-button-sm",
-        xs: "h-(--_button-xs-height) gap-(--_button-xs-gap) px-(--_button-xs-padding-x) text-caption-2 has-data-[icon=inline-end]:pe-(--_button-xs-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-xs-with-icon-padding-x) [&_svg:not([class*='size-'])]:size-3 rounded-(--_button-xs-radius) py-(--_button-xs-padding-y)",
-        sm: "h-(--_button-sm-height) gap-(--_button-sm-gap) px-(--_button-sm-padding-x) has-data-[icon=inline-end]:pe-(--_button-sm-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-sm-with-icon-padding-x) rounded-(--_button-sm-radius) text-button-sm",
-        lg: "h-(--_button-lg-height) gap-(--_button-lg-gap) px-(--_button-lg-padding-x) has-data-[icon=inline-end]:pe-(--_button-lg-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-lg-with-icon-padding-x) text-button-md [&_svg:not([class*='size-'])]:size-4.5",
+          "h-(--_button-md-height) gap-(--_button-md-gap) px-(--_button-md-padding-x) has-data-[icon=inline-end]:pe-(--_button-md-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-md-with-icon-padding-x) text-(length:--_button-md-font-size) leading-(--_button-md-leading)",
+        xs: "h-(--_button-xs-height) gap-(--_button-xs-gap) px-(--_button-xs-padding-x) text-(length:--_button-xs-font-size) has-data-[icon=inline-end]:pe-(--_button-xs-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-xs-with-icon-padding-x) [&_svg:not([class*='size-'])]:size-3 rounded-(--_button-xs-radius) py-(--_button-xs-padding-y) leading-(--_button-xs-leading)",
+        sm: "h-(--_button-sm-height) gap-(--_button-sm-gap) px-(--_button-sm-padding-x) has-data-[icon=inline-end]:pe-(--_button-sm-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-sm-with-icon-padding-x) rounded-(--_button-sm-radius) text-(length:--_button-sm-font-size) leading-(--_button-sm-leading)",
+        lg: "h-(--_button-lg-height) gap-(--_button-lg-gap) px-(--_button-lg-padding-x) has-data-[icon=inline-end]:pe-(--_button-lg-with-icon-padding-x) has-data-[icon=inline-start]:ps-(--_button-lg-with-icon-padding-x) text-(length:--_button-lg-font-size) [&_svg:not([class*='size-'])]:size-4.5 leading-(--_button-lg-leading)",
         icon: "size-(--_button-icon-size) rounded-(--_button-icon-radius)",
         "icon-xs": "size-(--_button-icon-xs-size) [&_svg:not([class*='size-'])]:size-3 rounded-(--_button-icon-xs-radius)",
         "icon-sm": "size-(--_button-icon-sm-size) rounded-(--_button-icon-sm-radius)",

@@ -9,11 +9,9 @@ function Slider({
   max = 100,
   ...props
 }: SliderPrimitive.Root.Props) {
-  const _values = Array.isArray(value)
-    ? value
-    : Array.isArray(defaultValue)
-      ? defaultValue
-      : [min, max]
+  // One thumb per value in an array. A single number, or no value (Base UI then starts at min), is one thumb.
+  const current = value ?? defaultValue
+  const thumbCount = Array.isArray(current) ? current.length : 1
 
   return (
     <SliderPrimitive.Root
@@ -36,7 +34,7 @@ function Slider({
             className="bg-(--_slider-range) select-none h-full data-[orientation=vertical]:h-auto data-[orientation=vertical]:w-full"
           />
         </SliderPrimitive.Track>
-        {Array.from({ length: _values.length }, (_, index) => (
+        {Array.from({ length: thumbCount }, (_, index) => (
           <SliderPrimitive.Thumb
             data-slot="slider-thumb"
             key={index}

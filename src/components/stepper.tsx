@@ -5,13 +5,15 @@ import { IconCheck, IconExclamationMark } from "@tabler/icons-react"
 import { cn } from "../lib/utils"
 
 const stepIndicatorVariants = cva(
-  "flex shrink-0 items-center justify-center rounded-full leading-none font-semibold transition-all duration-250",
+  "flex shrink-0 items-center justify-center rounded-full font-semibold transition-all duration-250",
   {
     variants: {
       size: {
-        sm: "size-6 text-caption-1 [&_svg]:size-3.5",
-        md: "size-8 text-body-5 [&_svg]:size-4",
-        lg: "size-10 text-body-5 [&_svg]:size-5",
+        // leading-none comes after the text size: cn drops a line height that precedes a font size,
+        // and the text styles' 1.4 line box sat the number about 1px above the circle's centre.
+        sm: "size-6 text-caption-1 leading-none [&_svg]:size-3.5",
+        md: "size-8 text-body-5 leading-none [&_svg]:size-4",
+        lg: "size-10 text-body-5 leading-none [&_svg]:size-5",
         dot: "size-3",
       },
       status: {

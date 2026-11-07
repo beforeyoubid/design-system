@@ -177,7 +177,7 @@ function SelectItem({
           {start}
         </span>
       )}
-      <SelectPrimitive.ItemText className="flex flex-1 shrink-0 whitespace-nowrap">
+      <SelectPrimitive.ItemText className="flex flex-1 shrink-0">
         {children}
       </SelectPrimitive.ItemText>
       {meta != null && (
@@ -206,16 +206,26 @@ function SelectFooter({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * Stock's popup is exactly the trigger's width and its labels never wrap, so a label
+ * wider than the trigger was cut off. This one is at least the trigger's width (and
+ * never under 9rem), grows to fit the widest option, and stops at the screen edge,
+ * where long labels wrap (see SelectItem).
+ */
+const POPUP_WIDTH = "w-fit min-w-[max(var(--anchor-width),--spacing(36))] max-w-(--available-width)"
+
 /** Stock `SelectContent`, opening below the field (6px gap) instead of over it. */
 function SelectContent({
   sideOffset = 6,
   alignItemWithTrigger = false,
+  className,
   ...props
 }: React.ComponentProps<typeof StockSelectContent>) {
   return (
     <StockSelectContent
       sideOffset={sideOffset}
       alignItemWithTrigger={alignItemWithTrigger}
+      className={cn(POPUP_WIDTH, className)}
       {...props}
     />
   )

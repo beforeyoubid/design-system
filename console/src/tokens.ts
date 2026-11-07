@@ -1,6 +1,6 @@
 import manifestJson from './generated/manifest.json'
 
-export type ValueType = 'color' | 'radius' | 'length' | 'shadow' | 'font-weight' | 'opacity' | 'tracking'
+export type ValueType = 'color' | 'radius' | 'length' | 'shadow' | 'font-weight' | 'opacity' | 'tracking' | 'font-size' | 'leading'
 
 export interface ComponentToken {
   name: string
@@ -145,6 +145,11 @@ export const WEIGHTS = [
   { value: '600', label: 'Semibold' },
   { value: '700', label: 'Bold' },
 ]
+/** The type scale's sizes, as `var(--text-…)` values, smallest first. */
+export const TEXT_SIZES = manifest.brand.text
+  .map((t) => ({ value: `var(${t.name})`, label: `${t.name.replace(/^--text-/, '')} (${t.value})`, px: parseLength(t.value) ?? 0 }))
+  .sort((a, b) => a.px - b.px)
+export const LEADINGS = ['1', '1.2', '1.3', '1.4', '1.5', '1.6'].map((v) => ({ value: v, label: v }))
 export const TRACKING = [
   { value: '0em', label: 'Normal' },
   { value: 'var(--tracking-heading)', label: 'Heading (tight)' },
@@ -162,6 +167,8 @@ export function describeValue(type: ValueType, v: string): string {
     case 'font-weight': return WEIGHTS.find((w) => w.value === v)?.label ?? v
     case 'opacity': return `${Math.round(parseFloat(v) * 100)}%`
     case 'tracking': return TRACKING.find((t) => t.value === v)?.label ?? v
+    case 'font-size': return TEXT_SIZES.find((t) => t.value === v)?.label ?? v
+    case 'leading': return v.startsWith('var(') ? v.replace(/^var\(--text-([\w-]+)--line-height\)$/, '$1 line height') : v
   }
 }
 
