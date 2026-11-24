@@ -742,6 +742,20 @@
   /* Tabs panel — slides in from the side of the newly selected tab */
   --animate-tab-in-right:   tab-in-right 0.3s var(--ease-snappy) both;
   --animate-tab-in-left:    tab-in-left 0.3s var(--ease-snappy) both;
+  /* StatCard halo — fades and swells gently to draw the eye */
+  --animate-halo-pulse:     halo-pulse 2.4s ease-in-out infinite;
+
+  @keyframes halo-pulse {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.45;
+      transform: scale(1.015);
+    }
+  }
 
   @keyframes tab-in-right {
     from {

@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- **InlineLink.** A link that looks like the text (link) button: semibold, UPPERCASE with button tracking, underlined on hover, for use inside or after a sentence. Variants `default` (mint-75, mint-90 on hover), `navy`, `destructive` and `white` (for dark sections); sizes `sm` (12px), `md` (14px, default) and `lg` (16px); `disabled`. Renders an `<a>`, or a router link through `render`.
+- **StatCard.** A dashboard stat (title with an optional info tooltip, set with `info` on `StatCardTitle`, value, and a status line with an icon) in a white card ringed by a halo that pulses in the status colour. Variants `default`, `success`, `warning` and `error`; `motion="none"` stops the pulse, and it never pulses for people who turn on reduced motion. New motion token `animate-halo-pulse`.
+- **Card tabs.** `TabsList variant="card"` shows each tab as a card: a round icon, a coloured dot, a semibold title and a description line ("26 jobs this period"), set with `icon`, `dot` and `description` on `TabsTrigger`. Hover gives a mint border; the selected card turns light mint with a thicker mint border, a mint icon and a tick.
+- **StatCard status icon props.** `icon` on `StatCardStatus` replaces the variant's icon, and `icon={null}` removes it.
+- **ScoreGauge.** A score out of 100 on a half dial of ticks coloured by band (Improve under 70, Rising 70–89, Top 90 and over), with a marker at the score, the status, the points to the next band and a legend. Navy (default) or white surface, sizes `sm` / `md` / `lg`, and `compact` for a dial with just the score and status. Props for the rest: `actionLabel` with `onAction` or `actionHref` adds the button, `statusLabel` and `description` replace the text (`null` hides them), `labels` renames the bands, and `legend="none"` / `scale="none"` hide the legend and the 0–100 labels.
+
 ## 2.0.1
 
 ### Breaking

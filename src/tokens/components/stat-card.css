@@ -1,0 +1,87 @@
+/* Stat card — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section.
+ * Defaults are the shipped design. Edited by hand; our component (stat-card.tsx) reads these component tokens. */
+
+[data-slot="stat-card"] {
+  /* Fill colour of the card. @ours */
+  --_stat-card: var(--stat-card, var(--card));
+  /* Default text colour inside the card. @ours */
+  --_stat-card-foreground: var(--stat-card-foreground, var(--card-foreground));
+  /* Border colour of the card. @ours */
+  --_stat-card-border: var(--stat-card-border, var(--border));
+  /* Corner radius of the card. @ours */
+  --_stat-card-radius: var(--stat-card-radius, var(--radius-xl));
+  /* Shadow of the card. @ours */
+  --_stat-card-shadow: var(--stat-card-shadow, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+  /* Padding inside the card. @ours */
+  --_stat-card-padding: var(--stat-card-padding, calc(var(--spacing) * 6));
+  /* Gap between the title, value and status rows. @ours */
+  --_stat-card-gap: var(--stat-card-gap, calc(var(--spacing) * 4));
+}
+
+[data-slot="stat-card-halo"] {
+  /* How far the halo reaches past the card's edge. @ours */
+  --_stat-card-halo-width: var(--stat-card-halo-width, calc(var(--spacing) * 2));
+  /* Corner radius of the halo (the card's radius plus the halo width). @ours */
+  --_stat-card-halo-radius: var(--stat-card-halo-radius, var(--radius-3xl));
+  /* Fill colour of the halo (default variant). @ours */
+  --_stat-card-halo: var(--stat-card-halo, var(--light-l3));
+  /* Fill colour of the halo (success variant). @ours */
+  --_stat-card-halo-success: var(--stat-card-halo-success, var(--mint-l2));
+  /* Fill colour of the halo (warning variant). @ours */
+  --_stat-card-halo-warning: var(--stat-card-halo-warning, var(--warning-l1));
+  /* Fill colour of the halo (error variant). @ours */
+  --_stat-card-halo-error: var(--stat-card-halo-error, var(--error-15));
+}
+
+[data-slot="stat-card-title"] {
+  /* Text colour of the title. @ours @on --_stat-card */
+  --_stat-card-title-foreground: var(--stat-card-title-foreground, var(--foreground));
+  /* Font weight of the title. @ours */
+  --_stat-card-title-font-weight: var(--stat-card-title-font-weight, var(--font-weight-medium));
+  /* Gap between the title and the info icon. @ours */
+  --_stat-card-title-gap: var(--stat-card-title-gap, calc(var(--spacing) * 2));
+}
+
+[data-slot="stat-card-info"] {
+  /* Colour of the info icon. @ours @on --_stat-card */
+  --_stat-card-info-foreground: var(--stat-card-info-foreground, var(--dark-75));
+  /* Colour of the info icon when hovered. @ours @on --_stat-card */
+  --_stat-card-info-hover-foreground: var(--stat-card-info-hover-foreground, var(--dark-100));
+  /* Ring colour of the info icon when focused. @ours */
+  --_stat-card-info-focus-ring: var(--stat-card-info-focus-ring, var(--ring));
+}
+
+[data-slot="stat-card-value"] {
+  /* Text colour of the value. @ours @on --_stat-card */
+  --_stat-card-value-foreground: var(--stat-card-value-foreground, var(--foreground));
+  /* Font weight of the value. @ours */
+  --_stat-card-value-font-weight: var(--stat-card-value-font-weight, var(--font-weight-semibold));
+}
+
+[data-slot="stat-card-status"] {
+  /* Colour of the divider above the status row. @ours */
+  --_stat-card-status-border: var(--stat-card-status-border, var(--light-l3));
+  /* Space between the divider and the status row. @ours */
+  --_stat-card-status-padding-top: var(--stat-card-status-padding-top, calc(var(--spacing) * 4));
+  /* Gap between the status icon and its text. @ours */
+  --_stat-card-status-gap: var(--stat-card-status-gap, calc(var(--spacing) * 3));
+}
+
+[data-slot="stat-card-status-title"] {
+  /* Font weight of the status title. @ours */
+  --_stat-card-status-title-font-weight: var(--stat-card-status-title-font-weight, var(--font-weight-semibold));
+  /* Text colour of the status title (default variant). @ours @on --_stat-card */
+  --_stat-card-status-title-foreground: var(--stat-card-status-title-foreground, var(--navy));
+  /* Text colour of the status title (success variant). @ours @on --_stat-card */
+  --_stat-card-status-title-success-foreground: var(--stat-card-status-title-success-foreground, var(--mint-75));
+  /* Text colour of the status title (warning variant). @ours @on --_stat-card */
+  --_stat-card-status-title-warning-foreground: var(--stat-card-status-title-warning-foreground, var(--warning-75));
+  /* Text colour of the status title (error variant). @ours @on --_stat-card */
+  --_stat-card-status-title-error-foreground: var(--stat-card-status-title-error-foreground, var(--destructive));
+}
+
+[data-slot="stat-card-status-description"] {
+  /* Text colour of the status description. @ours @on --_stat-card */
+  --_stat-card-status-description-foreground: var(--stat-card-status-description-foreground, var(--dark-90));
+}

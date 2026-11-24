@@ -1,0 +1,32 @@
+/* Inline link — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section.
+ * Defaults are the shipped design. Edited by hand; our component (inline-link.tsx) reads these component tokens. */
+
+[data-slot="inline-link"] {
+  /* Font weight of the link. @ours */
+  --_inline-link-font-weight: var(--inline-link-font-weight, var(--font-weight-semibold));
+  /* Gap between the text and an icon. @ours */
+  --_inline-link-gap: var(--inline-link-gap, calc(var(--spacing) * 1));
+  /* Corner radius of the focus ring. @ours */
+  --_inline-link-radius: var(--inline-link-radius, var(--radius-sm));
+  /* Ring colour of the link when focused. @ours */
+  --_inline-link-focus-ring: var(--inline-link-focus-ring, var(--ring));
+  /* Text colour of the link. @ours */
+  --_inline-link-foreground: var(--inline-link-foreground, var(--mint-75));
+  /* Text colour of the link when hovered. @ours */
+  --_inline-link-hover-foreground: var(--inline-link-hover-foreground, var(--mint-90));
+  /* Text colour of the link (navy variant). @ours */
+  --_inline-link-navy-foreground: var(--inline-link-navy-foreground, var(--navy));
+  /* Text colour of the link (navy variant) when hovered. @ours */
+  --_inline-link-navy-hover-foreground: var(--inline-link-navy-hover-foreground, var(--mint-75));
+  /* Text colour of the link (destructive variant). @ours */
+  --_inline-link-destructive-foreground: var(--inline-link-destructive-foreground, var(--destructive));
+  /* Text colour of the link (destructive variant) when hovered. @ours */
+  --_inline-link-destructive-hover-foreground: var(--inline-link-destructive-hover-foreground, var(--error-90));
+  /* Text colour of the link (white variant, for dark sections). @ours @on --navy */
+  --_inline-link-white-foreground: var(--inline-link-white-foreground, var(--white));
+  /* Text colour of the link (white variant) when hovered. @ours @on --navy */
+  --_inline-link-white-hover-foreground: var(--inline-link-white-hover-foreground, var(--lime));
+  /* Text colour of the link when disabled. @ours */
+  --_inline-link-disabled-foreground: var(--inline-link-disabled-foreground, var(--dark-45));
+}

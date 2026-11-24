@@ -2429,6 +2429,42 @@
   --_icon-tile-square-radius: var(--icon-tile-square-radius, var(--radius-lg));
 }
 
+/* ---- inline-link.css ---- */
+/* Inline link — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section.
+ * Defaults are the shipped design. Edited by hand; our component (inline-link.tsx) reads these component tokens. */
+
+[data-slot="inline-link"],
+[class*="(--_inline-link-"],
+[class*="(--_inline-link)"] {
+  /* Font weight of the link. @ours */
+  --_inline-link-font-weight: var(--inline-link-font-weight, var(--font-weight-semibold));
+  /* Gap between the text and an icon. @ours */
+  --_inline-link-gap: var(--inline-link-gap, calc(var(--spacing) * 1));
+  /* Corner radius of the focus ring. @ours */
+  --_inline-link-radius: var(--inline-link-radius, var(--radius-sm));
+  /* Ring colour of the link when focused. @ours */
+  --_inline-link-focus-ring: var(--inline-link-focus-ring, var(--ring));
+  /* Text colour of the link. @ours */
+  --_inline-link-foreground: var(--inline-link-foreground, var(--mint-75));
+  /* Text colour of the link when hovered. @ours */
+  --_inline-link-hover-foreground: var(--inline-link-hover-foreground, var(--mint-90));
+  /* Text colour of the link (navy variant). @ours */
+  --_inline-link-navy-foreground: var(--inline-link-navy-foreground, var(--navy));
+  /* Text colour of the link (navy variant) when hovered. @ours */
+  --_inline-link-navy-hover-foreground: var(--inline-link-navy-hover-foreground, var(--mint-75));
+  /* Text colour of the link (destructive variant). @ours */
+  --_inline-link-destructive-foreground: var(--inline-link-destructive-foreground, var(--destructive));
+  /* Text colour of the link (destructive variant) when hovered. @ours */
+  --_inline-link-destructive-hover-foreground: var(--inline-link-destructive-hover-foreground, var(--error-90));
+  /* Text colour of the link (white variant, for dark sections). @ours @on --navy */
+  --_inline-link-white-foreground: var(--inline-link-white-foreground, var(--white));
+  /* Text colour of the link (white variant) when hovered. @ours @on --navy */
+  --_inline-link-white-hover-foreground: var(--inline-link-white-hover-foreground, var(--lime));
+  /* Text colour of the link when disabled. @ours */
+  --_inline-link-disabled-foreground: var(--inline-link-disabled-foreground, var(--dark-45));
+}
+
 /* ---- input-group.css ---- */
 /* Input Group — component tokens.
  * Set any component token (the name without the underscore) on :root or a section, e.g.
@@ -3383,6 +3419,173 @@
   --_resizable-handle-focus-ring: var(--resizable-handle-focus-ring, var(--ring));
 }
 
+/* ---- score-gauge.css ---- */
+/* Score gauge — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section.
+ * Defaults are the shipped design. Edited by hand; our component (score-gauge.tsx) reads these component tokens.
+ * Bands: improve (under 70), rising (70–89), top (90 and over). */
+
+[data-slot="score-gauge"],
+[class*="(--_score-gauge-"],
+[class*="(--_score-gauge)"] {
+  /* Fill colour of the surface. @ours */
+  --_score-gauge: var(--score-gauge, var(--navy));
+  /* Default text colour on the surface. @ours @on --_score-gauge */
+  --_score-gauge-foreground: var(--score-gauge-foreground, var(--white));
+  /* Fill colour of the surface (white variant). @ours */
+  --_score-gauge-white: var(--score-gauge-white, var(--card));
+  /* Default text colour on the surface (white variant). @ours @on --_score-gauge-white */
+  --_score-gauge-white-foreground: var(--score-gauge-white-foreground, var(--card-foreground));
+  /* Corner radius of the surface. @ours */
+  --_score-gauge-radius: var(--score-gauge-radius, var(--radius-2xl));
+  /* Padding inside the surface. @ours */
+  --_score-gauge-padding: var(--score-gauge-padding, calc(var(--spacing) * 6));
+  /* Gap between the dial, the legend and anything below them. @ours */
+  --_score-gauge-gap: var(--score-gauge-gap, calc(var(--spacing) * 5));
+}
+
+[data-slot="score-gauge-dial"],
+[class*="(--_score-gauge-dial-"],
+[class*="(--_score-gauge-dial)"] {
+  /* Width of the dial (sm size). @ours */
+  --_score-gauge-dial-sm-width: var(--score-gauge-dial-sm-width, calc(var(--spacing) * 76));
+  /* Width of the dial (md size). @ours */
+  --_score-gauge-dial-md-width: var(--score-gauge-dial-md-width, calc(var(--spacing) * 100));
+  /* Width of the dial (lg size). @ours */
+  --_score-gauge-dial-lg-width: var(--score-gauge-dial-lg-width, calc(var(--spacing) * 124));
+}
+
+[data-slot="score-gauge-tick"],
+[class*="(--_score-gauge-tick-"],
+[class*="(--_score-gauge-tick)"] {
+  /* Colour of the ticks in the improve band. Also its legend dot. @ours */
+  --_score-gauge-tick-improve: var(--score-gauge-tick-improve, var(--warning-15));
+  /* Colour of the ticks in the rising band. Also its legend dot. @ours */
+  --_score-gauge-tick-rising: var(--score-gauge-tick-rising, var(--teal));
+  /* Colour of the ticks in the top band. Also its legend dot. @ours */
+  --_score-gauge-tick-top: var(--score-gauge-tick-top, var(--lime));
+  /* Colour of the ticks past the score. @ours */
+  --_score-gauge-tick-empty: var(--score-gauge-tick-empty, color-mix(in oklab, var(--white) 15%, transparent));
+  /* Colour of the ticks in the improve band (white variant). @ours */
+  --_score-gauge-tick-white-improve: var(--score-gauge-tick-white-improve, var(--warning-30));
+  /* Colour of the ticks in the rising band (white variant). @ours */
+  --_score-gauge-tick-white-rising: var(--score-gauge-tick-white-rising, var(--teal));
+  /* Colour of the ticks in the top band (white variant). @ours */
+  --_score-gauge-tick-white-top: var(--score-gauge-tick-white-top, var(--success-45));
+  /* Colour of the ticks past the score (white variant). @ours */
+  --_score-gauge-tick-white-empty: var(--score-gauge-tick-white-empty, var(--light-l3));
+}
+
+[data-slot="score-gauge-marker"],
+[class*="(--_score-gauge-marker-"],
+[class*="(--_score-gauge-marker)"] {
+  /* Colour of the marker and its pointer. @ours */
+  --_score-gauge-marker: var(--score-gauge-marker, var(--white));
+  /* Colour of the marker and its pointer (white variant). @ours */
+  --_score-gauge-marker-white: var(--score-gauge-marker-white, var(--navy));
+}
+
+[data-slot="score-gauge-scale"],
+[class*="(--_score-gauge-scale-"],
+[class*="(--_score-gauge-scale)"] {
+  /* Text colour of the 0 / 70 / 90 / 100 labels. @ours @on --_score-gauge */
+  --_score-gauge-scale-foreground: var(--score-gauge-scale-foreground, var(--white));
+  /* Text colour of the 0 / 70 / 90 / 100 labels (white variant). @ours @on --_score-gauge-white */
+  --_score-gauge-scale-white-foreground: var(--score-gauge-scale-white-foreground, var(--dark-75));
+  /* Font weight of the scale labels. @ours */
+  --_score-gauge-scale-font-weight: var(--score-gauge-scale-font-weight, var(--font-weight-semibold));
+}
+
+[data-slot="score-gauge-center"],
+[class*="(--_score-gauge-center-"],
+[class*="(--_score-gauge-center)"] {
+  /* Gap between the score, the status and the description (sm size). @ours */
+  --_score-gauge-center-sm-gap: var(--score-gauge-center-sm-gap, calc(var(--spacing) * 1));
+  /* Gap between the score, the status and the description (md size). @ours */
+  --_score-gauge-center-md-gap: var(--score-gauge-center-md-gap, calc(var(--spacing) * 1.5));
+  /* Gap between the score, the status and the description (lg size). @ours */
+  --_score-gauge-center-lg-gap: var(--score-gauge-center-lg-gap, calc(var(--spacing) * 2));
+  /* Side padding that keeps the score block inside the arc (sm size). @ours */
+  --_score-gauge-center-sm-padding-x: var(--score-gauge-center-sm-padding-x, calc(var(--spacing) * 13));
+  /* Side padding that keeps the score block inside the arc (md size). @ours */
+  --_score-gauge-center-md-padding-x: var(--score-gauge-center-md-padding-x, calc(var(--spacing) * 17));
+  /* Side padding that keeps the score block inside the arc (lg size). @ours */
+  --_score-gauge-center-lg-padding-x: var(--score-gauge-center-lg-padding-x, calc(var(--spacing) * 21));
+  /* Space under the score block, lifting it into the arc (sm size). @ours */
+  --_score-gauge-center-sm-padding-bottom: var(--score-gauge-center-sm-padding-bottom, calc(var(--spacing) * 4));
+  /* Space under the score block, lifting it into the arc (md size). @ours */
+  --_score-gauge-center-md-padding-bottom: var(--score-gauge-center-md-padding-bottom, calc(var(--spacing) * 5.5));
+  /* Space under the score block, lifting it into the arc (lg size). @ours */
+  --_score-gauge-center-lg-padding-bottom: var(--score-gauge-center-lg-padding-bottom, calc(var(--spacing) * 7));
+  /* Space under the score block in a compact gauge. @ours */
+  --_score-gauge-center-compact-padding-bottom: var(--score-gauge-center-compact-padding-bottom, calc(var(--spacing) * 1));
+}
+
+[data-slot="score-gauge-value"],
+[class*="(--_score-gauge-value-"],
+[class*="(--_score-gauge-value)"] {
+  /* Text colour of the score. @ours @on --_score-gauge */
+  --_score-gauge-value-foreground: var(--score-gauge-value-foreground, var(--white));
+  /* Text colour of the score (white variant). @ours @on --_score-gauge-white */
+  --_score-gauge-value-white-foreground: var(--score-gauge-value-white-foreground, var(--navy));
+  /* Font weight of the score. @ours */
+  --_score-gauge-value-font-weight: var(--score-gauge-value-font-weight, var(--font-weight-semibold));
+  /* Gap between the score and "/100". @ours */
+  --_score-gauge-value-gap: var(--score-gauge-value-gap, calc(var(--spacing) * 1));
+}
+
+[data-slot="score-gauge-max"],
+[class*="(--_score-gauge-max-"],
+[class*="(--_score-gauge-max)"] {
+  /* Text colour of "/100". @ours @on --_score-gauge */
+  --_score-gauge-max-foreground: var(--score-gauge-max-foreground, var(--white));
+  /* Text colour of "/100" (white variant). @ours @on --_score-gauge-white */
+  --_score-gauge-max-white-foreground: var(--score-gauge-max-white-foreground, var(--dark-75));
+  /* Font weight of "/100". @ours */
+  --_score-gauge-max-font-weight: var(--score-gauge-max-font-weight, var(--font-weight-medium));
+}
+
+[data-slot="score-gauge-status"],
+[class*="(--_score-gauge-status-"],
+[class*="(--_score-gauge-status)"] {
+  /* Font weight of the status. @ours */
+  --_score-gauge-status-font-weight: var(--score-gauge-status-font-weight, var(--font-weight-semibold));
+  /* Text colour of the status in the improve band. @ours @on --_score-gauge */
+  --_score-gauge-status-improve-foreground: var(--score-gauge-status-improve-foreground, var(--warning-15));
+  /* Text colour of the status in the rising band. @ours @on --_score-gauge */
+  --_score-gauge-status-rising-foreground: var(--score-gauge-status-rising-foreground, var(--teal));
+  /* Text colour of the status in the top band. @ours @on --_score-gauge */
+  --_score-gauge-status-top-foreground: var(--score-gauge-status-top-foreground, var(--lime));
+  /* Text colour of the status in the improve band (white variant). @ours @on --_score-gauge-white */
+  --_score-gauge-status-white-improve-foreground: var(--score-gauge-status-white-improve-foreground, var(--warning-75));
+  /* Text colour of the status in the rising band (white variant). @ours @on --_score-gauge-white */
+  --_score-gauge-status-white-rising-foreground: var(--score-gauge-status-white-rising-foreground, var(--mint-75));
+  /* Text colour of the status in the top band (white variant). @ours @on --_score-gauge-white */
+  --_score-gauge-status-white-top-foreground: var(--score-gauge-status-white-top-foreground, var(--success-75));
+}
+
+[data-slot="score-gauge-description"],
+[class*="(--_score-gauge-description-"],
+[class*="(--_score-gauge-description)"] {
+  /* Pulls the description up towards the dial (it sits under the 0 and 100 labels). @ours */
+  --_score-gauge-description-offset: var(--score-gauge-description-offset, calc(var(--spacing) * 2));
+  /* Text colour of the description. @ours @on --_score-gauge */
+  --_score-gauge-description-foreground: var(--score-gauge-description-foreground, var(--white));
+  /* Text colour of the description (white variant). @ours @on --_score-gauge-white */
+  --_score-gauge-description-white-foreground: var(--score-gauge-description-white-foreground, var(--dark-90));
+}
+
+[data-slot="score-gauge-legend"],
+[class*="(--_score-gauge-legend-"],
+[class*="(--_score-gauge-legend)"] {
+  /* Text colour of the legend. @ours @on --_score-gauge */
+  --_score-gauge-legend-foreground: var(--score-gauge-legend-foreground, var(--white));
+  /* Text colour of the legend (white variant). @ours @on --_score-gauge-white */
+  --_score-gauge-legend-white-foreground: var(--score-gauge-legend-white-foreground, var(--dark-90));
+  /* Gap between legend items. @ours */
+  --_score-gauge-legend-gap: var(--score-gauge-legend-gap, calc(var(--spacing) * 5));
+}
+
 /* ---- scroll-area.css ---- */
 /* Scroll Area — component tokens.
  * Set any component token (the name without the underscore) on :root or a section, e.g.
@@ -4072,6 +4275,111 @@
   --_spinner-foreground: var(--spinner-foreground, var(--primary));
 }
 
+/* ---- stat-card.css ---- */
+/* Stat card — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section.
+ * Defaults are the shipped design. Edited by hand; our component (stat-card.tsx) reads these component tokens. */
+
+[data-slot="stat-card"],
+[class*="(--_stat-card-"],
+[class*="(--_stat-card)"] {
+  /* Fill colour of the card. @ours */
+  --_stat-card: var(--stat-card, var(--card));
+  /* Default text colour inside the card. @ours */
+  --_stat-card-foreground: var(--stat-card-foreground, var(--card-foreground));
+  /* Border colour of the card. @ours */
+  --_stat-card-border: var(--stat-card-border, var(--border));
+  /* Corner radius of the card. @ours */
+  --_stat-card-radius: var(--stat-card-radius, var(--radius-xl));
+  /* Shadow of the card. @ours */
+  --_stat-card-shadow: var(--stat-card-shadow, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+  /* Padding inside the card. @ours */
+  --_stat-card-padding: var(--stat-card-padding, calc(var(--spacing) * 6));
+  /* Gap between the title, value and status rows. @ours */
+  --_stat-card-gap: var(--stat-card-gap, calc(var(--spacing) * 4));
+}
+
+[data-slot="stat-card-halo"],
+[class*="(--_stat-card-halo-"],
+[class*="(--_stat-card-halo)"] {
+  /* How far the halo reaches past the card's edge. @ours */
+  --_stat-card-halo-width: var(--stat-card-halo-width, calc(var(--spacing) * 2));
+  /* Corner radius of the halo (the card's radius plus the halo width). @ours */
+  --_stat-card-halo-radius: var(--stat-card-halo-radius, var(--radius-3xl));
+  /* Fill colour of the halo (default variant). @ours */
+  --_stat-card-halo: var(--stat-card-halo, var(--light-l3));
+  /* Fill colour of the halo (success variant). @ours */
+  --_stat-card-halo-success: var(--stat-card-halo-success, var(--mint-l2));
+  /* Fill colour of the halo (warning variant). @ours */
+  --_stat-card-halo-warning: var(--stat-card-halo-warning, var(--warning-l1));
+  /* Fill colour of the halo (error variant). @ours */
+  --_stat-card-halo-error: var(--stat-card-halo-error, var(--error-15));
+}
+
+[data-slot="stat-card-title"],
+[class*="(--_stat-card-title-"],
+[class*="(--_stat-card-title)"] {
+  /* Text colour of the title. @ours @on --_stat-card */
+  --_stat-card-title-foreground: var(--stat-card-title-foreground, var(--foreground));
+  /* Font weight of the title. @ours */
+  --_stat-card-title-font-weight: var(--stat-card-title-font-weight, var(--font-weight-medium));
+  /* Gap between the title and the info icon. @ours */
+  --_stat-card-title-gap: var(--stat-card-title-gap, calc(var(--spacing) * 2));
+}
+
+[data-slot="stat-card-info"],
+[class*="(--_stat-card-info-"],
+[class*="(--_stat-card-info)"] {
+  /* Colour of the info icon. @ours @on --_stat-card */
+  --_stat-card-info-foreground: var(--stat-card-info-foreground, var(--dark-75));
+  /* Colour of the info icon when hovered. @ours @on --_stat-card */
+  --_stat-card-info-hover-foreground: var(--stat-card-info-hover-foreground, var(--dark-100));
+  /* Ring colour of the info icon when focused. @ours */
+  --_stat-card-info-focus-ring: var(--stat-card-info-focus-ring, var(--ring));
+}
+
+[data-slot="stat-card-value"],
+[class*="(--_stat-card-value-"],
+[class*="(--_stat-card-value)"] {
+  /* Text colour of the value. @ours @on --_stat-card */
+  --_stat-card-value-foreground: var(--stat-card-value-foreground, var(--foreground));
+  /* Font weight of the value. @ours */
+  --_stat-card-value-font-weight: var(--stat-card-value-font-weight, var(--font-weight-semibold));
+}
+
+[data-slot="stat-card-status"],
+[class*="(--_stat-card-status-"],
+[class*="(--_stat-card-status)"] {
+  /* Colour of the divider above the status row. @ours */
+  --_stat-card-status-border: var(--stat-card-status-border, var(--light-l3));
+  /* Space between the divider and the status row. @ours */
+  --_stat-card-status-padding-top: var(--stat-card-status-padding-top, calc(var(--spacing) * 4));
+  /* Gap between the status icon and its text. @ours */
+  --_stat-card-status-gap: var(--stat-card-status-gap, calc(var(--spacing) * 3));
+}
+
+[data-slot="stat-card-status-title"],
+[class*="(--_stat-card-status-title-"],
+[class*="(--_stat-card-status-title)"] {
+  /* Font weight of the status title. @ours */
+  --_stat-card-status-title-font-weight: var(--stat-card-status-title-font-weight, var(--font-weight-semibold));
+  /* Text colour of the status title (default variant). @ours @on --_stat-card */
+  --_stat-card-status-title-foreground: var(--stat-card-status-title-foreground, var(--navy));
+  /* Text colour of the status title (success variant). @ours @on --_stat-card */
+  --_stat-card-status-title-success-foreground: var(--stat-card-status-title-success-foreground, var(--mint-75));
+  /* Text colour of the status title (warning variant). @ours @on --_stat-card */
+  --_stat-card-status-title-warning-foreground: var(--stat-card-status-title-warning-foreground, var(--warning-75));
+  /* Text colour of the status title (error variant). @ours @on --_stat-card */
+  --_stat-card-status-title-error-foreground: var(--stat-card-status-title-error-foreground, var(--destructive));
+}
+
+[data-slot="stat-card-status-description"],
+[class*="(--_stat-card-status-description-"],
+[class*="(--_stat-card-status-description)"] {
+  /* Text colour of the status description. @ours @on --_stat-card */
+  --_stat-card-status-description-foreground: var(--stat-card-status-description-foreground, var(--dark-90));
+}
+
 /* ---- stepper.css ---- */
 /* Stepper — component tokens.
  * Set any component token (the name without the underscore) on :root or a section.
@@ -4338,6 +4646,8 @@
   --_tabs-list-segmented-radius: var(--tabs-list-segmented-radius, var(--radius-lg));
   /* Padding of the list (segmented variant). @ours */
   --_tabs-list-segmented-padding: var(--tabs-list-segmented-padding, calc(var(--spacing) * 1));
+  /* Gap between the cards (card variant). @ours */
+  --_tabs-list-card-gap: var(--tabs-list-card-gap, calc(var(--spacing) * 3));
   /* Gap between the triggers of a vertical line tab list. */
   --_tabs-list-line-vertical-gap: var(--tabs-list-line-vertical-gap, calc(var(--spacing) * 0.5));
 }
@@ -4397,6 +4707,62 @@
   --_tabs-trigger-segmented-foreground: var(--tabs-trigger-segmented-foreground, var(--navy));
   /* Text colour of the trigger (segmented variant) when active. @ours @on --tabs-indicator-segmented */
   --_tabs-trigger-segmented-active-foreground: var(--tabs-trigger-segmented-active-foreground, var(--white));
+  /* Fill colour of the trigger (card variant). @ours */
+  --_tabs-trigger-card: var(--tabs-trigger-card, var(--card));
+  /* Border colour of the trigger (card variant). @ours */
+  --_tabs-trigger-card-border: var(--tabs-trigger-card-border, var(--border));
+  /* Border colour of the trigger (card variant) when hovered. @ours */
+  --_tabs-trigger-card-hover-border: var(--tabs-trigger-card-hover-border, var(--mint-30));
+  /* Fill colour of the trigger (card variant) when active. @ours */
+  --_tabs-trigger-card-active: var(--tabs-trigger-card-active, var(--mint-l3));
+  /* Border colour of the trigger (card variant) when active; drawn two pixels thick. @ours */
+  --_tabs-trigger-card-active-border: var(--tabs-trigger-card-active-border, var(--mint-60));
+  /* Corner radius of the trigger (card variant). @ours */
+  --_tabs-trigger-card-radius: var(--tabs-trigger-card-radius, var(--radius-xl));
+  /* Padding of the trigger (card variant). @ours */
+  --_tabs-trigger-card-padding: var(--tabs-trigger-card-padding, calc(var(--spacing) * 4));
+  /* Gap between the icon, the text and the tick (card variant). @ours */
+  --_tabs-trigger-card-gap: var(--tabs-trigger-card-gap, calc(var(--spacing) * 3));
+}
+
+[data-slot="tabs-trigger-icon"],
+[class*="(--_tabs-trigger-icon-"],
+[class*="(--_tabs-trigger-icon)"] {
+  /* Width and height of the round icon (card variant). @ours */
+  --_tabs-trigger-icon-size: var(--tabs-trigger-icon-size, calc(var(--spacing) * 10));
+  /* Fill colour of the round icon (card variant). @ours */
+  --_tabs-trigger-icon: var(--tabs-trigger-icon, var(--light-l2));
+  /* Icon colour (card variant). @ours */
+  --_tabs-trigger-icon-foreground: var(--tabs-trigger-icon-foreground, var(--navy));
+  /* Fill colour of the round icon (card variant) when active. @ours */
+  --_tabs-trigger-icon-active: var(--tabs-trigger-icon-active, var(--mint-60));
+  /* Icon colour (card variant) when active. @ours */
+  --_tabs-trigger-icon-active-foreground: var(--tabs-trigger-icon-active-foreground, var(--white));
+}
+
+[data-slot="tabs-trigger-title"],
+[class*="(--_tabs-trigger-title-"],
+[class*="(--_tabs-trigger-title)"] {
+  /* Text colour of the title (card variant). @ours @on --_tabs-trigger-card */
+  --_tabs-trigger-title-foreground: var(--tabs-trigger-title-foreground, var(--navy));
+  /* Font weight of the title (card variant). @ours */
+  --_tabs-trigger-title-font-weight: var(--tabs-trigger-title-font-weight, var(--font-weight-semibold));
+  /* Gap between the title and the description (card variant). @ours */
+  --_tabs-trigger-title-gap: var(--tabs-trigger-title-gap, calc(var(--spacing) * 0.5));
+}
+
+[data-slot="tabs-trigger-description"],
+[class*="(--_tabs-trigger-description-"],
+[class*="(--_tabs-trigger-description)"] {
+  /* Text colour of the description (card variant). @ours @on --_tabs-trigger-card */
+  --_tabs-trigger-description-foreground: var(--tabs-trigger-description-foreground, var(--dark-90));
+}
+
+[data-slot="tabs-trigger-check"],
+[class*="(--_tabs-trigger-check-"],
+[class*="(--_tabs-trigger-check)"] {
+  /* Colour of the tick on the active card. @ours @on --_tabs-trigger-card-active */
+  --_tabs-trigger-check-foreground: var(--tabs-trigger-check-foreground, var(--mint-75));
 }
 
 [data-slot="tabs-indicator"],
