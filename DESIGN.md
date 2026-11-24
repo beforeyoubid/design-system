@@ -327,6 +327,7 @@ Proposed (not yet tokens): `shadow-raised`, `shadow-overlay`, `shadow-modal`.
 | `animate-fade-in` | 0.25s ease-out, rise 6px | Content reveal |
 | `animate-accordion-down/up` | 0.2s ease-out | Accordion |
 | `animate-marquee` | 35s linear infinite | Logo strips (`animate-marquee-paused` on hover) |
+| `animate-halo-pulse` | 2.4s ease-in-out infinite, fades to 45% and swells 1.5% | `StatCard` halo |
 
 Durations: 100–150ms for colour/hover, 200–300ms for movement, 350ms max for large surfaces. Animate `transform` and `opacity`, not layout. Respect `motion-reduce`.
 
@@ -382,6 +383,19 @@ Disabled (filled variants): `bg-light-l2 text-dark-45`.
 
 Props: `loading` (spinner + `aria-busy`), `icon`, `iconPosition` (`left` / `right`), `render` for links.
 
+### InlineLink
+
+A link styled like the `link` button: semibold, UPPERCASE, 0.04em tracking, underline on hover, for use inside or after a sentence. Renders an `<a>`; `render={<Link href="…" />}` for router links. Icons go in as children, before or after the text.
+
+| Variant | Text | Hover |
+|---|---|---|
+| `default` | `mint-75` | `mint-90` + underline |
+| `navy` | `navy` | `mint-75` + underline |
+| `destructive` | `destructive` | `error-90` + underline |
+| `white` (dark sections) | `white` | `lime` + underline |
+
+Sizes: `sm` 12px (`text-overline`), `md` 14px (`text-button-sm`, default, the same as a md button), `lg` 16px (`text-button-md`). `disabled` greys it to `dark-45` and stops clicks.
+
 ### Badge
 
 Pill, semibold. Sizes `sm` / `md` (default, 20px, `text-caption-2`) / `lg` (28px, **14px** `text-body-5`, 16px icon). `appearance`: `tint` (default, light fill + border) or `solid` (full tone colour, e.g. status pills). `icon` + `iconPosition` (`left` default / `right`) add a Lucide icon; `spinner` shows a loading spinner. No status dot.
@@ -431,6 +445,39 @@ Lucide icon on a tinted tile; used by Card, Dialog and the product dropdown. `Em
 
 Product icons, names and badge colours come from `productBadges` (`src/lib/product-badges.ts`).
 
+### StatCard
+
+A dashboard stat with a status under it: white card (`rounded-xl`, `border-border`, 24px padding) inside an 8px halo in the status colour that pulses gently (`animate-halo-pulse`; `motion="none"` keeps it still, and reduced-motion users always see it still). Parts: `StatCardTitle` (`text-body-4 font-medium`; `info="…"` adds an info icon, `dark-75`, whose tooltip shows that text on hover or focus, and leaving `info` out hides it; `StatCardInfo` is the same icon as a part for custom layouts), `StatCardValue` (`text-h3 font-semibold`), `StatCardStatus` (divider, then a sm `IconTile` and the text; `icon` replaces the variant's icon and `icon={null}` removes it), `StatCardStatusTitle` (`text-body-4 font-semibold`) and `StatCardStatusDescription` (`text-body-5 text-dark-90`).
+
+| Variant | Halo | Icon tile | Status title |
+|---|---|---|---|
+| `default` | `light-l3` | neutral, i | `navy` |
+| `success` | `mint-l2` | mint, tick | `mint-75` |
+| `warning` | `warning-l1` | warning, triangle | `warning-75` |
+| `error` | `error-15` | error, ! | `destructive` |
+
+### ScoreGauge
+
+A score out of 100 on a half dial of 51 ticks. Ticks up to the score take their band's colour, ticks past it are dimmed, and a marker with a pointer sits at the score. Inside the arc: the score, "/100" and the status in the band's colour (UPPERCASE), sitting low so the pointer never touches them. Under the dial: how many points to the next band, a legend (`ColorDot`s), an optional button (lime on navy, primary on white) and any children.
+
+| Prop | Does |
+|---|---|
+| `actionLabel` | Shows the button with this text; with `onAction` (click) or `actionHref` (link). No button without it |
+| `statusLabel` | Replaces the band's status ("Rising performer"); `null` hides it |
+| `description` | Replaces "7 points to become a Top Performer"; `null` hides it |
+| `labels` | Band names in the legend and default description, e.g. `{ improve: "Building" }` |
+| `legend` | `bands` (default) or `none` |
+| `scale` | `labels` (default, the 0 / 70 / 90 / 100 labels) or `none` |
+| `compact` | Just the dial, score and status |
+
+| Band | Range | Navy surface (default) | White surface |
+|---|---|---|---|
+| Improve | under 70 | `warning-15` ticks and status | `warning-30` ticks, `warning-75` status |
+| Rising | 70–89 | `teal` ticks and status | `teal` ticks, `mint-75` status |
+| Top | 90 and over | `lime` ticks and status | `success-45` ticks, `success-75` status |
+
+Navy surface: white score, labels, description and marker, dimmed ticks white at 15%. White surface: navy score and marker, `dark-75` labels, `dark-90` description, `light-l3` dimmed ticks. Sizes (dial width / score size): `sm` 304px / `text-h1`, `md` 400px / `text-display-2` (default), `lg` 496px / `text-display-1`. Mobile first: on a phone every size draws the sm dial and type; md takes over from `sm:` (640px) and lg from `md:` (768px). The dial is a `meter` for screen readers ("83 out of 100, Rising performer").
+
 ### Tabs
 
 | Variant | Look |
@@ -438,8 +485,11 @@ Product icons, names and badge colours come from `productBadges` (`src/lib/produ
 | `pill` | White track with `dark-15` border, sliding `mint-60` pill, active text white |
 | `line` | Underline row, 3px `mint-60` indicator, inactive `dark-100` → hover `dark-75`, active `navy` (same in vertical) |
 | `segmented` (default) | `light-l2` track, sliding `mint-45` segment, active text white |
+| `card` | One `rounded-xl` card per tab, 16px padding, wrapping in a row with 12px gaps. Default: white, `border-border`, 40px `light-l2` circle with a navy icon. Hover: `mint-30` border. Selected: `mint-l3` fill, 2px `mint-60` border, `mint-60` circle with a white icon, `mint-75` tick at the end |
 
-All triggers: `text-body-5 font-semibold tracking-button uppercase`. Indicator slides with `ease-snappy` 300ms; panels slide 0.5rem. `TabsContent panel` gives a `rounded-xl` bordered panel. Supports vertical orientation.
+Card tabs take props on each `TabsTrigger`, all optional: `icon` (the round tile), `dot` (before the title, e.g. `<ColorDot className="bg-badge-product-bpi" />`), the children as the title (`text-body-4 font-semibold`, navy) and `description` (`text-body-5 text-dark-90`, e.g. "26 jobs this period"). Card titles are sentence case.
+
+All other triggers: `text-body-5 font-semibold tracking-button uppercase`. Indicator slides with `ease-snappy` 300ms; panels slide 0.5rem. `TabsContent panel` gives a `rounded-xl` bordered panel. Supports vertical orientation.
 
 ### Table
 
@@ -541,7 +591,7 @@ Every toast has a × so it can be closed early. Override per toast with `timeout
 
 ### Data and media
 
-`BYBAreaChart`, `BYBBarChart`, `ChartFrame` (with `ChartLegendList`, `CHART_PALETTE`), `Chart` · `Avatar` · `FileUpload` (see File upload) · `Counter` · `Toggle` / `ToggleGroup` · `Slider` · `InputOTP` · `Calendar` · `Label`.
+`BYBAreaChart`, `BYBBarChart`, `ChartFrame` (with `ChartLegendList`, `CHART_PALETTE`), `Chart` · `Avatar` · `FileUpload` (see File upload) · `Counter` · `StatCard` · `ScoreGauge` · `Toggle` / `ToggleGroup` · `Slider` · `InputOTP` · `Calendar` · `Label`.
 
 ### File upload
 
@@ -1554,6 +1604,27 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
+<summary><strong>inline-link</strong> (13)</summary>
+
+| Component token | What it changes | Default |
+|---|---|---|
+| `--inline-link-font-weight` | Font weight of the link. | `var(--font-weight-semibold)` |
+| `--inline-link-gap` | Gap between the text and an icon. | `calc(var(--spacing) * 1)` |
+| `--inline-link-radius` | Corner radius of the focus ring. | `var(--radius-sm)` |
+| `--inline-link-focus-ring` | Ring colour of the link when focused. | `var(--ring)` |
+| `--inline-link-foreground` | Text colour of the link. | `var(--mint-75)` |
+| `--inline-link-hover-foreground` | Text colour of the link when hovered. | `var(--mint-90)` |
+| `--inline-link-navy-foreground` | Text colour of the link (navy variant). | `var(--navy)` |
+| `--inline-link-navy-hover-foreground` | Text colour of the link (navy variant) when hovered. | `var(--mint-75)` |
+| `--inline-link-destructive-foreground` | Text colour of the link (destructive variant). | `var(--destructive)` |
+| `--inline-link-destructive-hover-foreground` | Text colour of the link (destructive variant) when hovered. | `var(--error-90)` |
+| `--inline-link-white-foreground` | Text colour of the link (white variant, for dark sections). | `var(--white)` |
+| `--inline-link-white-hover-foreground` | Text colour of the link (white variant) when hovered. | `var(--lime)` |
+| `--inline-link-disabled-foreground` | Text colour of the link when disabled. | `var(--dark-45)` |
+
+</details>
+
+<details>
 <summary><strong>input-group</strong> (22)</summary>
 
 | Component token | What it changes | Default |
@@ -1913,6 +1984,67 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
+<summary><strong>score-gauge</strong> (53)</summary>
+
+| Component token | What it changes | Default |
+|---|---|---|
+| `--score-gauge` | Fill colour of the surface. | `var(--navy)` |
+| `--score-gauge-foreground` | Default text colour on the surface. | `var(--white)` |
+| `--score-gauge-white` | Fill colour of the surface (white variant). | `var(--card)` |
+| `--score-gauge-white-foreground` | Default text colour on the surface (white variant). | `var(--card-foreground)` |
+| `--score-gauge-radius` | Corner radius of the surface. | `var(--radius-2xl)` |
+| `--score-gauge-padding` | Padding inside the surface. | `calc(var(--spacing) * 6)` |
+| `--score-gauge-gap` | Gap between the dial, the legend and anything below them. | `calc(var(--spacing) * 5)` |
+| `--score-gauge-dial-sm-width` | Width of the dial (sm size). | `calc(var(--spacing) * 76)` |
+| `--score-gauge-dial-md-width` | Width of the dial (md size). | `calc(var(--spacing) * 100)` |
+| `--score-gauge-dial-lg-width` | Width of the dial (lg size). | `calc(var(--spacing) * 124)` |
+| `--score-gauge-tick-improve` | Colour of the ticks in the improve band. Also its legend dot. | `var(--warning-15)` |
+| `--score-gauge-tick-rising` | Colour of the ticks in the rising band. Also its legend dot. | `var(--teal)` |
+| `--score-gauge-tick-top` | Colour of the ticks in the top band. Also its legend dot. | `var(--lime)` |
+| `--score-gauge-tick-empty` | Colour of the ticks past the score. | `color-mix(in oklab, var(--white) 15%, transparent)` |
+| `--score-gauge-tick-white-improve` | Colour of the ticks in the improve band (white variant). | `var(--warning-30)` |
+| `--score-gauge-tick-white-rising` | Colour of the ticks in the rising band (white variant). | `var(--teal)` |
+| `--score-gauge-tick-white-top` | Colour of the ticks in the top band (white variant). | `var(--success-45)` |
+| `--score-gauge-tick-white-empty` | Colour of the ticks past the score (white variant). | `var(--light-l3)` |
+| `--score-gauge-marker` | Colour of the marker and its pointer. | `var(--white)` |
+| `--score-gauge-marker-white` | Colour of the marker and its pointer (white variant). | `var(--navy)` |
+| `--score-gauge-scale-foreground` | Text colour of the 0 / 70 / 90 / 100 labels. | `var(--white)` |
+| `--score-gauge-scale-white-foreground` | Text colour of the 0 / 70 / 90 / 100 labels (white variant). | `var(--dark-75)` |
+| `--score-gauge-scale-font-weight` | Font weight of the scale labels. | `var(--font-weight-semibold)` |
+| `--score-gauge-center-sm-gap` | Gap between the score, the status and the description (sm size). | `calc(var(--spacing) * 1)` |
+| `--score-gauge-center-md-gap` | Gap between the score, the status and the description (md size). | `calc(var(--spacing) * 1.5)` |
+| `--score-gauge-center-lg-gap` | Gap between the score, the status and the description (lg size). | `calc(var(--spacing) * 2)` |
+| `--score-gauge-center-sm-padding-x` | Side padding that keeps the score block inside the arc (sm size). | `calc(var(--spacing) * 13)` |
+| `--score-gauge-center-md-padding-x` | Side padding that keeps the score block inside the arc (md size). | `calc(var(--spacing) * 17)` |
+| `--score-gauge-center-lg-padding-x` | Side padding that keeps the score block inside the arc (lg size). | `calc(var(--spacing) * 21)` |
+| `--score-gauge-center-sm-padding-bottom` | Space under the score block, lifting it into the arc (sm size). | `calc(var(--spacing) * 4)` |
+| `--score-gauge-center-md-padding-bottom` | Space under the score block, lifting it into the arc (md size). | `calc(var(--spacing) * 5.5)` |
+| `--score-gauge-center-lg-padding-bottom` | Space under the score block, lifting it into the arc (lg size). | `calc(var(--spacing) * 7)` |
+| `--score-gauge-center-compact-padding-bottom` | Space under the score block in a compact gauge. | `calc(var(--spacing) * 1)` |
+| `--score-gauge-value-foreground` | Text colour of the score. | `var(--white)` |
+| `--score-gauge-value-white-foreground` | Text colour of the score (white variant). | `var(--navy)` |
+| `--score-gauge-value-font-weight` | Font weight of the score. | `var(--font-weight-semibold)` |
+| `--score-gauge-value-gap` | Gap between the score and "/100". | `calc(var(--spacing) * 1)` |
+| `--score-gauge-max-foreground` | Text colour of "/100". | `var(--white)` |
+| `--score-gauge-max-white-foreground` | Text colour of "/100" (white variant). | `var(--dark-75)` |
+| `--score-gauge-max-font-weight` | Font weight of "/100". | `var(--font-weight-medium)` |
+| `--score-gauge-status-font-weight` | Font weight of the status. | `var(--font-weight-semibold)` |
+| `--score-gauge-status-improve-foreground` | Text colour of the status in the improve band. | `var(--warning-15)` |
+| `--score-gauge-status-rising-foreground` | Text colour of the status in the rising band. | `var(--teal)` |
+| `--score-gauge-status-top-foreground` | Text colour of the status in the top band. | `var(--lime)` |
+| `--score-gauge-status-white-improve-foreground` | Text colour of the status in the improve band (white variant). | `var(--warning-75)` |
+| `--score-gauge-status-white-rising-foreground` | Text colour of the status in the rising band (white variant). | `var(--mint-75)` |
+| `--score-gauge-status-white-top-foreground` | Text colour of the status in the top band (white variant). | `var(--success-75)` |
+| `--score-gauge-description-offset` | Pulls the description up towards the dial (it sits under the 0 and 100 labels). | `calc(var(--spacing) * 2)` |
+| `--score-gauge-description-foreground` | Text colour of the description. | `var(--white)` |
+| `--score-gauge-description-white-foreground` | Text colour of the description (white variant). | `var(--dark-90)` |
+| `--score-gauge-legend-foreground` | Text colour of the legend. | `var(--white)` |
+| `--score-gauge-legend-white-foreground` | Text colour of the legend (white variant). | `var(--dark-90)` |
+| `--score-gauge-legend-gap` | Gap between legend items. | `calc(var(--spacing) * 5)` |
+
+</details>
+
+<details>
 <summary><strong>scroll-area</strong> (4)</summary>
 
 | Component token | What it changes | Default |
@@ -2153,6 +2285,44 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
+<summary><strong>stat-card</strong> (30)</summary>
+
+| Component token | What it changes | Default |
+|---|---|---|
+| `--stat-card` | Fill colour of the card. | `var(--card)` |
+| `--stat-card-foreground` | Default text colour inside the card. | `var(--card-foreground)` |
+| `--stat-card-border` | Border colour of the card. | `var(--border)` |
+| `--stat-card-radius` | Corner radius of the card. | `var(--radius-xl)` |
+| `--stat-card-shadow` | Shadow of the card. | `0 1px 2px 0 rgb(0 0 0 / 0.05)` |
+| `--stat-card-padding` | Padding inside the card. | `calc(var(--spacing) * 6)` |
+| `--stat-card-gap` | Gap between the title, value and status rows. | `calc(var(--spacing) * 4)` |
+| `--stat-card-halo-width` | How far the halo reaches past the card's edge. | `calc(var(--spacing) * 2)` |
+| `--stat-card-halo-radius` | Corner radius of the halo (the card's radius plus the halo width). | `var(--radius-3xl)` |
+| `--stat-card-halo` | Fill colour of the halo (default variant). | `var(--light-l3)` |
+| `--stat-card-halo-success` | Fill colour of the halo (success variant). | `var(--mint-l2)` |
+| `--stat-card-halo-warning` | Fill colour of the halo (warning variant). | `var(--warning-l1)` |
+| `--stat-card-halo-error` | Fill colour of the halo (error variant). | `var(--error-15)` |
+| `--stat-card-title-foreground` | Text colour of the title. | `var(--foreground)` |
+| `--stat-card-title-font-weight` | Font weight of the title. | `var(--font-weight-medium)` |
+| `--stat-card-title-gap` | Gap between the title and the info icon. | `calc(var(--spacing) * 2)` |
+| `--stat-card-info-foreground` | Colour of the info icon. | `var(--dark-75)` |
+| `--stat-card-info-hover-foreground` | Colour of the info icon when hovered. | `var(--dark-100)` |
+| `--stat-card-info-focus-ring` | Ring colour of the info icon when focused. | `var(--ring)` |
+| `--stat-card-value-foreground` | Text colour of the value. | `var(--foreground)` |
+| `--stat-card-value-font-weight` | Font weight of the value. | `var(--font-weight-semibold)` |
+| `--stat-card-status-border` | Colour of the divider above the status row. | `var(--light-l3)` |
+| `--stat-card-status-padding-top` | Space between the divider and the status row. | `calc(var(--spacing) * 4)` |
+| `--stat-card-status-gap` | Gap between the status icon and its text. | `calc(var(--spacing) * 3)` |
+| `--stat-card-status-title-font-weight` | Font weight of the status title. | `var(--font-weight-semibold)` |
+| `--stat-card-status-title-foreground` | Text colour of the status title (default variant). | `var(--navy)` |
+| `--stat-card-status-title-success-foreground` | Text colour of the status title (success variant). | `var(--mint-75)` |
+| `--stat-card-status-title-warning-foreground` | Text colour of the status title (warning variant). | `var(--warning-75)` |
+| `--stat-card-status-title-error-foreground` | Text colour of the status title (error variant). | `var(--destructive)` |
+| `--stat-card-status-description-foreground` | Text colour of the status description. | `var(--dark-90)` |
+
+</details>
+
+<details>
 <summary><strong>stepper</strong> (16)</summary>
 
 | Component token | What it changes | Default |
@@ -2229,7 +2399,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 </details>
 
 <details>
-<summary><strong>tabs</strong> (51)</summary>
+<summary><strong>tabs</strong> (70)</summary>
 
 | Component token | What it changes | Default |
 |---|---|---|
@@ -2245,6 +2415,7 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--tabs-list-segmented-gap` | Gap between items of the list (segmented variant). | `calc(var(--spacing) * 1)` |
 | `--tabs-list-segmented-radius` | Corner radius of the list (segmented variant). | `var(--radius-lg)` |
 | `--tabs-list-segmented-padding` | Padding of the list (segmented variant). | `calc(var(--spacing) * 1)` |
+| `--tabs-list-card-gap` | Gap between the cards (card variant). | `calc(var(--spacing) * 3)` |
 | `--tabs-list-line-vertical-gap` | Gap between the triggers of a vertical line tab list. | `calc(var(--spacing) * 0.5)` |
 | `--tabs-trigger-gap` | Gap between items of the trigger. | `calc(var(--spacing) * 1.5)` |
 | `--tabs-trigger-focus-ring` | Ring colour of the trigger when focused. | `var(--navy)` |
@@ -2271,6 +2442,24 @@ Contrast pairs that fall under WCAG AA are listed in `scripts/tokens/contrast-ex
 | `--tabs-trigger-segmented-padding-x` | Horizontal padding of the trigger (segmented variant). | `calc(var(--spacing) * 3)` |
 | `--tabs-trigger-segmented-foreground` | Text colour of the trigger (segmented variant). | `var(--navy)` |
 | `--tabs-trigger-segmented-active-foreground` | Text colour of the trigger (segmented variant) when active. | `var(--white)` |
+| `--tabs-trigger-card` | Fill colour of the trigger (card variant). | `var(--card)` |
+| `--tabs-trigger-card-border` | Border colour of the trigger (card variant). | `var(--border)` |
+| `--tabs-trigger-card-hover-border` | Border colour of the trigger (card variant) when hovered. | `var(--mint-30)` |
+| `--tabs-trigger-card-active` | Fill colour of the trigger (card variant) when active. | `var(--mint-l3)` |
+| `--tabs-trigger-card-active-border` | Border colour of the trigger (card variant) when active; drawn two pixels thick. | `var(--mint-60)` |
+| `--tabs-trigger-card-radius` | Corner radius of the trigger (card variant). | `var(--radius-xl)` |
+| `--tabs-trigger-card-padding` | Padding of the trigger (card variant). | `calc(var(--spacing) * 4)` |
+| `--tabs-trigger-card-gap` | Gap between the icon, the text and the tick (card variant). | `calc(var(--spacing) * 3)` |
+| `--tabs-trigger-icon-size` | Width and height of the round icon (card variant). | `calc(var(--spacing) * 10)` |
+| `--tabs-trigger-icon` | Fill colour of the round icon (card variant). | `var(--light-l2)` |
+| `--tabs-trigger-icon-foreground` | Icon colour (card variant). | `var(--navy)` |
+| `--tabs-trigger-icon-active` | Fill colour of the round icon (card variant) when active. | `var(--mint-60)` |
+| `--tabs-trigger-icon-active-foreground` | Icon colour (card variant) when active. | `var(--white)` |
+| `--tabs-trigger-title-foreground` | Text colour of the title (card variant). | `var(--navy)` |
+| `--tabs-trigger-title-font-weight` | Font weight of the title (card variant). | `var(--font-weight-semibold)` |
+| `--tabs-trigger-title-gap` | Gap between the title and the description (card variant). | `calc(var(--spacing) * 0.5)` |
+| `--tabs-trigger-description-foreground` | Text colour of the description (card variant). | `var(--dark-90)` |
+| `--tabs-trigger-check-foreground` | Colour of the tick on the active card. | `var(--mint-75)` |
 | `--tabs-indicator` | Colour of the sliding thumb behind the active tab. | `var(--mint-60)` |
 | `--tabs-indicator-radius` | Corner radius of the sliding thumb. | `var(--radius-full)` |
 | `--tabs-indicator-line` | Colour of the bar under the active tab (line variant). | `var(--mint-60)` |

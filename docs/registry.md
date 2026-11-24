@@ -6,7 +6,7 @@ Import from the package root: `import { Button } from '@beforeyoubid/design-syst
 
 Component tokens change a component's look without touching its code: set them in the app's CSS on `:root` or on a class around the area. See [components.md](./components.md#changing-how-a-component-looks).
 
-[Accordion](#accordion) · [Alert](#alert) · [AlertDialog](#alertdialog) · [AspectRatio](#aspectratio) · [Attachment](#attachment) · [Avatar](#avatar) · [Badge](#badge) · [Breadcrumb](#breadcrumb) · [Button](#button) · [ButtonGroup](#buttongroup) · [BYBAreaChart](#bybareachart) · [BYBBarChart](#bybbarchart) · [Calendar](#calendar) · [Card](#card) · [Carousel](#carousel) · [Chart](#chart) · [Checkbox](#checkbox) · [Collapsible](#collapsible) · [Combobox](#combobox) · [Command](#command) · [ContextMenu](#contextmenu) · [Counter](#counter) · [Dialog](#dialog) · [Drawer](#drawer) · [DropdownMenu](#dropdownmenu) · [Empty](#empty) · [Field](#field) · [FileDropZone](#filedropzone) · [FileUpload](#fileupload) · [HoverCard](#hovercard) · [IconTile](#icontile) · [Input](#input) · [InputGroup](#inputgroup) · [InputOTP](#inputotp) · [Item](#item) · [Kbd](#kbd) · [Label](#label) · [Menubar](#menubar) · [NativeSelect](#nativeselect) · [NavigationMenu](#navigationmenu) · [Pagination](#pagination) · [Popover](#popover) · [Progress](#progress) · [RadioGroup](#radiogroup) · [Resizable](#resizable) · [ScrollArea](#scrollarea) · [Select](#select) · [Separator](#separator) · [Sheet](#sheet) · [Sidebar](#sidebar) · [Skeleton](#skeleton) · [Slider](#slider) · [Spinner](#spinner) · [Stepper](#stepper) · [Switch](#switch) · [Table](#table) · [Tabs](#tabs) · [Textarea](#textarea) · [TimePicker](#timepicker) · [Toast](#toast) · [Toggle](#toggle) · [ToggleGroup](#togglegroup) · [Tooltip](#tooltip)
+[Accordion](#accordion) · [Alert](#alert) · [AlertDialog](#alertdialog) · [AspectRatio](#aspectratio) · [Attachment](#attachment) · [Avatar](#avatar) · [Badge](#badge) · [Breadcrumb](#breadcrumb) · [Button](#button) · [ButtonGroup](#buttongroup) · [BYBAreaChart](#bybareachart) · [BYBBarChart](#bybbarchart) · [Calendar](#calendar) · [Card](#card) · [Carousel](#carousel) · [Chart](#chart) · [Checkbox](#checkbox) · [Collapsible](#collapsible) · [Combobox](#combobox) · [Command](#command) · [ContextMenu](#contextmenu) · [Counter](#counter) · [Dialog](#dialog) · [Drawer](#drawer) · [DropdownMenu](#dropdownmenu) · [Empty](#empty) · [Field](#field) · [FileDropZone](#filedropzone) · [FileUpload](#fileupload) · [HoverCard](#hovercard) · [IconTile](#icontile) · [InlineLink](#inlinelink) · [Input](#input) · [InputGroup](#inputgroup) · [InputOTP](#inputotp) · [Item](#item) · [Kbd](#kbd) · [Label](#label) · [Menubar](#menubar) · [NativeSelect](#nativeselect) · [NavigationMenu](#navigationmenu) · [Pagination](#pagination) · [Popover](#popover) · [Progress](#progress) · [RadioGroup](#radiogroup) · [Resizable](#resizable) · [ScoreGauge](#scoregauge) · [ScrollArea](#scrollarea) · [Select](#select) · [Separator](#separator) · [Sheet](#sheet) · [Sidebar](#sidebar) · [Skeleton](#skeleton) · [Slider](#slider) · [Spinner](#spinner) · [StatCard](#statcard) · [Stepper](#stepper) · [Switch](#switch) · [Table](#table) · [Tabs](#tabs) · [Textarea](#textarea) · [TimePicker](#timepicker) · [Toast](#toast) · [Toggle](#toggle) · [ToggleGroup](#togglegroup) · [Tooltip](#tooltip)
 
 ## Accordion
 
@@ -326,9 +326,9 @@ Form layout parts: FieldGroup, Field, FieldLabel, FieldDescription, FieldError, 
 
 **Exports:** `Field`, `FieldLabel`, `FieldDescription`, `FieldError`, `FieldGroup`, `FieldLegend`, `FieldSeparator`, `FieldSet`, `FieldContent`, `FieldTitle`
 
-<details><summary>21 component tokens</summary>
+<details><summary>23 component tokens</summary>
 
-`--field-set-gap` `--field-set-with-choices-gap` `--field-legend-font-weight` `--field-legend-foreground` `--field-group-gap` `--field-group-checkbox-group-gap` `--field-gap` `--field-content-gap` `--field-label-gap` `--field-label-font-weight` `--field-label-foreground` `--field-label-disabled-opacity` `--field-description-font-weight` `--field-description-foreground` `--field-separator-height` `--field-separator-content` `--field-separator-content-padding-x` `--field-separator-content-foreground` `--field-error-font-weight` `--field-error-foreground` `--field-label-required-foreground`
+`--field-set-gap` `--field-set-with-choices-gap` `--field-legend-font-weight` `--field-legend-foreground` `--field-group-gap` `--field-group-checkbox-group-gap` `--field-gap` `--field-content-gap` `--field-label-gap` `--field-label-font-weight` `--field-label-foreground` `--field-label-font-size` `--field-label-leading` `--field-label-disabled-opacity` `--field-description-font-weight` `--field-description-foreground` `--field-separator-height` `--field-separator-content` `--field-separator-content-padding-x` `--field-separator-content-foreground` `--field-error-font-weight` `--field-error-foreground` `--field-label-required-foreground`
 
 </details>
 
@@ -386,15 +386,31 @@ An icon on a tinted rounded tile. The icon chip used by Card, Dialog headers and
 
 </details>
 
+## InlineLink
+
+A text link styled like the text button (semibold, UPPERCASE, underline on hover) for use inside or after a sentence. Use Button variant="link" for an action that sits with other buttons.
+
+**Exports:** `InlineLink`, `inlineLinkVariants`
+
+**variant:** `default` · `navy` · `destructive` · `white`
+
+**size:** `sm` · `md` · `lg`
+
+<details><summary>13 component tokens</summary>
+
+`--inline-link-font-weight` `--inline-link-gap` `--inline-link-radius` `--inline-link-focus-ring` `--inline-link-foreground` `--inline-link-hover-foreground` `--inline-link-navy-foreground` `--inline-link-navy-hover-foreground` `--inline-link-destructive-foreground` `--inline-link-destructive-hover-foreground` `--inline-link-white-foreground` `--inline-link-white-hover-foreground` `--inline-link-disabled-foreground`
+
+</details>
+
 ## Input
 
 A single-line text field. Wrap it in InputGroup to add icons, buttons or text inside the edge.
 
 **Exports:** `Input`
 
-<details><summary>13 component tokens</summary>
+<details><summary>15 component tokens</summary>
 
-`--input-radius` `--input-border` `--input-fill` `--input-padding-x` `--input-foreground` `--input-placeholder` `--input-focus-border` `--input-focus-ring` `--input-invalid-border` `--input-disabled` `--input-disabled-foreground` `--input-height` `--input-padding-y`
+`--input-radius` `--input-border` `--input-fill` `--input-padding-x` `--input-foreground` `--input-placeholder` `--input-focus-border` `--input-focus-ring` `--input-invalid-border` `--input-disabled` `--input-disabled-foreground` `--input-height` `--input-padding-y` `--input-font-size` `--input-leading`
 
 </details>
 
@@ -562,6 +578,26 @@ Panels the user can resize by dragging the handle between them.
 
 </details>
 
+## ScoreGauge
+
+A score out of 100 on a half dial of ticks, coloured by band (Improve under 70, Rising 70–89, Top 90+), with the status, the points to the next band, a legend and an optional button. Use Progress for a plain completion bar.
+
+**Exports:** `ScoreGauge`, `scoreGaugeVariants`, `scoreGaugeDialVariants`, `scoreGaugeStatusVariants`
+
+**variant:** `navy` · `white`
+
+**size:** `sm` · `md` · `lg`
+
+**legend:** `bands` · `none`
+
+**scale:** `labels` · `none`
+
+<details><summary>53 component tokens</summary>
+
+`--score-gauge` `--score-gauge-foreground` `--score-gauge-white` `--score-gauge-white-foreground` `--score-gauge-radius` `--score-gauge-padding` `--score-gauge-gap` `--score-gauge-dial-sm-width` `--score-gauge-dial-md-width` `--score-gauge-dial-lg-width` `--score-gauge-tick-improve` `--score-gauge-tick-rising` `--score-gauge-tick-top` `--score-gauge-tick-empty` `--score-gauge-tick-white-improve` `--score-gauge-tick-white-rising` `--score-gauge-tick-white-top` `--score-gauge-tick-white-empty` `--score-gauge-marker` `--score-gauge-marker-white` `--score-gauge-scale-foreground` `--score-gauge-scale-white-foreground` `--score-gauge-scale-font-weight` `--score-gauge-center-sm-gap` `--score-gauge-center-md-gap` `--score-gauge-center-lg-gap` `--score-gauge-center-sm-padding-x` `--score-gauge-center-md-padding-x` `--score-gauge-center-lg-padding-x` `--score-gauge-center-sm-padding-bottom` `--score-gauge-center-md-padding-bottom` `--score-gauge-center-lg-padding-bottom` `--score-gauge-center-compact-padding-bottom` `--score-gauge-value-foreground` `--score-gauge-value-white-foreground` `--score-gauge-value-font-weight` `--score-gauge-value-gap` `--score-gauge-max-foreground` `--score-gauge-max-white-foreground` `--score-gauge-max-font-weight` `--score-gauge-status-font-weight` `--score-gauge-status-improve-foreground` `--score-gauge-status-rising-foreground` `--score-gauge-status-top-foreground` `--score-gauge-status-white-improve-foreground` `--score-gauge-status-white-rising-foreground` `--score-gauge-status-white-top-foreground` `--score-gauge-description-offset` `--score-gauge-description-foreground` `--score-gauge-description-white-foreground` `--score-gauge-legend-foreground` `--score-gauge-legend-white-foreground` `--score-gauge-legend-gap`
+
+</details>
+
 ## ScrollArea
 
 A scroll container with styled scrollbars.
@@ -580,9 +616,9 @@ Pick one or more options from a list. For type-to-filter use Combobox.
 
 **Exports:** `Select`, `SelectContent`, `SelectGroup`, `SelectItem`, `SelectLabel`, `SelectScrollDownButton`, `SelectScrollUpButton`, `SelectSeparator`, `SelectTrigger`, `SelectValue`, `SelectChip`, `SelectChipOverflow`, `SelectFooter`, `selectItemVariants`
 
-<details><summary>63 component tokens</summary>
+<details><summary>65 component tokens</summary>
 
-`--select-trigger-height` `--select-trigger-gap` `--select-trigger-radius` `--select-trigger-border` `--select-trigger` `--select-trigger-padding-x` `--select-trigger-foreground` `--select-trigger-hover-border` `--select-trigger-focus-border` `--select-trigger-focus-ring` `--select-trigger-placeholder` `--select-trigger-open-border` `--select-trigger-open` `--select-trigger-open-foreground` `--select-trigger-open-ring` `--select-trigger-invalid-border` `--select-trigger-disabled` `--select-trigger-disabled-foreground` `--select-trigger-sm-height` `--select-icon-size` `--select-icon-foreground` `--select-icon-open-foreground` `--select-icon-disabled-foreground` `--select-clear-foreground` `--select-clear-hover-foreground` `--select-clear-focus-ring` `--select-chip` `--select-chip-foreground` `--select-chip-height` `--select-chip-radius` `--select-chip-overflow` `--select-chip-overflow-foreground` `--select-content-radius` `--select-content-border` `--select-content` `--select-content-padding` `--select-content-foreground` `--select-content-shadow` `--select-label-padding-x` `--select-label-foreground` `--select-item-min-height` `--select-item-radius` `--select-item-padding-y` `--select-item-foreground` `--select-item-highlighted` `--select-item-focus` `--select-item-selected` `--select-item-selected-foreground` `--select-item-disabled-foreground` `--select-item-checkbox` `--select-item-checkbox-border` `--select-item-checkbox-checked` `--select-item-checkbox-checked-foreground` `--select-item-check-foreground` `--select-item-meta-foreground` `--select-separator-height` `--select-separator` `--select-scroll-up-button` `--select-scroll-up-button-padding-y` `--select-scroll-up-button-foreground` `--select-scroll-down-button` `--select-scroll-down-button-padding-y` `--select-scroll-down-button-foreground`
+`--select-trigger-height` `--select-trigger-gap` `--select-trigger-radius` `--select-trigger-border` `--select-trigger` `--select-trigger-padding-x` `--select-trigger-foreground` `--select-trigger-hover-border` `--select-trigger-focus-border` `--select-trigger-focus-ring` `--select-trigger-placeholder` `--select-trigger-open-border` `--select-trigger-open` `--select-trigger-open-foreground` `--select-trigger-open-ring` `--select-trigger-invalid-border` `--select-trigger-disabled` `--select-trigger-disabled-foreground` `--select-trigger-sm-height` `--select-trigger-font-size` `--select-trigger-leading` `--select-icon-size` `--select-icon-foreground` `--select-icon-open-foreground` `--select-icon-disabled-foreground` `--select-clear-foreground` `--select-clear-hover-foreground` `--select-clear-focus-ring` `--select-chip` `--select-chip-foreground` `--select-chip-height` `--select-chip-radius` `--select-chip-overflow` `--select-chip-overflow-foreground` `--select-content-radius` `--select-content-border` `--select-content` `--select-content-padding` `--select-content-foreground` `--select-content-shadow` `--select-label-padding-x` `--select-label-foreground` `--select-item-min-height` `--select-item-radius` `--select-item-padding-y` `--select-item-foreground` `--select-item-highlighted` `--select-item-focus` `--select-item-selected` `--select-item-selected-foreground` `--select-item-disabled-foreground` `--select-item-checkbox` `--select-item-checkbox-border` `--select-item-checkbox-checked` `--select-item-checkbox-checked-foreground` `--select-item-check-foreground` `--select-item-meta-foreground` `--select-separator-height` `--select-separator` `--select-scroll-up-button` `--select-scroll-up-button-padding-y` `--select-scroll-up-button-foreground` `--select-scroll-down-button` `--select-scroll-down-button-padding-y` `--select-scroll-down-button-foreground`
 
 </details>
 
@@ -658,6 +694,24 @@ Shows a short wait. For content loading in place use Skeleton.
 
 </details>
 
+## StatCard
+
+A dashboard stat with a status line under it, ringed by a halo that pulses in the status colour (default, success, warning, error). Use Counter for a marketing figure with no status.
+
+**Exports:** `StatCard`, `StatCardTitle`, `StatCardInfo`, `StatCardValue`, `StatCardStatus`, `StatCardStatusTitle`, `StatCardStatusDescription`, `statCardVariants`, `statCardHaloVariants`, `statCardStatusTitleVariants`
+
+**variant:** `default` · `success` · `warning` · `error`
+
+**motion:** `pulse` · `none`
+
+**statusIcon:** `variant` · `clock` · `trending` · `star` · `flame`
+
+<details><summary>30 component tokens</summary>
+
+`--stat-card` `--stat-card-foreground` `--stat-card-border` `--stat-card-radius` `--stat-card-shadow` `--stat-card-padding` `--stat-card-gap` `--stat-card-halo-width` `--stat-card-halo-radius` `--stat-card-halo` `--stat-card-halo-success` `--stat-card-halo-warning` `--stat-card-halo-error` `--stat-card-title-foreground` `--stat-card-title-font-weight` `--stat-card-title-gap` `--stat-card-info-foreground` `--stat-card-info-hover-foreground` `--stat-card-info-focus-ring` `--stat-card-value-foreground` `--stat-card-value-font-weight` `--stat-card-status-border` `--stat-card-status-padding-top` `--stat-card-status-gap` `--stat-card-status-title-font-weight` `--stat-card-status-title-foreground` `--stat-card-status-title-success-foreground` `--stat-card-status-title-warning-foreground` `--stat-card-status-title-error-foreground` `--stat-card-status-description-foreground`
+
+</details>
+
 ## Stepper
 
 Progress through a fixed sequence of steps (a checkout, an onboarding flow), horizontal or vertical, with active, complete, upcoming and error states.
@@ -712,15 +766,15 @@ Data table with BYB typography: uppercase `text-overline` headers in `dark-100` 
 
 ## Tabs
 
-Tabs switch between related views. Set `variant` on `TabsList` (`pill`, `line` or `segmented`; default `segmented`) and every `TabsTrigger` inside follows it.
+Tabs switch between related views. Set `variant` on `TabsList` (`pill`, `line`, `segmented` or `card`; default `segmented`) and every `TabsTrigger` inside follows it. Card tabs take `icon`, `dot` and `description` on each `TabsTrigger`.
 
-**Exports:** `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`, `tabsListVariants`, `tabsTriggerVariants`, `tabsIndicatorVariants`, `tabsContentVariants`
+**Exports:** `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`, `tabsListVariants`, `tabsTriggerVariants`, `tabsIndicatorVariants`, `tabsTriggerIconVariants`, `tabsContentVariants`
 
-**variant:** `pill` · `line` · `segmented`
+**variant:** `pill` · `line` · `segmented` · `card`
 
-<details><summary>51 component tokens</summary>
+<details><summary>70 component tokens</summary>
 
-`--tabs-gap` `--tabs-list-default-gap` `--tabs-list-default-radius` `--tabs-list-default-border` `--tabs-list-default` `--tabs-list-default-padding` `--tabs-list-line-gap` `--tabs-list-line-border` `--tabs-list-segmented` `--tabs-list-segmented-gap` `--tabs-list-segmented-radius` `--tabs-list-segmented-padding` `--tabs-list-line-vertical-gap` `--tabs-trigger-gap` `--tabs-trigger-focus-ring` `--tabs-trigger-disabled-foreground` `--tabs-trigger-height` `--tabs-trigger-radius` `--tabs-trigger-padding-x` `--tabs-trigger-font-weight` `--tabs-trigger-font-size` `--tabs-trigger-leading` `--tabs-trigger-tracking` `--tabs-trigger-hover-foreground` `--tabs-trigger-foreground` `--tabs-trigger-active-foreground` `--tabs-trigger-line-height` `--tabs-trigger-line-radius` `--tabs-trigger-line-padding-x` `--tabs-trigger-line-foreground` `--tabs-trigger-line-hover-foreground` `--tabs-trigger-line-active-foreground` `--tabs-trigger-line-hover-indicator` `--tabs-trigger-segmented-height` `--tabs-trigger-segmented-radius` `--tabs-trigger-segmented-padding-x` `--tabs-trigger-segmented-foreground` `--tabs-trigger-segmented-active-foreground` `--tabs-indicator` `--tabs-indicator-radius` `--tabs-indicator-line` `--tabs-indicator-line-height` `--tabs-indicator-segmented` `--tabs-indicator-segmented-radius` `--tabs-content-font-size` `--tabs-content-leading` `--tabs-content-panel` `--tabs-content-panel-border` `--tabs-content-panel-radius` `--tabs-content-panel-padding` `--tabs-content-panel-gap`
+`--tabs-gap` `--tabs-list-default-gap` `--tabs-list-default-radius` `--tabs-list-default-border` `--tabs-list-default` `--tabs-list-default-padding` `--tabs-list-line-gap` `--tabs-list-line-border` `--tabs-list-segmented` `--tabs-list-segmented-gap` `--tabs-list-segmented-radius` `--tabs-list-segmented-padding` `--tabs-list-card-gap` `--tabs-list-line-vertical-gap` `--tabs-trigger-gap` `--tabs-trigger-focus-ring` `--tabs-trigger-disabled-foreground` `--tabs-trigger-height` `--tabs-trigger-radius` `--tabs-trigger-padding-x` `--tabs-trigger-font-weight` `--tabs-trigger-font-size` `--tabs-trigger-leading` `--tabs-trigger-tracking` `--tabs-trigger-hover-foreground` `--tabs-trigger-foreground` `--tabs-trigger-active-foreground` `--tabs-trigger-line-height` `--tabs-trigger-line-radius` `--tabs-trigger-line-padding-x` `--tabs-trigger-line-foreground` `--tabs-trigger-line-hover-foreground` `--tabs-trigger-line-active-foreground` `--tabs-trigger-line-hover-indicator` `--tabs-trigger-segmented-height` `--tabs-trigger-segmented-radius` `--tabs-trigger-segmented-padding-x` `--tabs-trigger-segmented-foreground` `--tabs-trigger-segmented-active-foreground` `--tabs-trigger-card` `--tabs-trigger-card-border` `--tabs-trigger-card-hover-border` `--tabs-trigger-card-active` `--tabs-trigger-card-active-border` `--tabs-trigger-card-radius` `--tabs-trigger-card-padding` `--tabs-trigger-card-gap` `--tabs-trigger-icon-size` `--tabs-trigger-icon` `--tabs-trigger-icon-foreground` `--tabs-trigger-icon-active` `--tabs-trigger-icon-active-foreground` `--tabs-trigger-title-foreground` `--tabs-trigger-title-font-weight` `--tabs-trigger-title-gap` `--tabs-trigger-description-foreground` `--tabs-trigger-check-foreground` `--tabs-indicator` `--tabs-indicator-radius` `--tabs-indicator-line` `--tabs-indicator-line-height` `--tabs-indicator-segmented` `--tabs-indicator-segmented-radius` `--tabs-content-font-size` `--tabs-content-leading` `--tabs-content-panel` `--tabs-content-panel-border` `--tabs-content-panel-radius` `--tabs-content-panel-padding` `--tabs-content-panel-gap`
 
 </details>
 
@@ -730,9 +784,9 @@ A multi-line text field.
 
 **Exports:** `Textarea`
 
-<details><summary>12 component tokens</summary>
+<details><summary>14 component tokens</summary>
 
-`--textarea-radius` `--textarea-border` `--textarea` `--textarea-padding-x` `--textarea-foreground` `--textarea-placeholder` `--textarea-focus-border` `--textarea-focus-ring` `--textarea-invalid-border` `--textarea-disabled` `--textarea-disabled-foreground` `--textarea-padding-y`
+`--textarea-radius` `--textarea-border` `--textarea` `--textarea-padding-x` `--textarea-foreground` `--textarea-placeholder` `--textarea-focus-border` `--textarea-focus-ring` `--textarea-invalid-border` `--textarea-disabled` `--textarea-disabled-foreground` `--textarea-padding-y` `--textarea-font-size` `--textarea-leading`
 
 </details>
 

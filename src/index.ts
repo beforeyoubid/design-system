@@ -10,6 +10,9 @@ export * from './components/icon-tile'
 export * from './components/color-dot'
 export { Stepper, stepIndicatorVariants } from './components/stepper'
 export type { StepperProps, StepperStep } from './components/stepper'
+export * from './components/inline-link'
+export * from './components/stat-card'
+export * from './components/score-gauge'
 
 // =============================================================================
 // Date and time

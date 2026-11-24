@@ -1,0 +1,143 @@
+/* Score gauge — component tokens.
+ * Set any component token (the name without the underscore) on :root or a section.
+ * Defaults are the shipped design. Edited by hand; our component (score-gauge.tsx) reads these component tokens.
+ * Bands: improve (under 70), rising (70–89), top (90 and over). */
+
+[data-slot="score-gauge"] {
+  /* Fill colour of the surface. @ours */
+  --_score-gauge: var(--score-gauge, var(--navy));
+  /* Default text colour on the surface. @ours @on --_score-gauge */
+  --_score-gauge-foreground: var(--score-gauge-foreground, var(--white));
+  /* Fill colour of the surface (white variant). @ours */
+  --_score-gauge-white: var(--score-gauge-white, var(--card));
+  /* Default text colour on the surface (white variant). @ours @on --_score-gauge-white */
+  --_score-gauge-white-foreground: var(--score-gauge-white-foreground, var(--card-foreground));
+  /* Corner radius of the surface. @ours */
+  --_score-gauge-radius: var(--score-gauge-radius, var(--radius-2xl));
+  /* Padding inside the surface. @ours */
+  --_score-gauge-padding: var(--score-gauge-padding, calc(var(--spacing) * 6));
+  /* Gap between the dial, the legend and anything below them. @ours */
+  --_score-gauge-gap: var(--score-gauge-gap, calc(var(--spacing) * 5));
+}
+
+[data-slot="score-gauge-dial"] {
+  /* Width of the dial (sm size). @ours */
+  --_score-gauge-dial-sm-width: var(--score-gauge-dial-sm-width, calc(var(--spacing) * 76));
+  /* Width of the dial (md size). @ours */
+  --_score-gauge-dial-md-width: var(--score-gauge-dial-md-width, calc(var(--spacing) * 100));
+  /* Width of the dial (lg size). @ours */
+  --_score-gauge-dial-lg-width: var(--score-gauge-dial-lg-width, calc(var(--spacing) * 124));
+}
+
+[data-slot="score-gauge-tick"] {
+  /* Colour of the ticks in the improve band. Also its legend dot. @ours */
+  --_score-gauge-tick-improve: var(--score-gauge-tick-improve, var(--warning-15));
+  /* Colour of the ticks in the rising band. Also its legend dot. @ours */
+  --_score-gauge-tick-rising: var(--score-gauge-tick-rising, var(--teal));
+  /* Colour of the ticks in the top band. Also its legend dot. @ours */
+  --_score-gauge-tick-top: var(--score-gauge-tick-top, var(--lime));
+  /* Colour of the ticks past the score. @ours */
+  --_score-gauge-tick-empty: var(--score-gauge-tick-empty, color-mix(in oklab, var(--white) 15%, transparent));
+  /* Colour of the ticks in the improve band (white variant). @ours */
+  --_score-gauge-tick-white-improve: var(--score-gauge-tick-white-improve, var(--warning-30));
+  /* Colour of the ticks in the rising band (white variant). @ours */
+  --_score-gauge-tick-white-rising: var(--score-gauge-tick-white-rising, var(--teal));
+  /* Colour of the ticks in the top band (white variant). @ours */
+  --_score-gauge-tick-white-top: var(--score-gauge-tick-white-top, var(--success-45));
+  /* Colour of the ticks past the score (white variant). @ours */
+  --_score-gauge-tick-white-empty: var(--score-gauge-tick-white-empty, var(--light-l3));
+}
+
+[data-slot="score-gauge-marker"] {
+  /* Colour of the marker and its pointer. @ours */
+  --_score-gauge-marker: var(--score-gauge-marker, var(--white));
+  /* Colour of the marker and its pointer (white variant). @ours */
+  --_score-gauge-marker-white: var(--score-gauge-marker-white, var(--navy));
+}
+
+[data-slot="score-gauge-scale"] {
+  /* Text colour of the 0 / 70 / 90 / 100 labels. @ours @on --_score-gauge */
+  --_score-gauge-scale-foreground: var(--score-gauge-scale-foreground, var(--white));
+  /* Text colour of the 0 / 70 / 90 / 100 labels (white variant). @ours @on --_score-gauge-white */
+  --_score-gauge-scale-white-foreground: var(--score-gauge-scale-white-foreground, var(--dark-75));
+  /* Font weight of the scale labels. @ours */
+  --_score-gauge-scale-font-weight: var(--score-gauge-scale-font-weight, var(--font-weight-semibold));
+}
+
+[data-slot="score-gauge-center"] {
+  /* Gap between the score, the status and the description (sm size). @ours */
+  --_score-gauge-center-sm-gap: var(--score-gauge-center-sm-gap, calc(var(--spacing) * 1));
+  /* Gap between the score, the status and the description (md size). @ours */
+  --_score-gauge-center-md-gap: var(--score-gauge-center-md-gap, calc(var(--spacing) * 1.5));
+  /* Gap between the score, the status and the description (lg size). @ours */
+  --_score-gauge-center-lg-gap: var(--score-gauge-center-lg-gap, calc(var(--spacing) * 2));
+  /* Side padding that keeps the score block inside the arc (sm size). @ours */
+  --_score-gauge-center-sm-padding-x: var(--score-gauge-center-sm-padding-x, calc(var(--spacing) * 13));
+  /* Side padding that keeps the score block inside the arc (md size). @ours */
+  --_score-gauge-center-md-padding-x: var(--score-gauge-center-md-padding-x, calc(var(--spacing) * 17));
+  /* Side padding that keeps the score block inside the arc (lg size). @ours */
+  --_score-gauge-center-lg-padding-x: var(--score-gauge-center-lg-padding-x, calc(var(--spacing) * 21));
+  /* Space under the score block, lifting it into the arc (sm size). @ours */
+  --_score-gauge-center-sm-padding-bottom: var(--score-gauge-center-sm-padding-bottom, calc(var(--spacing) * 4));
+  /* Space under the score block, lifting it into the arc (md size). @ours */
+  --_score-gauge-center-md-padding-bottom: var(--score-gauge-center-md-padding-bottom, calc(var(--spacing) * 5.5));
+  /* Space under the score block, lifting it into the arc (lg size). @ours */
+  --_score-gauge-center-lg-padding-bottom: var(--score-gauge-center-lg-padding-bottom, calc(var(--spacing) * 7));
+  /* Space under the score block in a compact gauge. @ours */
+  --_score-gauge-center-compact-padding-bottom: var(--score-gauge-center-compact-padding-bottom, calc(var(--spacing) * 1));
+}
+
+[data-slot="score-gauge-value"] {
+  /* Text colour of the score. @ours @on --_score-gauge */
+  --_score-gauge-value-foreground: var(--score-gauge-value-foreground, var(--white));
+  /* Text colour of the score (white variant). @ours @on --_score-gauge-white */
+  --_score-gauge-value-white-foreground: var(--score-gauge-value-white-foreground, var(--navy));
+  /* Font weight of the score. @ours */
+  --_score-gauge-value-font-weight: var(--score-gauge-value-font-weight, var(--font-weight-semibold));
+  /* Gap between the score and "/100". @ours */
+  --_score-gauge-value-gap: var(--score-gauge-value-gap, calc(var(--spacing) * 1));
+}
+
+[data-slot="score-gauge-max"] {
+  /* Text colour of "/100". @ours @on --_score-gauge */
+  --_score-gauge-max-foreground: var(--score-gauge-max-foreground, var(--white));
+  /* Text colour of "/100" (white variant). @ours @on --_score-gauge-white */
+  --_score-gauge-max-white-foreground: var(--score-gauge-max-white-foreground, var(--dark-75));
+  /* Font weight of "/100". @ours */
+  --_score-gauge-max-font-weight: var(--score-gauge-max-font-weight, var(--font-weight-medium));
+}
+
+[data-slot="score-gauge-status"] {
+  /* Font weight of the status. @ours */
+  --_score-gauge-status-font-weight: var(--score-gauge-status-font-weight, var(--font-weight-semibold));
+  /* Text colour of the status in the improve band. @ours @on --_score-gauge */
+  --_score-gauge-status-improve-foreground: var(--score-gauge-status-improve-foreground, var(--warning-15));
+  /* Text colour of the status in the rising band. @ours @on --_score-gauge */
+  --_score-gauge-status-rising-foreground: var(--score-gauge-status-rising-foreground, var(--teal));
+  /* Text colour of the status in the top band. @ours @on --_score-gauge */
+  --_score-gauge-status-top-foreground: var(--score-gauge-status-top-foreground, var(--lime));
+  /* Text colour of the status in the improve band (white variant). @ours @on --_score-gauge-white */
+  --_score-gauge-status-white-improve-foreground: var(--score-gauge-status-white-improve-foreground, var(--warning-75));
+  /* Text colour of the status in the rising band (white variant). @ours @on --_score-gauge-white */
+  --_score-gauge-status-white-rising-foreground: var(--score-gauge-status-white-rising-foreground, var(--mint-75));
+  /* Text colour of the status in the top band (white variant). @ours @on --_score-gauge-white */
+  --_score-gauge-status-white-top-foreground: var(--score-gauge-status-white-top-foreground, var(--success-75));
+}
+
+[data-slot="score-gauge-description"] {
+  /* Pulls the description up towards the dial (it sits under the 0 and 100 labels). @ours */
+  --_score-gauge-description-offset: var(--score-gauge-description-offset, calc(var(--spacing) * 2));
+  /* Text colour of the description. @ours @on --_score-gauge */
+  --_score-gauge-description-foreground: var(--score-gauge-description-foreground, var(--white));
+  /* Text colour of the description (white variant). @ours @on --_score-gauge-white */
+  --_score-gauge-description-white-foreground: var(--score-gauge-description-white-foreground, var(--dark-90));
+}
+
+[data-slot="score-gauge-legend"] {
+  /* Text colour of the legend. @ours @on --_score-gauge */
+  --_score-gauge-legend-foreground: var(--score-gauge-legend-foreground, var(--white));
+  /* Text colour of the legend (white variant). @ours @on --_score-gauge-white */
+  --_score-gauge-legend-white-foreground: var(--score-gauge-legend-white-foreground, var(--dark-90));
+  /* Gap between legend items. @ours */
+  --_score-gauge-legend-gap: var(--score-gauge-legend-gap, calc(var(--spacing) * 5));
+}

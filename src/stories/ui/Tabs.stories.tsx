@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../components/tabs'
+import { ColorDot } from '../../components/color-dot'
+import { productBadgeByKey, type ProductBadgeKey } from '../../lib/product-badges'
 
 const meta: Meta<typeof TabsList> = {
   title: 'BYB Components/Tabs',
@@ -9,10 +11,10 @@ const meta: Meta<typeof TabsList> = {
   argTypes: {
     variant: {
       control: 'inline-radio',
-      options: ['pill', 'line', 'segmented'],
+      options: ['pill', 'line', 'segmented', 'card'],
       description: 'Visual style of the tab list. Triggers inherit it automatically.',
       table: {
-        type: { summary: "'pill' | 'line' | 'segmented'" },
+        type: { summary: "'pill' | 'line' | 'segmented' | 'card'" },
         defaultValue: { summary: 'segmented' },
       },
     },
@@ -22,7 +24,7 @@ const meta: Meta<typeof TabsList> = {
     docs: {
       description: {
         component:
-          'Tabs switch between related views. Set `variant` on `TabsList` (`pill`, `line` or `segmented`; default `segmented`) and every `TabsTrigger` inside follows it.',
+          'Tabs switch between related views. Set `variant` on `TabsList` (`pill`, `line`, `segmented` or `card`; default `segmented`) and every `TabsTrigger` inside follows it. Card tabs take `icon`, `dot` and `description` on each `TabsTrigger`.',
       },
     },
   },
@@ -162,6 +164,69 @@ export const DisabledTab: Story = {
       </TabsList>
       <TabsContent value="building" className={copy}>Building report.</TabsContent>
       <TabsContent value="pest" className={copy}>Pest report.</TabsContent>
+    </Tabs>
+  ),
+}
+
+// ── Card tabs ────────────────────────────────────────────────────────────────
+
+const PRODUCTS: { key: ProductBadgeKey; title: string; jobs: number }[] = [
+  { key: 'bpi', title: 'Building & Pest', jobs: 26 },
+  { key: 'strata-report', title: 'Strata', jobs: 12 },
+  { key: 'pool-inspection', title: 'Pool', jobs: 4 },
+]
+
+/**
+ * `variant="card"`: one card per tab. Props on each `TabsTrigger`: `icon` (round
+ * tile), `dot` (before the title), children (the title) and `description`.
+ * Default: white with a grey border and grey icon. Hover: mint-30 border.
+ * Selected: mint-l3 fill, 2px mint-60 border, mint icon and a tick.
+ */
+export const Card: Story = {
+  args: { variant: 'card' },
+  render: ({ variant }) => (
+    <Tabs defaultValue="strata-report">
+      <TabsList variant={variant}>
+        {PRODUCTS.map(({ key, title, jobs }) => {
+          const product = productBadgeByKey[key]
+          const Icon = product.icon
+          return (
+            <TabsTrigger
+              key={key}
+              value={key}
+              icon={<Icon />}
+              dot={<ColorDot className={product.bg} />}
+              description={`${jobs} jobs this period`}
+            >
+              {title}
+            </TabsTrigger>
+          )
+        })}
+      </TabsList>
+      {PRODUCTS.map(({ key, title }) => (
+        <TabsContent key={key} value={key} className={copy}>
+          {title} jobs for this period.
+        </TabsContent>
+      ))}
+    </Tabs>
+  ),
+}
+
+/** Each prop is optional: a card tab can be just a title, or a title and description. */
+export const CardProps: Story = {
+  name: 'Card (optional props)',
+  args: { variant: 'card' },
+  render: ({ variant }) => (
+    <Tabs defaultValue="all">
+      <TabsList variant={variant}>
+        <TabsTrigger value="all" description="38 jobs this period">All products</TabsTrigger>
+        <TabsTrigger value="bpi" dot={<ColorDot className={productBadgeByKey.bpi.bg} />}>
+          Building &amp; Pest
+        </TabsTrigger>
+        <TabsTrigger value="off" disabled description="Not available yet">
+          Valuations
+        </TabsTrigger>
+      </TabsList>
     </Tabs>
   ),
 }

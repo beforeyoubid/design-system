@@ -40,6 +40,8 @@
   --_tabs-list-segmented-radius: var(--tabs-list-segmented-radius, var(--radius-lg));
   /* Padding of the list (segmented variant). @ours */
   --_tabs-list-segmented-padding: var(--tabs-list-segmented-padding, calc(var(--spacing) * 1));
+  /* Gap between the cards (card variant). @ours */
+  --_tabs-list-card-gap: var(--tabs-list-card-gap, calc(var(--spacing) * 3));
   /* Gap between the triggers of a vertical line tab list. */
   --_tabs-list-line-vertical-gap: var(--tabs-list-line-vertical-gap, calc(var(--spacing) * 0.5));
 }
@@ -97,6 +99,54 @@
   --_tabs-trigger-segmented-foreground: var(--tabs-trigger-segmented-foreground, var(--navy));
   /* Text colour of the trigger (segmented variant) when active. @ours @on --tabs-indicator-segmented */
   --_tabs-trigger-segmented-active-foreground: var(--tabs-trigger-segmented-active-foreground, var(--white));
+  /* Fill colour of the trigger (card variant). @ours */
+  --_tabs-trigger-card: var(--tabs-trigger-card, var(--card));
+  /* Border colour of the trigger (card variant). @ours */
+  --_tabs-trigger-card-border: var(--tabs-trigger-card-border, var(--border));
+  /* Border colour of the trigger (card variant) when hovered. @ours */
+  --_tabs-trigger-card-hover-border: var(--tabs-trigger-card-hover-border, var(--mint-30));
+  /* Fill colour of the trigger (card variant) when active. @ours */
+  --_tabs-trigger-card-active: var(--tabs-trigger-card-active, var(--mint-l3));
+  /* Border colour of the trigger (card variant) when active; drawn two pixels thick. @ours */
+  --_tabs-trigger-card-active-border: var(--tabs-trigger-card-active-border, var(--mint-60));
+  /* Corner radius of the trigger (card variant). @ours */
+  --_tabs-trigger-card-radius: var(--tabs-trigger-card-radius, var(--radius-xl));
+  /* Padding of the trigger (card variant). @ours */
+  --_tabs-trigger-card-padding: var(--tabs-trigger-card-padding, calc(var(--spacing) * 4));
+  /* Gap between the icon, the text and the tick (card variant). @ours */
+  --_tabs-trigger-card-gap: var(--tabs-trigger-card-gap, calc(var(--spacing) * 3));
+}
+
+[data-slot="tabs-trigger-icon"] {
+  /* Width and height of the round icon (card variant). @ours */
+  --_tabs-trigger-icon-size: var(--tabs-trigger-icon-size, calc(var(--spacing) * 10));
+  /* Fill colour of the round icon (card variant). @ours */
+  --_tabs-trigger-icon: var(--tabs-trigger-icon, var(--light-l2));
+  /* Icon colour (card variant). @ours */
+  --_tabs-trigger-icon-foreground: var(--tabs-trigger-icon-foreground, var(--navy));
+  /* Fill colour of the round icon (card variant) when active. @ours */
+  --_tabs-trigger-icon-active: var(--tabs-trigger-icon-active, var(--mint-60));
+  /* Icon colour (card variant) when active. @ours */
+  --_tabs-trigger-icon-active-foreground: var(--tabs-trigger-icon-active-foreground, var(--white));
+}
+
+[data-slot="tabs-trigger-title"] {
+  /* Text colour of the title (card variant). @ours @on --_tabs-trigger-card */
+  --_tabs-trigger-title-foreground: var(--tabs-trigger-title-foreground, var(--navy));
+  /* Font weight of the title (card variant). @ours */
+  --_tabs-trigger-title-font-weight: var(--tabs-trigger-title-font-weight, var(--font-weight-semibold));
+  /* Gap between the title and the description (card variant). @ours */
+  --_tabs-trigger-title-gap: var(--tabs-trigger-title-gap, calc(var(--spacing) * 0.5));
+}
+
+[data-slot="tabs-trigger-description"] {
+  /* Text colour of the description (card variant). @ours @on --_tabs-trigger-card */
+  --_tabs-trigger-description-foreground: var(--tabs-trigger-description-foreground, var(--dark-90));
+}
+
+[data-slot="tabs-trigger-check"] {
+  /* Colour of the tick on the active card. @ours @on --_tabs-trigger-card-active */
+  --_tabs-trigger-check-foreground: var(--tabs-trigger-check-foreground, var(--mint-75));
 }
 
 [data-slot="tabs-indicator"] {
